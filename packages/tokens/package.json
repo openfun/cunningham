@@ -1,14 +1,14 @@
 {
   "name": "cunningham-tokens",
   "private": false,
-  "version": "0.0.1",
+  "version": "0.0.4",
   "type": "module",
   "main": "./dist/cunningham.js",
   "bin": {
     "cunningham": "./dist/cunningham.js"
   },
   "files": [
-    "./dist/**/*"
+    "./dist/*"
   ],
   "scripts": {
     "dev": "ts-node src/cunningham.ts",
