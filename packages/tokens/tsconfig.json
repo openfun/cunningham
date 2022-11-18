@@ -13,7 +13,11 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "outDir": "dist"
+  },
+  "ts-node": {
+    "esm": true
   },
   "include": [
     "src"
