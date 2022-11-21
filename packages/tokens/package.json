@@ -3,7 +3,16 @@
   "private": false,
   "version": "0.0.5",
   "type": "module",
-  "main": "./dist/cunningham.js",
+  "module": "./dist/index.js",
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "bin": {
     "cunningham": "./dist/cunningham.js"
   },
@@ -11,20 +20,25 @@
     "./dist/"
   ],
   "scripts": {
-    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/cunningham.ts",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
-  },
-  "devDependencies": {
-    "@types/node": "^18.11.9",
-    "nodemon": "^2.0.20",
-    "ts-node": "^10.9.1",
-    "typescript": "^4.9.3",
-    "vite": "^3.2.3"
+    "lint": "eslint . 'src/**/*.ts?(x)'",
+    "dev": "nodemon --watch src --ext '*' --exec npm run build",
+    "dev-bin": "nodemon --watch 'src/cunningham.ts' --exec 'ts-node' src/cunningham.ts",
+    "build": "tsc && vite build"
   },
   "dependencies": {
     "@types/figlet": "^1.5.5",
+    "@types/node": "^18.11.9",
     "chalk": "^5.1.2",
-    "figlet": "^1.5.2"
+    "eslint-config-custom": "*",
+    "figlet": "^1.5.2",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.7.1",
+    "ts-node": "^10.9.1",
+    "typescript": "4.8.4",
+    "vite": "^3.2.3",
+    "vite-plugin-dts": "^1.7.1"
+  },
+  "devDependencies": {
+    "rollup-plugin-hashbang": "^3.0.0"
   }
 }
