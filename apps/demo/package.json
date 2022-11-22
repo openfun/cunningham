@@ -6,14 +6,15 @@
   "scripts": {
     "lint": "eslint . 'src/**/*.ts?(x)'",
     "dev": "vite",
-    "build-theme": "cunningham",
+    "build-theme": "cunningham -o src",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "cunningham-tokens": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "cunningham-tokens": "*"
+    "sass": "^1.56.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.24",

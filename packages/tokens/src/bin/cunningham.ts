@@ -1,31 +1,34 @@
 #!/usr/bin/env node
-
-import { fileURLToPath } from "url";
-import { dirname } from "path";
 import chalk from "chalk";
 import figlet from "figlet";
-
-const CONFIGURATION_FILE = "cunningham.js";
-
-const getLocalConfig = async () => {
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = dirname(__filename);
-  console.log(__filename, __dirname);
-
-  return {};
-};
-
-const buildTheme = async () => {
-  const localConfig = await getLocalConfig();
-  console.log("localConfig", localConfig);
-};
+import { program } from "commander";
+import { getConfig } from "./ConfigLoader.js";
+import { sassGenerator } from "./SassGenerator.js";
+import { tokensGenerator } from "./TokensGenerator.js";
 
 console.log(
-  chalk.red(figlet.textSync("Cunningham :o", { horizontalLayout: "full" }))
+  chalk.red(figlet.textSync("Cunningham", { horizontalLayout: "full" }))
 );
 
-buildTheme().then(() => {
-  console.log("Done.");
-});
+program
+  .description("Cunningham's CLI tool.")
+  .option(
+    "-o, --output <directory>",
+    "Specify the output dir of generated files.",
+    "."
+  )
+  .parse(process.argv);
+
+const buildTheme = async () => {
+  const config = await getConfig();
+  const tokens = tokensGenerator(config);
+  console.log("tokens", tokens);
+  const options = program.opts();
+  await sassGenerator(tokens, {
+    path: options.output,
+  });
+};
+
+buildTheme().then(() => {});
 
 export {};

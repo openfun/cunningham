@@ -1,9 +1,11 @@
 {
   "extends": "tsconfig/tsconfig.json",
   "include": [
-    "cunningham.ts"
+    "./*"
   ],
   "compilerOptions": {
-    "outDir": "../../dist"
+    "baseUrl": ".",
+    "outDir": "../../dist",
+    "allowJs": true
   }
 }
