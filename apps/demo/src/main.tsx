@@ -1,10 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { truc } from "cunningham-tokens";
+import { bidule, truc } from "cunningham-tokens";
 import App from "./App";
 import "./index.css";
 
 truc();
+bidule();
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>

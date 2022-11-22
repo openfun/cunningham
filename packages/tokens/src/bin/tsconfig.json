@@ -1,10 +1,9 @@
 {
   "extends": "tsconfig/tsconfig.json",
-  "include": ["src"],
-  "exclude": [
-    "src/bin"
+  "include": [
+    "cunningham.ts"
   ],
   "compilerOptions": {
-    "outDir": "dist",
+    "outDir": "../../dist"
   }
 }

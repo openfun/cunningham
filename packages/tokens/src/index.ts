@@ -2,4 +2,6 @@ const truc = () => {
   console.log("yay");
 };
 
-export { truc };
+const bidule = () => {};
+
+export { truc, bidule };
