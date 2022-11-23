@@ -1,7 +1,7 @@
 {
-  "name": "@openfun/cunningham-react",
+  "name": "cunningham-react",
   "private": false,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "module": "./dist/index.js",
   "main": "./dist/index.cjs",
@@ -14,7 +14,7 @@
     }
   },
   "files": [
-    "./dist/"
+    "dist/"
   ],
   "scripts": {
     "dev": "nodemon --watch src --ext '*' --exec npm run build",
