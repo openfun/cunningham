@@ -1,0 +1,1 @@
+{"version":3,"file":"index.cjs","sources":["../src/index.ts"],"sourcesContent":["const truc = () => {\n  console.log(\"yay\");\n};\n\nconst bidule = () => {};\n\nexport { truc, bidule };\n"],"names":["truc","bidule"],"mappings":"4GAAA,MAAMA,EAAO,IAAM,CACjB,QAAQ,IAAI,KAAK,CACnB,EAEMC,EAAS,IAAM,CAAC"}
