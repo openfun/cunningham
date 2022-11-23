@@ -18,6 +18,13 @@ export const sassGenerator = (tokens, opts) => __awaiter(void 0, void 0, void 0,
     }, "");
     console.log("content", content);
     yield fs.writeFile(path.join(opts.path, Config.sass.tokenFilename), content);
+    // Generate CSS too. Temporary.
+    const cssVars = Object.keys(flatTokens).reduce((acc, token) => {
+        return acc + `--${Config.sass.varPrefix}${token}: ${flatTokens[token]};\n`;
+    }, "");
+    const cssContent = `html {\n${cssVars}}`;
+    console.log('css', cssContent);
+    yield fs.writeFile(path.join(opts.path, Config.sass.tokenFilenameCss), cssContent);
 });
 const flatify = (obj) => {
     const flatObj = {};

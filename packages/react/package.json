@@ -1,7 +1,7 @@
 {
-  "name": "cunningham-react",
+  "name": "@openfun/cunningham-react",
   "private": false,
-  "version": "0.0.1",
+  "version": "0.0.0",
   "type": "module",
   "module": "./dist/index.js",
   "main": "./dist/index.cjs",
@@ -11,7 +11,8 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs",
       "types": "./dist/index.d.ts"
-    }
+    },
+    "./dist/style.css": "./dist/style.css"
   },
   "files": [
     "dist/"

@@ -1,5 +1,3 @@
-import { Button } from "./components/Button";
-
+import "./index.scss"
+export * from "./components/Button";
 export const Fun = () => {};
-
-export { Button };

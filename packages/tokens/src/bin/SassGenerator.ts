@@ -10,6 +10,15 @@ export const sassGenerator = async (tokens: any, opts: { path: string }) => {
   }, "");
   console.log("content", content);
   await fs.writeFile(path.join(opts.path, Config.sass.tokenFilename), content);
+
+  // Generate CSS too. Temporary.
+  const cssVars = Object.keys(flatTokens).reduce((acc, token) => {
+    return acc + `--${Config.sass.varPrefix}${token}: ${flatTokens[token]};\n`;
+  }, "");
+  const cssContent = `html {\n${cssVars}}`;
+
+  console.log('css', cssContent);
+  await fs.writeFile(path.join(opts.path, Config.sass.tokenFilenameCss), cssContent);
 };
 
 const flatify = (obj: any) => {
