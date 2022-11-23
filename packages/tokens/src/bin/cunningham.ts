@@ -3,12 +3,15 @@ import chalk from "chalk";
 import figlet from "figlet";
 import { program } from "commander";
 import { getConfig } from "./ConfigLoader.js";
-import { sassGenerator } from "./SassGenerator.js";
 import { tokensGenerator } from "./TokensGenerator.js";
+import { sassGenerator } from "./SassGenerator.js";
+import { myFunction } from "./LocalModule.js";
 
 console.log(
   chalk.red(figlet.textSync("Cunningham", { horizontalLayout: "full" }))
 );
+
+myFunction();
 
 program
   .description("Cunningham's CLI tool.")
@@ -30,5 +33,3 @@ const buildTheme = async () => {
 };
 
 buildTheme().then(() => {});
-
-export {};
