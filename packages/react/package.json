@@ -12,24 +12,31 @@
       "require": "./dist/index.cjs",
       "types": "./dist/index.d.ts"
     },
-    "./dist/style.css": "./dist/style.css"
+    "./style": "./dist/style.css"
   },
   "files": [
     "dist/"
   ],
   "scripts": {
     "dev": "nodemon --watch src --ext '*' --exec npm run build",
+    "build-default-theme": "cunningham",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@types/react": "^18.0.25",
-    "@types/react-dom": "^18.0.9",
-    "@vitejs/plugin-react": "^2.2.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "typescript": "4.8.4",
-    "vite": "^3.2.3",
-    "vite-plugin-dts": "^1.7.1"
+    "@fontsource/roboto": "4.5.8",
+    "@openfun/cunningham-tokens": "*",
+    "@openfun/typescript-configs": "*",
+    "@types/react": "18.0.25",
+    "@types/react-dom": "18.0.9",
+    "@vitejs/plugin-react": "2.2.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "4.9.3",
+    "vite": "3.2.4",
+    "vite-plugin-dts": "1.7.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   }
 }

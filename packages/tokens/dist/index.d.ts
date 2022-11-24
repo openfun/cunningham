@@ -1,3 +1,1 @@
-declare const truc: () => void;
-declare const bidule: () => void;
-export { truc, bidule };
+export declare const typeCheck: () => void;

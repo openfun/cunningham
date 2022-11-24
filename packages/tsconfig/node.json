@@ -1,0 +1,10 @@
+{
+  "extends": "./base.json",
+  "compilerOptions": {
+    "module": "Node16",
+    "moduleResolution": "Node16",
+    "sourceMap": true,
+    "target": "es6",
+    "allowJs": true
+  }
+}

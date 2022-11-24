@@ -1,7 +1,7 @@
 export default {
   theme: {
     colors: {
-      primary: "blue",
+      primary: "#055FD2",
     },
   },
 };

@@ -12,7 +12,7 @@ export default defineConfig({
       entry: {
         index: './src/index.ts'
       },
-      formats: ["es", "cjs"],
+      formats: ["es"],
     },
     rollupOptions: {
       external: ['react', 'react-dom'],

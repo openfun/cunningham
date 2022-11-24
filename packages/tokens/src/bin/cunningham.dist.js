@@ -1,7 +1,7 @@
 export default {
   theme: {
     colors: {
-      primary: "Gold",
+      primary: "#055FD2",
       secondary: "FloralWhite",
     },
   },

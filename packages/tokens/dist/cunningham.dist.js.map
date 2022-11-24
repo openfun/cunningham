@@ -1,1 +1,1 @@
-{"version":3,"file":"cunningham.dist.js","sourceRoot":"","sources":["../src/bin/cunningham.dist.js"],"names":[],"mappings":"AAAA,eAAe;IACb,KAAK,EAAE;QACL,MAAM,EAAE;YACN,OAAO,EAAE,MAAM;YACf,SAAS,EAAE,aAAa;SACzB;KACF;CACF,CAAC"}
+{"version":3,"file":"cunningham.dist.js","sourceRoot":"","sources":["../src/bin/cunningham.dist.js"],"names":[],"mappings":"AAAA,eAAe;IACb,KAAK,EAAE;QACL,MAAM,EAAE;YACN,OAAO,EAAE,SAAS;YAClB,SAAS,EAAE,aAAa;SACzB;KACF;CACF,CAAC"}

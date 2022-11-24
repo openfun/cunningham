@@ -1,13 +1,10 @@
 {
-  "extends": "tsconfig/tsconfig.json",
+  "extends": "@openfun/typescript-configs/node.json",
   "include": [
     "./*"
   ],
   "compilerOptions": {
-    "module": "Node16",
-    "moduleResolution": "Node16",
     "baseUrl": ".",
-    "outDir": "../../dist",
-    "allowJs": true,
+    "outDir": "../../dist"
   }
 }

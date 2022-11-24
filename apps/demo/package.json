@@ -11,17 +11,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@openfun/cunningham-tokens": "*",
     "@openfun/cunningham-react": "*",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "sass": "^1.56.1"
+    "@openfun/cunningham-tokens": "*",
+    "@openfun/typescript-configs": "*",
+    "@types/react": "18.0.25",
+    "@types/react-dom": "18.0.9",
+    "@vitejs/plugin-react": "2.2.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "sass": "1.56.1",
+    "typescript": "4.9.3",
+    "vite": "3.2.4"
   },
-  "devDependencies": {
-    "@types/react": "^18.0.24",
-    "@types/react-dom": "^18.0.8",
-    "@vitejs/plugin-react": "^2.2.0",
-    "typescript": "4.8.4",
-    "vite": "^3.2.3"
+  "engines": {
+    "node": ">=16.0.0"
   }
 }

@@ -1,9 +1,6 @@
-const o = () => {
-  console.log("yay");
-}, c = () => {
+const e = () => {
 };
 export {
-  c as bidule,
-  o as truc
+  e as typeCheck
 };
 //# sourceMappingURL=index.js.map

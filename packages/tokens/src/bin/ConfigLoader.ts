@@ -3,7 +3,7 @@ import deepmerge from "deepmerge";
 import Config from "./Config.js";
 
 /**
- * TODO: Allow un-existant local config file ( but warn the user ! )
+ * TODO: Allow missing local config file ( but warn the user ! )
  */
 const getLocalConfig = async () => {
   const configPath = path.join(process.cwd(), Config.configurationFilename);
