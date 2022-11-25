@@ -1,1 +1,1 @@
-export const typeCheck = () => {}
+export const typeCheck = () => {};

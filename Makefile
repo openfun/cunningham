@@ -49,7 +49,7 @@ YARN                 = $(COMPOSE_RUN_NODE) yarn
 
 default: help
 
-install: ## watch changes in apps and packages.
+install: ## install all repos dependencies.
 	@$(YARN) install
 .PHONY: install
 
@@ -57,6 +57,16 @@ dev: ## watch changes in apps and packages.
 dev: install
 	@$(YARN) dev
 .PHONY: dev
+
+lint: ## lint all repos.
+lint: install
+	@$(YARN) lint
+.PHONY: lint
+
+build: ## build apps and packages.
+build: install
+	@$(YARN) build
+.PHONY: build
 
 help:
 	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'

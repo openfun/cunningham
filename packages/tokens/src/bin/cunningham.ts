@@ -5,7 +5,7 @@ import { program } from "commander";
 import { getConfig } from "./ConfigLoader.js";
 import { tokensGenerator } from "./TokensGenerator.js";
 import { myFunction } from "./LocalModule.js";
-import { cssGenerator } from './CssGenerator.js';
+import { cssGenerator } from "./CssGenerator.js";
 
 console.log(
   chalk.red(figlet.textSync("Cunningham", { horizontalLayout: "full" }))
@@ -35,7 +35,7 @@ const buildTheme = async () => {
   console.log(options);
   await cssGenerator(tokens, {
     path: options.output,
-    selector: options.selector
+    selector: options.selector,
   });
 };
 

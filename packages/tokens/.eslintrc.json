@@ -2,6 +2,6 @@
   "root": true,
   "extends": ["custom"],
   "parserOptions": {
-    "project": ["./tsconfig.json", "./src/bin/tsconfig.json"]
+    "project": ["./tsconfig.json", "./tsconfig.node.json","./src/bin/tsconfig.json"]
   }
 }

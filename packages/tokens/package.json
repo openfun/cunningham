@@ -3,6 +3,7 @@
   "private": false,
   "version": "0.0.5",
   "type": "module",
+  "license": "MIT",
   "module": "./dist/index.js",
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",

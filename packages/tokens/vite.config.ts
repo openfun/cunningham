@@ -1,5 +1,5 @@
-import { defineConfig } from 'vite';
-import dts from 'vite-plugin-dts';
+import { defineConfig } from "vite";
+import dts from "vite-plugin-dts";
 
 export default defineConfig({
   build: {
@@ -8,10 +8,10 @@ export default defineConfig({
     sourcemap: true,
     lib: {
       entry: {
-        index: './src/lib/index.ts',
+        index: "./src/lib/index.ts",
       },
       formats: ["es", "cjs"],
     },
   },
   plugins: [dts()],
-})
+});

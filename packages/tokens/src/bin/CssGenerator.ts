@@ -2,17 +2,25 @@ import * as fs from "fs/promises";
 import * as path from "path";
 import Config from "./Config.js";
 
-export const cssGenerator = async (tokens: any, opts: { path: string, selector: string }) => {
+export const cssGenerator = async (
+  tokens: any,
+  opts: { path: string; selector: string }
+) => {
   const flatTokens = flatify(tokens);
   console.log("flatTokens", flatTokens);
   // Generate CSS too. Temporary.
   const cssVars = Object.keys(flatTokens).reduce((acc, token) => {
-    return acc + `\t--${Config.sass.varPrefix}${token}: ${flatTokens[token]};\n`;
+    return (
+      acc + `\t--${Config.sass.varPrefix}${token}: ${flatTokens[token]};\n`
+    );
   }, "");
   const cssContent = `${opts.selector} {\n${cssVars}}`;
 
-  console.log('css', cssContent);
-  await fs.writeFile(path.join(opts.path, Config.sass.tokenFilenameCss), cssContent);
+  console.log("css", cssContent);
+  await fs.writeFile(
+    path.join(opts.path, Config.sass.tokenFilenameCss),
+    cssContent
+  );
 };
 
 const flatify = (obj: any) => {

@@ -1,1 +1,1 @@
-{"version":3,"file":"index.js","sources":["../src/lib/index.ts"],"sourcesContent":["export const typeCheck = () => {}\n"],"names":["typeCheck"],"mappings":"AAAO,MAAMA,IAAY,MAAM;AAAC;"}
+{"version":3,"file":"index.js","sources":["../src/lib/index.ts"],"sourcesContent":["export const typeCheck = () => {};\n"],"names":["typeCheck"],"mappings":"AAAO,MAAMA,IAAY,MAAM;AAAC;"}
