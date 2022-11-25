@@ -68,6 +68,11 @@ build: install
 	@$(YARN) build
 .PHONY: build
 
+deploy: ## run deploy ( lint, test, build ) on all repos.
+deploy: install
+	@$(YARN) deploy
+.PHONY: deploy
+
 help:
 	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 .PHONY: help
