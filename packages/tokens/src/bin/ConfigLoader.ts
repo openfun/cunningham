@@ -1,7 +1,7 @@
 import path from "path";
 import deepmerge from "deepmerge";
-import Config from "./Config.js";
-import { ConfigShape } from "./TokensGenerator.js";
+import Config from "./Config";
+import { ConfigShape } from "./TokensGenerator";
 
 /**
  * TODO: Allow missing local config file ( but warn the user ! )

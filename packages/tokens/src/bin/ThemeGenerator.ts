@@ -1,9 +1,9 @@
 import { program } from "commander";
 import chalk from "chalk";
 import figlet from "figlet";
-import { getConfig } from "./ConfigLoader.js";
-import { tokensGenerator } from "./TokensGenerator.js";
-import { cssGenerator } from "./CssGenerator.js";
+import { getConfig } from "./ConfigLoader";
+import { tokensGenerator } from "./TokensGenerator";
+import { cssGenerator } from "./CssGenerator";
 
 export const buildTheme = async () => {
   const config = await getConfig();
@@ -17,7 +17,7 @@ export const buildTheme = async () => {
   });
 };
 
-export const run = async () => {
+export const run = async (args: string[]) => {
   console.log(
     chalk.red(figlet.textSync("Cunningham", { horizontalLayout: "full" }))
   );
@@ -34,7 +34,7 @@ export const run = async () => {
       "Specify the css root selector element.",
       ":root"
     )
-    .parse(process.argv);
+    .parse(args);
 
   await buildTheme();
 };

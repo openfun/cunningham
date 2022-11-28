@@ -1,4 +1,5 @@
 #!/usr/bin/env node
-import { run } from "./ThemeGenerator.js";
 
-run().then(() => {});
+import { run } from "./ThemeGenerator";
+
+run(process.argv).then(() => {});

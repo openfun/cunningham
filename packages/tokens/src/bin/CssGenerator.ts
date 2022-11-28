@@ -1,6 +1,6 @@
 import * as fs from "fs/promises";
 import * as path from "path";
-import Config from "./Config.js";
+import Config from "./Config";
 
 export const cssGenerator = async (
   tokens: any,
@@ -16,11 +16,9 @@ export const cssGenerator = async (
   }, "");
   const cssContent = `${opts.selector} {\n${cssVars}}`;
 
-  console.log("css", cssContent);
-  await fs.writeFile(
-    path.join(opts.path, Config.sass.tokenFilenameCss),
-    cssContent
-  );
+  const dest = path.join(opts.path, Config.sass.tokenFilenameCss);
+  console.log("css", dest, cssContent);
+  await fs.writeFile(dest, cssContent);
 };
 
 const flatify = (obj: any) => {

@@ -2,10 +2,9 @@
   "name": "@openfun/cunningham-tokens",
   "private": false,
   "version": "0.0.5",
-  "type": "module",
   "license": "MIT",
-  "module": "./dist/index.js",
-  "main": "./dist/index.cjs",
+  "module": "dist/index.js",
+  "main": "dist/index.cjs",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
@@ -16,19 +15,19 @@
     "./default-tokens": "./dist/cunningham-tokens.css"
   },
   "bin": {
-    "cunningham": "./dist/cunningham.js"
+    "cunningham": "dist/bin/cunningham.js"
   },
   "files": [
-    "./dist/"
+    "dist/"
   ],
   "scripts": {
     "lint": "eslint . 'src/**/*.ts?(x)'",
     "dev": "nodemon --watch src --ext '*' --exec npm run build",
     "dev-bin": "nodemon --watch 'src/bin' --ext '*' --exec 'yarn build-bin && yarn build-theme'",
     "build": "tsc && vite build",
-    "build-bin": "tsc -p src/bin/tsconfig.json && cp src/bin/cunningham.dist.js dist && chmod +x dist/cunningham.js",
+    "build-bin": "tsc -p src/bin/tsconfig.json && cp src/bin/cunningham.dist.js dist/bin && chmod +x dist/bin/cunningham.js",
     "build-theme": "cunningham -o dist -s html",
-    "test-bin": " jest -c ./src/bin/jest.config.ts src/bin/tests",
+    "test-bin": " jest -c ./src/bin/jest.config.js src/bin/tests",
     "test": "vitest",
     "coverage": "vitest run --coverage"
   },
@@ -36,7 +35,7 @@
     "@types/figlet": "1.5.5",
     "@types/jest": "^29.2.3",
     "@types/node": "18.11.9",
-    "chalk": "5.1.2",
+    "chalk": "4.1.2",
     "commander": "9.4.1",
     "deepmerge": "4.2.2",
     "eslint-config-custom": "*",

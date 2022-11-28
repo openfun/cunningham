@@ -5,27 +5,9 @@
   ],
   "compilerOptions": {
     "baseUrl": ".",
-    "outDir": "../../dist",
-    "module": "Node16",
-    "moduleResolution": "Node16",
-    "sourceMap": true,
-    "target": "es6",
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "es6",
-      "scripthost",
-      "es2015",
-      "es2016",
-      "es2017",
-      "es2021.string",
-      "esnext.intl"
-    ],
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "strict": true
+    "outDir": "../../dist/bin",
+    "module": "commonjs",
+    "target": "es2017",
+    "moduleResolution": "Node"
   }
 }

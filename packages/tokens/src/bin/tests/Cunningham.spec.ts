@@ -1,5 +1,7 @@
+import { run } from "../ThemeGenerator";
+
 describe("Cunningham Bin", () => {
   test("Run", async () => {
-    expect(1).toEqual(1);
+    await run([]);
   });
 });
