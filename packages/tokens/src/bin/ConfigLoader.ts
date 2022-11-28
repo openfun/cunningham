@@ -1,6 +1,7 @@
 import path from "path";
 import deepmerge from "deepmerge";
 import Config from "./Config.js";
+import { ConfigShape } from "./TokensGenerator.js";
 
 /**
  * TODO: Allow missing local config file ( but warn the user ! )
@@ -20,9 +21,10 @@ const getDistConfig = async () => {
 export const getConfig = async () => {
   const localConfig = await getLocalConfig();
   console.log("localConfig", localConfig);
+
   const distConfig = await getDistConfig();
   console.log("distConfig", distConfig);
-  const config = deepmerge(distConfig, localConfig);
+  const config: ConfigShape = deepmerge(distConfig, localConfig);
   console.log("config", config);
   return config;
 };
