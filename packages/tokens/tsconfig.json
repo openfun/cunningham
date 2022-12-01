@@ -1,0 +1,10 @@
+{
+  "extends": "@openfun/typescript-configs/node.json",
+  "include": [
+    "./src/**/*"
+  ],
+  "compilerOptions": {
+    "baseUrl": "./src/bin",
+    "outDir": "./dist/bin",
+  }
+}
