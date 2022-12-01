@@ -14,7 +14,7 @@ For example:
 
 ## Getting started
 
-In this section we will install the library and generate the file that contains the design tokens of your app in order to 
+In this section we will install the library and generate the file that contains the design tokens of your app in order to
 make Cunningham's Design System yours!
 
 Install the lib
@@ -35,7 +35,7 @@ module.exports = {
 };
 ```
 
-In this configuration file you can overwrite all the default values of the design system. 
+In this configuration file you can overwrite all the default values of the design system.
 You can find the default values [here](./src/bin/cunningham.dist.js).
 
 Now add this script to your `package.json`
@@ -50,13 +50,13 @@ Now add this script to your `package.json`
 ```
 
 The cunningham CLI's main purpose is to build a ad-hoc CSS file that contains all your customized design tokens,
-by taking into account your local configuration ( defined in the file that you previously created : `cunningham.cjs`, 
-it is worth mentioning that this file is optional, hence it will generate a file containing the default values of the 
+by taking into account your local configuration ( defined in the file that you previously created : `cunningham.cjs`,
+it is worth mentioning that this file is optional, hence it will generate a file containing the default values of the
 design system )
 
 > You can run `yarn run cunningham -h` to see the available options.
 
-And in order to generate the tokens css file, run 
+And in order to generate the tokens css file, run
 
 ```
 yarn build-theme
@@ -76,7 +76,7 @@ It's all done!
 
 ## Use the design tokens
 
-Design tokens variable are all present in the `cunningham-tokens.css` file. They are all prefixed with `--c` in order to 
+Design tokens variable are all present in the `cunningham-tokens.css` file. They are all prefixed with `--c` in order to
 avoid collision.
 
 Here is an example to make the text's color renders with the value of the primary color in `.my-element` matching elements
