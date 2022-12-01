@@ -1,0 +1,13 @@
+version: "3.5"
+
+services:
+  node:
+    image: node:16.15
+    working_dir: /app
+    user: "${DOCKER_USER:-1000}"
+    ports:
+      - "3200:3200"
+      - "3201:3201"
+      - "6006:6006"
+    volumes:
+      - .:/app
