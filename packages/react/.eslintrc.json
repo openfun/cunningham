@@ -1,0 +1,15 @@
+{
+  "root": true,
+  "extends": [
+    "custom"
+  ],
+  "parserOptions": {
+    "project": [
+      "./tsconfig.json",
+      "./tsconfig.node.json"
+    ]
+  },
+  "rules": {
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["vite.config.ts", "**/*.stories.tsx", "**/*.spec.tsx"]}]
+  }
+}
