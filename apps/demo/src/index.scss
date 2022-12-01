@@ -1,0 +1,27 @@
+@import "cunningham-tokens";
+@import "@openfun/cunningham-react/style";
+
+:root {
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: var(--c--colors--primary);
+  background-color: #242424;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h1 {
+    color: white;
+    margin-bottom: 40px;
+  }
+}
