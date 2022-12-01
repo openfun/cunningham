@@ -1,0 +1,68 @@
+{
+  "name": "@openfun/cunningham-react",
+  "private": false,
+  "version": "0.0.0",
+  "type": "module",
+  "license": "MIT",
+  "module": "./dist/index.js",
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./style": "./dist/style.css"
+  },
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "lint": "eslint . 'src/**/*.{ts,tsx}'",
+    "dev": "yarn storybook & nodemon --watch src --ext '*' --exec npm run build",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "FORCE_COLOR=1 vitest run",
+    "test-watch": "vitest",
+    "coverage": "vitest run --coverage",
+    "storybook": "start-storybook -p 6006"
+  },
+  "dependencies": {
+    "@fontsource/roboto": "4.5.8",
+    "@openfun/cunningham-tokens": "*",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.20.5",
+    "@openfun/typescript-configs": "*",
+    "@storybook/addon-actions": "6.5.13",
+    "@storybook/addon-essentials": "6.5.13",
+    "@storybook/addon-interactions": "6.5.13",
+    "@storybook/addon-links": "6.5.13",
+    "@storybook/builder-vite": "0.2.5",
+    "@storybook/preset-scss": "1.0.3",
+    "@storybook/react": "6.5.13",
+    "@storybook/testing-library": "0.0.13",
+    "@testing-library/dom": "8.19.0",
+    "@testing-library/react": "13.4.0",
+    "@types/react": "18.0.25",
+    "@types/react-dom": "18.0.9",
+    "@vitejs/plugin-react": "2.2.0",
+    "@vitest/ui": "0.25.3",
+    "babel-loader": "8.3.0",
+    "css-loader": "6.7.2",
+    "jsdom": "20.0.3",
+    "sass": "1.56.1",
+    "sass-loader": "13.2.0",
+    "style-loader": "3.3.1",
+    "typescript": "4.9.3",
+    "vite": "3.2.4",
+    "vite-plugin-dts": "1.7.1",
+    "vitest": "0.25.3"
+  }
+}
