@@ -1,0 +1,176 @@
+version: 2.1
+
+aliases:
+  - &checkout_cunningham
+    checkout:
+      path: ~/cunningham
+
+  - &restore_node_modules
+    restore_cache:
+      name: Restore node_modules cache
+      keys:
+        - v1-front-dependencies-{{ checksum "~/cunningham/yarn.lock" }}
+
+jobs:
+  lint-git:
+    docker:
+      - image: cimg/python:3.11
+    working_directory: ~/cunningham
+    steps:
+      - checkout:
+          path: ~/cunningham
+      - run:
+          name: Check absence of fixup commits
+          command: |
+            ! git log origin/main..HEAD | grep 'fixup!'
+      - run:
+          name: Install gitlint
+          command: |
+            pip install --user requests gitlint
+      - run:
+          name: lint commit messages added to main
+          command: |
+            ~/.local/bin/gitlint --commits origin/main..HEAD
+
+  # Check that the CHANGELOG has been updated in the current branch
+  check-changelog:
+    docker:
+      - image: cimg/base:2022.11
+    working_directory: ~/cunningham
+    steps:
+      - checkout:
+          path: ~/cunningham
+      - run:
+          name: Check that the CHANGELOG has been modified in the current branch
+          command: |
+            git whatchanged --name-only --pretty="" origin..HEAD | grep CHANGELOG
+
+  # Check that the CHANGELOG max line length does not exceed 80 characters
+  lint-changelog:
+    docker:
+      - image: debian:stretch
+    working_directory: ~/cunningham
+    steps:
+      - checkout:
+          path: ~/cunningham
+      - run:
+          name: Check CHANGELOG max line length
+          command: |
+            # Get the longuest line width (ignoring release links)
+            test $(cat CHANGELOG.md | grep -Ev "^\[.*\]: https://github.com/openfun" | wc -L) -le 80
+
+  # Check that renovate configuration file is valid
+  check-renovate-configuration:
+    docker:
+      - image: renovate/renovate
+        auth:
+          username: $DOCKER_USER
+          password: $DOCKER_PASS
+    working_directory: ~/cunningham
+    steps:
+      - *checkout_cunningham
+      - run:
+          name: Run renovate-config-validator command
+          command: renovate-config-validator
+
+  # ---- Codebase -----
+  build:
+    docker:
+      - image: cimg/node:16.18
+    working_directory: ~/cunningham
+    steps:
+      - *checkout_cunningham
+      - *restore_node_modules
+      # If the yarn.lock file is not up-to-date with the package.json file,
+      # using the --frozen-lockfile should fail.
+      - run:
+          name: Install dependencies
+          command: yarn install --frozen-lockfile
+      - run:
+          name: Build packages
+          command: yarn build
+      - persist_to_workspace:
+          root: ~/cunningham
+          paths:
+            - apps/demo/dist
+            - packages/tokens/dist
+            - packages/react/dist
+      - save_cache:
+          paths:
+            - ./node_modules
+            - ./apps/demo/node_modules
+            - ./packages/eslint-config-custom/node_modules
+            - ./packages/react/node_modules
+            - ./packages/tokens/node_modules
+          key: v1-front-dependencies-{{ checksum "yarn.lock" }}
+  lint:
+    docker:
+      - image: cimg/node:16.18
+    working_directory: ~/cunningham
+    steps:
+      - *checkout_cunningham
+      - *restore_node_modules
+      - run:
+          name: Run linter over all workspaces
+          command: yarn lint
+
+  test:
+    docker:
+      - image: cimg/node:16.18
+    working_directory: ~/cunningham
+    steps:
+      - *checkout_cunningham
+      - *restore_node_modules
+      - run:
+          name: Run test suites over all workspaces
+          command: yarn test
+
+
+workflows:
+  version: 2.1
+
+  cunningham:
+    jobs:
+      # Git jobs
+      #
+      # Check validity of git history
+      - lint-git:
+          filters:
+            tags:
+              only: /.*/
+      # Check CHANGELOG update
+      - check-changelog:
+          filters:
+            branches:
+              ignore: main
+            tags:
+              only: /(?!^v).*/
+      - lint-changelog:
+          filters:
+            branches:
+              ignore: main
+            tags:
+              only: /.*/
+      # Check Renovate
+      - check-renovate-configuration:
+          filters:
+            tags:
+              only: /.*/
+      # ---- Codebase ----
+      - build:
+          filters:
+            tags:
+              only: /.*/
+      - lint:
+          filters:
+            tags:
+              only: /.*/
+          requires:
+            - build
+      - test:
+          filters:
+            tags:
+              only: /.*/
+          requires:
+            - build
+            - lint
