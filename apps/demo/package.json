@@ -1,0 +1,29 @@
+{
+  "name": "cunningham-demo",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint . 'src/**/*.{ts,tsx}'",
+    "dev": "vite",
+    "build-theme": "cunningham -o src",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@openfun/cunningham-react": "*",
+    "@openfun/cunningham-tokens": "*",
+    "@openfun/typescript-configs": "*",
+    "@types/react": "18.0.25",
+    "@types/react-dom": "18.0.9",
+    "@vitejs/plugin-react": "2.2.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "sass": "1.56.1",
+    "typescript": "4.9.3",
+    "vite": "3.2.4"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
