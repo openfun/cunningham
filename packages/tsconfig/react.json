@@ -1,0 +1,9 @@
+{
+  "extends": "./base.json",
+  "compilerOptions": {
+    "jsx": "react",
+    "module": "esnext",
+    "sourceMap": true,
+    "target": "es6"
+  }
+}
