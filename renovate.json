@@ -1,0 +1,6 @@
+{
+  "extends": [
+    "github>openfun/renovate-configuration"
+  ],
+  "ignorePaths": ["**/node_modules/**"]
+}
