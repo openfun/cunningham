@@ -1,0 +1,16 @@
+{
+  "root": true,
+  "extends": [
+    "custom"
+  ],
+  "parserOptions": {
+    "project": [
+      "./tsconfig.json",
+      "./tsconfig.node.json"
+    ]
+  },
+  "rules": {
+    "no-console": "off",
+    "no-eval": "off"
+  }
+}
