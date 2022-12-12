@@ -20,7 +20,7 @@
     "test": "FORCE_COLOR=1 jest --verbose src/bin/tests"
   },
   "dependencies": {
-    "chalk": "5.2.0",
+    "chalk": "4.1.2",
     "commander": "9.4.1",
     "deepmerge": "4.2.2",
     "figlet": "1.5.2"
