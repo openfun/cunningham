@@ -20,22 +20,22 @@
     "test": "FORCE_COLOR=1 jest --verbose src/bin/tests"
   },
   "dependencies": {
-    "chalk": "4.1.2",
+    "chalk": "5.2.0",
     "commander": "9.4.1",
     "deepmerge": "4.2.2",
     "figlet": "1.5.2"
   },
   "devDependencies": {
     "@types/figlet": "1.5.5",
-    "@types/jest": "29.2.3",
-    "@types/node": "18.11.9",
+    "@types/jest": "29.2.4",
+    "@types/node": "18.11.13",
     "eslint-config-custom": "*",
     "jest": "29.3.1",
     "nodemon": "2.0.20",
-    "prettier": "2.8.0",
+    "prettier": "2.8.1",
     "ts-jest": "29.0.3",
     "ts-node": "10.9.1",
-    "typescript": "4.9.3"
+    "typescript": "4.9.4"
   },
   "engines": {
     "node": ">=16.0.0"
