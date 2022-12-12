@@ -2,5 +2,8 @@
   "extends": [
     "github>openfun/renovate-configuration"
   ],
+  "ignoreDeps": [
+    "chalk"
+  ],
   "ignorePaths": ["**/node_modules/**"]
 }
