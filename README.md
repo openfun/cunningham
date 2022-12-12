@@ -1,4 +1,4 @@
-`# Cunningham, the best OpenSource Design System`
+# Cunningham, the best OpenSource Design System
 
 [![CircleCI](https://circleci.com/gh/openfun/cunningham/tree/master.svg?style=svg)](https://circleci.com/gh/openfun/richie/tree/master)
 
