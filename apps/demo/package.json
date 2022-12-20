@@ -19,9 +19,9 @@
     "@vitejs/plugin-react": "3.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "sass": "1.56.2",
+    "sass": "1.57.1",
     "typescript": "4.9.4",
-    "vite": "4.0.0"
+    "vite": "4.0.2"
   },
   "engines": {
     "node": ">=16.0.0"
