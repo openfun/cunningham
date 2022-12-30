@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import { run } from "ThemeGenerator";
+import { cleanup } from "tests/Utils";
 import Config from "../Config";
 
 jest.mock("../Paths", () => ({
@@ -8,43 +9,25 @@ jest.mock("../Paths", () => ({
 }));
 
 /**
- * Empty the current directory from generated tokens file and local
- * config to start with an predictable environment.
+ * Test written here are supposed to be general ones and not specific to any generator.
+ *
+ * But as we need at least one generator to execute the bin we need to choose one to use by default,
+ * that's why we use the css generator.
  */
-const cleanup = () => {
-  const filePath = path.join(__dirname, Config.sass.tokenFilenameCss);
-  if (fs.existsSync(filePath)) {
-    fs.unlinkSync(filePath);
-  }
-
-  const localConfigurationFile = path.join(
-    __dirname,
-    Config.configurationFilenames[0]
-  );
-  if (fs.existsSync(localConfigurationFile)) {
-    fs.unlinkSync(localConfigurationFile);
-  }
-
-  const outputPath = path.join(__dirname, "output");
-  if (fs.existsSync(outputPath)) {
-    fs.rmSync(outputPath, { recursive: true });
-  }
-};
-
 describe("Cunningham Bin", () => {
   beforeAll(() => {
     jest.spyOn(console, "log").mockImplementation(() => {});
-    cleanup();
+    cleanup(__dirname);
   });
 
   afterEach(() => {
-    cleanup();
+    cleanup(__dirname);
   });
 
   it("Runs without existing config file with default values.", async () => {
-    const cssTokensFile = path.join(__dirname, Config.sass.tokenFilenameCss);
+    const cssTokensFile = path.join(__dirname, Config.tokenFilenames.css);
     expect(fs.existsSync(cssTokensFile)).toEqual(false);
-    await run([]);
+    await run(["", "", "-g", "css"]);
     expect(fs.existsSync(cssTokensFile)).toEqual(true);
     expect(fs.readFileSync(cssTokensFile).toString()).toEqual(`:root {
 \t--c--colors--primary: #055FD2;
@@ -59,7 +42,7 @@ describe("Cunningham Bin", () => {
     );
     expect(fs.existsSync(localConfigurationFile)).toEqual(false);
 
-    const cssTokensFile = path.join(__dirname, Config.sass.tokenFilenameCss);
+    const cssTokensFile = path.join(__dirname, Config.tokenFilenames.css);
     expect(fs.existsSync(cssTokensFile)).toEqual(false);
 
     fs.copyFileSync(
@@ -68,7 +51,7 @@ describe("Cunningham Bin", () => {
     );
     expect(fs.existsSync(localConfigurationFile)).toEqual(true);
 
-    await run([]);
+    await run(["", "", "-g", "css"]);
     expect(fs.existsSync(cssTokensFile)).toEqual(true);
     expect(fs.readFileSync(cssTokensFile).toString()).toEqual(`:root {
 \t--c--colors--primary: AntiqueWhite;
@@ -78,9 +61,9 @@ describe("Cunningham Bin", () => {
 
   const testOutput = async (opt: string) => {
     const outputDir = path.join(__dirname, "output");
-    const cssTokensFile = path.join(outputDir, Config.sass.tokenFilenameCss);
+    const cssTokensFile = path.join(outputDir, Config.tokenFilenames.css);
     expect(fs.existsSync(cssTokensFile)).toEqual(false);
-    await run(["", "", opt, outputDir]);
+    await run(["", "", "-g", "css", opt, outputDir]);
     expect(fs.existsSync(cssTokensFile)).toEqual(true);
     expect(fs.readFileSync(cssTokensFile).toString()).toEqual(`:root {
 \t--c--colors--primary: #055FD2;
@@ -94,23 +77,5 @@ describe("Cunningham Bin", () => {
 
   it("Runs with --output options.", async () => {
     await testOutput("--output");
-  });
-
-  const testSelector = async (opt: string) => {
-    const cssTokensFile = path.join(__dirname, Config.sass.tokenFilenameCss);
-    expect(fs.existsSync(cssTokensFile)).toEqual(false);
-    await run(["", "", opt, "html"]);
-    expect(fs.existsSync(cssTokensFile)).toEqual(true);
-    expect(fs.readFileSync(cssTokensFile).toString()).toEqual(`html {
-\t--c--colors--primary: #055FD2;
-\t--c--colors--secondary: #DA0000;
-}`);
-  };
-
-  it("Runs with -s options.", async () => {
-    await testSelector("-s");
-  });
-  it("Runs with --selector options.", async () => {
-    await testSelector("--selector");
   });
 });
