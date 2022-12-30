@@ -16,8 +16,8 @@
     "lint": "eslint . 'src/**/*.{ts,tsx}'",
     "dev": "nodemon --watch 'src/bin' --ext '*' --exec 'yarn build'",
     "build": "tsc -p tsconfig.json && tsc-alias && cp src/bin/cunningham.dist.js dist/bin && chmod +x dist/bin/Main.js && yarn build-default-theme",
-    "build-default-theme": "./dist/bin/Main.js -o dist -s html",
-    "test": "FORCE_COLOR=1 jest --verbose src/bin/tests"
+    "build-default-theme": "./dist/bin/Main.js -o dist -s html -g css,js",
+    "test": "FORCE_COLOR=1 jest --verbose src/bin"
   },
   "dependencies": {
     "chalk": "4.1.2",

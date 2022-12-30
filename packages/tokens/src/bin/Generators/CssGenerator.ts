@@ -1,13 +1,10 @@
 import * as path from "path";
-import * as fs from "fs";
-import chalk from "chalk";
 import { flatify } from "Utils/Flatify";
 import Config from "Config";
+import { Generator } from "Generators/index";
+import { put } from "Utils/Files";
 
-export const cssGenerator = async (
-  tokens: any,
-  opts: { path: string; selector: string }
-) => {
+export const cssGenerator: Generator = async (tokens, opts) => {
   const flatTokens = flatify(tokens, Config.sass.varSeparator);
   const cssVars = Object.keys(flatTokens).reduce((acc, token) => {
     return (
@@ -15,12 +12,7 @@ export const cssGenerator = async (
     );
   }, "");
   const cssContent = `${opts.selector} {\n${cssVars}}`;
+  const dest = path.join(opts.path, Config.tokenFilenames.css);
 
-  const dest = path.join(opts.path, Config.sass.tokenFilenameCss);
-  console.log("Generating tokens file to " + dest + " ...");
-  if (!fs.existsSync(opts.path)) {
-    fs.mkdirSync(opts.path);
-  }
-  fs.writeFileSync(dest, cssContent);
-  console.log(chalk.bgGreen(chalk.white("File generated successfully.")));
+  put(dest, cssContent);
 };
