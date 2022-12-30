@@ -15,7 +15,7 @@
   "scripts": {
     "lint": "eslint . 'src/**/*.{ts,tsx}'",
     "dev": "nodemon --watch 'src/bin' --ext '*' --exec 'yarn build'",
-    "build": "tsc -p tsconfig.json && cp src/bin/cunningham.dist.js dist/bin && chmod +x dist/bin/Main.js && yarn build-default-theme",
+    "build": "tsc -p tsconfig.json && tsc-alias && cp src/bin/cunningham.dist.js dist/bin && chmod +x dist/bin/Main.js && yarn build-default-theme",
     "build-default-theme": "./dist/bin/Main.js -o dist -s html",
     "test": "FORCE_COLOR=1 jest --verbose src/bin/tests"
   },
@@ -23,7 +23,8 @@
     "chalk": "4.1.2",
     "commander": "9.4.1",
     "deepmerge": "4.2.2",
-    "figlet": "1.5.2"
+    "figlet": "1.5.2",
+    "tsc-alias": "^1.8.2"
   },
   "devDependencies": {
     "@types/figlet": "1.5.5",

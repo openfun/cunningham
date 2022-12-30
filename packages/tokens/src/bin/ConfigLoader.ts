@@ -1,9 +1,9 @@
 import path from "path";
 import * as fs from "fs";
 import deepmerge from "deepmerge";
+import { ConfigShape } from "TokensGenerator";
+import { workPath } from "Paths";
 import Config from "./Config";
-import { ConfigShape } from "./TokensGenerator";
-import { workPath } from "./Paths";
 
 const getLocalConfig = async () => {
   const filename = Config.configurationFilenames

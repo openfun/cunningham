@@ -1,8 +1,8 @@
 import * as path from "path";
 import * as fs from "fs";
 import chalk from "chalk";
-import Config from "./Config";
-import { flatify } from "./Utils/Flatify";
+import { flatify } from "Utils/Flatify";
+import Config from "Config";
 
 export const cssGenerator = async (
   tokens: any,

@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
-import { run } from "../ThemeGenerator";
+import { run } from "ThemeGenerator";
 import Config from "../Config";
 
 jest.mock("../Paths", () => ({

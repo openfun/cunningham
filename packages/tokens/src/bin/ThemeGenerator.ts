@@ -1,10 +1,10 @@
 import { program } from "commander";
 import chalk from "chalk";
 import figlet from "figlet";
-import { getConfig } from "./ConfigLoader";
-import { tokensGenerator } from "./TokensGenerator";
-import { cssGenerator } from "./CssGenerator";
-import { workPath } from "./Paths";
+import { cssGenerator } from "Generators/CssGenerator";
+import { getConfig } from "ConfigLoader";
+import { tokensGenerator } from "TokensGenerator";
+import { workPath } from "Paths";
 
 export const buildTheme = async () => {
   const options = program.opts();

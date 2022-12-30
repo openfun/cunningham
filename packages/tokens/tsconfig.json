@@ -5,6 +5,10 @@
   ],
   "compilerOptions": {
     "baseUrl": "./src/bin",
+    "paths": {
+      "*": ["*"]
+    },
+    "resolveJsonModule": true,
     "outDir": "./dist/bin",
   }
 }
