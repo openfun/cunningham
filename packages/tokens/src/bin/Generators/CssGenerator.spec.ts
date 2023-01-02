@@ -19,7 +19,7 @@ describe("CssGenerator", () => {
   });
 
   const testSelector = async (opt: string) => {
-    const cssTokensFile = path.join(__dirname, Config.tokenFilenames.css);
+    const cssTokensFile = path.join(__dirname, Config.tokenFilename + ".css");
     expect(fs.existsSync(cssTokensFile)).toEqual(false);
     await run(["", "", "-g", "css", opt, "html"]);
     expect(fs.existsSync(cssTokensFile)).toEqual(true);

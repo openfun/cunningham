@@ -8,7 +8,7 @@ jest.mock("../Paths", () => ({
   workPath: () => __dirname,
 }));
 
-describe("JsGenerator", () => {
+describe("TsGenerator", () => {
   beforeAll(() => {
     jest.spyOn(console, "log").mockImplementation(() => {});
     cleanup(__dirname);
@@ -18,10 +18,10 @@ describe("JsGenerator", () => {
     cleanup(__dirname);
   });
 
-  it("generates valid JS file.", async () => {
-    const tokensFile = path.join(__dirname, Config.tokenFilename + ".js");
+  it("generates valid TS file.", async () => {
+    const tokensFile = path.join(__dirname, Config.tokenFilename + ".ts");
     expect(fs.existsSync(tokensFile)).toEqual(false);
-    await run(["", "", "-g", "js"]);
+    await run(["", "", "-g", "ts"]);
     expect(fs.existsSync(tokensFile)).toEqual(true);
     expect(fs.readFileSync(tokensFile).toString()).toEqual(
       `export const tokens = {"colors":{"primary":"#055FD2","secondary":"#DA0000"}};`
