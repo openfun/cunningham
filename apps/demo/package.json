@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint . 'src/**/*.{ts,tsx}'",
     "dev": "vite",
-    "build-theme": "cunningham -o src",
+    "build-theme": "cunningham -o src -g css,ts",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },

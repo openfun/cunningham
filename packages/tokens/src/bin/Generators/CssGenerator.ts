@@ -12,7 +12,7 @@ export const cssGenerator: Generator = async (tokens, opts) => {
     );
   }, "");
   const cssContent = `${opts.selector} {\n${cssVars}}`;
-  const dest = path.join(opts.path, Config.tokenFilenames.css);
+  const dest = path.join(opts.path, Config.tokenFilename + ".css");
 
   put(dest, cssContent);
 };
