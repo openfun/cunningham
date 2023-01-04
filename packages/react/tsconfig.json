@@ -2,8 +2,9 @@
   "extends": "@openfun/typescript-configs/react.json",
   "compilerOptions": {
     "noEmit": true,
+    "baseUrl": "./src"
   },
-  "include": ["src"],
-  "exclude": ["node_modules","dist"],
+  "include": ["src", "cunningham.ts"],
+  "exclude": ["node_modules","dist", "**/tokens.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

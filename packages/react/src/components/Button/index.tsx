@@ -1,5 +1,7 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 
-export const Button = () => {
-  return <button className="c__button">{"<Button/>"}</button>;
+interface Props extends PropsWithChildren {}
+
+export const Button = ({ children }: Props) => {
+  return <button className="c__button">{children}</button>;
 };
