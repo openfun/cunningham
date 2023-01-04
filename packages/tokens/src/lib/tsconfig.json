@@ -1,0 +1,11 @@
+{
+  "extends": "@openfun/typescript-configs/node.json",
+  "include": [
+    "./*"
+  ],
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "../../dist/lib",
+    "declaration": true
+  }
+}

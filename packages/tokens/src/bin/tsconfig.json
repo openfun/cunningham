@@ -1,14 +1,14 @@
 {
   "extends": "@openfun/typescript-configs/node.json",
   "include": [
-    "./src/**/*"
+    "**/*",
   ],
   "compilerOptions": {
-    "baseUrl": "./src/bin",
+    "baseUrl": "./",
     "paths": {
       "*": ["*"]
     },
     "resolveJsonModule": true,
-    "outDir": "./dist/bin",
+    "outDir": "../../dist/bin",
   }
 }
