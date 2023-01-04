@@ -1,0 +1,1 @@
+export const tokens = {"theme":{"colors":{"primary":"#002d7f","primary-gradient":"linear-gradient(90deg,#002d7f,#0069b3)","secondary":"#DA0000"}},"components":{"button":{"border-radius":"5px","shadow":"0px 0px 10px 1px #002d7f;"}}};

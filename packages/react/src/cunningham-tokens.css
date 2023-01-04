@@ -1,0 +1,7 @@
+html {
+	--c--theme--colors--primary: #002d7f;
+	--c--theme--colors--primary-gradient: linear-gradient(90deg,#002d7f,#0069b3);
+	--c--theme--colors--secondary: #DA0000;
+	--c--components--button--border-radius: 5px;
+	--c--components--button--shadow: 0px 0px 10px 1px #002d7f;;
+}

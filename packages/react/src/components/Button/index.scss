@@ -1,8 +1,10 @@
 .c__button {
-  background-color: var(--c--colors--primary);
+  background-image: var(--c--theme--colors--primary-gradient);
   padding: 8px 30px;
-  border-radius: 6px;
+  border-radius: var(--c--components--button--border-radius);
   border: none;
+  box-shadow: var(--c--components--button--shadow);
   color: white;
   font-weight: bold;
+  cursor: pointer;
 }

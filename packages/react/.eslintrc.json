@@ -4,12 +4,9 @@
     "custom"
   ],
   "parserOptions": {
-    "project": [
-      "./tsconfig.json",
-      "./tsconfig.node.json"
-    ]
+    "project": "./tsconfig.eslint.json"
   },
   "rules": {
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["vite.config.ts", "**/*.stories.tsx", "**/*.spec.tsx"]}]
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["vite.config.ts", "cunningham.ts","**/*.stories.tsx", "**/*.spec.tsx"]}]
   }
 }
