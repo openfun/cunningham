@@ -4,10 +4,17 @@
   "version": "0.0.0",
   "license": "MIT",
   "bin": {
-    "cunningham": "dist/bin/Main.js"
+    "cunningham": "./dist/bin/Main.js"
   },
+  "main": "./dist/lib/index.js",
+  "types": "./dist/lib/index.d.ts",
   "exports": {
-    "./default-tokens": "./dist/cunningham-tokens.css"
+    "./default-tokens": "./dist/cunningham-tokens.css",
+    ".": {
+      "require": "./dist/lib/index.js",
+      "import": "./dist/lib/index.js",
+      "types": "./dist/lib/index.d.ts"
+    }
   },
   "files": [
     "dist/"
@@ -15,16 +22,18 @@
   "scripts": {
     "lint": "eslint . 'src/**/*.{ts,tsx}'",
     "dev": "nodemon --watch 'src/bin' --ext '*' --exec 'yarn build'",
-    "build": "tsc -p tsconfig.json && tsc-alias && cp src/bin/cunningham.dist.js dist/bin && chmod +x dist/bin/Main.js && yarn build-default-theme",
-    "build-default-theme": "./dist/bin/Main.js -o dist -s html -g css,js",
-    "test": "FORCE_COLOR=1 jest --verbose src/bin"
+    "build-bin": "cd src/bin && tsc -p tsconfig.json && tsc-alias && cp ./cunningham.dist.js ../../dist/bin && chmod +x ../../dist/bin/Main.js",
+    "build-lib": "cp dist/cunningham-tokens.ts src/lib && cd src/lib && tsc -p tsconfig.json",
+    "build": "yarn build-bin && yarn build-default-theme && yarn build-lib && cd ../.. && ln -sf ../../packages/tokens/dist/bin/Main.js node_modules/.bin/cunningham",
+    "build-default-theme": "./dist/bin/Main.js -o dist -s html -g css,js,ts",
+    "test": "FORCE_COLOR=1 jest --runInBand --verbose src"
   },
   "dependencies": {
     "chalk": "4.1.2",
     "commander": "9.4.1",
     "deepmerge": "4.2.2",
     "figlet": "1.5.2",
-    "tsc-alias": "^1.8.2"
+    "ts-node": "10.9.1"
   },
   "devDependencies": {
     "@types/figlet": "1.5.5",
@@ -35,7 +44,7 @@
     "nodemon": "2.0.20",
     "prettier": "2.8.1",
     "ts-jest": "29.0.3",
-    "ts-node": "10.9.1",
+    "tsc-alias": "1.8.2",
     "typescript": "4.9.4"
   },
   "engines": {
