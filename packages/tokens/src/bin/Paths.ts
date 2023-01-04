@@ -1,3 +1,5 @@
+import { program } from "commander";
+
 export const workPath = () => {
-  return process.cwd();
+  return program.opts().workingDir ?? process.cwd();
 };
