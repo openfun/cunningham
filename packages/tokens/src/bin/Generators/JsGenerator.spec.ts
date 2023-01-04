@@ -24,7 +24,7 @@ describe("JsGenerator", () => {
     await run(["", "", "-g", "js"]);
     expect(fs.existsSync(tokensFile)).toEqual(true);
     expect(fs.readFileSync(tokensFile).toString()).toEqual(
-      `export const tokens = {"colors":{"primary":"#055FD2","secondary":"#DA0000"}};`
+      `export const tokens = {"theme":{"colors":{"primary":"#055FD2","secondary":"#DA0000"}}};`
     );
   });
 });
