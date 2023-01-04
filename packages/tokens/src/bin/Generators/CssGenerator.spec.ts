@@ -24,8 +24,8 @@ describe("CssGenerator", () => {
     await run(["", "", "-g", "css", opt, "html"]);
     expect(fs.existsSync(cssTokensFile)).toEqual(true);
     expect(fs.readFileSync(cssTokensFile).toString()).toEqual(`html {
-\t--c--colors--primary: #055FD2;
-\t--c--colors--secondary: #DA0000;
+\t--c--theme--colors--primary: #055FD2;
+\t--c--theme--colors--secondary: #DA0000;
 }`);
   };
 
