@@ -24,3 +24,5 @@ dist
 *.njsproj
 *.sln
 *.sw?
+
+vite.config.ts.timestamp-*
