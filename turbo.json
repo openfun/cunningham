@@ -34,6 +34,9 @@
         "lint"
       ],
       "outputs": []
+    },
+    "@openfun/cunningham-tokens#test": {
+      "dependsOn": ["build"]
     }
   }
 }

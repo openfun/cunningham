@@ -26,7 +26,13 @@ const getLocalConfig = async () => {
   return config.default;
 };
 
+/**
+ * Register ts-node to load typescript config files with import. ( In fact, with `require` after transpiling ).
+ */
 const registerTypescriptLoader = () => {
+  // Specifying to load all .ts files as CJS is really important, otherwise ts-node will try to load them as ESM in
+  // projects where cunningham is used as a dependency where package.json contains "type": "module".
+  // So, by doing this we tell ts-node "Load all .ts files as CJS, even if they are in a project with ESM".
   register({
     moduleTypes: {
       "**/*.ts": "cjs",

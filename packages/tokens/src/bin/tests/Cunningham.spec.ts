@@ -11,15 +11,6 @@ jest.mock("../Paths", () => ({
   workPath: () => __dirname,
 }));
 
-jest.mock("../cunningham.dist.js", () => ({
-  theme: {
-    colors: {
-      primary: "#055FD2",
-      secondary: "#DA0000",
-    },
-  },
-}));
-
 const runBin = async (args: string) => {
   const exec = util.promisify(child_process.exec);
   const promise = exec(
