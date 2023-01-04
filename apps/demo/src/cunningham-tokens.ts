@@ -1,1 +1,1 @@
-export const tokens = {"colors":{"primary":"purple","secondary":"#DA0000"}};
+export const tokens = {"theme":{"colors":{"primary":"purple","primary-gradient":"linear-gradient(90deg,#002d7f,#0069b3)","secondary":"#DA0000"}},"components":{"button":{"border-radius":"30px"}}};

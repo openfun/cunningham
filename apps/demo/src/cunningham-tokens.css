@@ -1,4 +1,6 @@
 :root {
-	--c--colors--primary: purple;
-	--c--colors--secondary: #DA0000;
+	--c--theme--colors--primary: purple;
+	--c--theme--colors--primary-gradient: linear-gradient(90deg,#002d7f,#0069b3);
+	--c--theme--colors--secondary: #DA0000;
+	--c--components--button--border-radius: 30px;
 }

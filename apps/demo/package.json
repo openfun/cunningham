@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "lint": "eslint . 'src/**/*.{ts,tsx}'",
-    "dev": "vite",
+    "dev": "vite & nodemon --watch cunningham.ts --exec yarn build-theme",
     "build-theme": "cunningham -o src -g css,ts",
     "build": "tsc && vite build",
     "preview": "vite preview"
