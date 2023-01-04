@@ -4,9 +4,6 @@
     "custom"
   ],
   "parserOptions": {
-    "project": [
-      "./tsconfig.json",
-      "./tsconfig.node.json"
-    ]
+    "project": "./tsconfig.eslint.json"
   }
 }
