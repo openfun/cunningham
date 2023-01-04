@@ -3,8 +3,8 @@ import chalk from "chalk";
 import figlet from "figlet";
 import { getConfig } from "ConfigLoader";
 import { tokensGenerator } from "TokensGenerator";
-import { workPath } from "Paths";
 import { Generators } from "Generators";
+import { workPath } from "Paths";
 
 export const buildTheme = async () => {
   const options = program.opts();
@@ -17,7 +17,7 @@ export const buildTheme = async () => {
         throw new Error('The generator "' + generator + '" does not exist.');
       }
       return Generators[generator](tokens, {
-        path: options.output,
+        path: options.output ?? workPath(),
         selector: options.selector,
       });
     })
@@ -36,14 +36,17 @@ export const run = async (args: string[]) => {
   program
     .description("Cunningham's CLI tool.")
     .option(
-      "-o, --output <directory>",
-      "Specify the output dir of generated files.",
-      workPath()
-    )
-    .option(
       "-s, --selector <selector>",
       "Specify the css root selector element.",
       ":root"
+    )
+    .option(
+      "-cwd, --working-dir <directory>",
+      "Specify the working dir ( you might not need this )."
+    )
+    .option(
+      "-o, --output <directory>",
+      "Specify the output dir of generated files."
     )
     .requiredOption(
       "-g, --generators <generators>",
