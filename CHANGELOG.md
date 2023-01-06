@@ -10,6 +10,7 @@ and this project adheres to
 
 ### Added
 
+- Add component's tokens handling
 - Setup Turborepo and package.json
 - Setup ESLint package
 - Setup tsconfig package
@@ -22,5 +23,6 @@ and this project adheres to
 - Setup circle ci
 - Setup renovate.json
 - Add CHANGELOG
+
 
 [unreleased]: https://github.com/openfun/cunningham
