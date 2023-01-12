@@ -1,1 +1,1 @@
-jest.mock("../cunningham.dist.js");
+jest.mock("../cunningham");
