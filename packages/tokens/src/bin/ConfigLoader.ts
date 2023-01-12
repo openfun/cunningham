@@ -44,7 +44,7 @@ const registerTypescriptLoader = () => {
 };
 
 const getDistConfig = async () => {
-  const config = await import("./cunningham.dist.js");
+  const config = await import("./cunningham");
   return config.default;
 };
 
