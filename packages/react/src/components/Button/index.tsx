@@ -1,7 +1,13 @@
-import React, { PropsWithChildren } from "react";
+import React, { ButtonHTMLAttributes } from "react";
 
-interface Props extends PropsWithChildren {}
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+  color?: "primary" | "secondary" | "tertiary";
+}
 
-export const Button = ({ children }: Props) => {
-  return <button className="c__button">{children}</button>;
+export const Button = ({ children, color = "primary", ...props }: Props) => {
+  return (
+    <button className={"c__button c__button--" + color} {...props}>
+      {children}
+    </button>
+  );
 };
