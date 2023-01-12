@@ -2,7 +2,9 @@ import { DefaultTokens } from "@openfun/cunningham-tokens";
 
 export const tokens = (defaults: DefaultTokens) => {
   return {
-    "border-radius": "5px",
-    shadow: "0px 0px 10px 1px " + defaults.theme.colors.primary + ";",
+    "border-radius": "2px",
+    height: "48px",
+    "font-size": defaults.theme.typo.l,
+    "font-weight": defaults.theme.typo.medium,
   };
 };

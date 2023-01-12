@@ -1,10 +1,72 @@
 .c__button {
-  background-image: var(--c--theme--colors--primary-gradient);
-  padding: 8px 30px;
-  border-radius: var(--c--components--button--border-radius);
+  display: flex;
+  align-items: center;
   border: none;
-  box-shadow: var(--c--components--button--shadow);
-  color: white;
-  font-weight: bold;
   cursor: pointer;
+  transition: background-color var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
+
+  padding: 0 var(--c--theme--spacings--s);
+
+  height: var(--c--components--button--height);
+  border-radius: var(--c--components--button--border-radius);
+  font-size: var(--c--components--button--font-size);
+  font-weight: var(--c--components--button--font-weight);
+
+  &--primary {
+    background-color: var(--c--theme--colors--primary-500);
+    color: var(--c--theme--colors--primary-text);
+
+    &:hover {
+      background-color: var(--c--theme--colors--primary-600);
+    }
+
+    &:active {
+      background-color: var(--c--theme--colors--primary-500);
+    }
+  }
+
+  &--secondary {
+    background-color: var(--c--theme--colors--secondary-500);
+    color: var(--c--theme--colors--secondary-text);
+
+    &:hover {
+      background-color: var(--c--theme--colors--secondary-600);
+    }
+
+    &:active {
+      background-color: var(--c--theme--colors--secondary-500);
+    }
+  }
+
+  &--tertiary {
+    background-color: transparent;
+    color: var(--c--theme--colors--greyscale-800);
+
+    &:hover {
+      color: var(--c--theme--colors--greyscale-900);
+    }
+
+    &:active {
+      color: var(--c--theme--colors--greyscale-800);
+    }
+  }
+
+  &--danger {
+    background-color: var(--c--theme--colors--danger-500);
+    color: var(--c--theme--colors--danger-text);
+
+    &:hover {
+      background-color: var(--c--theme--colors--danger-600);
+    }
+
+    &:active {
+      background-color: var(--c--theme--colors--danger-500);
+    }
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    background-color: var(--c--theme--colors--greyscale-200);
+    color: var(--c--theme--colors--greyscale-400);
+  }
 }
