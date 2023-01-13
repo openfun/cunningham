@@ -11,25 +11,25 @@ const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  children: "Label",
+  children: "Primary",
   color: "primary",
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  children: "Label",
+  children: "Secondary",
   color: "secondary",
 };
 
 export const Tertiary = Template.bind({});
 Tertiary.args = {
-  children: "Label",
+  children: "Tertiary",
   color: "tertiary",
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  children: "Label",
+  children: "Disabled",
   color: "primary",
   disabled: true,
 };

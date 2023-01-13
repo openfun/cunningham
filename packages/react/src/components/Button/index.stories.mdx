@@ -1,0 +1,53 @@
+import { Canvas, Meta, Story, Source, ArgsTable } from '@storybook/addon-docs';
+import { Button } from "./index";
+
+<Meta title="Button/Default" component={Button}/>
+
+export const Template = (args) => <Button {...args} />;
+
+# Button
+
+The Cunningham Button behaves the same as the native html `<button>` element, but with a few extra features.
+
+<Canvas>
+  <Story id="button--primary"/>
+  <Story id="button--secondary"/>
+  <Story id="button--tertiary"/>
+</Canvas>
+
+<Source
+  language='ts'
+  dark
+  format={false}
+  code={`import { Button } from "@openfun/cunningham-react";`}
+/>
+
+
+## Disabled
+
+The button can be disabled. The disabled button will render the same no matter what color is used.
+
+> Keep in the mind that a disabled button will never call `onClick` if it is provided.
+
+<Canvas withSource="open">
+  <Story id="button--disabled"/>
+</Canvas>
+
+## Props
+
+You can use all the props of the native html `<button>` element props plus the following.
+
+<ArgsTable of={Button} />
+
+
+
+## Design tokens
+
+Here a the custom design tokens defined by the button.
+
+| Token        	| Description                 	|
+|---------------	|-----------------------------	|
+| border-radius 	| Border radius of the button 	|
+| height        	| Height of the button        	|
+| font-size     	| Font size of the label      	|
+| font-weight   	| Font weight of the label    	|
