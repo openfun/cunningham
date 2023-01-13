@@ -2911,7 +2911,7 @@
     regenerator-runtime "^0.13.7"
     resolve-from "^5.0.0"
 
-"@testing-library/dom@8.19.1", "@testing-library/dom@^8.3.0", "@testing-library/dom@^8.5.0":
+"@testing-library/dom@^8.19.1", "@testing-library/dom@^8.3.0", "@testing-library/dom@^8.5.0":
   version "8.19.1"
   resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-8.19.1.tgz#0e2dafd281dedb930bb235eac1045470b4129d0e"
   integrity sha512-P6iIPyYQ+qH8CvGauAqanhVnjrnRe0IZFSYCeGkSRW9q3u8bdVn2NPI+lasFyVsEQn1J/IFmp5Aax41+dAP9wg==
@@ -2940,6 +2940,11 @@
   integrity sha512-5Kwtbo3Y/NowpkbRuSepbyMFkZmHgD+vPzYB/RJ4oxt5Gj/avFFBYjhw27cqSVPVw/3a67NK1PbiIr9k4Gwmdg==
   dependencies:
     "@babel/runtime" "^7.12.5"
+
+"@testing-library/user-event@^14.4.3":
+  version "14.4.3"
+  resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-14.4.3.tgz#af975e367743fa91989cd666666aec31a8f50591"
+  integrity sha512-kCUc5MEwaEMakkO5x7aoD+DLi02ehmEM2QCGWvNqAS1dV/fAvORWEjnjsEIvml59M7Y5kCkWN6fCCyPOe8OL6Q==
 
 "@tootallnate/once@2":
   version "2.0.0"
@@ -3490,7 +3495,7 @@
     magic-string "^0.26.7"
     react-refresh "^0.14.0"
 
-"@vitest/coverage-c8@^0.26.3":
+"@vitest/coverage-c8@0.26.3":
   version "0.26.3"
   resolved "https://registry.yarnpkg.com/@vitest/coverage-c8/-/coverage-c8-0.26.3.tgz#3a87150f6faaa9b2c8da4dda55a2de6b23a895d8"
   integrity sha512-sjmVYPozajWY2DawzuvhYX6hEe/LD6p2xv9VmPvh1zzDeNNVCAnyLcvXoaSMQD522x9bqciuyPrlrnh2iNkE/w==
@@ -5931,7 +5936,7 @@ enhanced-resolve@^4.5.0:
     memory-fs "^0.5.0"
     tapable "^1.0.0"
 
-enhanced-resolve@^5.10.0, enhanced-resolve@^5.7.0:
+enhanced-resolve@^5.10.0:
   version "5.12.0"
   resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-5.12.0.tgz#300e1c90228f5b570c4d35babf263f6da7155634"
   integrity sha512-QHTXI/sZQmko1cbDoNAa3mJ5qhWUUNAq3vR0/YiD379fWQrcfuoX1+HW2S0MTt7XmoPLapdaDKUtelUSPic7hQ==
@@ -8829,7 +8834,7 @@ json5@^1.0.1:
   dependencies:
     minimist "^1.2.0"
 
-json5@^2.1.2, json5@^2.1.3, json5@^2.2.1, json5@^2.2.2:
+json5@^2.1.2, json5@^2.1.3, json5@^2.2.1:
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/json5/-/json5-2.2.3.tgz#78cd6f1a19bdc12b73db5ad0c61efd66c1e29283"
   integrity sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==
@@ -12302,7 +12307,7 @@ ts-pnp@^1.1.6:
   resolved "https://registry.yarnpkg.com/ts-pnp/-/ts-pnp-1.2.0.tgz#a500ad084b0798f1c3071af391e65912c86bca92"
   integrity sha512-csd+vJOb/gkzvcCHgTGSChYpy5f1/XKNsmvBGO4JXS+z1v2HobugDz4s1IeFXM3wZB44uczs+eazB5Q/ccdhQw==
 
-tsc-alias@^1.8.2:
+tsc-alias@1.8.2:
   version "1.8.2"
   resolved "https://registry.yarnpkg.com/tsc-alias/-/tsc-alias-1.8.2.tgz#3cd24bba7333a5e05cb7db3ac206d7bcec079630"
   integrity sha512-ukBkcNekOgwtnSWYLD5QsMX3yQWg7JviAs8zg3qJGgu4LGtY3tsV4G6vnqvOXIDkbC+XL9vbhObWSpRA5/6wbg==
@@ -12319,15 +12324,6 @@ tsconfck@^2.0.1:
   resolved "https://registry.yarnpkg.com/tsconfck/-/tsconfck-2.0.2.tgz#860a488f9acd024a85b2db458888410009b5383d"
   integrity sha512-H3DWlwKpow+GpVLm/2cpmok72pwRr1YFROV3YzAmvzfGFiC1zEM/mc9b7+1XnrxuXtEbhJ7xUSIqjPFbedp7aQ==
 
-tsconfig-paths-webpack-plugin@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/tsconfig-paths-webpack-plugin/-/tsconfig-paths-webpack-plugin-4.0.0.tgz#84008fc3e3e0658fdb0262758b07b4da6265ff1a"
-  integrity sha512-fw/7265mIWukrSHd0i+wSwx64kYUSAKPfxRDksjKIYTxSAp9W9/xcZVBF4Kl0eqQd5eBpAQ/oQrc5RyM/0c1GQ==
-  dependencies:
-    chalk "^4.1.0"
-    enhanced-resolve "^5.7.0"
-    tsconfig-paths "^4.0.0"
-
 tsconfig-paths@^3.14.1:
   version "3.14.1"
   resolved "https://registry.yarnpkg.com/tsconfig-paths/-/tsconfig-paths-3.14.1.tgz#ba0734599e8ea36c862798e920bcf163277b137a"
@@ -12335,15 +12331,6 @@ tsconfig-paths@^3.14.1:
   dependencies:
     "@types/json5" "^0.0.29"
     json5 "^1.0.1"
-    minimist "^1.2.6"
-    strip-bom "^3.0.0"
-
-tsconfig-paths@^4.0.0:
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/tsconfig-paths/-/tsconfig-paths-4.1.2.tgz#4819f861eef82e6da52fb4af1e8c930a39ed979a"
-  integrity sha512-uhxiMgnXQp1IR622dUXI+9Ehnws7i/y6xvpZB9IbUVOPy0muvdvgXeZOn88UcGPiT98Vp3rJPTa8bFoalZ3Qhw==
-  dependencies:
-    json5 "^2.2.2"
     minimist "^1.2.6"
     strip-bom "^3.0.0"
 
