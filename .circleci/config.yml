@@ -88,7 +88,10 @@ jobs:
           command: yarn install --frozen-lockfile
       - run:
           name: Build packages
-          command: yarn build
+          # Symlinks to bins in the monorepo are not created by yarn, so we need to do it manually.
+          command: |
+            ln -sf ../../packages/tokens/dist/bin/Main.js node_modules/.bin/cunningham &&
+            yarn build
       - persist_to_workspace:
           root: ~/cunningham
           paths:
