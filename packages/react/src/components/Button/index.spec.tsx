@@ -12,6 +12,24 @@ describe("<Button/>", () => {
     expect(button.classList.contains("c__button")).toBe(true);
   });
 
+  it("renders with custom class when using left icon", () => {
+    render(<Button icon={<div>Icon</div>}>Test button</Button>);
+    const button = screen.getByText("Test button");
+    expect(button.classList.contains("c__button")).toBe(true);
+    expect(button.classList.contains("c__button--with-icon--left")).toBe(true);
+  });
+
+  it("renders with custom class when using right icon", () => {
+    render(
+      <Button icon={<div>Icon</div>} iconPosition="right">
+        Test button
+      </Button>
+    );
+    const button = screen.getByText("Test button");
+    expect(button.classList.contains("c__button")).toBe(true);
+    expect(button.classList.contains("c__button--with-icon--right")).toBe(true);
+  });
+
   it("call onClick when click occurs", async () => {
     const user = userEvent.setup();
     const handleClick = vi.fn();

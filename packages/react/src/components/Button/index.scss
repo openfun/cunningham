@@ -12,6 +12,18 @@
   font-size: var(--c--components--button--font-size);
   font-weight: var(--c--components--button--font-weight);
 
+  &--with-icon--left, &--with-icon--right {
+    gap: var(--c--theme--spacings--t);
+  }
+
+  &--with-icon--left {
+    padding: 0 var(--c--theme--spacings--s) 0 var(--c--theme--spacings--t);
+  }
+
+  &--with-icon--right {
+    padding: 0 var(--c--theme--spacings--t) 0 var(--c--theme--spacings--s);
+  }
+
   &--primary {
     background-color: var(--c--theme--colors--primary-500);
     color: var(--c--theme--colors--primary-text);
