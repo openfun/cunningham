@@ -20,6 +20,7 @@ module.exports = {
   },
   staticDirs: [
     'dist',
+    '../src'
   ],
   "features": {
     "storyStoreV7": true
