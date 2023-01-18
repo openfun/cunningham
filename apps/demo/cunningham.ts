@@ -1,7 +1,7 @@
 export default {
   theme: {
     colors: {
-      primary: "purple",
+      "primary-500": "purple",
     },
   },
   components: {

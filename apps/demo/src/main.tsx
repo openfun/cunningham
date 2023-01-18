@@ -9,7 +9,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <div className="center">
       <h1 className="test">Cunningham Demo.</h1>
       <Button>World best button.</Button>
-      <h3>Primary color is {tokens.theme.colors.primary}</h3>
+      <h3>Primary-500 color is {tokens.theme.colors["primary-500"]}</h3>
     </div>
   </React.StrictMode>
 );
