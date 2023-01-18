@@ -111,17 +111,17 @@ const typoWeights = {
 };
 
 const typeFamilies = {
-  "font-base": "Roboto",
-  "font-accent": "Roboto",
+  base: "Roboto",
+  accent: "Roboto",
 };
 
 const spacings = {
-  xl: "64px",
-  l: "48px",
-  b: "24px",
-  s: "16px",
-  t: "8px",
-  st: "4px",
+  xl: "4rem",
+  l: "3rem",
+  b: "1.625rem",
+  s: "1rem",
+  t: "0.5rem",
+  st: "0.25rem",
 };
 
 const transitions = {
@@ -143,9 +143,9 @@ export default {
       ...colorsDanger,
     },
     typo: {
-      ...typoSizes,
-      ...typoWeights,
-      ...typeFamilies,
+      sizes: typoSizes,
+      weights: typoWeights,
+      families: typeFamilies,
     },
     spacings,
     transitions,

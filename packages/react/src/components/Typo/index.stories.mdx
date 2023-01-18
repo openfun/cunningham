@@ -1,0 +1,136 @@
+import { Canvas, Meta, Story, Source, ArgsTable } from '@storybook/addon-docs'; import {
+  tokens
+} from '../../cunningham-tokens';
+
+<Meta title="Typo/Doc"/>
+
+# Typo
+
+Cunningham comes with an existing toolkit to deal with typography, and it's easy. 🖋️
+
+## Sizes
+
+You can use custom utility classes to set the font size of an element. These classes are named using the format `.fs-{size}`.
+
+<Source
+  language='tsx'
+  dark
+  format={false}
+  code={`
+  <div className="fs-m">Medium text</div>
+  `}
+/>
+
+<Canvas isColumn={true} withSource="none">
+  {Object.keys(tokens.theme.typo.sizes).map(key => (
+    <div key={key} className={"fs-" + key}>Using the <code>fs-{key}</code> class</div>
+  ))}
+</Canvas>
+
+You can customize the values of the font size design tokens with the configuration file this way:
+
+<Source
+  language='ts'
+  dark
+  format={true}
+  code={`
+  // cunningham.ts|cjs
+  export default {
+    theme: {
+      typo: {
+        sizes: {
+          m: '0.5rem', // You can customize the size of the existing medium text ( 'fs-m' class )
+          xxl: '3rem' // You can also add custom sizes yourself ( 'fs-xxl' class will be generated )
+          ...
+        },
+      }
+    }
+  }
+  `}
+/>
+
+## Weights
+
+You can use custom utility classes to set the font weight of an element. These classes are named using the format `.fw-{weight}`.
+
+<Source
+  language='tsx'
+  dark
+  format={false}
+  code={`
+  <div className="fs-l fw-bold">Large size bold text</div>
+  `}
+/>
+
+<Canvas isColumn={true} withSource="none">
+  {Object.keys(tokens.theme.typo.weights).map(key => (
+    <div key={key} className={"fs-l fw-" + key}>Using the <code>fw-{key}</code> class</div>
+  ))}
+</Canvas>
+
+You can customize the values of the font weight design tokens with the configuration file this way:
+
+<Source
+  language='ts'
+  dark
+  format={true}
+  code={`
+  // cunningham.ts|cjs
+  export default {
+    theme: {
+      typo: {
+        weights: {
+          regular: 500, // You can customize the size of the existing regular text ( 'fw-regular' class )
+          chunky: 900 // You can also add custom weights yourself ( 'fw-chunky' class will be generated )
+          ...
+        },
+      }
+    }
+  }
+  `}
+/>
+
+## Families
+
+You can use custom utility classes to set the font family of an element. These classes are named using the format `.f-{family}`.
+For now, the design system only relies on `Roboto` font-family for both `base` and `accent` variations. But you can customize it.
+
+The font associated with `f-base` is the default font for the whole application, so there is no need to use the `f-base`
+class on every dom element.
+
+<Source
+  language='tsx'
+  dark
+  format={false}
+  code={`
+  <div className="f-accent">Accent text</div>
+  `}
+/>
+
+<Canvas isColumn={true} withSource="none">
+  {Object.keys(tokens.theme.typo.families).map(key => (
+    <div key={key} className={"f-" + key}>Using the <code>f-{key}</code> class</div>
+  ))}
+</Canvas>
+
+You can customize the values of the font family design tokens with the configuration file this way:
+
+<Source
+  language='ts'
+  dark
+  format={true}
+  code={`
+  // cunningham.ts|cjs
+  export default {
+    theme: {
+      typo: {
+        families: {
+          base: 'Inter', // You can customize the font family of the existing base variation ( 'f-base' class )
+          legend: 'Arial' // You can also add custom font families yourself ( 'f-legend' class will be generated )
+          ...
+        },
+      }
+    }
+  }
+  `}
+/>

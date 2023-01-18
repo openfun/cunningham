@@ -1,0 +1,114 @@
+import { Canvas, Meta, Story, Source, ArgsTable } from '@storybook/addon-docs'; import {
+  tokens
+} from '../../cunningham-tokens';
+
+<Meta title="Colors/Doc"/>
+
+export const colors = ['primary', 'secondary', 'greyscale', 'success', 'info', 'warning', 'danger'];
+export const tints = [900, 800, 700, 600, 500, 400, 300, 200, 100];
+
+# Typo
+
+Cunningham comes with an existing toolkit to deal with colors, and it's easy. 🎨
+
+## Background color
+
+You can use custom utility classes to set the background color of an element. These classes are named using the format `.bg-{color}`.
+
+<Source
+  language='tsx'
+  dark
+  format={false}
+  code={`
+  <div className="bg-primary-500"></div>
+  `}
+/>
+
+You can find all existing classes below.
+
+<Canvas isColumn={true} withSource="none">
+  {colors.map(color => (
+    <div key={color} style={{display: 'flex', gap: '5px'}}>
+      {tints.map(tint => (
+        <div key={color + tint} style={{display: 'flex', flexDirection: 'column', flexShrink: 0,flexBasis: '120px', alignItems: 'center', flexGrow: 1}}>
+          <div style={{width: '72px', height: '48px'}} className={"bg-" + color + "-" + tint}></div>
+          <code className="fs-s mt-st">bg-{color}-{tint}</code>
+        </div>
+      ))}
+    </div>
+  ))}
+</Canvas>
+
+## Text color
+
+You can use custom utility classes to set the color attribute of an element. These classes are named using the format `.clr-{color}`.
+
+<Source
+  language='tsx'
+  dark
+  format={false}
+  code={`
+  <div className="clr-primary-500">Nice primary-500 colored text</div>
+  `}
+/>
+
+You can find all existing classes below.
+
+<Canvas isColumn={true} withSource="none">
+  {colors.map(color => (
+    <div key={color} style={{display: 'flex', gap: '10px'}}>
+      {['text', ...tints].map(tint => {
+        const classes = ['fs-s', 'mt-st', 'clr-' + color + '-' + tint];
+        if (tint === 'text') {
+          classes.push('bg-' + color + '-500');
+        }
+        return <div key={color + tint} style={{
+          display: 'flex',
+          flexDirection: 'column',
+          flexShrink: 0,
+          flexBasis: '110px',
+          alignItems: 'center',
+          flexGrow: 1
+        }}>
+          <code className={classes.join(' ')}>clr-{color}-{tint}</code>
+        </div>
+      })}
+    </div>
+  ))}
+</Canvas>
+
+Pay attention the special `{color}-text` variation. Each color must have a text color variation, which is supposed to
+render readable text on top of a -500 background of its own color variation. Please check out the following examplez:
+
+<Canvas withSource="open">
+<span className="bg-primary-500 clr-primary-text fw-medium p-t">
+  I'm a text on top of a primary-500 background 👋
+</span>
+<span className="bg-secondary-500 clr-secondary-text fw-medium p-t">
+  I'm a text on top of a secondary-500 background 👋
+</span>
+<span className="bg-danger-500 clr-danger-text fw-medium p-t">
+  I'm a text on top of a danger-500 background 👋
+</span>
+</Canvas>
+
+## Customize
+
+You can customize the values of the color design tokens with the configuration file this way:
+
+<Source
+  language='ts'
+  dark
+  format={true}
+  code={`
+  // cunningham.ts|cjs
+  export default {
+    theme: {
+      colors: {
+        'primary-500': 'purple', // You can customize the existing primary-500 color. ( bg-primary-500, clr-primary-500 classes ),
+        'primary-text': 'cream',
+        'amazing-500': 'pink', // You can add a new color. ( bg-amazing-500, clr-amazing-500 classes will be generated )
+    }
+  }
+  `}
+/>
