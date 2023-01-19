@@ -10,6 +10,7 @@ and this project adheres to
 
 ### Added
 
+- Add utility classes
 - Add official design tokens
 - Add component's tokens handling
 - Setup Turborepo and package.json

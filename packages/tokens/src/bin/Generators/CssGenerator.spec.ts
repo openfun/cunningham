@@ -23,10 +23,20 @@ describe("CssGenerator", () => {
     expect(fs.existsSync(cssTokensFile)).toEqual(false);
     await run(["", "", "-g", "css", opt, "html"]);
     expect(fs.existsSync(cssTokensFile)).toEqual(true);
-    expect(fs.readFileSync(cssTokensFile).toString()).toEqual(`html {
-\t--c--theme--colors--primary: #055FD2;
-\t--c--theme--colors--secondary: #DA0000;
-}`);
+    expect(fs.readFileSync(cssTokensFile).toString()).toEqual(
+      fs
+        .readFileSync(
+          path.join(
+            __dirname,
+            "..",
+            "tests",
+            "assets",
+            "expected-default-" + Config.tokenFilename + ".css"
+          )
+        )
+        .toString()
+        .replace(":root", "html")
+    );
   };
 
   it("Runs with -s options.", async () => {
