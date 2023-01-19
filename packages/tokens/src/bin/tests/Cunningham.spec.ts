@@ -55,10 +55,17 @@ describe("Cunningham Bin", () => {
     expect(fs.existsSync(cssTokensFile)).toEqual(false);
     await run(["", "", "-g", "css"]);
     expect(fs.existsSync(cssTokensFile)).toEqual(true);
-    expect(fs.readFileSync(cssTokensFile).toString()).toEqual(`:root {
-\t--c--theme--colors--primary: #055FD2;
-\t--c--theme--colors--secondary: #DA0000;
-}`);
+    expect(fs.readFileSync(cssTokensFile).toString()).toEqual(
+      fs
+        .readFileSync(
+          path.join(
+            __dirname,
+            "assets",
+            "expected-default-" + Config.tokenFilename + ".css"
+          )
+        )
+        .toString()
+    );
   });
 
   it("Runs with existing JS config file using local values.", async () => {
@@ -76,10 +83,17 @@ describe("Cunningham Bin", () => {
 
     await run(["", "", "-g", "css"]);
     expect(fs.existsSync(cssTokensFile)).toEqual(true);
-    expect(fs.readFileSync(cssTokensFile).toString()).toEqual(`:root {
-\t--c--theme--colors--primary: AntiqueWhite;
-\t--c--theme--colors--secondary: #DA0000;
-}`);
+    expect(fs.readFileSync(cssTokensFile).toString()).toEqual(
+      fs
+        .readFileSync(
+          path.join(
+            __dirname,
+            "assets",
+            "expected-js-" + Config.tokenFilename + ".css"
+          )
+        )
+        .toString()
+    );
   });
 
   it("Runs with existing TS config file using local values.", async () => {
@@ -111,10 +125,17 @@ describe("Cunningham Bin", () => {
     expect(fs.existsSync(cssTokensFile)).toEqual(false);
     await run(["", "", "-g", "css", opt, outputDir]);
     expect(fs.existsSync(cssTokensFile)).toEqual(true);
-    expect(fs.readFileSync(cssTokensFile).toString()).toEqual(`:root {
-\t--c--theme--colors--primary: #055FD2;
-\t--c--theme--colors--secondary: #DA0000;
-}`);
+    expect(fs.readFileSync(cssTokensFile).toString()).toEqual(
+      fs
+        .readFileSync(
+          path.join(
+            __dirname,
+            "assets",
+            "expected-default-" + Config.tokenFilename + ".css"
+          )
+        )
+        .toString()
+    );
   };
 
   it("Runs with -o options.", async () => {

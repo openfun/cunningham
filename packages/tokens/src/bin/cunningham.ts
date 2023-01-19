@@ -89,7 +89,7 @@ const colorsDanger = {
   "danger-900": "#5C0000",
 };
 
-const typoSizes = {
+const fontSizes = {
   h1: "1.75rem",
   h2: "1.375rem",
   h3: "1.125rem;",
@@ -101,7 +101,7 @@ const typoSizes = {
   s: "0.6875rem",
 };
 
-const typoWeights = {
+const fontWeights = {
   thin: 100,
   regular: 300,
   medium: 400,
@@ -110,18 +110,18 @@ const typoWeights = {
   black: 900,
 };
 
-const typeFamilies = {
-  "font-base": "Roboto",
-  "font-accent": "Roboto",
+const fontFamilies = {
+  base: "Roboto",
+  accent: "Roboto",
 };
 
 const spacings = {
-  xl: "64px",
-  l: "48px",
-  b: "24px",
-  s: "16px",
-  t: "8px",
-  st: "4px",
+  xl: "4rem",
+  l: "3rem",
+  b: "1.625rem",
+  s: "1rem",
+  t: "0.5rem",
+  st: "0.25rem",
 };
 
 const transitions = {
@@ -142,10 +142,10 @@ export default {
       ...colorsWarning,
       ...colorsDanger,
     },
-    typo: {
-      ...typoSizes,
-      ...typoWeights,
-      ...typeFamilies,
+    font: {
+      sizes: fontSizes,
+      weights: fontWeights,
+      families: fontFamilies,
     },
     spacings,
     transitions,
