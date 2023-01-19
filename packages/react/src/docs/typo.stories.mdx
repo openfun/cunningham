@@ -106,11 +106,11 @@ class on every dom element.
   `}
 />
 
-<Canvas isColumn={true} withSource="none">
+    <Canvas isColumn={true} withSource="none">
   {Object.keys(tokens.theme.font.families).map(key => (
     <div key={key} className={"f-" + key}>Using the <code>f-{key}</code> class</div>
-  ))}
-</Canvas>
+    ))}
+    </Canvas>
 
 You can customize the values of the font family design tokens with the configuration file this way:
 
