@@ -2,6 +2,12 @@
 
 [![CircleCI](https://circleci.com/gh/openfun/cunningham/tree/master.svg?style=svg)](https://circleci.com/gh/openfun/richie/tree/master)
 
+<p align="center">
+    <a href="https://openfun.github.io/cunningham"><b>Documentation</b></a> •
+    <a href="https://www.figma.com/file/sSEMhow3g5zpEkyDLEQ1ZO/DS-Cunningham?node-id=47%3A261&t=nKRnadK4sslyVxD7-0"><b>Figma</b></a>
+</p>
+
+
 ## Getting started
 
 Packages are not published yet, but once it is done we will show people how to install packages.
