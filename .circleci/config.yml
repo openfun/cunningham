@@ -128,6 +128,26 @@ jobs:
           name: Run test suites over all workspaces
           command: yarn test
 
+  # ---- Deploy ----
+  publish-storybook:
+    docker:
+      - image: cimg/node:16.18
+    working_directory: ~/cunningham
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "5e:86:38:27:26:f2:1b:7f:4b:36:99:38:63:d9:2b:75"
+      - *checkout_cunningham
+      - *restore_node_modules
+      - attach_workspace:
+          at: ~/cunningham
+      - run:
+          name: Publish storybook
+          command: |
+            cd packages/react
+            git config user.email "funmoocbot@users.noreply.github.com"
+            git config user.name "FUN MOOC bot"
+            yarn deploy-storybook
 
 workflows:
   version: 2.1
@@ -177,3 +197,10 @@ workflows:
           requires:
             - build
             - lint
+      - publish-storybook:
+          filters:
+            branches:
+              only:
+                - main
+          requires:
+            - test
