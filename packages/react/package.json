@@ -27,7 +27,8 @@
     "test": "FORCE_COLOR=1 vitest run",
     "test-watch": "vitest",
     "coverage": "vitest run --coverage",
-    "storybook": "start-storybook -p 6006"
+    "storybook": "start-storybook -p 6006",
+    "deploy-storybook": "storybook-to-ghpages"
   },
   "dependencies": {
     "@fontsource/roboto": "4.5.8",
@@ -49,6 +50,7 @@
     "@storybook/builder-vite": "0.2.6",
     "@storybook/preset-scss": "1.0.3",
     "@storybook/react": "6.5.15",
+    "@storybook/storybook-deployer": "^2.8.16",
     "@storybook/testing-library": "0.0.13",
     "@testing-library/dom": "8.19.1",
     "@testing-library/react": "13.4.0",
