@@ -1,5 +1,8 @@
 {
   "name": "@openfun/typescript-configs",
   "version": "0.0.0",
-  "private": true
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  }
 }

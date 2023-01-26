@@ -32,33 +32,6 @@ jobs:
           command: |
             ~/.local/bin/gitlint --commits origin/main..HEAD
 
-  # Check that the CHANGELOG has been updated in the current branch
-  check-changelog:
-    docker:
-      - image: cimg/base:2022.11
-    working_directory: ~/cunningham
-    steps:
-      - checkout:
-          path: ~/cunningham
-      - run:
-          name: Check that the CHANGELOG has been modified in the current branch
-          command: |
-            git whatchanged --name-only --pretty="" origin..HEAD | grep CHANGELOG
-
-  # Check that the CHANGELOG max line length does not exceed 80 characters
-  lint-changelog:
-    docker:
-      - image: debian:stretch
-    working_directory: ~/cunningham
-    steps:
-      - checkout:
-          path: ~/cunningham
-      - run:
-          name: Check CHANGELOG max line length
-          command: |
-            # Get the longuest line width (ignoring release links)
-            test $(cat CHANGELOG.md | grep -Ev "^\[.*\]: https://github.com/openfun" | wc -L) -le 80
-
   # Check that renovate configuration file is valid
   check-renovate-configuration:
     docker:
@@ -148,7 +121,35 @@ jobs:
             git config user.email "funmoocbot@users.noreply.github.com"
             git config user.name "FUN MOOC bot"
             yarn deploy-storybook
-
+  publish-packages:
+    docker:
+      - image: cimg/node:16.15
+        auth:
+          username: $DOCKER_USER
+          password: $DOCKER_PASS
+    working_directory: ~/cunningham
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "5e:86:38:27:26:f2:1b:7f:4b:36:99:38:63:d9:2b:75"
+      - *checkout_cunningham
+      - *restore_node_modules
+      - attach_workspace:
+          at: ~/cunningham
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/cunningham/.npmrc
+      - run:
+          name: Init Git identity in order to allow changeset to create tags
+          command: |
+            git config user.email "funmoocbot@users.noreply.github.com"
+            git config user.name "FUN MOOC bot"
+      - run:
+          name: Publish package as public if package version are bumped
+          command: yarn changeset publish
+      - run:
+          name: Push release tags if some were created
+          command: git push --follow-tags origin HEAD
 workflows:
   version: 2.1
 
@@ -159,19 +160,6 @@ workflows:
       # Check validity of git history
       - lint-git:
           filters:
-            tags:
-              only: /.*/
-      # Check CHANGELOG update
-      - check-changelog:
-          filters:
-            branches:
-              ignore: main
-            tags:
-              only: /(?!^v).*/
-      - lint-changelog:
-          filters:
-            branches:
-              ignore: main
             tags:
               only: /.*/
       # Check Renovate
@@ -203,4 +191,12 @@ workflows:
               only:
                 - main
           requires:
+            - test
+      - publish-packages:
+          filters:
+            tags:
+              only: /.*/
+          requires:
+            - build
+            - lint
             - test
