@@ -11,7 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "cunningham-react": "*",
+    "cunningham-react-test": "*",
     "cunningham-tokens-test": "*",
     "nathanvss-typescript-configs": "*",
     "@types/react": "18.0.26",
