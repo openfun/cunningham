@@ -1,5 +1,5 @@
 {
-  "name": "@openfun/cunningham-react",
+  "name": "cunningham-react",
   "private": false,
   "version": "0.0.0",
   "publishConfig": {
@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@fontsource/roboto": "4.5.8",
-    "@openfun/cunningham-tokens": "*",
+    "cunningham-tokens-test": "*",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
@@ -44,8 +44,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.20.7",
-    "@openfun/cunningham-tokens": "*",
-    "@openfun/typescript-configs": "*",
+    "nathanvss-typescript-configs": "*",
     "@storybook/addon-actions": "6.5.15",
     "@storybook/addon-essentials": "6.5.15",
     "@storybook/addon-interactions": "6.5.15",

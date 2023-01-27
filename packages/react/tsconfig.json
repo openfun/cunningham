@@ -1,5 +1,5 @@
 {
-  "extends": "@openfun/typescript-configs/react.json",
+  "extends": "nathanvss-typescript-configs/react.json",
   "compilerOptions": {
     "noEmit": true,
     "baseUrl": "./src",

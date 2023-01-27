@@ -1,5 +1,5 @@
 import { glob } from "glob";
-import { defaultTokens } from "@openfun/cunningham-tokens";
+import { defaultTokens } from "cunningham-tokens-test";
 
 /**
  * This scripts dynamically imports all tokens.ts files from components and load them in a single object that will be

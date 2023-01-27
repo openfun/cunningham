@@ -1,4 +1,4 @@
-import { DefaultTokens } from "@openfun/cunningham-tokens";
+import { DefaultTokens } from "cunningham-tokens-test";
 
 export const tokens = (defaults: DefaultTokens) => {
   return {

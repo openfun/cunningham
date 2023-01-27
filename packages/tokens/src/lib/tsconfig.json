@@ -1,5 +1,5 @@
 {
-  "extends": "@openfun/typescript-configs/node.json",
+  "extends": "nathanvss-typescript-configs/node.json",
   "include": [
     "./*"
   ],

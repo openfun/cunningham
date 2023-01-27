@@ -35,7 +35,7 @@
       ],
       "outputs": []
     },
-    "@openfun/cunningham-tokens#test": {
+    "cunningham-tokens-test#test": {
       "dependsOn": ["build"]
     }
   }
