@@ -9,14 +9,25 @@ describe("<Button/>", () => {
   it("renders", () => {
     render(<Button>Test button</Button>);
     const button = screen.getByRole("button", { name: "Test button" });
-    expect(button.classList.contains("c__button")).toBe(true);
+    expect(Array.from(button.classList)).toContain("c__button");
   });
 
   it("renders with custom class when using left icon", () => {
     render(<Button icon={<div>Icon</div>}>Test button</Button>);
     const button = screen.getByText("Test button");
-    expect(button.classList.contains("c__button")).toBe(true);
-    expect(button.classList.contains("c__button--with-icon--left")).toBe(true);
+    const classes = Array.from(button.classList);
+    expect(classes).toContain("c__button");
+    expect(classes).toContain("c__button--with-icon--left");
+  });
+
+  it("renders with modifier class --icon-only when only icon is defined", () => {
+    render(<Button icon={<div>Icon</div>} />);
+    const button = screen.getByRole("button");
+    const classes = Array.from(button.classList);
+    expect(classes).toContain("c__button");
+    expect(classes).toContain("c__button--icon-only");
+    expect(classes).not.toContain("c__button--with-icon--left");
+    expect(classes).not.toContain("c__button--with-icon--right");
   });
 
   it("renders with custom class when using right icon", () => {
@@ -26,8 +37,9 @@ describe("<Button/>", () => {
       </Button>
     );
     const button = screen.getByText("Test button");
-    expect(button.classList.contains("c__button")).toBe(true);
-    expect(button.classList.contains("c__button--with-icon--right")).toBe(true);
+    const classes = Array.from(button.classList);
+    expect(classes).toContain("c__button");
+    expect(classes).toContain("c__button--with-icon--right");
   });
 
   it("call onClick when click occurs", async () => {

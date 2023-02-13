@@ -12,6 +12,12 @@
   font-size: var(--c--components--button--font-size);
   font-weight: var(--c--components--button--font-weight);
 
+  &--icon-only {
+    padding: 0;
+    width: var(--c--components--button--height);
+    justify-content: center;
+  }
+
   &--with-icon--left, &--with-icon--right {
     gap: var(--c--theme--spacings--t);
   }

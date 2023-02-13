@@ -14,8 +14,11 @@ export const Button = ({
   ...props
 }: Props) => {
   const classes = ["c__button", "c__button--" + color];
-  if (icon) {
+  if (icon && children) {
     classes.push("c__button--with-icon--" + iconPosition);
+  }
+  if (icon && !children) {
+    classes.push("c__button--icon-only");
   }
   return (
     <button className={classes.join(" ")} {...props}>
