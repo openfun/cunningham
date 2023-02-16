@@ -16,7 +16,8 @@
       "require": "./dist/index.cjs",
       "types": "./dist/index.d.ts"
     },
-    "./style": "./dist/style.css"
+    "./style": "./dist/style.css",
+    "./fonts": "./dist/fonts.css"
   },
   "files": [
     "dist/"
@@ -24,7 +25,8 @@
   "scripts": {
     "lint": "eslint . 'src/**/*.{ts,tsx}'",
     "dev": "yarn storybook & nodemon --watch src --ext '*' --ignore src/cunningham-tokens.ts --ignore src/cunningham-tokens.js --ignore src/cunningham-tokens.css --exec npm run build",
-    "build": "tsc && yarn build-theme && vite build",
+    "build": "tsc && yarn build-theme && vite build && yarn build-fonts",
+    "build-fonts": "vite build -c vite.fonts.config.ts && rm -rf dist/fonts.js",
     "build-theme": "cunningham -o src -g css,ts,js",
     "preview": "vite preview",
     "test": "FORCE_COLOR=1 vitest run",
