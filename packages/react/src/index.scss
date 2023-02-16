@@ -1,6 +1,7 @@
 @import "cunningham-tokens";
 @import '@openfun/cunningham-tokens/default-tokens';
 @import './components/Button';
+@import './components/Forms/Input';
 
 * {
   font-family: var(--c--theme--font--families--base);
