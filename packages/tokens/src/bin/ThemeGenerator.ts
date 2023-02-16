@@ -19,6 +19,7 @@ export const buildTheme = async () => {
       return Generators[generator](tokens, {
         path: options.output ?? workPath(),
         selector: options.selector,
+        utilityClasses: options.utilityClasses,
       });
     })
   );
@@ -48,6 +49,7 @@ export const run = async (args: string[]) => {
       "-o, --output <directory>",
       "Specify the output dir of generated files."
     )
+    .option("--utility-classes", "Generate CSS utility classes.")
     .requiredOption(
       "-g, --generators <generators>",
       "Specify the generators to use.",
