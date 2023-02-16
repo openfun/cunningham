@@ -17,7 +17,8 @@
       "types": "./dist/index.d.ts"
     },
     "./style": "./dist/style.css",
-    "./fonts": "./dist/fonts.css"
+    "./fonts": "./dist/fonts.css",
+    "./icons": "./dist/icons.css"
   },
   "files": [
     "dist/"
@@ -25,8 +26,9 @@
   "scripts": {
     "lint": "eslint . 'src/**/*.{ts,tsx}'",
     "dev": "yarn storybook & nodemon --watch src --ext '*' --ignore src/cunningham-tokens.ts --ignore src/cunningham-tokens.js --ignore src/cunningham-tokens.css --exec npm run build",
-    "build": "tsc && yarn build-theme && vite build && yarn build-fonts",
+    "build": "tsc && yarn build-theme && vite build && yarn build-fonts && yarn build-icons",
     "build-fonts": "vite build -c vite.fonts.config.ts && rm -rf dist/fonts.js",
+    "build-icons": "vite build -c vite.icons.config.ts && rm -rf dist/icons.js",
     "build-theme": "cunningham -o src -g css,ts,js",
     "preview": "vite preview",
     "test": "FORCE_COLOR=1 vitest run",
@@ -36,6 +38,7 @@
     "deploy-storybook": "storybook-to-ghpages"
   },
   "dependencies": {
+    "@fontsource/material-icons": "4.5.4",
     "@fontsource/roboto": "4.5.8",
     "@openfun/cunningham-tokens": "*",
     "react": "18.2.0",
