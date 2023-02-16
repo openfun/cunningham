@@ -38,7 +38,7 @@
       background-color: var(--c--theme--colors--primary-600);
     }
 
-    &:active {
+    &:active, &.c__button--active {
       background-color: var(--c--theme--colors--primary-500);
     }
   }
@@ -51,7 +51,7 @@
       background-color: var(--c--theme--colors--secondary-600);
     }
 
-    &:active {
+    &:active, &.c__button--active {
       background-color: var(--c--theme--colors--secondary-500);
     }
   }
@@ -64,8 +64,9 @@
       color: var(--c--theme--colors--greyscale-900);
     }
 
-    &:active {
+    &:active, &.c__button--active {
       color: var(--c--theme--colors--greyscale-800);
+      background-color: var(--c--theme--colors--greyscale-200);
     }
   }
 
