@@ -1,0 +1,23 @@
+.c__input {
+  height: 2rem;
+  padding: 0 14px;
+  box-sizing: border-box;
+  border-radius: 2px;
+  border: 1px var(--c--theme--colors--greyscale-300) solid;
+  transition: border var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
+  color: var(--c--theme--colors--greyscale-800);
+  font-size: var(--c--theme--font--sizes--m);
+
+  &:focus {
+    outline: 0;
+    border: 1px var(--c--theme--colors--greyscale-500) solid;
+  }
+
+  &--medium {
+    min-width: 150px;
+  }
+
+  &--nano {
+    min-width: 10px;
+  }
+}
