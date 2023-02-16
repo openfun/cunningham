@@ -5,6 +5,11 @@ import { Button } from "./index";
 export default {
   title: "Components/Button",
   component: Button,
+  argTypes: {
+    disabled: {
+      control: "boolean",
+    },
+  },
 } as ComponentMeta<typeof Button>;
 
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
@@ -38,6 +43,13 @@ export const Danger = Template.bind({});
 Danger.args = {
   children: "Danger",
   color: "danger",
+};
+
+export const Small = Template.bind({});
+Small.args = {
+  children: "Primary",
+  color: "primary",
+  size: "small",
 };
 
 export const IconLeft = Template.bind({});

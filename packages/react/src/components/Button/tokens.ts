@@ -3,8 +3,10 @@ import { DefaultTokens } from "@openfun/cunningham-tokens";
 export const tokens = (defaults: DefaultTokens) => {
   return {
     "border-radius": "2px",
-    height: "48px",
-    "font-size": defaults.theme.font.sizes.l,
+    "medium-height": "48px",
+    "small-height": "32px",
+    "medium-font-size": defaults.theme.font.sizes.l,
+    "small-font-size": defaults.theme.font.sizes.m,
     "font-weight": defaults.theme.font.weights.medium,
   };
 };
