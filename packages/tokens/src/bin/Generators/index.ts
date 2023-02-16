@@ -5,7 +5,7 @@ import { tsGenerator } from "Generators/TsGenerator";
 
 export type Generator = (
   tokens: Tokens,
-  opts: { path: string; selector: string }
+  opts: { path: string; selector: string; utilityClasses?: boolean }
 ) => Promise<void>;
 
 export const Generators: Record<string, Generator> = {

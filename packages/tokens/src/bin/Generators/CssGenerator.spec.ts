@@ -45,4 +45,24 @@ describe("CssGenerator", () => {
   it("Runs with --selector options.", async () => {
     await testSelector("--selector");
   });
+  it("Runs with  --utility-classes options.", async () => {
+    const cssTokensFile = path.join(__dirname, Config.tokenFilename + ".css");
+    expect(fs.existsSync(cssTokensFile)).toEqual(false);
+    await run(["", "", "-g", "css", "-s", "html", "--utility-classes"]);
+    expect(fs.existsSync(cssTokensFile)).toEqual(true);
+    expect(fs.readFileSync(cssTokensFile).toString()).toEqual(
+      fs
+        .readFileSync(
+          path.join(
+            __dirname,
+            "..",
+            "tests",
+            "assets",
+            "expected-with-utility-classes-" + Config.tokenFilename + ".css"
+          )
+        )
+        .toString()
+        .replace(":root", "html")
+    );
+  });
 });

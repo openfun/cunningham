@@ -12,9 +12,10 @@ export const cssGenerator: Generator = async (tokens, opts) => {
       acc + `\t--${Config.sass.varPrefix}${token}: ${flatTokens[token]};\n`
     );
   }, "");
-  const cssContent = `${opts.selector} {\n${cssVars}} ${generateClasses(
-    tokens
-  )}`;
+  let cssContent = `${opts.selector} {\n${cssVars}}`;
+  if (opts.utilityClasses) {
+    cssContent += ` ${generateClasses(tokens)}`;
+  }
 
   const dest = path.join(opts.path, Config.tokenFilename + ".css");
 
