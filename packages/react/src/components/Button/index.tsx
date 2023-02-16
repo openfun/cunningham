@@ -2,6 +2,7 @@ import React, { ButtonHTMLAttributes, ReactNode } from "react";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: "primary" | "secondary" | "tertiary" | "danger";
+  size?: "medium" | "small";
   icon?: ReactNode;
   iconPosition?: "left" | "right";
   active?: boolean;
@@ -10,12 +11,13 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button = ({
   children,
   color = "primary",
+  size = "medium",
   iconPosition = "left",
   icon,
   active,
   ...props
 }: Props) => {
-  const classes = ["c__button", "c__button--" + color];
+  const classes = ["c__button", "c__button--" + color, "c__button--" + size];
   if (icon && children) {
     classes.push("c__button--with-icon--" + iconPosition);
   }

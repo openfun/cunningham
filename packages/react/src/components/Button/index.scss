@@ -4,17 +4,31 @@
   border: none;
   cursor: pointer;
   transition: background-color var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
-
-  padding: 0 var(--c--theme--spacings--s);
-
-  height: var(--c--components--button--height);
   border-radius: var(--c--components--button--border-radius);
-  font-size: var(--c--components--button--font-size);
   font-weight: var(--c--components--button--font-weight);
+
+  &--medium {
+    height: var(--c--components--button--medium-height);
+    font-size: var(--c--components--button--medium-font-size);
+    padding: 0 var(--c--theme--spacings--s);
+
+    &.c__button--icon-only {
+      width: var(--c--components--button--medium-height);
+    }
+  }
+
+  &--small {
+    height: var(--c--components--button--small-height);
+    font-size: var(--c--components--button--small-font-size);
+    padding: 0 0.75rem;
+
+    &.c__button--icon-only {
+      width: var(--c--components--button--small-height);
+    }
+  }
 
   &--icon-only {
     padding: 0;
-    width: var(--c--components--button--height);
     justify-content: center;
   }
 
@@ -41,6 +55,10 @@
     &:active, &.c__button--active {
       background-color: var(--c--theme--colors--primary-500);
     }
+
+    &[disabled] {
+      background-color: var(--c--theme--colors--greyscale-200);
+    }
   }
 
   &--secondary {
@@ -54,6 +72,10 @@
     &:active, &.c__button--active {
       background-color: var(--c--theme--colors--secondary-500);
     }
+
+    &[disabled] {
+      background-color: var(--c--theme--colors--greyscale-200);
+    }
   }
 
   &--tertiary {
@@ -62,11 +84,16 @@
 
     &:hover {
       color: var(--c--theme--colors--greyscale-900);
+      background-color: var(--c--theme--colors--greyscale-100);
     }
 
     &:active, &.c__button--active {
       color: var(--c--theme--colors--greyscale-800);
       background-color: var(--c--theme--colors--greyscale-200);
+    }
+
+    &[disabled] {
+      background-color: transparent;
     }
   }
 
@@ -81,11 +108,14 @@
     &:active {
       background-color: var(--c--theme--colors--danger-500);
     }
+
+    &[disabled] {
+      background-color: var(--c--theme--colors--greyscale-200);
+    }
   }
 
   &[disabled] {
     cursor: not-allowed;
-    background-color: var(--c--theme--colors--greyscale-200);
     color: var(--c--theme--colors--greyscale-400);
   }
 }
