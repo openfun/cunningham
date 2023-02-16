@@ -1,4 +1,3 @@
-import { describe, expect, it } from "vitest";
 import { act, render, screen, waitFor } from "@testing-library/react";
 import React from "react";
 import { buildTheme, loadTokens } from "tests/Theme";

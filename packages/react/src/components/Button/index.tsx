@@ -4,6 +4,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: "primary" | "secondary" | "tertiary" | "danger";
   icon?: ReactNode;
   iconPosition?: "left" | "right";
+  active?: boolean;
 }
 
 export const Button = ({
@@ -11,6 +12,7 @@ export const Button = ({
   color = "primary",
   iconPosition = "left",
   icon,
+  active,
   ...props
 }: Props) => {
   const classes = ["c__button", "c__button--" + color];
@@ -19,6 +21,9 @@ export const Button = ({
   }
   if (icon && !children) {
     classes.push("c__button--icon-only");
+  }
+  if (active) {
+    classes.push("c__button--active");
   }
   return (
     <button className={classes.join(" ")} {...props}>
