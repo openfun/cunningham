@@ -1583,6 +1583,11 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@fontsource/material-icons@^4.5.4":
+  version "4.5.4"
+  resolved "https://registry.yarnpkg.com/@fontsource/material-icons/-/material-icons-4.5.4.tgz#bfedde9352c36dbbacb6b49d190a1ce1e5917756"
+  integrity sha512-YGmXkkEdu6EIgpFKNmB/nIXzZocwSmbI01Ninpmml8x8BT0M6RR++V1KqOfpzZ6Cw/FQ2/KYonQ3x4IY/4VRRA==
+
 "@fontsource/roboto@4.5.8":
   version "4.5.8"
   resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-4.5.8.tgz#56347764786079838faf43f0eeda22dd7328437f"
