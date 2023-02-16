@@ -1,4 +1,5 @@
 import '../src/index.scss'
+import '../src/fonts.scss'
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
