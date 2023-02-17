@@ -1,9 +1,10 @@
 import fs from "fs";
+import pathHelper from "path";
 import chalk from "chalk";
 
 export const put = (path: string, content: string) => {
   console.log("Generating tokens file to " + path + " ...");
-  const dir = path.substring(0, path.lastIndexOf("/"));
+  const dir = pathHelper.dirname(path);
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir);
   }
