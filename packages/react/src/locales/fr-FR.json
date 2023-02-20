@@ -1,0 +1,20 @@
+{
+  "components": {
+    "pagination": {
+      "goto_label": "Aller à",
+      "goto_label_aria": "Aller à la page",
+      "next_aria": "Aller à la page suivante",
+      "previous_aria": "Aller à la page précédente",
+      "goto_page_aria": "Aller à la page {page}",
+      "current_page_aria": "Vous êtes actuellement sur la page {page}"
+    },
+    "datagrid": {
+      "empty": "Ce tableau est vide",
+      "empty_alt": "Illustration d'un tableau vide",
+      "loader_aria": "Loading data"
+    },
+    "provider": {
+      "test": "Ceci est un test : {name}"
+    }
+  }
+}

@@ -43,6 +43,7 @@ COMPOSE_RUN          = $(COMPOSE) run --rm --service-ports
 # permission error.
 COMPOSE_RUN_NODE     = $(COMPOSE_RUN) -e HOME="/tmp" node
 YARN                 = $(COMPOSE_RUN_NODE) yarn
+CROWDIN              = $(COMPOSE_RUN) crowdin crowdin
 
 # ==============================================================================
 # RULES
@@ -54,7 +55,9 @@ install: ## install all repos dependencies.
 .PHONY: install
 
 bootstrap: ## install all repos dependencies and build them too.
-bootstrap: build
+bootstrap: \
+	env.d/crowdin \
+	build
 .PHONY: bootstrap
 
 dev: ## watch changes in apps and packages.
@@ -81,6 +84,19 @@ deploy: ## run deploy ( lint, test, build ) on all repos.
 deploy: install
 	@$(YARN) deploy
 .PHONY: deploy
+
+# -- Misc
+env.d/crowdin:
+	cp env.d/crowdin.dist env.d/crowdin
+
+# -- Internationalization
+crowdin-upload:
+	@$(CROWDIN) upload sources -c crowdin/config.yml
+.PHONY: crowdin-upload
+
+crowdin-download:
+	@$(CROWDIN) download -c crowdin/config.yml
+.PHONY: crowdin-download
 
 clean: ## restore repository state as it was freshly cloned
 	git clean -idx

@@ -1,0 +1,20 @@
+{
+  "components": {
+    "pagination": {
+      "goto_label": "Go to",
+      "goto_label_aria": "Go to any page",
+      "next_aria": "Go to next page",
+      "previous_aria": "Go to previous page",
+      "goto_page_aria": "Go to page {page}",
+      "current_page_aria": "You are currently on page {page}"
+    },
+    "datagrid": {
+      "empty": "This table is empty",
+      "empty_alt": "Illustration of an empty table",
+      "loader_aria": "Loading data"
+    },
+    "provider": {
+      "test": "This is a test: {name}"
+    }
+  }
+}

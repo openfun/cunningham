@@ -26,3 +26,4 @@ dist
 *.sw?
 
 vite.config.ts.timestamp-*
+env.d

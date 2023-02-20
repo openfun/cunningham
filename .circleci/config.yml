@@ -101,6 +101,20 @@ jobs:
           name: Run test suites over all workspaces
           command: yarn test
 
+  # ---- Internationalization ----
+  crowdin-upload:
+    docker:
+      - image: crowdin/cli:3.10.0
+        auth:
+          username: $DOCKER_USER
+          password: $DOCKER_PASS
+    working_directory: ~/cunningham
+    steps:
+      - *checkout_cunningham
+      - run:
+          name: upload translation files to crowdin
+          command: crowdin upload sources -c crowdin/config.yml
+
   # ---- Deploy ----
   publish-storybook:
     docker:
@@ -167,6 +181,14 @@ workflows:
           filters:
             tags:
               only: /.*/
+      # ---- Internationalization ----
+      - crowdin-upload:
+          filters:
+            branches:
+              only:
+                - main
+          requires:
+            - build
       # ---- Codebase ----
       - build:
           filters:
