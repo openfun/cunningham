@@ -1,0 +1,19 @@
+.c__pagination {
+    display: flex;
+    gap: 2rem;
+
+    &__list {
+        display: flex;
+        align-items: center;
+        border: 1px var(--c--theme--colors--greyscale-200) solid;
+        border-radius: 2px;
+        padding: var(--c--theme--spacings--st);
+        background: var(--c--theme--colors--greyscale-000);
+    }
+
+    &__goto {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+}

@@ -30,6 +30,7 @@ export default defineConfig({
     environment: "jsdom",
     reporters: "verbose",
     globals: true,
+    watchExclude: ["**/cunningham-tokens.js"],
     coverage: {
       all: true,
       include: ["src/**/*.{ts,tsx}"],
