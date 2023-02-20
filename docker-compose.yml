@@ -11,3 +11,11 @@ services:
       - "6006:6006"
     volumes:
       - .:/app
+
+  crowdin:
+    image: crowdin/cli:3.10.0
+    user: "${DOCKER_USER:-1000}"
+    working_dir: /app
+    env_file: env.d/crowdin
+    volumes:
+      - ".:/app"
