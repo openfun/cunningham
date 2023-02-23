@@ -48,6 +48,7 @@
     "@babel/core": "7.20.7",
     "@openfun/cunningham-tokens": "*",
     "@openfun/typescript-configs": "*",
+    "@storybook/addon-a11y": "6.5.16",
     "@storybook/addon-actions": "6.5.15",
     "@storybook/addon-essentials": "6.5.15",
     "@storybook/addon-interactions": "6.5.15",
