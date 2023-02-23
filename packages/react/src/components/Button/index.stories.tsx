@@ -87,6 +87,7 @@ IconRight.args = {
 
 export const IconOnly = Template.bind({});
 IconOnly.args = {
+  "aria-label": "Button with only an icon",
   icon: (
     <svg
       width="24"
