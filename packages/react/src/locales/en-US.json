@@ -11,7 +11,9 @@
     "datagrid": {
       "empty": "This table is empty",
       "empty_alt": "Illustration of an empty table",
-      "loader_aria": "Loading data"
+      "loader_aria": "Loading data",
+      "rows_selection_aria":"All rows selection",
+      "row_selection_aria": "Row selection"
     },
     "provider": {
       "test": "This is a test: {name}"

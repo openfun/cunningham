@@ -36,5 +36,6 @@ export default defineConfig({
       include: ["src/**/*.{ts,tsx}"],
       exclude: ["**/*.stories.tsx", "**/*.spec.tsx"],
     },
+    setupFiles: ["src/tests/Setup.ts"],
   },
 });

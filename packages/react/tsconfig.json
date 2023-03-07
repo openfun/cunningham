@@ -3,7 +3,7 @@
   "compilerOptions": {
     "noEmit": true,
     "baseUrl": "./src",
-    "types": ["vitest/globals"]
+    "types": ["vitest/globals", "vite/client"]
   },
   "include": ["src", "cunningham.ts"],
   "exclude": ["node_modules","dist", "**/tokens.ts"],
