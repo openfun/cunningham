@@ -41,6 +41,8 @@
     "@fontsource/material-icons": "4.5.4",
     "@fontsource/roboto": "4.5.8",
     "@openfun/cunningham-tokens": "*",
+    "@tanstack/react-table": "8.7.9",
+    "classnames": "2.3.2",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
@@ -49,6 +51,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.20.7",
+    "@faker-js/faker": "7.6.0",
     "@openfun/cunningham-tokens": "*",
     "@openfun/typescript-configs": "*",
     "@storybook/addon-a11y": "6.5.16",
@@ -59,7 +62,7 @@
     "@storybook/builder-vite": "0.2.6",
     "@storybook/preset-scss": "1.0.3",
     "@storybook/react": "6.5.15",
-    "@storybook/storybook-deployer": "^2.8.16",
+    "@storybook/storybook-deployer": "2.8.16",
     "@storybook/testing-library": "0.0.13",
     "@testing-library/dom": "8.19.1",
     "@testing-library/react": "13.4.0",
@@ -80,6 +83,7 @@
     "vite": "4.0.3",
     "vite-plugin-dts": "1.7.1",
     "vite-tsconfig-paths": "4.0.3",
-    "vitest": "0.26.2"
+    "vitest": "0.26.2",
+    "vitest-fetch-mock": "0.2.2"
   }
 }

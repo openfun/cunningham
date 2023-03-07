@@ -1,6 +1,8 @@
 @import "cunningham-tokens";
 @import '@openfun/cunningham-tokens/default-tokens';
+@import './components/Accessibility';
 @import './components/Button';
+@import './components/DataGrid';
 @import './components/Forms/Input';
 @import './components/Loader';
 @import './components/Pagination';

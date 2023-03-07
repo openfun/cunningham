@@ -1,0 +1,114 @@
+.c__datagrid {
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--c--theme--spacings--s);
+  position: relative;
+
+  &--empty {
+    min-height: 400px;
+    background-color: var(--c--theme--colors--greyscale-000);
+    border: 1px var(--c--theme--colors--greyscale-300) solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__loader {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: wait;
+
+    &__background {
+      position: absolute;
+      inset: 0;
+      background-color: var(--c--theme--colors--greyscale-100);
+      opacity: 0.5;
+      animation: pulse 1s infinite var(--c--theme--transitions--ease-out);
+
+      @keyframes pulse {
+        0% { opacity: 0.5; }
+        50% { opacity: 0.7;  }
+        100% { opacity: 0.5; }
+      }
+    }
+  }
+
+  .c__datagrid__empty-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--c--theme--spacings--s);
+
+    img {
+      max-width: 400px;
+      width: 80%;
+    }
+  }
+
+  > table {
+    border-collapse: collapse;
+    font-weight: var(--c--theme--font--weights--regular);
+    width: 100%;
+
+    th, td {
+      text-align: left;
+      padding: 0 var(--c--theme--spacings--s);
+      white-space: nowrap;
+      font-size: var(--c--theme--font--sizes--m);
+      height: 3rem;
+    }
+
+    th {
+      color: var(--c--theme--colors--greyscale-800);
+      font-weight: var(--c--theme--font--weights--bold);
+      font-size: var(--c--theme--font--sizes--h5);
+      text-transform: uppercase;
+
+      .c__datagrid__header {
+        display: flex;
+        align-items: center;
+
+        .material-icons {
+          color: var(--c--theme--colors--greyscale-500);
+        }
+
+        &--sortable {
+          cursor: pointer;
+        }
+
+        &__icon-placeholder {
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
+
+    td {
+      color: var(--c--theme--colors--greyscale-700);
+    }
+
+    tbody tr {
+      border: 1px var(--c--theme--colors--greyscale-300) solid;
+    }
+
+    .c__datagrid__row {
+      &__cell {
+        &--highlight {
+          color: var(--c--theme--colors--greyscale-800);
+          font-weight: var(--c--theme--font--weights--medium);
+        }
+      }
+    }
+
+    tbody {
+      background-color: var(--c--theme--colors--greyscale-000);
+    }
+
+  }
+
+}
