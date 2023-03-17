@@ -3,8 +3,8 @@ import chalk from "chalk";
 import figlet from "figlet";
 import { getConfig } from "ConfigLoader";
 import { tokensGenerator } from "TokensGenerator";
-import { Generators } from "Generators";
 import { workPath } from "Paths";
+import { Generators } from "Generators";
 
 export const buildTheme = async () => {
   const options = program.opts();
