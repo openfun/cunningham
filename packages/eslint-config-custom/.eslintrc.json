@@ -26,7 +26,7 @@
       "jsx": true
     }
   },
-  "plugins": ["formatjs", "@typescript-eslint"],
+  "plugins": ["formatjs", "@typescript-eslint", "import"],
   /* Disable some rules to be iso with tslint which was previously used */
   "rules": {
     "@typescript-eslint/explicit-member-accessibility": ["error", { "accessibility": "no-public" }],
@@ -84,6 +84,8 @@
   },
   "settings": {
     "polyfills": ["fetch", "Promise"],
-    "import/resolver": "webpack"
+    "import/resolver": {
+      "typescript": true
+    }
   }
 }

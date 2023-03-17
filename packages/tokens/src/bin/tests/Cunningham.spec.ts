@@ -1,10 +1,10 @@
 import * as fs from "fs";
 import * as path from "path";
 import * as child_process from "child_process";
+import * as util from "util";
 import { run } from "ThemeGenerator";
 import { cleanup } from "tests/Utils";
 // eslint-disable-next-line import/no-extraneous-dependencies
-import * as util from "util";
 import Config from "../Config";
 
 jest.mock("../Paths", () => ({
