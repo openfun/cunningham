@@ -1,5 +1,5 @@
-import { glob } from "glob";
 import { defaultTokens } from "@openfun/cunningham-tokens";
+import { globSync } from "glob";
 
 /**
  * This scripts dynamically imports all tokens.ts files from components and load them in a single object that will be
@@ -9,7 +9,7 @@ import { defaultTokens } from "@openfun/cunningham-tokens";
  * them in their own local configuration file. ( cunningham.ts|js )
  */
 const components: any = {};
-const files = glob.sync("src/components/**/tokens.ts");
+const files = globSync("src/components/**/tokens.ts");
 files.forEach((file) => {
   const importPath = "./" + file.replace(/\.ts$/, "");
   const matches = /^.+components\/(.+)\/tokens$/gm.exec(importPath);
