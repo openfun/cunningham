@@ -78,3 +78,19 @@ Generally, changes related to these topics can be omitted:
 - Chores (infrastructure, release process…)
 
 This part of the documentation is 99% inspired by [Polaris](https://github.com/Shopify/polaris/blob/main/.github/CONTRIBUTING.md#adding-a-changeset)
+
+## Release
+
+1. Create a new branch from main specific to the release.
+
+`git checkout -b release/version-packages`
+
+2. Now run the following command at the root of the repo to bump the version of the packages.
+
+`yarn changeset version`
+
+3. Update the upgraded CHANGELOG.md files of the packages to add link to the diff between the previous version and the new one.
+
+4. Commit the changes and create a PR named "🔖(release) version packages".
+
+Once this PR is merged, the CI will automatically publish the new version of the packages on npm. It will also create and push release tags.
