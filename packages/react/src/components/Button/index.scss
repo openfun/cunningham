@@ -1,11 +1,39 @@
 .c__button {
-  display: flex;
   align-items: center;
-  border: none;
-  cursor: pointer;
-  transition: background-color var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
   border-radius: var(--c--components--button--border-radius);
+  border: thin solid transparent;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
   font-weight: var(--c--components--button--font-weight);
+  transition: all var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
+  user-select: none;
+
+  &:hover, &:focus-visible, &:active, &.c__button--active {
+    border-radius: var(--c--components--button--border-radius--active);
+  }
+
+  &:hover, &:focus-visible {
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.6);
+  }
+
+  &:focus-visible {
+    border-color: #FFF;
+    box-shadow: 0 0 0 4px var(--c--theme--colors--primary-400);
+    outline: none;
+  }
+
+  &:active, &.c__button--active {
+    border-color: currentColor;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.7);
+  }
+
+  &:disabled {
+    background-color: var(--c--theme--colors--greyscale-200);
+    color: var(--c--theme--colors--greyscale-400);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
 
   &--medium {
     height: var(--c--components--button--medium-height);
@@ -48,33 +76,29 @@
     background-color: var(--c--theme--colors--primary-500);
     color: var(--c--theme--colors--primary-text);
 
-    &:hover {
-      background-color: var(--c--theme--colors--primary-600);
+    &:hover, &:focus-visible {
+      background-color: var(--c--theme--colors--primary-800);
+      color: var(--c--theme--colors--primary-text);
     }
 
     &:active, &.c__button--active {
-      background-color: var(--c--theme--colors--primary-500);
-    }
-
-    &[disabled] {
-      background-color: var(--c--theme--colors--greyscale-200);
+      background-color: var(--c--theme--colors--greyscale-000);
+      color: var(--c--theme--colors--primary-800);
     }
   }
 
   &--secondary {
-    background-color: var(--c--theme--colors--secondary-500);
-    color: var(--c--theme--colors--secondary-text);
+    background-color: var(--c--theme--colors--primary-100);
+    color: var(--c--theme--colors--primary-700);
 
-    &:hover {
-      background-color: var(--c--theme--colors--secondary-600);
+    &:hover, &:focus-visible {
+      background-color: var(--c--theme--colors--primary-500);
+      color: var(--c--theme--colors--primary-text);
     }
 
     &:active, &.c__button--active {
-      background-color: var(--c--theme--colors--secondary-500);
-    }
-
-    &[disabled] {
-      background-color: var(--c--theme--colors--greyscale-200);
+      background-color: var(--c--theme--colors--primary-text);
+      color: var(--c--theme--colors--primary-600);
     }
   }
 
@@ -82,17 +106,17 @@
     background-color: transparent;
     color: var(--c--theme--colors--greyscale-800);
 
-    &:hover {
-      color: var(--c--theme--colors--greyscale-900);
+    &:hover, &:focus-visible {
       background-color: var(--c--theme--colors--greyscale-100);
+      color: var(--c--theme--colors--greyscale-900);
     }
 
     &:active, &.c__button--active {
-      color: var(--c--theme--colors--greyscale-800);
       background-color: var(--c--theme--colors--greyscale-200);
+      color: var(--c--theme--colors--greyscale-800);
     }
 
-    &[disabled] {
+    &:disabled {
       background-color: transparent;
     }
   }
@@ -101,21 +125,14 @@
     background-color: var(--c--theme--colors--danger-500);
     color: var(--c--theme--colors--danger-text);
 
-    &:hover {
-      background-color: var(--c--theme--colors--danger-600);
+    &:hover, &:focus-visible {
+      background-color: var(--c--theme--colors--danger-800);
+      color: var(--c--theme--colors--primary-text);
     }
 
     &:active {
-      background-color: var(--c--theme--colors--danger-500);
+      background-color: var(--c--theme--colors--greyscale-000);
+      color: var(--c--theme--colors--danger-800);
     }
-
-    &[disabled] {
-      background-color: var(--c--theme--colors--greyscale-200);
-    }
-  }
-
-  &[disabled] {
-    cursor: not-allowed;
-    color: var(--c--theme--colors--greyscale-400);
   }
 }
