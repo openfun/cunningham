@@ -92,9 +92,9 @@
 	--c--theme--spacings--s: 1rem;
 	--c--theme--spacings--t: 0.5rem;
 	--c--theme--spacings--st: 0.25rem;
-	--c--theme--transitions--ease-in: cubic-bezier(0.5, 0, 0.75, 0);
-	--c--theme--transitions--ease-out: cubic-bezier(0.25, 1, 0.5, 1);
-	--c--theme--transitions--ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
-	--c--theme--transitions--duration: 200ms;
+	--c--theme--transitions--ease-in: cubic-bezier(0.32, 0, 0.67, 0);
+	--c--theme--transitions--ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+	--c--theme--transitions--ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+	--c--theme--transitions--duration: 250ms;
 	--c--components--button--border-radius: 30px;
 }
