@@ -125,10 +125,10 @@ const spacings = {
 };
 
 const transitions = {
-  "ease-in": "cubic-bezier(0.5, 0, 0.75, 0)",
-  "ease-out": "cubic-bezier(0.25, 1, 0.5, 1)",
-  "ease-in-out": "cubic-bezier(0.76, 0, 0.24, 1)",
-  duration: "200ms",
+  "ease-in": "cubic-bezier(0.32, 0, 0.67, 0)", // Ease in cubic
+  "ease-out": "cubic-bezier(0.33, 1, 0.68, 1)", // Ease out cubic
+  "ease-in-out": "cubic-bezier(0.65, 0, 0.35, 1)", // Ease in out cubic
+  duration: "250ms",
 };
 
 export default {
