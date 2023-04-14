@@ -1,0 +1,27 @@
+import { Canvas, Meta, Story, Source, ArgsTable } from '@storybook/addon-docs';
+import { Field } from "./index";
+
+<Meta title="Components/Forms/Field/Doc" component={Field}/>
+
+export const Template = (args) => <Field {...args} />;
+
+# Field
+
+The Field component is used to wrap a form input. As a design system consumer you are
+not supposed to directly use it, unless you need to create custom inputs.
+
+**But, as most of Cunningham's components are wrapped inside this component, you may need to customize**
+the default width, the generics texts below inputs for example. This documentation is here to show you the
+available design token to do so.
+
+## Design tokens
+
+| Token        	| Description                 	|
+|---------------	|-----------------------------	|
+| width 	| Default width of inputs ( default is 292px ) 	|
+| font-size 	| Font size of texts below inputs 	|
+| color 	| Font color of texts below inputs 	|
+
+## Props
+
+<ArgsTable of={Field} />
