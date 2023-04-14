@@ -146,9 +146,6 @@ export const Pagination = ({
         />
       </div>
       <div className="c__pagination__goto">
-        <div className="fs-m clr-greyscale-700">
-          {t("components.pagination.goto_label")}
-        </div>
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -157,6 +154,7 @@ export const Pagination = ({
         >
           <Input
             type="number"
+            label={t("components.pagination.goto_label")}
             aria-label={t("components.pagination.goto_label_aria")}
             size={2}
             value={gotoValue}
