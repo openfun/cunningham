@@ -24,6 +24,7 @@ files.forEach((file) => {
     throw new Error("Tokens file does not export tokens " + file);
   }
 
+  componentName = componentName.replace("/", "-");
   components[componentName] = res.tokens(defaultTokens);
 });
 
