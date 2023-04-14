@@ -15,5 +15,9 @@
         display: flex;
         align-items: center;
         gap: 0.5rem;
+
+        .c__field--default {
+            width: 100px;
+        }
     }
 }
