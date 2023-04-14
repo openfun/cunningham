@@ -1,0 +1,160 @@
+import { Canvas, Meta, Story, Source, ArgsTable } from '@storybook/addon-docs';
+import { Input } from "./index";
+
+<Meta title="Components/Forms/Input/Doc" component={Input}/>
+
+export const Template = (args) => <Input {...args} />;
+
+# Input
+
+Cunningham provides a versatile Input component that you can use in your forms.
+
+<Canvas>
+  <Story id="components-forms-input--default"/>
+</Canvas>
+
+<Source
+  language='ts'
+  dark
+  format={false}
+  code={`import { Input } from "@openfun/cunningham-react";`}
+/>
+
+## States
+
+You can use the following props to change the state of the Input component by using the `state` props.
+
+<Canvas withSource="open">
+  <Story id="components-forms-input--default"/>
+</Canvas>
+
+<Canvas withSource="open">
+  <Story id="components-forms-input--success"/>
+</Canvas>
+
+<Canvas withSource="open">
+  <Story id="components-forms-input--error"/>
+</Canvas>
+
+## Disabled
+
+As a regular input, you can disable it by using the `disabled` props.
+
+<Canvas withSource="open">
+  <Story id="components-forms-input--disabled-empty"/>
+  <Story id="components-forms-input--disabled-filled"/>
+</Canvas>
+
+## Icons
+
+You can define an icon that will appear on the left side of the input by using the `icon` props.
+
+<Canvas withSource="open">
+  <Story id="components-forms-input--icon"/>
+</Canvas>
+
+You can also independently add an icon on the right side by using the `rightIcon` props.
+
+<Canvas withSource="open">
+  <Story id="components-forms-input--icon-right"/>
+</Canvas>
+
+## Texts
+
+You can define a text that will appear below the input by using the `text` props.
+
+<Canvas withSource="open">
+  <Story id="components-forms-input--with-text"/>
+</Canvas>
+
+You can also independently add a text on the right side by using the `rightText` props.
+
+<Canvas withSource="open">
+  <Story id="components-forms-input--with-both-texts"/>
+</Canvas>
+
+## Width
+
+By default, the input has a default width, like all inputs. But you can force it to take the full width of its container by using the `fullWidth` props.
+
+<Canvas withSource="open">
+  <Story id="components-forms-input--full-width"/>
+</Canvas>
+
+## Chars Counter
+
+You can display a counter of the number of characters entered in the input by using the `charsCounter` props. Please bare
+in mind to also define `charCounterMax`.
+
+<Canvas withSource="open">
+  <Story id="components-forms-input--char-counter"/>
+</Canvas>
+
+## Controlled / Non Controlled
+
+Like a native input, you can use the Input component in a controlled or non controlled way. You can see the example below
+using the component in a controlled way.
+
+<Canvas withSource="open">
+  <Story id="components-forms-input--controlled"/>
+</Canvas>
+
+## Ref
+
+You can use the `ref` props to get a reference to the input element. The ref to the native input is nested inside the `input` attribute.
+
+<Canvas withSource="open">
+  <Story id="components-forms-input--with-ref"/>
+</Canvas>
+
+## Props
+
+You can use all the props of the native html `<input>` element props plus the following.
+
+<ArgsTable of={Input} />
+
+## Design tokens
+
+Here are the custom design tokens defined by the button.
+
+| Token        	| Description                 	|
+|---------------	|-----------------------------	|
+| font-weight 	| Value font weight 	|
+| font-size        	| Value font size        	|
+| color   	| Value color  	|
+| border-radius     	| Border radius of the input      	|
+| border-radius--hover   	| Border radius of the input on mouse hover    	|
+| border-radius--focus   	| Border radius of the input when focused    	|
+| border-width   	| Border width of the input    	|
+| border-color   	| Border color of the input    	|
+| border-color--hover   	| Border color of the input on mouse hover   	|
+| border-color--focus   	| Border color of the input when focus   	|
+| border-style   	| Border style of the input  	|
+
+See also [Field](?path=/story/components-forms-field-doc--page)
+
+## Form Example
+
+<Canvas>
+  <Story id="components-forms-input--form-example"/>
+</Canvas>
+
+##
+
+<img src="components/Forms/Input/resources/dd_1.svg"/>
+
+##
+
+<img src="components/Forms/Input/resources/dd_2.svg"/>
+
+##
+
+<img src="components/Forms/Input/resources/dd_3.svg"/>
+
+##
+
+<img src="components/Forms/Input/resources/dd_4.svg"/>
+
+##
+
+<img src="components/Forms/Input/resources/dd_5.svg"/>
