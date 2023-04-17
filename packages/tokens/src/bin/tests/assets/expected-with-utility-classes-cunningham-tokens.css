@@ -5,6 +5,7 @@
 	--c--theme--font--weights--medium: 400;
 	--c--theme--font--families--base: Roboto;
 	--c--theme--spacings--s: 1rem;
+	--c--theme--transitions--ease: linear;
 } .clr-primary { color: var(--c--theme--colors--primary); }
 .clr-secondary { color: var(--c--theme--colors--secondary); }
 .bg-primary { background-color: var(--c--theme--colors--primary); }
