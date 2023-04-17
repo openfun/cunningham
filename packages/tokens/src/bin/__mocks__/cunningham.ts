@@ -18,5 +18,8 @@ module.exports = {
     spacings: {
       s: "1rem",
     },
+    transitions: {
+      ease: "linear",
+    },
   },
 };

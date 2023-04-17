@@ -28,7 +28,7 @@
     "build-bin": "cd src/bin && tsc -p tsconfig.json && tsc-alias && chmod +x ../../dist/bin/Main.js",
     "build-lib": "cp dist/cunningham-tokens.ts src/lib && cd src/lib && tsc -p tsconfig.json",
     "build": "yarn build-bin && yarn build-default-theme && yarn build-lib && cd ../.. && ln -sf ../../packages/tokens/dist/bin/Main.js node_modules/.bin/cunningham",
-    "build-default-theme": "./dist/bin/Main.js -o dist -s html -g css,js,ts --utility-classes",
+    "build-default-theme": "./dist/bin/Main.js -o dist -s html -g scss,css,js,ts --utility-classes",
     "test": "FORCE_COLOR=1 jest --runInBand --verbose src"
   },
   "dependencies": {
