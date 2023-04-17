@@ -92,7 +92,7 @@ const colorsDanger = {
 const fontSizes = {
   h1: "1.75rem",
   h2: "1.375rem",
-  h3: "1.125rem;",
+  h3: "1.125rem",
   h4: "0.8125rem",
   h5: "0.625rem",
   h6: "0.5rem",
