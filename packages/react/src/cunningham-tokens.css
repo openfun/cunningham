@@ -97,7 +97,7 @@
 	--c--theme--transitions--ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 	--c--theme--transitions--duration: 250ms;
 	--c--components--forms-radio--border-color: #E7E8EA;
-	--c--components--forms-radio--check-color: #419A14;
+	--c--components--forms-radio--accent-color: #419A14;
 	--c--components--forms-input--font-weight: 400;
 	--c--components--forms-input--font-size: 1rem;
 	--c--components--forms-input--border-radius: 8px;
@@ -117,8 +117,7 @@
 	--c--components--forms-checkbox--color: #0C1A2B;
 	--c--components--forms-checkbox--border-color: #E7E8EA;
 	--c--components--forms-checkbox--border-radius: 2px;
-	--c--components--forms-checkbox--accent-color: #419A14;
-	--c--components--forms-checkbox--size: 1.5rem;
+	--c--components--forms-checkbox--marks-color: #419A14;
 	--c--components--button--border-radius: 8px;
 	--c--components--button--border-radius--active: 2px;
 	--c--components--button--medium-height: 48px;
