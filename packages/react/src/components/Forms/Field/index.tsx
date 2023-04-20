@@ -8,6 +8,8 @@ export type FieldProps = {
   text?: string | undefined;
   rightText?: string | undefined;
   fullWidth?: boolean | undefined;
+  compact?: boolean | undefined;
+  className?: string | undefined;
 };
 
 type Props = FieldProps & PropsWithChildren;
@@ -18,11 +20,14 @@ export const Field = ({
   text,
   rightText,
   fullWidth,
+  compact,
+  className,
 }: Props) => {
   return (
     <div
-      className={classNames("c__field", "c__field--" + state, {
+      className={classNames("c__field", "c__field--" + state, className, {
         "c__field--full-width": fullWidth,
+        "c__field--compact": compact,
       })}
     >
       {children}
