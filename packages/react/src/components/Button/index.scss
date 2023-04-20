@@ -13,10 +13,6 @@
     border-radius: var(--c--components--button--border-radius--active);
   }
 
-  &:hover, &:focus-visible {
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.6);
-  }
-
   &:focus-visible {
     border-color: #FFF;
     box-shadow: 0 0 0 4px var(--c--theme--colors--primary-400);
@@ -25,7 +21,6 @@
 
   &:active, &.c__button--active {
     border-color: currentColor;
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.7);
   }
 
   &:disabled {
@@ -107,12 +102,12 @@
     color: var(--c--theme--colors--greyscale-800);
 
     &:hover, &:focus-visible {
-      background-color: var(--c--theme--colors--greyscale-100);
+      background-color: var(--c--theme--colors--greyscale-200);
       color: var(--c--theme--colors--greyscale-900);
     }
 
     &:active, &.c__button--active {
-      background-color: var(--c--theme--colors--greyscale-200);
+      background-color: var(--c--theme--colors--greyscale-100);
       color: var(--c--theme--colors--greyscale-800);
     }
 
