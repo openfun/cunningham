@@ -1,0 +1,110 @@
+import { Canvas, Meta, Story, Source, ArgsTable } from '@storybook/addon-docs';
+import { Checkbox } from "./index";
+
+<Meta title="Components/Forms/Checkbox/Doc" component={Checkbox}/>
+
+# Checkbox
+
+Cunningham provides a versatile Checkbox component that you can use in your forms.
+
+<Canvas>
+  <Story id="components-forms-checkbox--group"/>
+</Canvas>
+
+## Label
+
+The `label` props is optional, but you can use it to provide a description of the checkbox.
+
+**Without label**
+
+<Canvas withSource="open">
+  <Story id="components-forms-checkbox--default"/>
+</Canvas>
+
+**With label**
+
+<Canvas withSource="open">
+  <Story id="components-forms-checkbox--with-label"/>
+</Canvas>
+
+## Value
+
+You can set the value of the checkbox in 3 different ways.
+
+<Canvas withSource="open">
+  <Story id="components-forms-checkbox--default"/>
+  <Story id="components-forms-checkbox--indeterminate"/>
+  <Story id="components-forms-checkbox--checked"/>
+</Canvas>
+
+## Texts
+
+As the component uses [Field](?path=/story/components-forms-field-doc--page), you can use the `text` props to provide a description of the checkbox.
+
+<Canvas withSource="open">
+  <Story id="components-forms-checkbox--with-texts"/>
+</Canvas>
+
+## Disabled
+
+As a regular checkbox, you can disable it by using the `disabled` props.
+
+<Canvas withSource="open">
+  <Story id="components-forms-checkbox--disabled"/>
+</Canvas>
+
+## States
+
+You can use the following props to change the state of the Input component by using the `state` props.
+
+<Canvas withSource="open">
+  <Story id="components-forms-checkbox--with-texts"/>
+</Canvas>
+
+<Canvas withSource="open">
+  <Story id="components-forms-checkbox--success"/>
+</Canvas>
+
+<Canvas withSource="open">
+  <Story id="components-forms-checkbox--error"/>
+</Canvas>
+
+## Group
+
+It will happen often that you will need to use multiple grouped checkboxes. You can use the `CheckboxGroup` component to do so.
+
+<Canvas withSource="open">
+  <Story id="components-forms-checkbox--group"/>
+</Canvas>
+
+You can also define `state`, `text` props on the group component
+
+<Canvas withSource="open">
+  <Story id="components-forms-checkbox--group-error"/>
+  <Story id="components-forms-checkbox--group-success"/>
+</Canvas>
+
+## Design tokens
+
+Here are available custom design tokens.
+
+| Token        	| Description                 	|
+|---------------	|-----------------------------	|
+| font-size        	| Label font size ( shared with radio )       	|
+| font-weight 	| Label font weight ( shared with radio )	|
+| color   	| Label color ( shared with radio ) 	|
+| border-color   	| Border color of the checkbox    	|
+| border-radius     	| Border radius of the checkbox      	|
+| accent-color     	| Color of the checkmark and the indeterminate mark      	|
+| width     	| Width of the checkbox      	|
+| height     	| Height of the checkbox      	|
+
+See also [Field](?path=/story/components-forms-field-doc--page)
+
+##
+
+<img src="components/Forms/Checkbox/resources/dd_1.svg"/>
+
+##
+
+<img src="components/Forms/Checkbox/resources/dd_2.svg"/>

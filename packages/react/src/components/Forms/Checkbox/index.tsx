@@ -1,17 +1,112 @@
-import React, { HTMLProps, useEffect, useRef } from "react";
+import React, {
+  InputHTMLAttributes,
+  PropsWithChildren,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import classNames from "classnames";
+import { Field, FieldProps } from "components/Forms/Field";
+
+type Props = InputHTMLAttributes<HTMLInputElement> &
+  FieldProps & {
+    indeterminate?: boolean;
+    label?: string;
+  };
 
 export const Checkbox = ({
   indeterminate,
   className = "",
-  ...rest
-}: { indeterminate?: boolean } & HTMLProps<HTMLInputElement>) => {
-  const ref = useRef<HTMLInputElement>(null!);
+  checked,
+  label,
+  text,
+  rightText,
+  state,
+  ...props
+}: Props) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [value, setValue] = useState<boolean>(!!checked);
 
   useEffect(() => {
-    if (typeof indeterminate === "boolean") {
-      ref.current.indeterminate = !rest.checked && indeterminate;
-    }
-  }, [ref, indeterminate]);
+    setValue(!!checked);
+  }, [checked]);
 
-  return <input type="checkbox" ref={ref} className={className} {...rest} />;
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.indeterminate = !!indeterminate;
+    }
+  }, [indeterminate]);
+
+  return (
+    <label
+      className={classNames("c__checkbox", {
+        "c__checkbox--disabled": props.disabled,
+      })}
+    >
+      <Field text={text} rightText={rightText} compact={true} state={state}>
+        <div className="c__checkbox__container">
+          <div className="c__checkbox__wrapper">
+            <input
+              type="checkbox"
+              className={className}
+              onChange={(e) => setValue(e.target.checked)}
+              {...props}
+              checked={value}
+              ref={inputRef}
+            />
+            <Indeterminate />
+            <Checkmark />
+          </div>
+          {label && <div className="c__checkbox__label">{label}</div>}
+        </div>
+      </Field>
+    </label>
+  );
 };
+
+export const CheckboxGroup = ({
+  children,
+  state,
+  text,
+  rightText,
+}: PropsWithChildren & FieldProps) => {
+  return (
+    <Field
+      className="c__checkbox__group"
+      state={state}
+      text={text}
+      rightText={rightText}
+    >
+      <div className="c__checkbox__group__list">{children}</div>
+    </Field>
+  );
+};
+
+const Checkmark = () => (
+  <svg
+    className="checkmark"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M17.5685 6.34318L9.8751 14.0366L7.07184 11.2333C6.84127 11.0106 6.53245 10.8874 6.21191 10.8902C5.89137 10.893 5.58474 11.0215 5.35807 11.2482C5.1314 11.4749 5.00283 11.7815 5.00005 12.102C4.99726 12.4226 5.12048 12.7314 5.34318 12.962L9.01077 16.6296C9.24003 16.8587 9.55093 16.9875 9.8751 16.9875C10.1993 16.9875 10.5102 16.8587 10.7394 16.6296L19.2972 8.07184C19.5198 7.84127 19.6431 7.53245 19.6403 7.21191C19.6375 6.89136 19.5089 6.58474 19.2823 6.35807C19.0556 6.1314 18.749 6.00283 18.4284 6.00005C18.1079 5.99726 17.7991 6.12048 17.5685 6.34318Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
+const Indeterminate = () => (
+  <svg
+    className="indeterminate"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect x="5" y="10" width="14" height="3" rx="1.5" fill="currentColor" />
+  </svg>
+);
