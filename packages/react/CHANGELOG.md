@@ -1,5 +1,15 @@
 # @openfun/cunningham-react
 
+## 0.3.0
+
+### Minor Changes
+
+- 1be02f5: remove button box shadow
+
+### Patch Changes
+
+- e90563a: Install missing Storybook dependencies
+
 ## 0.2.0
 
 ### Minor Changes
@@ -32,7 +42,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.2.0...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.3.0...main
+[0.3.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.2.0...0.3.0
 [0.2.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.1.1...0.2.0
 [0.1.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.1.0...@openfun/cunningham-react@0.1.1
 [0.1.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.0.0...@openfun/cunningham-react@0.1.0
