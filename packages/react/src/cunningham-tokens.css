@@ -117,7 +117,8 @@
 	--c--components--forms-checkbox--color: #0C1A2B;
 	--c--components--forms-checkbox--border-color: #E7E8EA;
 	--c--components--forms-checkbox--border-radius: 2px;
-	--c--components--forms-checkbox--marks-color: #419A14;
+	--c--components--forms-checkbox--accent-color: #419A14;
+	--c--components--forms-checkbox--size: 1.5rem;
 	--c--components--button--border-radius: 8px;
 	--c--components--button--border-radius--active: 2px;
 	--c--components--button--medium-height: 48px;
