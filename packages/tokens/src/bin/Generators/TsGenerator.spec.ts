@@ -24,7 +24,7 @@ describe("TsGenerator", () => {
     await run(["", "", "-g", "ts"]);
     expect(fs.existsSync(tokensFile)).toEqual(true);
     expect(fs.readFileSync(tokensFile).toString()).toMatchInlineSnapshot(`
-      "export const tokens = {"theme":{"colors":{"primary":"#055FD2","secondary":"#DA0000"},"font":{"sizes":{"m":"1rem"},"weights":{"medium":400},"families":{"base":"Roboto"}},"spacings":{"s":"1rem"},"transitions":{"ease":"linear"}}};
+      "export const tokens = {"theme":{"colors":{"primary":"#055FD2","secondary":"#DA0000","ternary-900":"#022858"},"font":{"sizes":{"m":"1rem"},"weights":{"medium":400},"families":{"base":"Roboto"}},"spacings":{"s":"1rem"},"transitions":{"ease":"linear"}}};
       "
     `);
   });

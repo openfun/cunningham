@@ -1,6 +1,7 @@
 :root {
 	--c--theme--colors--primary: #055FD2;
 	--c--theme--colors--secondary: #DA0000;
+	--c--theme--colors--ternary-900: #022858;
 	--c--theme--font--sizes--m: 1rem;
 	--c--theme--font--weights--medium: 400;
 	--c--theme--font--families--base: Roboto;

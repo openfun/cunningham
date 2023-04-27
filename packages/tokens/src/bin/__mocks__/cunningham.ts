@@ -3,6 +3,7 @@ module.exports = {
     colors: {
       primary: "#055FD2",
       secondary: "#DA0000",
+      "ternary-900": "#022858",
     },
     font: {
       sizes: {
