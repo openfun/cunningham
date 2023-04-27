@@ -26,26 +26,26 @@ describe("SassGenerator", () => {
     expect(fs.existsSync(sassFile)).toEqual(true);
     expect(fs.readFileSync(sassFile).toString()).toMatchInlineSnapshot(`
       "$colors: (
-        primary: #055FD2,
-        secondary: #DA0000,
-        ternary: (
-          900: #022858
+        'primary': #055FD2,
+        'secondary': #DA0000,
+        'ternary': (
+          '900': #022858
         )
       );
       $fontFamilies: (
-        base: Roboto
+        'base': Roboto
       );
       $fontSizes: (
-        m: 1rem
+        'm': 1rem
       );
       $fontWeights: (
-        medium: 400
+        'medium': 400
       );
       $spacings: (
-        s: 1rem
+        's': 1rem
       );
       $transitions: (
-        ease: linear
+        'ease': linear
       );
       "
     `);

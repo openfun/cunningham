@@ -55,7 +55,19 @@ const generateTransitionsSassMap = (tokens: Tokens) => {
 };
 
 function JSONToSassMap(json: Object) {
-  return JSON.stringify(json, null, 2)
+  function deepQuoteObjectKeys(object: Object) {
+    return Object.entries(object).reduce(
+      (acc, [key, value]): Record<string, any> => ({
+        ...acc,
+        [`'${key}'`]:
+          typeof value === "object" ? deepQuoteObjectKeys(value) : value,
+      }),
+      {}
+    );
+  }
+  const jsonWithQuotedKeys = deepQuoteObjectKeys(json);
+
+  return JSON.stringify(jsonWithQuotedKeys, null, 2)
     .replace(/{/g, "(")
     .replace(/}/g, ")")
     .replace(/"/g, "");
