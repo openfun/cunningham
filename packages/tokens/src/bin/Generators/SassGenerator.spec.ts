@@ -27,7 +27,10 @@ describe("SassGenerator", () => {
     expect(fs.readFileSync(sassFile).toString()).toMatchInlineSnapshot(`
       "$colors: (
         primary: #055FD2,
-        secondary: #DA0000
+        secondary: #DA0000,
+        ternary: (
+          900: #022858
+        )
       );
       $fontFamilies: (
         base: Roboto
