@@ -1,5 +1,19 @@
 # @openfun/cunningham-react
 
+## 0.4.0
+
+### Minor Changes
+
+- 4f11684: Add Field component
+- feea284: Add Input component
+- 43096e2: add Checkbox component
+- f5cb2e7: add Radio component
+
+### Patch Changes
+
+- a462bb5: add compact mode to Field
+- 26be159: make Pagination use new Input
+
 ## 0.3.0
 
 ### Minor Changes
@@ -42,7 +56,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.3.0...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.4.0...main
+[0.3.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.3.0...0.4.0
 [0.3.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.2.0...0.3.0
 [0.2.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.1.1...0.2.0
 [0.1.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.1.0...@openfun/cunningham-react@0.1.1
