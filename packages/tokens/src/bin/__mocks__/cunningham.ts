@@ -4,6 +4,7 @@ module.exports = {
       primary: "#055FD2",
       secondary: "#DA0000",
       "ternary-900": "#022858",
+      "ogre-odor-is-orange-indeed": "#FD5240",
     },
     font: {
       sizes: {

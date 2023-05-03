@@ -2,6 +2,7 @@
 	--c--theme--colors--primary: #055FD2;
 	--c--theme--colors--secondary: #DA0000;
 	--c--theme--colors--ternary-900: #022858;
+	--c--theme--colors--ogre-odor-is-orange-indeed: #FD5240;
 	--c--theme--font--sizes--m: 1rem;
 	--c--theme--font--weights--medium: 400;
 	--c--theme--font--families--base: Roboto;
@@ -10,9 +11,11 @@
 } .clr-primary { color: var(--c--theme--colors--primary); }
 .clr-secondary { color: var(--c--theme--colors--secondary); }
 .clr-ternary-900 { color: var(--c--theme--colors--ternary-900); }
+.clr-ogre-odor-is-orange-indeed { color: var(--c--theme--colors--ogre-odor-is-orange-indeed); }
 .bg-primary { background-color: var(--c--theme--colors--primary); }
 .bg-secondary { background-color: var(--c--theme--colors--secondary); }
 .bg-ternary-900 { background-color: var(--c--theme--colors--ternary-900); }
+.bg-ogre-odor-is-orange-indeed { background-color: var(--c--theme--colors--ogre-odor-is-orange-indeed); }
 .fw-medium { font-weight: var(--c--theme--font--weights--medium); }
 .fs-m { font-size: var(--c--theme--font--sizes--m); }
 .f-base { font-family: var(--c--theme--font--families--base); }
