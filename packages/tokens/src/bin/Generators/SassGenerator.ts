@@ -23,12 +23,7 @@ const generateSassMaps = (tokens: Tokens) => {
 // for a color with shades.
 // Example: `primary-500: #000` will return `primary: (500: #000)`
 const generateColorsSassMap = (tokens: Tokens) => {
-  const colors = Object.entries(tokens.theme.colors).reduce(
-    propertiesReducer,
-    {}
-  );
-
-  return `$colors: ${JSONToSassMap(colors)};`;
+  return `$colors: ${JSONToSassMap(tokens.theme.colors)};`;
 };
 const generateFontSassMap = (tokens: Tokens) => {
   return [
@@ -71,22 +66,4 @@ function JSONToSassMap(json: Object) {
     .replace(/{/g, "(")
     .replace(/}/g, ")")
     .replace(/"/g, "");
-}
-
-function propertiesReducer(
-  propertyMap: Record<string, string | Record<string, string>>,
-  [key, value]: [string, string]
-) {
-  const [property, subProperty] = key.split("-");
-
-  if (subProperty) {
-    if (propertyMap[property] === undefined) {
-      propertyMap[property] = {};
-    }
-    (propertyMap[property] as Record<string, string>)[subProperty] = value;
-  } else {
-    propertyMap[property] = value;
-  }
-
-  return propertyMap;
 }

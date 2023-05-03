@@ -28,9 +28,8 @@ describe("SassGenerator", () => {
       "$colors: (
         'primary': #055FD2,
         'secondary': #DA0000,
-        'ternary': (
-          '900': #022858
-        )
+        'ternary-900': #022858,
+        'ogre-odor-is-orange-indeed': #FD5240
       );
       $fontFamilies: (
         'base': Roboto
