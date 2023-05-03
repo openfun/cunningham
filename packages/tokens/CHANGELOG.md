@@ -1,5 +1,12 @@
 # @openfun/cunningham-tokens
 
+## 0.4.0
+
+### Minor Changes
+
+- 7eac0bf: Suffix all sass maps with the `!default` map
+- fb2fb3e: Do not generate sass sub maps
+
 ## 0.3.0
 
 ### Minor Changes
@@ -32,7 +39,8 @@
 - 4ebbf16: Add utility classes
 - 4ebbf16: Add official design tokens
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@0.3.0...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@0.4.0...main
+[0.4.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@0.3.0...@openfun/cunningham-tokens@0.4.0
 [0.3.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@0.2.0...@openfun/cunningham-tokens@0.3.0
 [0.2.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@0.1.1...@openfun/cunningham-tokens@0.2.0
 [0.1.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@0.1.0...@openfun/cunningham-tokens@0.1.1
