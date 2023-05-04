@@ -26,7 +26,19 @@ export default defineConfig({
       },
     },
   },
-  plugins: [tsconfigPaths(), dts(), react()],
+  plugins: [
+    tsconfigPaths(),
+    dts({
+      rollupTypes: true,
+      beforeWriteFile: (filePath, content) => {
+        return {
+          filePath,
+          content: content.replace("../../locales", "./locales"),
+        };
+      },
+    }),
+    react(),
+  ],
   test: {
     environment: "jsdom",
     reporters: "verbose",
