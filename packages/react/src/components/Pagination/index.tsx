@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
-import { Button } from "components/Button";
-import { Input } from "components/Forms/Input";
-import { useCunningham } from "components/Provider";
+import { Button } from ":/components/Button";
+import { Input } from ":/components/Forms/Input";
+import { useCunningham } from ":/components/Provider";
 
 export interface PaginationProps {
   /** Current page */

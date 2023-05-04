@@ -1,11 +1,11 @@
 import { ComponentMeta } from "@storybook/react";
 import React, { useEffect, useMemo, useState } from "react";
 import { faker } from "@faker-js/faker";
-import { DataGrid, SortModel } from "components/DataGrid/index";
-import { usePagination } from "components/Pagination";
-import { CunninghamProvider } from "components/Provider";
-import { Button } from "components/Button";
-import { SimpleDataGrid } from "components/DataGrid/SimpleDataGrid";
+import { DataGrid, SortModel } from ":/components/DataGrid/index";
+import { usePagination } from ":/components/Pagination";
+import { CunninghamProvider } from ":/components/Provider";
+import { Button } from ":/components/Button";
+import { SimpleDataGrid } from ":/components/DataGrid/SimpleDataGrid";
 
 export default {
   title: "Components/DataGrid",

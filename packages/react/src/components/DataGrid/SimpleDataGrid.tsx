@@ -1,6 +1,11 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { usePagination } from "components/Pagination";
-import { BaseProps, DataGrid, Row, SortModel } from "components/DataGrid/index";
+import { usePagination } from ":/components/Pagination";
+import {
+  BaseProps,
+  DataGrid,
+  Row,
+  SortModel,
+} from ":/components/DataGrid/index";
 
 /**
  * Handles sorting, pagination.

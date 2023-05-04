@@ -2,7 +2,9 @@
   "extends": "@openfun/typescript-configs/react.json",
   "compilerOptions": {
     "noEmit": true,
-    "baseUrl": "./src",
+    "paths": {
+      ":/*": ["./src/*"]
+    },
     "types": ["vitest/globals", "vite/client"]
   },
   "include": ["src", "cunningham.ts"],

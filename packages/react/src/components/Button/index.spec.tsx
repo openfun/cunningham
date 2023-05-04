@@ -1,8 +1,8 @@
 import { act, render, screen, waitFor } from "@testing-library/react";
 import React from "react";
 import userEvent from "@testing-library/user-event";
-import { buildTheme, loadTokens } from "tests/Theme";
-import { Button } from "./index";
+import { buildTheme, loadTokens } from ":/tests/Theme";
+import { Button } from ":/components/Button";
 
 describe("<Button/>", () => {
   it("renders", () => {

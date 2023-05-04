@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import { Radio, RadioGroup } from "components/Forms/Radio/index";
+import { Radio, RadioGroup } from ":/components/Forms/Radio/index";
 
 export default {
   title: "Components/Forms/Radio",

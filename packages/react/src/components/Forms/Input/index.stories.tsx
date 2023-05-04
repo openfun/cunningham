@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React, { useRef } from "react";
-import { Input, InputRefType } from "components/Forms/Input/index";
-import { Button } from "components/Button";
+import { Input, InputRefType } from ":/components/Forms/Input/index";
+import { Button } from ":/components/Button";
 
 export default {
   title: "Components/Forms/Input",

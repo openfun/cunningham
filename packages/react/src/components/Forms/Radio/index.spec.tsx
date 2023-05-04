@@ -1,7 +1,7 @@
 import userEvent from "@testing-library/user-event";
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { Radio, RadioGroup } from "components/Forms/Radio/index";
+import { Radio, RadioGroup } from ":/components/Forms/Radio/index";
 
 describe("<Radio/>", () => {
   it("should render", async () => {

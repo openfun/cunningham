@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import React, { PropsWithChildren, useMemo, useState } from "react";
 import userEvent from "@testing-library/user-event";
-import { CunninghamProvider, useCunningham } from "components/Provider/index";
-import * as enUS from "locales/en-US.json";
-import { Button } from "components/Button";
+import { CunninghamProvider, useCunningham } from ":/components/Provider/index";
+import * as enUS from ":/locales/en-US.json";
+import { Button } from ":/components/Button";
 
 describe("<CunninghamProvider />", () => {
   it("should render", () => {

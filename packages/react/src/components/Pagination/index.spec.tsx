@@ -2,9 +2,9 @@ import React from "react";
 import { act, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { fireEvent } from "@testing-library/dom";
-import { Pagination, usePagination } from "components/Pagination/index";
-import { expectPaginationList } from "components/Pagination/utils";
-import { CunninghamProvider } from "components/Provider";
+import { Pagination, usePagination } from ":/components/Pagination/index";
+import { expectPaginationList } from ":/components/Pagination/utils";
+import { CunninghamProvider } from ":/components/Provider";
 
 describe("<Pagination/>", () => {
   const Wrapper = (params: Parameters<typeof usePagination>[0]) => () => {

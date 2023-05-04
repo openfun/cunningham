@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import { Field } from "components/Forms/Field/index";
+import { Field } from ":/components/Forms/Field/index";
 
 export default {
   title: "Components/Forms/Field",

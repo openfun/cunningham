@@ -1,7 +1,7 @@
 import userEvent from "@testing-library/user-event";
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { Checkbox, CheckboxGroup } from "components/Forms/Checkbox/index";
+import { Checkbox, CheckboxGroup } from ":/components/Forms/Checkbox/index";
 
 describe("<Checkbox/>", () => {
   it("renders and can be checked", async () => {

@@ -2,8 +2,8 @@ import { render, screen } from "@testing-library/react";
 import React, { useRef } from "react";
 import userEvent from "@testing-library/user-event";
 import { expect } from "vitest";
-import { Input, InputRefType } from "components/Forms/Input/index";
-import { Button } from "components/Button";
+import { Input, InputRefType } from ":/components/Forms/Input/index";
+import { Button } from ":/components/Button";
 
 describe("<Input/>", () => {
   it("renders and can type", async () => {
