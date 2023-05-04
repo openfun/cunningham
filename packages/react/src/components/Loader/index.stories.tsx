@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import { Loader } from "components/Loader/index";
+import { Loader } from ":/components/Loader/index";
 
 export default {
   title: "Components/Loader (WIP)",

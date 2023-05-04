@@ -1,7 +1,7 @@
 import { ComponentMeta } from "@storybook/react";
 import React, { useEffect, useMemo, useState } from "react";
-import { Pagination, usePagination } from "components/Pagination/index";
-import { CunninghamProvider } from "components/Provider";
+import { Pagination, usePagination } from ":/components/Pagination/index";
+import { CunninghamProvider } from ":/components/Provider";
 
 export default {
   title: "Components/Pagination",

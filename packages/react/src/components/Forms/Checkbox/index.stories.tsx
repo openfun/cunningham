@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import { Checkbox, CheckboxGroup } from "components/Forms/Checkbox/index";
+import { Checkbox, CheckboxGroup } from ":/components/Forms/Checkbox/index";
 
 export default {
   title: "Components/Forms/Checkbox",

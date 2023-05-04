@@ -4,10 +4,10 @@ import React, {
   useContext,
   useMemo,
 } from "react";
-import * as enUS from "locales/en-US.json";
-import * as frFR from "locales/fr-FR.json";
-import { PartialNested } from "types";
-import { Locales } from "components/Provider/Locales";
+import * as enUS from ":/locales/en-US.json";
+import * as frFR from ":/locales/fr-FR.json";
+import { PartialNested } from ":/types";
+import { Locales } from ":/components/Provider/Locales";
 
 type TranslationSet = PartialNested<typeof enUS>;
 

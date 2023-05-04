@@ -1,3 +1,4 @@
+import { resolve } from "path";
 import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
 import dts from "vite-plugin-dts";
@@ -37,5 +38,13 @@ export default defineConfig({
       exclude: ["**/*.stories.tsx", "**/*.spec.tsx"],
     },
     setupFiles: ["src/tests/Setup.ts"],
+  },
+  resolve: {
+    alias: [
+      {
+        find: ":",
+        replacement: resolve(__dirname, "./src"),
+      },
+    ],
   },
 });

@@ -8,8 +8,8 @@ import React, {
   useState,
 } from "react";
 import classNames from "classnames";
-import { randomString } from "utils";
-import { Field, FieldProps } from "components/Forms/Field";
+import { randomString } from ":/utils";
+import { Field, FieldProps } from ":/components/Forms/Field";
 
 export interface InputRefType {
   input: HTMLInputElement | null;

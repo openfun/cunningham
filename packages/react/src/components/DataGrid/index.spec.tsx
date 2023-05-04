@@ -3,12 +3,12 @@ import { faker } from "@faker-js/faker";
 import { act, render, screen, waitFor } from "@testing-library/react";
 import { getAllByRole, getByRole } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
-import { usePagination } from "components/Pagination";
-import { DataGrid, SortModel } from "components/DataGrid/index";
-import { CunninghamProvider } from "components/Provider";
-import { Deferred } from "tests/deferred";
-import { expectPaginationList } from "components/Pagination/utils";
-import { Button } from "components/Button";
+import { usePagination } from ":/components/Pagination";
+import { DataGrid, SortModel } from ":/components/DataGrid/index";
+import { CunninghamProvider } from ":/components/Provider";
+import { Deferred } from ":/tests/deferred";
+import { expectPaginationList } from ":/components/Pagination/utils";
+import { Button } from ":/components/Button";
 
 describe("<DataGrid/>", () => {
   afterEach(() => {});

@@ -4,11 +4,11 @@ import { faker } from "@faker-js/faker";
 import { getAllByRole, getByRole } from "@testing-library/dom";
 import { expect } from "vitest";
 import userEvent from "@testing-library/user-event";
-import { expectPaginationList } from "components/Pagination/utils";
-import { CunninghamProvider } from "components/Provider";
-import { SimpleDataGrid } from "components/DataGrid/SimpleDataGrid";
-import { sleep } from "utils";
-import { Row } from "components/DataGrid/index";
+import { expectPaginationList } from ":/components/Pagination/utils";
+import { CunninghamProvider } from ":/components/Provider";
+import { SimpleDataGrid } from ":/components/DataGrid/SimpleDataGrid";
+import { sleep } from ":/utils";
+import { Row } from ":/components/DataGrid/index";
 
 describe("<SimpleDataGrid/>", () => {
   it("should render a grid without pagination", async () => {

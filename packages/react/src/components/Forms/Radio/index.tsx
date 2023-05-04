@@ -1,6 +1,6 @@
 import React, { InputHTMLAttributes, PropsWithChildren } from "react";
 import classNames from "classnames";
-import { Field, FieldProps } from "components/Forms/Field";
+import { Field, FieldProps } from ":/components/Forms/Field";
 
 type Props = InputHTMLAttributes<HTMLInputElement> &
   FieldProps & {

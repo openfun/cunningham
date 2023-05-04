@@ -6,10 +6,10 @@ import {
   SortingState,
 } from "@tanstack/react-table";
 import React from "react";
-import { Checkbox } from "components/Forms/Checkbox";
-import { PaginationProps } from "components/Pagination";
-import { Column, Row, SortModel } from "components/DataGrid/index";
-import { useCunningham } from "components/Provider";
+import { Checkbox } from ":/components/Forms/Checkbox";
+import { PaginationProps } from ":/components/Pagination";
+import { Column, Row, SortModel } from ":/components/DataGrid/index";
+import { useCunningham } from ":/components/Provider";
 
 /**
  * Converts Cunningham's columns to the underlying tanstack table.

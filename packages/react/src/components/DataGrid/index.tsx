@@ -9,17 +9,16 @@ import {
   TableOptions,
   useReactTable,
 } from "@tanstack/react-table";
-import { Pagination, PaginationProps } from "components/Pagination";
-import { useCunningham } from "components/Provider";
-import { Loader } from "components/Loader";
+import { Pagination, PaginationProps } from ":/components/Pagination";
+import { useCunningham } from ":/components/Provider";
+import { Loader } from ":/components/Loader";
 import {
   paginationToPaginationState,
   sortingStateToSortModel,
   sortModelToSortingState,
   useHeadlessColumns,
-} from "components/DataGrid/utils";
-
-import emptyImageUrl from "./empty.svg";
+} from ":/components/DataGrid/utils";
+import emptyImageUrl from ":/components/DataGrid/empty.svg";
 
 export interface Row extends Record<string, any> {
   id: string;
