@@ -7,7 +7,6 @@
     <a href="https://www.figma.com/file/sSEMhow3g5zpEkyDLEQ1ZO/DS-Cunningham?node-id=47%3A261&t=nKRnadK4sslyVxD7-0"><b>🖌️&nbsp;&nbsp;Figma</b></a>
 </p>
 
-
 ## Getting started
 
 Everything is detailed on our [documentation](https://openfun.github.io/cunningham). 📚
