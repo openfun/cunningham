@@ -6,6 +6,7 @@ import { usePagination } from ":/components/Pagination";
 import { CunninghamProvider } from ":/components/Provider";
 import { Button } from ":/components/Button";
 import { SimpleDataGrid } from ":/components/DataGrid/SimpleDataGrid";
+import { DataList } from ":/components/DataGrid/DataList";
 
 export default {
   title: "Components/DataGrid",
@@ -246,6 +247,30 @@ export const FullServerSide = () => {
         rowSelection={rowSelection}
         onRowSelectionChange={setRowSelection}
       />
+    </CunninghamProvider>
+  );
+};
+
+export const DataListOnly = () => {
+  const database = useMemo(
+    () =>
+      Array.from(Array(5)).map((_value, index) => ({
+        id: `list key for element ${index}`,
+        title: faker.random.word(),
+        date: faker.date.past(1).toISOString(),
+        action: (
+          <Button size="small" color="secondary">
+            Do it
+          </Button>
+        ),
+      })),
+    []
+  );
+  const columns = [{ field: "title" }, { field: "date" }, { field: "action" }];
+
+  return (
+    <CunninghamProvider>
+      <DataList rows={database} columns={columns} />
     </CunninghamProvider>
   );
 };

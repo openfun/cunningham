@@ -1,4 +1,3 @@
-// import { Button } from "components/Button";
 import React, { useMemo } from "react";
 import classNames from "classnames";
 import {
@@ -49,6 +48,7 @@ interface Props<T extends Row = Row> extends BaseProps<T> {
   onSortModelChange?: (newSortModel: SortModel) => void;
   /** Options for the underlying tanstack table. */
   tableOptions?: TableOptions<Row>;
+  displayHeader?: boolean;
 }
 
 export const DataGrid = ({
@@ -62,6 +62,7 @@ export const DataGrid = ({
   onRowSelectionChange,
   rowSelection,
   tableOptions,
+  displayHeader = true,
 }: Props) => {
   const { t } = useCunningham();
   const headlessColumns = useHeadlessColumns({ columns, enableRowSelection });
@@ -147,50 +148,51 @@ export const DataGrid = ({
           <>
             <table>
               <thead>
-                {table.getHeaderGroups().map((headerGroup) => (
-                  <tr key={headerGroup.id}>
-                    {headerGroup.headers.map((header) => {
-                      return (
-                        <th key={header.id} colSpan={header.colSpan}>
-                          {header.isPlaceholder ? null : (
-                            <div
-                              className={classNames("c__datagrid__header", {
-                                "c__datagrid__header--sortable":
-                                  header.column.getCanSort(),
-                              })}
-                              {...(header.column.getCanSort()
-                                ? {
-                                    role: "button",
-                                    tabIndex: 0,
-                                    onClick:
-                                      header.column.getToggleSortingHandler(),
-                                  }
-                                : {})}
-                            >
-                              {flexRender(
-                                header.column.columnDef.header,
-                                header.getContext()
-                              )}
-                              {header.column.getIsSorted() === "asc" && (
-                                <span className="material-icons">
-                                  arrow_drop_up
-                                </span>
-                              )}
-                              {header.column.getIsSorted() === "desc" && (
-                                <span className="material-icons">
-                                  arrow_drop_down
-                                </span>
-                              )}
-                              {!header.column.getIsSorted() && (
-                                <span className="c__datagrid__header__icon-placeholder" />
-                              )}
-                            </div>
-                          )}
-                        </th>
-                      );
-                    })}
-                  </tr>
-                ))}
+                {displayHeader &&
+                  table.getHeaderGroups().map((headerGroup) => (
+                    <tr key={headerGroup.id}>
+                      {headerGroup.headers.map((header) => {
+                        return (
+                          <th key={header.id} colSpan={header.colSpan}>
+                            {header.isPlaceholder ? null : (
+                              <div
+                                className={classNames("c__datagrid__header", {
+                                  "c__datagrid__header--sortable":
+                                    header.column.getCanSort(),
+                                })}
+                                {...(header.column.getCanSort()
+                                  ? {
+                                      role: "button",
+                                      tabIndex: 0,
+                                      onClick:
+                                        header.column.getToggleSortingHandler(),
+                                    }
+                                  : {})}
+                              >
+                                {flexRender(
+                                  header.column.columnDef.header,
+                                  header.getContext()
+                                )}
+                                {header.column.getIsSorted() === "asc" && (
+                                  <span className="material-icons">
+                                    arrow_drop_up
+                                  </span>
+                                )}
+                                {header.column.getIsSorted() === "desc" && (
+                                  <span className="material-icons">
+                                    arrow_drop_down
+                                  </span>
+                                )}
+                                {!header.column.getIsSorted() && (
+                                  <span className="c__datagrid__header__icon-placeholder" />
+                                )}
+                              </div>
+                            )}
+                          </th>
+                        );
+                      })}
+                    </tr>
+                  ))}
               </thead>
               <tbody>
                 {table.getRowModel().rows.map((row) => (
