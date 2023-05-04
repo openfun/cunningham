@@ -7,6 +7,7 @@
 Design tokens are the fundamental variables defining the precise behavior and rendering of ui components.
 
 For example:
+
 - The primary color of a text element
 - The standard spacing between two elements
 - The border radius of a button
@@ -23,7 +24,6 @@ Install the lib
 yarn add @openfun/cunningham-tokens
 ```
 
-
 ### Configuration file
 
 #### Typescript
@@ -34,7 +34,7 @@ If you prefer using Typescript, create a file named `cunningham.ts` at the root 
 export default {
   theme: {
     colors: {
-      primary: 'purple'
+      primary: "purple",
     },
   },
 };
@@ -48,7 +48,7 @@ Or if you prefer Javascript, create a file named `cunningham.cjs` at the root of
 module.exports = {
   theme: {
     colors: {
-      primary: 'purple'
+      primary: "purple",
     },
   },
 };
@@ -121,7 +121,7 @@ Typescript files and use the design tokens like this:
 import { tokens } from "./cunningham-tokens";
 
 const myColor = tokens.theme.colors.primary;
-``` 
+```
 
 ### Javascript
 
@@ -132,4 +132,4 @@ Javascript files and use the design tokens like this:
 import { tokens } from "./cunningham-tokens.js";
 
 const myColor = tokens.theme.colors.primary;
-``` 
+```
