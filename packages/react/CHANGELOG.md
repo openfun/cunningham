@@ -1,5 +1,12 @@
 # @openfun/cunningham-react
 
+## 0.5.0
+
+### Minor Changes
+
+- 7513b4d: fix type files imports and rollup them
+- b53afcb: Add DataList component
+
 ## 0.4.0
 
 ### Minor Changes
@@ -56,8 +63,9 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.4.0...main
-[0.3.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.3.0...0.4.0
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.5.0...main
+[0.5.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.4.0...0.5.0
+[0.4.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.3.0...0.4.0
 [0.3.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.2.0...0.3.0
 [0.2.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.1.1...0.2.0
 [0.1.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.1.0...@openfun/cunningham-react@0.1.1
