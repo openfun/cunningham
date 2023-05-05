@@ -1,0 +1,134 @@
+import { Canvas, Meta, Story, Source, ArgsTable } from '@storybook/addon-docs';
+import { Select } from "./index";
+
+<Meta title="Components/Forms/Select/Doc" component={Select}/>
+
+export const Template = (args) => <Input {...args} />;
+
+# Select
+
+Cunningham provides a versatile Select component that you can use in your forms. This component follows the [ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-autocomplete-list/)
+using [Downshift](https://www.downshift-js.com/), so that mean there is no `select` wrapped inside it.
+
+> For now it is only available for mono selection, multiple selection will be available soon.
+
+<Canvas>
+  <Story id="components-forms-select-mono--uncontrolled"/>
+</Canvas>
+
+## Options
+
+The available options must be given via the `options` props. It is an array of objects with the following shape:
+
+<Source
+  language='ts'
+  dark
+  format={false}
+  code={`{
+  label: string
+  value?: string
+}`}
+/>
+
+As you can see the `value` is optional, if not provided, the `label` will be used as the value.
+
+## Searchable
+
+You can enable the text live filtering simply by using the `searchable` props.
+
+<Canvas withSource="open">
+  <Story id="components-forms-select-mono--searchable-uncontrolled"/>
+</Canvas>
+
+## States
+
+You can use the following props to change the state of the Select component by using the `state` props.
+
+<Canvas withSource="open">
+  <Story id="components-forms-select-mono--success"/>
+</Canvas>
+
+<Canvas withSource="open">
+  <Story id="components-forms-select-mono--error"/>
+</Canvas>
+
+## Disabled
+
+As a regular select, you can disable it by using the `disabled` props.
+
+<Canvas withSource="open">
+  <Story id="components-forms-select-mono--disabled"/>
+</Canvas>
+
+## Texts
+
+As the component uses [Field](?path=/story/components-forms-field-doc--page), you can use the `text` props to provide a description of the checkbox.
+
+<Canvas withSource="open">
+  <Story id="components-forms-select-mono--with-text"/>
+</Canvas>
+
+## Width
+
+By default, the select has a default width, like all inputs. But you can force it to take the full width of its container by using the `fullWidth` props.
+
+<Canvas withSource="open">
+  <Story id="components-forms-select-mono--full-width"/>
+</Canvas>
+
+## Controlled / Non Controlled
+
+Like a native select, you can use the Select component in a controlled or non controlled way. You can see the example below
+using the component in a controlled way.
+
+<Canvas withSource="open">
+  <Story id="components-forms-select-mono--controlled"/>
+</Canvas>
+
+## Props
+
+The props of this component are as close as possible to the native select component. You can see the list of props below.
+
+<ArgsTable of={Select} />
+
+## Design tokens
+
+Here are the custom design tokens defined by the select.
+
+| Token        	| Description                 	|
+|---------------	|-----------------------------	|
+| background-color   	| Background color of the select    	|
+| border-color   	| Border color of the select    	|
+| border-color--hover   	| Border color of the select on mouse hover   	|
+| border-color--focus   	| Border color of the select when focus   	|
+| border-radius     	| Border radius of the select      	|
+| border-radius--hover   	| Border radius of the select on mouse hover    	|
+| border-radius--focus   	| Border radius of the select when focused    	|
+| color   	| Value color  	|
+| font-size        	| Value font size        	|
+| height | Height of the combo box |
+| item-background-color--hover | Background color of the item on mouse hover    	|
+| item-background-color--selected | Background color of the selected item    	|
+| item-color | Color of the item    	|
+| item-font-size | Font size of the item    	|
+| menu-background-color | Background color of the menu    	|
+
+See also [Field](?path=/story/components-forms-field-doc--page)
+
+## Form Example
+
+<Canvas>
+  <Story id="components-forms-select-mono--form-example"/>
+</Canvas>
+
+##
+
+<img src="components/Forms/Select/resources/dd_1.svg"/>
+
+##
+
+<img src="components/Forms/Select/resources/dd_2.svg"/>
+
+##
+
+<img src="components/Forms/Select/resources/dd_3.svg"/>

@@ -17,6 +17,12 @@
     },
     "provider": {
       "test": "This is a test: {name}"
+    },
+    "forms": {
+      "select": {
+        "toggle_button_aria_label": "Toggle dropdown",
+        "clear_button_aria_label": "Clear selection"
+      }
     }
   }
 }
