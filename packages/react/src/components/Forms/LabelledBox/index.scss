@@ -1,0 +1,31 @@
+.labelled-box {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+
+  %text-style {
+    font-size: var(--c--components--forms-input--font-size);
+    font-weight: var(--c--components--forms-input--font-weight);
+  }
+
+  label {
+    position: absolute;
+    font-size: var(--c--theme--font--sizes--s);
+    left: 0;
+    top: 0.5rem;
+    transition: all var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
+    color: var(--c--theme--colors--greyscale-900);
+    opacity: 0.8;
+
+    &.placeholder {
+      @extend %text-style;
+      top: 16px;
+    }
+  }
+
+  &__children {
+    padding: 1.5rem 0 0 0;
+    display: flex;
+  }
+}
