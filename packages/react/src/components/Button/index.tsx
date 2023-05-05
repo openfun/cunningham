@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, ReactNode } from "react";
+import React, { ButtonHTMLAttributes, forwardRef, ReactNode } from "react";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: "primary" | "secondary" | "tertiary" | "danger";
@@ -8,30 +8,41 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   active?: boolean;
 }
 
-export const Button = ({
-  children,
-  color = "primary",
-  size = "medium",
-  iconPosition = "left",
-  icon,
-  active,
-  ...props
-}: Props) => {
-  const classes = ["c__button", "c__button--" + color, "c__button--" + size];
-  if (icon && children) {
-    classes.push("c__button--with-icon--" + iconPosition);
+export const Button = forwardRef<HTMLButtonElement, Props>(
+  (
+    {
+      children,
+      color = "primary",
+      size = "medium",
+      iconPosition = "left",
+      icon,
+      active,
+      className,
+      ...props
+    },
+    ref
+  ) => {
+    const classes = [
+      "c__button",
+      "c__button--" + color,
+      "c__button--" + size,
+      className,
+    ];
+    if (icon && children) {
+      classes.push("c__button--with-icon--" + iconPosition);
+    }
+    if (icon && !children) {
+      classes.push("c__button--icon-only");
+    }
+    if (active) {
+      classes.push("c__button--active");
+    }
+    return (
+      <button className={classes.join(" ")} {...props} ref={ref}>
+        {!!icon && iconPosition === "left" && icon}
+        {children}
+        {!!icon && iconPosition === "right" && icon}
+      </button>
+    );
   }
-  if (icon && !children) {
-    classes.push("c__button--icon-only");
-  }
-  if (active) {
-    classes.push("c__button--active");
-  }
-  return (
-    <button className={classes.join(" ")} {...props}>
-      {!!icon && iconPosition === "left" && icon}
-      {children}
-      {!!icon && iconPosition === "right" && icon}
-    </button>
-  );
-};
+);
