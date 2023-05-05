@@ -15,6 +15,12 @@
     },
     "provider": {
       "test": "Ceci est un test : {name}"
+    },
+    "forms": {
+      "select": {
+        "toggle_button_aria_label": "Ouvrir le menu",
+        "clear_button_aria_label": "Effacer la sélection"
+      }
     }
   }
 }
