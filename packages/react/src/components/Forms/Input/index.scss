@@ -1,5 +1,4 @@
 .c__input__wrapper {
-
   border-radius: var(--c--components--forms-input--border-radius);
   border-width: var(--c--components--forms-input--border-width);
   border-color: var(--c--components--forms-input--border-color);
@@ -19,45 +18,36 @@
     font-weight: var(--c--components--forms-input--font-weight);
   }
 
-  .c__input__inner {
-    position: relative;
+  .c__input {
+    box-sizing: border-box;
+    outline: 0;
+    border: none;
+    color: var(--c--theme--colors--greyscale-800);
     flex-grow: 1;
-    display: flex;
-    height: 100%;
+    text-overflow: ellipsis;
+    background-color: transparent;
+    @extend %text-style;
 
-    .c__input {
-
-      box-sizing: border-box;
-      outline: 0;
-      border: none;
-      padding: 1rem 0 0 0;
-      color: var(--c--theme--colors--greyscale-800);
-      flex-grow: 1;
-      text-overflow: ellipsis;
-      background-color: transparent;
-      @extend %text-style;
-
-      &--medium {
-        min-width: 150px;
-      }
-
-      &--nano {
-        min-width: 10px;
-      }
+    &--medium {
+      min-width: 150px;
     }
 
-    label {
-      position: absolute;
-      font-size: var(--c--theme--font--sizes--s);
-      left: 0;
-      top: 0.75rem;
-      transition: all var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
-      color: var(--c--theme--colors--greyscale-600);
+    &--nano {
+      min-width: 10px;
+    }
+  }
 
-      &.placeholder {
-        @extend %text-style;
-        top: 18px;
-      }
+  label {
+    position: absolute;
+    font-size: var(--c--theme--font--sizes--s);
+    left: 0;
+    top: 0.75rem;
+    transition: all var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
+    color: var(--c--theme--colors--greyscale-600);
+
+    &.placeholder {
+      @extend %text-style;
+      top: 18px;
     }
   }
 

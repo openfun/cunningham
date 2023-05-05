@@ -10,6 +10,7 @@ import React, {
 import classNames from "classnames";
 import { randomString } from ":/utils";
 import { Field, FieldProps } from ":/components/Forms/Field";
+import { LabelledBox } from ":/components/Forms/LabelledBox";
 
 export interface InputRefType {
   input: HTMLInputElement | null;
@@ -106,7 +107,11 @@ export const Input = forwardRef<InputRefType, Props>(
           }}
         >
           {!!icon && icon}
-          <div className="c__input__inner">
+          <LabelledBox
+            label={label}
+            htmlFor={idToUse.current}
+            labelAsPlaceholder={labelAsPlaceholder}
+          >
             <input
               type="text"
               className={classes.join(" ")}
@@ -127,15 +132,7 @@ export const Input = forwardRef<InputRefType, Props>(
               }}
               ref={inputRef}
             />
-            {label && (
-              <label
-                className={labelAsPlaceholder ? "placeholder" : ""}
-                htmlFor={idToUse.current}
-              >
-                {label}
-              </label>
-            )}
-          </div>
+          </LabelledBox>
           {!!rightIcon && rightIcon}
         </div>
       </Field>
