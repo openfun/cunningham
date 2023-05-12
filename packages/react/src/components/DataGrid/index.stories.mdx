@@ -40,7 +40,7 @@ This component is a wrapper around the more complicated DataGrid component. It i
 
 Here a quick usage example
 
-<Canvas withSource="open">
+<Canvas sourceState="shown">
   <Story id="components-datagrid--data-list-only"/>
 </Canvas>
 
@@ -63,7 +63,7 @@ Sorting etc ...
 
 Take a look at the following example that renders a table of users.
 
-<Canvas withSource="open">
+<Canvas sourceState="shown">
   <Story id="components-datagrid--client-side-without-pagination"/>
 </Canvas>
 
@@ -74,7 +74,7 @@ with `enableRowSelection`, `rowSelection` and `onRowSelectionChange` props.
 > Please click on checkboxes to select rows to see hows the `onRowSelectionChange` prop works, selected ids are displayed
 below the table.
 
-<Canvas withSource="open">
+<Canvas sourceState="shown">
   <Story id="components-datagrid--client-side-with-pagination"/>
 </Canvas>
 
@@ -94,7 +94,7 @@ pagination, sorting etc ...
 Please take a look at the following example that simulates a server side data that's re-fetched on each page and sorting
 change.
 
-<Canvas withSource="open">
+<Canvas sourceState="shown">
   <Story id="components-datagrid--full-server-side"/>
 </Canvas>
 
@@ -152,7 +152,7 @@ outside the grid component ( for example to delete selected rows ).
 The component provides out of the box a loading state that can be enabled by setting the `isLoading` props to `true`.
 So feel free to use it between page or sorting changes when you are fetching data from a server.
 
-<Canvas withSource="open">
+<Canvas sourceState="shown">
   <Story id="components-datagrid--loading"/>
 </Canvas>
 
@@ -160,7 +160,7 @@ So feel free to use it between page or sorting changes when you are fetching dat
 
 The component automatically displays an empty state when there is no data to display and it is not loading.
 
-<Canvas withSource="open">
+<Canvas sourceState="shown">
   <Story id="components-datagrid--empty"/>
 </Canvas>
 

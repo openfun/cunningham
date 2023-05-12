@@ -20,10 +20,12 @@ You can use custom utility classes to set the font size of an element. These cla
   `}
 />
 
-<Canvas isColumn={true} withSource="none">
-  {Object.keys(tokens.theme.font.sizes).map(key => (
-    <div key={key} className={"fs-" + key}>Using the <code>fs-{key}</code> class</div>
-  ))}
+<Canvas sourceState="none">
+  <div style={{display: "flex", flexDirection: "column", gap: "20px"}}>
+    {Object.keys(tokens.theme.font.sizes).map(key => (
+      <div key={key} className={"fs-" + key}>Using the <code>fs-{key}</code> class</div>
+    ))}
+  </div>
 </Canvas>
 
 You can customize the values of the font size design tokens with the configuration file this way:
@@ -61,10 +63,12 @@ You can use custom utility classes to set the font weight of an element. These c
   `}
 />
 
-<Canvas isColumn={true} withSource="none">
-  {Object.keys(tokens.theme.font.weights).map(key => (
-    <div key={key} className={"fs-l fw-" + key}>Using the <code>fw-{key}</code> class</div>
-  ))}
+<Canvas sourceState="none">
+  <div style={{display: "flex", flexDirection: "column", gap: "20px"}}>
+    {Object.keys(tokens.theme.font.weights).map(key => (
+      <div key={key} className={"fs-l fw-" + key}>Using the <code>fw-{key}</code> class</div>
+    ))}
+  </div>
 </Canvas>
 
 You can customize the values of the font weight design tokens with the configuration file this way:
@@ -106,10 +110,12 @@ class on every dom element.
   `}
 />
 
-<Canvas isColumn={true} withSource="none">
-  {Object.keys(tokens.theme.font.families).map(key => (
-  <div key={key} className={"f-" + key}>Using the <code>f-{key}</code> class</div>
-  ))}
+<Canvas sourceState="none">
+  <div style={{display: "flex", flexDirection: "column", gap: "20px"}}>
+    {Object.keys(tokens.theme.font.families).map(key => (
+    <div key={key} className={"f-" + key}>Using the <code>f-{key}</code> class</div>
+    ))}
+  </div>
 </Canvas>
 
 You can customize the values of the font family design tokens with the configuration file this way:

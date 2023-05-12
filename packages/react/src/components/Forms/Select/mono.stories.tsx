@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import React, { useState } from "react";
 import { faker } from "@faker-js/faker";
 import { Select } from ":/components/Forms/Select";
@@ -8,9 +8,9 @@ import { CunninghamProvider } from ":/components/Provider";
 export default {
   title: "Components/Forms/Select/Mono",
   component: Select,
-} as ComponentMeta<typeof Select>;
+} as Meta<typeof Select>;
 
-const Template: ComponentStory<typeof Select> = (args) => (
+const Template: StoryFn<typeof Select> = (args) => (
   <div style={{ paddingBottom: "200px" }}>
     <CunninghamProvider>
       <Select {...args} />
@@ -24,28 +24,38 @@ const OPTIONS = CITIES.map((city) => ({
   value: city.toLowerCase(),
 }));
 
-export const Uncontrolled = Template.bind({});
-Uncontrolled.args = {
-  label: "Select a city",
-  options: OPTIONS,
-  defaultValue: OPTIONS[4].value,
+export const Uncontrolled = {
+  render: Template,
+
+  args: {
+    label: "Select a city",
+    options: OPTIONS,
+    defaultValue: OPTIONS[4].value,
+  },
 };
 
-export const Disabled = Template.bind({});
-Disabled.args = {
-  label: "Select a city",
-  options: OPTIONS,
-  defaultValue: OPTIONS[4].value,
-  disabled: true,
+export const Disabled = {
+  render: Template,
+
+  args: {
+    label: "Select a city",
+    options: OPTIONS,
+    defaultValue: OPTIONS[4].value,
+    disabled: true,
+  },
 };
 
-export const WithText = Template.bind({});
-WithText.args = {
-  label: "Select a city",
-  options: OPTIONS,
-  defaultValue: OPTIONS[4].value,
-  text: "This is a text, you can display anything you want here like warnings, information or errors.",
+export const WithText = {
+  render: Template,
+
+  args: {
+    label: "Select a city",
+    options: OPTIONS,
+    defaultValue: OPTIONS[4].value,
+    text: "This is a text, you can display anything you want here like warnings, information or errors.",
+  },
 };
+
 export const Controlled = () => {
   const [value, setValue] = useState(OPTIONS[8].value);
   return (
@@ -66,40 +76,52 @@ export const Controlled = () => {
   );
 };
 
-export const Overflow = Template.bind({});
-Overflow.args = {
-  label: "Select a city",
-  options: [
-    {
-      value: "1",
-      label: "Very long long long long long long long city name",
-    },
-  ],
-  defaultValue: "1",
+export const Overflow = {
+  render: Template,
+
+  args: {
+    label: "Select a city",
+    options: [
+      {
+        value: "1",
+        label: "Very long long long long long long long city name",
+      },
+    ],
+    defaultValue: "1",
+  },
 };
 
-export const SearchableEmpty = Template.bind({});
-SearchableEmpty.args = {
-  label: "Select a city",
-  options: OPTIONS,
-  searchable: true,
+export const SearchableEmpty = {
+  render: Template,
+
+  args: {
+    label: "Select a city",
+    options: OPTIONS,
+    searchable: true,
+  },
 };
 
-export const SearchableUncontrolled = Template.bind({});
-SearchableUncontrolled.args = {
-  label: "Select a city",
-  options: OPTIONS,
-  defaultValue: OPTIONS[4].value,
-  searchable: true,
+export const SearchableUncontrolled = {
+  render: Template,
+
+  args: {
+    label: "Select a city",
+    options: OPTIONS,
+    defaultValue: OPTIONS[4].value,
+    searchable: true,
+  },
 };
 
-export const SearchableDisabled = Template.bind({});
-SearchableDisabled.args = {
-  label: "Select a city",
-  options: OPTIONS,
-  defaultValue: OPTIONS[4].value,
-  searchable: true,
-  disabled: true,
+export const SearchableDisabled = {
+  render: Template,
+
+  args: {
+    label: "Select a city",
+    options: OPTIONS,
+    defaultValue: OPTIONS[4].value,
+    searchable: true,
+    disabled: true,
+  },
 };
 
 export const SearchableControlled = () => {
@@ -123,27 +145,36 @@ export const SearchableControlled = () => {
   );
 };
 
-export const FullWidth = Template.bind({});
-FullWidth.args = {
-  label: "Select a city",
-  options: OPTIONS,
-  fullWidth: true,
+export const FullWidth = {
+  render: Template,
+
+  args: {
+    label: "Select a city",
+    options: OPTIONS,
+    fullWidth: true,
+  },
 };
 
-export const Success = Template.bind({});
-Success.args = {
-  label: "Select a city",
-  options: OPTIONS,
-  state: "success",
-  text: "Well done",
+export const Success = {
+  render: Template,
+
+  args: {
+    label: "Select a city",
+    options: OPTIONS,
+    state: "success",
+    text: "Well done",
+  },
 };
 
-export const Error = Template.bind({});
-Error.args = {
-  label: "Select a city",
-  options: OPTIONS,
-  state: "error",
-  text: "Something went wrong",
+export const Error = {
+  render: Template,
+
+  args: {
+    label: "Select a city",
+    options: OPTIONS,
+    state: "error",
+    text: "Something went wrong",
+  },
 };
 
 export const FormExample = () => {
