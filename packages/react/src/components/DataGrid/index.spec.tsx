@@ -15,11 +15,11 @@ describe("<DataGrid/>", () => {
 
   it("should render a grid with server-side loading", async () => {
     const database = Array.from(Array(23)).map(() => ({
-      id: faker.datatype.uuid(),
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName(),
+      id: faker.string.uuid(),
+      firstName: faker.person.firstName(),
+      lastName: faker.person.lastName(),
       email: faker.internet.email(),
-      address: faker.address.streetAddress(),
+      address: faker.location.streetAddress(),
     }));
 
     const Component = () => {
@@ -216,11 +216,11 @@ describe("<DataGrid/>", () => {
   });
   it("should render custom cells", async () => {
     const database = Array.from(Array(10)).map(() => ({
-      id: faker.datatype.uuid(),
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName(),
+      id: faker.string.uuid(),
+      firstName: faker.person.firstName(),
+      lastName: faker.person.lastName(),
       email: faker.internet.email(),
-      address: faker.address.streetAddress(),
+      address: faker.location.streetAddress(),
     }));
 
     const Component = () => {
@@ -263,11 +263,11 @@ describe("<DataGrid/>", () => {
   });
   it("should render highlighted column", async () => {
     const database = Array.from(Array(10)).map(() => ({
-      id: faker.datatype.uuid(),
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName(),
+      id: faker.string.uuid(),
+      firstName: faker.person.firstName(),
+      lastName: faker.person.lastName(),
       email: faker.internet.email(),
-      address: faker.address.streetAddress(),
+      address: faker.location.streetAddress(),
     }));
 
     const Component = () => {

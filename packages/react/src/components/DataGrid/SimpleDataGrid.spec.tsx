@@ -13,11 +13,11 @@ import { Row } from ":/components/DataGrid/index";
 describe("<SimpleDataGrid/>", () => {
   it("should render a grid without pagination", async () => {
     const rows = Array.from(Array(23)).map(() => ({
-      id: faker.datatype.uuid(),
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName(),
+      id: faker.string.uuid(),
+      firstName: faker.person.firstName(),
+      lastName: faker.person.lastName(),
       email: faker.internet.email(),
-      address: faker.address.streetAddress(),
+      address: faker.location.streetAddress(),
     }));
     render(
       <CunninghamProvider>
@@ -67,11 +67,11 @@ describe("<SimpleDataGrid/>", () => {
   it("should render a grid with working pagination", async () => {
     const rows = Array.from(Array(23))
       .map(() => ({
-        id: faker.datatype.uuid(),
-        firstName: faker.name.firstName(),
-        lastName: faker.name.lastName(),
+        id: faker.string.uuid(),
+        firstName: faker.person.firstName(),
+        lastName: faker.person.lastName(),
         email: faker.internet.email(),
-        address: faker.address.streetAddress(),
+        address: faker.location.streetAddress(),
       }))
       .sort((a, b) => a.firstName.localeCompare(b.firstName));
     render(
@@ -187,11 +187,11 @@ describe("<SimpleDataGrid/>", () => {
   it("should render a grid with working rows selection", async () => {
     const rows = Array.from(Array(23))
       .map(() => ({
-        id: faker.datatype.uuid(),
-        firstName: faker.name.firstName(),
-        lastName: faker.name.lastName(),
+        id: faker.string.uuid(),
+        firstName: faker.person.firstName(),
+        lastName: faker.person.lastName(),
         email: faker.internet.email(),
-        address: faker.address.streetAddress(),
+        address: faker.location.streetAddress(),
       }))
       .sort((a, b) => a.firstName.localeCompare(b.firstName));
 
@@ -270,11 +270,11 @@ describe("<SimpleDataGrid/>", () => {
   it("should render a grid with working sortable columns", async () => {
     const rows = Array.from(Array(23))
       .map(() => ({
-        id: faker.datatype.uuid(),
-        firstName: faker.name.firstName(),
-        lastName: faker.name.lastName(),
+        id: faker.string.uuid(),
+        firstName: faker.person.firstName(),
+        lastName: faker.person.lastName(),
         email: faker.internet.email(),
-        address: faker.address.streetAddress(),
+        address: faker.location.streetAddress(),
       }))
       .sort((a, b) => a.firstName.localeCompare(b.firstName));
     render(
@@ -421,11 +421,11 @@ describe("<SimpleDataGrid/>", () => {
   it("should render a grid with non-sortable columns", async () => {
     const rows = Array.from(Array(23))
       .map(() => ({
-        id: faker.datatype.uuid(),
-        firstName: faker.name.firstName(),
-        lastName: faker.name.lastName(),
+        id: faker.string.uuid(),
+        firstName: faker.person.firstName(),
+        lastName: faker.person.lastName(),
         email: faker.internet.email(),
-        address: faker.address.streetAddress(),
+        address: faker.location.streetAddress(),
       }))
       .sort((a, b) => a.firstName.localeCompare(b.firstName));
     render(

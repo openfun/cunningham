@@ -10,8 +10,8 @@ describe("<DataList/>", () => {
   it("should render a DataList", async () => {
     const rows = Array.from(Array(3)).map((_value, index) => ({
       id: `list key for element ${index}`,
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName(),
+      firstName: faker.person.firstName(),
+      lastName: faker.person.lastName(),
     }));
     render(
       <CunninghamProvider>
