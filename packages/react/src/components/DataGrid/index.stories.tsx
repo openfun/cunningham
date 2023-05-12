@@ -52,11 +52,11 @@ export const ClientSideWithoutPagination = () => {
   const database = useMemo(
     () =>
       Array.from(Array(23)).map(() => ({
-        id: faker.datatype.uuid(),
-        firstName: faker.name.firstName(),
-        lastName: faker.name.lastName(),
+        id: faker.string.uuid(),
+        firstName: faker.person.firstName(),
+        lastName: faker.person.lastName(),
         email: faker.internet.email(),
-        address: faker.address.streetAddress(),
+        address: faker.location.streetAddress(),
       })),
     []
   );
@@ -104,7 +104,7 @@ export const ClientSideWithPagination = () => {
   const database = useMemo(
     () =>
       Array.from(Array(23)).map(() => ({
-        id: faker.datatype.uuid(),
+        id: faker.string.uuid(),
         carName: faker.company.name(),
         year: faker.date.past().getFullYear(),
         price: +faker.commerce.price(5000, 5005),
@@ -156,11 +156,11 @@ export const FullServerSide = () => {
   const database = useMemo(
     () =>
       Array.from(Array(191)).map(() => ({
-        id: faker.datatype.uuid(),
-        firstName: faker.name.firstName(),
-        lastName: faker.name.lastName(),
+        id: faker.string.uuid(),
+        firstName: faker.person.firstName(),
+        lastName: faker.person.lastName(),
         email: faker.internet.email(),
-        address: faker.address.streetAddress(),
+        address: faker.location.streetAddress(),
       })),
     []
   );

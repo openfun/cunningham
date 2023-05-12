@@ -18,7 +18,7 @@ const Template: ComponentStory<typeof Select> = (args) => (
   </div>
 );
 
-const CITIES = Array.from({ length: 10 }).map(() => faker.address.city());
+const CITIES = Array.from({ length: 10 }).map(() => faker.location.city());
 const OPTIONS = CITIES.map((city) => ({
   label: city,
   value: city.toLowerCase(),
