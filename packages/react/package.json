@@ -35,6 +35,7 @@
     "test-watch": "vitest",
     "coverage": "vitest run --coverage",
     "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
     "deploy-storybook": "storybook-to-ghpages"
   },
   "dependencies": {
