@@ -1,9 +1,14 @@
 # @openfun/cunningham-react
 
+## 0.6.1
+
+### Patch Changes
+
+- 4777a75: fix "exports" attribute of package.json. Default condition must be last one.
+
 ## 0.6.0
 
 ### Minor Changes
-
 - 2ff5fc5: add Select component
 - 2ff5fc5: add forwardRef to Button
 - 2ff5fc5: create a generic LabelledBox
@@ -75,7 +80,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.6.0...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.6.1...main
+[0.6.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.6.0...0.6.1
 [0.6.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.5.0...0.6.0
 [0.5.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.4.0...0.5.0
 [0.4.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.3.0...0.4.0
