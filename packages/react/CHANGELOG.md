@@ -1,5 +1,17 @@
 # @openfun/cunningham-react
 
+## 0.6.0
+
+### Minor Changes
+
+- 2ff5fc5: add Select component
+- 2ff5fc5: add forwardRef to Button
+- 2ff5fc5: create a generic LabelledBox
+
+### Patch Changes
+
+- 3545af8: Make package pure ESM
+
 ## 0.5.0
 
 ### Minor Changes
@@ -63,7 +75,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.5.0...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.6.0...main
+[0.6.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.5.0...0.6.0
 [0.5.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.4.0...0.5.0
 [0.4.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.3.0...0.4.0
 [0.3.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.2.0...0.3.0
