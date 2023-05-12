@@ -1,4 +1,4 @@
-import { ComponentMeta } from "@storybook/react";
+import { Meta } from "@storybook/react";
 import React, { useEffect, useMemo, useState } from "react";
 import { faker } from "@faker-js/faker";
 import { DataGrid, SortModel } from ":/components/DataGrid/index";
@@ -11,7 +11,7 @@ import { DataList } from ":/components/DataGrid/DataList";
 export default {
   title: "Components/DataGrid",
   component: DataGrid,
-} as ComponentMeta<typeof DataGrid>;
+} as Meta<typeof DataGrid>;
 
 export const Empty = () => {
   return (

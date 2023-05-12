@@ -1,69 +1,95 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import React from "react";
 import { Radio, RadioGroup } from ":/components/Forms/Radio/index";
 
 export default {
   title: "Components/Forms/Radio",
   component: Radio,
-} as ComponentMeta<typeof Radio>;
+} as Meta<typeof Radio>;
 
-const Template: ComponentStory<typeof Radio> = (args) => (
+const Template: StoryFn<typeof Radio> = (args) => (
   <Radio {...args} aria-label="Radio" />
 );
 
-export const Default = Template.bind({});
-Default.args = {};
-
-export const Checked = Template.bind({});
-Checked.args = {
-  checked: true,
+export const Default = {
+  render: Template,
+  args: {},
 };
 
-export const WithLabel = Template.bind({});
-WithLabel.args = {
-  label: "Label",
+export const Checked = {
+  render: Template,
+
+  args: {
+    checked: true,
+  },
 };
 
-export const WithLabelChecked = Template.bind({});
-WithLabelChecked.args = {
-  label: "Label",
-  checked: true,
+export const WithLabel = {
+  render: Template,
+
+  args: {
+    label: "Label",
+  },
 };
 
-export const WithText = Template.bind({});
-WithText.args = {
-  label: "Label",
-  text: "Some optional text",
+export const WithLabelChecked = {
+  render: Template,
+
+  args: {
+    label: "Label",
+    checked: true,
+  },
 };
 
-export const Disabled = Template.bind({});
-Disabled.args = {
-  label: "Label",
-  disabled: true,
+export const WithText = {
+  render: Template,
+
+  args: {
+    label: "Label",
+    text: "Some optional text",
+  },
 };
 
-export const DisabledChecked = Template.bind({});
-DisabledChecked.args = {
-  label: "Label",
-  disabled: true,
-  checked: true,
-  text: "Some optional text",
+export const Disabled = {
+  render: Template,
+
+  args: {
+    label: "Label",
+    disabled: true,
+  },
 };
 
-export const Error = Template.bind({});
-Error.args = {
-  checked: true,
-  label: "Label",
-  text: "This is an optional text",
-  state: "error",
+export const DisabledChecked = {
+  render: Template,
+
+  args: {
+    label: "Label",
+    disabled: true,
+    checked: true,
+    text: "Some optional text",
+  },
 };
 
-export const Success = Template.bind({});
-Success.args = {
-  checked: true,
-  label: "Label",
-  text: "This is an optional text",
-  state: "success",
+export const Error = {
+  render: Template,
+
+  args: {
+    checked: true,
+    label: "Label",
+    text: "This is an optional text",
+    state: "error",
+  },
+};
+
+export const Success = {
+  render: Template,
+
+  args: {
+    checked: true,
+    label: "Label",
+    text: "This is an optional text",
+    state: "success",
+  },
 };
 
 export const Group = () => {

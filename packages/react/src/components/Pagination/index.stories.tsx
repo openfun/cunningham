@@ -1,4 +1,4 @@
-import { ComponentMeta } from "@storybook/react";
+import { Meta } from "@storybook/react";
 import React, { useEffect, useMemo, useState } from "react";
 import { Pagination, usePagination } from ":/components/Pagination/index";
 import { CunninghamProvider } from ":/components/Provider";
@@ -6,7 +6,7 @@ import { CunninghamProvider } from ":/components/Provider";
 export default {
   title: "Components/Pagination",
   component: Pagination,
-} as ComponentMeta<typeof Pagination>;
+} as Meta<typeof Pagination>;
 
 export const Basic = () => {
   const pagination = usePagination({
