@@ -28,6 +28,19 @@ const config: StorybookConfig = {
   features: {
     storyStoreV7: true,
   },
+  async viteFinal(config, options) {
+    // We don't want the Storybook build to generate type definitions.
+    const newConfig = {
+      ...config,
+      plugins: config.plugins.filter((plugin) => {
+        if (typeof plugin === "object") {
+          return (plugin as any).name !== "vite:dts";
+        }
+        return true;
+      }),
+    };
+    return newConfig;
+  },
 };
 
 export default config;
