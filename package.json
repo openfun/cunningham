@@ -15,8 +15,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "prettier": "2.8.7",
-    "turbo": "1.8.6"
+    "prettier": "2.8.8",
+    "turbo": "1.9.4"
   },
   "engines": {
     "node": ">=16.0.0"
@@ -26,7 +26,7 @@
   },
   "packageManager": "yarn@1.22.19",
   "volta": {
-    "node": "16.15.1",
+    "node": "18.16.0",
     "yarn": "1.22.19"
   }
 }
