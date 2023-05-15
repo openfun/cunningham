@@ -1,5 +1,11 @@
 # @openfun/cunningham-react
 
+## 0.6.2
+
+### Patch Changes
+
+- 15eb9b9: Add missing types for Checkbox and Radio
+
 ## 0.6.1
 
 ### Patch Changes
@@ -9,6 +15,7 @@
 ## 0.6.0
 
 ### Minor Changes
+
 - 2ff5fc5: add Select component
 - 2ff5fc5: add forwardRef to Button
 - 2ff5fc5: create a generic LabelledBox
@@ -80,7 +87,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.6.1...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.6.2...main
+[0.6.2]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.6.1...0.6.2
 [0.6.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.6.0...0.6.1
 [0.6.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.5.0...0.6.0
 [0.5.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.4.0...0.5.0
