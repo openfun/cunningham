@@ -36,7 +36,8 @@
     "coverage": "vitest run --coverage",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "deploy-storybook": "storybook-to-ghpages"
+    "predeploy-storybook": "yarn build-storybook && touch ./storybook-static/.nojekyll",
+    "deploy-storybook": "storybook-to-ghpages --existing-output-dir ./storybook-static"
   },
   "dependencies": {
     "@fontsource/material-icons": "4.5.4",
