@@ -27,7 +27,7 @@ export const Field = ({
     <div
       className={classNames("c__field", "c__field--" + state, className, {
         "c__field--full-width": fullWidth,
-        "c__field--compact": compact,
+        "c__field--compact": compact && !fullWidth,
       })}
     >
       {children}
