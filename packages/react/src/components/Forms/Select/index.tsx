@@ -34,6 +34,7 @@ type Props = PropsWithChildren &
       target: { value: string | number | undefined };
     }) => void;
     disabled?: boolean;
+    clearable?: boolean;
   };
 
 function getOptionsFilter(inputValue?: string) {
@@ -96,6 +97,7 @@ const SelectAux = ({
   downshiftReturn,
   value,
   disabled,
+  clearable = true,
 }: SelectAuxProps) => {
   const { t } = useCunningham();
   const labelProps = downshiftReturn.getLabelProps();
@@ -148,7 +150,7 @@ const SelectAux = ({
             <div className="c__select__inner">
               <div className="c__select__inner__value">{children}</div>
               <div className="c__select__inner__actions">
-                {!disabled && downshiftReturn.selectedItem && (
+                {clearable && !disabled && downshiftReturn.selectedItem && (
                   <>
                     <Button
                       color="tertiary"

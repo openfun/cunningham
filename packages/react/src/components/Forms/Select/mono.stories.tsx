@@ -155,6 +155,16 @@ export const FullWidth = {
   },
 };
 
+export const NotClearable = {
+  render: Template,
+  args: {
+    label: "Select a city",
+    options: OPTIONS,
+    defaultValue: OPTIONS[4].value,
+    clearable: false,
+  },
+};
+
 export const Success = {
   render: Template,
 
