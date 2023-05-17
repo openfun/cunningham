@@ -1028,5 +1028,44 @@ describe("<Select/>", () => {
         city: null,
       });
     });
+
+    it("should not be clearable", async () => {
+      render(
+        <CunninghamProvider>
+          <Select
+            label="City"
+            options={[
+              {
+                label: "Paris",
+              },
+              {
+                label: "London",
+              },
+              {
+                label: "New York",
+              },
+              {
+                label: "Tokyo",
+              },
+            ]}
+            clearable={false}
+            defaultValue="Paris"
+          />
+        </CunninghamProvider>
+      );
+      screen.getByRole("combobox", {
+        name: "City",
+      });
+      const valueRendered = document.querySelector(".c__select__inner__value");
+
+      // Make sure default value is rendered.
+      expect(valueRendered).toHaveTextContent("Paris");
+      // Make sure the clear button is not rendered.
+      expect(
+        screen.queryByRole("button", {
+          name: "Clear selection",
+        })
+      ).not.toBeInTheDocument();
+    });
   });
 });
