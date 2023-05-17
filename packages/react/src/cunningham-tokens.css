@@ -96,6 +96,13 @@
 	--c--theme--transitions--ease-out: cubic-bezier(0.33, 1, 0.68, 1);
 	--c--theme--transitions--ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 	--c--theme--transitions--duration: 250ms;
+	--c--components--forms-switch--accent-color: #419A14;
+	--c--components--forms-switch--rail-background-color: #9EA3AA;
+	--c--components--forms-switch--rail-background-color--disabled: #C2C6CA;
+	--c--components--forms-switch--rail-border-radius: 50vw;
+	--c--components--forms-switch--handle-background-color: white;
+	--c--components--forms-switch--handle-background-color--disabled: #F3F4F4;
+	--c--components--forms-switch--handle-border-radius: 50%;
 	--c--components--forms-select--border-color: #E7E8EA;
 	--c--components--forms-select--border-color--focus: #0556BF;
 	--c--components--forms-select--border-color--hover: #9EA3AA;
@@ -131,7 +138,7 @@
 	--c--components--forms-field--color: #79818A;
 	--c--components--forms-checkbox--background-color--hover: #F3F4F4;
 	--c--components--forms-checkbox--font-size: 0.8125rem;
-	--c--components--forms-checkbox--font-weight: 400;
+	--c--components--forms-checkbox--font-weight: 500;
 	--c--components--forms-checkbox--color: #0C1A2B;
 	--c--components--forms-checkbox--border-color: #E7E8EA;
 	--c--components--forms-checkbox--border-radius: 2px;
