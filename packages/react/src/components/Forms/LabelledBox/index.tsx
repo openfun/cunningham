@@ -1,10 +1,12 @@
 import React, { PropsWithChildren } from "react";
+import classNames from "classnames";
 
 export interface Props extends PropsWithChildren {
   label?: string;
   labelAsPlaceholder?: boolean;
   htmlFor?: string;
   labelId?: string;
+  hideLabel?: boolean;
 }
 
 export const LabelledBox = ({
@@ -13,12 +15,20 @@ export const LabelledBox = ({
   labelAsPlaceholder,
   htmlFor,
   labelId,
+  hideLabel,
 }: Props) => {
   return (
-    <div className="labelled-box">
+    <div
+      className={classNames("labelled-box", {
+        "labelled-box--no-label": hideLabel,
+      })}
+    >
       {label && (
         <label
-          className={labelAsPlaceholder ? "placeholder" : ""}
+          className={classNames("labelled-box__label", {
+            placeholder: labelAsPlaceholder,
+            offscreen: hideLabel,
+          })}
           htmlFor={htmlFor}
           id={labelId}
         >

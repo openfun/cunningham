@@ -86,6 +86,15 @@
     }
   }
 
+  .labelled-box--no-label {
+    .c__select__inner {
+      align-items: center;
+      &__actions {
+        top: 0;
+      }
+    }
+  }
+
   &__menu {
     position: absolute;
     overflow: auto;

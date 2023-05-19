@@ -93,6 +93,16 @@ You can disable some options by using the `disabled` props on the `Option` objec
   <Story id="components-forms-select-mono--disabled-options"/>
 </Canvas>
 
+## Hide label
+
+For some reasons you might want to hide the label of the select. You can do that by using the `hideLabel` props.
+
+> It is important for accessibility to always have a label for your inputs. Keep in mind that setting `hideLabel` to `true`, will only hide the label visually, but it will still be available for screen readers in the DOM.
+
+<Canvas sourceState="shown">
+  <Story id="components-forms-select-mono--hidden-label"/>
+</Canvas>
+
 ## Controlled / Non Controlled
 
 Like a native select, you can use the Select component in a controlled or non controlled way. You can see the example below

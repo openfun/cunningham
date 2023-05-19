@@ -56,6 +56,17 @@ export const WithText = {
   },
 };
 
+export const HiddenLabel = {
+  render: Template,
+
+  args: {
+    label: "Select a city",
+    hideLabel: true,
+    options: OPTIONS,
+    defaultValue: OPTIONS[4].value,
+  },
+};
+
 export const Controlled = () => {
   const [value, setValue] = useState(OPTIONS[8].value);
   return (
