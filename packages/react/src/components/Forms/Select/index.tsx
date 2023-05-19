@@ -20,6 +20,7 @@ import { Button } from ":/components/Button";
 interface Option {
   value?: string;
   label: string;
+  disabled?: boolean;
 }
 
 type Props = PropsWithChildren &
@@ -197,20 +198,28 @@ const SelectAux = ({
         >
           <ul>
             {downshiftReturn.isOpen &&
-              options.map((item, index) => (
-                <li
-                  className={classNames("c__select__menu__item", {
-                    "c__select__menu__item--highlight":
-                      downshiftReturn.highlightedIndex === index,
-                    "c__select__menu__item--selected":
-                      downshiftReturn.selectedItem === item,
-                  })}
-                  key={`${item.value}${index}`}
-                  {...downshiftReturn.getItemProps({ item, index })}
-                >
-                  <span>{item.label}</span>
-                </li>
-              ))}
+              options.map((item, index) => {
+                const isActive = index === downshiftReturn.highlightedIndex;
+                return (
+                  <li
+                    className={classNames("c__select__menu__item", {
+                      "c__select__menu__item--highlight": isActive,
+                      "c__select__menu__item--selected":
+                        downshiftReturn.selectedItem === item,
+                      "c__select__menu__item--disabled": item.disabled,
+                    })}
+                    key={`${item.value}${index}`}
+                    {...downshiftReturn.getItemProps({
+                      item,
+                      index,
+                      isActive,
+                      disabled: item.disabled,
+                    })}
+                  >
+                    <span>{item.label}</span>
+                  </li>
+                );
+              })}
           </ul>
         </div>
       </div>

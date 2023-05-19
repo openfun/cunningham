@@ -121,6 +121,11 @@
       &--selected {
         background-color: var(--c--components--forms-select--item-background-color--selected);
       }
+
+      &--disabled {
+        color: var(--c--components--forms-select--item-color--disabled);
+        cursor: default;
+      }
     }
   }
 

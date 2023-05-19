@@ -26,6 +26,7 @@ The available options must be given via the `options` props. It is an array of o
   code={`{
   label: string
   value?: string
+  disabled?: boolean;
 }`}
 />
 
@@ -81,6 +82,15 @@ By default, the select is clearable ( the cross icon on the right is shown ). Yo
 
 <Canvas sourceState="shown">
   <Story id="components-forms-select-mono--not-clearable"/>
+</Canvas>
+
+
+## Disabled options
+
+You can disable some options by using the `disabled` props on the `Option` object.
+
+<Canvas sourceState="shown">
+  <Story id="components-forms-select-mono--disabled-options"/>
 </Canvas>
 
 ## Controlled / Non Controlled

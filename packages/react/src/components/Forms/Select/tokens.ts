@@ -15,6 +15,7 @@ export const tokens = (defaults: DefaultTokens) => ({
   "item-background-color--hover": defaults.theme.colors["greyscale-200"],
   "item-background-color--selected": defaults.theme.colors["primary-100"],
   "item-color": defaults.theme.colors["greyscale-800"],
+  "item-color--disabled": defaults.theme.colors["greyscale-500"],
   "item-font-size": defaults.theme.font.sizes.l,
   "background-color": "white",
   "menu-background-color": "white",
