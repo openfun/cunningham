@@ -1,0 +1,168 @@
+import { Canvas, Meta, Story, Source, ArgsTable } from '@storybook/addon-docs';
+
+<Meta title="Getting Started/Customization"/>
+
+# Customization
+
+At some point you might want to customize the design system's colors or the look and feel of some components. This is totally possible, and we will explain how in this documentation.
+But before we start, we will need to explain the concept of **design tokens**.
+
+
+## What are design tokens ?
+
+Design tokens are the fundamental variables defining the precise behavior and rendering of ui components.
+
+For example it could be:
+
+- The primary color of a text element
+- The standard spacing between two elements
+- The border radius of a button
+- ...
+
+Design tokens are the building blocks of a design system. They are the smallest pieces of a design system, and they are used to build components.
+
+## How to customize design tokens ?
+
+Cunningham makes possible to create a configuration file at the root of your project, which will be used to customize the design tokens.
+
+### Typescript
+
+If you prefer using Typescript, create a file named `cunningham.ts` at the root of your project with the following content:
+
+<Source dark={true} code={`
+// cunningham.ts
+import { DefaultTokens } from "@openfun/cunningham-react";
+
+const config: DefaultTokens = {
+  theme: {
+      colors: {
+        "primary-500": "purple",
+      },
+    },
+};
+
+export default config;
+
+`}></Source>
+
+### Javascript
+
+Or if you prefer Javascript, create a file named `cunningham.cjs` at the root of your project with the following content:
+
+<Source dark={true} code={`
+// cunningham.cjs
+module.exports = {
+  theme: {
+    colors: {
+      "primary-500": "purple",
+    },
+  },
+};`}></Source>
+
+In this configuration file you can overwrite all the default values of the design system.
+**You can find the default values [here](https://github.com/openfun/cunningham/blob/main/packages/tokens/src/bin/cunningham.ts).**
+
+### Build
+
+If you followed the [previous steps](?path=/docs/getting-started-installation--docs), you can now rebuild the design tokens by running the following command:
+
+```
+yarn build-theme
+```
+
+Build your app again, and you should see the changes applied. 🎉
+
+## Customize components
+
+We previously saw how to customize global design tokens, but you can also customize the look and feel of each component independently.
+
+Here we will customize the border radius of the [Button](?path=/docs/components-button--docs) component.
+
+First, let's display a `Button`
+
+<Source dark={true} code={`
+  <Button>World best button.</Button>
+`}/>
+
+Now, go to [Button](?path=/docs/components-button--docs) documentation page and scroll down to "Design tokens", you will see all the available design tokens.
+
+For our example we focus on the `border-radius` design token. Now, incorporate the subsequent code into your cunningham.ts file :
+
+<Source dark={true} code={`
+// cunningham.ts
+import { DefaultTokens } from "@openfun/cunningham-react";
+
+const config: DefaultTokens = {
+  theme: {
+    ...
+  },
+  components: {
+    button: {
+      "border-radius": "30px",
+    },
+  },
+};
+
+export default config;
+
+
+`}></Source>
+
+
+Run the following command:
+
+```
+yarn build-theme
+```
+
+Build your app again, and you should see the changes applied! 💄
+
+If you find out that the current design tokens are not enough for the customization you want to do, feel free to [open an issue](https://github.com/openfun/cunningham/issues/new) or to [contribute to the project](https://github.com/openfun/cunningham/blob/main/CONTRIBUTING.md) 🙏
+
+## Use default design tokens
+
+If you want to use the default design tokens, you can import them from the `@openfun/cunningham-react` package. For example,
+let's say we want keep the same border radius when the `Button` component is active without hard-coding it, we can do the following:
+
+<Source dark={true} code={`
+// cunningham.ts
+import { defaultTokens, DefaultTokens } from "@openfun/cunningham-react";
+
+const config: DefaultTokens = {
+  theme: {
+    ...
+  },
+  components: {
+    button: {
+      "border-radius--active": defaultTokens.components.button["border-radius"],
+    },
+  },
+};
+
+export default config;
+
+`}></Source>
+
+> Be careful, `DefaultTokens` with a capital `D` is the type of the default tokens, while `defaultTokens` with a lowercase `d` is the object containing the default tokens.
+
+You can also use more global design tokens from `defaultTokens.theme`, like that:
+
+<Source dark={true} code={`
+// cunningham.ts
+import { defaultTokens, DefaultTokens } from "@openfun/cunningham-react";
+
+const config: DefaultTokens = {
+  theme: {
+    ...
+  },
+  components: {
+    button: {
+      "medium-font-size": defaultTokens.theme.font.sizes.s,
+    },
+  },
+};
+
+export default config;
+
+`}></Source>
+
