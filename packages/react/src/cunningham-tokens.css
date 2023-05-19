@@ -117,6 +117,7 @@
 	--c--components--forms-select--item-background-color--hover: #F3F4F4;
 	--c--components--forms-select--item-background-color--selected: #EBF2FC;
 	--c--components--forms-select--item-color: #303C4B;
+	--c--components--forms-select--item-color--disabled: #9EA3AA;
 	--c--components--forms-select--item-font-size: 1rem;
 	--c--components--forms-select--background-color: white;
 	--c--components--forms-select--menu-background-color: white;

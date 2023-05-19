@@ -35,6 +35,12 @@ describe("<Select/>", () => {
       "c__select__menu__item--selected"
     );
   };
+  const expectOptionToBeDisabled = (option: HTMLLIElement) => {
+    expect(option).toHaveAttribute("disabled");
+    expect(Array.from(option.classList)).contains(
+      "c__select__menu__item--disabled"
+    );
+  };
 
   describe("Searchable", () => {
     it("shows all options when clicking on the input", async () => {
@@ -1066,6 +1072,66 @@ describe("<Select/>", () => {
           name: "Clear selection",
         })
       ).not.toBeInTheDocument();
+    });
+    it("is not possible to select disabled options", async () => {
+      render(
+        <CunninghamProvider>
+          <Select
+            label="City"
+            options={[
+              {
+                label: "Paris",
+              },
+              {
+                label: "London",
+              },
+              {
+                label: "New York",
+                disabled: true,
+              },
+              {
+                label: "Tokyo",
+              },
+            ]}
+          />
+        </CunninghamProvider>
+      );
+      const input = screen.getByRole("combobox", {
+        name: "City",
+      });
+      const menu: HTMLDivElement = screen.getByRole("listbox", {
+        name: "City",
+      });
+      const valueRendered = document.querySelector(".c__select__inner__value");
+
+      // Make sure the select is empty.
+      expect(valueRendered).toHaveTextContent("");
+
+      const user = userEvent.setup();
+      await user.click(input);
+      expectMenuToBeOpen(menu);
+
+      // Make sure the disabled option is not selectable.
+      let option: HTMLLIElement = screen.getByRole("option", {
+        name: "New York",
+      });
+      expectOptionToBeDisabled(option);
+
+      // Try to click on the disabled option.
+      await user.click(option);
+
+      expectMenuToBeOpen(menu);
+      // Make sure the select is still empty.
+      expect(valueRendered).toHaveTextContent("");
+
+      // Select a not disabled option.
+      option = screen.getByRole("option", {
+        name: "Tokyo",
+      });
+
+      await user.click(option);
+      expectMenuToBeClosed(menu);
+      expect(valueRendered).toHaveTextContent("Tokyo");
     });
   });
 });

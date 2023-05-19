@@ -165,6 +165,14 @@ export const NotClearable = {
   },
 };
 
+export const DisabledOptions = {
+  render: Template,
+  args: {
+    label: "Select a city",
+    options: OPTIONS.map((option, i) => ({ ...option, disabled: i % 3 === 0 })),
+  },
+};
+
 export const Success = {
   render: Template,
 
