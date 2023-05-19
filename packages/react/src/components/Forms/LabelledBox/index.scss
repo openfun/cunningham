@@ -28,4 +28,14 @@
     padding: 1.5rem 0 0 0;
     display: flex;
   }
+
+  &--no-label {
+    display: flex;
+    align-items: center;
+
+    .labelled-box__children {
+      padding-top: 0;
+      flex-grow: 1;
+    }
+  }
 }

@@ -1133,5 +1133,37 @@ describe("<Select/>", () => {
       expectMenuToBeClosed(menu);
       expect(valueRendered).toHaveTextContent("Tokyo");
     });
+
+    it("is accessible if the the label is not shown", async () => {
+      render(
+        <CunninghamProvider>
+          <Select
+            label="City"
+            options={[
+              {
+                label: "Paris",
+              },
+              {
+                label: "London",
+              },
+              {
+                label: "New York",
+                disabled: true,
+              },
+              {
+                label: "Tokyo",
+              },
+            ]}
+            hideLabel={true}
+          />
+        </CunninghamProvider>
+      );
+      // Make sure the input is accessible.
+      screen.getByRole("combobox", {
+        name: "City",
+      });
+      const label = screen.getByText("City");
+      expect(Array.from(label.classList)).toContain("offscreen");
+    });
   });
 });

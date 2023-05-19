@@ -26,6 +26,7 @@ interface Option {
 type Props = PropsWithChildren &
   FieldProps & {
     label: string;
+    hideLabel?: boolean;
     options: Option[];
     searchable?: boolean;
     name?: string;
@@ -93,6 +94,7 @@ const SelectAux = ({
   options,
   name,
   label,
+  hideLabel,
   labelAsPlaceholder,
   downshiftProps,
   downshiftReturn,
@@ -142,8 +144,10 @@ const SelectAux = ({
               value={optionToValue(downshiftReturn.selectedItem)}
             />
           )}
+
           <LabelledBox
             label={label}
+            hideLabel={hideLabel}
             labelAsPlaceholder={labelAsPlaceholder}
             htmlFor={labelProps.htmlFor}
             labelId={labelProps.id}
