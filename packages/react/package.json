@@ -48,6 +48,13 @@
     "classnames": "2.3.2",
     "downshift": "7.6.0",
     "react": "18.2.0",
+    "react-aria": "3.24.0",
+    "@react-aria/calendar": "3.2.0",
+    "@react-aria/datepicker": "3.4.0",
+    "@react-aria/i18n": "3.7.1",
+    "@react-stately/calendar": "3.2.0",
+    "@react-stately/datepicker": "3.4.0",
+    "@internationalized/date": "3.2.0",
     "react-dom": "18.2.0"
   },
   "engines": {
