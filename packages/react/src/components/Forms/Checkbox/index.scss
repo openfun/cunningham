@@ -24,7 +24,7 @@
   cursor: pointer;
 
   &:hover, &:focus-within {
-    background-color: var(--c--theme--colors--greyscale-200);
+    background-color: var(--c--components--forms-checkbox--background-color--hover);
   }
 
   &:focus-within {
