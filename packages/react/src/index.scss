@@ -11,8 +11,10 @@
 @import './components/Forms/LabelledBox';
 @import './components/Forms/Select';
 @import './components/Forms/Switch';
+@import './components/Forms/DatePicker';
 @import './components/Loader';
 @import './components/Pagination';
+@import './components/Popover';
 
 * {
   font-family: var(--c--theme--font--families--base);

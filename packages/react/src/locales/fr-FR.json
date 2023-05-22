@@ -20,6 +20,17 @@
       "select": {
         "toggle_button_aria_label": "Ouvrir le menu",
         "clear_button_aria_label": "Effacer la sélection"
+      },
+      "date_picker": {
+        "toggle_button_aria_label_open": "Ouvrir le calendrier",
+        "toggle_button_aria_label_close": "Fermer le calendrier",
+        "clear_button_aria_label": "Effacer la date",
+        "next_month_button_aria_label": "Mois suivant",
+        "next_year_button_aria_label": "Année suivante",
+        "previous_month_button_aria_label": "Mois précédent",
+        "previous_year_button_aria_label": "Année précédente",
+        "year_select_button_aria_label": "Sélectionner une année",
+        "month_select_button_aria_label": "Sélectionner un mois"
       }
     }
   }
