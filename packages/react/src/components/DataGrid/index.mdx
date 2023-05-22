@@ -1,4 +1,4 @@
-import { Canvas, Meta, Story, Source, ArgsTable } from '@storybook/addon-docs';
+import { Canvas, Meta, Story, Source, ArgTypes } from '@storybook/blocks';
 import { DataGrid } from './index';
 import { SimpleDataGrid } from './SimpleDataGrid';
 import { DataList } from './DataList';
@@ -45,7 +45,7 @@ Here a quick usage example
 
 ### Props
 
-<ArgsTable of={DataList} />
+<ArgTypes of={DataList} />
 
 ## SimpleDataGrid
 
@@ -82,7 +82,7 @@ their states.
 
 ### Props
 
-<ArgsTable of={SimpleDataGrid} />
+<ArgTypes of={SimpleDataGrid} />
 
 ## DataGrid
 
@@ -102,7 +102,7 @@ control over the state of the table, like being able to use `useEffect` to fetch
 
 ### Props
 
-<ArgsTable of={DataGrid} />
+<ArgTypes of={DataGrid} />
 
 ## Columns
 
