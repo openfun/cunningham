@@ -12,3 +12,10 @@ export function randomString(length: number = 8): string {
     result += chars[Math.floor(Math.random() * chars.length)];
   return result;
 }
+export function range(
+  min: number,
+  max: number,
+  step: number = 1
+): Array<number> {
+  return Array.from({ length: max - min + step }, (_, i) => i + min);
+}
