@@ -12,3 +12,9 @@ export function randomString(length: number = 8): string {
     result += chars[Math.floor(Math.random() * chars.length)];
   return result;
 }
+export function range(min: number, max: number): Array<number> {
+  if (max < min) {
+    throw new Error("`min` arg must be inferior to `max` arg.");
+  }
+  return Array.from({ length: max - min + 1 }, (_, i) => i + min);
+}
