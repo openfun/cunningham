@@ -1,39 +1,37 @@
-import { Meta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 import { Button } from "./index";
 
-export default {
+const meta: Meta<typeof Button> = {
   title: "Components/Button",
   component: Button,
-  argTypes: {
-    disabled: {
-      control: "boolean",
-    },
-  },
-} as Meta<typeof Button>;
+};
 
-export const Primary = {
+export default meta;
+type Story = StoryObj<typeof Button>;
+
+export const Primary: Story = {
   args: {
     children: "Primary",
     color: "primary",
   },
 };
 
-export const Secondary = {
+export const Secondary: Story = {
   args: {
     children: "Secondary",
     color: "secondary",
   },
 };
 
-export const Tertiary = {
+export const Tertiary: Story = {
   args: {
     children: "Tertiary",
     color: "tertiary",
   },
 };
 
-export const Disabled = {
+export const Disabled: Story = {
   args: {
     children: "Disabled",
     color: "primary",
@@ -41,14 +39,14 @@ export const Disabled = {
   },
 };
 
-export const Danger = {
+export const Danger: Story = {
   args: {
     children: "Danger",
     color: "danger",
   },
 };
 
-export const Small = {
+export const Small: Story = {
   args: {
     children: "Primary",
     color: "primary",
@@ -56,7 +54,7 @@ export const Small = {
   },
 };
 
-export const IconLeft = {
+export const IconLeft: Story = {
   args: {
     children: "Icon",
     icon: (
@@ -79,7 +77,7 @@ export const IconLeft = {
   },
 };
 
-export const IconRight = {
+export const IconRight: Story = {
   args: {
     children: "Icon",
     iconPosition: "right",
@@ -103,7 +101,7 @@ export const IconRight = {
   },
 };
 
-export const IconOnly = {
+export const IconOnly: Story = {
   args: {
     "aria-label": "Button with only an icon",
     icon: (

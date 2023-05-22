@@ -2,10 +2,9 @@ import { Canvas, Meta, Story, Source, ArgsTable } from '@storybook/addon-docs';
 import { DataGrid } from './index';
 import { SimpleDataGrid } from './SimpleDataGrid';
 import { DataList } from './DataList';
+import * as Stories from './index.stories';
 
-<Meta title="Components/DataGrid/Doc" component={DataGrid}/>
-
-export const Template = (args) => <DataGrid {...args} />;
+<Meta of={Stories}/>
 
 # DataGrid
 
