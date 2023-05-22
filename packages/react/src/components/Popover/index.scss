@@ -1,3 +1,6 @@
+@use 'src/utils';
+
+
 .c__popover {
   position: absolute;
   display: flex;
@@ -5,7 +8,7 @@
   z-index: 1;
 
   &:not(&--borderless) {
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    @extend %shadow;
     background-color: var(--c--components--forms-datepicker--menu-background-color);
   }
 }
