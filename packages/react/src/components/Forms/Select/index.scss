@@ -31,6 +31,10 @@
     &:focus-within {
       border-radius: var(--c--components--forms-select--border-radius--focus);
       border-color: var(--c--components--forms-select--border-color--focus);
+
+      label {
+        color: var(--c--components--forms-select--label-color--focus);
+      }
     }
   }
 

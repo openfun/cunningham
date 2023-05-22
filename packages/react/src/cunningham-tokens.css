@@ -121,6 +121,7 @@
 	--c--components--forms-select--item-font-size: 1rem;
 	--c--components--forms-select--background-color: white;
 	--c--components--forms-select--menu-background-color: white;
+	--c--components--forms-select--label-color--focus: #0556BF;
 	--c--components--forms-radio--border-color: #E7E8EA;
 	--c--components--forms-radio--accent-color: #419A14;
 	--c--components--forms-input--font-weight: 400;
@@ -134,6 +135,7 @@
 	--c--components--forms-input--border-color--focus: #0556BF;
 	--c--components--forms-input--border-style: solid;
 	--c--components--forms-input--color: #303C4B;
+	--c--components--forms-input--label-color--focus: #0556BF;
 	--c--components--forms-field--width: 292px;
 	--c--components--forms-field--font-size: 0.6875rem;
 	--c--components--forms-field--color: #79818A;
