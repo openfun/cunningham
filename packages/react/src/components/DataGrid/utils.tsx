@@ -5,7 +5,11 @@ import {
   PaginationState,
   SortingState,
 } from "@tanstack/react-table";
-import React from "react";
+import React, { ReactNode } from "react";
+import {
+  ColumnDefBase,
+  DisplayColumnDef,
+} from "@tanstack/table-core/src/types";
 import { Checkbox } from ":/components/Forms/Checkbox";
 import { PaginationProps } from ":/components/Pagination";
 import { Column, Row, SortModel } from ":/components/DataGrid/index";
@@ -28,17 +32,16 @@ export const useHeadlessColumns = ({
       id: column.field ?? "actions",
       enableSorting: column.enableSorting,
       header: column.headerName,
-      cell: (info: CellContext<Row, any>) => {
-        if (column.renderCell) {
-          return column.renderCell({ row: info.row.original });
-        }
-        return info.row.original[info.column.id];
-      },
     };
     if (column.field) {
       return columnHelper.accessor(column.field, opts);
     }
-    return columnHelper.display(opts);
+    return columnHelper.display({
+      ...opts,
+      cell: (info) => {
+        return column.renderCell!({ row: info.row.original });
+      },
+    });
   });
   if (enableRowSelection) {
     headlessColumns = [

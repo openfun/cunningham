@@ -214,6 +214,7 @@ describe("<DataGrid/>", () => {
       });
     });
   });
+
   it("should render custom cells", async () => {
     const database = Array.from(Array(10)).map(() => ({
       id: faker.string.uuid(),
@@ -261,6 +262,7 @@ describe("<DataGrid/>", () => {
       });
     });
   });
+
   it("should render highlighted column", async () => {
     const database = Array.from(Array(10)).map(() => ({
       id: faker.string.uuid(),
@@ -321,6 +323,45 @@ describe("<DataGrid/>", () => {
       expect(Array.from(tds[2].classList)).toContain(
         "c__datagrid__row__cell--highlight"
       );
+    });
+  });
+
+  it("should render nested fields", async () => {
+    const database = Array.from(Array(10)).map(() => ({
+      id: faker.string.uuid(),
+      sub: {
+        name: faker.person.fullName(),
+      },
+    }));
+
+    const Component = () => {
+      return (
+        <CunninghamProvider>
+          <DataGrid
+            columns={[
+              {
+                field: "sub.name",
+                headerName: "Name",
+              },
+            ]}
+            rows={database}
+          />
+        </CunninghamProvider>
+      );
+    };
+
+    render(<Component />);
+
+    const table = screen.getByRole("table");
+    const ths = getAllByRole(table, "columnheader");
+    expect(ths.length).toBe(1);
+    expect(ths[0].textContent).toEqual("Name");
+
+    database.forEach((row) => {
+      const element = screen.getByTestId(row.id);
+      const tds = getAllByRole(element, "cell");
+      expect(tds.length).toBe(1);
+      expect(tds[0].textContent).toEqual(row.sub.name);
     });
   });
 });
