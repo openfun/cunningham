@@ -65,6 +65,10 @@
   &:focus-within {
     border-radius: var(--c--components--forms-input--border-radius--focus);
     border-color: var(--c--components--forms-input--border-color--focus) !important;
+
+    label {
+      color: var(--c--components--forms-input--label-color--focus);
+    }
   }
 
   &--disabled {

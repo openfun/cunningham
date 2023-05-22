@@ -19,4 +19,5 @@ export const tokens = (defaults: DefaultTokens) => ({
   "item-font-size": defaults.theme.font.sizes.l,
   "background-color": "white",
   "menu-background-color": "white",
+  "label-color--focus": defaults.theme.colors["primary-600"],
 });
