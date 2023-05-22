@@ -22,6 +22,17 @@
       "select": {
         "toggle_button_aria_label": "Toggle dropdown",
         "clear_button_aria_label": "Clear selection"
+      },
+      "date_picker": {
+        "toggle_button_aria_label_open": "Open calendar",
+        "toggle_button_aria_label_close": "Close calendar",
+        "clear_button_aria_label": "Clear date",
+        "next_month_button_aria_label": "Next month",
+        "next_year_button_aria_label": "Next year",
+        "previous_month_button_aria_label": "Previous month",
+        "previous_year_button_aria_label": "Previous year",
+        "year_select_button_aria_label": "Select a year",
+        "month_select_button_aria_label": "Select a month"
       }
     }
   }
