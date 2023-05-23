@@ -1,4 +1,6 @@
-export default {
+import { DefaultTokens } from "@openfun/cunningham-react";
+
+const config: DefaultTokens = {
   theme: {
     colors: {
       "primary-500": "purple",
@@ -10,3 +12,5 @@ export default {
     },
   },
 };
+
+export default config;
