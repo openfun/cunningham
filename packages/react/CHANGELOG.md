@@ -1,5 +1,27 @@
 # @openfun/cunningham-react
 
+## 0.7.0
+
+### Minor Changes
+
+- eb6692b: add a design token for checkbox hover background
+- b5fcfdf: add support for CJS
+- e05c6b7: export DefaultToken types and defaultTokens variable
+- 527c3fc: set specific cursor on checkbox related components
+- c53d348: add customization doc
+- c117279: add clearable option to Select
+- 9d7ad48: add Switch component
+- e72606c: make inputs labels bolder
+- c93c8d2: add disable property to select option
+- d79f01f: add the possibility to hide select label
+
+### Patch Changes
+
+- 8cda417: fix Storybook source blocks
+- bc6d085: change label color on state error ( select, input )
+- ce6eb50: migrate ArgsTable to ArgTypes and rework imports
+- 75c6e2e: change label color when focused ( select, input )
+
 ## 0.6.2
 
 ### Patch Changes
@@ -87,7 +109,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.6.2...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.7.0...main
+[0.7.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.6.2...0.7.0
 [0.6.2]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.6.1...0.6.2
 [0.6.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.6.0...0.6.1
 [0.6.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.5.0...0.6.0
