@@ -21,7 +21,11 @@
   }
 
   &--success {
-    color: var(--c--theme--colors--success-600)
+    color: var(--c--theme--colors--success-600);
+
+    .c__field__text {
+      color: var(--c--theme--colors--success-800);
+    }
   }
 
   &--full-width {
