@@ -37,7 +37,7 @@ export interface BaseProps<T extends Row = Row> {
   columns: Column<T>[];
   rows: T[];
   isLoading?: boolean;
-  enableRowSelection?: boolean | ((row: T) => boolean);
+  enableRowSelection?: TableOptions<T>["enableRowSelection"];
   onRowSelectionChange?: (newSelection: RowSelectionState) => void;
   rowSelection?: RowSelectionState;
 }
@@ -47,11 +47,11 @@ interface Props<T extends Row = Row> extends BaseProps<T> {
   sortModel?: SortModel;
   onSortModelChange?: (newSortModel: SortModel) => void;
   /** Options for the underlying tanstack table. */
-  tableOptions?: TableOptions<Row>;
+  tableOptions?: TableOptions<T>;
   displayHeader?: boolean;
 }
 
-export const DataGrid = ({
+export const DataGrid = <T extends Row>({
   columns,
   rows,
   pagination,
@@ -63,7 +63,7 @@ export const DataGrid = ({
   rowSelection,
   tableOptions,
   displayHeader = true,
-}: Props) => {
+}: Props<T>) => {
   const { t } = useCunningham();
   const headlessColumns = useHeadlessColumns({ columns, enableRowSelection });
 

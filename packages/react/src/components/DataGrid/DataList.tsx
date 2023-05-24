@@ -1,6 +1,6 @@
 import React from "react";
-import { BaseProps, DataGrid } from ":/components/DataGrid/index";
+import { BaseProps, DataGrid, Row } from ":/components/DataGrid/index";
 
-export const DataList = ({ rows, ...props }: BaseProps) => {
+export const DataList = <T extends Row>({ rows, ...props }: BaseProps<T>) => {
   return <DataGrid {...props} displayHeader={false} rows={rows} />;
 };
