@@ -153,17 +153,6 @@
 
       label {
         cursor: default;
-      }
-
-      input {
-        color: var(--c--theme--colors--greyscale-600);
-        background-color: white;
-      }
-    }
-
-
-    .c__input__inner {
-      .c__input, label {
         color: var(--c--theme--colors--greyscale-600);
       }
     }
