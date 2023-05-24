@@ -18,6 +18,10 @@
 
   &--error {
     color: var(--c--theme--colors--danger-500);
+
+    label, .labelled-box label {
+      color: var(--c--theme--colors--danger-500);
+    }
   }
 
   &--success {
