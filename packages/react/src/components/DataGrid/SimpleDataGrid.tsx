@@ -10,18 +10,18 @@ import {
 /**
  * Handles sorting, pagination.
  */
-export const SimpleDataGrid = ({
+export const SimpleDataGrid = <T extends Row>({
   rows,
   defaultPaginationParams,
   defaultSortModel = [],
   ...props
-}: BaseProps & {
+}: BaseProps<T> & {
   /** Pagination default props, should never change. */
   defaultPaginationParams?: Parameters<typeof usePagination>[0] | boolean;
   /** Pagination default props, should never change. */
   defaultSortModel?: SortModel;
 }) => {
-  const [realRows, setRealRows] = useState<Row[]>([]);
+  const [realRows, setRealRows] = useState<T[]>([]);
   const [sortModel, setSortModel] = useState<SortModel>(defaultSortModel);
   const realPaginationParams = useMemo(() => {
     if (typeof defaultPaginationParams === "boolean") {

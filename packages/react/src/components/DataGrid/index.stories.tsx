@@ -173,7 +173,7 @@ export const FullServerSide = () => {
       sort: "desc",
     },
   ]);
-  const [rows, setRows] = useState<any[]>([]);
+  const [rows, setRows] = useState<typeof database>([]);
 
   useEffect(() => {
     // Simulate server-side fetching.
@@ -258,19 +258,29 @@ export const DataListOnly = () => {
         id: `list key for element ${index}`,
         title: faker.random.word(),
         date: faker.date.past(1).toISOString(),
-        action: (
-          <Button size="small" color="secondary">
-            Do it
-          </Button>
-        ),
       })),
     []
   );
-  const columns = [{ field: "title" }, { field: "date" }, { field: "action" }];
 
   return (
     <CunninghamProvider>
-      <DataList rows={database} columns={columns} />
+      <DataList
+        rows={database}
+        columns={[
+          { field: "title" },
+          { field: "date" },
+          {
+            headerName: "action",
+            renderCell: () => {
+              return (
+                <Button size="small" color="secondary">
+                  Do it
+                </Button>
+              );
+            },
+          },
+        ]}
+      />
     </CunninghamProvider>
   );
 };

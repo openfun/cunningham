@@ -1,32 +1,27 @@
 import {
-  CellContext,
   ColumnDef,
   createColumnHelper,
   PaginationState,
   SortingState,
 } from "@tanstack/react-table";
-import React, { ReactNode } from "react";
-import {
-  ColumnDefBase,
-  DisplayColumnDef,
-} from "@tanstack/table-core/src/types";
+import React from "react";
 import { Checkbox } from ":/components/Forms/Checkbox";
 import { PaginationProps } from ":/components/Pagination";
-import { Column, Row, SortModel } from ":/components/DataGrid/index";
+import { BaseProps, Column, Row, SortModel } from ":/components/DataGrid/index";
 import { useCunningham } from ":/components/Provider";
 
 /**
  * Converts Cunningham's columns to the underlying tanstack table.
  */
-export const useHeadlessColumns = ({
+export const useHeadlessColumns = <T extends Row>({
   columns,
   enableRowSelection,
 }: {
-  columns: Column[];
-  enableRowSelection?: boolean | ((row: Row) => boolean);
-}): ColumnDef<Row, any>[] => {
+  columns: Column<T>[];
+  enableRowSelection?: BaseProps<T>["enableRowSelection"];
+}): ColumnDef<T, any>[] => {
   const { t } = useCunningham();
-  const columnHelper = createColumnHelper<Row>();
+  const columnHelper = createColumnHelper<T>();
   let headlessColumns = columns.map((column) => {
     const opts = {
       id: column.field ?? "actions",
@@ -34,7 +29,9 @@ export const useHeadlessColumns = ({
       header: column.headerName,
     };
     if (column.field) {
-      return columnHelper.accessor(column.field, opts);
+      // The any cast is needed because the type of the accessor is hard-defined on react-table.
+      // On our side we only use string as type for simplicity purpose.
+      return columnHelper.accessor(column.field as any, opts);
     }
     return columnHelper.display({
       ...opts,
