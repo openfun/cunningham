@@ -76,10 +76,8 @@
     color: var(--c--theme--colors--greyscale-400);
     border-color: var(--c--theme--colors--greyscale-200);
 
-    .c__input__inner {
-      .c__input, label {
-        color: var(--c--theme--colors--greyscale-600);
-      }
+    .c__input, .labelled-box label {
+      color: var(--c--theme--colors--greyscale-600);
     }
 
     &:hover {
