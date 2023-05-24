@@ -14,14 +14,14 @@
     "@openfun/cunningham-react": "*",
     "@openfun/cunningham-tokens": "*",
     "@openfun/typescript-configs": "*",
-    "@types/react": "18.2.6",
+    "@types/react": "18.2.7",
     "@types/react-dom": "18.2.4",
     "@vitejs/plugin-react": "4.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "sass": "1.62.1",
     "typescript": "5.0.4",
-    "vite": "4.3.5"
+    "vite": "4.3.8"
   },
   "engines": {
     "node": ">=16.0.0"
