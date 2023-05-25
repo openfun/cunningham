@@ -1,3 +1,5 @@
+@use 'src/utils';
+
 .c__select {
   position: relative;
 
@@ -116,9 +118,8 @@
 
     ul {
       list-style-type: none;
-      padding: 0;
+      padding: px-to-rem(3px) 0 0;
       margin: 0;
-      padding-top: 3px;
     }
 
     &__item {

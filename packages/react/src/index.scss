@@ -1,5 +1,6 @@
 @import "cunningham-tokens";
 @import '@openfun/cunningham-tokens/default-tokens';
+@import './utils';
 @import './components/Accessibility';
 @import './components/Button';
 @import './components/DataGrid';
@@ -12,7 +13,6 @@
 @import './components/Forms/Switch';
 @import './components/Loader';
 @import './components/Pagination';
-@import './utils';
 
 * {
   font-family: var(--c--theme--font--families--base);
