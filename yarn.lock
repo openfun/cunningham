@@ -1903,7 +1903,7 @@
   resolved "https://registry.yarnpkg.com/@fal-works/esbuild-plugin-global-externals/-/esbuild-plugin-global-externals-2.1.2.tgz#c05ed35ad82df8e6ac616c68b92c2282bd083ba4"
   integrity sha512-cEee/Z+I12mZcFJshKcCqC8tuX5hG3s+d+9nZ3LabqKF1vKdF41B92pJVCBggjAGORAeOzyyDDKrZwIkLffeOQ==
 
-"@fontsource-variable/roboto-flex@^5.0.1":
+"@fontsource-variable/roboto-flex@5.0.1":
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/@fontsource-variable/roboto-flex/-/roboto-flex-5.0.1.tgz#fa9c402ede0650f21166454a847e94bd19471a8b"
   integrity sha512-U0C6V2RyyZOpEfQ+apNqK1J0qu+YZuVjgbsB4ilkgYV4FJbdO8VW0jUNIxsC6Mvn5C6yoGHyLizz4LZkOxhtug==
