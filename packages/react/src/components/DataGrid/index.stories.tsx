@@ -107,7 +107,7 @@ export const ClientSideWithPagination = () => {
         id: faker.string.uuid(),
         carName: faker.company.name(),
         year: faker.date.past().getFullYear(),
-        price: +faker.commerce.price(5000, 5005),
+        price: +faker.commerce.price({ min: 5000, max: 5005 }),
       })),
     []
   );
@@ -256,8 +256,8 @@ export const DataListOnly = () => {
     () =>
       Array.from(Array(5)).map((_value, index) => ({
         id: `list key for element ${index}`,
-        title: faker.random.word(),
-        date: faker.date.past(1).toISOString(),
+        title: faker.word.sample(),
+        date: faker.date.past({ years: 1 }).toISOString(),
       })),
     []
   );
