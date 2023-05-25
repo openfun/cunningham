@@ -102,17 +102,18 @@ const fontSizes = {
 };
 
 const fontWeights = {
-  thin: 100,
-  regular: 300,
-  medium: 400,
-  bold: 500,
+  thin: 200,
+  light: 300,
+  regular: 400,
+  medium: 500,
+  bold: 600,
   extrabold: 700,
-  black: 900,
+  black: 800,
 };
 
 const fontFamilies = {
-  base: "Roboto",
-  accent: "Roboto",
+  base: '"Roboto Flex Variable", sans-serif',
+  accent: '"Roboto Flex Variable", sans-serif',
 };
 
 const spacings = {

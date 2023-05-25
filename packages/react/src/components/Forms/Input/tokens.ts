@@ -1,7 +1,7 @@
 import { DefaultTokens } from "@openfun/cunningham-tokens";
 
 export const tokens = (defaults: DefaultTokens) => ({
-  "font-weight": defaults.theme.font.weights.medium,
+  "font-weight": defaults.theme.font.weights.regular,
   "font-size": defaults.theme.font.sizes.l,
   "border-radius": "8px",
   "border-radius--hover": "2px",
