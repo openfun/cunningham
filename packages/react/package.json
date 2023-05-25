@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@fontsource/material-icons": "5.0.1",
-    "@fontsource/roboto": "5.0.1",
+    "@fontsource-variable/roboto-flex": "5.0.1",
     "@openfun/cunningham-tokens": "*",
     "@tanstack/react-table": "8.9.1",
     "classnames": "2.3.2",
