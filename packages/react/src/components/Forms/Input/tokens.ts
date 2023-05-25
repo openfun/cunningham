@@ -6,7 +6,7 @@ export const tokens = (defaults: DefaultTokens) => ({
   "border-radius": "8px",
   "border-radius--hover": "2px",
   "border-radius--focus": "2px",
-  "border-width": "2px",
+  "border-width": "1px",
   "border-color": defaults.theme.colors["greyscale-300"],
   "border-color--hover": defaults.theme.colors["greyscale-500"],
   "border-color--focus": defaults.theme.colors["primary-600"],
