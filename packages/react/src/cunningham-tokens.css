@@ -111,7 +111,7 @@
 	--c--components--forms-select--border-radius--focus: 2px;
 	--c--components--forms-select--border-radius--hover: 2px;
 	--c--components--forms-select--border-style: solid;
-	--c--components--forms-select--border-width: 2px;
+	--c--components--forms-select--border-width: 1px;
 	--c--components--forms-select--color: #303C4B;
 	--c--components--forms-select--font-size: 1rem;
 	--c--components--forms-select--height: 3.5rem;
@@ -130,7 +130,7 @@
 	--c--components--forms-input--border-radius: 8px;
 	--c--components--forms-input--border-radius--hover: 2px;
 	--c--components--forms-input--border-radius--focus: 2px;
-	--c--components--forms-input--border-width: 2px;
+	--c--components--forms-input--border-width: 1px;
 	--c--components--forms-input--border-color: #E7E8EA;
 	--c--components--forms-input--border-color--hover: #9EA3AA;
 	--c--components--forms-input--border-color--focus: #0556BF;
