@@ -6,6 +6,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: ReactNode;
   iconPosition?: "left" | "right";
   active?: boolean;
+  fullWidth?: boolean;
 }
 
 export const Button = forwardRef<HTMLButtonElement, Props>(
@@ -18,6 +19,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(
       icon,
       active,
       className,
+      fullWidth,
       ...props
     },
     ref
@@ -36,6 +38,9 @@ export const Button = forwardRef<HTMLButtonElement, Props>(
     }
     if (active) {
       classes.push("c__button--active");
+    }
+    if (fullWidth) {
+      classes.push("c__button--full-width");
     }
     return (
       <button className={classes.join(" ")} {...props} ref={ref}>

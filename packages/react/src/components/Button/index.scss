@@ -30,6 +30,11 @@
     pointer-events: none;
   }
 
+  &--full-width {
+    width: 100%;
+    justify-content: center;
+  }
+
   &--medium {
     height: var(--c--components--button--medium-height);
     font-size: var(--c--components--button--medium-font-size);
