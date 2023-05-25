@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .c__offscreen {
   position: absolute;
   width: 1px;
@@ -9,4 +11,21 @@
   clip-path: inset(50%);
   white-space: nowrap;
   border: 0;
+}
+
+
+@function strip-unit($number) {
+  // Divide $number by its own unit to get a unitless number.
+  // According to math.div documentation, "Any units shared by both numbers will be canceled out."
+  // while different unit between numerator and denominator would be kept.
+  // More to read here https://sass-lang.com/documentation/modules/math#div.
+  // i.e. 16px / 1px = 16
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return math.div($number, ($number * 0 + 1));
+  }
+  @return $number;
+}
+
+@function px-to-rem($size, $base-font-size:16px) {
+  @return math.div(strip-unit($size), strip-unit($base-font-size)) * 1rem;
 }
