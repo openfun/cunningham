@@ -21,6 +21,7 @@
 <div align="center">
 
 [![CircleCI](https://circleci.com/gh/openfun/cunningham/tree/main.svg?style=svg)](https://circleci.com/gh/openfun/cunningham/tree/main)
+[![Discord](https://img.shields.io/discord/1082704478463082496?style=flat&logo=discord&label=discord&labelColor=5b61f1&logoColor=white&color=313338)](https://discord.gg/3qjUJjp)
 
 </div>
 
