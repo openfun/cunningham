@@ -9,7 +9,7 @@
 **A design system and a components library.**
 
 <a href="https://openfun.github.io/cunningham"><b>📚&nbsp;&nbsp;Documentation</b></a> •
-<a href="https://www.figma.com/file/sSEMhow3g5zpEkyDLEQ1ZO/DS-Cunningham?node-id=47%3A261&t=nKRnadK4sslyVxD7-0"><b>🖌️&nbsp;&nbsp;Figma</b></a>
+<a href="https://www.figma.com/file/JbPT1R6YUFW4oH8jHvH960/DS-Cunningham---PUBLIC?type=design"><b>🖌️&nbsp;&nbsp;Figma</b></a>
 </div>
 
 - **Atomic**: We follow [atomic design principles](https://bradfrost.com/blog/post/atomic-web-design/).
