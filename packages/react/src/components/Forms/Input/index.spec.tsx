@@ -37,6 +37,7 @@ describe("<Input/>", () => {
         <Input label="Second name" />
       </div>
     );
+
     const input: HTMLInputElement = screen.getByRole("textbox", {
       name: "First name",
     });
@@ -45,15 +46,21 @@ describe("<Input/>", () => {
     });
     const label = screen.getByText("First name");
     expect(Array.from(label.classList)).toContain("placeholder");
+
     // Clicking on the input should remove the placeholder class.
     await user.click(input);
+
     expect(Array.from(label.classList)).not.toContain("placeholder");
+
     // Writing something should remove the placeholder class too.
     await user.type(input, "John");
+
     expect(Array.from(label.classList)).not.toContain("placeholder");
+
     // Clearing the input and focus out should add the placeholder class
     await user.clear(input);
     await user.click(input2);
+
     expect(Array.from(label.classList)).toContain("placeholder");
   });
   it("renders with state=success", async () => {
