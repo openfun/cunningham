@@ -7,7 +7,7 @@ const COLORS = defaultTokens.theme.colors;
 const theme = create({
   base: 'light',
   brandUrl: 'https://github.com/openfun/cunningham',
-  brandImage: '/logo-cunningham.svg',
+  brandImage: 'logo-cunningham.svg',
   brandTitle: 'Cunningham',
   brandTarget: '_self',
 
