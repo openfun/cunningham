@@ -115,6 +115,7 @@ export const DatePicker = ({
         className={classNames("c__date-picker", {
           "c__date-picker--disabled": disabled,
           "c__date-picker--invalid": isDateInvalid,
+          "c__date-picker--success": props.state === "success",
           "c__date-picker--focused":
             !isDateInvalid && !disabled && (state.isOpen || isFocused),
         })}
