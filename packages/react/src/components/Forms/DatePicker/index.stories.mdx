@@ -1,0 +1,86 @@
+
+import { Canvas, Meta, Story, Source, ArgsTable } from '@storybook/addon-docs';
+import { DatePicker } from "./index";
+
+<Meta title="Components/Forms/DatePicker/Doc" component={DatePicker}/>
+
+
+# DatePicker
+
+
+Cunningham provides a versatile DatePicker component to select or input a date in your form. It uses the headless
+UI components provided by [React-Spectrum](https://react-spectrum.adobe.com/react-aria/useDatePicker.html) from Adobe.
+
+> For now it is only available for single date selection, a range date picker and time features will be available soon.
+
+
+## Basic
+
+<Canvas>
+  <Story id="components-forms-datepicker--default"/>
+</Canvas>
+
+## Default value
+You can use the following props to change the default value of the DatePicker component by using the `state` props.
+
+<Canvas sourceState="shown">
+  <Story id="components-forms-datepicker--default-value"/>
+</Canvas>
+
+
+## States
+
+You can use the following props to change the state of the DatePicker component by using the `state` props.
+
+<Canvas sourceState="shown">
+  <Story id="components-forms-datepicker--error"/>
+  <Story id="components-forms-datepicker--success"/>
+</Canvas>
+
+## Disabled
+
+As a regular input, you can disable it by using the `disabled` props.
+
+<Canvas sourceState="shown">
+  <Story id="components-forms-datepicker--disabled"/>
+  <Story id="components-forms-datepicker--disabled-value"/>
+</Canvas>
+
+## Texts
+
+As the component uses [Field](?path=/story/components-forms-field-doc--page), you can use the `text` props to provide a description of the checkbox.
+
+<Canvas sourceState="shown">
+  <Story id="components-forms-datepicker--with-text"/>
+</Canvas>
+
+## Controlled / Non Controlled
+
+Like a native input, you can use the DatePicker component in a controlled or non controlled way. You can see the example below
+using the component in a controlled way.
+
+<Canvas sourceState="shown">
+  <Story id="components-forms-datepicker--controlled"/>
+</Canvas>
+
+## MinValue / MaxValue
+
+You can pass a range of date that are valid using the `minValue` and `maxValue` props.
+
+<Canvas sourceState="shown">
+  <Story id="components-forms-datepicker--min-max-value"/>
+</Canvas>
+
+## Invalid date
+
+When passing an invalid date, for example outside of the valid range, the DatePicker component would render invalid.
+
+<Canvas sourceState="shown">
+  <Story id="components-forms-datepicker--invalid-value"/>
+</Canvas>
+
+## Props
+
+You can see the list of props below.
+
+<ArgsTable of={DatePicker} />
