@@ -1,6 +1,6 @@
 import userEvent from "@testing-library/user-event";
 import { render, screen, within } from "@testing-library/react";
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { expect, vi, afterEach } from "vitest";
 import { CunninghamProvider } from ":/components/Provider";
 import { DatePicker } from ":/components/Forms/DatePicker/index";
@@ -559,9 +559,83 @@ describe("<DatePicker/>", () => {
     await expectDatePickerStateToBe("focused");
   });
 
-  // it("submits forms data", async () => {
-  // todo : understand this.
-  // });
+  it("submits forms data", async () => {
+    let formData: any;
+    const Wrapper = () => {
+      const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const data = new FormData(e.currentTarget);
+        formData = {
+          datepicker: data.get("datepicker"),
+        };
+      };
+
+      return (
+        <CunninghamProvider>
+          <div>
+            <form onSubmit={onSubmit}>
+              <DatePicker label="Pick a date" name="datepicker" />
+              <Button>Submit</Button>
+            </form>
+          </div>
+        </CunninghamProvider>
+      );
+    };
+    render(<Wrapper />);
+
+    const user = userEvent.setup();
+    const submitButton = screen.getByRole("button", {
+      name: "Submit",
+    });
+
+    // Submit the form being empty.
+    await user.click(submitButton);
+    expect(formData).toEqual({
+      datepicker: null,
+    });
+
+    // Open calendar
+    const [input, toggleButton] = await screen.findAllByRole("button");
+    await user.click(toggleButton);
+
+    const monthSegment = await screen.getByRole("spinbutton", {
+      name: "month",
+    });
+    // Select the first segment, month one.
+    await user.click(monthSegment);
+    expect(monthSegment).toHaveFocus();
+
+    // Type date's value.
+    await user.keyboard("{1}{2}{5}{2}{0}{2}{3}");
+
+    // Submit form being filled with a date.
+    await user.click(submitButton);
+    expectCalendarToBeClosed();
+    expectDateFieldToBeDisplayed();
+
+    // Make sure form's value matches.
+    expect(formData).toEqual({
+      datepicker: "2023-12-05",
+    });
+
+    // Clear picked date.
+    const clearButton = screen.getByRole("button", {
+      name: "Clear date",
+    });
+    await user.click(clearButton);
+    expectDateFieldToBeDisplayed();
+
+    // Submit the form being empty.
+    await user.click(submitButton);
+
+    // Date field disappears when the user click outside the comppnent.
+    expectDateFieldToBeHidden();
+
+    // Make sure form's value is null.
+    expect(formData).toEqual({
+      datepicker: null,
+    });
+  });
 
   it("clicks next and previous focused month", async () => {
     const defaultValue = new Date("2023-05-24");
