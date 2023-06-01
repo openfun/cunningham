@@ -1,4 +1,4 @@
-import { PropsWithChildren, RefObject } from "react";
+import React, { PropsWithChildren, RefObject } from "react";
 import { useHandleClickOutside } from ":/hooks/useHandleClickOutside";
 
 type PopoverProps = PropsWithChildren & {

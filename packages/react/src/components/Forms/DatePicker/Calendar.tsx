@@ -91,12 +91,17 @@ export const Calendar = ({
     state
   );
 
-  const monthFormatter = useDateFormatter({
+  const monthItemsFormatter = useDateFormatter({
+    month: "long",
+    timeZone: state.timeZone,
+  });
+
+  const selectedMonthItemFormatter = useDateFormatter({
     month: "short",
     timeZone: state.timeZone,
   });
 
-  const yearFormatter = useDateFormatter({
+  const yearItemsFormatter = useDateFormatter({
     year: "numeric",
     timeZone: state.timeZone,
   });
@@ -110,8 +115,10 @@ export const Calendar = ({
       const date = state.focusedDate.set({ month: monthNumber });
       return {
         value: monthNumber,
-        label: monthFormatter.format(date.toDate(state.timeZone)),
-        disabled: state.isInvalid(date),
+        label: monthItemsFormatter.format(date.toDate(state.timeZone)),
+        disabled:
+          (!!state.minValue && state.minValue.month > monthNumber) ||
+          (!!state.maxValue && state.maxValue.month < monthNumber),
       };
     });
   }, [state.maxValue, state.minValue, state.focusedDate.year]);
@@ -143,7 +150,7 @@ export const Calendar = ({
       const date = state.focusedDate.set({ year: yearNumber });
       return {
         value: yearNumber,
-        label: yearFormatter.format(date.toDate(state.timeZone)),
+        label: yearItemsFormatter.format(date.toDate(state.timeZone)),
         disabled:
           (!!state.minValue && state.minValue.year > yearNumber) ||
           (!!state.maxValue && state.maxValue.year < yearNumber),
@@ -190,6 +197,19 @@ export const Calendar = ({
   }, [state.focusedDate.year]);
   const { t } = useCunningham();
 
+  // isDisabled and onPress props don't exist on the <Button /> component.
+  // remove them to avoid any warning.
+  const {
+    isDisabled: isPrevButtonDisabled,
+    onPress: onPressPrev,
+    ...prevButtonOtherProps
+  } = prevButtonProps;
+  const {
+    isDisabled: isNextButtonDisabled,
+    onPress: onPressNext,
+    ...nextButtonOtherProps
+  } = nextButtonProps;
+
   return (
     <div className="c__calendar">
       <div
@@ -207,15 +227,16 @@ export const Calendar = ({
               size="small"
               icon={<span className="material-icons">navigate_before</span>}
               {...{
-                ...prevButtonProps,
+                ...prevButtonOtherProps,
                 "aria-label": t(
                   "components.forms.date_picker.previous_month_button_aria_label"
                 ),
               }}
-              disabled={prevButtonProps.isDisabled}
+              disabled={isPrevButtonDisabled}
               onClick={() => state.focusPreviousSection()}
             />
             <Button
+              className="c__calendar__wrapper__header__actions__dropdown"
               color="tertiary"
               size="small"
               iconPosition="right"
@@ -225,19 +246,21 @@ export const Calendar = ({
                 "components.forms.date_picker.month_select_button_aria_label"
               )}
             >
-              {monthFormatter.format(state.focusedDate.toDate(state.timeZone))}
+              {selectedMonthItemFormatter.format(
+                state.focusedDate.toDate(state.timeZone)
+              )}
             </Button>
             <Button
               color="tertiary"
               size="small"
               icon={<span className="material-icons">navigate_next</span>}
               {...{
-                ...nextButtonProps,
+                ...nextButtonOtherProps,
                 "aria-label": t(
                   "components.forms.date_picker.next_month_button_aria_label"
                 ),
               }}
-              disabled={nextButtonProps.isDisabled}
+              disabled={isNextButtonDisabled}
               onClick={() => state.focusNextSection()}
             />
           </div>
@@ -256,6 +279,7 @@ export const Calendar = ({
               )}
             />
             <Button
+              className="c__calendar__wrapper__header__actions__dropdown"
               color="tertiary"
               size="small"
               iconPosition="right"
@@ -265,7 +289,9 @@ export const Calendar = ({
                 "components.forms.date_picker.year_select_button_aria_label"
               )}
             >
-              {yearFormatter.format(state.focusedDate.toDate(state.timeZone))}
+              {yearItemsFormatter.format(
+                state.focusedDate.toDate(state.timeZone)
+              )}
             </Button>
             <Button
               color="tertiary"

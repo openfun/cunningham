@@ -164,20 +164,23 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-
         overflow: hidden;
         white-space: nowrap;
-        min-width: 12em;
+        min-width: 8.5rem;
+
+        &__dropdown {
+          padding: 0 0 0 0.5rem;
+        }
       }
     }
 
     &__grid {
       width: 100%;
-      padding-top: 0.5em;
+      padding-top: 0.5rem;
       table-layout: fixed;
 
       &__header-row {
-        line-height: 4em;
+        line-height: 3rem;
         font-size: var(--c--components--button--small-font-size);
 
         th {
@@ -188,7 +191,7 @@
 
       &__week-row {
         &__button {
-          margin: 0.3em auto;
+          margin: 0.2rem auto;
           &--selected {
             border-radius: 100%;
           }

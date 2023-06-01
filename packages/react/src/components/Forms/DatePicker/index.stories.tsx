@@ -43,13 +43,13 @@ export const MinMaxValue = {
   render: Template,
   args: {
     defaultValue: "2023-05-24",
-    minValue: "2023-04-15",
-    maxValue: "2023-06-12",
+    minValue: "2023-04-23",
+    maxValue: "2023-06-23",
   },
 };
 
 export const Controlled = () => {
-  const [value, setValue] = useState<string>("2023-05-24");
+  const [value, setValue] = useState<string | Date>(new Date("2023-05-26"));
   return (
     <CunninghamProvider>
       <div>

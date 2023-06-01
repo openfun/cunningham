@@ -1,5 +1,12 @@
 import React, { PropsWithChildren, useEffect, useRef, useState } from "react";
-import { DateValue, parseDate } from "@internationalized/date";
+import {
+  CalendarDate,
+  DateValue,
+  parseAbsoluteToLocal,
+  parseDate,
+  parseZonedDateTime,
+  toCalendarDate,
+} from "@internationalized/date";
 import {
   DatePickerStateOptions,
   useDatePickerState,
@@ -18,10 +25,10 @@ type DatePickerProps = PropsWithChildren &
   FieldProps & {
     label: string;
     name?: string;
-    value?: string;
-    defaultValue?: string;
-    minValue?: string;
-    maxValue?: string;
+    value?: null | Date | string;
+    defaultValue?: Date | string;
+    minValue?: Date | string;
+    maxValue?: Date | string;
     onChange?: (value: string) => void | undefined;
     disabled?: boolean;
   };
@@ -32,23 +39,44 @@ export const DatePicker = ({
   disabled = false,
   ...props
 }: DatePickerProps) => {
+  if (props.defaultValue && props.value) {
+    throw new Error(
+      "You cannot use both defaultValue and value props on DatePicker component"
+    );
+  }
+
+  const parseCalendarDate = (
+    rawDate: Date | string | undefined
+  ): undefined | CalendarDate => {
+    if (!rawDate) {
+      return undefined;
+    }
+    try {
+      const ISODateString = new Date(rawDate).toISOString();
+      return toCalendarDate(parseAbsoluteToLocal(ISODateString));
+    } catch (e) {
+      throw new Error(
+        "Invalid date format when initializing props on DatePicker component"
+      );
+    }
+  };
+
   const datePickerOptions: DatePickerStateOptions<DateValue> = {
     value:
-      props.value === undefined
-        ? undefined
-        : (props.value && parseDate(props.value)) || null,
-    defaultValue: props.defaultValue
-      ? parseDate(props.defaultValue)
-      : undefined,
-    minValue: props.minValue ? parseDate(props.minValue) : undefined,
-    maxValue: props.maxValue ? parseDate(props.maxValue) : undefined,
-    onChange: (v: DateValue | null) => {
-      const date = v?.toString() || "";
-      props.onChange?.(date);
+      // Force clear the component's value when passing null or an empty string.
+      props.value === "" || props.value === null
+        ? null
+        : parseCalendarDate(props.value),
+    defaultValue: parseCalendarDate(props.defaultValue),
+    minValue: parseCalendarDate(props.minValue),
+    maxValue: parseCalendarDate(props.maxValue),
+    onChange: (value: DateValue | null) => {
+      props.onChange?.(value?.toString() || "");
     },
     shouldCloseOnSelect: true,
     granularity: "day",
     isDisabled: disabled,
+    label,
   };
 
   const state = useDatePickerState(datePickerOptions);
@@ -76,6 +104,10 @@ export const DatePicker = ({
     );
   }, [state.validationState, props.state]);
 
+  // onPress props don't exist on the <Button /> component.
+  // Remove it to avoid any warning.
+  const { onPress: onPressToggleButton, ...otherButtonProps } = buttonProps;
+
   return (
     <Field {...props}>
       <div
@@ -93,6 +125,7 @@ export const DatePicker = ({
           })}
           ref={wrapperRef}
           {...groupProps}
+          aria-label={label}
           role="button"
           tabIndex={0}
           onClick={() => !state.isOpen && state.open()}
@@ -102,7 +135,7 @@ export const DatePicker = ({
           )}
           <Button
             {...{
-              ...buttonProps,
+              ...otherButtonProps,
               "aria-label": t(
                 state.isOpen
                   ? "components.forms.date_picker.toggle_button_aria_label_close"
