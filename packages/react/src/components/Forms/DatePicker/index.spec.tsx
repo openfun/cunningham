@@ -171,6 +171,7 @@ describe("<DatePicker/>", () => {
       "spinbutton"
     )!;
 
+    // Navigate through elements using Tab.
     await user.keyboard("{Tab}");
     expect(input).toHaveFocus();
 
@@ -393,7 +394,7 @@ describe("<DatePicker/>", () => {
     await user.click(clearButton);
     expectCalendarToBeOpen();
 
-    // Date field's value should set to a placeholder value.
+    // Date field's value should be set to a placeholder value.
     const dateFieldContent = screen.getByRole("presentation").textContent;
     expect(dateFieldContent).eq("mm/dd/yyyy");
 
@@ -439,17 +440,15 @@ describe("<DatePicker/>", () => {
   });
 
   it("has an invalid value outside min/max range", async () => {
-    const defaultValue = new Date("2023-03-01");
-    const minValue = new Date(defaultValue.setMonth(4));
-    const maxValue = new Date(defaultValue.setMonth(5));
+    // Should be invalid if the picked date is outside the min/max range.
     render(
       <CunninghamProvider>
         <DatePicker
           label="Pick a date"
           name="datepicker"
-          defaultValue={defaultValue}
-          maxValue={minValue}
-          minValue={maxValue}
+          defaultValue="2023-03-01"
+          maxValue="2023-04-01"
+          minValue="2023-05-01"
         />
       </CunninghamProvider>
     );
@@ -489,7 +488,6 @@ describe("<DatePicker/>", () => {
     await user.click(toggleButton);
     expectCalendarToBeOpen();
 
-    // Find the 12th of April.
     const gridCell = within(
       await screen.getByRole("gridcell", { name: "12" })
     ).getByRole("button")!;
@@ -527,14 +525,17 @@ describe("<DatePicker/>", () => {
 
     const [input, button] = await screen.findAllByRole("button");
 
+    // Make sure toggle button and click on input are disabled.
     expect(input.getAttribute("aria-disabled")).eq("true");
     expect(button).toBeDisabled();
 
+    // Make sure the clear button is disabled.
     const clearButton = screen.getByRole("button", {
       name: "Clear date",
     });
     expect(clearButton).toBeDisabled();
 
+    // Make sure each segment of the date field is disabled.
     const dateFieldInputs = await screen.queryAllByRole("spinbutton");
     dateFieldInputs.forEach((dateFieldInput) =>
       expect(dateFieldInput).toHaveAttribute("aria-disabled")
@@ -577,6 +578,7 @@ describe("<DatePicker/>", () => {
     const [input, toggleButton] = await screen.findAllByRole("button");
     await user.click(toggleButton);
 
+    // Focused month of the calendar grid should be the one from the default value.
     expectFocusedMonthToBeEqual(defaultValue);
 
     const previousMonthButton = screen.getByRole("button", {
@@ -586,14 +588,17 @@ describe("<DatePicker/>", () => {
       name: "Next month",
     });
 
+    // Focus previous month.
     await user.click(previousMonthButton);
     defaultValue.setMonth(defaultValue.getMonth() - 1);
     expectFocusedMonthToBeEqual(defaultValue);
 
+    // Get back to the default focused month.
     await user.click(nextMonthButton);
     defaultValue.setMonth(defaultValue.getMonth() + 1);
     expectFocusedMonthToBeEqual(defaultValue);
 
+    // Focus next month.
     await user.click(nextMonthButton);
     defaultValue.setMonth(defaultValue.getMonth() + 1);
     expectFocusedMonthToBeEqual(defaultValue);
@@ -614,6 +619,7 @@ describe("<DatePicker/>", () => {
     const [input, toggleButton] = await screen.findAllByRole("button");
     await user.click(toggleButton);
 
+    // Focused year of the calendar grid should be the one from the default value.
     expectFocusedYearToBeEqual(defaultValue);
 
     const previousYearButton = screen.getByRole("button", {
@@ -623,14 +629,17 @@ describe("<DatePicker/>", () => {
       name: "Next year",
     });
 
+    // Focus previous year.
     await user.click(previousYearButton);
     defaultValue.setFullYear(defaultValue.getFullYear() - 1);
     expectFocusedYearToBeEqual(defaultValue);
 
+    // Get back to the default focused month.
     await user.click(nextYearButton);
     defaultValue.setFullYear(defaultValue.getFullYear() + 1);
     expectFocusedYearToBeEqual(defaultValue);
 
+    // Focus next year.
     await user.click(nextYearButton);
     defaultValue.setFullYear(defaultValue.getFullYear() + 1);
     expectFocusedYearToBeEqual(defaultValue);
@@ -638,8 +647,8 @@ describe("<DatePicker/>", () => {
 
   it("renders disabled next and previous month", async () => {
     const defaultValue = new Date("2023-05-24");
-    const minValue = new Date(defaultValue.setDate(22));
-    const maxValue = new Date(defaultValue.setDate(26));
+    const minValue = new Date("2023-05-22");
+    const maxValue = new Date("2023-05-26");
     const user = userEvent.setup();
     render(
       <CunninghamProvider>
@@ -656,11 +665,13 @@ describe("<DatePicker/>", () => {
     const [input, toggleButton] = await screen.findAllByRole("button");
     await user.click(toggleButton);
 
+    // minValue doesn't allow to navigate to previous month.
     const previousMonthButton = screen.getByRole("button", {
       name: "Previous month",
     });
     expect(previousMonthButton).toBeDisabled();
 
+    // maxValue doesn't allow to navigate to previous month.
     const nextMonthButton = screen.getByRole("button", {
       name: "Next month",
     });
@@ -669,8 +680,8 @@ describe("<DatePicker/>", () => {
 
   it("renders disabled next and previous year", async () => {
     const defaultValue = new Date("2023-05-24");
-    const minValue = new Date(defaultValue.setDate(22));
-    const maxValue = new Date(defaultValue.setDate(26));
+    const minValue = new Date("2023-05-22");
+    const maxValue = new Date("2023-05-26");
     const user = userEvent.setup();
     render(
       <CunninghamProvider>
@@ -687,11 +698,13 @@ describe("<DatePicker/>", () => {
     const [input, toggleButton] = await screen.findAllByRole("button");
     await user.click(toggleButton);
 
+    // minValue doesn't allow to navigate to previous year.
     const previousYearButton = screen.getByRole("button", {
       name: "Previous year",
     });
     expect(previousYearButton).toBeDisabled();
 
+    // maxValue doesn't allow to navigate to next year.
     const nextYearButton = screen.getByRole("button", {
       name: "Next year",
     });
@@ -804,6 +817,7 @@ describe("<DatePicker/>", () => {
     const [input, toggleButton] = await screen.findAllByRole("button");
     await user.click(toggleButton);
 
+    // Get month dropdown.
     const monthDropdown = screen.getByRole("combobox", {
       name: "Select a month",
     });
@@ -813,6 +827,7 @@ describe("<DatePicker/>", () => {
     expectMenuToBeClosed(monthMenu);
     expectMenuToBeClosed(yearMenu);
 
+    // Make sure the selected item matched the default value.
     let focusedMonth = monthDropdown.textContent?.replace(
       "arrow_drop_down",
       ""
@@ -821,10 +836,12 @@ describe("<DatePicker/>", () => {
       defaultValue.toLocaleString("default", { month: "short" })
     );
 
+    // Open month dropdown.
     await user.click(monthDropdown);
     expectMenuToBeOpen(monthMenu);
     expectMenuToBeClosed(yearMenu);
 
+    // Select a month option.
     defaultValue.setMonth(8);
     const option: HTMLLIElement = screen.getByRole("option", {
       name: defaultValue.toLocaleString("default", { month: "long" }),
@@ -834,6 +851,7 @@ describe("<DatePicker/>", () => {
     expectMenuToBeClosed(monthMenu);
     expectMenuToBeClosed(yearMenu);
 
+    // Make sure focused month has properly updated.
     focusedMonth = monthDropdown.textContent?.replace("arrow_drop_down", "");
     expect(focusedMonth).eq(
       defaultValue.toLocaleString("default", { month: "short" })
@@ -855,6 +873,7 @@ describe("<DatePicker/>", () => {
     const [input, toggleButton] = await screen.findAllByRole("button");
     await user.click(toggleButton);
 
+    // Get year dropdown.
     const yearDropdown = screen.getByRole("combobox", {
       name: "Select a year",
     });
@@ -864,6 +883,7 @@ describe("<DatePicker/>", () => {
     expectMenuToBeClosed(yearMenu);
     expectMenuToBeClosed(monthMenu);
 
+    // Make sure the selected item matched the default value.
     let focusedMonth = yearDropdown.textContent?.replace("arrow_drop_down", "");
     expect(focusedMonth).eq(
       defaultValue.toLocaleString("default", { year: "numeric" })
@@ -873,6 +893,7 @@ describe("<DatePicker/>", () => {
     expectMenuToBeOpen(yearMenu);
     expectMenuToBeClosed(monthMenu);
 
+    // Select a year option.
     defaultValue.setFullYear(2024);
     const option: HTMLLIElement = screen.getByRole("option", {
       name: defaultValue.toLocaleString("default", { year: "numeric" }),
@@ -882,6 +903,7 @@ describe("<DatePicker/>", () => {
     expectMenuToBeClosed(yearMenu);
     expectMenuToBeClosed(monthMenu);
 
+    // Make sure focused month has properly updated.
     focusedMonth = yearDropdown.textContent?.replace("arrow_drop_down", "");
     expect(focusedMonth).eq(
       defaultValue.toLocaleString("default", { year: "numeric" })
@@ -900,11 +922,14 @@ describe("<DatePicker/>", () => {
         />
       </CunninghamProvider>
     );
+    // Open the calendar.
     const [input, toggleButton] = await screen.findAllByRole("button");
     await user.click(toggleButton);
 
+    // Get all gridcells from the calendar.
     const gridCells = await screen.findAllByRole("gridcell");
 
+    // Make sure that gridcells outside of the focused month are disabled.
     gridCells.forEach((gridCell) => {
       const button = within(gridCell).getByRole("button")!;
       const value = new Date(
@@ -934,13 +959,17 @@ describe("<DatePicker/>", () => {
     const previousMonthValue = new Date(defaultValue);
     previousMonthValue.setDate(defaultValue.getDate() - 1);
 
+    // Open calendar.
     const [input, toggleButton] = await screen.findAllByRole("button");
     await user.click(toggleButton);
 
+    // Navigate to the previous month using keyboard.
+    // default value is the cell of the calendar grid.
+    // Thus, navigating one cell up, changes the focused month.
     await user.keyboard("{ArrowUp}");
     expectFocusedMonthToBeEqual(previousMonthValue);
 
-    // Reopens the calendar menu.
+    // Reopen the calendar menu to reset the focused month.
     await user.click(toggleButton);
     await user.click(toggleButton);
 
@@ -972,12 +1001,15 @@ describe("<DatePicker/>", () => {
     await user.keyboard("{ArrowDown}");
     expectFocusedMonthToBeEqual(nextMonthValue);
 
-    // Reopens the calendar menu.
+    // Reopen the calendar menu to reset the focused month.
     await user.click(toggleButton);
     await user.click(toggleButton);
 
     expectFocusedMonthToBeEqual(defaultValue);
 
+    // Navigate to the previous month using keyboard.
+    // default value is the last cell of the calendar grid.
+    // Thus, navigating one cell right, changes the focused month.
     await user.keyboard("{ArrowRight}");
     expectFocusedMonthToBeEqual(nextMonthValue);
   });
