@@ -121,6 +121,32 @@
     }
   }
 
+  &--success {
+    .c__date-picker__wrapper {
+      border-color: var(--c--theme--colors--success-600);
+      border-radius: var(--c--components--forms-datepicker--border-radius);
+
+      &__toggle {
+        color: var(--c--theme--colors--success-600);
+      }
+
+      label {
+        color: var(--c--theme--colors--success-600);
+      }
+    }
+
+    &:not(.c__date-picker--disabled) {
+      &:hover {
+        .c__date-picker__wrapper {
+          border-color: var(--c--theme--colors--success-200);
+          &__toggle {
+            color: var(--c--theme--colors--success-200);
+          }
+        }
+      }
+    }
+  }
+
   &--focused {
     .c__date-picker__wrapper {
       border-radius: var(--c--components--forms-datepicker--border-radius--focus);
@@ -131,7 +157,7 @@
       }
     }}
 
-  &:not(&--focused):not(&--invalid):not(&--disabled) {
+  &:not(&--focused):not(&--invalid):not(&--disabled):not(&--success) {
     &:hover {
       .c__date-picker__wrapper {
         border-radius: var(--c--components--forms-datepicker--border-radius--hover);
