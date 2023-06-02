@@ -1,0 +1,11 @@
+.c__popover {
+  position: absolute;
+  display: flex;
+  width: fit-content;
+  z-index: 1;
+
+  &:not(&--borderless) {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    background-color: var(--c--components--forms-datepicker--menu-background-color);
+  }
+}
