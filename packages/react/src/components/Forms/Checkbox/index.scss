@@ -52,7 +52,7 @@
     input {
       appearance: none;
       margin: 0;
-      background-color: white;
+      background-color: var(--c--components--forms-checkbox--background-color);
       width: var(--c--components--forms-checkbox--size);
       height: var(--c--components--forms-checkbox--size);
       border: 1.5px solid var(--c--components--forms-checkbox--border-color);
