@@ -2,6 +2,7 @@ import { DefaultTokens } from "@openfun/cunningham-tokens";
 
 export const tokens = (defaults: DefaultTokens) => ({
   "background-color--hover": defaults.theme.colors["greyscale-200"],
+  "background-color": "white",
   "font-size": defaults.theme.font.sizes.m,
   "font-weight": defaults.theme.font.weights.medium,
   color: defaults.theme.colors["greyscale-900"],
