@@ -144,6 +144,31 @@ export const Sports = () => {
           ]}
           fullWidth={true}
         />
+        <Select
+          label="Previous rewards"
+          multi={true}
+          options={[
+            {
+              label: "Bronze",
+            },
+            {
+              label: "Silver",
+            },
+            {
+              label: "Gold",
+            },
+            {
+              label: "Flocon",
+            },
+            {
+              label: "Ourson",
+            },
+            {
+              label: "Chamois",
+            },
+          ]}
+          fullWidth={true}
+        />
         <Button fullWidth={true}>Apply</Button>
         <Button fullWidth={true} color="secondary">
           Need help ?
