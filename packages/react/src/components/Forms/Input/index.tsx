@@ -106,7 +106,7 @@ export const Input = forwardRef<InputRefType, Props>(
             inputRef.current?.focus();
           }}
         >
-          {!!icon && icon}
+          {!!icon && <div className="c__input__icon-left">{icon}</div>}
           <LabelledBox
             label={label}
             htmlFor={idToUse.current}
@@ -133,7 +133,9 @@ export const Input = forwardRef<InputRefType, Props>(
               ref={inputRef}
             />
           </LabelledBox>
-          {!!rightIcon && rightIcon}
+          {!!rightIcon && (
+            <div className="c__input__icon-right">{rightIcon}</div>
+          )}
         </div>
       </Field>
     );

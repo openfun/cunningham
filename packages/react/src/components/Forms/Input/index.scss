@@ -5,7 +5,6 @@
   border-style: var(--c--components--forms-input--border-style);
   background-color: var(--c--components--forms-input--background-color);
   display: flex;
-  align-items: center;
   transition: border var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
   padding: 0 1rem;
   gap: 1rem;
@@ -28,6 +27,12 @@
     text-overflow: ellipsis;
     background-color: transparent;
     @extend %text-style;
+
+    &__icon-left,
+    &__icon-right {
+      display: flex;
+      align-items: center;
+    }
 
     &--medium {
       min-width: 150px;
