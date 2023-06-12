@@ -38,4 +38,21 @@
       flex-grow: 1;
     }
   }
+
+  &--horizontal {
+    display: flex;
+    align-items: center;
+    height: auto;
+
+    label {
+      padding-top: 0;
+      position: static;
+      flex-shrink: 0;
+    }
+
+    .labelled-box__children {
+      flex-grow: 1;
+      padding: 0;
+    }
+  }
 }

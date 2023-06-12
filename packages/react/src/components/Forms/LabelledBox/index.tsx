@@ -7,6 +7,7 @@ export interface Props extends PropsWithChildren {
   htmlFor?: string;
   labelId?: string;
   hideLabel?: boolean;
+  horizontal?: boolean;
 }
 
 export const LabelledBox = ({
@@ -16,11 +17,13 @@ export const LabelledBox = ({
   htmlFor,
   labelId,
   hideLabel,
+  horizontal,
 }: Props) => {
   return (
     <div
       className={classNames("labelled-box", {
         "labelled-box--no-label": hideLabel,
+        "labelled-box--horizontal": horizontal,
       })}
     >
       {label && (
