@@ -123,6 +123,8 @@
 	--c--components--forms-select--background-color: white;
 	--c--components--forms-select--menu-background-color: white;
 	--c--components--forms-select--label-color--focus: #0556BF;
+	--c--components--forms-select--multi-pill-background-color: #F3F4F4;
+	--c--components--forms-select--multi-pill-border-radius: 2px;
 	--c--components--forms-radio--border-color: #E7E8EA;
 	--c--components--forms-radio--accent-color: #419A14;
 	--c--components--forms-radio--background-color: white;

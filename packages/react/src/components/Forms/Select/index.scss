@@ -9,7 +9,6 @@
     border-color: var(--c--components--forms-select--border-color);
     border-style: var(--c--components--forms-select--border-style);
     display: flex;
-    align-items: center;
     transition: border var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
     padding: 0 0.75rem;
     gap: 1rem;
@@ -48,8 +47,6 @@
     min-width: 0;
 
     &__value {
-      white-space: nowrap;
-      overflow: hidden;
       text-overflow: ellipsis;
       flex-grow: 1;
       font-size: var(--c--components--forms-select--font-size);
@@ -66,9 +63,11 @@
 
     &__actions {
       position: relative;
-      top: -14px;
+      top: 3px;
       display: flex;
       align-items: center;
+      // This is made to avoid this relative element to force its container height.
+      height: 0;
 
       span {
         font-size: 1.25rem;
@@ -152,7 +151,7 @@
       border-color: var(--c--theme--colors--greyscale-200);
       cursor: default;
 
-      label {
+      label, input {
         cursor: default;
         color: var(--c--theme--colors--greyscale-600);
       }
@@ -185,6 +184,123 @@
     &:not(.c__select__wrapper--disabled) {
       .c__select__wrapper:hover {
         border-color: var(--c--theme--colors--success-400);
+      }
+    }
+  }
+
+  &--mono {
+    .c__select__inner {
+      &__value {
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+  }
+
+  &--multi {
+    .c__select__wrapper {
+      height: auto;
+      min-height: var(--c--components--forms-select--height);
+    }
+
+    .c__select__inner {
+      display: block;
+
+      &__value {
+        gap: 0.25rem;
+
+        &__pill {
+          background-color: var(--c--components--forms-select--multi-pill-background-color);
+          padding: 0.375rem 0.5rem;
+          border-radius: var(--c--components--forms-select--multi-pill-border-radius);
+          display: inline-flex;
+          align-items: center;
+          gap: 0.25rem;
+          margin-right: 0.25rem;
+          margin-bottom: 0.25rem;
+          max-width: var(--c--components--forms-select--multi-pill-max-width);
+
+          > span {
+            min-width: 0;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+          }
+
+          &__clear {
+            width: auto;
+            height: auto;
+
+            .material-icons {
+              font-size: 1.1250rem;
+            }
+          }
+        }
+
+        &__input {
+          display: inline-grid;
+          width: 0;
+          overflow: hidden;
+
+          &:focus-within {
+            width: auto;
+          }
+
+          &::after,
+          input {
+            width: auto;
+            min-width: 1em;
+            grid-area: 1 / 2;
+            font: inherit;
+            padding: 0;
+            margin: 0;
+            resize: none;
+            background: none;
+            appearance: none;
+            border: none;
+          }
+
+          &::after {
+            content: attr(data-value) ' ';
+            visibility: hidden;
+            white-space: pre-wrap;
+          }
+        }
+      }
+
+      &__actions {
+        float: right;
+        position: relative;
+        height: 0;
+        top: 3px;
+      }
+    }
+
+
+    /** Modifiers */
+
+    &.c__select--populated {
+      .c__select__inner__value {
+        .c__select__inner__value__input {
+          // To match the height of the pills.
+          height: 2rem;
+        }
+      }
+
+      .c__select__inner__actions {
+        // Now we need it to occupy space in order to make float: right work.
+        height: auto;
+        top: -8px;
+      }
+
+      .labelled-box--no-label {
+        .c__select__inner__actions {
+          top: 4px;
+        }
+
+        .c__select__inner__value {
+          padding-top: 0.25rem;
+        }
       }
     }
   }

@@ -19,7 +19,8 @@
     "forms": {
       "select": {
         "toggle_button_aria_label": "Ouvrir le menu",
-        "clear_button_aria_label": "Effacer la sélection"
+        "clear_button_aria_label": "Effacer la sélection",
+        "clear_all_button_aria_label": "Effacer toutes les sélections"
       },
       "date_picker": {
         "toggle_button_aria_label_open": "Ouvrir le calendrier",
