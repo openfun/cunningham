@@ -20,4 +20,6 @@ export const tokens = (defaults: DefaultTokens) => ({
   "background-color": "white",
   "menu-background-color": "white",
   "label-color--focus": defaults.theme.colors["primary-600"],
+  "multi-pill-background-color": defaults.theme.colors["greyscale-200"],
+  "multi-pill-border-radius": "2px",
 });

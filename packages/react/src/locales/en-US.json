@@ -21,7 +21,8 @@
     "forms": {
       "select": {
         "toggle_button_aria_label": "Toggle dropdown",
-        "clear_button_aria_label": "Clear selection"
+        "clear_button_aria_label": "Clear selection",
+        "clear_all_button_aria_label": "Clear all selections"
       },
       "date_picker": {
         "toggle_button_aria_label_open": "Open calendar",

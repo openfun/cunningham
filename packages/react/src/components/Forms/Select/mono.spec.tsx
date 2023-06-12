@@ -5,43 +5,16 @@ import React, { FormEvent, useState } from "react";
 import { Select } from ":/components/Forms/Select/index";
 import { Button } from ":/components/Button";
 import { CunninghamProvider } from ":/components/Provider";
+import {
+  expectMenuToBeClosed,
+  expectMenuToBeOpen,
+  expectOptions,
+  expectOptionToBeDisabled,
+  expectOptionToBeSelected,
+  expectOptionToBeUnselected,
+} from ":/components/Forms/Select/test-utils";
 
 describe("<Select/>", () => {
-  const expectMenuToBeOpen = (menu: HTMLDivElement) => {
-    expect(Array.from(menu.classList)).contains("c__select__menu--opened");
-  };
-  const expectOptions = (expectedOptions: string[]) => {
-    const options = screen.getAllByRole("option");
-    expect(options.length).toBe(expectedOptions.length);
-    options.forEach((option, i) => {
-      expect(option).toHaveTextContent(expectedOptions[i]);
-    });
-  };
-  const expectMenuToBeClosed = (menu: HTMLDivElement) => {
-    expect(Array.from(menu.classList)).not.contains("c__select__menu--opened");
-  };
-  const expectOptionToBeSelected = (option: HTMLLIElement) => {
-    expect(option).toHaveAttribute("aria-selected", "true");
-    expect(Array.from(option.classList)).contains(
-      "c__select__menu__item--selected"
-    );
-    expect(Array.from(option.classList)).contains(
-      "c__select__menu__item--highlight"
-    );
-  };
-  const expectOptionToBeUnselected = (option: HTMLLIElement) => {
-    expect(option).toHaveAttribute("aria-selected", "false");
-    expect(Array.from(option.classList)).not.contains(
-      "c__select__menu__item--selected"
-    );
-  };
-  const expectOptionToBeDisabled = (option: HTMLLIElement) => {
-    expect(option).toHaveAttribute("disabled");
-    expect(Array.from(option.classList)).contains(
-      "c__select__menu__item--disabled"
-    );
-  };
-
   describe("Searchable", () => {
     it("shows all options when clicking on the input", async () => {
       const user = userEvent.setup();
@@ -343,7 +316,7 @@ describe("<Select/>", () => {
                   },
                 ]}
                 value={value}
-                onChange={(e) => setValue(e.target.value)}
+                onChange={(e) => setValue(e.target.value as string)}
                 searchable={true}
               />
             </div>
@@ -752,7 +725,7 @@ describe("<Select/>", () => {
                   },
                 ]}
                 value={value}
-                onChange={(e) => setValue(e.target.value)}
+                onChange={(e) => setValue(e.target.value as string)}
               />
             </div>
           </CunninghamProvider>
