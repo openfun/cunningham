@@ -52,37 +52,17 @@ export const DateField = (props: AriaDatePickerProps<DateValue>) => {
   });
   const ref = useRef<HTMLDivElement>(null);
   const { fieldProps } = useDateField(props, state, ref);
-  const { t } = useCunningham();
 
   return (
-    <>
-      <div className="c__date-picker__inner__value" {...fieldProps} ref={ref}>
-        {state.segments.map((segment, i, segments) => (
-          <DateSegmentInput
-            key={i}
-            currentSegment={segment}
-            previousSegment={segments[i - 1]}
-            state={state}
-          />
-        ))}
-      </div>
-      {!props.isDisabled && (
-        <Button
-          className={classNames("c__date-picker__inner__action", {
-            "c__date-picker__inner__action--empty": !state.value,
-          })}
-          color="tertiary"
-          size="small"
-          icon={<span className="material-icons">cancel</span>}
-          onClick={() => {
-            // "era" option doesn't clear partially filled dataField.
-            state.clearSegment("day");
-            state.clearSegment("month");
-            state.clearSegment("year");
-          }}
-          aria-label={t("components.forms.date_picker.clear_button_aria_label")}
+    <div className="c__date-picker__inner__value" {...fieldProps} ref={ref}>
+      {state.segments.map((segment, i, segments) => (
+        <DateSegmentInput
+          key={i}
+          currentSegment={segment}
+          previousSegment={segments[i - 1]}
+          state={state}
         />
-      )}
-    </>
+      ))}
+    </div>
   );
 };

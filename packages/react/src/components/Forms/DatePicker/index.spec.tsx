@@ -529,8 +529,10 @@ describe("<DatePicker/>", () => {
     expect(input.getAttribute("aria-disabled")).eq("true");
     expect(button).toBeDisabled();
 
-    // Make sure the clear button is not rendered.
-    expect(screen.queryByRole("button", { name: "Clear date" })).toBeNull();
+    // Make sure the clear button is not visible and disabled.
+    expect(
+      screen.queryByRole("button", { name: "Clear date", hidden: true })
+    ).toBeDisabled();
 
     // Make sure each segment of the date field is disabled.
     const dateFieldInputs = await screen.queryAllByRole("spinbutton");

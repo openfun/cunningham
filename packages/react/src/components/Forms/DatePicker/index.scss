@@ -62,7 +62,9 @@
       height: auto;
 
       &.c__button--small.c__button--icon-only {
-        width: 1.25rem;
+        width: fit-content;
+        height: fit-content;
+        margin: 1.65rem 0 0 0;
       }
 
       &--empty {
@@ -71,6 +73,13 @@
 
       .material-icons {
         font-size: 1rem;
+        position: relative;
+        top: 0.06rem;
+      }
+
+      &--hidden {
+        visibility: hidden;
+        transition: none;
       }
     }
   }
