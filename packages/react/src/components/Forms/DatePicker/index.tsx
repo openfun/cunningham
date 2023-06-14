@@ -160,6 +160,22 @@ export const DatePicker = ({
               )}
             </div>
           </LabelledBox>
+          <Button
+            className={classNames("c__date-picker__inner__action", {
+              "c__date-picker__inner__action--empty": !state.value,
+              "c__date-picker__inner__action--hidden":
+                labelAsPlaceholder || disabled,
+            })}
+            color="tertiary"
+            size="small"
+            icon={<span className="material-icons">cancel</span>}
+            // Intentionally pass a null value to reset date picker state
+            onClick={() => state.setValue(null as unknown as DateValue)}
+            aria-label={t(
+              "components.forms.date_picker.clear_button_aria_label"
+            )}
+            disabled={disabled}
+          />
         </div>
         {state.isOpen && (
           <Popover
