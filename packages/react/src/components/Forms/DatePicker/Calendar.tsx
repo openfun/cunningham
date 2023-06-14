@@ -6,7 +6,11 @@ import {
   GregorianCalendar,
   toCalendar,
 } from "@internationalized/date";
-import { useDateFormatter, useLocale } from "@react-aria/i18n";
+import {
+  DateFormatterOptions,
+  useDateFormatter,
+  useLocale,
+} from "@react-aria/i18n";
 import { useCalendarState } from "@react-stately/calendar";
 import { useCalendar } from "@react-aria/calendar";
 import {
@@ -82,33 +86,29 @@ export const Calendar = ({
   ...props
 }: CalendarSubProps) => {
   const { locale } = useLocale();
+  const { t } = useCunningham();
+  const ref = useRef(null);
 
   const state = useCalendarState({
     ...props,
     locale,
     createCalendar,
   });
-
-  const ref = useRef(null);
   const { calendarProps, prevButtonProps, nextButtonProps } = useCalendar(
     props,
     state
   );
 
-  const monthItemsFormatter = useDateFormatter({
-    month: "long",
-    timeZone: state.timeZone,
-  });
+  const useTimeZoneFormatter = (formatOptions: DateFormatterOptions) => {
+    return useDateFormatter({
+      ...formatOptions,
+      timeZone: state.timeZone,
+    });
+  };
 
-  const selectedMonthItemFormatter = useDateFormatter({
-    month: "short",
-    timeZone: state.timeZone,
-  });
-
-  const yearItemsFormatter = useDateFormatter({
-    year: "numeric",
-    timeZone: state.timeZone,
-  });
+  const monthItemsFormatter = useTimeZoneFormatter({ month: "long" });
+  const selectedMonthItemFormatter = useTimeZoneFormatter({ month: "short" });
+  const yearItemsFormatter = useTimeZoneFormatter({ year: "numeric" });
 
   const monthItems: Array<Option> = useMemo(() => {
     // Note that in some calendar systems, such as the Hebrew, the number of months may differ between years.
@@ -151,7 +151,6 @@ export const Calendar = ({
     });
   }, [state.focusedDate, state.timeZone, state.maxValue, state.minValue]);
 
-  const { t } = useCunningham();
   const useDownshiftSelect = (
     key: string,
     items: Array<Option>
