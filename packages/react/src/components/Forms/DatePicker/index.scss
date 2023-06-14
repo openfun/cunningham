@@ -186,6 +186,16 @@
     }
   }
 
+  &__range {
+    min-width: px-to-rem(350px);
+
+    &__separator {
+      background-color: var(--c--theme--colors--greyscale-400);
+      height: px-to-rem(24px);
+      width: px-to-rem(1px);
+      margin: auto;
+    }
+  }
 }
 
 
@@ -224,6 +234,7 @@
       width: 100%;
       padding-top: 0.5rem;
       table-layout: fixed;
+      border-spacing: 0 0.4rem;
 
       &__header-row {
         line-height: 3rem;
@@ -236,8 +247,33 @@
       }
 
       &__week-row {
+
+        td {
+          padding: 0;
+        }
+
+        &__background {
+          &--range {
+            background: var(--c--components--forms-datepicker--range-selection-background-color);
+
+            &:not(&--end):not(&--start):not(&--disabled) button {
+              color: var(--c--components--forms-datepicker--grid-cell--color--today);
+            }
+
+            &--end {
+              border-top-right-radius: 100%;
+              border-bottom-right-radius: 100%;
+            }
+            &--start {
+              border-top-left-radius: 100%;
+              border-bottom-left-radius: 100%;
+            }
+            &--disabled {
+              background: var(--c--components--forms-datepicker--range-selection-background-color--disabled);
+            }
+          }
+        }
         &__button {
-          margin: 0.2rem auto;
           &--today {
             border: 1px solid var(--c--components--forms-datepicker--grid-cell--border-color--today);
           }

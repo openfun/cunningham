@@ -18,6 +18,9 @@ export const tokens = (defaults: DefaultTokens) => ({
   "item-font-size": defaults.theme.font.sizes.l,
   "background-color": "white",
   "menu-background-color": "white",
+  "range-selection-background-color": defaults.theme.colors["primary-100"],
+  "range-selection-background-color--disabled":
+    defaults.theme.colors["greyscale-100"],
   "grid-cell--border-color--today": defaults.theme.colors["primary-600"],
   "grid-cell--color--today": defaults.theme.colors["primary-600"],
 });

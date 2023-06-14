@@ -826,23 +826,26 @@ describe("<DatePicker/>", () => {
     // Get all the calendar's cells to check their state.
     let gridCells = await screen.findAllByRole("gridcell");
 
-    // By default, calendar's cells outside the focused month are disabled (month n-1 and n+1).
+    // By default, calendar's cells outside the focused month are not visible (month n-1 and n+1).
     // Cells within the focused month superior to the minDate should be clickable.
-    // Cells inferior to the minDate should be disabled.
+    // Cells inferior to the minDate, within the month, should be disabled.
     gridCells.forEach((gridCell) => {
-      const button = within(gridCell).getByRole("button")!;
-      const value = new Date(
-        button.getAttribute("aria-label")!.replace("First available date", "")
-      );
-      if (
-        value.getMonth() === minValue.getMonth() &&
-        value.getDate() < minValue.getDate()
-      ) {
-        expect(button).toBeDisabled();
-      } else if (value.getMonth() === minValue.getMonth()) {
-        expect(button).not.toBeDisabled();
-      } else {
-        expect(button).toBeDisabled();
+      try {
+        const button = within(gridCell).getByRole("button")!;
+        const value = new Date(
+          button.getAttribute("aria-label")!.replace("First available date", "")
+        );
+        expect(value.getMonth() === minValue.getMonth());
+        if (value.getDate() < minValue.getDate()) {
+          expect(button).toBeDisabled();
+        } else {
+          expect(button).not.toBeDisabled();
+        }
+      } catch (e: any) {
+        // Make sure outside grid-cells render any button element, even disabled.
+        expect(e.message).contains(
+          'Unable to find an accessible element with the role "button"'
+        );
       }
     });
 
@@ -856,21 +859,24 @@ describe("<DatePicker/>", () => {
 
     gridCells = await screen.findAllByRole("gridcell");
     gridCells.forEach((gridCell) => {
-      const button = within(gridCell).getByRole("button")!;
-      const buttonLabel = button
-        .getAttribute("aria-label")
-        ?.replace("Last available date", "");
-      expect(buttonLabel).toBeDefined();
-      const value = new Date(buttonLabel!);
-      if (
-        value.getMonth() === maxValue.getMonth() &&
-        value.getDate() > maxValue.getDate()
-      ) {
-        expect(button).toBeDisabled();
-      } else if (value.getMonth() === maxValue.getMonth()) {
-        expect(button).not.toBeDisabled();
-      } else {
-        expect(button).toBeDisabled();
+      try {
+        const button = within(gridCell).getByRole("button")!;
+        const buttonLabel = button
+          .getAttribute("aria-label")
+          ?.replace("Last available date", "");
+        expect(buttonLabel).toBeDefined();
+        const value = new Date(buttonLabel!);
+        expect(value.getMonth() === minValue.getMonth());
+        if (value.getDate() > maxValue.getDate()) {
+          expect(button).toBeDisabled();
+        } else {
+          expect(button).not.toBeDisabled();
+        }
+      } catch (e: any) {
+        // Make sure outside grid-cells render any button element, even disabled.
+        expect(e.message).contains(
+          'Unable to find an accessible element with the role "button"'
+        );
       }
     });
   });
@@ -983,7 +989,7 @@ describe("<DatePicker/>", () => {
     );
   });
 
-  it("can not select cells outside the focused month", async () => {
+  it("renders only cell within the focused month", async () => {
     const user = userEvent.setup();
     const defaultValue = new Date("2023-05-23");
     render(
@@ -999,21 +1005,28 @@ describe("<DatePicker/>", () => {
     const toggleButton = (await screen.findAllByRole("button"))![1];
     await user.click(toggleButton);
 
-    // Get all gridcells from the calendar.
+    // Get all grid-cells from the calendar.
     const gridCells = await screen.findAllByRole("gridcell");
-
-    // Make sure that gridcells outside of the focused month are disabled.
+    let visibleValues: Array<Date> = [];
+    // Make sure that all visible grid-cells are within the focused month.
     gridCells.forEach((gridCell) => {
-      const button = within(gridCell).getByRole("button")!;
-      const value = new Date(
-        button.getAttribute("aria-label")!.replace("selected", "")
-      );
-      if (defaultValue.getMonth() === value.getMonth()) {
+      try {
+        const button = within(gridCell).getByRole("button");
+        const value = new Date(
+          button.getAttribute("aria-label")!.replace("selected", "")
+        );
         expect(button).not.toBeDisabled();
-      } else {
-        expect(button).toBeDisabled();
+        expect(defaultValue.getMonth() === value.getMonth());
+        visibleValues = [value, ...visibleValues];
+      } catch (e: any) {
+        // Make sure outside grid-cells render any button element, even disabled.
+        expect(e.message).contains(
+          'Unable to find an accessible element with the role "button"'
+        );
       }
     });
+    // Make sure we get as many visible values as days in the focused month.
+    expect(visibleValues.length).eq(31);
   });
 
   it("navigate previous focused month with keyboard", async () => {
