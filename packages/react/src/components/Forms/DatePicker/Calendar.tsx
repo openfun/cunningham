@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useMemo, useRef } from "react";
 import {
   CalendarDate,
   createCalendar,
@@ -127,17 +127,6 @@ export const Calendar = ({
     });
   }, [state.maxValue, state.minValue, state.focusedDate.year]);
 
-  const downshiftMonth = useSelect({
-    items: monthItems,
-    itemToString: optionToString,
-    onSelectedItemChange: (e: UseSelectStateChange<Option>) => {
-      const updatedFocusedDate = state.focusedDate.set({
-        month: e?.selectedItem?.value,
-      });
-      state.setFocusedDate(updatedFocusedDate);
-    },
-  });
-
   const yearItems: Array<Option> = useMemo(() => {
     const calendarCurrentUser = createCalendar(
       new Intl.DateTimeFormat().resolvedOptions().calendar
@@ -162,44 +151,24 @@ export const Calendar = ({
     });
   }, [state.focusedDate, state.timeZone, state.maxValue, state.minValue]);
 
-  const downshiftYear = useSelect({
-    items: yearItems,
-    itemToString: optionToString,
-    onSelectedItemChange: (e: UseSelectStateChange<Option>) => {
-      const updatedFocusedDate = state.focusedDate.set({
-        year: e?.selectedItem?.value,
-      });
-      state.setFocusedDate(updatedFocusedDate);
-    },
-    initialSelectedItem: yearItems.find(
-      (item) => item.value === state.focusedDate.year
-    ),
-  });
-
-  useEffect(() => {
-    if (downshiftMonth.selectedItem?.value === state.focusedDate.month) {
-      return;
-    }
-    const focusedMonth = monthItems.find(
-      (item) => item.value === state.focusedDate.month
-    );
-    if (focusedMonth) {
-      downshiftMonth.selectItem(focusedMonth);
-    }
-  }, [state.focusedDate.month]);
-
-  useEffect(() => {
-    if (downshiftYear.selectedItem?.value === state.focusedDate.year) {
-      return;
-    }
-    const focusedYear = yearItems.find(
-      (item) => item.value === state.focusedDate.year
-    );
-    if (focusedYear) {
-      downshiftYear.selectItem(focusedYear);
-    }
-  }, [state.focusedDate.year]);
   const { t } = useCunningham();
+  const useDownshiftSelect = (
+    key: string,
+    items: Array<Option>
+  ): UseSelectReturnValue<Option> => {
+    return useSelect({
+      items,
+      itemToString: optionToString,
+      onSelectedItemChange: (e: UseSelectStateChange<Option>) => {
+        const updatedFocusedDate = state.focusedDate.set({
+          [key]: e?.selectedItem?.value,
+        });
+        state.setFocusedDate(updatedFocusedDate);
+      },
+    });
+  };
+  const downshiftMonth = useDownshiftSelect("month", monthItems);
+  const downshiftYear = useDownshiftSelect("year", yearItems);
 
   // isDisabled and onPress props don't exist on the <Button /> component.
   // remove them to avoid any warning.
@@ -213,6 +182,26 @@ export const Calendar = ({
     onPress: onPressNext,
     ...nextButtonOtherProps
   } = nextButtonProps;
+
+  const getToggleButtonProps = (
+    key: string,
+    items: Array<Option>,
+    downshift: UseSelectReturnValue<Option>
+  ) => ({
+    ...downshift.getToggleButtonProps(),
+    onClick: () => {
+      const selectedItem = items.find(
+        (item) => item.value === state.focusedDate[key as keyof CalendarDate]
+      );
+      if (selectedItem) {
+        downshift.selectItem(selectedItem);
+      }
+      downshift.toggleMenu();
+    },
+    "aria-label": t(
+      `components.forms.date_picker.${key}_select_button_aria_label`
+    ),
+  });
 
   return (
     <div className="c__calendar">
@@ -245,10 +234,7 @@ export const Calendar = ({
               size="small"
               iconPosition="right"
               icon={<span className="material-icons">arrow_drop_down</span>}
-              {...downshiftMonth.getToggleButtonProps()}
-              aria-label={t(
-                "components.forms.date_picker.month_select_button_aria_label"
-              )}
+              {...getToggleButtonProps("month", monthItems, downshiftMonth)}
             >
               {selectedMonthItemFormatter.format(
                 state.focusedDate.toDate(state.timeZone)
@@ -288,10 +274,7 @@ export const Calendar = ({
               size="small"
               iconPosition="right"
               icon={<span className="material-icons">arrow_drop_down</span>}
-              {...downshiftYear.getToggleButtonProps()}
-              aria-label={t(
-                "components.forms.date_picker.year_select_button_aria_label"
-              )}
+              {...getToggleButtonProps("year", yearItems, downshiftYear)}
             >
               {yearItemsFormatter.format(
                 state.focusedDate.toDate(state.timeZone)
