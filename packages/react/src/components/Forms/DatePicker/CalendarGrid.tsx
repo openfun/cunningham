@@ -7,12 +7,12 @@ import {
   today,
 } from "@internationalized/date";
 import { useCalendarGrid } from "react-aria";
-import { CalendarState } from "@react-stately/calendar";
+import { CalendarState, RangeCalendarState } from "@react-stately/calendar";
 import { CalendarCell } from ":/components/Forms/DatePicker/CalendarCell";
 import { range } from ":/utils";
 
 interface CalendarGridProps {
-  state: CalendarState;
+  state: CalendarState | RangeCalendarState;
   defaultDaysInWeek?: number;
 }
 
