@@ -92,9 +92,14 @@ export const SelectMonoAux = ({
       fullWidth={fullWidth}
     >
       <div
-        className={classNames("c__select", "c__select--" + state, {
-          "c__select--disabled": disabled,
-        })}
+        className={classNames(
+          "c__select",
+          "c__select--mono",
+          "c__select--" + state,
+          {
+            "c__select--disabled": disabled,
+          }
+        )}
       >
         {/* We disabled linting for this specific line because we consider that the onClick props is only used for */}
         {/* mouse users, so this do not engender any issue for accessibility. */}
