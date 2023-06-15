@@ -22,4 +22,5 @@ export const tokens = (defaults: DefaultTokens) => ({
   "label-color--focus": defaults.theme.colors["primary-600"],
   "multi-pill-background-color": defaults.theme.colors["greyscale-200"],
   "multi-pill-border-radius": "2px",
+  "multi-pill-max-width": "68%",
 });

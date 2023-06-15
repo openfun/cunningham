@@ -218,6 +218,14 @@
           gap: 0.25rem;
           margin-right: 0.25rem;
           margin-bottom: 0.25rem;
+          max-width: var(--c--components--forms-select--multi-pill-max-width);
+
+          > span {
+            min-width: 0;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+          }
 
           &__clear {
             width: auto;
