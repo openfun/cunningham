@@ -12,8 +12,7 @@ import {
 } from "@react-stately/datepicker";
 import { createCalendar, DateValue } from "@internationalized/date";
 import classNames from "classnames";
-import { Button } from ":/components/Button";
-import { useCunningham } from ":/components/Provider";
+import { LabelledBox, Props } from ":/components/Forms/LabelledBox";
 
 interface DateSegmentProps {
   currentSegment: DateSegment;
@@ -21,7 +20,7 @@ interface DateSegmentProps {
   state: DateFieldState;
 }
 
-export const DateSegmentInput = ({
+const DateSegmentInput = ({
   currentSegment,
   previousSegment,
   state,
@@ -43,7 +42,7 @@ export const DateSegmentInput = ({
   );
 };
 
-export const DateField = (props: AriaDatePickerProps<DateValue>) => {
+const DateField = (props: AriaDatePickerProps<DateValue>) => {
   const { locale } = useLocale();
   const state = useDateFieldState({
     ...props,
@@ -66,3 +65,21 @@ export const DateField = (props: AriaDatePickerProps<DateValue>) => {
     </div>
   );
 };
+
+interface DateFieldBoxProps
+  extends Props,
+    Omit<AriaDatePickerProps<DateValue>, "label"> {}
+
+const DateFieldBox = ({ ...props }: DateFieldBoxProps) => (
+  <LabelledBox {...props}>
+    <div
+      className={classNames("c__date-picker__inner", {
+        "c__date-picker__inner--collapsed": props.labelAsPlaceholder,
+      })}
+    >
+      <DateField {...props} />
+    </div>
+  </LabelledBox>
+);
+
+export default DateFieldBox;
