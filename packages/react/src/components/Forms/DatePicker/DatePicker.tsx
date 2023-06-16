@@ -23,7 +23,7 @@ export type DatePickerProps = DatePickerAuxSubProps & {
   onChange?: (value: string | null) => void | undefined;
 };
 
-const DatePicker = (props: DatePickerProps) => {
+export const DatePicker = (props: DatePickerProps) => {
   if (props.defaultValue && props.value) {
     throw new Error(
       "You cannot use both defaultValue and value props on DatePicker component"
@@ -82,5 +82,3 @@ const DatePicker = (props: DatePickerProps) => {
     </DatePickerAux>
   );
 };
-
-export default DatePicker;

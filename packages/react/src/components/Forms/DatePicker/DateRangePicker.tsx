@@ -24,7 +24,7 @@ export type DateRangePickerProps = DatePickerAuxSubProps & {
   onChange?: (value: [string, string] | null) => void;
 };
 
-const DateRangePicker = ({
+export const DateRangePicker = ({
   startLabel,
   endLabel,
   ...props
@@ -103,5 +103,3 @@ const DateRangePicker = ({
     </DatePickerAux>
   );
 };
-
-export default DateRangePicker;
