@@ -1,6 +1,7 @@
 
 import { Canvas, Meta, Story, Source, ArgsTable } from '@storybook/addon-docs';
 import { DatePicker } from "./index";
+import { DateRangePicker } from "./index";
 
 <Meta title="Components/Forms/DatePicker/Doc" component={DatePicker}/>
 
@@ -16,6 +17,15 @@ UI components provided by [React-Spectrum](https://react-spectrum.adobe.com/reac
 
 ## Basic
 
+<Source
+  language='ts'
+  dark
+  format={false}
+  code={`
+  <DatePicker label="Pick a date" />
+  `}
+/>
+
 <Canvas>
   <Story id="components-forms-datepicker--default"/>
 </Canvas>
@@ -25,6 +35,38 @@ You can use the following props to change the default value of the DatePicker co
 
 <Canvas sourceState="shown">
   <Story id="components-forms-datepicker--default-value"/>
+</Canvas>
+
+## Range
+
+<Source
+  language='ts'
+  dark
+  format={false}
+  code={`
+  <DateRangePicker startLabel="Start date" endLabel="Due date" name="datepicker" />
+  `}
+/>
+
+When using it within a form, you'll access its values using separate inputs for the start and end values. The start input's
+name will be the `DateRangePicker`'s name suffixed by `_start` and the end input's name will be the `DateRangePicker`'s name suffixed by `_end`.
+Ex: If a `DateRangePicker` is named `"subscription"`, you would access its values as follow:
+
+<Source
+  language='ts'
+  dark
+  format={false}
+  code={`
+
+  formData = {
+    datepickerStart: data.get("subscription_start"),
+    datepickerEnd: data.get("subscription_end"),
+  };
+  `}
+/>
+
+<Canvas>
+  <Story id="components-forms-datepicker--range-default"/>
 </Canvas>
 
 
@@ -61,6 +103,7 @@ using the component in a controlled way.
 
 <Canvas sourceState="shown">
   <Story id="components-forms-datepicker--controlled"/>
+  <Story id="components-forms-datepicker--range-controlled"/>
 </Canvas>
 
 ## MinValue / MaxValue
@@ -83,7 +126,13 @@ When passing an invalid date, for example outside of the valid range, the DatePi
 
 You can see the list of props below.
 
+### DatePicker
+
 <ArgsTable of={DatePicker} />
+
+### DateRangePicker
+
+<ArgsTable of={DateRangePicker} />
 
 
 ## Design tokens

@@ -2,8 +2,12 @@ import { Meta, StoryFn } from "@storybook/react";
 import React, { useState } from "react";
 import { CunninghamProvider } from ":/components/Provider";
 import { Button } from ":/components/Button";
+import DateRangePicker from ":/components/Forms/DatePicker/DateRangePicker";
 import DatePicker from ":/components/Forms/DatePicker/DatePicker";
-import { StringOrDate } from ":/components/Forms/DatePicker/types";
+import {
+  StringOrDate,
+  StringsOrDateRange,
+} from ":/components/Forms/DatePicker/types";
 
 export default {
   title: "Components/Forms/DatePicker",
@@ -101,5 +105,50 @@ export const Controlled = () => {
         <Button onClick={() => setValue("")}>Reset</Button>
       </div>
     </CunninghamProvider>
+  );
+};
+
+export const RangeDefault = () => {
+  return (
+    <div style={{ minHeight: "400px" }}>
+      <CunninghamProvider>
+        <DateRangePicker startLabel="Start date" endLabel="Due date" />
+      </CunninghamProvider>
+    </div>
+  );
+};
+
+export const RangeDefaultValue = () => {
+  return (
+    <CunninghamProvider>
+      <DateRangePicker
+        startLabel="Start date"
+        endLabel="Due date"
+        defaultValue={["2023-05-23", "2023-06-23"]}
+      />
+    </CunninghamProvider>
+  );
+};
+
+export const RangeControlled = () => {
+  const [value, setValue] = useState<StringsOrDateRange | null>([
+    "2023-05-23",
+    "2023-06-23",
+  ]);
+  return (
+    <div>
+      <CunninghamProvider>
+        <div>Value: {value?.join("  ")}</div>
+        <DateRangePicker
+          startLabel="Start date"
+          endLabel="Due date"
+          minValue="2023-01-23"
+          maxValue="2023-08-23"
+          value={value}
+          onChange={(e) => setValue(e)}
+        />
+        <Button onClick={() => setValue(null)}>Reset</Button>
+      </CunninghamProvider>
+    </div>
   );
 };
