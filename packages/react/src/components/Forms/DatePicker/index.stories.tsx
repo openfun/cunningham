@@ -2,7 +2,8 @@ import { Meta, StoryFn } from "@storybook/react";
 import React, { useState } from "react";
 import { CunninghamProvider } from ":/components/Provider";
 import { Button } from ":/components/Button";
-import { DatePicker } from "./index";
+import DatePicker from ":/components/Forms/DatePicker/DatePicker";
+import { StringOrDate } from ":/components/Forms/DatePicker/types";
 
 export default {
   title: "Components/Forms/DatePicker",
@@ -83,7 +84,7 @@ export const WithText = {
 };
 
 export const Controlled = () => {
-  const [value, setValue] = useState<string | Date>("2023-05-26");
+  const [value, setValue] = useState<StringOrDate | null>("2023-05-26");
   return (
     <CunninghamProvider>
       <div>
@@ -93,7 +94,7 @@ export const Controlled = () => {
         <DatePicker
           label="Pick a date"
           value={value}
-          onChange={(e: string) => {
+          onChange={(e) => {
             setValue(e);
           }}
         />
