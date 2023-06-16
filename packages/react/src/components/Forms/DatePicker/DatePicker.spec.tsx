@@ -3,7 +3,7 @@ import { render, screen, within } from "@testing-library/react";
 import React, { FormEvent, useState } from "react";
 import { expect, vi, afterEach } from "vitest";
 import { CunninghamProvider } from ":/components/Provider";
-import DatePicker from ":/components/Forms/DatePicker/DatePicker";
+import { DatePicker } from ":/components/Forms/DatePicker/DatePicker";
 import { Button } from ":/components/Button";
 
 describe("<DatePicker/>", () => {
