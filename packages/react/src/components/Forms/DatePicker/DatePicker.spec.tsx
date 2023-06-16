@@ -3,7 +3,7 @@ import { render, screen, within } from "@testing-library/react";
 import React, { FormEvent, useState } from "react";
 import { expect, vi, afterEach } from "vitest";
 import { CunninghamProvider } from ":/components/Provider";
-import { DatePicker } from ":/components/Forms/DatePicker/index";
+import DatePicker from ":/components/Forms/DatePicker/DatePicker";
 import { Button } from ":/components/Button";
 
 describe("<DatePicker/>", () => {
@@ -25,7 +25,11 @@ describe("<DatePicker/>", () => {
   };
 
   const expectDateFieldToBeHidden = () => {
-    expect(screen.queryByRole("presentation")).toBeNull();
+    const dateField = screen.queryByRole("presentation");
+    expect(dateField).toBeTruthy();
+    expect(Array.from(dateField!.parentElement!.classList)).contains(
+      "c__date-picker__inner--collapsed"
+    );
   };
 
   const expectDateFieldToBeDisplayed = () => {
@@ -130,14 +134,13 @@ describe("<DatePicker/>", () => {
     expectCalendarToBeClosed();
   });
 
-  it("focuses in the right order with no picked date", async () => {
+  it("toggles calendar with keyboard", async () => {
     const user = userEvent.setup();
     render(
       <CunninghamProvider>
         <DatePicker label="Pick a date" name="datepicker" />
       </CunninghamProvider>
     );
-    // Get elements that should receive focus when no date is picked.
     const [input, toggleButton] = await screen.findAllByRole("button")!;
 
     await user.keyboard("{Tab}");
@@ -148,6 +151,35 @@ describe("<DatePicker/>", () => {
 
     await user.keyboard("{Enter}");
     expectCalendarToBeOpen();
+  });
+
+  it("focuses in the right order with no picked date", async () => {
+    const user = userEvent.setup();
+    render(
+      <CunninghamProvider>
+        <DatePicker label="Pick a date" name="datepicker" />
+      </CunninghamProvider>
+    );
+    // Get elements that should receive focus when no date is picked.
+    const [input, toggleButton] = await screen.findAllByRole("button")!;
+    const [monthSegment, daySegment, yearSegment] = await screen.findAllByRole(
+      "spinbutton"
+    )!;
+
+    await user.keyboard("{Tab}");
+    expect(input).toHaveFocus();
+
+    await user.keyboard("{Tab}");
+    expect(toggleButton).toHaveFocus();
+
+    await user.keyboard("{Tab}");
+    expect(monthSegment).toHaveFocus();
+
+    await user.keyboard("{Tab}");
+    expect(daySegment).toHaveFocus();
+
+    await user.keyboard("{Tab}");
+    expect(yearSegment).toHaveFocus();
   });
 
   it("focuses in the right order with a default value", async () => {
@@ -167,7 +199,7 @@ describe("<DatePicker/>", () => {
     const clearButton = screen.getByRole("button", {
       name: "Clear date",
     });
-    const [monthSegment, daySegment, YearSegment] = await screen.findAllByRole(
+    const [monthSegment, daySegment, yearSegment] = await screen.findAllByRole(
       "spinbutton"
     )!;
 
@@ -185,7 +217,7 @@ describe("<DatePicker/>", () => {
     expect(daySegment).toHaveFocus();
 
     await user.keyboard("{Tab}");
-    expect(YearSegment).toHaveFocus();
+    expect(yearSegment).toHaveFocus();
 
     await user.keyboard("{Tab}");
     expect(clearButton).toHaveFocus();
@@ -468,7 +500,7 @@ describe("<DatePicker/>", () => {
               label="Pick a date"
               name="datepicker"
               value={value}
-              onChange={(e) => setValue(e)}
+              onChange={(e: string | null) => setValue(e)}
             />
           </div>
         </CunninghamProvider>
@@ -590,7 +622,7 @@ describe("<DatePicker/>", () => {
     // Submit the form being empty.
     await user.click(submitButton);
     expect(formData).toEqual({
-      datepicker: null,
+      datepicker: "",
     });
 
     // Open calendar
@@ -632,7 +664,7 @@ describe("<DatePicker/>", () => {
 
     // Make sure form's value is null.
     expect(formData).toEqual({
-      datepicker: null,
+      datepicker: "",
     });
   });
 
