@@ -8,7 +8,7 @@ export const tokens = (defaults: DefaultTokens) => ({
   "border-radius--focus": "2px",
   "border-radius--hover": "2px",
   "border-style": "solid",
-  "border-width": "2px",
+  "border-width": "1px",
   color: defaults.theme.colors["greyscale-800"],
   "font-size": defaults.theme.font.sizes.l,
   height: "3.5rem",
