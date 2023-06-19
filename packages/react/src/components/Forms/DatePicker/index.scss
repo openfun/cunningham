@@ -11,7 +11,7 @@
     border-color: var(--c--components--forms-datepicker--border-color);
     border-style: var(--c--components--forms-datepicker--border-style);
     display: flex;
-    align-items: center;
+
     transition: border var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
     padding: 0 0.75rem;
     gap: 1rem;
@@ -24,6 +24,11 @@
 
     &--clickable {
       cursor: pointer;
+    }
+
+    &__icon {
+      display: flex;
+      align-items: center;
     }
   }
 
