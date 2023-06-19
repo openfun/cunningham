@@ -1,5 +1,29 @@
 # @openfun/cunningham-react
 
+## 0.8.0
+
+### Minor Changes
+
+- 8cf2bb2: improve checkbox input styling configuration
+- 787bd3d: allow autocompletion for DataGrid's renderCell
+- 10fa71e: add datepicker component
+- 30d08a9: add fullWidth props to Button
+- 0153b50: add forms examples to documentation
+- fe91471: add pixel-to-rem sass util function
+- c8afa10: add multi select
+- 1d1cf81: add a popover component
+- 38538e3: improve radio input styling configuration
+- 1ff37cf: improve input styling configuration
+
+### Patch Changes
+
+- 2c6a66b: change pagination border color
+- a869fe5: reduce inputs borders
+- 76ad562: Fix initial focused item on select opening under the calendar
+- 6f05995: make eof stylesheet consistent with a newline
+- 1cb1b48: add min-width to Field
+- 9127fd8: support nested field in DataGrid
+
 ## 0.7.0
 
 ### Minor Changes
@@ -109,7 +133,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.7.0...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.8.0...main
+[0.8.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.7.0...0.8.0
 [0.7.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.6.2...0.7.0
 [0.6.2]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.6.1...0.6.2
 [0.6.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.6.0...0.6.1
