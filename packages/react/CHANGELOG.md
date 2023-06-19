@@ -1,5 +1,11 @@
 # @openfun/cunningham-react
 
+## 0.8.1
+
+### Patch Changes
+
+- 501ba1a: fix DatePicker alignments
+
 ## 0.8.0
 
 ### Minor Changes
@@ -133,16 +139,17 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.8.0...main
-[0.8.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.7.0...0.8.0
-[0.7.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.6.2...0.7.0
-[0.6.2]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.6.1...0.6.2
-[0.6.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.6.0...0.6.1
-[0.6.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.5.0...0.6.0
-[0.5.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.4.0...0.5.0
-[0.4.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.3.0...0.4.0
-[0.3.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.2.0...0.3.0
-[0.2.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.1.1...0.2.0
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.8.1...main
+[0.8.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.8.0...@openfun/cunningham-react@0.8.1
+[0.8.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.7.0...@openfun/cunningham-react@0.8.0
+[0.7.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.6.2...@openfun/cunningham-react@0.7.0
+[0.6.2]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.6.1...@openfun/cunningham-react@0.6.2
+[0.6.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.6.0...@openfun/cunningham-react@0.6.1
+[0.6.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.5.0...@openfun/cunningham-react@0.6.0
+[0.5.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.4.0...@openfun/cunningham-react@0.5.0
+[0.4.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.3.0...@openfun/cunningham-react@0.4.0
+[0.3.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.2.0...@openfun/cunningham-react@0.3.0
+[0.2.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.1.1...@openfun/cunningham-react@0.2.0
 [0.1.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.1.0...@openfun/cunningham-react@0.1.1
 [0.1.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.0.0...@openfun/cunningham-react@0.1.0
 [0.0.0]: https://github.com/openfun/cunningham/compare/0b532742e7f9747c5d573b869daa8aca0d79e7f1...@openfun/cunningham-react@0.0.0
