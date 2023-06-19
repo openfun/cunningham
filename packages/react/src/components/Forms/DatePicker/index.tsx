@@ -130,22 +130,24 @@ export const DatePicker = ({
           {state.value && (
             <input type="hidden" name={name} value={state.value?.toString()} />
           )}
-          <Button
-            {...{
-              ...otherButtonProps,
-              "aria-label": t(
-                state.isOpen
-                  ? "components.forms.date_picker.toggle_button_aria_label_close"
-                  : "components.forms.date_picker.toggle_button_aria_label_open"
-              ),
-            }}
-            color="tertiary"
-            size="small"
-            className="c__date-picker__wrapper__toggle"
-            onClick={state.toggle}
-            icon={<span className="material-icons">calendar_today</span>}
-            disabled={disabled}
-          />
+          <div className="c__date-picker__wrapper__icon">
+            <Button
+              {...{
+                ...otherButtonProps,
+                "aria-label": t(
+                  state.isOpen
+                    ? "components.forms.date_picker.toggle_button_aria_label_close"
+                    : "components.forms.date_picker.toggle_button_aria_label_open"
+                ),
+              }}
+              color="tertiary"
+              size="small"
+              className="c__date-picker__wrapper__toggle"
+              onClick={state.toggle}
+              icon={<span className="material-icons">calendar_today</span>}
+              disabled={disabled}
+            />
+          </div>
           <LabelledBox label={label} labelAsPlaceholder={labelAsPlaceholder}>
             <div className="c__date-picker__inner">
               {!labelAsPlaceholder && (
