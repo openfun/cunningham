@@ -87,6 +87,14 @@ export const WithText = {
   },
 };
 
+export const Fullwidth = {
+  render: Template,
+  args: {
+    defaultValue: "2023-05-24",
+    fullWidth: true,
+  },
+};
+
 export const Controlled = () => {
   const [value, setValue] = useState<StringOrDate | null>("2023-05-26");
   return (
