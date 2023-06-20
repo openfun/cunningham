@@ -213,6 +213,7 @@
 .c__calendar {
   display: block;
   transform: translate(2px, 0);
+  max-width: px-to-rem(340px);
 
   &__wrapper {
     display: block;
