@@ -80,6 +80,11 @@ export const CalendarCell = ({ state, date }: CalendarCellProps) => {
           )}
           disabled={isDisabled}
           {...buttonProps}
+          // The keyboard's ENTER event triggers the button twice.
+          // We could prevent this behavior using their headless ui
+          // button component.
+          onKeyDown={(e) => e.preventDefault()}
+          onKeyUp={(e) => e.preventDefault()}
           ref={ref}
         >
           {formattedDate}
