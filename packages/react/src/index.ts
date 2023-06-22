@@ -8,6 +8,7 @@ export * from "./components/DataGrid/SimpleDataGrid";
 export * from "./components/Forms/Checkbox";
 export * from "./components/DataGrid/DataList";
 export * from "./components/Forms/Field";
+export * from "./components/Forms/FileUploader";
 export * from "./components/Forms/Input";
 export * from "./components/Forms/Radio";
 export * from "./components/Forms/Select";

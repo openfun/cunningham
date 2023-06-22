@@ -1,0 +1,123 @@
+import { ArgTypes, Canvas, Meta, Source, Story } from '@storybook/blocks';
+import * as Stories from './index.stories';
+import { FileUploader } from './index';
+
+<Meta of={Stories}/>
+
+# FileUploader
+
+Cunningham provides a file uploader component that you can use in your forms.
+
+
+<Canvas>
+  <Story id="components-forms-fileuploader--mono"/>
+</Canvas>
+
+<Source
+  language='ts'
+  dark
+  format={false}
+  code={`import { FileUploader } from "@openfun/cunningham-react";`}
+/>
+
+## Multi
+
+The file uploader comes with a multi version to handle multiple files.
+
+<Canvas sourceState="shown">
+  <Story id="components-forms-fileuploader--multi-wih-files"/>
+</Canvas>
+
+
+## States
+
+You can use the following props to change the state of the FileUploader component by using the `state` props.
+
+<Canvas sourceState="shown">
+  <Story id="components-forms-fileuploader--mono-with-file-success"/>
+</Canvas>
+
+<Canvas sourceState="shown">
+  <Story id="components-forms-fileuploader--mono-error"/>
+</Canvas>
+
+<Canvas sourceState="shown">
+  <Story id="components-forms-fileuploader--mono-uploading"/>
+</Canvas>
+
+## Texts
+
+You can customize displayed texts by using `bigText` and `text` props.
+
+<Canvas sourceState="shown">
+  <Story id="components-forms-fileuploader--mono-with-text"/>
+</Canvas>
+
+<Canvas sourceState="shown">
+  <Story id="components-forms-fileuploader--mono-with-big-text"/>
+</Canvas>
+
+## Icons
+
+You can customize the icons used by the FileUploader using `icon`, `successIcon`, `deleteIcon`, `fileSelectedIcon` and `uploadingIcon`.
+
+> You can also disable the icon animation on hover by using `animateIcon` props.
+
+<Canvas sourceState="shown">
+  <Story id="components-forms-fileuploader--mono-custom-icons"/>
+</Canvas>
+<Canvas sourceState="shown">
+  <Story id="components-forms-fileuploader--mono-custom-icons-success"/>
+</Canvas>
+<Canvas sourceState="shown">
+  <Story id="components-forms-fileuploader--mono-custom-icons-uploading"/>
+</Canvas>
+
+## Controlled / Non Controlled
+
+This component cannot be entirely controlled like others due to browser restrictions. (For security reasons, browsers do not allow you to set an arbitrary to a file input.)
+
+What you can do is to use the `onChange` callback to be aware of any changes in case you need to do something with the file(s).
+
+You can also reset the input by using the `reset` method available via the ref.
+
+It works the same for multiple or mono version.
+
+<Canvas sourceState="shown">
+  <Story id="components-forms-fileuploader--multi-value"/>
+</Canvas>
+
+## Props
+
+You can use all the props of the native html `<input>` element props plus the following.
+
+<ArgTypes of={FileUploader} />
+
+## Design tokens
+
+Here are the custom design tokens defined by the button.
+
+| Token        	| Description                 	|
+|---------------|-----------------------------	|
+| background-color  | Background color of the dropzone    	|
+| border-color  | Border color of the dropzone    	|
+| border-radius | Border radius of the dropzone    	|
+| border-width  | Border width of the dropzone  	|
+| border-style  | Border style of the dropzone  	|
+| background-color--active | Background color of the dropzone when active or on hover   	|
+| color | Color of the dropzone text   	|
+| padding | Padding of the dropzone   	|
+| accent-color | Accent color of the dropzone   	|
+| text-color | Color of the small text |
+| text-size | Font size of the small text |
+| file-text-size | (Multi only) Font size of the file text |
+| file-text-color | (Multi only) Font color of the file text |
+| file-text-weight | (Multi only) Font weight of the file text |
+| file-border-color | (Multi only) Border color of file |
+| file-border-width | (Multi only) Border width of file |
+| file-border-radius | (Multi only) Border radius of file |
+| file-background-color | (Multi only) Background color of file |
+| file-specs-size | (Multi only) Font size of file specs |
+| file-specs-color | (Multi only) Font color of file specs |
+
+See also [Field](?path=/story/components-forms-field-doc--page)
