@@ -22,6 +22,13 @@
         "clear_button_aria_label": "Effacer la sélection",
         "clear_all_button_aria_label": "Effacer toutes les sélections"
       },
+      "file_uploader": {
+        "delete_file_name": "Supprimer le fichier {name}",
+        "delete_file": "Supprimer le fichier",
+        "uploading": "Upload en cours ...",
+        "caption": "Glisser-déposer ou ",
+        "browse_files": "Parcourir"
+      },
       "date_picker": {
         "toggle_button_aria_label_open": "Ouvrir le calendrier",
         "toggle_button_aria_label_close": "Fermer le calendrier",
