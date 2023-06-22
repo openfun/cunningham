@@ -1,5 +1,4 @@
-import { Meta, StoryFn } from "@storybook/react";
-import React from "react";
+import { Meta, StoryObj } from "@storybook/react";
 import { Loader } from ":/components/Loader/index";
 
 export default {
@@ -7,9 +6,14 @@ export default {
   component: Loader,
 } as Meta<typeof Loader>;
 
-const Template: StoryFn<typeof Loader> = () => <Loader />;
+type Story = StoryObj<typeof Loader>;
 
-export const Default = {
-  render: Template,
+export const Medium: Story = {
   args: {},
+};
+
+export const Small: Story = {
+  args: {
+    size: "small",
+  },
 };
