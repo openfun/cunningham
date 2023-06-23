@@ -5,6 +5,7 @@ import { Checkbox } from ":/components/Forms/Checkbox";
 import { Button } from ":/components/Button";
 import { Select } from ":/components/Forms/Select";
 import { CunninghamProvider } from ":/components/Provider";
+import { FileUploader } from ":/components/Forms/FileUploader";
 import { Switch } from ":/components/Forms/Switch";
 import { Radio } from ":/components/Forms/Radio";
 
@@ -88,6 +89,12 @@ export const Application = () => {
         />
         <Input label="ZIP" fullWidth={true} />
         <Input label="City" fullWidth={true} />
+        <div className="fs-m fw-medium">Your curriculum vitae</div>
+        <FileUploader
+          fullWidth={true}
+          text="pdf only ( 4mb maximum )"
+          accept="application/pdf"
+        />
         <div>
           <Switch label="SMS Notification" fullWidth={true} />
           <Switch label="Subscribe to newsletter" fullWidth={true} />
