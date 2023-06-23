@@ -1,5 +1,11 @@
 # @openfun/cunningham-tokens
 
+## 0.5.0
+
+### Minor Changes
+
+- cfdac8db: migrate to Roboto Flex
+
 ## 0.4.0
 
 ### Minor Changes
@@ -39,7 +45,8 @@
 - 4ebbf16: Add utility classes
 - 4ebbf16: Add official design tokens
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@0.4.0...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@0.5.0...main
+[0.5.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@0.4.0...@openfun/cunningham-tokens@0.5.0
 [0.4.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@0.3.0...@openfun/cunningham-tokens@0.4.0
 [0.3.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@0.2.0...@openfun/cunningham-tokens@0.3.0
 [0.2.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@0.1.1...@openfun/cunningham-tokens@0.2.0
