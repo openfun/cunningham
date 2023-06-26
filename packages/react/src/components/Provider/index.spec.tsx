@@ -1,7 +1,12 @@
 import { render, screen } from "@testing-library/react";
 import React, { PropsWithChildren, useMemo, useState } from "react";
 import userEvent from "@testing-library/user-event";
-import { CunninghamProvider, useCunningham } from ":/components/Provider/index";
+import { expect } from "vitest";
+import {
+  CunninghamProvider,
+  DEFAULT_LOCALE,
+  useCunningham,
+} from ":/components/Provider/index";
 import * as enUS from ":/locales/en-US.json";
 import { Button } from ":/components/Button";
 
@@ -101,5 +106,51 @@ describe("<CunninghamProvider />", () => {
       level: 1,
       name: "components.will_never_exist",
     });
+  });
+
+  it("should return current locale", () => {
+    const locale = "fr-FR";
+    const Wrapper = (props: PropsWithChildren) => {
+      return (
+        <CunninghamProvider currentLocale={locale}>
+          {props.children}
+        </CunninghamProvider>
+      );
+    };
+    const Wrapped = () => {
+      const { currentLocale } = useCunningham();
+      expect(currentLocale).eq(locale);
+      return <div />;
+    };
+    render(<Wrapped />, { wrapper: Wrapper });
+  });
+
+  it("should return default locale if no current locale is provided", () => {
+    const Wrapper = (props: PropsWithChildren) => {
+      return <CunninghamProvider>{props.children}</CunninghamProvider>;
+    };
+    const Wrapped = () => {
+      const { currentLocale } = useCunningham();
+      expect(currentLocale).eq(DEFAULT_LOCALE);
+      return <div />;
+    };
+    render(<Wrapped />, { wrapper: Wrapper });
+  });
+
+  it("should return default locale if the current locale is not supported", () => {
+    const wrongLocale = "fr_FR";
+    const Wrapper = (props: PropsWithChildren) => {
+      return (
+        <CunninghamProvider currentLocale={wrongLocale}>
+          {props.children}
+        </CunninghamProvider>
+      );
+    };
+    const Wrapped = () => {
+      const { currentLocale } = useCunningham();
+      expect(currentLocale).eq(DEFAULT_LOCALE);
+      return <div />;
+    };
+    render(<Wrapped />, { wrapper: Wrapper });
   });
 });
