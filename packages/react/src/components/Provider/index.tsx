@@ -15,6 +15,7 @@ const CunninghamContext = createContext<
   | undefined
   | {
       t: (key: string, vars?: Record<string, string | number>) => string;
+      currentLocale: string;
     }
 >(undefined);
 
@@ -57,17 +58,14 @@ export const CunninghamProvider = ({
   );
 
   const locale = useMemo(() => {
-    if (!locales[currentLocale]) {
-      return locales[DEFAULT_LOCALE];
-    }
-    return locales[currentLocale];
+    return (locales[currentLocale] && currentLocale) || DEFAULT_LOCALE;
   }, [currentLocale, locales]);
 
   const context = useMemo(
     () => ({
       t: (key: string, vars?: Record<string, string | number>) => {
         let message: string =
-          findTranslation(key, locale) ??
+          findTranslation(key, locales[locale]) ??
           findTranslation(key, locales[DEFAULT_LOCALE]) ??
           key;
 
@@ -80,6 +78,7 @@ export const CunninghamProvider = ({
 
         return message;
       },
+      currentLocale: locale,
     }),
     [currentLocale, locales]
   );
