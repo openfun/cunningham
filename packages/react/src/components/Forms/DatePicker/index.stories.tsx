@@ -95,6 +95,26 @@ export const Fullwidth = {
   },
 };
 
+export const CustomLocale = () => (
+  <div style={{ minHeight: "400px" }}>
+    <CunninghamProvider>
+      <DatePicker
+        label="Pick a date"
+        locale="hi-IN-u-ca-indian"
+        defaultValue="2023-06-25"
+      />
+    </CunninghamProvider>
+  </div>
+);
+
+export const CunninghamLocale = () => (
+  <div style={{ minHeight: "400px" }}>
+    <CunninghamProvider currentLocale="fr-FR">
+      <DatePicker label="Pick a date" defaultValue="2023-06-25" />
+    </CunninghamProvider>
+  </div>
+);
+
 export const Controlled = () => {
   const [value, setValue] = useState<StringOrDate | null>("2023-05-26");
   return (
