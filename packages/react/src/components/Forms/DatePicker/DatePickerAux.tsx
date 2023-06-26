@@ -11,6 +11,7 @@ import {
 } from "@react-stately/datepicker";
 import { DateRangePickerAria, DatePickerAria } from "@react-aria/datepicker";
 import classNames from "classnames";
+import { I18nProvider } from "@react-aria/i18n";
 import { Button } from ":/components/Button";
 import { Popover } from ":/components/Popover";
 import { Field, FieldProps } from ":/components/Forms/Field";
@@ -27,6 +28,7 @@ export type DatePickerAuxSubProps = FieldProps & {
   maxValue?: StringOrDate;
   disabled?: boolean;
   name?: string;
+  locale?: string;
 };
 
 export type DatePickerAuxProps = PropsWithChildren &
@@ -58,13 +60,14 @@ const DatePickerAux = forwardRef(
       calendar,
       children,
       name,
+      locale,
       disabled = false,
       optionalClassName,
       ...props
     }: DatePickerAuxProps,
     ref: Ref<HTMLDivElement>
   ) => {
-    const { t } = useCunningham();
+    const { t, currentLocale } = useCunningham();
     const pickerRef = useRef<HTMLDivElement>(null);
 
     const isDateInvalid = useMemo(
@@ -79,93 +82,97 @@ const DatePickerAux = forwardRef(
       pickerProps.buttonProps;
 
     return (
-      <Field {...props}>
-        <div
-          ref={pickerRef}
-          className={classNames(["c__date-picker", optionalClassName], {
-            "c__date-picker--disabled": disabled,
-            "c__date-picker--invalid": isDateInvalid,
-            "c__date-picker--success": props.state === "success",
-            "c__date-picker--focused":
-              !isDateInvalid && !disabled && (pickerState.isOpen || isFocused),
-          })}
-        >
+      <I18nProvider locale={locale || currentLocale}>
+        <Field {...props}>
           <div
-            className={classNames("c__date-picker__wrapper", {
-              "c__date-picker__wrapper--clickable": labelAsPlaceholder,
+            ref={pickerRef}
+            className={classNames(["c__date-picker", optionalClassName], {
+              "c__date-picker--disabled": disabled,
+              "c__date-picker--invalid": isDateInvalid,
+              "c__date-picker--success": props.state === "success",
+              "c__date-picker--focused":
+                !isDateInvalid &&
+                !disabled &&
+                (pickerState.isOpen || isFocused),
             })}
-            ref={ref}
-            {...pickerProps.groupProps}
-            role="button"
-            tabIndex={0}
-            onClick={() => !pickerState.isOpen && pickerState.open()}
           >
-            {"dateRange" in pickerState ? (
-              <>
+            <div
+              className={classNames("c__date-picker__wrapper", {
+                "c__date-picker__wrapper--clickable": labelAsPlaceholder,
+              })}
+              ref={ref}
+              {...pickerProps.groupProps}
+              role="button"
+              tabIndex={0}
+              onClick={() => !pickerState.isOpen && pickerState.open()}
+            >
+              {"dateRange" in pickerState ? (
+                <>
+                  <input
+                    type="hidden"
+                    name={name && `${name}_start`}
+                    value={pickerState.value?.start?.toString() || ""}
+                  />
+                  <input
+                    type="hidden"
+                    name={name && `${name}_end`}
+                    value={pickerState.value?.end?.toString() || ""}
+                  />
+                </>
+              ) : (
                 <input
                   type="hidden"
-                  name={name && `${name}_start`}
-                  value={pickerState.value?.start?.toString() || ""}
+                  name={name}
+                  value={pickerState.value?.toString() || ""}
                 />
-                <input
-                  type="hidden"
-                  name={name && `${name}_end`}
-                  value={pickerState.value?.end?.toString() || ""}
+              )}
+              <div className="c__date-picker__wrapper__icon">
+                <Button
+                  {...{
+                    ...otherButtonProps,
+                    "aria-label": t(
+                      pickerState.isOpen
+                        ? "components.forms.date_picker.toggle_button_aria_label_close"
+                        : "components.forms.date_picker.toggle_button_aria_label_open"
+                    ),
+                  }}
+                  color="tertiary"
+                  size="small"
+                  className="c__date-picker__wrapper__toggle"
+                  onClick={pickerState.toggle}
+                  icon={<span className="material-icons">calendar_today</span>}
+                  disabled={disabled}
                 />
-              </>
-            ) : (
-              <input
-                type="hidden"
-                name={name}
-                value={pickerState.value?.toString() || ""}
-              />
-            )}
-            <div className="c__date-picker__wrapper__icon">
+              </div>
+              {children}
               <Button
-                {...{
-                  ...otherButtonProps,
-                  "aria-label": t(
-                    pickerState.isOpen
-                      ? "components.forms.date_picker.toggle_button_aria_label_close"
-                      : "components.forms.date_picker.toggle_button_aria_label_open"
-                  ),
-                }}
+                className={classNames("c__date-picker__inner__action", {
+                  "c__date-picker__inner__action--empty": !pickerState.value,
+                  "c__date-picker__inner__action--hidden":
+                    labelAsPlaceholder || disabled,
+                })}
                 color="tertiary"
                 size="small"
-                className="c__date-picker__wrapper__toggle"
-                onClick={pickerState.toggle}
-                icon={<span className="material-icons">calendar_today</span>}
+                icon={<span className="material-icons">cancel</span>}
+                onClick={onClear}
+                aria-label={t(
+                  "components.forms.date_picker.clear_button_aria_label"
+                )}
                 disabled={disabled}
               />
             </div>
-            {children}
-            <Button
-              className={classNames("c__date-picker__inner__action", {
-                "c__date-picker__inner__action--empty": !pickerState.value,
-                "c__date-picker__inner__action--hidden":
-                  labelAsPlaceholder || disabled,
-              })}
-              color="tertiary"
-              size="small"
-              icon={<span className="material-icons">cancel</span>}
-              onClick={onClear}
-              aria-label={t(
-                "components.forms.date_picker.clear_button_aria_label"
-              )}
-              disabled={disabled}
-            />
+            {pickerState.isOpen && (
+              <Popover
+                parentRef={pickerRef}
+                onClickOutside={pickerState.close}
+                borderless
+              >
+                {calendar}
+              </Popover>
+            )}
           </div>
-          {pickerState.isOpen && (
-            <Popover
-              parentRef={pickerRef}
-              onClickOutside={pickerState.close}
-              borderless
-            >
-              {calendar}
-            </Popover>
-          )}
-        </div>
-      </Field>
+        </Field>
+      </I18nProvider>
     );
   }
 );

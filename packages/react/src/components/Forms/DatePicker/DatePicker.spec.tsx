@@ -1131,4 +1131,160 @@ describe("<DatePicker/>", () => {
     await user.keyboard("{ArrowRight}");
     expectFocusedMonthToBeEqual(nextMonthValue);
   });
+
+  it("uses the locale props calendar system", async () => {
+    const user = userEvent.setup();
+    render(
+      <CunninghamProvider>
+        <DatePicker
+          label="Pick a date"
+          locale="hi-IN-u-ca-indian"
+          defaultValue="2023-06-25"
+        />
+      </CunninghamProvider>
+    );
+
+    const input = (await screen.findAllByRole("button"))[0];
+
+    // Toggle button opens the calendar.
+    await user.click(input);
+    expectCalendarToBeOpen();
+    expectDateFieldToBeDisplayed();
+
+    // Make sure dateField is in the right locale
+    const dateFieldContent = screen.getByRole("presentation").textContent;
+    expect(dateFieldContent).eq("4/4/1945 शक");
+
+    // Make sure month is in the right locale
+    const focusedMonth = screen
+      .getByRole("combobox", {
+        name: "Select a month",
+      })!
+      .textContent?.replace("arrow_drop_down", "");
+    expect(focusedMonth).eq("आषाढ़");
+
+    // Make sure year is in the right locale
+    const focusedYear = screen
+      .getByRole("combobox", {
+        name: "Select a year",
+      })!
+      .textContent?.replace("arrow_drop_down", "");
+    expect(focusedYear).eq("1945 शक");
+
+    // Make sure weekdays are in the right locale
+    screen.getByText("रवि");
+    screen.getByText("सोम");
+    screen.getByText("मंगल");
+    screen.getByText("बुध");
+    screen.getByText("गुरु");
+    screen.getByText("शुक्र");
+    screen.getByText("शनि");
+  });
+
+  it("uses the cunningham provider props calendar systems", async () => {
+    const user = userEvent.setup();
+    render(
+      <CunninghamProvider currentLocale="fr-FR">
+        <DatePicker label="Pick a date" defaultValue="2023-06-25" />
+      </CunninghamProvider>
+    );
+
+    const input = (await screen.findAllByRole("button"))[0];
+
+    // Toggle button opens the calendar.
+    await user.click(input);
+    expectCalendarToBeOpen();
+    expectDateFieldToBeDisplayed();
+
+    // Make sure dateField is in the right locale
+    const dateFieldContent = screen.getByRole("presentation").textContent;
+    expect(dateFieldContent).eq("25/06/2023");
+
+    // Make sure month is in the right locale
+    const focusedMonth = screen
+      .getByRole("combobox", {
+        name: "Sélectionner un mois",
+      })!
+      .textContent?.replace("arrow_drop_down", "");
+    expect(focusedMonth).eq("juin");
+
+    // Make sure year is in the right locale
+    const focusedYear = screen
+      .getByRole("combobox", {
+        name: "Sélectionner une année",
+      })!
+      .textContent?.replace("arrow_drop_down", "");
+    expect(focusedYear).eq("2023");
+
+    // Make sure weekdays are in the right locale
+    screen.getByText("lun.");
+    screen.getByText("mar.");
+    screen.getByText("mer.");
+    screen.getByText("jeu.");
+    screen.getByText("ven.");
+    screen.getByText("sam.");
+    screen.getByText("dim.");
+  });
+
+  it("makes sure the locale props override the cunningham provider calendar system", async () => {
+    const user = userEvent.setup();
+    render(
+      <CunninghamProvider currentLocale="fr-FR">
+        <DatePicker
+          label="Pick a date"
+          defaultValue="2023-06-25"
+          locale="hi-IN-u-ca-indian"
+        />
+      </CunninghamProvider>
+    );
+
+    const input = (await screen.findAllByRole("button"))[0];
+
+    // Toggle button opens the calendar.
+    await user.click(input);
+    expectCalendarToBeOpen();
+    expectDateFieldToBeDisplayed();
+
+    // Make sure dateField is in the right locale
+    const dateFieldContent = screen.getByRole("presentation").textContent;
+    expect(dateFieldContent).eq("4/4/1945 शक");
+
+    // Make sure month is in the right locale
+    // And aria-label uses the right translation.
+    const focusedMonth = screen
+      .getByRole("combobox", {
+        name: "Sélectionner un mois",
+      })!
+      .textContent?.replace("arrow_drop_down", "");
+    expect(focusedMonth).eq("आषाढ़");
+
+    // Make sure year is in the right locale
+    // And aria-label uses the right translation.
+    const focusedYear = screen
+      .getByRole("combobox", {
+        name: "Sélectionner une année",
+      })!
+      .textContent?.replace("arrow_drop_down", "");
+    expect(focusedYear).eq("1945 शक");
+
+    // Make sure weekdays are in the right locale
+    screen.getByText("रवि");
+    screen.getByText("सोम");
+    screen.getByText("मंगल");
+    screen.getByText("बुध");
+    screen.getByText("गुरु");
+    screen.getByText("शुक्र");
+    screen.getByText("शनि");
+  });
+
+  it("has a wrong locale props", async () => {
+    vi.spyOn(console, "error").mockImplementation(() => undefined);
+    expect(() =>
+      render(
+        <CunninghamProvider>
+          <DatePicker label="Pick a date" locale="111" />
+        </CunninghamProvider>
+      )
+    ).toThrow("Incorrect locale information provided");
+  });
 });
