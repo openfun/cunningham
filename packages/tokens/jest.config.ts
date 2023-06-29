@@ -3,7 +3,7 @@ import type { JestConfigWithTsJest } from "ts-jest";
 const jestConfig: JestConfigWithTsJest = {
   preset: "ts-jest",
   testEnvironment: "node",
-  moduleDirectories: ["node_modules", "src/bin"],
+  moduleDirectories: ["node_modules", "src/bin", "src/lib"],
   setupFiles: ["<rootDir>/src/bin/tests/Setup.ts"],
   transform: {
     "^.+\\.tsx?$": [

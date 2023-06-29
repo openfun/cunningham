@@ -1,11 +1,20 @@
 import * as path from "path";
 import { flatify } from "Utils/Flatify";
 import Config from "Config";
-import { Generator } from "Generators/index";
+import { Generator, resolveRefs } from "Generators/index";
 import { put } from "Utils/Files";
 import { Tokens } from "TokensGenerator";
 
 export const cssGenerator: Generator = async (tokens, opts) => {
+  // Replace refs by CSS variables.
+  tokens = resolveRefs(tokens, (ref) => {
+    const cssVar =
+      "--" +
+      Config.sass.varPrefix +
+      ref.replaceAll(".", Config.sass.varSeparator);
+    return `var(${cssVar})`;
+  });
+
   const flatTokens = flatify(tokens, Config.sass.varSeparator);
   const cssVars = Object.keys(flatTokens).reduce((acc, token) => {
     return (
