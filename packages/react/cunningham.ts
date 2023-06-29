@@ -1,4 +1,4 @@
-import { defaultTokens } from "@openfun/cunningham-tokens";
+import { defaultTokenRefs } from "@openfun/cunningham-tokens";
 import { globSync } from "glob";
 
 /**
@@ -25,7 +25,7 @@ files.forEach((file) => {
   }
 
   componentName = componentName.replace("/", "-");
-  components[componentName] = res.tokens(defaultTokens);
+  components[componentName] = res.tokens(defaultTokenRefs);
 });
 
 export default {
