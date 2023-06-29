@@ -1,10 +1,11 @@
 import path from "path";
-import { Generator } from "Generators/index";
+import { Generator, resolveRefs, resolveRefValue } from "Generators/index";
 import Config from "Config";
 import { put } from "Utils/Files";
 import { Tokens } from "TokensGenerator";
 
 export const sassGenerator: Generator = async (tokens, opts) => {
+  tokens = resolveRefs(tokens, resolveRefValue);
   const sassContent = generateSassMaps(tokens);
   const outputPath = path.join(opts.path, Config.tokenFilename + ".scss");
   put(outputPath, sassContent);

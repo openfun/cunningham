@@ -11,7 +11,8 @@ export const buildTheme = async () => {
   const config = await getConfig();
   const tokens = tokensGenerator(config);
   const { generators } = options;
-  await Promise.allSettled(
+  // Promise.all() is used to propagates upward thrown errors.
+  await Promise.all(
     generators.map((generator: string) => {
       if (!Generators[generator]) {
         throw new Error('The generator "' + generator + '" does not exist.');

@@ -8,6 +8,7 @@
 	--c--theme--font--families--base: Roboto;
 	--c--theme--spacings--s: 1rem;
 	--c--theme--transitions--ease: linear;
+	--c--theme--input--border-color: var(--c--theme--colors--ternary-900);
 } .clr-primary { color: var(--c--theme--colors--primary); }
 .clr-secondary { color: var(--c--theme--colors--secondary); }
 .clr-ternary-900 { color: var(--c--theme--colors--ternary-900); }

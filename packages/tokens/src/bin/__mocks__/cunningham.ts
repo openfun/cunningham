@@ -23,5 +23,8 @@ module.exports = {
     transitions: {
       ease: "linear",
     },
+    input: {
+      "border-color": "ref(theme.colors.ternary-900)",
+    },
   },
 };
