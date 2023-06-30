@@ -27,6 +27,15 @@
         "test/**/*.tsx"
       ]
     },
+    "test-ci": {
+      "outputs": [],
+      "inputs": [
+        "src/**/*.tsx",
+        "src/**/*.ts",
+        "test/**/*.ts",
+        "test/**/*.tsx"
+      ]
+    },
     "deploy": {
       "dependsOn": [
         "build",

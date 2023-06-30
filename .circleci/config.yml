@@ -93,13 +93,17 @@ jobs:
   test:
     docker:
       - image: cimg/node:16.18
+    parallelism: 4
+    resource_class: large
     working_directory: ~/cunningham
     steps:
       - *checkout_cunningham
       - *restore_node_modules
+      - attach_workspace:
+          at: ~/cunningham
       - run:
           name: Run test suites over all workspaces
-          command: yarn test
+          command: yarn test-ci
 
   # ---- Internationalization ----
   crowdin-upload:

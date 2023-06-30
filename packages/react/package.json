@@ -33,6 +33,7 @@
     "build-theme": "cunningham -o src -g css,ts,js",
     "preview": "vite preview",
     "test": "FORCE_COLOR=1 vitest run",
+    "test-ci": "VITEST_MIN_THREADS=1 VITEST_MAX_THREADS=3 FORCE_COLOR=1 vitest run --shard $(($CIRCLE_NODE_INDEX + 1))/$CIRCLE_NODE_TOTAL",
     "test-watch": "vitest",
     "coverage": "vitest run --coverage",
     "storybook": "storybook dev -p 6006",
