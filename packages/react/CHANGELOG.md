@@ -1,5 +1,12 @@
 # @openfun/cunningham-react
 
+## 0.9.0
+
+### Minor Changes
+
+- 672f4be: make use of tokens references
+- 80e8dc4: add file uploader
+
 ## 0.8.2
 
 ### Patch Changes
@@ -145,7 +152,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.8.2...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.9.0...main
+[0.9.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.8.2...@openfun/cunningham-react@0.9.0
 [0.8.2]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.8.1...@openfun/cunningham-react@0.8.2
 [0.8.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.8.0...@openfun/cunningham-react@0.8.1
 [0.8.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.7.0...@openfun/cunningham-react@0.8.0
