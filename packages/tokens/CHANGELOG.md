@@ -1,5 +1,11 @@
 # @openfun/cunningham-tokens
 
+## 0.6.0
+
+### Minor Changes
+
+- f36cc07: add token references
+
 ## 0.5.0
 
 ### Minor Changes
@@ -45,7 +51,8 @@
 - 4ebbf16: Add utility classes
 - 4ebbf16: Add official design tokens
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@0.5.0...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@0.6.0...main
+[0.6.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@0.5.0...@openfun/cunningham-tokens@0.6.0
 [0.5.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@0.4.0...@openfun/cunningham-tokens@0.5.0
 [0.4.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@0.3.0...@openfun/cunningham-tokens@0.4.0
 [0.3.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@0.2.0...@openfun/cunningham-tokens@0.3.0
