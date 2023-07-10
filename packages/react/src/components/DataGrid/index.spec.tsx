@@ -235,6 +235,17 @@ describe("<DataGrid/>", () => {
                 highlight: true,
               },
               {
+                id: "firstName2",
+                field: "firstName",
+                headerName: "First name",
+              },
+              {
+                id: "lastName",
+                headerName: "Last Name",
+                renderCell: ({ row: { lastName } }) => lastName,
+              },
+              {
+                id: "buttonValidator",
                 renderCell: () => (
                   <Button
                     color="tertiary"
@@ -250,17 +261,23 @@ describe("<DataGrid/>", () => {
       );
     };
 
+    const error = vi.spyOn(console, "error").mockImplementation(() => {});
+
     render(<Component />);
 
     database.forEach((row) => {
       const element = screen.getByTestId(row.id);
       const tds = getAllByRole(element, "cell");
-      expect(tds.length).toBe(2);
+      expect(tds.length).toBe(4);
       expect(tds[0].textContent).toEqual(row.firstName);
-      getByRole(tds[1], "button", {
+      expect(tds[1].textContent).toEqual(row.firstName);
+      expect(tds[2].textContent).toEqual(row.lastName);
+      getByRole(tds[3], "button", {
         name: "delete",
       });
     });
+
+    expect(error).not.toHaveBeenCalled();
   });
 
   it("should render highlighted column", async () => {
