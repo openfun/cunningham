@@ -23,13 +23,25 @@ export interface Row extends Record<string, any> {
   id: string;
 }
 
-export interface Column<T extends Row = Row> {
-  field?: string;
+export interface ColumnField {
+  id?: string;
+  field: string;
+  renderCell?: never;
+}
+
+export interface ColumnCustomCell<T extends Row = Row> {
+  id: string;
+  renderCell: (params: { row: T }) => React.ReactNode;
+}
+
+export type Column<T extends Row = Row> = (
+  | ColumnCustomCell<T>
+  | ColumnField
+) & {
   headerName?: string;
   highlight?: boolean;
-  renderCell?: (params: { row: T }) => React.ReactNode;
   enableSorting?: boolean;
-}
+};
 
 export type SortModel = { field: string; sort: "asc" | "desc" | null }[];
 

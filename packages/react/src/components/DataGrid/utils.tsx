@@ -24,19 +24,20 @@ export const useHeadlessColumns = <T extends Row>({
   const columnHelper = createColumnHelper<T>();
   let headlessColumns = columns.map((column) => {
     const opts = {
-      id: column.field ?? "actions",
+      id: column.renderCell ? column.id : column.id ?? column.field,
       enableSorting: column.enableSorting,
       header: column.headerName,
     };
-    if (column.field) {
+    if (!column.renderCell) {
       // The any cast is needed because the type of the accessor is hard-defined on react-table.
       // On our side we only use string as type for simplicity purpose.
       return columnHelper.accessor(column.field as any, opts);
     }
+
     return columnHelper.display({
       ...opts,
       cell: (info) => {
-        return column.renderCell!({ row: info.row.original });
+        return column.renderCell({ row: info.row.original });
       },
     });
   });
