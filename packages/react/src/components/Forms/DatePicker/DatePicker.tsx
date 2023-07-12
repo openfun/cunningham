@@ -10,17 +10,16 @@ import DatePickerAux, {
 } from ":/components/Forms/DatePicker/DatePickerAux";
 import { Calendar } from ":/components/Forms/DatePicker/Calendar";
 import DateFieldBox from ":/components/Forms/DatePicker/DateField";
-import { StringOrDate } from ":/components/Forms/DatePicker/types";
 import {
   convertDateValueToString,
   getDefaultPickerOptions,
-  parseCalendarDate,
+  parseDateValue,
 } from ":/components/Forms/DatePicker/utils";
 
 export type DatePickerProps = DatePickerAuxSubProps & {
-  value?: null | StringOrDate;
+  value?: null | string;
   label: string;
-  defaultValue?: StringOrDate;
+  defaultValue?: string;
   onChange?: (value: string | null) => void | undefined;
 };
 
@@ -39,8 +38,8 @@ export const DatePicker = (props: DatePickerProps) => {
       // Force clear the component's value when passing null or an empty string.
       props.value === "" || props.value === null
         ? null
-        : parseCalendarDate(props.value),
-    defaultValue: parseCalendarDate(props.defaultValue),
+        : parseDateValue(props.value),
+    defaultValue: parseDateValue(props.defaultValue),
     onChange: (value: DateValue | null) => {
       props.onChange?.(convertDateValueToString(value));
     },

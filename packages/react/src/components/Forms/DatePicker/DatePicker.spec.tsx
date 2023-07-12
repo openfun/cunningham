@@ -8,7 +8,7 @@ import { Button } from ":/components/Button";
 
 vi.mock("@internationalized/date", async () => {
   const mod = await vi.importActual<typeof import("@internationalized/date")>(
-    "@internationalized/date"
+    "@internationalized/date",
   );
   return {
     ...mod,
@@ -193,7 +193,7 @@ describe("<DatePicker/>", () => {
         <DatePicker
           label="Pick a date"
           name="datepicker"
-          defaultValue="2023-04-25"
+          defaultValue="2023-04-25T00:00:00.000Z"
         />
       </CunninghamProvider>,
     );
@@ -282,7 +282,7 @@ describe("<DatePicker/>", () => {
         <DatePicker
           label="Pick a date"
           name="datepicker"
-          defaultValue="2023-04-05"
+          defaultValue="2023-04-05T00:00:00.000Z"
         />
       </CunninghamProvider>,
     );
@@ -317,8 +317,8 @@ describe("<DatePicker/>", () => {
         <DatePicker
           label="Pick a date"
           name="datepicker"
-          defaultValue="2023-04-05"
-          minValue="2022-12-03"
+          defaultValue="2023-04-05T10:00:00.000Z"
+          minValue="2022-12-03T10:00:00.000Z"
         />
       </CunninghamProvider>,
     );
@@ -350,12 +350,9 @@ describe("<DatePicker/>", () => {
   });
 
   it.each([
-    "2022-05-25",
-    "2023-06-01T13:50",
-    "2025-03-25",
-    "Mar 25 2025",
-    "25 Mar 2025",
-    new Date("2025-04-23"),
+    "2022-05-25T23:59:59.000Z",
+    "2023-06-01T00:00:00.000Z",
+    "2025-03-25T12:30:00.000Z",
   ])("has a default value", async (defaultValue) => {
     render(
       <CunninghamProvider>
@@ -373,8 +370,6 @@ describe("<DatePicker/>", () => {
   });
 
   it("has an uncontrolled a controlled value", async () => {
-    const defaultValue = new Date("2023-05-24");
-    const value = new Date("2023-05-24");
     vi.spyOn(console, "error").mockImplementation(() => undefined);
     expect(() =>
       render(
@@ -382,8 +377,8 @@ describe("<DatePicker/>", () => {
           <DatePicker
             label="Pick a date"
             name="datepicker"
-            defaultValue={defaultValue}
-            value={value}
+            defaultValue="2023-05-24T00:00:00.000Z"
+            value="2023-05-24T00:00:00.000Z"
           />
         </CunninghamProvider>,
       ),
@@ -413,14 +408,13 @@ describe("<DatePicker/>", () => {
   );
 
   it("clears date", async () => {
-    const defaultValue = new Date("2023-05-24");
     const user = userEvent.setup();
     render(
       <CunninghamProvider>
         <DatePicker
           label="Pick a date"
           name="datepicker"
-          defaultValue={defaultValue}
+          defaultValue="2023-05-24T00:00:00.000Z"
         />
       </CunninghamProvider>,
     );
@@ -435,7 +429,7 @@ describe("<DatePicker/>", () => {
     expect(dateFieldContent).eq("mm/dd/yyyy");
 
     const isGridCellSelected = screen
-      .getByRole("gridcell", { name: `${defaultValue.getDate()}` })!
+      .getByRole("gridcell", { name: "24" })!
       .getAttribute("aria-selected");
     expect(isGridCellSelected).toBeNull();
 
@@ -453,8 +447,8 @@ describe("<DatePicker/>", () => {
         <DatePicker
           label="Pick a date"
           name="datepicker"
-          defaultValue="2023-01-01"
-          minValue="2023-02-01"
+          defaultValue="2023-01-01T00:00:00.000Z"
+          minValue="2023-02-01T00:00:00.000Z"
         />
       </CunninghamProvider>,
     );
@@ -467,8 +461,8 @@ describe("<DatePicker/>", () => {
         <DatePicker
           label="Pick a date"
           name="datepicker"
-          defaultValue="2023-03-01"
-          maxValue="2023-02-01"
+          defaultValue="2023-03-01T00:00:00.000Z"
+          maxValue="2023-02-01T00:00:00.000Z"
         />
       </CunninghamProvider>,
     );
@@ -482,9 +476,9 @@ describe("<DatePicker/>", () => {
         <DatePicker
           label="Pick a date"
           name="datepicker"
-          defaultValue="2023-03-01"
-          maxValue="2023-04-01"
-          minValue="2023-05-01"
+          defaultValue="2023-03-01T00:00:00.000Z"
+          maxValue="2023-04-01T00:00:00.000Z"
+          minValue="2023-05-01T00:00:00.000Z"
         />
       </CunninghamProvider>,
     );
@@ -494,7 +488,9 @@ describe("<DatePicker/>", () => {
   it("works controlled", async () => {
     const user = userEvent.setup();
     const Wrapper = () => {
-      const [value, setValue] = useState<string | null>("2023-04-25");
+      const [value, setValue] = useState<string | null>(
+        "2023-04-25T00:00:00.000Z",
+      );
       return (
         <CunninghamProvider>
           <div>
@@ -513,11 +509,11 @@ describe("<DatePicker/>", () => {
     render(<Wrapper />);
 
     // Make sure value is selected.
-    screen.getByText("Value = 2023-04-25|");
+    screen.getByText("Value = 2023-04-25T00:00:00.000Z|");
 
     // Make sure value is initially render in the date field component.
     const dateFieldContent = screen.getByRole("presentation").textContent;
-    expectDatesToBeEqual("2023-04-25", dateFieldContent);
+    expectDatesToBeEqual("2023-04-25T00:00:00.000Z", dateFieldContent);
 
     // Open the calendar grid.
     const toggleButton = (await screen.findAllByRole("button"))![1];
@@ -525,7 +521,7 @@ describe("<DatePicker/>", () => {
     expectCalendarToBeOpen();
 
     const gridCell = within(
-      await screen.getByRole("gridcell", { name: "12" }),
+      screen.getByRole("gridcell", { name: "12" }),
     ).getByRole("button")!;
 
     // Select a new value in the calendar grid.
@@ -533,7 +529,7 @@ describe("<DatePicker/>", () => {
     expectCalendarToBeClosed();
 
     // Make sure value is selected.
-    screen.getByText(`Value = 2023-04-11T22:00:00.000Z|`);
+    screen.getByText(`Value = 2023-04-12T00:00:00.000Z|`);
 
     // Clear value.
     const clearButton = screen.getByRole("button", {
@@ -552,7 +548,7 @@ describe("<DatePicker/>", () => {
         <DatePicker
           label="Pick a date"
           name="datepicker"
-          defaultValue="2023-03-01"
+          defaultValue="2023-03-01T00:00:00.000Z"
           disabled={true}
         />
       </CunninghamProvider>,
@@ -584,7 +580,7 @@ describe("<DatePicker/>", () => {
         <DatePicker
           label="Pick a date"
           name="datepicker"
-          defaultValue="2023-03-01"
+          defaultValue="2023-03-01T00:00:00.000Z"
         />
       </CunninghamProvider>,
     );
@@ -649,6 +645,7 @@ describe("<DatePicker/>", () => {
     expectDateFieldToBeDisplayed();
 
     // Make sure form's value matches.
+    // It should be equal the 12th of May at midnight in local timezone.
     expect(formData).toEqual({
       datepicker: "2023-05-11T22:00:00.000Z",
     });
@@ -663,7 +660,7 @@ describe("<DatePicker/>", () => {
     // Submit the form being empty.
     await user.click(submitButton);
 
-    // Date field disappears when the user click outside the comppnent.
+    // Date field disappears when the user click outside the component.
     expectDateFieldToBeHidden();
 
     // Make sure form's value is null.
@@ -672,15 +669,118 @@ describe("<DatePicker/>", () => {
     });
   });
 
+  it("submits forms data with a default value", async () => {
+    let formData: any;
+    const Wrapper = () => {
+      const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const data = new FormData(e.currentTarget);
+        formData = {
+          datepicker: data.get("datepicker"),
+        };
+      };
+
+      return (
+        <CunninghamProvider>
+          <div>
+            <form onSubmit={onSubmit}>
+              <DatePicker
+                label="Pick a date"
+                name="datepicker"
+                defaultValue="2023-04-25T12:00:00.000Z"
+              />
+              <Button>Submit</Button>
+            </form>
+          </div>
+        </CunninghamProvider>
+      );
+    };
+    render(<Wrapper />);
+
+    const user = userEvent.setup();
+    const submitButton = screen.getByRole("button", {
+      name: "Submit",
+    });
+
+    // Submit the form with the default value.
+    // Time should be equal to the initial one in UTC.
+    await user.click(submitButton);
+    expect(formData).toEqual({
+      datepicker: "2023-04-25T12:00:00.000Z",
+    });
+
+    // Open calendar
+    const toggleButton = (await screen.findAllByRole("button"))![1];
+    await user.click(toggleButton);
+
+    const monthSegment = await screen.getByRole("spinbutton", {
+      name: /month/,
+    });
+    // Select the first segment, month one.
+    await user.click(monthSegment);
+    expect(monthSegment).toHaveFocus();
+
+    // Type date's value.
+    await user.keyboard("{5}{1}{2}{2}{0}{2}{3}");
+
+    // Submit form being filled with a date.
+    await user.click(submitButton);
+    expectCalendarToBeClosed();
+    expectDateFieldToBeDisplayed();
+
+    // Make sure form's value matches.
+    // Selection should keep the default time passed to the component.
+    // Thus, component output should still be at noon UTC.
+    expect(formData).toEqual({
+      datepicker: "2023-05-12T12:00:00.000Z",
+    });
+
+    // Clear picked date.
+    // We lose info about the initial time.
+    const clearButton = screen.getByRole("button", {
+      name: "Clear date",
+    });
+    await user.click(clearButton);
+    expectDateFieldToBeDisplayed();
+
+    // Submit the form being empty.
+    await user.click(submitButton);
+
+    // Date field disappears when the user click outside the component.
+    expectDateFieldToBeHidden();
+
+    // Make sure form's value is null.
+    expect(formData).toEqual({
+      datepicker: "",
+    });
+
+    // Select the first segment, month one.
+    await user.click(monthSegment);
+    expect(monthSegment).toHaveFocus();
+
+    // Type a new date's value, that would be selected at midnight local timezone.
+    await user.keyboard("{5}{1}{2}{2}{0}{2}{3}");
+
+    // Submit form being filled with a date.
+    await user.click(submitButton);
+    expectCalendarToBeClosed();
+    expectDateFieldToBeDisplayed();
+
+    // Make sure form's value matches.
+    // It should be equal the 2023-05-12 at midnight in local timezone.
+    expect(formData).toEqual({
+      datepicker: "2023-05-11T22:00:00.000Z",
+    });
+  });
+
   it("clicks next and previous focused month", async () => {
-    const defaultValue = new Date("2023-05-24");
     const user = userEvent.setup();
     render(
       <CunninghamProvider>
         <DatePicker
           label="Pick a date"
           name="datepicker"
-          defaultValue={defaultValue}
+          defaultValue="2023-05-24T00:00:00.000Z"
         />
       </CunninghamProvider>,
     );
@@ -711,14 +811,13 @@ describe("<DatePicker/>", () => {
   });
 
   it("clicks next and previous focused year", async () => {
-    const defaultValue = new Date("2023-05-24");
     const user = userEvent.setup();
     render(
       <CunninghamProvider>
         <DatePicker
           label="Pick a date"
           name="datepicker"
-          defaultValue={defaultValue}
+          defaultValue="2023-05-24T00:00:00.000Z"
         />
       </CunninghamProvider>,
     );
@@ -749,18 +848,15 @@ describe("<DatePicker/>", () => {
   });
 
   it("renders disabled next and previous month", async () => {
-    const defaultValue = new Date("2023-05-24");
-    const minValue = new Date("2023-05-22");
-    const maxValue = new Date("2023-05-26");
     const user = userEvent.setup();
     render(
       <CunninghamProvider>
         <DatePicker
           label="Pick a date"
           name="datepicker"
-          defaultValue={defaultValue}
-          minValue={minValue}
-          maxValue={maxValue}
+          defaultValue="2023-05-24T00:00:00.000Z"
+          minValue="2023-05-22T00:00:00.000Z"
+          maxValue="2023-05-26T00:00:00.000Z"
         />
       </CunninghamProvider>,
     );
@@ -782,18 +878,15 @@ describe("<DatePicker/>", () => {
   });
 
   it("renders disabled next and previous year", async () => {
-    const defaultValue = new Date("2023-05-24");
-    const minValue = new Date("2023-05-22");
-    const maxValue = new Date("2023-05-26");
     const user = userEvent.setup();
     render(
       <CunninghamProvider>
         <DatePicker
           label="Pick a date"
           name="datepicker"
-          defaultValue={defaultValue}
-          minValue={minValue}
-          maxValue={maxValue}
+          defaultValue="2023-05-24T00:00:00.000Z"
+          minValue="2023-05-22T00:00:00.000Z"
+          maxValue="2023-05-26T00:00:00.000Z"
         />
       </CunninghamProvider>,
     );
@@ -816,16 +909,16 @@ describe("<DatePicker/>", () => {
 
   it("renders partially disabled next and previous month", async () => {
     const user = userEvent.setup();
-    const minValue = new Date("2023-04-23");
-    const maxValue = new Date("2023-06-23");
+    const minValue = new Date("2023-04-23T00:00:00.000z");
+    const maxValue = new Date("2023-06-23T00:00:00.000z");
     render(
       <CunninghamProvider>
         <DatePicker
           label="Pick a date"
           name="datepicker"
-          defaultValue="2023-05-23"
-          minValue={minValue}
-          maxValue={maxValue}
+          defaultValue="2023-05-23T00:00:00.000Z"
+          minValue={minValue.toISOString()}
+          maxValue={maxValue.toISOString()}
         />
       </CunninghamProvider>,
     );
@@ -915,13 +1008,12 @@ describe("<DatePicker/>", () => {
 
   it("selects a focused month", async () => {
     const user = userEvent.setup();
-    const defaultValue = new Date("2023-05-23");
     render(
       <CunninghamProvider>
         <DatePicker
           label="Pick a date"
           name="datepicker"
-          defaultValue={defaultValue}
+          defaultValue="2023-05-23T00:00:00.000Z"
         />
       </CunninghamProvider>,
     );
@@ -952,7 +1044,7 @@ describe("<DatePicker/>", () => {
 
     // Select a month option.
     const option: HTMLLIElement = screen.getByRole("option", {
-      name: "September",
+      name: "August",
     });
     await user.click(option);
 
@@ -961,18 +1053,17 @@ describe("<DatePicker/>", () => {
 
     // Make sure focused month has properly updated.
     focusedMonth = monthDropdown.textContent?.replace("arrow_drop_down", "");
-    expect(focusedMonth).eq("Sep");
+    expect(focusedMonth).eq("Aug");
   });
 
   it("selects a focused year", async () => {
     const user = userEvent.setup();
-    const defaultValue = new Date("2023-05-23");
     render(
       <CunninghamProvider>
         <DatePicker
           label="Pick a date"
           name="datepicker"
-          defaultValue={defaultValue}
+          defaultValue="2023-05-23T00:00:00.000Z"
         />
       </CunninghamProvider>,
     );
@@ -1013,13 +1104,13 @@ describe("<DatePicker/>", () => {
 
   it("renders only cell within the focused month", async () => {
     const user = userEvent.setup();
-    const defaultValue = new Date("2023-05-23");
+    const defaultValue = new Date("2023-05-23T00:00:00.000Z");
     render(
       <CunninghamProvider>
         <DatePicker
           label="Pick a date"
           name="datepicker"
-          defaultValue={defaultValue}
+          defaultValue={defaultValue.toISOString()}
         />
       </CunninghamProvider>,
     );
@@ -1053,13 +1144,12 @@ describe("<DatePicker/>", () => {
 
   it("navigate previous focused month with keyboard", async () => {
     const user = userEvent.setup();
-    const defaultValue = new Date("2023-05-01");
     render(
       <CunninghamProvider>
         <DatePicker
           label="Pick a date"
           name="datepicker"
-          defaultValue={defaultValue}
+          defaultValue="2023-05-01T00:00:00.000Z"
         />
       </CunninghamProvider>,
     );
@@ -1086,13 +1176,12 @@ describe("<DatePicker/>", () => {
 
   it("navigate next focused month with keyboard", async () => {
     const user = userEvent.setup();
-    const defaultValue = new Date("2023-05-31");
     render(
       <CunninghamProvider>
         <DatePicker
           label="Pick a date"
           name="datepicker"
-          defaultValue={defaultValue}
+          defaultValue="2023-05-31T00:00:00.000Z"
         />
       </CunninghamProvider>,
     );
@@ -1123,7 +1212,7 @@ describe("<DatePicker/>", () => {
         <DatePicker
           label="Pick a date"
           locale="hi-IN-u-ca-indian"
-          defaultValue="2023-06-25"
+          defaultValue="2023-06-25T00:00:00.000Z"
         />
       </CunninghamProvider>,
     );
@@ -1169,7 +1258,10 @@ describe("<DatePicker/>", () => {
     const user = userEvent.setup();
     render(
       <CunninghamProvider currentLocale="fr-FR">
-        <DatePicker label="Pick a date" defaultValue="2023-06-25" />
+        <DatePicker
+          label="Pick a date"
+          defaultValue="2023-06-25T00:00:00.000Z"
+        />
       </CunninghamProvider>,
     );
 
@@ -1216,7 +1308,7 @@ describe("<DatePicker/>", () => {
       <CunninghamProvider currentLocale="fr-FR">
         <DatePicker
           label="Pick a date"
-          defaultValue="2023-06-25"
+          defaultValue="2023-06-25T00:00:00.000Z"
           locale="hi-IN-u-ca-indian"
         />
       </CunninghamProvider>,
@@ -1270,5 +1362,52 @@ describe("<DatePicker/>", () => {
         </CunninghamProvider>,
       ),
     ).toThrow("Incorrect locale information provided");
+  });
+
+  it("keeps time component while selecting a date", async () => {
+    const user = userEvent.setup();
+    const Wrapper = () => {
+      const [value, setValue] = useState<string | null>(
+        "2023-04-25T12:00:00.000Z",
+      );
+      return (
+        <CunninghamProvider>
+          <div>
+            <div>Value = {value}|</div>
+            <Button onClick={() => setValue(null)}>Clear</Button>
+            <DatePicker
+              label="Pick a date"
+              name="datepicker"
+              value={value}
+              onChange={(e: string | null) => setValue(e)}
+            />
+          </div>
+        </CunninghamProvider>
+      );
+    };
+    render(<Wrapper />);
+
+    // Make sure initial value is printed.
+    screen.getByText("Value = 2023-04-25T12:00:00.000Z|");
+
+    // Make sure value is initially rendered in the date field component.
+    const dateFieldContent = screen.getByRole("presentation").textContent;
+    expectDatesToBeEqual("2023-04-25", dateFieldContent);
+
+    // Open the calendar grid.
+    const toggleButton = (await screen.findAllByRole("button"))![1];
+    await user.click(toggleButton);
+    expectCalendarToBeOpen();
+
+    const gridCell = within(
+      screen.getByRole("gridcell", { name: "12" }),
+    ).getByRole("button")!;
+
+    // Select a new value in the calendar grid.
+    await user.click(gridCell);
+    expectCalendarToBeClosed();
+
+    // Make sure value is selected, with the same time as the initial value.
+    screen.getByText(`Value = 2023-04-12T12:00:00.000Z|`);
   });
 });

@@ -8,7 +8,7 @@ import { Button } from ":/components/Button";
 
 vi.mock("@internationalized/date", async () => {
   const mod = await vi.importActual<typeof import("@internationalized/date")>(
-    "@internationalized/date"
+    "@internationalized/date",
   );
   return {
     ...mod,
@@ -151,9 +151,8 @@ describe("<DateRangePicker/>", () => {
   });
 
   it.each([
-    ["2022-05-25", "2022-05-26"],
-    ["25 Mar 2025", "2029-05-26"],
-    ["2023-06-01T13:50", "2024-05-26"],
+    ["2022-05-25T00:00:00.000Z", "2022-05-26T00:00:00.000Z"],
+    ["2023-06-01T00:00:00.000Z", "2024-05-26T00:00:00.000Z"],
   ])("has a default value", async (start: string, end: string) => {
     render(
       <CunninghamProvider>
@@ -180,7 +179,10 @@ describe("<DateRangePicker/>", () => {
           startLabel="Start date"
           endLabel="End date"
           name="datepicker"
-          defaultValue={["2023-04-25", "2023-05-25"]}
+          defaultValue={[
+            "2023-04-25T00:00:00.000Z",
+            "2023-05-25T00:00:00.000Z",
+          ]}
         />
       </CunninghamProvider>,
     );
@@ -375,7 +377,10 @@ describe("<DateRangePicker/>", () => {
         <DateRangePicker
           startLabel="Start date"
           endLabel="End date"
-          defaultValue={["2023-01-01", "2023-01-01"]}
+          defaultValue={[
+            "2023-01-01T00:00:00.000Z",
+            "2023-01-01T00:00:00.000Z",
+          ]}
           name="datepicker"
         />
       </CunninghamProvider>,
@@ -437,7 +442,10 @@ describe("<DateRangePicker/>", () => {
           startLabel="Start date"
           endLabel="End date"
           name="datepicker"
-          defaultValue={["2023-01-01", "2023-01-01"]}
+          defaultValue={[
+            "2023-01-01T00:00:00.000Z",
+            "2023-01-01T00:00:00.000Z",
+          ]}
         />
       </CunninghamProvider>,
     );
@@ -486,7 +494,10 @@ describe("<DateRangePicker/>", () => {
           startLabel="Start date"
           endLabel="End date"
           name="datepicker"
-          defaultValue={["2023-01-01", "2023-01-01"]}
+          defaultValue={[
+            "2023-01-01T00:00:00.000Z",
+            "2023-01-01T00:00:00.000Z",
+          ]}
         />
       </CunninghamProvider>,
     );
@@ -657,8 +668,11 @@ describe("<DateRangePicker/>", () => {
             startLabel="Start date"
             endLabel="End date"
             name="datepicker"
-            defaultValue={["2022-05-25", "2022-05-26"]}
-            value={["2022-05-25", "2022-05-26"]}
+            defaultValue={[
+              "2022-05-25T00:00:00.000Z",
+              "2022-05-26T00:00:00.000Z",
+            ]}
+            value={["2022-05-25T00:00:00.000Z", "2022-05-26T00:00:00.000Z"]}
           />
         </CunninghamProvider>,
       ),
@@ -668,9 +682,9 @@ describe("<DateRangePicker/>", () => {
   });
 
   it.each([
-    ["this_not_a_valid_date", "2022-05-12"],
-    ["2022-05-12", "2023-13-13"],
-    ["2025-25-05", "2022-05-12"],
+    ["this_not_a_valid_date", "2022-05-12T00:00:00.000Z"],
+    ["2022-05-12T00:00:00.000Z", "2023-13-13"],
+    ["2025-25-05T00:00:00.000Z", "2022-05-12T00:00:00.000Z"],
   ])("has not a valid range value", async (start: string, end: string) => {
     vi.spyOn(console, "error").mockImplementation(() => undefined);
     expect(() =>
@@ -697,76 +711,77 @@ describe("<DateRangePicker/>", () => {
           startLabel="Start date"
           endLabel="End date"
           name="datepicker"
-          defaultValue={["2024-05-25", "2022-05-26"]}
+          defaultValue={[
+            "2024-05-25T00:00:00.000Z",
+            "2022-05-26T00:00:00.000Z",
+          ]}
         />
       </CunninghamProvider>,
     );
     await expectDateRangePickerStateToBe("invalid");
   });
 
-  it.each([[new Date(2022, 5, 25), new Date(2022, 5, 27)]])(
-    "clears date",
-    async (start: Date, end: Date) => {
-      const user = userEvent.setup();
-      render(
-        <CunninghamProvider>
-          <DateRangePicker
-            startLabel="Start date"
-            endLabel="End date"
-            name="datepicker"
-            defaultValue={[start, end]}
-          />
-        </CunninghamProvider>,
-      );
+  it("clears date", async () => {
+    const user = userEvent.setup();
+    render(
+      <CunninghamProvider>
+        <DateRangePicker
+          startLabel="Start date"
+          endLabel="End date"
+          name="datepicker"
+          defaultValue={[
+            "2023-05-25T00:00:00.000Z",
+            "2023-05-27T00:00:00.000Z",
+          ]}
+        />
+      </CunninghamProvider>,
+    );
 
-      const clearButton = screen.getByRole("button", {
-        name: "Clear date",
-      });
-      await user.click(clearButton);
-      expectCalendarToBeOpen();
+    const clearButton = screen.getByRole("button", {
+      name: "Clear date",
+    });
+    await user.click(clearButton);
+    expectCalendarToBeOpen();
 
-      // Date field's value should be set to a placeholder value.
-      const [startInput, endInput] = await screen.queryAllByRole(
-        "presentation",
-      );
-      expect(startInput.textContent).eq("mm/dd/yyyy");
-      expect(endInput.textContent).eq("mm/dd/yyyy");
+    // Date field's value should be set to a placeholder value.
+    const [startInput, endInput] = await screen.queryAllByRole("presentation");
+    expect(startInput.textContent).eq("mm/dd/yyyy");
+    expect(endInput.textContent).eq("mm/dd/yyyy");
 
-      const startGridCell = screen.getByRole("gridcell", {
-        name: `${start.getDate()}`,
-      })!;
+    const startGridCell = screen.getByRole("gridcell", {
+      name: "25",
+    })!;
 
-      // Make sure start grid-cell is not selected anymore.
-      expect(startGridCell.getAttribute("aria-selected")).toBeNull();
-      expect(
-        startGridCell.classList.contains(
-          "c__calendar__wrapper__grid__week-row__background--range--start",
-        ),
-      ).toBe(false);
+    // Make sure start grid-cell is not selected anymore.
+    expect(startGridCell.getAttribute("aria-selected")).toBeNull();
+    expect(
+      startGridCell.classList.contains(
+        "c__calendar__wrapper__grid__week-row__background--range--start",
+      ),
+    ).toBe(false);
 
-      // Make sure end grid-cell is not selected anymore.
-      const endGridCell = screen.getByRole("gridcell", {
-        name: `${end.getDate()}`,
-      })!;
-      expect(endGridCell.getAttribute("aria-selected")).toBeNull();
-      expect(
-        endGridCell.classList.contains(
-          "c__calendar__wrapper__grid__week-row__background--range--end",
-        ),
-      ).toBe(false);
+    // Make sure end grid-cell is not selected anymore.
+    const endGridCell = screen.getByRole("gridcell", {
+      name: "27",
+    })!;
+    expect(endGridCell.getAttribute("aria-selected")).toBeNull();
+    expect(
+      endGridCell.classList.contains(
+        "c__calendar__wrapper__grid__week-row__background--range--end",
+      ),
+    ).toBe(false);
 
-      // Close the calendar.
-      const toggleButton = (await screen.findAllByRole("button"))![1];
-      await user.click(toggleButton);
+    // Close the calendar.
+    const toggleButton = (await screen.findAllByRole("button"))![1];
+    await user.click(toggleButton);
 
-      // Make sure the empty date field is hidden when closing the calendar.
-      await expectDateFieldsToBeHidden();
-    },
-  );
+    // Make sure the empty date field is hidden when closing the calendar.
+    await expectDateFieldsToBeHidden();
+  });
 
   it.each([
-    ["2023-01-01", "2023-01-01"],
-    ["2023-01-01", "2023-03-01"],
+    ["2023-01-01T00:00:00.000Z", "2023-01-01T00:00:00.000Z"],
+    ["2023-01-01T00:00:00.000Z", "2023-03-01T00:00:00.000Z"],
   ])(
     "has a start or a end date inferior to minValue",
     async (start: string, end: string) => {
@@ -777,7 +792,7 @@ describe("<DateRangePicker/>", () => {
             endLabel="End date"
             name="datepicker"
             defaultValue={[start, end]}
-            minValue="2023-02-01"
+            minValue="2023-02-01T00:00:00.000Z"
           />
         </CunninghamProvider>,
       );
@@ -786,8 +801,8 @@ describe("<DateRangePicker/>", () => {
   );
 
   it.each([
-    ["2023-01-01", "2023-03-01"],
-    ["2023-03-01", "2023-03-01"],
+    ["2023-01-01T00:00:00.000Z", "2023-03-01T00:00:00.000Z"],
+    ["2023-03-01T00:00:00.000Z", "2023-03-01T00:00:00.000Z"],
   ])(
     "has a start or a end date superior to maxValue",
     async (start: string, end: string) => {
@@ -798,7 +813,7 @@ describe("<DateRangePicker/>", () => {
             endLabel="End date"
             name="datepicker"
             defaultValue={[start, end]}
-            maxValue="2023-02-01"
+            maxValue="2023-02-01T00:00:00.000Z"
           />
         </CunninghamProvider>,
       );
@@ -813,7 +828,10 @@ describe("<DateRangePicker/>", () => {
           startLabel="Start date"
           endLabel="End date"
           name="datepicker"
-          defaultValue={["2023-01-01", "2023-01-01"]}
+          defaultValue={[
+            "2023-01-01T00:00:00.000Z",
+            "2023-01-01T00:00:00.000Z",
+          ]}
           disabled={true}
         />
       </CunninghamProvider>,
@@ -846,7 +864,10 @@ describe("<DateRangePicker/>", () => {
           startLabel="Start date"
           endLabel="End date"
           name="datepicker"
-          defaultValue={["2023-01-01", "2023-01-01"]}
+          defaultValue={[
+            "2023-01-01T00:00:00.000Z",
+            "2023-01-01T00:00:00.000Z",
+          ]}
         />
       </CunninghamProvider>,
     );
@@ -864,7 +885,10 @@ describe("<DateRangePicker/>", () => {
           startLabel="Start date"
           endLabel="End date"
           name="datepicker"
-          defaultValue={["2023-01-01", "2023-01-10"]}
+          defaultValue={[
+            "2023-01-01T00:00:00.000Z",
+            "2023-01-10T00:00:00.000Z",
+          ]}
         />
       </CunninghamProvider>,
     );
@@ -903,8 +927,8 @@ describe("<DateRangePicker/>", () => {
     const user = userEvent.setup();
     const Wrapper = () => {
       const [value, setValue] = useState<[string, string] | null>([
-        "2023-04-25",
-        "2023-04-26",
+        "2023-04-25T00:00:00.000Z",
+        "2023-04-26T00:00:00.000Z",
       ]);
       return (
         <CunninghamProvider>
@@ -924,7 +948,9 @@ describe("<DateRangePicker/>", () => {
     render(<Wrapper />);
 
     // Make sure value is selected.
-    screen.getByText("Value = 2023-04-25 2023-04-26|");
+    screen.getByText(
+      "Value = 2023-04-25T00:00:00.000Z 2023-04-26T00:00:00.000Z|",
+    );
 
     // Make sure value is initially render in the date field component.
     const [startInput, endInput] = await screen.queryAllByRole("presentation");
@@ -951,7 +977,7 @@ describe("<DateRangePicker/>", () => {
 
     // Make sure value is selected.
     screen.getByText(
-      `Value = 2023-04-11T22:00:00.000Z 2023-04-13T22:00:00.000Z|`
+      `Value = 2023-04-12T00:00:00.000Z 2023-04-14T00:00:00.000Z|`,
     );
 
     // Clear value.

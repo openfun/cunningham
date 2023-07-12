@@ -4,24 +4,24 @@ import {
   DateRangePickerStateOptions,
   useDateRangePickerState,
 } from "@react-stately/datepicker";
-import { useDateRangePicker, DateRange } from "@react-aria/datepicker";
+import { useDateRangePicker } from "@react-aria/datepicker";
+import { DateRange } from "react-aria";
 import { CalendarRange } from ":/components/Forms/DatePicker/Calendar";
 import DatePickerAux, {
   DatePickerAuxSubProps,
 } from ":/components/Forms/DatePicker/DatePickerAux";
 import DateFieldBox from ":/components/Forms/DatePicker/DateField";
-import { StringsOrDateRange } from ":/components/Forms/DatePicker/types";
 import {
   convertDateValueToString,
   getDefaultPickerOptions,
-  parseRangeCalendarDate,
+  parseRangeDateValue,
 } from ":/components/Forms/DatePicker/utils";
 
 export type DateRangePickerProps = DatePickerAuxSubProps & {
   startLabel: string;
   endLabel: string;
-  value?: null | StringsOrDateRange;
-  defaultValue?: StringsOrDateRange;
+  value?: null | [string, string];
+  defaultValue?: [string, string];
   onChange?: (value: [string, string] | null) => void;
 };
 
@@ -40,8 +40,8 @@ export const DateRangePicker = ({
 
   const options: DateRangePickerStateOptions<DateValue> = {
     ...getDefaultPickerOptions(props),
-    value: props.value === null ? null : parseRangeCalendarDate(props.value),
-    defaultValue: parseRangeCalendarDate(props.defaultValue),
+    value: props.value === null ? null : parseRangeDateValue(props.value),
+    defaultValue: parseRangeDateValue(props.defaultValue),
     onChange: (value: DateRange) => {
       props.onChange?.(
         value?.start && value.end
