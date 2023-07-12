@@ -630,7 +630,7 @@ describe("<DatePicker/>", () => {
     await user.click(toggleButton);
 
     const monthSegment = await screen.getByRole("spinbutton", {
-      name: "month",
+      name: /month/,
     });
     // Select the first segment, month one.
     await user.click(monthSegment);
