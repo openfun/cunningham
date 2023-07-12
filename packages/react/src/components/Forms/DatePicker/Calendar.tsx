@@ -174,16 +174,18 @@ const CalendarAux = forwardRef(
     const downshiftMonth = useDownshiftSelect("month", monthItems);
     const downshiftYear = useDownshiftSelect("year", yearItems);
 
-    // isDisabled and onPress props don't exist on the <Button /> component.
+    // isDisabled, onPress and onFocusChange props don't exist on the <Button /> component.
     // remove them to avoid any warning.
     const {
       isDisabled: isPrevButtonDisabled,
       onPress: onPressPrev,
+      onFocusChange: onFocusChangePrev,
       ...prevButtonOtherProps
     } = prevButtonProps;
     const {
       isDisabled: isNextButtonDisabled,
       onPress: onPressNext,
+      onFocusChange: onFocusChangeNext,
       ...nextButtonOtherProps
     } = nextButtonProps;
 
