@@ -1,5 +1,20 @@
 # @openfun/cunningham-react
 
+## 0.10.0
+
+### Minor Changes
+
+- 5c61413: Add calendar system customization in `DatePicker` component
+- e4c1df5: fix datagrid column unique key
+- 0d6b98e: Introduce a DateRangePicker component
+- 0775490: Introduce a common DatePickerAux component
+- 114d0b5: Refactor DatePicker component
+
+### Patch Changes
+
+- c35cc603: Fixed development warning in `CalendarAux` component
+- 2cd8c6e8: Refactor DatePicker's tests which no longer depend on the user's locale.
+
 ## 0.9.0
 
 ### Minor Changes
@@ -152,7 +167,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.9.0...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.10.0...main
+[0.10.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.9.0...@openfun/cunningham-react@0.10.0
 [0.9.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.8.2...@openfun/cunningham-react@0.9.0
 [0.8.2]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.8.1...@openfun/cunningham-react@0.8.2
 [0.8.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.8.0...@openfun/cunningham-react@0.8.1
