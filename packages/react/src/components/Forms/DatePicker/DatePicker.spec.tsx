@@ -47,27 +47,23 @@ describe("<DatePicker/>", () => {
     );
   };
 
-  const expectFocusedMonthToBeEqual = (expectedDate: Date) => {
+  const expectFocusedMonthToBeEqual = (expectedMonth: string) => {
     const focusedMonth = screen
       .getByRole("combobox", {
         name: "Select a month",
       })!
       .textContent?.replace("arrow_drop_down", "");
-    expect(focusedMonth).eq(
-      expectedDate.toLocaleString("default", { month: "short" })
-    );
+    expect(focusedMonth).eq(expectedMonth);
   };
 
-  const expectFocusedYearToBeEqual = (expectedDate: Date) => {
+  const expectFocusedYearToBeEqual = (expectedYear: string) => {
     const focusedYear = screen
       .getByRole("combobox", {
         name: "Select a year",
       })!
       .textContent?.replace("arrow_drop_down", "");
 
-    expect(focusedYear).eq(
-      expectedDate.toLocaleString("default", { year: "numeric" })
-    );
+    expect(focusedYear).eq(expectedYear);
   };
 
   const expectMenuToBeOpen = (menu: HTMLElement) => {
@@ -684,7 +680,7 @@ describe("<DatePicker/>", () => {
     await user.click(toggleButton);
 
     // Focused month of the calendar grid should be the one from the default value.
-    expectFocusedMonthToBeEqual(defaultValue);
+    expectFocusedMonthToBeEqual("May");
 
     const previousMonthButton = screen.getByRole("button", {
       name: "Previous month",
@@ -695,18 +691,15 @@ describe("<DatePicker/>", () => {
 
     // Focus previous month.
     await user.click(previousMonthButton);
-    defaultValue.setMonth(defaultValue.getMonth() - 1);
-    expectFocusedMonthToBeEqual(defaultValue);
+    expectFocusedMonthToBeEqual("Apr");
 
     // Get back to the default focused month.
     await user.click(nextMonthButton);
-    defaultValue.setMonth(defaultValue.getMonth() + 1);
-    expectFocusedMonthToBeEqual(defaultValue);
+    expectFocusedMonthToBeEqual("May");
 
     // Focus next month.
     await user.click(nextMonthButton);
-    defaultValue.setMonth(defaultValue.getMonth() + 1);
-    expectFocusedMonthToBeEqual(defaultValue);
+    expectFocusedMonthToBeEqual("Jun");
   });
 
   it("clicks next and previous focused year", async () => {
@@ -725,7 +718,7 @@ describe("<DatePicker/>", () => {
     await user.click(toggleButton);
 
     // Focused year of the calendar grid should be the one from the default value.
-    expectFocusedYearToBeEqual(defaultValue);
+    expectFocusedYearToBeEqual("2023");
 
     const previousYearButton = screen.getByRole("button", {
       name: "Previous year",
@@ -736,18 +729,15 @@ describe("<DatePicker/>", () => {
 
     // Focus previous year.
     await user.click(previousYearButton);
-    defaultValue.setFullYear(defaultValue.getFullYear() - 1);
-    expectFocusedYearToBeEqual(defaultValue);
+    expectFocusedYearToBeEqual("2022");
 
     // Get back to the default focused month.
     await user.click(nextYearButton);
-    defaultValue.setFullYear(defaultValue.getFullYear() + 1);
-    expectFocusedYearToBeEqual(defaultValue);
+    expectFocusedYearToBeEqual("2023");
 
     // Focus next year.
     await user.click(nextYearButton);
-    defaultValue.setFullYear(defaultValue.getFullYear() + 1);
-    expectFocusedYearToBeEqual(defaultValue);
+    expectFocusedYearToBeEqual("2024");
   });
 
   it("renders disabled next and previous month", async () => {
@@ -943,9 +933,7 @@ describe("<DatePicker/>", () => {
       "arrow_drop_down",
       ""
     );
-    expect(focusedMonth).eq(
-      defaultValue.toLocaleString("default", { month: "short" })
-    );
+    expect(focusedMonth).eq("May");
 
     // Open month dropdown.
     await user.click(monthDropdown);
@@ -953,9 +941,8 @@ describe("<DatePicker/>", () => {
     expectMenuToBeClosed(yearMenu);
 
     // Select a month option.
-    defaultValue.setMonth(8);
     const option: HTMLLIElement = screen.getByRole("option", {
-      name: defaultValue.toLocaleString("default", { month: "long" }),
+      name: "September",
     });
     await user.click(option);
 
@@ -964,9 +951,7 @@ describe("<DatePicker/>", () => {
 
     // Make sure focused month has properly updated.
     focusedMonth = monthDropdown.textContent?.replace("arrow_drop_down", "");
-    expect(focusedMonth).eq(
-      defaultValue.toLocaleString("default", { month: "short" })
-    );
+    expect(focusedMonth).eq("Sep");
   });
 
   it("selects a focused year", async () => {
@@ -995,19 +980,16 @@ describe("<DatePicker/>", () => {
     expectMenuToBeClosed(monthMenu);
 
     // Make sure the selected item matched the default value.
-    let focusedMonth = yearDropdown.textContent?.replace("arrow_drop_down", "");
-    expect(focusedMonth).eq(
-      defaultValue.toLocaleString("default", { year: "numeric" })
-    );
+    let focusedYear = yearDropdown.textContent?.replace("arrow_drop_down", "");
+    expect(focusedYear).eq("2023");
 
     await user.click(yearDropdown);
     expectMenuToBeOpen(yearMenu);
     expectMenuToBeClosed(monthMenu);
 
     // Select a year option.
-    defaultValue.setFullYear(2024);
     const option: HTMLLIElement = screen.getByRole("option", {
-      name: defaultValue.toLocaleString("default", { year: "numeric" }),
+      name: "2024",
     });
     await user.click(option);
 
@@ -1015,10 +997,8 @@ describe("<DatePicker/>", () => {
     expectMenuToBeClosed(monthMenu);
 
     // Make sure focused month has properly updated.
-    focusedMonth = yearDropdown.textContent?.replace("arrow_drop_down", "");
-    expect(focusedMonth).eq(
-      defaultValue.toLocaleString("default", { year: "numeric" })
-    );
+    focusedYear = yearDropdown.textContent?.replace("arrow_drop_down", "");
+    expect(focusedYear).eq("2024");
   });
 
   it("renders only cell within the focused month", async () => {
@@ -1074,9 +1054,6 @@ describe("<DatePicker/>", () => {
       </CunninghamProvider>
     );
 
-    const previousMonthValue = new Date(defaultValue);
-    previousMonthValue.setDate(defaultValue.getDate() - 1);
-
     // Open calendar.
     const toggleButton = (await screen.findAllByRole("button"))![1];
     await user.click(toggleButton);
@@ -1085,16 +1062,16 @@ describe("<DatePicker/>", () => {
     // default value is the cell of the calendar grid.
     // Thus, navigating one cell up, changes the focused month.
     await user.keyboard("{ArrowUp}");
-    expectFocusedMonthToBeEqual(previousMonthValue);
+    expectFocusedMonthToBeEqual("Apr");
 
     // Reopen the calendar menu to reset the focused month.
     await user.click(toggleButton);
     await user.click(toggleButton);
 
-    expectFocusedMonthToBeEqual(defaultValue);
+    expectFocusedMonthToBeEqual("May");
 
     await user.keyboard("{ArrowLeft}");
-    expectFocusedMonthToBeEqual(previousMonthValue);
+    expectFocusedMonthToBeEqual("Apr");
   });
 
   it("navigate next focused month with keyboard", async () => {
@@ -1110,26 +1087,23 @@ describe("<DatePicker/>", () => {
       </CunninghamProvider>
     );
 
-    const nextMonthValue = new Date(defaultValue);
-    nextMonthValue.setDate(defaultValue.getDate() + 1);
-
     const toggleButton = (await screen.findAllByRole("button"))![1];
     await user.click(toggleButton);
 
     await user.keyboard("{ArrowDown}");
-    expectFocusedMonthToBeEqual(nextMonthValue);
+    expectFocusedMonthToBeEqual("Jun");
 
     // Reopen the calendar menu to reset the focused month.
     await user.click(toggleButton);
     await user.click(toggleButton);
 
-    expectFocusedMonthToBeEqual(defaultValue);
+    expectFocusedMonthToBeEqual("May");
 
     // Navigate to the previous month using keyboard.
     // default value is the last cell of the calendar grid.
     // Thus, navigating one cell right, changes the focused month.
     await user.keyboard("{ArrowRight}");
-    expectFocusedMonthToBeEqual(nextMonthValue);
+    expectFocusedMonthToBeEqual("Jun");
   });
 
   it("uses the locale props calendar system", async () => {
