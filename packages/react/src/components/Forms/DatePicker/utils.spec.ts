@@ -1,5 +1,12 @@
-import { CalendarDate, DateValue, parseDate } from "@internationalized/date";
 import {
+  CalendarDate,
+  DateValue,
+  parseAbsolute,
+  parseDate,
+} from "@internationalized/date";
+import { vi } from "vitest";
+import {
+  convertDateValueToString,
   parseCalendarDate,
   parseRangeCalendarDate,
 } from ":/components/Forms/DatePicker/utils";
@@ -16,6 +23,18 @@ const expectDateToBeEqual = (
   expect(parsedDate?.month === expectedMonth);
   expect(parsedDate?.day === expectedDay);
 };
+
+vi.mock("@internationalized/date", async () => {
+  const mod = await vi.importActual<typeof import("@internationalized/date")>(
+    "@internationalized/date",
+  );
+  return {
+    ...mod,
+    // Note: Restoring mocks will cause the function to return 'undefined'.
+    // Consider providing a default implementation to be restored instead.
+    getLocalTimeZone: vi.fn().mockReturnValue("Europe/Paris"),
+  };
+});
 
 describe("parseCalendarDate", () => {
   it.each([
@@ -159,5 +178,26 @@ describe("parseRangeCalendarDate", () => {
     const range = parseRangeCalendarDate(["2023-05-22", "2023-04-22"]);
     expectDateToBeEqual(range?.start, 2023, 5, 22);
     expectDateToBeEqual(range?.end, 2023, 4, 22);
+  });
+});
+
+describe("convertDateValueToString", () => {
+  it("should return an empty string for null date", () => {
+    const date: DateValue | null = null;
+    const result = convertDateValueToString(date);
+    expect(result).toBe("");
+  });
+
+  it("should return a UTC ISO 8601 string from a CalendarDate", async () => {
+    const date = parseDate("2023-05-25");
+    const result = convertDateValueToString(date);
+    expect(result).eq("2023-05-24T22:00:00.000Z");
+  });
+
+  it("should return a UTC ISO 8601 string from a ZonedDateTime", async () => {
+    // Europe/Paris is the mocked local timezone.
+    const date = parseAbsolute("2023-05-25T00:00:00.000+02:00", "Europe/Paris");
+    const result = convertDateValueToString(date);
+    expect(result).eq("2023-05-24T22:00:00.000Z");
   });
 });

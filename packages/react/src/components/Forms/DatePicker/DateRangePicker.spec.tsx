@@ -6,6 +6,18 @@ import { CunninghamProvider } from ":/components/Provider";
 import { DateRangePicker } from ":/components/Forms/DatePicker/DateRangePicker";
 import { Button } from ":/components/Button";
 
+vi.mock("@internationalized/date", async () => {
+  const mod = await vi.importActual<typeof import("@internationalized/date")>(
+    "@internationalized/date"
+  );
+  return {
+    ...mod,
+    // Note: Restoring mocks will cause the function to return 'undefined'.
+    // Consider providing a default implementation to be restored instead.
+    getLocalTimeZone: vi.fn().mockReturnValue("Europe/Paris"),
+  };
+});
+
 describe("<DateRangePicker/>", () => {
   const expectDatesToBeEqual = (
     firstDate: Date | string | undefined | null,
@@ -938,7 +950,9 @@ describe("<DateRangePicker/>", () => {
     expectCalendarToBeClosed();
 
     // Make sure value is selected.
-    screen.getByText(`Value = 2023-04-12 2023-04-14|`);
+    screen.getByText(
+      `Value = 2023-04-11T22:00:00.000Z 2023-04-13T22:00:00.000Z|`
+    );
 
     // Clear value.
     const clearButton = screen.getByRole("button", {
@@ -1004,10 +1018,10 @@ describe("<DateRangePicker/>", () => {
     expect(startMonthSegment).toHaveFocus();
 
     // Type start date's value.
-    await user.keyboard("{1}{0}{5}{2}{0}{2}{3}");
+    await user.keyboard("{5}{1}{0}{2}{0}{2}{3}");
 
     // Type end date's value.
-    await user.keyboard("{1}{2}{5}{2}{0}{2}{3}");
+    await user.keyboard("{5}{1}{2}{2}{0}{2}{3}");
 
     // Submit form being filled with a date.
     await user.click(submitButton);
@@ -1016,8 +1030,8 @@ describe("<DateRangePicker/>", () => {
 
     // Make sure form's value matches.
     expect(formData).toEqual({
-      datepickerStart: "2023-10-05",
-      datepickerEnd: "2023-12-05",
+      datepickerStart: "2023-05-09T22:00:00.000Z",
+      datepickerEnd: "2023-05-11T22:00:00.000Z",
     });
 
     // Clear picked date.

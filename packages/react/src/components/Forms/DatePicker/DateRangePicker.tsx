@@ -12,6 +12,7 @@ import DatePickerAux, {
 import DateFieldBox from ":/components/Forms/DatePicker/DateField";
 import { StringsOrDateRange } from ":/components/Forms/DatePicker/types";
 import {
+  convertDateValueToString,
   getDefaultPickerOptions,
   parseRangeCalendarDate,
 } from ":/components/Forms/DatePicker/utils";
@@ -44,7 +45,10 @@ export const DateRangePicker = ({
     onChange: (value: DateRange) => {
       props.onChange?.(
         value?.start && value.end
-          ? [value.start.toString(), value.end.toString()]
+          ? [
+              convertDateValueToString(value.start),
+              convertDateValueToString(value.end),
+            ]
           : null,
       );
     },

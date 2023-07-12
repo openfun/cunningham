@@ -1,7 +1,11 @@
 import {
   CalendarDate,
+  DateValue,
   parseAbsoluteToLocal,
   toCalendarDate,
+  ZonedDateTime,
+  toZoned,
+  getLocalTimeZone,
 } from "@internationalized/date";
 import { DateRange } from "react-aria";
 import {
@@ -36,6 +40,19 @@ export const parseRangeCalendarDate = (
     start: parseCalendarDate(rawRange[0])!,
     end: parseCalendarDate(rawRange[1])!,
   };
+};
+
+export const convertDateValueToString = (date: DateValue | null): string => {
+  try {
+    const localTimezone = getLocalTimeZone();
+    // If timezone is already set, it would be kept, else the selection is set at midnight
+    // on the local timezone, then converted to a UTC offset.
+    return date ? toZoned(date, localTimezone).toAbsoluteString() : "";
+  } catch (e) {
+    throw new Error(
+      "Invalid date format when converting date value on DatePicker component"
+    );
+  }
 };
 
 export const getDefaultPickerOptions = (props: DatePickerAuxSubProps): any => ({
