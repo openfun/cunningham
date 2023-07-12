@@ -19,7 +19,7 @@ describe("<DateRangePicker/>", () => {
   };
 
   const expectCalendarToBeClosed = () => {
-    expect(screen.queryByRole("group")).toBeNull();
+    expect(screen.queryByRole("application")).toBeNull();
   };
 
   const expectDateFieldsToBeDisplayed = () => {
@@ -44,7 +44,7 @@ describe("<DateRangePicker/>", () => {
   };
 
   const expectCalendarToBeOpen = () => {
-    const calendar = screen.queryByRole("group");
+    const calendar = screen.queryByRole("application");
     expect(calendar).toBeDefined();
     expect(calendar).not.toBeNull();
     expect(Array.from(calendar!.classList)).contains(

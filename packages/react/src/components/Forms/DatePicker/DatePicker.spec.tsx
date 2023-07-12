@@ -1,7 +1,7 @@
 import userEvent from "@testing-library/user-event";
 import { render, screen, within } from "@testing-library/react";
 import React, { FormEvent, useState } from "react";
-import { expect, vi, afterEach } from "vitest";
+import { afterEach, expect, vi } from "vitest";
 import { CunninghamProvider } from ":/components/Provider";
 import { DatePicker } from ":/components/Forms/DatePicker/DatePicker";
 import { Button } from ":/components/Button";
@@ -12,11 +12,11 @@ describe("<DatePicker/>", () => {
   });
 
   const expectCalendarToBeClosed = () => {
-    expect(screen.queryByRole("group")).toBeNull();
+    expect(screen.queryByRole("application")).toBeNull();
   };
 
   const expectCalendarToBeOpen = () => {
-    const calendar = screen.queryByRole("group");
+    const calendar = screen.queryByRole("application");
     expect(calendar).toBeDefined();
     expect(calendar).not.toBeNull();
     expect(Array.from(calendar!.classList)).contains(
