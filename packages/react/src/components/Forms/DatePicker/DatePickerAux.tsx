@@ -16,7 +16,6 @@ import { Button } from ":/components/Button";
 import { Popover } from ":/components/Popover";
 import { Field, FieldProps } from ":/components/Forms/Field";
 import { useCunningham } from ":/components/Provider";
-import { StringOrDate } from ":/components/Forms/DatePicker/types";
 import {
   Calendar,
   CalendarRange,
@@ -25,8 +24,8 @@ import { convertDateValueToString } from ":/components/Forms/DatePicker/utils";
 
 export type DatePickerAuxSubProps = FieldProps & {
   label?: string;
-  minValue?: StringOrDate;
-  maxValue?: StringOrDate;
+  minValue?: string;
+  maxValue?: string;
   disabled?: boolean;
   name?: string;
   locale?: string;

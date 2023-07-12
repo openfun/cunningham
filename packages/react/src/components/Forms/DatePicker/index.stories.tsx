@@ -4,10 +4,6 @@ import { CunninghamProvider } from ":/components/Provider";
 import { Button } from ":/components/Button";
 import { DateRangePicker } from ":/components/Forms/DatePicker/DateRangePicker";
 import { DatePicker } from ":/components/Forms/DatePicker/DatePicker";
-import {
-  StringOrDate,
-  StringsOrDateRange,
-} from ":/components/Forms/DatePicker/types";
 
 export default {
   title: "Components/Forms/DatePicker",
@@ -35,18 +31,18 @@ export const Disabled = {
 
 export const DefaultValue = {
   render: Template,
-  args: { defaultValue: "2023-05-24" },
+  args: { defaultValue: "2023-05-24T00:00:00.000+00:00" },
 };
 
 export const DisabledValue = {
   render: Template,
-  args: { disabled: true, defaultValue: "2023-05-24" },
+  args: { disabled: true, defaultValue: "2023-05-24T00:00:00.000+00:00" },
 };
 
 export const Error = {
   render: Template,
   args: {
-    defaultValue: "2023-05-24",
+    defaultValue: "2023-05-24T00:00:00.000+00:00",
     state: "error",
     text: "Something went wrong",
   },
@@ -55,7 +51,7 @@ export const Error = {
 export const Success = {
   render: Template,
   args: {
-    defaultValue: "2023-05-24",
+    defaultValue: "2023-05-24T00:00:00.000+00:00",
     state: "success",
     text: "Well done",
   },
@@ -64,25 +60,25 @@ export const Success = {
 export const MinMaxValue = {
   render: Template,
   args: {
-    defaultValue: "2023-05-24",
-    minValue: "2023-04-23",
-    maxValue: "2023-06-23",
+    defaultValue: "2023-05-24T00:00:00.000+00:00",
+    minValue: "2023-04-23T00:00:00.000+00:00",
+    maxValue: "2023-06-23T00:00:00.000+00:00",
   },
 };
 
 export const InvalidValue = {
   render: Template,
   args: {
-    defaultValue: "2023-02-24",
-    minValue: "2023-04-23",
-    maxValue: "2023-06-23",
+    defaultValue: "2023-02-24T00:00:00.000+00:00",
+    minValue: "2023-04-23T00:00:00.000+00:00",
+    maxValue: "2023-06-23T00:00:00.000+00:00",
   },
 };
 
 export const WithText = {
   render: Template,
   args: {
-    defaultValue: "2023-05-24",
+    defaultValue: "2023-05-24T00:00:00.000+00:00",
     text: "This is a text, you can display anything you want here like warnings, information or errors.",
   },
 };
@@ -90,7 +86,7 @@ export const WithText = {
 export const Fullwidth = {
   render: Template,
   args: {
-    defaultValue: "2023-05-24",
+    defaultValue: "2023-05-24T00:00:00.000+00:00",
     fullWidth: true,
   },
 };
@@ -101,7 +97,7 @@ export const CustomLocale = () => (
       <DatePicker
         label="Pick a date"
         locale="hi-IN-u-ca-indian"
-        defaultValue="2023-06-25"
+        defaultValue="2023-06-25T00:00:00.000+00:00"
       />
     </CunninghamProvider>
   </div>
@@ -110,13 +106,16 @@ export const CustomLocale = () => (
 export const CunninghamLocale = () => (
   <div style={{ minHeight: "400px" }}>
     <CunninghamProvider currentLocale="fr-FR">
-      <DatePicker label="Pick a date" defaultValue="2023-06-25" />
+      <DatePicker
+        label="Pick a date"
+        defaultValue="2023-06-25T00:00:00.000+00:00"
+      />
     </CunninghamProvider>
   </div>
 );
 
 export const Controlled = () => {
-  const [value, setValue] = useState<StringOrDate | null>("2023-05-26");
+  const [value, setValue] = useState<string | null>("2023-04-25T12:00:00.000Z");
   return (
     <CunninghamProvider>
       <div>
@@ -152,16 +151,19 @@ export const RangeDefaultValue = () => {
       <DateRangePicker
         startLabel="Start date"
         endLabel="Due date"
-        defaultValue={["2023-05-23", "2023-06-23"]}
+        defaultValue={[
+          "2023-05-23T00:00:00.000+00:00",
+          "2023-06-23T00:00:00.000+00:00",
+        ]}
       />
     </CunninghamProvider>
   );
 };
 
 export const RangeControlled = () => {
-  const [value, setValue] = useState<StringsOrDateRange | null>([
-    "2023-05-23",
-    "2023-06-23",
+  const [value, setValue] = useState<[string, string] | null>([
+    "2023-05-23T13:37:00.000+02:00",
+    "2023-06-23T13:37:00.000+02:00",
   ]);
   return (
     <div>
@@ -170,8 +172,8 @@ export const RangeControlled = () => {
         <DateRangePicker
           startLabel="Start date"
           endLabel="Due date"
-          minValue="2023-01-23"
-          maxValue="2023-08-23"
+          minValue="2023-01-23T00:00:00.000+00:00"
+          maxValue="2023-08-23T00:00:00.000+00:00"
           value={value}
           onChange={(e) => setValue(e)}
         />

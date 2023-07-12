@@ -1,28 +1,21 @@
 import {
-  CalendarDate,
   DateValue,
   parseAbsoluteToLocal,
-  toCalendarDate,
   ZonedDateTime,
   toZoned,
   getLocalTimeZone,
 } from "@internationalized/date";
 import { DateRange } from "react-aria";
-import {
-  StringOrDate,
-  StringsOrDateRange,
-} from ":/components/Forms/DatePicker/types";
 import { DatePickerAuxSubProps } from ":/components/Forms/DatePicker/DatePickerAux";
 
-export const parseCalendarDate = (
-  rawDate: StringOrDate | undefined,
-): undefined | CalendarDate => {
+export const parseDateValue = (
+  rawDate: string | undefined,
+): undefined | ZonedDateTime => {
   if (!rawDate) {
     return undefined;
   }
   try {
-    const ISODateString = new Date(rawDate).toISOString();
-    return toCalendarDate(parseAbsoluteToLocal(ISODateString));
+    return parseAbsoluteToLocal(rawDate);
   } catch (e) {
     throw new Error(
       "Invalid date format when initializing props on DatePicker component",
@@ -30,15 +23,15 @@ export const parseCalendarDate = (
   }
 };
 
-export const parseRangeCalendarDate = (
-  rawRange: StringsOrDateRange | undefined,
+export const parseRangeDateValue = (
+  rawRange: [string, string] | undefined,
 ): DateRange | undefined => {
   if (!rawRange || !rawRange[0] || !rawRange[1]) {
     return undefined;
   }
   return {
-    start: parseCalendarDate(rawRange[0])!,
-    end: parseCalendarDate(rawRange[1])!,
+    start: parseDateValue(rawRange[0])!,
+    end: parseDateValue(rawRange[1])!,
   };
 };
 
@@ -50,14 +43,14 @@ export const convertDateValueToString = (date: DateValue | null): string => {
     return date ? toZoned(date, localTimezone).toAbsoluteString() : "";
   } catch (e) {
     throw new Error(
-      "Invalid date format when converting date value on DatePicker component"
+      "Invalid date format when converting date value on DatePicker component",
     );
   }
 };
 
 export const getDefaultPickerOptions = (props: DatePickerAuxSubProps): any => ({
-  minValue: parseCalendarDate(props.minValue),
-  maxValue: parseCalendarDate(props.maxValue),
+  minValue: parseDateValue(props.minValue),
+  maxValue: parseDateValue(props.maxValue),
   shouldCloseOnSelect: true,
   granularity: "day",
   isDisabled: props.disabled,
