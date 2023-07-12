@@ -1,16 +1,24 @@
 import userEvent from "@testing-library/user-event";
 import { render, screen, within } from "@testing-library/react";
 import React, { FormEvent, useState } from "react";
-import { afterEach, expect, vi } from "vitest";
+import { expect, vi } from "vitest";
 import { CunninghamProvider } from ":/components/Provider";
 import { DatePicker } from ":/components/Forms/DatePicker/DatePicker";
 import { Button } from ":/components/Button";
 
-describe("<DatePicker/>", () => {
-  afterEach(() => {
-    vi.restoreAllMocks();
-  });
+vi.mock("@internationalized/date", async () => {
+  const mod = await vi.importActual<typeof import("@internationalized/date")>(
+    "@internationalized/date"
+  );
+  return {
+    ...mod,
+    // Note: Restoring mocks will cause the function to return 'undefined'.
+    // Consider providing a default implementation to be restored instead.
+    getLocalTimeZone: vi.fn().mockReturnValue("Europe/Paris"),
+  };
+});
 
+describe("<DatePicker/>", () => {
   const expectCalendarToBeClosed = () => {
     expect(screen.queryByRole("application")).toBeNull();
   };
@@ -525,7 +533,7 @@ describe("<DatePicker/>", () => {
     expectCalendarToBeClosed();
 
     // Make sure value is selected.
-    screen.getByText(`Value = 2023-04-12|`);
+    screen.getByText(`Value = 2023-04-11T22:00:00.000Z|`);
 
     // Clear value.
     const clearButton = screen.getByRole("button", {
@@ -633,7 +641,7 @@ describe("<DatePicker/>", () => {
     expect(monthSegment).toHaveFocus();
 
     // Type date's value.
-    await user.keyboard("{1}{2}{5}{2}{0}{2}{3}");
+    await user.keyboard("{5}{1}{2}{2}{0}{2}{3}");
 
     // Submit form being filled with a date.
     await user.click(submitButton);
@@ -642,7 +650,7 @@ describe("<DatePicker/>", () => {
 
     // Make sure form's value matches.
     expect(formData).toEqual({
-      datepicker: "2023-12-05",
+      datepicker: "2023-05-11T22:00:00.000Z",
     });
 
     // Clear picked date.

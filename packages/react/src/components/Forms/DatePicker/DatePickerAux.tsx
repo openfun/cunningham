@@ -21,6 +21,7 @@ import {
   Calendar,
   CalendarRange,
 } from ":/components/Forms/DatePicker/Calendar";
+import { convertDateValueToString } from ":/components/Forms/DatePicker/utils";
 
 export type DatePickerAuxSubProps = FieldProps & {
   label?: string;
@@ -111,19 +112,19 @@ const DatePickerAux = forwardRef(
                   <input
                     type="hidden"
                     name={name && `${name}_start`}
-                    value={pickerState.value?.start?.toString() || ""}
+                    value={convertDateValueToString(pickerState.value.start)}
                   />
                   <input
                     type="hidden"
                     name={name && `${name}_end`}
-                    value={pickerState.value?.end?.toString() || ""}
+                    value={convertDateValueToString(pickerState.value.end)}
                   />
                 </>
               ) : (
                 <input
                   type="hidden"
                   name={name}
-                  value={pickerState.value?.toString() || ""}
+                  value={convertDateValueToString(pickerState.value)}
                 />
               )}
               <div className="c__date-picker__wrapper__icon">

@@ -12,6 +12,7 @@ import { Calendar } from ":/components/Forms/DatePicker/Calendar";
 import DateFieldBox from ":/components/Forms/DatePicker/DateField";
 import { StringOrDate } from ":/components/Forms/DatePicker/types";
 import {
+  convertDateValueToString,
   getDefaultPickerOptions,
   parseCalendarDate,
 } from ":/components/Forms/DatePicker/utils";
@@ -41,7 +42,7 @@ export const DatePicker = (props: DatePickerProps) => {
         : parseCalendarDate(props.value),
     defaultValue: parseCalendarDate(props.defaultValue),
     onChange: (value: DateValue | null) => {
-      props.onChange?.(value?.toString() || "");
+      props.onChange?.(convertDateValueToString(value));
     },
   };
   const pickerState = useDatePickerState(options);
