@@ -85,6 +85,7 @@ export const ClientSideWithoutPagination = () => {
           },
           {
             headerName: "Actions",
+            id: "actions",
             renderCell: () => (
               <Button
                 color="tertiary"
@@ -229,6 +230,7 @@ export const FullServerSide = () => {
             headerName: "Address",
           },
           {
+            id: "actions",
             renderCell: () => (
               <Button
                 color="tertiary"
@@ -271,6 +273,7 @@ export const DataListOnly = () => {
           { field: "date" },
           {
             headerName: "action",
+            id: "action",
             renderCell: () => {
               return (
                 <Button size="small" color="secondary">
