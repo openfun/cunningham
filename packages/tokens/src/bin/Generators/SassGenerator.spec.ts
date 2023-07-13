@@ -25,27 +25,34 @@ describe("SassGenerator", () => {
 
     expect(fs.existsSync(sassFile)).toEqual(true);
     expect(fs.readFileSync(sassFile).toString()).toMatchInlineSnapshot(`
-      "$colors: (
-        'primary': #055FD2,
-        'secondary': #DA0000,
-        'ternary-900': #022858,
-        'ogre-odor-is-orange-indeed': #FD5240
-      ) !default;
-      $fontFamilies: (
-        'base': Roboto
-      ) !default;
-      $fontSizes: (
-        'm': 1rem
-      ) !default;
-      $fontWeights: (
-        'medium': 400
-      ) !default;
-      $spacings: (
-        's': 1rem
-      ) !default;
-      $transitions: (
-        'ease': linear
-      ) !default;
+      "$theme: (
+        'colors': (
+          'primary': #055FD2,
+          'secondary': #DA0000,
+          'ternary-900': #022858,
+          'ogre-odor-is-orange-indeed': #FD5240
+        ),
+        'font': (
+          'sizes': (
+            'm': 1rem
+          ),
+          'weights': (
+            'medium': 400
+          ),
+          'families': (
+            'base': Roboto
+          )
+        ),
+        'spacings': (
+          's': 1rem
+        ),
+        'transitions': (
+          'ease': linear
+        ),
+        'input': (
+          'border-color': #022858
+        )
+      ) !default
       "
     `);
   });
