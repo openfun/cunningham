@@ -12,43 +12,20 @@ export const sassGenerator: Generator = async (tokens, opts) => {
 };
 
 const generateSassMaps = (tokens: Tokens) => {
-  return [
-    generateColorsSassMap(tokens),
-    generateFontSassMap(tokens),
-    generateSpacingsSassMap(tokens),
-    generateTransitionsSassMap(tokens),
-  ].join("\n");
+  return Object.keys(tokens)
+    .map((key) => {
+      return toSassVariable(`$${key}`, tokens[key]);
+    })
+    .join("\n");
 };
 
-// Generate colors sass map with the ability to create sub map
-// for a color with shades.
-// Example: `primary-500: #000` will return `primary: (500: #000)`
-const generateColorsSassMap = (tokens: Tokens) => {
-  return `$colors: ${JSONToSassMap(tokens.theme.colors)};`;
-};
-const generateFontSassMap = (tokens: Tokens) => {
-  return [
-    generateFontFamiliesSassMap(tokens),
-    generateFontSizesSassMap(tokens),
-    generateFontWeightsSassMap(tokens),
-  ].join("\n");
-};
-const generateFontFamiliesSassMap = (tokens: Tokens) => {
-  return `$fontFamilies: ${JSONToSassMap(tokens.theme.font.families)};`;
-};
-const generateFontSizesSassMap = (tokens: Tokens) => {
-  return `$fontSizes: ${JSONToSassMap(tokens.theme.font.sizes)};`;
-};
-const generateFontWeightsSassMap = (tokens: Tokens) => {
-  return `$fontWeights: ${JSONToSassMap(tokens.theme.font.weights)};`;
-};
-const generateSpacingsSassMap = (tokens: Tokens) => {
-  return `$spacings: ${JSONToSassMap(tokens.theme.spacings)};`;
-};
-
-const generateTransitionsSassMap = (tokens: Tokens) => {
-  return `$transitions: ${JSONToSassMap(tokens.theme.transitions)};`;
-};
+function toSassVariable(varName: string, value: any, isDefault = true) {
+  const out = `${varName}: `;
+  if (typeof value === "object") {
+    return out + JSONToSassMap(value, isDefault);
+  }
+  return out + value;
+}
 
 function JSONToSassMap(json: Object, isDefault = true) {
   function deepQuoteObjectKeys(object: Object) {
