@@ -53,6 +53,7 @@ export const SelectMonoSearchable = (props: SubProps) => {
         wrapperProps: {
           onClick: () => {
             inputRef.current?.focus();
+            downshiftReturn.openMenu();
           },
         },
         toggleButtonProps: downshiftReturn.getToggleButtonProps({
@@ -65,12 +66,10 @@ export const SelectMonoSearchable = (props: SubProps) => {
     >
       <input
         {...inputProps}
-        onFocus={(e) => {
-          inputProps.onFocus(e);
+        onFocus={() => {
           setHasInputFocused(true);
         }}
-        onBlur={(e) => {
-          inputProps.onBlur(e);
+        onBlur={() => {
           setHasInputFocused(false);
         }}
       />

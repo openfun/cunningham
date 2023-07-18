@@ -30,6 +30,7 @@ export interface SubProps extends SelectProps {
   downshiftProps: {
     initialSelectedItem?: Option;
     onSelectedItemChange?: any;
+    isItemDisabled?: (item: Option) => boolean;
   };
 }
 
@@ -190,7 +191,6 @@ export const SelectMonoAux = ({
                       item,
                       index,
                       isActive,
-                      disabled: item.disabled,
                     })}
                   >
                     <span>{item.label}</span>

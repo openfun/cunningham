@@ -203,7 +203,6 @@ export const SelectMultiAux = ({
                     {...downshiftReturn.getItemProps({
                       item: option,
                       index,
-                      disabled: option.disabled,
                     })}
                   >
                     <span>{option.label}</span>

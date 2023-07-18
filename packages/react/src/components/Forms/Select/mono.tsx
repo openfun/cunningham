@@ -44,6 +44,7 @@ export const SelectMono = (props: SelectProps) => {
         },
       });
     },
+    isItemDisabled: (item) => !!item.disabled,
   };
 
   return props.searchable ? (

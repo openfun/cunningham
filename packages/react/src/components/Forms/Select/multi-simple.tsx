@@ -64,6 +64,7 @@ export const SelectMultiSimple = (props: SubProps) => {
           break;
       }
     },
+    isItemDisabled: (item) => !!item.disabled,
   });
 
   return (
@@ -86,7 +87,7 @@ export const SelectMultiSimple = (props: SubProps) => {
             preventKeyAction: downshiftReturn.isOpen,
           }),
           disabled: props.disabled,
-          onClick: (e) => {
+          onClick: (e: React.MouseEvent): void => {
             // As the wrapper also has an onClick handler, we need to stop the event propagation here on it will toggle
             // twice the menu opening which will ... do nothing :).
             e.stopPropagation();

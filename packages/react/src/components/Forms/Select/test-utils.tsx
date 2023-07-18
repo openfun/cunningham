@@ -30,7 +30,7 @@ export const expectOptionToBeUnselected = (option: HTMLLIElement) => {
   );
 };
 export const expectOptionToBeDisabled = (option: HTMLLIElement) => {
-  expect(option).toHaveAttribute("disabled");
+  expect(option).toHaveAttribute("aria-disabled");
   expect(Array.from(option.classList)).contains(
     "c__select__menu__item--disabled",
   );
