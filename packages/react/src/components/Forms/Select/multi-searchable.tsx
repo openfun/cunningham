@@ -76,6 +76,7 @@ export const SelectMultiSearchable = (props: SubProps) => {
           break;
       }
     },
+    isItemDisabled: (item) => !!item.disabled,
   });
 
   const inputProps = downshiftReturn.getInputProps({
@@ -118,6 +119,7 @@ export const SelectMultiSearchable = (props: SubProps) => {
         wrapperProps: {
           onClick: () => {
             inputRef.current?.focus();
+            downshiftReturn.openMenu();
           },
         },
         toggleButtonProps: downshiftReturn.getToggleButtonProps(),
@@ -127,12 +129,10 @@ export const SelectMultiSearchable = (props: SubProps) => {
       <span className="c__select__inner__value__input" data-value={inputValue}>
         <input
           {...inputProps}
-          onFocus={(e) => {
-            inputProps.onFocus(e);
+          onFocus={() => {
             setHasInputFocused(true);
           }}
-          onBlur={(e) => {
-            inputProps.onBlur(e);
+          onBlur={() => {
             setHasInputFocused(false);
           }}
           size={4}
