@@ -23,14 +23,14 @@ import {
  */
 export function getMultiOptionsFilter(
   selectedOptions: Option[],
-  inputValue?: string
+  inputValue?: string,
 ) {
   const optionsFilter = getOptionsFilter(inputValue);
   return (option: Option) => {
     return (
       !selectedOptions.find(
         (selectedOption) =>
-          optionToValue(selectedOption) === optionToValue(option)
+          optionToValue(selectedOption) === optionToValue(option),
       ) && optionsFilter(option)
     );
   };
@@ -85,7 +85,7 @@ export const SelectMultiAux = ({
           {
             "c__select--disabled": disabled,
             "c__select--populated": selectedItems.length > 0,
-          }
+          },
         )}
       >
         <div
@@ -117,7 +117,7 @@ export const SelectMultiAux = ({
                       color="tertiary"
                       size="small"
                       aria-label={t(
-                        "components.forms.select.clear_all_button_aria_label"
+                        "components.forms.select.clear_all_button_aria_label",
                       )}
                       className="c__select__inner__actions__clear"
                       onClick={(e) => {
@@ -164,13 +164,13 @@ export const SelectMultiAux = ({
                         disabled={disabled}
                         size="small"
                         aria-label={t(
-                          "components.forms.select.clear_button_aria_label"
+                          "components.forms.select.clear_button_aria_label",
                         )}
                         className="c__select__inner__value__pill__clear"
                         onClick={(e) => {
                           e.stopPropagation();
                           useMultipleSelectionReturn.removeSelectedItem(
-                            selectedItemForRender
+                            selectedItemForRender,
                           );
                         }}
                         icon={<span className="material-icons">close</span>}

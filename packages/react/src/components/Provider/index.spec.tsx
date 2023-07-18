@@ -15,7 +15,7 @@ describe("<CunninghamProvider />", () => {
     render(
       <CunninghamProvider>
         <h1>Hi</h1>
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
     screen.getByRole("heading", { level: 1, name: "Hi" });
   });

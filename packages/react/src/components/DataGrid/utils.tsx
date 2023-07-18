@@ -92,7 +92,7 @@ export const sortingStateToSortModel = (sorting: SortingState): SortModel => {
 };
 
 export const paginationToPaginationState = (
-  pagination?: PaginationProps
+  pagination?: PaginationProps,
 ): PaginationState | undefined => {
   if (!pagination) {
     return undefined;

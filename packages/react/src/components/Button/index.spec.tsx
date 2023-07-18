@@ -33,7 +33,7 @@ describe("<Button/>", () => {
     render(
       <Button icon={<div>Icon</div>} iconPosition="right">
         Test button
-      </Button>
+      </Button>,
     );
     const button = screen.getByText("Test button");
     const classes = Array.from(button.classList);
@@ -57,7 +57,7 @@ describe("<Button/>", () => {
     render(
       <Button onClick={handleClick} disabled={true}>
         Test button
-      </Button>
+      </Button>,
     );
     const button = screen.getByRole("button", { name: "Test button" });
     expect(handleClick).not.toBeCalled();

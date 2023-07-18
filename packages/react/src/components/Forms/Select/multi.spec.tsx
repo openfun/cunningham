@@ -42,7 +42,7 @@ describe("<Select multi={true} />", () => {
             ]}
             multi={true}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       const input = screen.getByRole("combobox", {
         name: "Cities",
@@ -63,7 +63,7 @@ describe("<Select multi={true} />", () => {
       // Make sure the menu is opened and options are rendered.
       expectMenuToBeOpen(menu);
       expect(
-        screen.queryByRole("option", { name: "Paris" })
+        screen.queryByRole("option", { name: "Paris" }),
       ).toBeInTheDocument();
 
       // Make sure the option is not selected.
@@ -83,19 +83,19 @@ describe("<Select multi={true} />", () => {
 
       // Make sure the option is removed from the menu.
       expect(
-        screen.queryByRole("option", { name: "London" })
+        screen.queryByRole("option", { name: "London" }),
       ).not.toBeInTheDocument();
 
       // Select other options.
       await user.click(
         screen.getByRole("option", {
           name: "Tokyo",
-        })
+        }),
       );
       await user.click(
         screen.getByRole("option", {
           name: "Panama",
-        })
+        }),
       );
 
       await waitFor(() => expectSelectedOptions(["London", "Tokyo", "Panama"]));
@@ -103,30 +103,30 @@ describe("<Select multi={true} />", () => {
       // Clear one option.
       await user.click(
         within(
-          screen.getByText("Panama").parentNode as HTMLDivElement
+          screen.getByText("Panama").parentNode as HTMLDivElement,
         ).getByRole("button", {
           name: "Clear selection",
-        })
+        }),
       );
       await waitFor(() => expectSelectedOptions(["London", "Tokyo"]));
 
       // Clear one option.
       await user.click(
         within(
-          screen.getByText("London").parentNode as HTMLDivElement
+          screen.getByText("London").parentNode as HTMLDivElement,
         ).getByRole("button", {
           name: "Clear selection",
-        })
+        }),
       );
       await waitFor(() => expectSelectedOptions(["Tokyo"]));
 
       // Clear one option.
       await user.click(
         within(
-          screen.getByText("Tokyo").parentNode as HTMLDivElement
+          screen.getByText("Tokyo").parentNode as HTMLDivElement,
         ).getByRole("button", {
           name: "Clear selection",
-        })
+        }),
       );
       expectSelectedOptions([]);
     });
@@ -156,7 +156,7 @@ describe("<Select multi={true} />", () => {
             ]}
             multi={true}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       const input = screen.getByRole("combobox", {
         name: "Cities",
@@ -167,17 +167,17 @@ describe("<Select multi={true} />", () => {
       await user.click(
         screen.getByRole("option", {
           name: "London",
-        })
+        }),
       );
       await user.click(
         screen.getByRole("option", {
           name: "Tokyo",
-        })
+        }),
       );
       await user.click(
         screen.getByRole("option", {
           name: "Panama",
-        })
+        }),
       );
       expectSelectedOptions(["London", "Tokyo", "Panama"]);
 
@@ -211,7 +211,7 @@ describe("<Select multi={true} />", () => {
             defaultValue={["Tokyo", "New York"]}
             multi={true}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       expectSelectedOptions(["New York", "Tokyo"]);
     });
@@ -242,7 +242,7 @@ describe("<Select multi={true} />", () => {
             defaultValue={["tokyo", "new_york"]}
             multi={true}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       expectSelectedOptions(["New York", "Tokyo"]);
     });
@@ -298,14 +298,14 @@ describe("<Select multi={true} />", () => {
 
       // Make sure the option is removed from the menu.
       expect(
-        screen.queryByRole("option", { name: "London" })
+        screen.queryByRole("option", { name: "London" }),
       ).not.toBeInTheDocument();
 
       // Select an option.
       await user.click(
         screen.getByRole("option", {
           name: "New York",
-        })
+        }),
       );
 
       // Make sure value is selected.
@@ -347,7 +347,7 @@ describe("<Select multi={true} />", () => {
             disabled={true}
             multi={true}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       const input = screen.getByRole("combobox", {
         name: "Cities",
@@ -355,7 +355,7 @@ describe("<Select multi={true} />", () => {
       expect(input).toHaveAttribute("disabled");
 
       const button: HTMLButtonElement = document.querySelector(
-        ".c__select__inner__actions__open"
+        ".c__select__inner__actions__open",
       )!;
       expect(button).toBeDisabled();
 
@@ -402,7 +402,7 @@ describe("<Select multi={true} />", () => {
             text="This is a text"
             multi={true}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       screen.getByText("This is a text");
     });
@@ -434,10 +434,10 @@ describe("<Select multi={true} />", () => {
             state="error"
             multi={true}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       expect(
-        document.querySelector(".c__select.c__select--error")
+        document.querySelector(".c__select.c__select--error"),
       ).toBeInTheDocument();
     });
 
@@ -468,10 +468,10 @@ describe("<Select multi={true} />", () => {
             state="success"
             multi={true}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       expect(
-        document.querySelector(".c__select.c__select--success")
+        document.querySelector(".c__select.c__select--success"),
       ).toBeInTheDocument();
     });
 
@@ -546,7 +546,7 @@ describe("<Select multi={true} />", () => {
       await user.click(
         screen.getByRole("option", {
           name: "New York",
-        })
+        }),
       );
       expectSelectedOptions(["New York"]);
 
@@ -566,7 +566,7 @@ describe("<Select multi={true} />", () => {
       await user.click(
         await screen.findByRole("option", {
           name: "Paris",
-        })
+        }),
       );
       expectSelectedOptions(["New York", "Paris"]);
 
@@ -616,7 +616,7 @@ describe("<Select multi={true} />", () => {
             defaultValue={["Paris"]}
             multi={true}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       screen.getByRole("combobox", {
         name: "Cities",
@@ -628,7 +628,7 @@ describe("<Select multi={true} />", () => {
       expect(
         screen.queryByRole("button", {
           name: "Clear all selections",
-        })
+        }),
       ).not.toBeInTheDocument();
     });
 
@@ -654,7 +654,7 @@ describe("<Select multi={true} />", () => {
               },
             ]}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       const input = screen.getByRole("combobox", {
         name: "Cities",
@@ -715,7 +715,7 @@ describe("<Select multi={true} />", () => {
             hideLabel={true}
             multi={true}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       // Make sure the input is accessible.
       screen.getByRole("combobox", {
@@ -753,7 +753,7 @@ describe("<Select multi={true} />", () => {
             searchable={true}
             multi={true}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
 
       const input = screen.getByRole("combobox", {
@@ -815,7 +815,7 @@ describe("<Select multi={true} />", () => {
             searchable={true}
             multi={true}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
 
       const input = screen.getByRole("combobox", {
@@ -875,7 +875,7 @@ describe("<Select multi={true} />", () => {
             searchable={true}
             multi={true}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
 
       const input = screen.getByRole("combobox", {
@@ -936,7 +936,7 @@ describe("<Select multi={true} />", () => {
             multi={true}
             defaultValue={["panama", "tokyo", "new_york"]}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
 
       expectSelectedOptions(["Panama", "New York", "Tokyo"]);
@@ -996,7 +996,7 @@ describe("<Select multi={true} />", () => {
             searchable={true}
             defaultValue={["London", "Tokyo", "Panama"]}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
 
       expectSelectedOptions(["Panama", "London", "Tokyo"]);
@@ -1035,7 +1035,7 @@ describe("<Select multi={true} />", () => {
             searchable={true}
             defaultValue={["London", "Tokyo", "Panama"]}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
 
       expectSelectedOptions(["Panama", "London", "Tokyo"]);
@@ -1068,7 +1068,7 @@ describe("<Select multi={true} />", () => {
             searchable={true}
             multi={true}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       expectSelectedOptions(["New York", "Tokyo"]);
     });
@@ -1100,7 +1100,7 @@ describe("<Select multi={true} />", () => {
             searchable={true}
             multi={true}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       expectSelectedOptions(["New York"]);
     });
@@ -1199,7 +1199,7 @@ describe("<Select multi={true} />", () => {
             searchable={true}
             multi={true}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       const input = screen.getByRole("combobox", {
         name: "Cities",
@@ -1207,7 +1207,7 @@ describe("<Select multi={true} />", () => {
       expect(input).toHaveAttribute("disabled");
 
       const button: HTMLButtonElement = document.querySelector(
-        ".c__select__inner__actions__open"
+        ".c__select__inner__actions__open",
       )!;
       expect(button).toBeDisabled();
 

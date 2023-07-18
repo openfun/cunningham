@@ -17,22 +17,22 @@ export const expectMenuToBeClosed = (menu: HTMLDivElement) => {
 export const expectOptionToBeSelected = (option: HTMLLIElement) => {
   expect(option).toHaveAttribute("aria-selected", "true");
   expect(Array.from(option.classList)).contains(
-    "c__select__menu__item--selected"
+    "c__select__menu__item--selected",
   );
   expect(Array.from(option.classList)).contains(
-    "c__select__menu__item--highlight"
+    "c__select__menu__item--highlight",
   );
 };
 export const expectOptionToBeUnselected = (option: HTMLLIElement) => {
   expect(option).toHaveAttribute("aria-selected", "false");
   expect(Array.from(option.classList)).not.contains(
-    "c__select__menu__item--selected"
+    "c__select__menu__item--selected",
   );
 };
 export const expectOptionToBeDisabled = (option: HTMLLIElement) => {
   expect(option).toHaveAttribute("disabled");
   expect(Array.from(option.classList)).contains(
-    "c__select__menu__item--disabled"
+    "c__select__menu__item--disabled",
   );
 };
 

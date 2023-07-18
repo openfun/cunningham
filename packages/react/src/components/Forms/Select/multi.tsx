@@ -13,12 +13,12 @@ export const SelectMulti = (props: SelectMultiProps) => {
   const getSelectedItemsFromProps = () => {
     const valueToUse = props.defaultValue ?? props.value ?? [];
     return props.options.filter((option) =>
-      (valueToUse as string[]).includes(optionToValue(option))
+      (valueToUse as string[]).includes(optionToValue(option)),
     );
   };
 
   const [selectedItems, setSelectedItems] = React.useState<Option[]>(
-    getSelectedItemsFromProps()
+    getSelectedItemsFromProps(),
   );
 
   // If the component is used as a controlled component, we need to update the local value when the value prop changes.
@@ -36,7 +36,7 @@ export const SelectMulti = (props: SelectMultiProps) => {
   }, [JSON.stringify(selectedItems)]);
 
   const onSelectedItemsChange: SubProps["onSelectedItemsChange"] = (
-    newSelectedItems
+    newSelectedItems,
   ) => {
     setSelectedItems(newSelectedItems);
     // props.onSelectedItemsChange?.(newSelectedItems);

@@ -19,7 +19,7 @@ describe("<DataList/>", () => {
           columns={[{ field: "firstName" }, { field: "lastName" }]}
           rows={rows}
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
 
     const table = screen.getByRole("table");

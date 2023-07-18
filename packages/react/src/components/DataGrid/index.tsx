@@ -84,11 +84,11 @@ export const DataGrid = <T extends Row>({
    */
   const paginationState = useMemo(
     () => paginationToPaginationState(pagination),
-    [pagination]
+    [pagination],
   );
   const headlessSorting = useMemo(
     () => sortModelToSortingState(sortModel),
-    [sortModel]
+    [sortModel],
   );
 
   /**
@@ -110,7 +110,7 @@ export const DataGrid = <T extends Row>({
       // a TS error.
       if (typeof newHeadlessSorting === "function") {
         onSortModelChange?.(
-          sortingStateToSortModel(newHeadlessSorting(headlessSorting))
+          sortingStateToSortModel(newHeadlessSorting(headlessSorting)),
         );
       }
     },
@@ -183,7 +183,7 @@ export const DataGrid = <T extends Row>({
                               >
                                 {flexRender(
                                   header.column.columnDef.header,
-                                  header.getContext()
+                                  header.getContext(),
                                 )}
                                 {header.column.getIsSorted() === "asc" && (
                                   <span className="material-icons">
@@ -226,7 +226,7 @@ export const DataGrid = <T extends Row>({
                         >
                           {flexRender(
                             cell.column.columnDef.cell,
-                            cell.getContext()
+                            cell.getContext(),
                           )}
                         </td>
                       );

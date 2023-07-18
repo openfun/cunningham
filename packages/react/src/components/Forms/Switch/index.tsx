@@ -26,7 +26,7 @@ export const Switch = ({
         {
           "c__checkbox--disabled": props.disabled,
           "c__switch--full-width": fullWidth,
-        }
+        },
       )}
     >
       <Field text={text} compact={true} state={state} fullWidth={fullWidth}>

@@ -65,7 +65,7 @@ const DatePickerAux = forwardRef(
       optionalClassName,
       ...props
     }: DatePickerAuxProps,
-    ref: Ref<HTMLDivElement>
+    ref: Ref<HTMLDivElement>,
   ) => {
     const { t, currentLocale } = useCunningham();
     const pickerRef = useRef<HTMLDivElement>(null);
@@ -73,7 +73,7 @@ const DatePickerAux = forwardRef(
     const isDateInvalid = useMemo(
       () =>
         pickerState.validationState === "invalid" || props.state === "error",
-      [pickerState.validationState, props.state]
+      [pickerState.validationState, props.state],
     );
 
     // onPress props don't exist on the <Button /> component.
@@ -133,7 +133,7 @@ const DatePickerAux = forwardRef(
                     "aria-label": t(
                       pickerState.isOpen
                         ? "components.forms.date_picker.toggle_button_aria_label_close"
-                        : "components.forms.date_picker.toggle_button_aria_label_open"
+                        : "components.forms.date_picker.toggle_button_aria_label_open",
                     ),
                   }}
                   color="tertiary"
@@ -156,7 +156,7 @@ const DatePickerAux = forwardRef(
                 icon={<span className="material-icons">cancel</span>}
                 onClick={onClear}
                 aria-label={t(
-                  "components.forms.date_picker.clear_button_aria_label"
+                  "components.forms.date_picker.clear_button_aria_label",
                 )}
                 disabled={disabled}
               />
@@ -174,7 +174,7 @@ const DatePickerAux = forwardRef(
         </Field>
       </I18nProvider>
     );
-  }
+  },
 );
 
 export default DatePickerAux;

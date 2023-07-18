@@ -52,8 +52,8 @@ export const SimpleDataGrid = <T extends Row>({
       setRealRows(
         sortedRows.slice(
           (pagination.page - 1) * pagination.pageSize,
-          pagination.page * pagination.pageSize
-        )
+          pagination.page * pagination.pageSize,
+        ),
       );
     } else {
       setRealRows(sortedRows);

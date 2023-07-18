@@ -11,7 +11,7 @@ import {
 import { DatePickerAuxSubProps } from ":/components/Forms/DatePicker/DatePickerAux";
 
 export const parseCalendarDate = (
-  rawDate: StringOrDate | undefined
+  rawDate: StringOrDate | undefined,
 ): undefined | CalendarDate => {
   if (!rawDate) {
     return undefined;
@@ -21,13 +21,13 @@ export const parseCalendarDate = (
     return toCalendarDate(parseAbsoluteToLocal(ISODateString));
   } catch (e) {
     throw new Error(
-      "Invalid date format when initializing props on DatePicker component"
+      "Invalid date format when initializing props on DatePicker component",
     );
   }
 };
 
 export const parseRangeCalendarDate = (
-  rawRange: StringsOrDateRange | undefined
+  rawRange: StringsOrDateRange | undefined,
 ): DateRange | undefined => {
   if (!rawRange || !rawRange[0] || !rawRange[1]) {
     return undefined;

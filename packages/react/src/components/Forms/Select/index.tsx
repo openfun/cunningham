@@ -5,7 +5,7 @@ import { SelectMono, SelectProps } from ":/components/Forms/Select/mono";
 export const Select = (props: SelectProps) => {
   if (props.defaultValue && props.value) {
     throw new Error(
-      "You cannot use both defaultValue and value props on Select component"
+      "You cannot use both defaultValue and value props on Select component",
     );
   }
 

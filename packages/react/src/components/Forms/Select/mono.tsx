@@ -31,7 +31,7 @@ export type SelectProps = PropsWithChildren &
 export const SelectMono = (props: SelectProps) => {
   const defaultSelectedItem = props.defaultValue
     ? props.options.find(
-        (option) => optionToValue(option) === props.defaultValue
+        (option) => optionToValue(option) === props.defaultValue,
       )
     : undefined;
 

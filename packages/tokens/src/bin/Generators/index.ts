@@ -7,7 +7,7 @@ import { resolve } from "Utils/resolve";
 
 export type Generator = (
   tokens: Tokens,
-  opts: { path: string; selector: string; utilityClasses?: boolean }
+  opts: { path: string; selector: string; utilityClasses?: boolean },
 ) => Promise<void>;
 
 export const Generators: Record<string, Generator> = {
@@ -19,7 +19,7 @@ export const Generators: Record<string, Generator> = {
 
 export const resolveRefs = (
   tokens: Tokens,
-  callback: (ref: string, tokens: Tokens) => string
+  callback: (ref: string, tokens: Tokens) => string,
 ): Tokens => {
   let refsCount = 0;
   let resolved = tokens;
@@ -72,7 +72,7 @@ export const resolveRefs = (
     // Prevent infinite loops.
     if (iterations >= maxIterations) {
       throw new Error(
-        "Maximum resolveRefs iterations: please reduce usage of chained references."
+        "Maximum resolveRefs iterations: please reduce usage of chained references.",
       );
     }
     refsCount = 0;

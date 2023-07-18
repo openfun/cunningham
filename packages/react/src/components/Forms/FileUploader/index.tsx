@@ -37,5 +37,5 @@ export const FileUploader = forwardRef<FileUploaderRefType, FileUploaderProps>(
         )}
       </Field>
     );
-  }
+  },
 );

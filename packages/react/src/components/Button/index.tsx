@@ -22,7 +22,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(
       fullWidth,
       ...props
     },
-    ref
+    ref,
   ) => {
     const classes = [
       "c__button",
@@ -49,5 +49,5 @@ export const Button = forwardRef<HTMLButtonElement, Props>(
         {!!icon && iconPosition === "right" && icon}
       </button>
     );
-  }
+  },
 );

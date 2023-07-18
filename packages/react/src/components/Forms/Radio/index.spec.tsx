@@ -35,14 +35,14 @@ describe("<Radio/>", () => {
     render(<Radio label="Yes" state="success" text="Success text" />);
     expect(screen.getByText("Success text")).toBeInTheDocument();
     expect(
-      document.querySelector(".c__field.c__field--success")
+      document.querySelector(".c__field.c__field--success"),
     ).toBeInTheDocument();
   });
   it("should render with state=error", async () => {
     render(<Radio label="Yes" state="error" text="Error text" />);
     expect(screen.getByText("Error text")).toBeInTheDocument();
     expect(
-      document.querySelector(".c__field.c__field--error")
+      document.querySelector(".c__field.c__field--error"),
     ).toBeInTheDocument();
   });
   it("should render with group", async () => {
@@ -50,7 +50,7 @@ describe("<Radio/>", () => {
       <RadioGroup>
         <Radio label="Yes" />
         <Radio label="No" />
-      </RadioGroup>
+      </RadioGroup>,
     );
     screen.getByRole("radio", {
       name: "Yes",
@@ -64,7 +64,7 @@ describe("<Radio/>", () => {
       <RadioGroup>
         <Radio name="agree" label="Yes" />
         <Radio name="agree" label="No" />
-      </RadioGroup>
+      </RadioGroup>,
     );
     const user = userEvent.setup();
     const yesInput: HTMLInputElement = screen.getByLabelText("Yes");
@@ -83,7 +83,7 @@ describe("<Radio/>", () => {
       <RadioGroup text="Text">
         <Radio label="Yes" />
         <Radio label="No" />
-      </RadioGroup>
+      </RadioGroup>,
     );
     expect(screen.getByText("Text")).toBeInTheDocument();
   });
@@ -92,11 +92,11 @@ describe("<Radio/>", () => {
       <RadioGroup state="success" text="Success text">
         <Radio label="Yes" />
         <Radio label="No" />
-      </RadioGroup>
+      </RadioGroup>,
     );
     expect(screen.getByText("Success text")).toBeInTheDocument();
     expect(
-      document.querySelector(".c__radio__group.c__field.c__field--success")
+      document.querySelector(".c__radio__group.c__field.c__field--success"),
     ).toBeInTheDocument();
   });
   it("should render with group state=error", async () => {
@@ -104,11 +104,11 @@ describe("<Radio/>", () => {
       <RadioGroup state="error" text="Error text">
         <Radio label="Yes" />
         <Radio label="No" />
-      </RadioGroup>
+      </RadioGroup>,
     );
     expect(screen.getByText("Error text")).toBeInTheDocument();
     expect(
-      document.querySelector(".c__radio__group.c__field.c__field--error")
+      document.querySelector(".c__radio__group.c__field.c__field--error"),
     ).toBeInTheDocument();
   });
 });

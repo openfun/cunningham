@@ -29,7 +29,7 @@ export const CalendarGrid = ({
       startDate: state.visibleRange.start,
       endDate: endOfMonth(state.visibleRange.start),
     },
-    state
+    state,
   );
 
   const shortDayFormatter = useDateFormatter({
@@ -61,7 +61,7 @@ export const CalendarGrid = ({
               .getDatesInWeek(weekIndex)
               .map(
                 (date, i) =>
-                  date && <CalendarCell key={i} state={state} date={date} />
+                  date && <CalendarCell key={i} state={state} date={date} />,
               )}
           </tr>
         ))}

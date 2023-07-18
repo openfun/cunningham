@@ -13,9 +13,9 @@ export const SelectMultiSearchable = (props: SubProps) => {
   const options = React.useMemo(
     () =>
       props.options.filter(
-        getMultiOptionsFilter(props.selectedItems, inputValue)
+        getMultiOptionsFilter(props.selectedItems, inputValue),
       ),
-    [props.selectedItems, inputValue]
+    [props.selectedItems, inputValue],
   );
   const [hasInputFocused, setHasInputFocused] = useState(false);
   const useMultipleSelectionReturn = useMultipleSelection({

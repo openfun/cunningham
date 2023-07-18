@@ -10,7 +10,7 @@ import { optionToString } from ":/components/Forms/Select/mono-common";
 export const SelectMultiSimple = (props: SubProps) => {
   const options = React.useMemo(
     () => props.options.filter(getMultiOptionsFilter(props.selectedItems, "")),
-    [props.selectedItems]
+    [props.selectedItems],
   );
 
   const useMultipleSelectionReturn = useMultipleSelection({

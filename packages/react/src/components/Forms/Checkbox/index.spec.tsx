@@ -48,14 +48,14 @@ describe("<Checkbox/>", () => {
     render(<Checkbox label="Agree" state="success" text="Success text" />);
     expect(screen.getByText("Success text")).toBeInTheDocument();
     expect(
-      document.querySelector(".c__field.c__field--success")
+      document.querySelector(".c__field.c__field--success"),
     ).toBeInTheDocument();
   });
   it("renders with state=error", async () => {
     render(<Checkbox label="Agree" state="error" text="Error text" />);
     expect(screen.getByText("Error text")).toBeInTheDocument();
     expect(
-      document.querySelector(".c__field.c__field--error")
+      document.querySelector(".c__field.c__field--error"),
     ).toBeInTheDocument();
   });
 
@@ -64,7 +64,7 @@ describe("<Checkbox/>", () => {
       <CheckboxGroup>
         <Checkbox label="Agree" />
         <Checkbox label="Disagree" />
-      </CheckboxGroup>
+      </CheckboxGroup>,
     );
     screen.getByRole("checkbox", {
       name: "Agree",
@@ -78,7 +78,7 @@ describe("<Checkbox/>", () => {
       <CheckboxGroup text="Text">
         <Checkbox label="Agree" />
         <Checkbox label="Disagree" />
-      </CheckboxGroup>
+      </CheckboxGroup>,
     );
     expect(screen.getByText("Text")).toBeInTheDocument();
   });
@@ -87,11 +87,11 @@ describe("<Checkbox/>", () => {
       <CheckboxGroup state="success" text="Success text">
         <Checkbox label="Agree" />
         <Checkbox label="Disagree" />
-      </CheckboxGroup>
+      </CheckboxGroup>,
     );
     expect(screen.getByText("Success text")).toBeInTheDocument();
     expect(
-      document.querySelector(".c__checkbox__group.c__field.c__field--success")
+      document.querySelector(".c__checkbox__group.c__field.c__field--success"),
     ).toBeInTheDocument();
   });
   it("renders with group state=error", async () => {
@@ -99,11 +99,11 @@ describe("<Checkbox/>", () => {
       <CheckboxGroup state="error" text="Error text">
         <Checkbox label="Agree" />
         <Checkbox label="Disagree" />
-      </CheckboxGroup>
+      </CheckboxGroup>,
     );
     expect(screen.getByText("Error text")).toBeInTheDocument();
     expect(
-      document.querySelector(".c__checkbox__group.c__field.c__field--error")
+      document.querySelector(".c__checkbox__group.c__field.c__field--error"),
     ).toBeInTheDocument();
   });
 });

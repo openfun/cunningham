@@ -48,7 +48,7 @@ describe("<Switch/>", () => {
     render(<Switch label="Newsletter" state="success" text="Success text" />);
     screen.getByText("Success text");
     expect(
-      document.querySelector(".c__field.c__field--success")
+      document.querySelector(".c__field.c__field--success"),
     ).toBeInTheDocument();
   });
 
@@ -56,7 +56,7 @@ describe("<Switch/>", () => {
     render(<Switch label="Newsletter" state="error" text="Error text" />);
     screen.getByText("Error text");
     expect(
-      document.querySelector(".c__field.c__field--error")
+      document.querySelector(".c__field.c__field--error"),
     ).toBeInTheDocument();
   });
 
@@ -68,7 +68,7 @@ describe("<Switch/>", () => {
         <Switch label="Newsletter" />
         <Switch label="Notifications" />
         <Switch label="Phone" />
-      </div>
+      </div>,
     );
     // expect all checkboxes to be unchecked
     const newsletter: HTMLInputElement = screen.getByRole("checkbox", {

@@ -79,7 +79,7 @@ export const SelectMonoAux = ({
       return;
     }
     const optionToSelect = options.find(
-      (option) => optionToValue(option) === value
+      (option) => optionToValue(option) === value,
     );
     downshiftReturn.selectItem(optionToSelect ?? null);
   }, [value]);
@@ -98,7 +98,7 @@ export const SelectMonoAux = ({
           "c__select--" + state,
           {
             "c__select--disabled": disabled,
-          }
+          },
         )}
       >
         {/* We disabled linting for this specific line because we consider that the onClick props is only used for */}
@@ -134,7 +134,7 @@ export const SelectMonoAux = ({
                       color="tertiary"
                       size="small"
                       aria-label={t(
-                        "components.forms.select.clear_button_aria_label"
+                        "components.forms.select.clear_button_aria_label",
                       )}
                       className="c__select__inner__actions__clear"
                       onClick={(e) => {
