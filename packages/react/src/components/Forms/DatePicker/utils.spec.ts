@@ -9,7 +9,7 @@ const expectDateToBeEqual = (
   parsedDate: CalendarDate | DateValue | undefined,
   expectedYear: number,
   expectedMonth: number,
-  expectedDay: number
+  expectedDay: number,
 ) => {
   expect(parsedDate).not.eq(undefined);
   expect(parsedDate?.year === expectedYear);
@@ -40,7 +40,7 @@ describe("parseCalendarDate", () => {
       const stringDate = `${year}-${month}-${day}`;
       const parsedDate = parseCalendarDate(stringDate);
       expectDateToBeEqual(parsedDate, year, month, day);
-    }
+    },
   );
 
   it.each([
@@ -68,7 +68,7 @@ describe("parseCalendarDate", () => {
     "2022-04-01 T00:00:00-00:00",
   ])("parse a wrong date", (wrongFormattedDate) => {
     expect(() => parseCalendarDate(wrongFormattedDate)).toThrow(
-      "Invalid date format when initializing props on DatePicker component"
+      "Invalid date format when initializing props on DatePicker component",
     );
   });
 
@@ -96,7 +96,7 @@ describe("parseCalendarDate", () => {
       // Make sure the ISO string have been converted to the local timezone
       const nextDay = parseDate(dateString).add({ days: 1 });
       expect(parsedDate?.compare(nextDay)).eq(0);
-    }
+    },
   );
 
   it.each([
@@ -123,7 +123,7 @@ describe("parseCalendarDate", () => {
 
       // Make sure the ISO string have been converted to the local timezone
       expect(parsedDate?.compare(sameDay)).eq(0);
-    }
+    },
   );
 });
 
@@ -146,7 +146,7 @@ describe("parseRangeCalendarDate", () => {
     "parse a partially null or empty date range",
     (start: StringOrDate, end: StringOrDate) => {
       expect(parseRangeCalendarDate([start, end])).eq(undefined);
-    }
+    },
   );
 
   it("parse an undefined date range", () => {

@@ -9,7 +9,7 @@ describe("buildRefs", () => {
             "primary-500": "blue",
           },
         },
-      })
+      }),
     ).toEqual({
       theme: {
         colors: {

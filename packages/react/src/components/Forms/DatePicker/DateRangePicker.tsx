@@ -31,7 +31,7 @@ export const DateRangePicker = ({
 }: DateRangePickerProps) => {
   if (props.defaultValue && props.value) {
     throw new Error(
-      "You cannot use both defaultValue and value props on DateRangePicker component"
+      "You cannot use both defaultValue and value props on DateRangePicker component",
     );
   }
   const ref = useRef<HTMLDivElement>(null);
@@ -45,7 +45,7 @@ export const DateRangePicker = ({
       props.onChange?.(
         value?.start && value.end
           ? [value.start.toString(), value.end.toString()]
-          : null
+          : null,
       );
     },
   };
@@ -59,7 +59,7 @@ export const DateRangePicker = ({
       !pickerState.isOpen &&
       !pickerState.value.start &&
       !pickerState.value.end,
-    [pickerState.value, pickerState.isOpen, isFocused]
+    [pickerState.value, pickerState.isOpen, isFocused],
   );
 
   const calendar = <CalendarRange {...calendarProps} />;

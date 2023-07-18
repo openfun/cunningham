@@ -97,7 +97,7 @@ describe("<DataGrid/>", () => {
 
     fetchMock.mockIf(
       "https://example.com/?page=1&sort=lastName&sortOrder=desc",
-      () => deferred.promise
+      () => deferred.promise,
     );
 
     render(<Component />);
@@ -115,8 +115,8 @@ describe("<DataGrid/>", () => {
         JSON.stringify({
           rows: database.slice(0, 10),
           count: database.length,
-        })
-      )
+        }),
+      ),
     );
 
     // Make sure the loader disappears.
@@ -124,8 +124,8 @@ describe("<DataGrid/>", () => {
       expect(
         screen.queryByRole("status", {
           name: "Loading data",
-        })
-      ).toBeNull()
+        }),
+      ).toBeNull(),
     );
 
     // Make sure the rows are rendered.
@@ -154,7 +154,7 @@ describe("<DataGrid/>", () => {
     deferred = new Deferred();
     fetchMock.mockIf(
       "https://example.com/?page=2&sort=lastName&sortOrder=desc",
-      () => deferred.promise
+      () => deferred.promise,
     );
 
     // Go to page 2.
@@ -187,8 +187,8 @@ describe("<DataGrid/>", () => {
         JSON.stringify({
           rows: database.slice(10, 20),
           count: database.length,
-        })
-      )
+        }),
+      ),
     );
 
     // Make sure the loader disappears.
@@ -196,8 +196,8 @@ describe("<DataGrid/>", () => {
       expect(
         screen.queryByRole("status", {
           name: "Loading data",
-        })
-      ).toBeNull()
+        }),
+      ).toBeNull(),
     );
 
     // Make sure the rows are rendered.
@@ -330,15 +330,15 @@ describe("<DataGrid/>", () => {
       expect(tds.length).toBe(3);
       expect(tds[0].textContent).toEqual(row.firstName);
       expect(Array.from(tds[0].classList)).toContain(
-        "c__datagrid__row__cell--highlight"
+        "c__datagrid__row__cell--highlight",
       );
       expect(tds[1].textContent).toEqual(row.lastName);
       expect(Array.from(tds[1].classList)).not.toContain(
-        "c__datagrid__row__cell--highlight"
+        "c__datagrid__row__cell--highlight",
       );
       expect(tds[2].textContent).toEqual(row.email);
       expect(Array.from(tds[2].classList)).toContain(
-        "c__datagrid__row__cell--highlight"
+        "c__datagrid__row__cell--highlight",
       );
     });
   });

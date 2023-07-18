@@ -42,7 +42,7 @@ describe("<SimpleDataGrid/>", () => {
           ]}
           rows={rows}
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
 
     const table = screen.getByRole("table");
@@ -106,7 +106,7 @@ describe("<SimpleDataGrid/>", () => {
             },
           ]}
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
 
     // Verify first page rows.
@@ -309,7 +309,7 @@ describe("<SimpleDataGrid/>", () => {
             },
           ]}
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
 
     // Verify first page rows are sorted by firstName ASC.
@@ -461,7 +461,7 @@ describe("<SimpleDataGrid/>", () => {
             },
           ]}
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
 
     // Make sure the sort is enabled on the first name column.
@@ -506,7 +506,7 @@ describe("<SimpleDataGrid/>", () => {
           ]}
           rows={rows}
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
 
     screen.getByRole("img", { name: /illustration of an empty table/i });
@@ -526,12 +526,12 @@ describe("<SimpleDataGrid/>", () => {
           rows={rows}
           isLoading={true}
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
 
     // Verify that the empty state is not rendered.
     expect(
-      screen.queryByRole("img", { name: /illustration of an empty table/i })
+      screen.queryByRole("img", { name: /illustration of an empty table/i }),
     ).toBeNull();
     expect(screen.queryByText(/this table is empty/i)).toBeNull();
 

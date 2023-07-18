@@ -12,7 +12,7 @@ describe("resolveRefs", () => {
       tokens as unknown as Tokens,
       (ref, resolvingTokens) => {
         return resolve(resolvingTokens, ref);
-      }
+      },
     );
     expect(res).toEqual({
       a: "b",
@@ -51,7 +51,7 @@ describe("resolveRefs", () => {
       tokens as unknown as Tokens,
       (ref, resolvingTokens) => {
         return resolve(resolvingTokens, ref);
-      }
+      },
     );
     expect(res).toEqual({
       a: "b",
@@ -77,7 +77,7 @@ describe("resolveRefs", () => {
       tokens as unknown as Tokens,
       (ref, resolvingTokens) => {
         return resolve(resolvingTokens, ref);
-      }
+      },
     );
     expect(res).toEqual({
       a: "value",
@@ -97,7 +97,7 @@ describe("resolveRefs", () => {
         return `ref(${ref})`;
       });
     }).toThrow(
-      "Maximum resolveRefs iterations: please reduce usage of chained references."
+      "Maximum resolveRefs iterations: please reduce usage of chained references.",
     );
   });
 });

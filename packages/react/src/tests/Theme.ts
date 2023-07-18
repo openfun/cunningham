@@ -8,7 +8,7 @@ import path from "path";
  */
 export const buildTheme = (debug?: boolean) => {
   const child = child_process.exec(
-    "cd " + path.join(__dirname, "..", "..") + " && yarn build-theme"
+    "cd " + path.join(__dirname, "..", "..") + " && yarn build-theme",
   );
   return new Promise<void>((resolve) => {
     child.stdout?.on("data", (data) => {

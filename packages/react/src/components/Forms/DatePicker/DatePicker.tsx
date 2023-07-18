@@ -26,7 +26,7 @@ export type DatePickerProps = DatePickerAuxSubProps & {
 export const DatePicker = (props: DatePickerProps) => {
   if (props.defaultValue && props.value) {
     throw new Error(
-      "You cannot use both defaultValue and value props on DatePicker component"
+      "You cannot use both defaultValue and value props on DatePicker component",
     );
   }
   const ref = useRef<HTMLDivElement>(null);
@@ -48,12 +48,12 @@ export const DatePicker = (props: DatePickerProps) => {
   const { fieldProps, calendarProps, ...pickerProps } = useDatePicker(
     options,
     pickerState,
-    ref
+    ref,
   );
 
   const labelAsPlaceholder = useMemo(
     () => !isFocused && !pickerState.isOpen && !pickerState.value,
-    [pickerState.value, pickerState.isOpen, isFocused]
+    [pickerState.value, pickerState.isOpen, isFocused],
   );
 
   const calendar = <Calendar {...calendarProps} />;

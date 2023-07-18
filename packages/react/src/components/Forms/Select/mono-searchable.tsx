@@ -26,7 +26,7 @@ export const SelectMonoSearchable = (props: SubProps) => {
   });
 
   const [labelAsPlaceholder, setLabelAsPlaceholder] = useState(
-    !downshiftReturn.selectedItem
+    !downshiftReturn.selectedItem,
   );
   useEffect(() => {
     if (hasInputFocused || downshiftReturn.inputValue) {

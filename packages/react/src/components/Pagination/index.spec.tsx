@@ -103,7 +103,7 @@ describe("<Pagination/>", () => {
         { text: "2", name: "You are currently on page 2" },
         { text: "3", name: "Go to page 3" },
         { text: "navigate_next", name: "Go to next page", disabled: false },
-      ])
+      ]),
     );
 
     // Go to page 3.
@@ -120,7 +120,7 @@ describe("<Pagination/>", () => {
         { text: "2", name: "Go to page 2" },
         { text: "3", name: "You are currently on page 3" },
         { text: "navigate_next", name: "Go to next page", disabled: true },
-      ])
+      ]),
     );
 
     const previousButton = screen.getByRole("button", {
@@ -141,7 +141,7 @@ describe("<Pagination/>", () => {
         { text: "2", name: "You are currently on page 2" },
         { text: "3", name: "Go to page 3" },
         { text: "navigate_next", name: "Go to next page", disabled: false },
-      ])
+      ]),
     );
 
     // Go to page 1.
@@ -158,7 +158,7 @@ describe("<Pagination/>", () => {
         { text: "2", name: "Go to page 2" },
         { text: "3", name: "Go to page 3" },
         { text: "navigate_next", name: "Go to next page", disabled: false },
-      ])
+      ]),
     );
   });
   it("can goto page", async () => {
@@ -176,7 +176,7 @@ describe("<Pagination/>", () => {
     });
 
     await waitFor(() =>
-      screen.getByRole("button", { name: "You are currently on page 60" })
+      screen.getByRole("button", { name: "You are currently on page 60" }),
     );
 
     // Try to go to page > 100 and verify that it goes to 100.
@@ -187,7 +187,7 @@ describe("<Pagination/>", () => {
     });
 
     await waitFor(() =>
-      screen.getByRole("button", { name: "You are currently on page 100" })
+      screen.getByRole("button", { name: "You are currently on page 100" }),
     );
 
     // Try to go to page < 1 and verify that it goes to 1.
@@ -198,7 +198,7 @@ describe("<Pagination/>", () => {
     });
 
     await waitFor(() =>
-      screen.getByRole("button", { name: "You are currently on page 1" })
+      screen.getByRole("button", { name: "You are currently on page 1" }),
     );
   });
 });

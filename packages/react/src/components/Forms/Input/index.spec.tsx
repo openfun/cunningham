@@ -35,7 +35,7 @@ describe("<Input/>", () => {
       <div>
         <Input label="First name" />
         <Input label="Second name" />
-      </div>
+      </div>,
     );
 
     const input: HTMLInputElement = screen.getByRole("textbox", {
@@ -67,14 +67,14 @@ describe("<Input/>", () => {
     render(<Input label="First name" state="success" />);
     expect(document.querySelector(".c__field--success")).toBeInTheDocument();
     expect(
-      document.querySelector(".c__input__wrapper--success")
+      document.querySelector(".c__input__wrapper--success"),
     ).toBeInTheDocument();
   });
   it("renders with state=error", async () => {
     render(<Input label="First name" state="error" />);
     expect(document.querySelector(".c__field--error")).toBeInTheDocument();
     expect(
-      document.querySelector(".c__input__wrapper--error")
+      document.querySelector(".c__input__wrapper--error"),
     ).toBeInTheDocument();
   });
   it("renders disabled", async () => {
@@ -84,7 +84,7 @@ describe("<Input/>", () => {
       name: "First name",
     });
     expect(
-      document.querySelector(".c__input__wrapper--disabled")
+      document.querySelector(".c__input__wrapper--disabled"),
     ).toBeInTheDocument();
     expect(input.value).toEqual("");
     // Disabled inputs should not be able to type.
@@ -96,7 +96,7 @@ describe("<Input/>", () => {
       <Input
         label="First name"
         icon={<span className="material-icons">apartment</span>}
-      />
+      />,
     );
     expect(document.querySelector(".material-icons")).toBeInTheDocument();
   });
@@ -105,7 +105,7 @@ describe("<Input/>", () => {
       <Input
         label="First name"
         rightIcon={<span className="material-icons">apartment</span>}
-      />
+      />,
     );
     expect(document.querySelector(".material-icons")).toBeInTheDocument();
   });
@@ -115,7 +115,7 @@ describe("<Input/>", () => {
         label="First name"
         rightIcon={<span className="material-icons">apartment</span>}
         text="Some text"
-      />
+      />,
     );
     screen.getByText("Some text");
   });
@@ -125,7 +125,7 @@ describe("<Input/>", () => {
         label="First name"
         rightIcon={<span className="material-icons">apartment</span>}
         rightText="Some text right"
-      />
+      />,
     );
     screen.getByText("Some text right");
   });

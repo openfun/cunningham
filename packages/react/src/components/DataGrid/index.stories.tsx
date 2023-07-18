@@ -58,7 +58,7 @@ export const ClientSideWithoutPagination = () => {
         email: faker.internet.email(),
         address: faker.location.streetAddress(),
       })),
-    []
+    [],
   );
   return (
     <CunninghamProvider>
@@ -110,7 +110,7 @@ export const ClientSideWithPagination = () => {
         year: faker.date.past().getFullYear(),
         price: +faker.commerce.price({ min: 5000, max: 5005 }),
       })),
-    []
+    [],
   );
 
   const [rowSelection, setRowSelection] = useState({});
@@ -163,7 +163,7 @@ export const FullServerSide = () => {
         email: faker.internet.email(),
         address: faker.location.streetAddress(),
       })),
-    []
+    [],
   );
   const [rowSelection, setRowSelection] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -194,14 +194,14 @@ export const FullServerSide = () => {
     setTimeout(() => {
       // Set the pagination length.
       pagination.setPagesCount(
-        Math.ceil(sortedDatabase.length / pagination.pageSize)
+        Math.ceil(sortedDatabase.length / pagination.pageSize),
       );
       // Select the rows to display on the current page.
       setRows(
         sortedDatabase.slice(
           (pagination.page - 1) * pagination.pageSize,
-          pagination.page * pagination.pageSize
-        )
+          pagination.page * pagination.pageSize,
+        ),
       );
       setIsLoading(false);
     }, 1000);
@@ -261,7 +261,7 @@ export const DataListOnly = () => {
         title: faker.word.sample(),
         date: faker.date.past({ years: 1 }).toISOString(),
       })),
-    []
+    [],
   );
 
   return (

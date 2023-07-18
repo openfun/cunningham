@@ -52,7 +52,7 @@ function generateColorClasses(tokens: Tokens) {
 function generateBgClasses(tokens: Tokens) {
   return Object.keys(tokens.theme.colors).map(
     (key) =>
-      `.bg-${key} { background-color: var(--${Config.sass.varPrefix}theme--colors--${key}); }`
+      `.bg-${key} { background-color: var(--${Config.sass.varPrefix}theme--colors--${key}); }`,
   );
 }
 
@@ -65,7 +65,7 @@ function generateBgClasses(tokens: Tokens) {
 function generateClrClasses(tokens: Tokens) {
   return Object.keys(tokens.theme.colors).map(
     (key) =>
-      `.clr-${key} { color: var(--${Config.sass.varPrefix}theme--colors--${key}); }`
+      `.clr-${key} { color: var(--${Config.sass.varPrefix}theme--colors--${key}); }`,
   );
 }
 
@@ -86,7 +86,7 @@ function generateFontClasses(tokens: Tokens) {
 function generateFwClasses(tokens: Tokens) {
   return Object.keys(tokens.theme.font.weights).map(
     (key) =>
-      `.fw-${key} { font-weight: var(--${Config.sass.varPrefix}theme--font--weights--${key}); }`
+      `.fw-${key} { font-weight: var(--${Config.sass.varPrefix}theme--font--weights--${key}); }`,
   );
 }
 
@@ -99,7 +99,7 @@ function generateFwClasses(tokens: Tokens) {
 function generateFsClasses(tokens: Tokens) {
   return Object.keys(tokens.theme.font.sizes).map(
     (key) =>
-      `.fs-${key} { font-size: var(--${Config.sass.varPrefix}theme--font--sizes--${key}); }`
+      `.fs-${key} { font-size: var(--${Config.sass.varPrefix}theme--font--sizes--${key}); }`,
   );
 }
 
@@ -112,7 +112,7 @@ function generateFsClasses(tokens: Tokens) {
 function generateFClasses(tokens: Tokens) {
   return Object.keys(tokens.theme.font.families).map(
     (key) =>
-      `.f-${key} { font-family: var(--${Config.sass.varPrefix}theme--font--families--${key}); }`
+      `.f-${key} { font-family: var(--${Config.sass.varPrefix}theme--font--families--${key}); }`,
   );
 }
 
@@ -133,7 +133,7 @@ function generateMarginClasses(tokens: Tokens) {
       `.mb-${key} { margin-bottom: var(--${Config.sass.varPrefix}theme--spacings--${key}); }` +
       `.mt-${key} { margin-top: var(--${Config.sass.varPrefix}theme--spacings--${key}); }` +
       `.ml-${key} { margin-left: var(--${Config.sass.varPrefix}theme--spacings--${key}); }` +
-      `.mr-${key} { margin-right: var(--${Config.sass.varPrefix}theme--spacings--${key}); }`
+      `.mr-${key} { margin-right: var(--${Config.sass.varPrefix}theme--spacings--${key}); }`,
   );
 }
 
@@ -150,6 +150,6 @@ function generatePaddingClasses(tokens: Tokens) {
       `.pb-${key} { padding-bottom: var(--${Config.sass.varPrefix}theme--spacings--${key}); }` +
       `.pt-${key} { padding-top: var(--${Config.sass.varPrefix}theme--spacings--${key}); }` +
       `.pl-${key} { padding-left: var(--${Config.sass.varPrefix}theme--spacings--${key}); }` +
-      `.pr-${key} { padding-right: var(--${Config.sass.varPrefix}theme--spacings--${key}); }`
+      `.pr-${key} { padding-right: var(--${Config.sass.varPrefix}theme--spacings--${key}); }`,
   );
 }

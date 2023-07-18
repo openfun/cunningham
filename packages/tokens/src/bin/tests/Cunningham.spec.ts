@@ -16,7 +16,7 @@ const runBin = async (args: string) => {
   const promise = exec(
     path.join(__dirname, "..", "..", "..", "dist", "bin", "Main.js") +
       " " +
-      args
+      args,
   );
 
   promise.child.stdout?.on("data", (data) => {
@@ -61,10 +61,10 @@ describe("Cunningham Bin", () => {
           path.join(
             __dirname,
             "assets",
-            "expected-default-" + Config.tokenFilename + ".css"
-          )
+            "expected-default-" + Config.tokenFilename + ".css",
+          ),
         )
-        .toString()
+        .toString(),
     );
   });
 
@@ -77,7 +77,7 @@ describe("Cunningham Bin", () => {
 
     fs.copyFileSync(
       path.join(__dirname, "assets", "cunningham.js"),
-      localConfigurationFile
+      localConfigurationFile,
     );
     expect(fs.existsSync(localConfigurationFile)).toEqual(true);
 
@@ -89,10 +89,10 @@ describe("Cunningham Bin", () => {
           path.join(
             __dirname,
             "assets",
-            "expected-js-" + Config.tokenFilename + ".css"
-          )
+            "expected-js-" + Config.tokenFilename + ".css",
+          ),
         )
-        .toString()
+        .toString(),
     );
   });
 
@@ -105,7 +105,7 @@ describe("Cunningham Bin", () => {
 
     fs.copyFileSync(
       path.join(__dirname, "assets", "cunningham.ts"),
-      localConfigurationFile
+      localConfigurationFile,
     );
     expect(fs.existsSync(localConfigurationFile)).toEqual(true);
 
@@ -131,10 +131,10 @@ describe("Cunningham Bin", () => {
           path.join(
             __dirname,
             "assets",
-            "expected-default-" + Config.tokenFilename + ".css"
-          )
+            "expected-default-" + Config.tokenFilename + ".css",
+          ),
         )
-        .toString()
+        .toString(),
     );
   };
 

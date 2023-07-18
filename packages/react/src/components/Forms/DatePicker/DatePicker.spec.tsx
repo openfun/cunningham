@@ -20,7 +20,7 @@ describe("<DatePicker/>", () => {
     expect(calendar).toBeDefined();
     expect(calendar).not.toBeNull();
     expect(Array.from(calendar!.classList)).contains(
-      "c__calendar__wrapper--opened"
+      "c__calendar__wrapper--opened",
     );
   };
 
@@ -28,7 +28,7 @@ describe("<DatePicker/>", () => {
     const dateField = screen.queryByRole("presentation");
     expect(dateField).toBeTruthy();
     expect(Array.from(dateField!.parentElement!.classList)).contains(
-      "c__date-picker__inner--collapsed"
+      "c__date-picker__inner--collapsed",
     );
   };
 
@@ -38,12 +38,12 @@ describe("<DatePicker/>", () => {
 
   const expectDatesToBeEqual = (
     firstDate: Date | string | undefined | null,
-    secondDate: Date | string | undefined | null
+    secondDate: Date | string | undefined | null,
   ) => {
     expect(firstDate).toBeDefined();
     expect(secondDate).toBeDefined();
     expect(new Date(firstDate!).toLocaleDateString()).eq(
-      new Date(secondDate!).toLocaleDateString()
+      new Date(secondDate!).toLocaleDateString(),
     );
   };
 
@@ -72,7 +72,7 @@ describe("<DatePicker/>", () => {
 
   const expectMenuToBeClosed = (menu: HTMLElement) => {
     expect(Array.from(menu.classList)).not.contains(
-      "c__calendar__menu--opened"
+      "c__calendar__menu--opened",
     );
   };
 
@@ -88,7 +88,7 @@ describe("<DatePicker/>", () => {
     render(
       <CunninghamProvider>
         <DatePicker label="Pick a date" name="datepicker" />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
 
     const [input, button] = await screen.findAllByRole("button");
@@ -135,7 +135,7 @@ describe("<DatePicker/>", () => {
     render(
       <CunninghamProvider>
         <DatePicker label="Pick a date" name="datepicker" />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
     const [input, toggleButton] = await screen.findAllByRole("button")!;
 
@@ -154,12 +154,12 @@ describe("<DatePicker/>", () => {
     render(
       <CunninghamProvider>
         <DatePicker label="Pick a date" name="datepicker" />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
     // Get elements that should receive focus when no date is picked.
     const [input, toggleButton] = await screen.findAllByRole("button")!;
     const [monthSegment, daySegment, yearSegment] = await screen.findAllByRole(
-      "spinbutton"
+      "spinbutton",
     )!;
 
     await user.keyboard("{Tab}");
@@ -187,7 +187,7 @@ describe("<DatePicker/>", () => {
           name="datepicker"
           defaultValue="2023-04-25"
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
 
     // Get elements that should receive focus when a date is already picked.
@@ -196,7 +196,7 @@ describe("<DatePicker/>", () => {
       name: "Clear date",
     });
     const [monthSegment, daySegment, yearSegment] = await screen.findAllByRole(
-      "spinbutton"
+      "spinbutton",
     )!;
 
     // Navigate through elements using Tab.
@@ -224,7 +224,7 @@ describe("<DatePicker/>", () => {
     render(
       <CunninghamProvider>
         <DatePicker label="Pick a date" name="datepicker" />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
     const [input, toggleButton] = await screen.findAllByRole("button");
     await user.click(input);
@@ -235,8 +235,8 @@ describe("<DatePicker/>", () => {
     // Select the first clickable grid-cell.
     const gridCellButton = within(
       gridCells.filter(
-        (gridCell) => !gridCell.getAttribute("aria-disabled")
-      )![0]
+        (gridCell) => !gridCell.getAttribute("aria-disabled"),
+      )![0],
     ).getByRole("button")!;
 
     // Pick a date.
@@ -254,7 +254,7 @@ describe("<DatePicker/>", () => {
     const selectedDate = within(
       screen.getByRole("gridcell", {
         selected: true,
-      })!
+      })!,
     )
       .getByRole("button")!
       .getAttribute("aria-label")
@@ -276,10 +276,10 @@ describe("<DatePicker/>", () => {
           name="datepicker"
           defaultValue="2023-04-05"
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
     const [monthSegment, daySegment, yearSegment] = await screen.findAllByRole(
-      "spinbutton"
+      "spinbutton",
     )!;
     // Select the first segment, month one.
     await user.click(monthSegment);
@@ -312,10 +312,10 @@ describe("<DatePicker/>", () => {
           defaultValue="2023-04-05"
           minValue="2022-12-03"
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
     const [monthSegment, daySegment, yearSegment] = await screen.findAllByRole(
-      "spinbutton"
+      "spinbutton",
     )!;
     // Select the first segment, month one.
     await user.click(monthSegment);
@@ -356,7 +356,7 @@ describe("<DatePicker/>", () => {
           name="datepicker"
           defaultValue={defaultValue}
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
     // Get picked date.
     const dateFieldContent = screen.getByRole("presentation").textContent;
@@ -377,10 +377,10 @@ describe("<DatePicker/>", () => {
             defaultValue={defaultValue}
             value={value}
           />
-        </CunninghamProvider>
-      )
+        </CunninghamProvider>,
+      ),
     ).toThrow(
-      "You cannot use both defaultValue and value props on DatePicker component"
+      "You cannot use both defaultValue and value props on DatePicker component",
     );
   });
 
@@ -396,12 +396,12 @@ describe("<DatePicker/>", () => {
               name="datepicker"
               defaultValue={invalidDate}
             />
-          </CunninghamProvider>
-        )
+          </CunninghamProvider>,
+        ),
       ).toThrow(
-        "Invalid date format when initializing props on DatePicker component"
+        "Invalid date format when initializing props on DatePicker component",
       );
-    }
+    },
   );
 
   it("clears date", async () => {
@@ -414,7 +414,7 @@ describe("<DatePicker/>", () => {
           name="datepicker"
           defaultValue={defaultValue}
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
     const clearButton = screen.getByRole("button", {
       name: "Clear date",
@@ -448,7 +448,7 @@ describe("<DatePicker/>", () => {
           defaultValue="2023-01-01"
           minValue="2023-02-01"
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
     await expectDatePickerStateToBe("invalid");
   });
@@ -462,7 +462,7 @@ describe("<DatePicker/>", () => {
           defaultValue="2023-03-01"
           maxValue="2023-02-01"
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
     await expectDatePickerStateToBe("invalid");
   });
@@ -478,7 +478,7 @@ describe("<DatePicker/>", () => {
           maxValue="2023-04-01"
           minValue="2023-05-01"
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
     await expectDatePickerStateToBe("invalid");
   });
@@ -517,7 +517,7 @@ describe("<DatePicker/>", () => {
     expectCalendarToBeOpen();
 
     const gridCell = within(
-      await screen.getByRole("gridcell", { name: "12" })
+      await screen.getByRole("gridcell", { name: "12" }),
     ).getByRole("button")!;
 
     // Select a new value in the calendar grid.
@@ -547,7 +547,7 @@ describe("<DatePicker/>", () => {
           defaultValue="2023-03-01"
           disabled={true}
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
     await expectDatePickerStateToBe("disabled");
 
@@ -559,13 +559,13 @@ describe("<DatePicker/>", () => {
 
     // Make sure the clear button is not visible and disabled.
     expect(
-      screen.queryByRole("button", { name: "Clear date", hidden: true })
+      screen.queryByRole("button", { name: "Clear date", hidden: true }),
     ).toBeDisabled();
 
     // Make sure each segment of the date field is disabled.
     const dateFieldInputs = await screen.queryAllByRole("spinbutton");
     dateFieldInputs.forEach((dateFieldInput) =>
-      expect(dateFieldInput).toHaveAttribute("aria-disabled")
+      expect(dateFieldInput).toHaveAttribute("aria-disabled"),
     );
   });
 
@@ -578,7 +578,7 @@ describe("<DatePicker/>", () => {
           name="datepicker"
           defaultValue="2023-03-01"
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
     const toggleButton = (await screen.findAllByRole("button"))![1];
     await user.click(toggleButton);
@@ -674,7 +674,7 @@ describe("<DatePicker/>", () => {
           name="datepicker"
           defaultValue={defaultValue}
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
     const toggleButton = (await screen.findAllByRole("button"))![1];
     await user.click(toggleButton);
@@ -712,7 +712,7 @@ describe("<DatePicker/>", () => {
           name="datepicker"
           defaultValue={defaultValue}
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
     const toggleButton = (await screen.findAllByRole("button"))![1];
     await user.click(toggleButton);
@@ -754,7 +754,7 @@ describe("<DatePicker/>", () => {
           minValue={minValue}
           maxValue={maxValue}
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
 
     const toggleButton = (await screen.findAllByRole("button"))![1];
@@ -787,7 +787,7 @@ describe("<DatePicker/>", () => {
           minValue={minValue}
           maxValue={maxValue}
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
 
     const toggleButton = (await screen.findAllByRole("button"))![1];
@@ -819,7 +819,7 @@ describe("<DatePicker/>", () => {
           minValue={minValue}
           maxValue={maxValue}
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
 
     // Open the calendar.
@@ -855,7 +855,9 @@ describe("<DatePicker/>", () => {
       try {
         const button = within(gridCell).getByRole("button")!;
         const value = new Date(
-          button.getAttribute("aria-label")!.replace("First available date", "")
+          button
+            .getAttribute("aria-label")!
+            .replace("First available date", ""),
         );
         expect(value.getMonth() === minValue.getMonth());
         if (value.getDate() < minValue.getDate()) {
@@ -866,7 +868,7 @@ describe("<DatePicker/>", () => {
       } catch (e: any) {
         // Make sure outside grid-cells render any button element, even disabled.
         expect(e.message).contains(
-          'Unable to find an accessible element with the role "button"'
+          'Unable to find an accessible element with the role "button"',
         );
       }
     });
@@ -897,7 +899,7 @@ describe("<DatePicker/>", () => {
       } catch (e: any) {
         // Make sure outside grid-cells render any button element, even disabled.
         expect(e.message).contains(
-          'Unable to find an accessible element with the role "button"'
+          'Unable to find an accessible element with the role "button"',
         );
       }
     });
@@ -913,7 +915,7 @@ describe("<DatePicker/>", () => {
           name="datepicker"
           defaultValue={defaultValue}
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
     const toggleButton = (await screen.findAllByRole("button"))![1];
     await user.click(toggleButton);
@@ -931,7 +933,7 @@ describe("<DatePicker/>", () => {
     // Make sure the selected item matched the default value.
     let focusedMonth = monthDropdown.textContent?.replace(
       "arrow_drop_down",
-      ""
+      "",
     );
     expect(focusedMonth).eq("May");
 
@@ -964,7 +966,7 @@ describe("<DatePicker/>", () => {
           name="datepicker"
           defaultValue={defaultValue}
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
     const toggleButton = (await screen.findAllByRole("button"))![1];
     await user.click(toggleButton);
@@ -1011,7 +1013,7 @@ describe("<DatePicker/>", () => {
           name="datepicker"
           defaultValue={defaultValue}
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
     // Open the calendar.
     const toggleButton = (await screen.findAllByRole("button"))![1];
@@ -1025,7 +1027,7 @@ describe("<DatePicker/>", () => {
       try {
         const button = within(gridCell).getByRole("button");
         const value = new Date(
-          button.getAttribute("aria-label")!.replace("selected", "")
+          button.getAttribute("aria-label")!.replace("selected", ""),
         );
         expect(button).not.toBeDisabled();
         expect(defaultValue.getMonth() === value.getMonth());
@@ -1033,7 +1035,7 @@ describe("<DatePicker/>", () => {
       } catch (e: any) {
         // Make sure outside grid-cells render any button element, even disabled.
         expect(e.message).contains(
-          'Unable to find an accessible element with the role "button"'
+          'Unable to find an accessible element with the role "button"',
         );
       }
     });
@@ -1051,7 +1053,7 @@ describe("<DatePicker/>", () => {
           name="datepicker"
           defaultValue={defaultValue}
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
 
     // Open calendar.
@@ -1084,7 +1086,7 @@ describe("<DatePicker/>", () => {
           name="datepicker"
           defaultValue={defaultValue}
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
 
     const toggleButton = (await screen.findAllByRole("button"))![1];
@@ -1115,7 +1117,7 @@ describe("<DatePicker/>", () => {
           locale="hi-IN-u-ca-indian"
           defaultValue="2023-06-25"
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
 
     const input = (await screen.findAllByRole("button"))[0];
@@ -1160,7 +1162,7 @@ describe("<DatePicker/>", () => {
     render(
       <CunninghamProvider currentLocale="fr-FR">
         <DatePicker label="Pick a date" defaultValue="2023-06-25" />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
 
     const input = (await screen.findAllByRole("button"))[0];
@@ -1209,7 +1211,7 @@ describe("<DatePicker/>", () => {
           defaultValue="2023-06-25"
           locale="hi-IN-u-ca-indian"
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
 
     const input = (await screen.findAllByRole("button"))[0];
@@ -1257,8 +1259,8 @@ describe("<DatePicker/>", () => {
       render(
         <CunninghamProvider>
           <DatePicker label="Pick a date" locale="111" />
-        </CunninghamProvider>
-      )
+        </CunninghamProvider>,
+      ),
     ).toThrow("Incorrect locale information provided");
   });
 });

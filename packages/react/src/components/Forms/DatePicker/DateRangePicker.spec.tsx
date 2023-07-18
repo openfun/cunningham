@@ -9,12 +9,12 @@ import { Button } from ":/components/Button";
 describe("<DateRangePicker/>", () => {
   const expectDatesToBeEqual = (
     firstDate: Date | string | undefined | null,
-    secondDate: Date | string | undefined | null
+    secondDate: Date | string | undefined | null,
   ) => {
     expect(firstDate).toBeDefined();
     expect(secondDate).toBeDefined();
     expect(new Date(firstDate!).toLocaleDateString()).eq(
-      new Date(secondDate!).toLocaleDateString()
+      new Date(secondDate!).toLocaleDateString(),
     );
   };
 
@@ -31,7 +31,7 @@ describe("<DateRangePicker/>", () => {
     expect(dateFields.length).eq(2);
     dateFields.forEach((dateField) => {
       expect(Array.from(dateField.parentElement!.classList)).contains(
-        "c__date-picker__inner--collapsed"
+        "c__date-picker__inner--collapsed",
       );
     });
   };
@@ -48,7 +48,7 @@ describe("<DateRangePicker/>", () => {
     expect(calendar).toBeDefined();
     expect(calendar).not.toBeNull();
     expect(Array.from(calendar!.classList)).contains(
-      "c__calendar__wrapper--opened"
+      "c__calendar__wrapper--opened",
     );
   };
 
@@ -68,7 +68,7 @@ describe("<DateRangePicker/>", () => {
           endLabel="Pick a date"
           name="datepicker"
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
 
     const [input, button] = await screen.findAllByRole("button");
@@ -119,7 +119,7 @@ describe("<DateRangePicker/>", () => {
           endLabel="End date"
           name="datepicker"
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
     // Get elements that should receive focus when no date is picked.
     const [input, toggleButton] = await screen.findAllByRole("button")!;
@@ -151,7 +151,7 @@ describe("<DateRangePicker/>", () => {
           name="datepicker"
           defaultValue={[start, end]}
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
     // Get picked date.
     const [startInput, endInput] = await screen.queryAllByRole("presentation");
@@ -170,7 +170,7 @@ describe("<DateRangePicker/>", () => {
           name="datepicker"
           defaultValue={["2023-04-25", "2023-05-25"]}
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
 
     // Get elements that should receive focus when a date is already picked.
@@ -225,7 +225,7 @@ describe("<DateRangePicker/>", () => {
           endLabel="End date"
           name="datepicker"
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
     const [input, toggleButton] = await screen.findAllByRole("button");
     await user.click(input);
@@ -236,8 +236,8 @@ describe("<DateRangePicker/>", () => {
     // Select the first clickable grid-cell.
     const startGridCellButton = within(
       gridCells.filter(
-        (gridCell) => !gridCell.getAttribute("aria-disabled")
-      )![0]
+        (gridCell) => !gridCell.getAttribute("aria-disabled"),
+      )![0],
     ).getByRole("button")!;
 
     // Pick a start date.
@@ -249,8 +249,8 @@ describe("<DateRangePicker/>", () => {
     // Select the second clickable grid-cell.
     const endGridCellButton = within(
       gridCells.filter(
-        (gridCell) => !gridCell.getAttribute("aria-disabled")
-      )![1]
+        (gridCell) => !gridCell.getAttribute("aria-disabled"),
+      )![1],
     ).getByRole("button")!;
 
     // Pick an end date.
@@ -295,7 +295,7 @@ describe("<DateRangePicker/>", () => {
           endLabel="End date"
           name="datepicker"
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
     const [input, toggleButton] = await screen.findAllByRole("button");
     await user.click(input);
@@ -306,8 +306,8 @@ describe("<DateRangePicker/>", () => {
     // Select the first clickable grid-cell.
     const gridCellButton = within(
       gridCells.filter(
-        (gridCell) => !gridCell.getAttribute("aria-disabled")
-      )![0]
+        (gridCell) => !gridCell.getAttribute("aria-disabled"),
+      )![0],
     ).getByRole("button")!;
 
     // Pick a start date.
@@ -358,7 +358,7 @@ describe("<DateRangePicker/>", () => {
           defaultValue={["2023-01-01", "2023-01-01"]}
           name="datepicker"
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
     const input = (await screen.findAllByRole("button"))![0];
     await user.click(input);
@@ -419,7 +419,7 @@ describe("<DateRangePicker/>", () => {
           name="datepicker"
           defaultValue={["2023-01-01", "2023-01-01"]}
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
     const input = (await screen.findAllByRole("button"))![0];
     await user.click(input);
@@ -468,7 +468,7 @@ describe("<DateRangePicker/>", () => {
           name="datepicker"
           defaultValue={["2023-01-01", "2023-01-01"]}
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
     const input = (await screen.findAllByRole("button"))![0];
     await user.click(input);
@@ -516,7 +516,7 @@ describe("<DateRangePicker/>", () => {
           endLabel="End date"
           name="datepicker"
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
 
     // Open calendar to display text segment
@@ -575,7 +575,7 @@ describe("<DateRangePicker/>", () => {
           endLabel="End date"
           name="datepicker"
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
 
     // Open calendar to display text segment
@@ -640,10 +640,10 @@ describe("<DateRangePicker/>", () => {
             defaultValue={["2022-05-25", "2022-05-26"]}
             value={["2022-05-25", "2022-05-26"]}
           />
-        </CunninghamProvider>
-      )
+        </CunninghamProvider>,
+      ),
     ).toThrow(
-      "You cannot use both defaultValue and value props on DateRangePicker component"
+      "You cannot use both defaultValue and value props on DateRangePicker component",
     );
   });
 
@@ -662,10 +662,10 @@ describe("<DateRangePicker/>", () => {
             name="datepicker"
             defaultValue={[start, end]}
           />
-        </CunninghamProvider>
-      )
+        </CunninghamProvider>,
+      ),
     ).toThrow(
-      "Invalid date format when initializing props on DatePicker component"
+      "Invalid date format when initializing props on DatePicker component",
     );
   });
 
@@ -679,7 +679,7 @@ describe("<DateRangePicker/>", () => {
           name="datepicker"
           defaultValue={["2024-05-25", "2022-05-26"]}
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
     await expectDateRangePickerStateToBe("invalid");
   });
@@ -696,7 +696,7 @@ describe("<DateRangePicker/>", () => {
             name="datepicker"
             defaultValue={[start, end]}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
 
       const clearButton = screen.getByRole("button", {
@@ -707,7 +707,7 @@ describe("<DateRangePicker/>", () => {
 
       // Date field's value should be set to a placeholder value.
       const [startInput, endInput] = await screen.queryAllByRole(
-        "presentation"
+        "presentation",
       );
       expect(startInput.textContent).eq("mm/dd/yyyy");
       expect(endInput.textContent).eq("mm/dd/yyyy");
@@ -720,8 +720,8 @@ describe("<DateRangePicker/>", () => {
       expect(startGridCell.getAttribute("aria-selected")).toBeNull();
       expect(
         startGridCell.classList.contains(
-          "c__calendar__wrapper__grid__week-row__background--range--start"
-        )
+          "c__calendar__wrapper__grid__week-row__background--range--start",
+        ),
       ).toBe(false);
 
       // Make sure end grid-cell is not selected anymore.
@@ -731,8 +731,8 @@ describe("<DateRangePicker/>", () => {
       expect(endGridCell.getAttribute("aria-selected")).toBeNull();
       expect(
         endGridCell.classList.contains(
-          "c__calendar__wrapper__grid__week-row__background--range--end"
-        )
+          "c__calendar__wrapper__grid__week-row__background--range--end",
+        ),
       ).toBe(false);
 
       // Close the calendar.
@@ -741,7 +741,7 @@ describe("<DateRangePicker/>", () => {
 
       // Make sure the empty date field is hidden when closing the calendar.
       await expectDateFieldsToBeHidden();
-    }
+    },
   );
 
   it.each([
@@ -759,10 +759,10 @@ describe("<DateRangePicker/>", () => {
             defaultValue={[start, end]}
             minValue="2023-02-01"
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       await expectDateRangePickerStateToBe("invalid");
-    }
+    },
   );
 
   it.each([
@@ -780,10 +780,10 @@ describe("<DateRangePicker/>", () => {
             defaultValue={[start, end]}
             maxValue="2023-02-01"
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       await expectDateRangePickerStateToBe("invalid");
-    }
+    },
   );
 
   it("renders disabled", async () => {
@@ -796,7 +796,7 @@ describe("<DateRangePicker/>", () => {
           defaultValue={["2023-01-01", "2023-01-01"]}
           disabled={true}
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
     await expectDateRangePickerStateToBe("disabled");
 
@@ -808,13 +808,13 @@ describe("<DateRangePicker/>", () => {
 
     // Make sure the clear button is not visible and disabled.
     expect(
-      screen.queryByRole("button", { name: "Clear date", hidden: true })
+      screen.queryByRole("button", { name: "Clear date", hidden: true }),
     ).toBeDisabled();
 
     // Make sure each segment of the date field is disabled.
     const dateFieldInputs = await screen.queryAllByRole("spinbutton");
     dateFieldInputs.forEach((dateFieldInput) =>
-      expect(dateFieldInput).toHaveAttribute("aria-disabled")
+      expect(dateFieldInput).toHaveAttribute("aria-disabled"),
     );
   });
 
@@ -828,7 +828,7 @@ describe("<DateRangePicker/>", () => {
           name="datepicker"
           defaultValue={["2023-01-01", "2023-01-01"]}
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
     const toggleButton = (await screen.findAllByRole("button"))![1];
     await user.click(toggleButton);
@@ -846,7 +846,7 @@ describe("<DateRangePicker/>", () => {
           name="datepicker"
           defaultValue={["2023-01-01", "2023-01-10"]}
         />
-      </CunninghamProvider>
+      </CunninghamProvider>,
     );
     // Toggle button opens the calendar.
     const button = (await screen.findAllByRole("button"))![0];
@@ -860,7 +860,7 @@ describe("<DateRangePicker/>", () => {
     selectedCells.forEach((selectedCell) => {
       const cellButton = within(selectedCell).getByRole("button")!;
       expect(Array.from(cellButton!.classList)).contains(
-        "c__calendar__wrapper__grid__week-row__button--selected"
+        "c__calendar__wrapper__grid__week-row__button--selected",
       );
     });
     const commonClassName =
@@ -868,14 +868,14 @@ describe("<DateRangePicker/>", () => {
     // Make sure the start of selection has the start styling.
     const startCellButton = within(selectedCells[0]).getByRole("button")!;
     expect(Array.from(startCellButton.parentElement!.classList)).contains(
-      `${commonClassName}--start`
+      `${commonClassName}--start`,
     );
     // Make sure the end of selection has the end styling.
     const endCellButton = within(
-      selectedCells[selectedCells.length - 1]
+      selectedCells[selectedCells.length - 1],
     ).getByRole("button")!;
     expect(Array.from(endCellButton.parentElement!.classList)).contains(
-      `${commonClassName}--end`
+      `${commonClassName}--end`,
     );
   });
 
@@ -917,11 +917,11 @@ describe("<DateRangePicker/>", () => {
     expectCalendarToBeOpen();
 
     const startGridCell = within(
-      await screen.getByRole("gridcell", { name: "12" })
+      await screen.getByRole("gridcell", { name: "12" }),
     ).getByRole("button")!;
 
     const endGridCell = within(
-      await screen.getByRole("gridcell", { name: "14" })
+      await screen.getByRole("gridcell", { name: "14" }),
     ).getByRole("button")!;
 
     // Select a new value in the calendar grid.

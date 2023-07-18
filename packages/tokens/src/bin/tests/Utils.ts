@@ -9,7 +9,7 @@ import { Generators } from "Generators";
  */
 export const cleanup = (dir: string) => {
   const tokenFilenames = Object.keys(Generators).map(
-    (extension) => Config.tokenFilename + "." + extension
+    (extension) => Config.tokenFilename + "." + extension,
   );
 
   tokenFilenames.forEach((filename) => {

@@ -37,7 +37,7 @@ export const SUPPORTED_LOCALES = Object.values(Locales);
 
 const findTranslation = (
   key: string,
-  locale: TranslationSet
+  locale: TranslationSet,
 ): string | undefined => {
   const [namespace, ...keys] = key.split(".");
   return keys.reduce((acc, subKey) => acc[subKey], (locale as any)[namespace]);
@@ -54,7 +54,7 @@ export const CunninghamProvider = ({
       "fr-FR": frFR,
       ...customLocales,
     }),
-    [customLocales]
+    [customLocales],
   );
 
   const locale = useMemo(() => {
@@ -80,7 +80,7 @@ export const CunninghamProvider = ({
       },
       currentLocale: locale,
     }),
-    [currentLocale, locales]
+    [currentLocale, locales],
   );
 
   return (

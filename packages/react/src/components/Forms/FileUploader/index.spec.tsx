@@ -26,7 +26,7 @@ describe("<FileUploader />", () => {
       render(
         <CunninghamProvider>
           <FileUploader />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       const user = userEvent.setup();
       const input: HTMLInputElement =
@@ -39,7 +39,7 @@ describe("<FileUploader />", () => {
 
       await screen.findByText("hello.png");
       expect(
-        screen.queryByLabelText(/Drag and drop or /)
+        screen.queryByLabelText(/Drag and drop or /),
       ).not.toBeInTheDocument();
     });
 
@@ -47,7 +47,7 @@ describe("<FileUploader />", () => {
       render(
         <CunninghamProvider>
           <FileUploader />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       const user = userEvent.setup();
       const input: HTMLInputElement =
@@ -60,7 +60,7 @@ describe("<FileUploader />", () => {
 
       await screen.findByText("hello.png");
       expect(
-        screen.queryByLabelText(/Drag and drop or /)
+        screen.queryByLabelText(/Drag and drop or /),
       ).not.toBeInTheDocument();
 
       const deleteButton = screen.getByRole("button", {
@@ -84,7 +84,7 @@ describe("<FileUploader />", () => {
       render(
         <CunninghamProvider>
           <FileUploader name="file" />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
 
       const user = userEvent.setup();
@@ -106,10 +106,10 @@ describe("<FileUploader />", () => {
       render(
         <CunninghamProvider>
           <FileUploader state="uploading" />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       expect(
-        document.querySelector(".c__file-uploader--uploading")
+        document.querySelector(".c__file-uploader--uploading"),
       ).toBeInTheDocument();
       screen.getByText("Uploading...");
       screen.getByRole("status", { name: "Uploading..." });
@@ -119,13 +119,13 @@ describe("<FileUploader />", () => {
       render(
         <CunninghamProvider>
           <FileUploader state="success" />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       expect(
-        document.querySelector(".c__file-uploader--success")
+        document.querySelector(".c__file-uploader--success"),
       ).toBeInTheDocument();
       expect(document.querySelector(".material-icons")?.textContent).toContain(
-        "done"
+        "done",
       );
     });
 
@@ -133,19 +133,19 @@ describe("<FileUploader />", () => {
       render(
         <CunninghamProvider>
           <FileUploader state="error" bigText="Error file is too big" />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
 
       // Big text is shown is file is not selected.
       expect(
-        document.querySelector(".c__file-uploader--error")
+        document.querySelector(".c__file-uploader--error"),
       ).toBeInTheDocument();
       screen.getByText("Error file is too big");
 
       // Upload a file.
       const user = userEvent.setup();
       const input: HTMLInputElement = screen.getByLabelText(
-        /Error file is too big/
+        /Error file is too big/,
       );
       const file = new File(["hello"], "hello.png", { type: "image/png" });
       await act(async () => {
@@ -154,7 +154,7 @@ describe("<FileUploader />", () => {
 
       // The filename is shown in place of the big text.
       expect(
-        screen.queryByText("Error file is too big")
+        screen.queryByText("Error file is too big"),
       ).not.toBeInTheDocument();
       await screen.findByText("hello.png");
     });
@@ -163,7 +163,7 @@ describe("<FileUploader />", () => {
       render(
         <CunninghamProvider>
           <FileUploader text="JPG, PNG or GIF - Max file size 2MB" />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       screen.getByText("JPG, PNG or GIF - Max file size 2MB");
     });
@@ -176,11 +176,11 @@ describe("<FileUploader />", () => {
             fileSelectedIcon={<span>file_selected_custom_icon</span>}
             deleteIcon={<span>delete_custom_icon</span>}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       screen.getByText("custom_icon");
       expect(
-        screen.queryByText("file_selected_custom_icon")
+        screen.queryByText("file_selected_custom_icon"),
       ).not.toBeInTheDocument();
       expect(screen.queryByText("delete_custom_icon")).not.toBeInTheDocument();
 
@@ -200,12 +200,12 @@ describe("<FileUploader />", () => {
 
       // Hover delete file to show the custom delete icon.
       const spanDelete = document.querySelector(
-        ".c__file-uploader__inner__actions"
+        ".c__file-uploader__inner__actions",
       )!;
       await act(async () => user.hover(spanDelete));
       expect(screen.queryByText("custom_icon")).not.toBeInTheDocument();
       expect(
-        screen.queryByText("file_selected_custom_icon")
+        screen.queryByText("file_selected_custom_icon"),
       ).not.toBeInTheDocument();
       screen.getByText("delete_custom_icon");
     });
@@ -217,7 +217,7 @@ describe("<FileUploader />", () => {
             successIcon={<span>custom_success_icon</span>}
             state="success"
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       screen.getByText("custom_success_icon");
     });
@@ -229,7 +229,7 @@ describe("<FileUploader />", () => {
             uploadingIcon={<span>custom_uploading_icon</span>}
             state="uploading"
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       screen.getByText("custom_uploading_icon");
     });
@@ -277,7 +277,7 @@ describe("<FileUploader />", () => {
   describe("Multi", () => {
     const expectFiles = (expectedFiles: { name: string; specs: string }[]) => {
       const actualElements = document.querySelectorAll(
-        ".c__file-uploader__file"
+        ".c__file-uploader__file",
       );
       const actual = Array.from(actualElements).map((element) => {
         return {
@@ -294,7 +294,7 @@ describe("<FileUploader />", () => {
       render(
         <CunninghamProvider>
           <FileUploader multiple={true} />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       const user = userEvent.setup();
       const input: HTMLInputElement =
@@ -318,7 +318,7 @@ describe("<FileUploader />", () => {
       render(
         <CunninghamProvider>
           <FileUploader multiple={true} />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       const user = userEvent.setup();
       const input: HTMLInputElement =
@@ -341,7 +341,7 @@ describe("<FileUploader />", () => {
         await user.click(
           screen.getByRole("button", {
             name: "Delete file hello.png",
-          })
+          }),
         );
       });
 
@@ -351,7 +351,7 @@ describe("<FileUploader />", () => {
         await user.click(
           screen.getByRole("button", {
             name: "Delete file foo.png",
-          })
+          }),
         );
       });
 
@@ -368,7 +368,7 @@ describe("<FileUploader />", () => {
       render(
         <CunninghamProvider>
           <FileUploader name="files" multiple={true} />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
 
       const user = userEvent.setup();
@@ -400,7 +400,7 @@ describe("<FileUploader />", () => {
       render(
         <CunninghamProvider>
           <FileUploader name="files" multiple={true} />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
 
       const user = userEvent.setup();
@@ -440,7 +440,7 @@ describe("<FileUploader />", () => {
       render(
         <CunninghamProvider>
           <FileUploader state="uploading" multiple={true} />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
 
       const user = userEvent.setup();
@@ -460,7 +460,7 @@ describe("<FileUploader />", () => {
       ]);
 
       expect(
-        document.querySelector(".c__file-uploader--uploading")
+        document.querySelector(".c__file-uploader--uploading"),
       ).toBeInTheDocument();
       screen.getByText("Uploading...");
       screen.getByRole("status", { name: "Uploading..." });
@@ -470,13 +470,13 @@ describe("<FileUploader />", () => {
       render(
         <CunninghamProvider>
           <FileUploader state="success" multiple={true} />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       expect(
-        document.querySelector(".c__file-uploader--success")
+        document.querySelector(".c__file-uploader--success"),
       ).toBeInTheDocument();
       expect(document.querySelector(".material-icons")?.textContent).toContain(
-        "done"
+        "done",
       );
     });
 
@@ -488,12 +488,12 @@ describe("<FileUploader />", () => {
             bigText="Error file is too big"
             multiple={true}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
 
       // Big text is shown is file is not selected.
       expect(
-        document.querySelector(".c__file-uploader--error")
+        document.querySelector(".c__file-uploader--error"),
       ).toBeInTheDocument();
       screen.getByText("Error file is too big");
 
@@ -515,7 +515,7 @@ describe("<FileUploader />", () => {
 
       // The error is still displayed if files are selected.
       expect(
-        document.querySelector(".c__file-uploader--error")
+        document.querySelector(".c__file-uploader--error"),
       ).toBeInTheDocument();
       screen.getByText("Error file is too big");
     });
@@ -527,7 +527,7 @@ describe("<FileUploader />", () => {
             text="JPG, PNG or GIF - Max file size 2MB"
             multiple={true}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       screen.getByText("JPG, PNG or GIF - Max file size 2MB");
     });

@@ -21,7 +21,7 @@ describe("range", () => {
     // Check step between values.
     output.forEach(
       (item, index) =>
-        index < output.length - 1 && expect(output[index + 1] - item).eq(1)
+        index < output.length - 1 && expect(output[index + 1] - item).eq(1),
     );
   });
 
@@ -31,7 +31,7 @@ describe("range", () => {
     [10, 0],
   ])("raises error if max is inferior to min", async (min, max) => {
     expect(() => range(min, max)).toThrow(
-      "`min` arg must be inferior to `max` arg."
+      "`min` arg must be inferior to `max` arg.",
     );
   });
 });

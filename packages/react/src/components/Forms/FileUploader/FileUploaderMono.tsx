@@ -15,7 +15,7 @@ export const FileUploaderMono = forwardRef<
   const [file, setFile] = useState<File | undefined>(
     fakeDefaultFiles && fakeDefaultFiles.length > 0
       ? fakeDefaultFiles[0]
-      : undefined
+      : undefined,
   );
   // This is made to prevent useEffects inside DropZone that depends on `files` to trigger on each render,
   // doing this preserves the reference of the array.

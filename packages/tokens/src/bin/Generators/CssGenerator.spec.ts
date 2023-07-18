@@ -31,11 +31,11 @@ describe("CssGenerator", () => {
             "..",
             "tests",
             "assets",
-            "expected-default-" + Config.tokenFilename + ".css"
-          )
+            "expected-default-" + Config.tokenFilename + ".css",
+          ),
         )
         .toString()
-        .replace(":root", "html")
+        .replace(":root", "html"),
     );
   };
 
@@ -58,11 +58,11 @@ describe("CssGenerator", () => {
             "..",
             "tests",
             "assets",
-            "expected-with-utility-classes-" + Config.tokenFilename + ".css"
-          )
+            "expected-with-utility-classes-" + Config.tokenFilename + ".css",
+          ),
         )
         .toString()
-        .replace(":root", "html")
+        .replace(":root", "html"),
     );
   });
 });

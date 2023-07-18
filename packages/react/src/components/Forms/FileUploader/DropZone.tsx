@@ -36,7 +36,7 @@ export const DropZone = forwardRef<FileUploaderRefType, DropZoneProps>(
       children,
       ...props
     }: DropZoneProps,
-    ref
+    ref,
   ) => {
     const [dragActive, setDragActive] = useState(false);
     const container = useRef<HTMLLabelElement>(null);
@@ -98,7 +98,7 @@ export const DropZone = forwardRef<FileUploaderRefType, DropZoneProps>(
           {
             "c__file-uploader--active": dragActive,
             "c__file-uploader--animate-icon": animateIcon,
-          }
+          },
         )}
         onDragEnter={() => {
           setDragActive(true);
@@ -157,5 +157,5 @@ export const DropZone = forwardRef<FileUploaderRefType, DropZoneProps>(
         </div>
       </label>
     );
-  }
+  },
 );

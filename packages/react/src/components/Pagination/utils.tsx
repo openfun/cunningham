@@ -1,5 +1,5 @@
 export const expectPaginationList = (
-  expectations: { text: string; name?: string; disabled?: boolean }[]
+  expectations: { text: string; name?: string; disabled?: boolean }[],
 ) => {
   const buttons = document.querySelectorAll(".c__pagination__list > *");
   expect(buttons.length).toEqual(expectations.length);

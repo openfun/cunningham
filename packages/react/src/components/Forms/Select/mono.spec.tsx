@@ -41,7 +41,7 @@ describe("<Select/>", () => {
             ]}
             searchable={true}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
 
       const input = screen.getByRole("combobox", {
@@ -103,7 +103,7 @@ describe("<Select/>", () => {
             ]}
             searchable={true}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
 
       const input = screen.getByRole("combobox", {
@@ -166,7 +166,7 @@ describe("<Select/>", () => {
             searchable={true}
             defaultValue="new_york"
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
 
       const user = userEvent.setup();
@@ -207,7 +207,7 @@ describe("<Select/>", () => {
             searchable={true}
             defaultValue="New York"
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
 
       const input = screen.getByRole("combobox", {
@@ -242,7 +242,7 @@ describe("<Select/>", () => {
             searchable={true}
             defaultValue="new_york"
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
 
       const input = screen.getByRole("combobox", {
@@ -277,7 +277,7 @@ describe("<Select/>", () => {
             searchable={true}
             defaultValue="not_found"
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
 
       const input = screen.getByRole("combobox", {
@@ -288,7 +288,7 @@ describe("<Select/>", () => {
     it("works controlled", async () => {
       const Wrapper = () => {
         const [value, setValue] = useState<string | number | undefined>(
-          "london"
+          "london",
         );
         return (
           <CunninghamProvider>
@@ -356,7 +356,7 @@ describe("<Select/>", () => {
       await user.click(
         screen.getByRole("option", {
           name: "New York",
-        })
+        }),
       );
 
       // Make sure value is selected.
@@ -394,7 +394,7 @@ describe("<Select/>", () => {
             disabled={true}
             searchable={true}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       const input = screen.getByRole("combobox", {
         name: "City",
@@ -402,7 +402,7 @@ describe("<Select/>", () => {
       expect(input).toHaveAttribute("disabled");
 
       const button: HTMLButtonElement = document.querySelector(
-        ".c__select__inner__actions__open"
+        ".c__select__inner__actions__open",
       )!;
       expect(button).toBeDisabled();
 
@@ -505,7 +505,7 @@ describe("<Select/>", () => {
       await user.click(
         screen.getByRole("option", {
           name: "New York",
-        })
+        }),
       );
 
       // Submit the form being fulfilled.
@@ -550,7 +550,7 @@ describe("<Select/>", () => {
               },
             ]}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       const input = screen.getByRole("combobox", {
         name: "City",
@@ -565,7 +565,7 @@ describe("<Select/>", () => {
       expect(valueRendered).toHaveTextContent("");
       expectMenuToBeClosed(menu);
       expect(
-        screen.queryByRole("option", { name: "Paris" })
+        screen.queryByRole("option", { name: "Paris" }),
       ).not.toBeInTheDocument();
 
       // Make sure the label is set as placeholder.
@@ -576,7 +576,7 @@ describe("<Select/>", () => {
       // Make sure the menu is opened and options are rendered.
       expectMenuToBeOpen(menu);
       expect(
-        screen.queryByRole("option", { name: "Paris" })
+        screen.queryByRole("option", { name: "Paris" }),
       ).toBeInTheDocument();
 
       // Make sure the option is not selected.
@@ -639,7 +639,7 @@ describe("<Select/>", () => {
             ]}
             defaultValue="Tokyo"
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       const menu: HTMLDivElement = screen.getByRole("listbox", {
         name: "City",
@@ -679,7 +679,7 @@ describe("<Select/>", () => {
             ]}
             defaultValue="new_york"
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       const menu: HTMLDivElement = screen.getByRole("listbox", {
         name: "City",
@@ -697,7 +697,7 @@ describe("<Select/>", () => {
     it("works controlled", async () => {
       const Wrapper = () => {
         const [value, setValue] = useState<string | number | undefined>(
-          "london"
+          "london",
         );
         return (
           <CunninghamProvider>
@@ -754,7 +754,7 @@ describe("<Select/>", () => {
       await user.click(
         screen.getByRole("option", {
           name: "New York",
-        })
+        }),
       );
 
       // Make sure value is selected.
@@ -795,7 +795,7 @@ describe("<Select/>", () => {
             ]}
             disabled={true}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       const input = screen.getByRole("combobox", {
         name: "City",
@@ -803,7 +803,7 @@ describe("<Select/>", () => {
       expect(input).toHaveAttribute("disabled");
 
       const button: HTMLButtonElement = document.querySelector(
-        ".c__select__inner__actions__open"
+        ".c__select__inner__actions__open",
       )!;
       expect(button).toBeDisabled();
 
@@ -849,7 +849,7 @@ describe("<Select/>", () => {
             ]}
             text="This is a text"
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       screen.getByText("This is a text");
     });
@@ -879,10 +879,10 @@ describe("<Select/>", () => {
             text="This is a text"
             state="error"
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       expect(
-        document.querySelector(".c__select.c__select--error")
+        document.querySelector(".c__select.c__select--error"),
       ).toBeInTheDocument();
     });
     it("renders with state=success", async () => {
@@ -911,10 +911,10 @@ describe("<Select/>", () => {
             text="This is a text"
             state="success"
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       expect(
-        document.querySelector(".c__select.c__select--success")
+        document.querySelector(".c__select.c__select--success"),
       ).toBeInTheDocument();
     });
     it("submits form data", async () => {
@@ -986,7 +986,7 @@ describe("<Select/>", () => {
       await user.click(
         screen.getByRole("option", {
           name: "New York",
-        })
+        }),
       );
 
       // Submit the form being fulfilled.
@@ -1030,7 +1030,7 @@ describe("<Select/>", () => {
             clearable={false}
             defaultValue="Paris"
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       screen.getByRole("combobox", {
         name: "City",
@@ -1043,7 +1043,7 @@ describe("<Select/>", () => {
       expect(
         screen.queryByRole("button", {
           name: "Clear selection",
-        })
+        }),
       ).not.toBeInTheDocument();
     });
     it("is not possible to select disabled options", async () => {
@@ -1067,7 +1067,7 @@ describe("<Select/>", () => {
               },
             ]}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       const input = screen.getByRole("combobox", {
         name: "City",
@@ -1129,7 +1129,7 @@ describe("<Select/>", () => {
             ]}
             hideLabel={true}
           />
-        </CunninghamProvider>
+        </CunninghamProvider>,
       );
       // Make sure the input is accessible.
       screen.getByRole("combobox", {

@@ -22,13 +22,13 @@ export const buildTheme = async () => {
         selector: options.selector,
         utilityClasses: options.utilityClasses,
       });
-    })
+    }),
   );
 };
 
 export const run = async (args: string[]) => {
   console.log(
-    chalk.red(figlet.textSync("Cunningham", { horizontalLayout: "full" }))
+    chalk.red(figlet.textSync("Cunningham", { horizontalLayout: "full" })),
   );
 
   const commaSeparatedList = (value: string) => {
@@ -40,21 +40,21 @@ export const run = async (args: string[]) => {
     .option(
       "-s, --selector <selector>",
       "Specify the css root selector element.",
-      ":root"
+      ":root",
     )
     .option(
       "-cwd, --working-dir <directory>",
-      "Specify the working dir ( you might not need this )."
+      "Specify the working dir ( you might not need this ).",
     )
     .option(
       "-o, --output <directory>",
-      "Specify the output dir of generated files."
+      "Specify the output dir of generated files.",
     )
     .option("--utility-classes", "Generate CSS utility classes.")
     .requiredOption(
       "-g, --generators <generators>",
       "Specify the generators to use.",
-      commaSeparatedList
+      commaSeparatedList,
     )
     .parse(args);
 

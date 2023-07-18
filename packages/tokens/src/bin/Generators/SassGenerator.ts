@@ -35,7 +35,7 @@ function JSONToSassMap(json: Object, isDefault = true) {
         [`'${key}'`]:
           typeof value === "object" ? deepQuoteObjectKeys(value) : value,
       }),
-      {}
+      {},
     );
   }
   const jsonWithQuotedKeys = deepQuoteObjectKeys(json);

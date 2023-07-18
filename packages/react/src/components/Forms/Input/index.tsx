@@ -42,7 +42,7 @@ export const Input = forwardRef<InputRefType, Props>(
       charCounterMax,
       ...props
     }: Props,
-    ref
+    ref,
   ) => {
     const classes = ["c__input"];
     if (className) {
@@ -100,7 +100,7 @@ export const Input = forwardRef<InputRefType, Props>(
             "c__input__wrapper--" + state,
             {
               "c__input__wrapper--disabled": props.disabled,
-            }
+            },
           )}
           onClick={() => {
             inputRef.current?.focus();
@@ -139,5 +139,5 @@ export const Input = forwardRef<InputRefType, Props>(
         </div>
       </Field>
     );
-  }
+  },
 );

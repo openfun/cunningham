@@ -14,6 +14,6 @@ export const put = (path: string, content: string) => {
 
   fs.writeFileSync(path, content);
   console.log(
-    chalk.bgGreen(chalk.white("File " + path + " generated successfully."))
+    chalk.bgGreen(chalk.white("File " + path + " generated successfully.")),
   );
 };

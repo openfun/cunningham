@@ -45,7 +45,7 @@ export const FileUploaderMulti = forwardRef<
                     "components.forms.file_uploader.delete_file_name",
                     {
                       name: file.name,
-                    }
+                    },
                   )}
                   onClick={() => {
                     setFiles(files.filter((f) => f !== file));
