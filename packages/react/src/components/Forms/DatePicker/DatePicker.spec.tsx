@@ -401,9 +401,7 @@ describe("<DatePicker/>", () => {
             />
           </CunninghamProvider>,
         ),
-      ).toThrow(
-        "Invalid date format when initializing props on DatePicker component",
-      );
+      ).toThrow(/Failed to parse date value:/);
     },
   );
 
@@ -540,6 +538,50 @@ describe("<DatePicker/>", () => {
     // Make sure value is cleared.
     expectDateFieldToBeHidden();
     screen.getByText("Value = |");
+  });
+
+  it("has a timezone", async () => {
+    const user = userEvent.setup();
+    const Wrapper = () => {
+      const [value, setValue] = useState<string | null>(null);
+      return (
+        <CunninghamProvider>
+          <div>
+            <div>Value = {value}|</div>
+            <Button onClick={() => setValue(null)}>Clear</Button>
+            <DatePicker
+              label="Pick a date"
+              name="datepicker"
+              value={value}
+              onChange={(e: string | null) => setValue(e)}
+              timezone="America/Sao_Paulo"
+            />
+          </div>
+        </CunninghamProvider>
+      );
+    };
+    render(<Wrapper />);
+
+    // Make sure any value is selected.
+    screen.getByText("Value = |");
+
+    // Open the calendar grid.
+    const toggleButton = (await screen.findAllByRole("button"))![1];
+    await user.click(toggleButton);
+    expectCalendarToBeOpen();
+
+    const monthSegment = await screen.getByRole("spinbutton", {
+      name: /month/,
+    });
+    // Select the first segment, month one.
+    await user.click(monthSegment);
+    expect(monthSegment).toHaveFocus();
+
+    // Type date's value.
+    await user.keyboard("{5}{1}{2}{2}{0}{2}{3}");
+
+    // Make sure value is selected at midnight on America/Sao_Paulo.
+    screen.getByText(`Value = 2023-05-12T03:00:00.000Z|`);
   });
 
   it("renders disabled", async () => {

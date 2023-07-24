@@ -40,14 +40,17 @@ export const DateRangePicker = ({
 
   const options: DateRangePickerStateOptions<DateValue> = {
     ...getDefaultPickerOptions(props),
-    value: props.value === null ? null : parseRangeDateValue(props.value),
-    defaultValue: parseRangeDateValue(props.defaultValue),
+    value:
+      props.value === null
+        ? null
+        : parseRangeDateValue(props.value, props.timezone),
+    defaultValue: parseRangeDateValue(props.defaultValue, props.timezone),
     onChange: (value: DateRange) => {
       props.onChange?.(
         value?.start && value.end
           ? [
-              convertDateValueToString(value.start),
-              convertDateValueToString(value.end),
+              convertDateValueToString(value.start, props.timezone),
+              convertDateValueToString(value.end, props.timezone),
             ]
           : null,
       );

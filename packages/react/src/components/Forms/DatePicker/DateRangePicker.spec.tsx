@@ -698,9 +698,7 @@ describe("<DateRangePicker/>", () => {
           />
         </CunninghamProvider>,
       ),
-    ).toThrow(
-      "Invalid date format when initializing props on DatePicker component",
-    );
+    ).toThrow(/Failed to parse date value:/);
   });
 
   it("has not a valid range value", async () => {
@@ -989,6 +987,50 @@ describe("<DateRangePicker/>", () => {
     // Make sure value is cleared.
     await expectDateFieldsToBeHidden();
     screen.getByText("Value = |");
+  });
+
+  it("has a timezone", async () => {
+    const user = userEvent.setup();
+    const Wrapper = () => {
+      const [value, setValue] = useState<[string, string] | null>(null);
+      return (
+        <CunninghamProvider>
+          <div>
+            <div>Value = {value?.join(" ")}|</div>
+            <Button onClick={() => setValue(null)}>Clear</Button>
+            <DateRangePicker
+              startLabel="Start date"
+              endLabel="End date"
+              value={value}
+              onChange={(e) => setValue(e)}
+              timezone="America/Sao_Paulo"
+            />
+          </div>
+        </CunninghamProvider>
+      );
+    };
+    render(<Wrapper />);
+
+    // Make sure any value is selected.
+    screen.getByText("Value = |");
+
+    const allSegments = await screen.getAllByRole("spinbutton");
+    const startMonthSegment = allSegments![0];
+
+    // Select the first segment, month one.
+    await user.click(startMonthSegment);
+    expect(startMonthSegment).toHaveFocus();
+
+    // Type start date's value.
+    await user.keyboard("{5}{1}{0}{2}{0}{2}{3}");
+
+    // Type end date's value.
+    await user.keyboard("{5}{1}{2}{2}{0}{2}{3}");
+
+    // Make sure values is selected at midnight on America/Sao_Paulo.
+    screen.getByText(
+      `Value = 2023-05-10T03:00:00.000Z 2023-05-12T03:00:00.000Z|`,
+    );
   });
 
   it("submits forms data", async () => {

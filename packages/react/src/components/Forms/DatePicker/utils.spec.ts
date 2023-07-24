@@ -2,6 +2,7 @@ import { DateValue, parseAbsolute, parseDate } from "@internationalized/date";
 import { vi } from "vitest";
 import {
   convertDateValueToString,
+  isValidTimeZone,
   parseDateValue,
   parseRangeDateValue,
 } from ":/components/Forms/DatePicker/utils";
@@ -43,6 +44,15 @@ describe("parseDateValue", () => {
     expect(parsedDate?.hour).eq(0);
   });
 
+  it("should parse time to the right timezone", async () => {
+    const parsedDate = parseDateValue(
+      "2023-05-11T00:00:00.000Z",
+      "America/Sao_Paulo",
+    );
+    expectDateToBeEqual(parsedDate, 2023, 5, 10);
+    expect(parsedDate?.hour).eq(21);
+  });
+
   it.each([undefined, ""])("parse an empty or null date", (date) => {
     const parsedDate = parseDateValue(date);
     expect(parsedDate).eq(undefined);
@@ -59,8 +69,14 @@ describe("parseDateValue", () => {
     "2022-04-01T00:00:00.000",
   ])("parse a wrong date", (wrongFormattedDate) => {
     expect(() => parseDateValue(wrongFormattedDate)).toThrow(
-      "Invalid date format when initializing props on DatePicker component",
+      /Failed to parse date value:/,
     );
+  });
+
+  it("should raise an error when timezone is invalid", async () => {
+    expect(() =>
+      parseDateValue("2023-05-11T00:00:00.000Z", "Invalid/Timezone"),
+    ).toThrow(/Failed to parse date value:/);
   });
 });
 
@@ -118,5 +134,45 @@ describe("convertDateValueToString", () => {
     const date = parseAbsolute("2023-05-25T00:00:00.000+02:00", "Europe/Paris");
     const result = convertDateValueToString(date);
     expect(result).eq("2023-05-24T22:00:00.000Z");
+  });
+
+  it("should convert time to the right timezone", async () => {
+    const date = parseDate("2023-05-25");
+    const result = convertDateValueToString(date, "America/Sao_Paulo");
+    expect(result).eq("2023-05-25T03:00:00.000Z");
+  });
+
+  it("should raise an error when timezone is invalid", async () => {
+    const date = parseDate("2023-05-25");
+    expect(() => convertDateValueToString(date, "Invalid/Timezone")).toThrow(
+      /Failed to convert date value to string:/,
+    );
+  });
+});
+
+describe("isValidTimeZone", () => {
+  it.each(["UTC", "Europe/Paris", "America/Sao_Paulo"])(
+    "should return true when timezone is valid",
+    (timezone) => {
+      const isValid = isValidTimeZone(timezone);
+      expect(isValid).toBe(true);
+    },
+  );
+
+  it("should return false when timezone is invalid", () => {
+    const isNotValid = isValidTimeZone("Invalid/Timezone");
+    expect(isNotValid).toBe(false);
+  });
+
+  it("should return false when Intl or time zones are not available", () => {
+    // Mock Intl to simulate the absence of Intl or time zones support
+    const originalDateTimeFormat = Intl.DateTimeFormat;
+    vi.spyOn(Intl, "DateTimeFormat").mockImplementation(() => {
+      throw new Error("Time zones are not available");
+    });
+    const result = isValidTimeZone("Europe/Paris");
+    expect(result).toBe(false);
+    // Restore the original implementation after the test
+    (Intl as any).DateTimeFormat = originalDateTimeFormat;
   });
 });

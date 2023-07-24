@@ -29,6 +29,7 @@ export type DatePickerAuxSubProps = FieldProps & {
   disabled?: boolean;
   name?: string;
   locale?: string;
+  timezone?: string;
 };
 
 export type DatePickerAuxProps = PropsWithChildren &
@@ -111,19 +112,28 @@ const DatePickerAux = forwardRef(
                   <input
                     type="hidden"
                     name={name && `${name}_start`}
-                    value={convertDateValueToString(pickerState.value.start)}
+                    value={convertDateValueToString(
+                      pickerState.value.start,
+                      props.timezone,
+                    )}
                   />
                   <input
                     type="hidden"
                     name={name && `${name}_end`}
-                    value={convertDateValueToString(pickerState.value.end)}
+                    value={convertDateValueToString(
+                      pickerState.value.end,
+                      props.timezone,
+                    )}
                   />
                 </>
               ) : (
                 <input
                   type="hidden"
                   name={name}
-                  value={convertDateValueToString(pickerState.value)}
+                  value={convertDateValueToString(
+                    pickerState.value,
+                    props.timezone,
+                  )}
                 />
               )}
               <div className="c__date-picker__wrapper__icon">

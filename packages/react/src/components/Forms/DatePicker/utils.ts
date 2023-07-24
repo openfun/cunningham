@@ -4,53 +4,83 @@ import {
   ZonedDateTime,
   toZoned,
   getLocalTimeZone,
+  parseAbsolute,
 } from "@internationalized/date";
 import { DateRange } from "react-aria";
 import { DatePickerAuxSubProps } from ":/components/Forms/DatePicker/DatePickerAux";
 
+export const isValidTimeZone = (timezone: string) => {
+  try {
+    // Check if Intl is available and supports time zones
+    if (!Intl || !Intl.DateTimeFormat().resolvedOptions().timeZone) {
+      throw new Error("Time zones are not available in this environment");
+    }
+
+    // Test if the provided time zone is valid
+    Intl.DateTimeFormat(undefined, { timeZone: timezone });
+
+    return true;
+  } catch (error) {
+    // If an error occurs, it could be due to an invalid time zone or lack of Intl support
+    return false;
+  }
+};
+
 export const parseDateValue = (
   rawDate: string | undefined,
+  timezone?: string,
 ): undefined | ZonedDateTime => {
   if (!rawDate) {
     return undefined;
   }
   try {
-    return parseAbsoluteToLocal(rawDate);
+    if (timezone && !isValidTimeZone(timezone)) {
+      throw new Error("Invalid timezone provided.");
+    }
+    return timezone
+      ? parseAbsolute(rawDate, timezone)
+      : parseAbsoluteToLocal(rawDate);
   } catch (e) {
-    throw new Error(
-      "Invalid date format when initializing props on DatePicker component",
-    );
+    const errorMessage = e instanceof Error ? ": " + e.message : ".";
+    throw new Error("Failed to parse date value" + errorMessage);
   }
 };
 
 export const parseRangeDateValue = (
   rawRange: [string, string] | undefined,
+  timezone?: string,
 ): DateRange | undefined => {
   if (!rawRange || !rawRange[0] || !rawRange[1]) {
     return undefined;
   }
   return {
-    start: parseDateValue(rawRange[0])!,
-    end: parseDateValue(rawRange[1])!,
+    start: parseDateValue(rawRange[0], timezone)!,
+    end: parseDateValue(rawRange[1], timezone)!,
   };
 };
 
-export const convertDateValueToString = (date: DateValue | null): string => {
+export const convertDateValueToString = (
+  date: DateValue | null,
+  timezone?: string,
+): string => {
   try {
-    const localTimezone = getLocalTimeZone();
-    // If timezone is already set, it would be kept, else the selection is set at midnight
-    // on the local timezone, then converted to a UTC offset.
-    return date ? toZoned(date, localTimezone).toAbsoluteString() : "";
+    if (!date) {
+      return "";
+    }
+    const localTimezone = timezone || getLocalTimeZone();
+    if (!isValidTimeZone(localTimezone)) {
+      throw new Error("Invalid timezone provided.");
+    }
+    return toZoned(date, localTimezone).toAbsoluteString();
   } catch (e) {
-    throw new Error(
-      "Invalid date format when converting date value on DatePicker component",
-    );
+    const errorMessage = e instanceof Error ? ": " + e.message : ".";
+    throw new Error("Failed to convert date value to string" + errorMessage);
   }
 };
 
 export const getDefaultPickerOptions = (props: DatePickerAuxSubProps): any => ({
-  minValue: parseDateValue(props.minValue),
-  maxValue: parseDateValue(props.maxValue),
+  minValue: parseDateValue(props.minValue, props.timezone),
+  maxValue: parseDateValue(props.maxValue, props.timezone),
   shouldCloseOnSelect: true,
   granularity: "day",
   isDisabled: props.disabled,
