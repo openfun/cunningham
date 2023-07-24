@@ -38,10 +38,10 @@ export const DatePicker = (props: DatePickerProps) => {
       // Force clear the component's value when passing null or an empty string.
       props.value === "" || props.value === null
         ? null
-        : parseDateValue(props.value),
-    defaultValue: parseDateValue(props.defaultValue),
+        : parseDateValue(props.value, props.timezone),
+    defaultValue: parseDateValue(props.defaultValue, props.timezone),
     onChange: (value: DateValue | null) => {
-      props.onChange?.(convertDateValueToString(value));
+      props.onChange?.(convertDateValueToString(value, props.timezone));
     },
   };
   const pickerState = useDatePickerState(options);
