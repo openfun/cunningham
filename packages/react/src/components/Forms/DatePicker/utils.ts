@@ -9,6 +9,11 @@ import {
 import { DateRange } from "react-aria";
 import { DatePickerAuxSubProps } from ":/components/Forms/DatePicker/DatePickerAux";
 
+/**
+ * Checks if a given time zone is valid and supported by the environment.
+ * @param timezone The time zone to validate.
+ * @returns true if the time zone is valid and supported, false otherwise.
+ */
 export const isValidTimeZone = (timezone: string) => {
   try {
     // Check if Intl is available and supports time zones
@@ -26,6 +31,13 @@ export const isValidTimeZone = (timezone: string) => {
   }
 };
 
+/**
+ * Parses an ISO 8601 date and time string with a UTC offset or in UTC.
+ * @param rawDate - The raw date string to parse.
+ * @param timezone - (Optional) The timezone to use for parsing. If not provided, the local timezone will be used.
+ * @returns The parsed ZonedDateTime object or undefined if the input date is undefined.
+ * @throws {Error} - If an invalid date or timezone format is encountered.
+ */
 export const parseDateValue = (
   rawDate: string | undefined,
   timezone?: string,
@@ -46,6 +58,12 @@ export const parseDateValue = (
   }
 };
 
+/**
+ * Parses a range of ISO 8601 date and time string with a UTC offset or in UTC.
+ * @param rawRange - The range of raw date strings to parse.
+ * @param timezone - (Optional) The timezone to use for parsing. If not provided, the local timezone will be used.
+ * @returns The parsed DateRange object or undefined if the input date range is undefined or uncomplete.
+ */
 export const parseRangeDateValue = (
   rawRange: [string, string] | undefined,
   timezone?: string,
@@ -59,6 +77,13 @@ export const parseRangeDateValue = (
   };
 };
 
+/**
+ * Converts a DateValue object to an ISO 8601 formatted string in UTC.
+ * @param date - The DateValue object to convert.
+ * @param timezone - (Optional) The timezone to use for the conversion. If not provided, the local timezone will be used.
+ * @returns The string representation of the date or an empty string if the input date is null.
+ * @throws {Error} - If an invalid date or timezone format is encountered.
+ */
 export const convertDateValueToString = (
   date: DateValue | null,
   timezone?: string,
