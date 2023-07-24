@@ -132,6 +132,15 @@ By default, the DatePicker component uses the CunninghamProvider locale.
   <Story id="components-forms-datepicker--cunningham-locale"/>
 </Canvas>
 
+## Timezone management
+
+By default, the component uses the user's local timezone. When a timezone is passed, dates are selected at midnight in that specific timezone.
+If a value or default value is provided, the component preserves the time unless the user clears the input.
+When the input is cleared, the dates are reset to midnight in the current timezone.
+The component accepts both UTC date-time strings and date-time strings with offsets from UTC.
+However, it consistently returns the output in UTC time, ensuring uniformity across different timezone.
+
+
 ## Props
 
 You can see the list of props below.
