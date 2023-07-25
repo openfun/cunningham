@@ -56,8 +56,7 @@
     "downshift": "8.0.0",
     "react": "18.2.0",
     "react-aria": "3.26.0",
-    "react-dom": "18.2.0",
-    "yup": "^1.2.0"
+    "react-dom": "18.2.0"
   },
   "engines": {
     "node": ">=16.0.0"
@@ -106,7 +105,8 @@
     "vite-plugin-dts": "3.3.1",
     "vite-tsconfig-paths": "4.2.0",
     "vitest": "0.33.0",
-    "vitest-fetch-mock": "0.2.2"
+    "vitest-fetch-mock": "0.2.2",
+    "yup": "1.2.0"
   },
   "volta": {
     "node": "18.16.1",
