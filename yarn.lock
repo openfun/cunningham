@@ -2505,7 +2505,7 @@
     tslib "^2.4.0"
     typescript "^4.7 || 5"
 
-"@hookform/resolvers@^3.1.1":
+"@hookform/resolvers@3.1.1":
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/@hookform/resolvers/-/resolvers-3.1.1.tgz#b374d33e356428fff9c6ef3c933441fe15e40784"
   integrity sha512-tS16bAUkqjITNSvbJuO1x7MXbn7Oe8ZziDTJdA9mMvsoYthnOOiznOTGBYwbdlYBgU+tgpI/BtTU3paRbCuSlg==
