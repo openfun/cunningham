@@ -1,7 +1,15 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Meta } from "@storybook/react";
+import { useForm } from "react-hook-form";
+import * as Yup from "yup";
 import React from "react";
 import { Switch } from ":/components/Forms/Switch/index";
 import { Button } from ":/components/Button";
+import {
+  getFieldState,
+  getFieldErrorMessage,
+  onSubmit,
+} from ":/tests/reactHookFormUtils";
 
 export default {
   title: "Components/Forms/Switch",
@@ -120,6 +128,49 @@ export const Controlled = {
       </div>
     );
   },
+};
+
+export const ReactHookForm = () => {
+  interface SwitchExampleFormValues {
+    terms: boolean;
+  }
+
+  const switchExampleSchema = Yup.object().shape({
+    terms: Yup.boolean()
+      .required()
+      .oneOf([true], "You have to accept the terms of use"),
+  });
+
+  const { register, handleSubmit, formState } =
+    useForm<SwitchExampleFormValues>({
+      defaultValues: {
+        terms: false,
+      },
+      mode: "onChange",
+      reValidateMode: "onChange",
+      resolver: yupResolver(switchExampleSchema),
+    });
+
+  return (
+    <form
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "1rem",
+        width: "400px",
+      }}
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <Switch
+        label="I accept the terms of use"
+        fullWidth
+        state={getFieldState("terms", formState)}
+        text={getFieldErrorMessage("terms", formState)}
+        {...register("terms")}
+      />
+      <Button fullWidth={true}>Log-in</Button>
+    </form>
+  );
 };
 
 export const FormExample = {
