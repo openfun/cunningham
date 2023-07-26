@@ -1,6 +1,7 @@
 import React, {
   InputHTMLAttributes,
   PropsWithChildren,
+  forwardRef,
   useEffect,
   useRef,
   useState,
@@ -14,55 +15,68 @@ type Props = InputHTMLAttributes<HTMLInputElement> &
     label?: string;
   };
 
-export const Checkbox = ({
-  indeterminate,
-  className = "",
-  checked,
-  label,
-  text,
-  rightText,
-  state,
-  ...props
-}: Props) => {
-  const inputRef = useRef<HTMLInputElement>(null);
-  const [value, setValue] = useState<boolean>(!!checked);
+export const Checkbox = forwardRef<HTMLInputElement, Props>(
+  (
+    {
+      indeterminate,
+      className = "",
+      checked,
+      label,
+      text,
+      rightText,
+      state,
+      ...props
+    }: Props,
+    ref,
+  ) => {
+    const inputRef = useRef<HTMLInputElement>();
+    const [value, setValue] = useState<boolean>(!!checked);
 
-  useEffect(() => {
-    setValue(!!checked);
-  }, [checked]);
+    useEffect(() => {
+      setValue(!!checked);
+    }, [checked]);
 
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.indeterminate = !!indeterminate;
-    }
-  }, [indeterminate]);
+    useEffect(() => {
+      if (inputRef.current) {
+        inputRef.current.indeterminate = !!indeterminate;
+      }
+    }, [indeterminate]);
 
-  return (
-    <label
-      className={classNames("c__checkbox", {
-        "c__checkbox--disabled": props.disabled,
-      })}
-    >
-      <Field text={text} rightText={rightText} compact={true} state={state}>
-        <div className="c__checkbox__container">
-          <div className="c__checkbox__wrapper">
-            <input
-              type="checkbox"
-              className={className}
-              onChange={(e) => setValue(e.target.checked)}
-              {...props}
-              checked={value}
-              ref={inputRef}
-            />
-            <Indeterminate />
-            <Checkmark />
+    return (
+      <label
+        className={classNames("c__checkbox", {
+          "c__checkbox--disabled": props.disabled,
+        })}
+      >
+        <Field text={text} rightText={rightText} compact={true} state={state}>
+          <div className="c__checkbox__container">
+            <div className="c__checkbox__wrapper">
+              <input
+                type="checkbox"
+                className={className}
+                {...props}
+                onChange={(e) => {
+                  setValue(e.target.checked);
+                  props.onChange?.(e);
+                }}
+                checked={value}
+                ref={(checkboxRef) => {
+                  if (typeof ref === "function") {
+                    ref(checkboxRef);
+                  }
+                  inputRef.current = checkboxRef || undefined;
+                }}
+              />
+              <Indeterminate />
+              <Checkmark />
+            </div>
+            {label && <div className="c__checkbox__label">{label}</div>}
           </div>
-          {label && <div className="c__checkbox__label">{label}</div>}
-        </div>
-      </Field>
-    </label>
-  );
-};
+        </Field>
+      </label>
+    );
+  },
+);
 
 export const CheckboxGroup = ({
   children,
