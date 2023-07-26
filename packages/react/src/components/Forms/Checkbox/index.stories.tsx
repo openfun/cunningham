@@ -1,6 +1,15 @@
-import { Meta, StoryFn } from "@storybook/react";
 import React from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Meta, StoryFn } from "@storybook/react";
+import { useForm } from "react-hook-form";
+import * as Yup from "yup";
 import { Checkbox, CheckboxGroup } from ":/components/Forms/Checkbox/index";
+import { Button } from ":/components/Button";
+import {
+  getFieldState,
+  getFieldErrorMessage,
+  onSubmit,
+} from ":/tests/reactHookFormUtils";
 
 export default {
   title: "Components/Forms/Checkbox",
@@ -138,3 +147,46 @@ export const GroupSuccess = () => (
     </CheckboxGroup>
   </div>
 );
+
+export const ReactHookForm = () => {
+  interface CheckboxExampleFormValues {
+    terms: boolean;
+  }
+
+  const checkboxExampleSchema = Yup.object().shape({
+    terms: Yup.boolean()
+      .required()
+      .oneOf([true], "You have to accept the terms of use"),
+  });
+
+  const { register, handleSubmit, formState } =
+    useForm<CheckboxExampleFormValues>({
+      defaultValues: {
+        terms: false,
+      },
+      mode: "onChange",
+      reValidateMode: "onChange",
+      resolver: yupResolver(checkboxExampleSchema),
+    });
+
+  return (
+    <form
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "1rem",
+        width: "400px",
+      }}
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <Checkbox
+        label="I accept the terms of use"
+        fullWidth
+        state={getFieldState("terms", formState)}
+        text={getFieldErrorMessage("terms", formState)}
+        {...register("terms")}
+      />
+      <Button fullWidth={true}>Log-in</Button>
+    </form>
+  );
+};
