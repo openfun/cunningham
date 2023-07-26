@@ -1,6 +1,15 @@
-import { Meta, StoryFn } from "@storybook/react";
 import React from "react";
+import { useForm } from "react-hook-form";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Meta, StoryFn } from "@storybook/react";
 import { Radio, RadioGroup } from ":/components/Forms/Radio/index";
+import { Button } from ":/components/Button";
+import {
+  getFieldState,
+  getFieldErrorMessage,
+  onSubmit,
+} from ":/tests/reactHookFormUtils";
 
 export default {
   title: "Components/Forms/Radio",
@@ -176,5 +185,81 @@ export const GroupSuccess = () => {
         />
       </RadioGroup>
     </div>
+  );
+};
+
+export const ReactHookForm = () => {
+  interface RadioExampleFormValues {
+    joTown: string;
+  }
+
+  const radioExampleSchema = Yup.object().shape({
+    joTown: Yup.string()
+      .required()
+      .oneOf(["paris"], "That's not the right town!"),
+  });
+
+  const { register, handleSubmit, formState } = useForm<RadioExampleFormValues>(
+    {
+      defaultValues: {
+        joTown: "",
+      },
+      mode: "onChange",
+      reValidateMode: "onChange",
+      resolver: yupResolver(radioExampleSchema),
+    },
+  );
+
+  return (
+    <form
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "1rem",
+        width: "400px",
+      }}
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <div className="fs-l fw-bold mb-t">
+        Where will the 2024 Olympics take place?
+      </div>
+      <RadioGroup
+        state={getFieldState("joTown", formState)}
+        text={getFieldErrorMessage("joTown", formState)}
+      >
+        <Radio
+          label="Dijon"
+          value="dijon"
+          state={getFieldState("joTown", formState)}
+          {...register("joTown")}
+        />
+        <Radio
+          label="Paris"
+          value="paris"
+          state={getFieldState("joTown", formState)}
+          {...register("joTown")}
+        />
+        <Radio
+          label="Düsseldorf"
+          value="düsseldorf"
+          state={getFieldState("joTown", formState)}
+          {...register("joTown")}
+        />
+        <Radio
+          label="Lubumbashi"
+          value="Lubumbashi"
+          state={getFieldState("joTown", formState)}
+          {...register("joTown")}
+        />
+        <Radio
+          label="Tokyo"
+          value="tokyo"
+          text="This was the town of the 2020 Olympics!"
+          disabled={true}
+          {...register("joTown")}
+        />
+      </RadioGroup>
+      <Button fullWidth={true}>Check it!</Button>
+    </form>
   );
 };
