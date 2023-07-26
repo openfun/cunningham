@@ -3,7 +3,6 @@ import React, {
   InputHTMLAttributes,
   ReactNode,
   useEffect,
-  useImperativeHandle,
   useRef,
   useState,
 } from "react";
@@ -11,10 +10,6 @@ import classNames from "classnames";
 import { randomString } from ":/utils";
 import { Field, FieldProps } from ":/components/Forms/Field";
 import { LabelledBox } from ":/components/Forms/LabelledBox";
-
-export interface InputRefType {
-  input: HTMLInputElement | null;
-}
 
 type Props = InputHTMLAttributes<HTMLInputElement> &
   FieldProps & {
@@ -25,7 +20,7 @@ type Props = InputHTMLAttributes<HTMLInputElement> &
     charCounterMax?: number;
   };
 
-export const Input = forwardRef<InputRefType, Props>(
+export const Input = forwardRef<HTMLInputElement, Props>(
   (
     {
       className,
@@ -48,8 +43,7 @@ export const Input = forwardRef<InputRefType, Props>(
     if (className) {
       classes.push(className);
     }
-
-    const inputRef = useRef<HTMLInputElement>(null);
+    const inputRef = useRef<HTMLInputElement | null>(null);
     const [inputFocus, setInputFocus] = useState(false);
     const [value, setValue] = useState(defaultValue || props.value || "");
     const [labelAsPlaceholder, setLabelAsPlaceholder] = useState(!value);
@@ -77,12 +71,6 @@ export const Input = forwardRef<InputRefType, Props>(
       }
       setValue(props.value || "");
     }, [props.value]);
-
-    useImperativeHandle(ref, () => ({
-      get input() {
-        return inputRef.current;
-      },
-    }));
 
     return (
       <Field
@@ -130,7 +118,16 @@ export const Input = forwardRef<InputRefType, Props>(
                 setValue(e.target.value);
                 props.onChange?.(e);
               }}
-              ref={inputRef}
+              ref={(inputTextRef) => {
+                if (ref) {
+                  if (typeof ref === "function") {
+                    ref(inputTextRef);
+                  } else {
+                    ref.current = inputTextRef;
+                  }
+                }
+                inputRef.current = inputTextRef;
+              }}
             />
           </LabelledBox>
           {!!rightIcon && (

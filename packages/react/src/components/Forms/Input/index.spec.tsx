@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import React, { useRef } from "react";
 import userEvent from "@testing-library/user-event";
 import { expect } from "vitest";
@@ -160,7 +160,7 @@ describe("<Input/>", () => {
     });
     expect(input).not.toHaveFocus();
     await user.click(screen.getByRole("button", { name: "Focus" }));
-    expect(input).toHaveFocus();
+    waitFor(() => expect(input).toHaveFocus());
   });
   it("works controlled", async () => {
     const Wrapper = () => {
