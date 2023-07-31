@@ -23,6 +23,9 @@ export type SelectProps = PropsWithChildren &
     onChange?: (event: {
       target: { value: string | number | undefined | string[] };
     }) => void;
+    onBlur?: (event: {
+      target: { value: string | number | undefined | string[] };
+    }) => void;
     disabled?: boolean;
     clearable?: boolean;
     multi?: boolean;

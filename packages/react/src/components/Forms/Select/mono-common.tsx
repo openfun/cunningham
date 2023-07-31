@@ -70,6 +70,7 @@ export const SelectMonoAux = ({
   value,
   disabled,
   clearable = true,
+  onBlur,
 }: SelectAuxProps) => {
   const { t } = useCunningham();
   const labelProps = downshiftReturn.getLabelProps();
@@ -101,6 +102,10 @@ export const SelectMonoAux = ({
             "c__select--disabled": disabled,
           },
         )}
+        onBlur={() =>
+          onBlur &&
+          onBlur({ target: { value: downshiftReturn.selectedItem?.value } })
+        }
       >
         {/* We disabled linting for this specific line because we consider that the onClick props is only used for */}
         {/* mouse users, so this do not engender any issue for accessibility. */}
