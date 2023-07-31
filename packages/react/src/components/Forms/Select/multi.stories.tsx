@@ -1,9 +1,17 @@
 import React, { useState } from "react";
+import { useForm, Controller, ControllerRenderProps } from "react-hook-form";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Meta, StoryFn } from "@storybook/react";
 import { faker } from "@faker-js/faker";
 import { Select } from ":/components/Forms/Select";
 import { CunninghamProvider } from ":/components/Provider";
 import { Button } from ":/components/Button";
+import {
+  getFieldState,
+  getFieldErrorMessage,
+  onSubmit,
+} from ":/tests/reactHookFormUtils";
 
 export default {
   title: "Components/Forms/Select/Multi",
@@ -206,6 +214,103 @@ export const Error = {
     state: "error",
     text: "Something went wrong",
   },
+};
+
+export const ReactHookForm = () => {
+  enum CitiesOptionEnum {
+    NONE = "",
+    DIJON = "dijon",
+    PARIS = "paris",
+    TOKYO = "tokyo",
+    VANNES = "vannes",
+  }
+
+  interface SelectExampleFormValues {
+    capitalCity: CitiesOptionEnum[];
+  }
+
+  const selectExampleSchema = Yup.object().shape({
+    capitalCity: Yup.array()
+      .required()
+      .test({
+        test: (cityList) =>
+          cityList.every((city) =>
+            [CitiesOptionEnum.PARIS, CitiesOptionEnum.TOKYO].includes(city),
+          ),
+        message: "Wrong answer!",
+      }),
+  });
+
+  const { handleSubmit, formState, control } = useForm<SelectExampleFormValues>(
+    {
+      defaultValues: {
+        capitalCity: [],
+      },
+      mode: "onChange",
+      reValidateMode: "onChange",
+      resolver: yupResolver(selectExampleSchema),
+    },
+  );
+
+  const renderSelect = ({
+    field,
+  }: {
+    field: ControllerRenderProps<SelectExampleFormValues, "capitalCity">;
+  }) => {
+    return (
+      <>
+        <div>Which are the capital of the country ?</div>
+        <Select
+          label="Select a city"
+          multi={true}
+          options={[
+            {
+              label: "Dijon",
+              value: CitiesOptionEnum.DIJON,
+            },
+            {
+              label: "Paris",
+              value: CitiesOptionEnum.PARIS,
+            },
+            {
+              label: "Tokyo",
+              value: CitiesOptionEnum.TOKYO,
+            },
+            {
+              label: "Vannes",
+              value: CitiesOptionEnum.VANNES,
+            },
+          ]}
+          state={getFieldState("capitalCity", formState)}
+          text={getFieldErrorMessage("capitalCity", formState)}
+          onBlur={field.onBlur}
+          onChange={field.onChange}
+          value={field.value}
+        />
+      </>
+    );
+  };
+
+  return (
+    <CunninghamProvider>
+      <form
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "1rem",
+          width: "400px",
+        }}
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <Controller
+          control={control}
+          name="capitalCity"
+          render={renderSelect}
+        />
+        <Button fullWidth={true}>Submit</Button>
+      </form>
+    </CunninghamProvider>
+  );
 };
 
 export const FormExample = () => {
