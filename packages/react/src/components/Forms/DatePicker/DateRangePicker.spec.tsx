@@ -241,7 +241,9 @@ describe("<DateRangePicker/>", () => {
     ).getByRole("button")!;
 
     // Pick a start date.
-    const gridCellStartDate = startGridCellButton.getAttribute("aria-label");
+    const gridCellStartDate = startGridCellButton
+      .getAttribute("aria-label")
+      ?.replace("Today, ", "");
     await user.click(startGridCellButton);
 
     expectCalendarToBeOpen();
@@ -254,7 +256,9 @@ describe("<DateRangePicker/>", () => {
     ).getByRole("button")!;
 
     // Pick an end date.
-    const gridCellEndDate = endGridCellButton.getAttribute("aria-label");
+    const gridCellEndDate = endGridCellButton
+      .getAttribute("aria-label")
+      ?.replace("Today, ", "");
     await user.click(endGridCellButton);
 
     // Calendar should close on range's selection.
@@ -273,7 +277,8 @@ describe("<DateRangePicker/>", () => {
     const selectedRange = within(selectedCells[0])
       .getByRole("button")!
       .getAttribute("aria-label")
-      ?.replace("selected", "");
+      ?.replace("selected", "")
+      ?.replace("Today, ", "");
 
     // Make sure start and end dates are in the selected range,
     // that describes the range with its start and end date.
@@ -311,7 +316,9 @@ describe("<DateRangePicker/>", () => {
     ).getByRole("button")!;
 
     // Pick a start date.
-    const gridCellDate = gridCellButton.getAttribute("aria-label");
+    const gridCellDate = gridCellButton
+      .getAttribute("aria-label")
+      ?.replace("Today, ", "");
     await user.click(gridCellButton);
 
     expectCalendarToBeOpen();
@@ -335,7 +342,8 @@ describe("<DateRangePicker/>", () => {
     const selectedRange = within(selectedCells[0])
       .getByRole("button")!
       .getAttribute("aria-label")
-      ?.replace("selected", "");
+      ?.replace("selected", "")
+      ?.replace("Today, ", "");
 
     // Make sure start and end dates are in the selected range,
     // that describes the range with its start and end date.
