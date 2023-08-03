@@ -1,3 +1,4 @@
+import { dirname, sep } from "path";
 import { defaultTokenRefs } from "@openfun/cunningham-tokens";
 import { globSync } from "glob";
 
@@ -11,21 +12,23 @@ import { globSync } from "glob";
 const components: any = {};
 const files = globSync("src/components/**/tokens.ts");
 files.forEach((file) => {
-  const importPath = "./" + file.replace(/\.ts$/, "");
-  const matches = /^.+components\/(.+)\/tokens$/gm.exec(importPath);
-  let componentName = matches && matches[1];
-  if (!componentName) {
-    throw new Error("Could not find component name from file path " + file);
-  }
-  componentName = componentName.toLowerCase();
+  const importPath = "." + sep + file.replace(/\.ts$/, "");
 
   const res = require(importPath);
   if (!res.tokens) {
     throw new Error("Tokens file does not export tokens " + file);
   }
 
-  componentName = componentName.replace("/", "-");
-  components[componentName] = res.tokens(defaultTokenRefs);
+  try {
+    const componentName = dirname(importPath)
+      .split(`${sep}components${sep}`)[1]
+      .toLocaleLowerCase()
+      .replace(sep, "-");
+
+    components[componentName] = res.tokens(defaultTokenRefs);
+  } catch (error) {
+    throw new Error("Could not find component name from file path " + file);
+  }
 });
 
 export default {
