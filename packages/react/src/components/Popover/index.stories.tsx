@@ -14,23 +14,31 @@ export const Default = () => {
   const parentRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div ref={parentRef} style={{ width: "fit-content" }}>
-      <Button onClick={() => setIsOpen(!isOpen)}>Toggle</Button>
-      {isOpen && (
-        <Popover parentRef={parentRef} onClickOutside={() => setIsOpen(false)}>
-          <div
-            style={{
-              height: "200px",
-              width: "200px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
+    <div style={{ display: "grid", height: "120vh", placeItems: "center" }}>
+      <div
+        ref={parentRef}
+        style={{ width: "fit-content", position: "relative" }}
+      >
+        <Button onClick={() => setIsOpen(!isOpen)}>Toggle</Button>
+        {isOpen && (
+          <Popover
+            parentRef={parentRef}
+            onClickOutside={() => setIsOpen(false)}
           >
-            I am open
-          </div>
-        </Popover>
-      )}
+            <div
+              style={{
+                height: "200px",
+                width: "200px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              I am open
+            </div>
+          </Popover>
+        )}
+      </div>
     </div>
   );
 };
