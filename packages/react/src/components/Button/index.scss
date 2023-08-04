@@ -6,6 +6,7 @@
   cursor: pointer;
   display: flex;
   font-weight: var(--c--components--button--font-weight);
+  font-family: var(--c--components--button--font-family);
   transition: all var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
   user-select: none;
 
