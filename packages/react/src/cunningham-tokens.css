@@ -202,4 +202,5 @@
 	--c--components--button--medium-font-size: var(--c--theme--font--sizes--l);
 	--c--components--button--small-font-size: var(--c--theme--font--sizes--m);
 	--c--components--button--font-weight: var(--c--theme--font--weights--regular);
+	--c--components--button--font-family: var(--c--theme--font--families--base);
 }

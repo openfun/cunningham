@@ -9,5 +9,6 @@ export const tokens = (defaults: DefaultTokens) => {
     "medium-font-size": defaults.theme.font.sizes.l,
     "small-font-size": defaults.theme.font.sizes.m,
     "font-weight": defaults.theme.font.weights.regular,
+    "font-family": defaults.theme.font.families.base,
   };
 };
