@@ -1,5 +1,18 @@
 # @openfun/cunningham-react
 
+## 0.11.0
+
+### Minor Changes
+
+- cd42afb: Add a timezone props to date picker components
+- 0dc46d1: Restrict input formats of date picker components to IS0 strings
+
+### Patch Changes
+
+- 3471e2e: Add Button token font-family
+- bae7392: Fix flaky tests on DateRangePicker
+- 8cf8e1e: Fix datepicker component's output timezone management
+
 ## 0.10.0
 
 ### Minor Changes
@@ -167,7 +180,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.10.0...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.11.0...main
+[0.10.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.10.0...@openfun/cunningham-react@0.11.0
 [0.10.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.9.0...@openfun/cunningham-react@0.10.0
 [0.9.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.8.2...@openfun/cunningham-react@0.9.0
 [0.8.2]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.8.1...@openfun/cunningham-react@0.8.2
