@@ -52,7 +52,12 @@ describe("SassGenerator", () => {
         'input': (
           'border-color': #022858
         )
-      ) !default
+      ) !default;
+      $components: (
+        'button': (
+          'font-family': Times New Roman
+        )
+      ) !default;
       "
     `);
   });

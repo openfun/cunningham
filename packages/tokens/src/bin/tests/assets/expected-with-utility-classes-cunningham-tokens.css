@@ -9,6 +9,7 @@
 	--c--theme--spacings--s: 1rem;
 	--c--theme--transitions--ease: linear;
 	--c--theme--input--border-color: var(--c--theme--colors--ternary-900);
+	--c--components--button--font-family: Times New Roman;
 } .clr-primary { color: var(--c--theme--colors--primary); }
 .clr-secondary { color: var(--c--theme--colors--secondary); }
 .clr-ternary-900 { color: var(--c--theme--colors--ternary-900); }

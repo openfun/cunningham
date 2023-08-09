@@ -44,5 +44,5 @@ function JSONToSassMap(json: Object, isDefault = true) {
     .replace(/{/g, "(")
     .replace(/}/g, ")")
     .replace(/"/g, "")
-    .concat(isDefault ? " !default" : "");
+    .concat(isDefault ? " !default;" : "");
 }

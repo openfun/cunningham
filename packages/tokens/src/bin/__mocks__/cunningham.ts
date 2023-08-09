@@ -27,4 +27,9 @@ module.exports = {
       "border-color": "ref(theme.colors.ternary-900)",
     },
   },
+  components: {
+    button: {
+      "font-family": "Times New Roman",
+    },
+  },
 };
