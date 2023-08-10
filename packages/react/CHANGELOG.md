@@ -1,5 +1,12 @@
 # @openfun/cunningham-react
 
+## 0.11.1
+
+### Patch Changes
+
+- 4eae45c: fix RadioGroup optional prop
+- 3e1cdbe: bug fix, remove usage of InputRefType
+
 ## 0.11.0
 
 ### Minor Changes
@@ -180,8 +187,9 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.11.0...main
-[0.10.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.10.0...@openfun/cunningham-react@0.11.0
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.11.1...main
+[0.11.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.11.0...@openfun/cunningham-react@0.11.1
+[0.11.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.10.0...@openfun/cunningham-react@0.11.0
 [0.10.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.9.0...@openfun/cunningham-react@0.10.0
 [0.9.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.8.2...@openfun/cunningham-react@0.9.0
 [0.8.2]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.8.1...@openfun/cunningham-react@0.8.2
