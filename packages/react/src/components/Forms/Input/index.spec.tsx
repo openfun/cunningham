@@ -2,7 +2,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import React, { useRef } from "react";
 import userEvent from "@testing-library/user-event";
 import { expect } from "vitest";
-import { Input, InputRefType } from ":/components/Forms/Input/index";
+import { Input } from ":/components/Forms/Input/index";
 import { Button } from ":/components/Button";
 
 describe("<Input/>", () => {
@@ -146,11 +146,11 @@ describe("<Input/>", () => {
   it("forwards ref", async () => {
     const user = userEvent.setup();
     const Wrapper = () => {
-      const ref = useRef<InputRefType>(null);
+      const ref = useRef<HTMLInputElement>(null);
       return (
         <div>
           <Input label="First name" ref={ref} />
-          <Button onClick={() => ref.current?.input?.focus()}>Focus</Button>
+          <Button onClick={() => ref.current?.focus()}>Focus</Button>
         </div>
       );
     };
