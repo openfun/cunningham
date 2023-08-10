@@ -36,7 +36,7 @@ export const RadioGroup = ({
   text,
   rightText,
   style,
-}: PropsWithChildren & FieldProps & { style: React.CSSProperties }) => {
+}: PropsWithChildren & FieldProps & { style?: React.CSSProperties }) => {
   return (
     <Field
       className="c__radio__group c__checkbox__group"
