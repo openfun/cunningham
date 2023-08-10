@@ -3,7 +3,7 @@ import { Meta } from "@storybook/react";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import React, { useRef } from "react";
-import { Input, InputRefType } from ":/components/Forms/Input/index";
+import { Input } from ":/components/Forms/Input/index";
 import { Button } from ":/components/Button";
 import {
   getFieldState,
@@ -166,7 +166,7 @@ export const NonControlled = () => {
 };
 
 export const WithRef = () => {
-  const ref = useRef<InputRefType>(null);
+  const ref = useRef<HTMLInputElement>(null);
   return (
     <div>
       <Input label="Your identity" ref={ref} />
