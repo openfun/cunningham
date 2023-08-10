@@ -1,7 +1,7 @@
 #!/bin/bash
-tsc
-yarn build-theme
-vite build
-yarn build-fonts
-yarn build-icons
-cp -R src/locales dist/
+tsc \
+&& yarn build-theme \
+&& vite build \
+&& yarn build-fonts \
+&& yarn build-icons \
+&& cp -R src/locales dist/
