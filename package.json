@@ -13,7 +13,7 @@
     "test-ci": "turbo run test-ci",
     "lint": "turbo run lint",
     "deploy": "turbo run deploy",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md,json,cjs,js}\""
   },
   "devDependencies": {
     "cross-env": "7.0.3",
