@@ -1,11 +1,5 @@
 {
-  "extends": [
-    "github>openfun/renovate-configuration"
-  ],
-  "ignoreDeps": [
-    "chalk", "@storybook/builder-vite"
-  ],
-  "ignorePaths": [
-    "**/node_modules/**"
-  ]
+  "extends": ["github>openfun/renovate-configuration"],
+  "ignoreDeps": ["chalk", "@storybook/builder-vite"],
+  "ignorePaths": ["**/node_modules/**"]
 }

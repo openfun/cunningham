@@ -1,16 +1,15 @@
-import { addons } from '@storybook/manager-api';
-import { create } from '@storybook/theming';
-import { defaultTokens } from '@openfun/cunningham-tokens';
+import { addons } from "@storybook/manager-api";
+import { create } from "@storybook/theming";
+import { defaultTokens } from "@openfun/cunningham-tokens";
 
 const COLORS = defaultTokens.theme.colors;
 
 const theme = create({
-  base: 'light',
-  brandUrl: 'https://github.com/openfun/cunningham',
-  brandImage: 'logo-cunningham.svg',
-  brandTitle: 'Cunningham',
-  brandTarget: '_self',
-
+  base: "light",
+  brandUrl: "https://github.com/openfun/cunningham",
+  brandImage: "logo-cunningham.svg",
+  brandTitle: "Cunningham",
+  brandTarget: "_self",
 
   //
   colorPrimary: COLORS["primary-400"],

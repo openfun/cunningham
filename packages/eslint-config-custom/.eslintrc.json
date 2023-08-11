@@ -29,7 +29,10 @@
   "plugins": ["formatjs", "@typescript-eslint", "import"],
   /* Disable some rules to be iso with tslint which was previously used */
   "rules": {
-    "@typescript-eslint/explicit-member-accessibility": ["error", { "accessibility": "no-public" }],
+    "@typescript-eslint/explicit-member-accessibility": [
+      "error",
+      { "accessibility": "no-public" }
+    ],
     "@typescript-eslint/lines-between-class-members": "off",
     "@typescript-eslint/no-use-before-define": "off",
     "arrow-parens": "error",
@@ -45,7 +48,14 @@
     "import/order": [
       "error",
       {
-        "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ],
         "alphabetize": { "order": "ignore" }
       }
     ],
@@ -70,7 +80,10 @@
     "react/destructuring-assignment": "off",
     "react/function-component-definition": [
       "error",
-      { "namedComponents": "arrow-function", "unnamedComponents": "arrow-function" }
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
     ],
     "react/jsx-boolean-value": "off",
     "react/jsx-fragments": "off",

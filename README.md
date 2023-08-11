@@ -10,11 +10,12 @@
 
 <a href="https://openfun.github.io/cunningham"><b>📚&nbsp;&nbsp;Documentation</b></a> •
 <a href="https://www.figma.com/file/JbPT1R6YUFW4oH8jHvH960/DS-Cunningham---PUBLIC?type=design"><b>🖌️&nbsp;&nbsp;Figma</b></a>
+
 </div>
 
 - **Atomic**: We follow [atomic design principles](https://bradfrost.com/blog/post/atomic-web-design/).
 - **Modular and Reusable**: Each component is designed to be self-contained and reusable across different projects, promoting consistency and saving development time.
-- **Accessibility-focused**: Our components prioritize accessibility standards, making them usable and inclusive for all users. 
+- **Accessibility-focused**: Our components prioritize accessibility standards, making them usable and inclusive for all users.
 - **Design tokens based**: We use [design tokens](https://openfun.github.io/cunningham/?path=/docs/getting-started-customization--docs#what-are-design-tokens-) to ensure consistency between design and code and allow high customization.
 - **React** based: at the moment we only support React, but we are open to other frameworks, feel free to [contribute](./CONTRIBUTING.md) !
 
@@ -46,11 +47,12 @@ yarn add @openfun/cunningham-react
 ```
 
 ➡️ Then, add this script to your `package.json` file
+
 ```json
 {
-    "scripts": {
-        "build-theme": "cunningham -g css -o src"
-    },
+  "scripts": {
+    "build-theme": "cunningham -g css -o src"
+  }
 }
 ```
 
@@ -78,7 +80,6 @@ We're done! 🎉
 To ensure everything works well, let's test rendering a component, such as the [Button](https://openfun.github.io/cunningham/?path=/docs/components-button--docs) for example.
 
 Now please see the [documentation](https://openfun.github.io/cunningham) 📚 to learn more about customization, typography, spacings and available components!
-
 
 ## Contributors
 

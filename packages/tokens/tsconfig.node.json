@@ -1,5 +1,3 @@
 {
-  "include": [
-    "./jest.config.ts"
-  ]
+  "include": ["./jest.config.ts"]
 }
