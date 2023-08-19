@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "volta": {
-    "node": "18.16.1",
+    "node": "18.17.1",
     "yarn": "1.22.19"
   }
 }
