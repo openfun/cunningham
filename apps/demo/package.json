@@ -14,20 +14,20 @@
     "@openfun/cunningham-react": "*",
     "@openfun/cunningham-tokens": "*",
     "@openfun/typescript-configs": "*",
-    "@types/react": "18.2.15",
+    "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
-    "@vitejs/plugin-react": "4.0.3",
+    "@vitejs/plugin-react": "4.0.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "sass": "1.63.6",
+    "sass": "1.66.1",
     "typescript": "5.1.6",
-    "vite": "4.4.4"
+    "vite": "4.4.9"
   },
   "engines": {
     "node": ">=16.0.0"
   },
   "volta": {
-    "node": "18.16.1",
+    "node": "18.17.1",
     "yarn": "1.22.19"
   }
 }
