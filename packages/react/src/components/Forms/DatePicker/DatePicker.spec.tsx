@@ -166,9 +166,8 @@ describe("<DatePicker/>", () => {
     );
     // Get elements that should receive focus when no date is picked.
     const [input, toggleButton] = await screen.findAllByRole("button")!;
-    const [monthSegment, daySegment, yearSegment] = await screen.findAllByRole(
-      "spinbutton",
-    )!;
+    const [monthSegment, daySegment, yearSegment] =
+      await screen.findAllByRole("spinbutton");
 
     await user.keyboard("{Tab}");
     expect(input).toHaveFocus();
@@ -203,9 +202,8 @@ describe("<DatePicker/>", () => {
     const clearButton = screen.getByRole("button", {
       name: "Clear date",
     });
-    const [monthSegment, daySegment, yearSegment] = await screen.findAllByRole(
-      "spinbutton",
-    )!;
+    const [monthSegment, daySegment, yearSegment] =
+      await screen.findAllByRole("spinbutton")!;
 
     // Navigate through elements using Tab.
     await user.keyboard("{Tab}");
@@ -286,9 +284,8 @@ describe("<DatePicker/>", () => {
         />
       </CunninghamProvider>,
     );
-    const [monthSegment, daySegment, yearSegment] = await screen.findAllByRole(
-      "spinbutton",
-    )!;
+    const [monthSegment, daySegment, yearSegment] =
+      await screen.findAllByRole("spinbutton")!;
     // Select the first segment, month one.
     await user.click(monthSegment);
     expect(monthSegment).toHaveFocus();
@@ -322,9 +319,8 @@ describe("<DatePicker/>", () => {
         />
       </CunninghamProvider>,
     );
-    const [monthSegment, daySegment, yearSegment] = await screen.findAllByRole(
-      "spinbutton",
-    )!;
+    const [monthSegment, daySegment, yearSegment] =
+      await screen.findAllByRole("spinbutton")!;
     // Select the first segment, month one.
     await user.click(monthSegment);
     expect(monthSegment).toHaveFocus();

@@ -23,8 +23,11 @@ import {
 import { convertDateValueToString } from ":/components/Forms/DatePicker/utils";
 
 export type DatePickerAuxSubProps = FieldProps & {
+  // eslint-disable-next-line react/no-unused-prop-types
   label?: string;
+  // eslint-disable-next-line react/no-unused-prop-types
   minValue?: string;
+  // eslint-disable-next-line react/no-unused-prop-types
   maxValue?: string;
   disabled?: boolean;
   name?: string;
