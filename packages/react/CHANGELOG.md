@@ -1,5 +1,20 @@
 # @openfun/cunningham-react
 
+## 1.0.0
+
+### Major Changes
+
+- The first bunch of components and features are ready, 
+  the first milestone has been reached
+
+### Minor Changes
+
+- 9edb976: Position Datepicker popover on top or bottom depending space available
+
+### Patch Changes
+
+- fd7ad8a: Do not apply font-family to all elements with `*` selector
+
 ## 0.11.1
 
 ### Patch Changes
@@ -187,7 +202,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.11.1...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.0.0...main
+[1.0.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.11.1...@openfun/cunningham-react@1.0.0
 [0.11.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.11.0...@openfun/cunningham-react@0.11.1
 [0.11.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.10.0...@openfun/cunningham-react@0.11.0
 [0.10.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.9.0...@openfun/cunningham-react@0.10.0
