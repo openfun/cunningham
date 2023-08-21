@@ -1,5 +1,12 @@
 # @openfun/cunningham-tokens
 
+## 1.0.0
+
+### Major Changes
+
+- The first bunch of components and features are ready,
+  the first milestone has been reached
+
 ## 0.7.1
 
 ### Patch Changes
@@ -63,7 +70,8 @@
 - 4ebbf16: Add utility classes
 - 4ebbf16: Add official design tokens
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@0.7.1...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@1.0.0...main
+[1.0.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@0.7.1...@openfun/cunningham-tokens@1.0.0
 [0.7.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@0.7.0...@openfun/cunningham-tokens@0.7.1
 [0.7.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@0.6.0...@openfun/cunningham-tokens@0.7.0
 [0.6.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@0.5.0...@openfun/cunningham-tokens@0.6.0
