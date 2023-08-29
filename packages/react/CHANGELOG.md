@@ -1,10 +1,16 @@
 # @openfun/cunningham-react
 
+## 1.0.1
+
+### Patch Changes
+
+- 66c25bc: export more types
+
 ## 1.0.0
 
 ### Major Changes
 
-- The first bunch of components and features are ready, 
+- The first bunch of components and features are ready,
   the first milestone has been reached
 
 ### Minor Changes
@@ -202,7 +208,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.0.0...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.0.1...main
+[1.0.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.0.0...@openfun/cunningham-react@1.0.1
 [1.0.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.11.1...@openfun/cunningham-react@1.0.0
 [0.11.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.11.0...@openfun/cunningham-react@0.11.1
 [0.11.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.10.0...@openfun/cunningham-react@0.11.0
