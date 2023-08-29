@@ -2,15 +2,22 @@ import React, { InputHTMLAttributes, forwardRef } from "react";
 import classNames from "classnames";
 import { Field, FieldProps } from ":/components/Forms/Field";
 
-type Props = InputHTMLAttributes<HTMLInputElement> &
+export type SwitchProps = InputHTMLAttributes<HTMLInputElement> &
   FieldProps & {
     label?: string;
     labelSide?: "left" | "right";
   };
 
-export const Switch = forwardRef<HTMLInputElement, Props>(
+export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
   (
-    { label, text, state, fullWidth, labelSide = "left", ...props }: Props,
+    {
+      label,
+      text,
+      state,
+      fullWidth,
+      labelSide = "left",
+      ...props
+    }: SwitchProps,
     ref,
   ) => {
     return (
