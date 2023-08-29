@@ -11,7 +11,7 @@ import { randomString } from ":/utils";
 import { Field, FieldProps } from ":/components/Forms/Field";
 import { LabelledBox } from ":/components/Forms/LabelledBox";
 
-type Props = InputHTMLAttributes<HTMLInputElement> &
+export type InputProps = InputHTMLAttributes<HTMLInputElement> &
   FieldProps & {
     label?: string;
     icon?: ReactNode;
@@ -20,7 +20,7 @@ type Props = InputHTMLAttributes<HTMLInputElement> &
     charCounterMax?: number;
   };
 
-export const Input = forwardRef<HTMLInputElement, Props>(
+export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
       className,
@@ -36,7 +36,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
       charCounter,
       charCounterMax,
       ...props
-    }: Props,
+    }: InputProps,
     ref,
   ) => {
     const classes = ["c__input"];

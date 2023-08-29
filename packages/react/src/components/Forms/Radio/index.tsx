@@ -6,13 +6,13 @@ import React, {
 import classNames from "classnames";
 import { Field, FieldProps } from ":/components/Forms/Field";
 
-type Props = InputHTMLAttributes<HTMLInputElement> &
+export type RadioProps = InputHTMLAttributes<HTMLInputElement> &
   FieldProps & {
     label?: string;
   };
 
-export const Radio = forwardRef<HTMLInputElement, Props>(
-  ({ label, text, state, ...props }: Props, ref) => {
+export const Radio = forwardRef<HTMLInputElement, RadioProps>(
+  ({ label, text, state, ...props }: RadioProps, ref) => {
     return (
       <label
         className={classNames("c__checkbox", "c__radio", {

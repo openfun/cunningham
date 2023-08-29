@@ -9,13 +9,13 @@ import React, {
 import classNames from "classnames";
 import { Field, FieldProps } from ":/components/Forms/Field";
 
-type Props = InputHTMLAttributes<HTMLInputElement> &
+export type CheckboxProps = InputHTMLAttributes<HTMLInputElement> &
   FieldProps & {
     indeterminate?: boolean;
     label?: string;
   };
 
-export const Checkbox = forwardRef<HTMLInputElement, Props>(
+export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   (
     {
       indeterminate,
@@ -26,7 +26,7 @@ export const Checkbox = forwardRef<HTMLInputElement, Props>(
       rightText,
       state,
       ...props
-    }: Props,
+    }: CheckboxProps,
     ref,
   ) => {
     const inputRef = useRef<HTMLInputElement>();
