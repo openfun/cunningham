@@ -10,10 +10,10 @@ import {
   getFieldState,
   getFieldErrorMessage,
   onSubmit,
-} from ":/tests/reactHookFormUtils";
+} from "./reactHookFormUtils";
 
 export default {
-  title: "Components/Forms/Reac-Hook-Form",
+  title: "Components/Forms/Examples/React-Hook-Form",
 } as Meta;
 
 interface LoginStoryFormValues {

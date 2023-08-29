@@ -17,6 +17,8 @@ module.exports = {
           "**/*.stories.tsx",
           "**/*.spec.tsx",
           "src/tests/*",
+          "**/stories-utils.tsx",
+          "**/reactHookFormUtils.tsx"
         ],
       },
     ],

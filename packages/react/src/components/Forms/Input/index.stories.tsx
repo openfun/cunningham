@@ -3,13 +3,13 @@ import { Meta } from "@storybook/react";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import React, { useRef } from "react";
-import { Input } from ":/components/Forms/Input/index";
-import { Button } from ":/components/Button";
 import {
   getFieldState,
   getFieldErrorMessage,
   onSubmit,
-} from ":/tests/reactHookFormUtils";
+} from ":/components/Forms/Examples/ReactHookForm/reactHookFormUtils";
+import { Input } from ":/components/Forms/Input/index";
+import { Button } from ":/components/Button";
 
 export default {
   title: "Components/Forms/Input",
@@ -175,47 +175,6 @@ export const WithRef = () => {
   );
 };
 
-export const ReactHookForm = () => {
-  interface InputExampleFormValues {
-    email: string;
-  }
-
-  const inputExampleSchema = Yup.object().shape({
-    email: Yup.string().email().required(),
-  });
-  const { register, handleSubmit, formState } = useForm<InputExampleFormValues>(
-    {
-      defaultValues: {
-        email: "",
-      },
-      mode: "onChange",
-      reValidateMode: "onChange",
-      resolver: yupResolver(inputExampleSchema),
-    },
-  );
-
-  return (
-    <form
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "1rem",
-        width: "400px",
-      }}
-      onSubmit={handleSubmit(onSubmit)}
-    >
-      <Input
-        label="Email address"
-        fullWidth={true}
-        state={getFieldState("email", formState)}
-        text={getFieldErrorMessage("email", formState)}
-        {...register("email")}
-      />
-      <Button fullWidth={true}>Log-in</Button>
-    </form>
-  );
-};
-
 export const FormExample = () => {
   return (
     <div>
@@ -266,5 +225,46 @@ export const FormExample = () => {
         </div>
       </form>
     </div>
+  );
+};
+
+export const ReactHookForm = () => {
+  interface InputExampleFormValues {
+    email: string;
+  }
+
+  const inputExampleSchema = Yup.object().shape({
+    email: Yup.string().email().required(),
+  });
+  const { register, handleSubmit, formState } = useForm<InputExampleFormValues>(
+    {
+      defaultValues: {
+        email: "",
+      },
+      mode: "onChange",
+      reValidateMode: "onChange",
+      resolver: yupResolver(inputExampleSchema),
+    },
+  );
+
+  return (
+    <form
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "1rem",
+        width: "400px",
+      }}
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <Input
+        label="Email address"
+        fullWidth={true}
+        state={getFieldState("email", formState)}
+        text={getFieldErrorMessage("email", formState)}
+        {...register("email")}
+      />
+      <Button fullWidth={true}>Log-in</Button>
+    </form>
   );
 };
