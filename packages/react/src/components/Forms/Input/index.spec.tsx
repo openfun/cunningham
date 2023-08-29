@@ -119,6 +119,26 @@ describe("<Input/>", () => {
     );
     screen.getByText("Some text");
   });
+  it("renders with text items", async () => {
+    render(
+      <Input
+        label="First name"
+        rightIcon={<span className="material-icons">apartment</span>}
+        textItems={[
+          "Text too long",
+          "Wrong choice",
+          "Must contain at least 9 characters, uppercase and digits",
+        ]}
+      />,
+    );
+    expect(
+      screen.getAllByRole("listitem").map((item) => item.textContent),
+    ).toEqual([
+      "Text too long",
+      "Wrong choice",
+      "Must contain at least 9 characters, uppercase and digits",
+    ]);
+  });
   it("renders with text and text right", async () => {
     render(
       <Input

@@ -23,6 +23,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       checked,
       label,
       text,
+      textItems,
       rightText,
       state,
       ...props
@@ -48,7 +49,13 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           "c__checkbox--disabled": props.disabled,
         })}
       >
-        <Field text={text} rightText={rightText} compact={true} state={state}>
+        <Field
+          text={text}
+          rightText={rightText}
+          compact={true}
+          state={state}
+          textItems={textItems}
+        >
           <div className="c__checkbox__container">
             <div className="c__checkbox__wrapper">
               <input
@@ -82,6 +89,7 @@ export const CheckboxGroup = ({
   children,
   state,
   text,
+  textItems,
   rightText,
 }: PropsWithChildren & FieldProps) => {
   return (
@@ -89,6 +97,7 @@ export const CheckboxGroup = ({
       className="c__checkbox__group"
       state={state}
       text={text}
+      textItems={textItems}
       rightText={rightText}
     >
       <div className="c__checkbox__group__list">{children}</div>

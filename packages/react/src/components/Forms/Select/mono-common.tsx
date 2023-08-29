@@ -58,6 +58,7 @@ export const SelectMonoAux = ({
   children,
   state = "default",
   text,
+  textItems,
   rightText,
   fullWidth,
   options,
@@ -90,6 +91,7 @@ export const SelectMonoAux = ({
     <Field
       state={state}
       text={text}
+      textItems={textItems}
       rightText={rightText}
       fullWidth={fullWidth}
     >

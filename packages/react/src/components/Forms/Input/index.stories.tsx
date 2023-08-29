@@ -43,6 +43,21 @@ export const Error = {
   },
 };
 
+export const ErrorItems = {
+  args: {
+    defaultValue: "Hello world",
+    label: "Your name",
+    state: "error",
+    icon: <span className="material-icons">person</span>,
+    text: "This is an optional error message",
+    textItems: [
+      "Text too long",
+      "Wrong choice",
+      "Must contain at least 9 characters, uppercase and digits",
+    ],
+  },
+};
+
 export const DisabledEmpty = {
   args: {
     label: "Your name",

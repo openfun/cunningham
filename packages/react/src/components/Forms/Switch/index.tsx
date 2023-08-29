@@ -13,6 +13,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
     {
       label,
       text,
+      textItems,
       state,
       fullWidth,
       labelSide = "left",
@@ -32,7 +33,13 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
           },
         )}
       >
-        <Field text={text} compact={true} state={state} fullWidth={fullWidth}>
+        <Field
+          text={text}
+          textItems={textItems}
+          compact={true}
+          state={state}
+          fullWidth={fullWidth}
+        >
           <div className="c__checkbox__container">
             {label && <div className="c__checkbox__label">{label}</div>}
             <div className="c__switch__rail__wrapper">
