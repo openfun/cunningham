@@ -38,6 +38,11 @@ export const Error = {
   args: {
     state: "error",
     text: "This is an optional error message",
+    textItems: [
+      "Text too long",
+      "Wrong choice",
+      "Must contain at least 9 characters, uppercase and digits",
+    ],
     rightText: "Right text",
   },
 };

@@ -31,6 +31,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       rightIcon,
       state = "default",
       text,
+      textItems,
       rightText,
       fullWidth,
       charCounter,
@@ -76,6 +77,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       <Field
         state={state}
         text={text}
+        textItems={textItems}
         rightText={rightTextToUse}
         fullWidth={fullWidth}
       >

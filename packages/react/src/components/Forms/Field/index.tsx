@@ -6,6 +6,7 @@ export type FieldState = "success" | "error" | "default";
 export type FieldProps = {
   state?: FieldState | undefined;
   text?: string | undefined;
+  textItems?: string[] | undefined;
   rightText?: string | undefined;
   fullWidth?: boolean | undefined;
   compact?: boolean | undefined;
@@ -18,6 +19,7 @@ export const Field = ({
   children,
   state = "default",
   text,
+  textItems,
   rightText,
   fullWidth,
   compact,
@@ -31,10 +33,21 @@ export const Field = ({
       })}
     >
       {children}
-      {(text || rightText) && (
+      {(text || rightText || textItems) && (
         <div className="c__field__footer">
-          <span className="c__field__text">{text}</span>
-          <span className="c__field__text__right">{rightText}</span>
+          {(text || rightText) && (
+            <div className="c__field__footer__top">
+              <span className="c__field__text">{text}</span>
+              <span className="c__field__text__right">{rightText}</span>
+            </div>
+          )}
+          {textItems && (
+            <ul className="c__field__footer__items">
+              {textItems.map((textItem) => (
+                <li key={textItem}>{textItem}</li>
+              ))}
+            </ul>
+          )}
         </div>
       )}
     </div>

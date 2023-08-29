@@ -9,8 +9,17 @@
   &__footer {
     font-size: var(--c--components--forms-field--font-size);
     padding: 0.25rem calc(1rem + 2px) 0 calc(1rem + 2px);
-    display: flex;
-    justify-content: space-between;
+
+    &__top {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    ul {
+      margin: 0.20rem 0 0 0;
+      padding: 0 0 0 1rem;
+      line-height: 1rem;
+    }
   }
 
   &__text, &__text-right {
