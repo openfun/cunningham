@@ -1,218 +1,153 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Meta } from "@storybook/react";
 import React from "react";
-import { useForm, Controller, ControllerRenderProps } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import * as Yup from "yup";
 import { Input } from ":/components/Forms/Input";
 import { Button } from ":/components/Button";
-import { Select } from ":/components/Forms/Select";
 import { CunninghamProvider } from ":/components/Provider";
 import { Radio, RadioGroup } from ":/components/Forms/Radio";
+import { RhfSelect } from ":/components/Forms/Select/stories-utils";
 import {
   getFieldState,
   getFieldErrorMessage,
   onSubmit,
-} from ":/tests/reactHookFormUtils";
+} from "./reactHookFormUtils";
 
 export default {
-  title: "Components/Forms/Reac-Hook-Form",
+  title: "Components/Forms/Examples/React-Hook-Form",
 } as Meta;
-
-enum GenderEnum {
-  MALE = "male",
-  FEMALE = "female",
-  OTHER = "other",
-}
-enum CompetitionEnum {
-  ATHLETICS = "Athletics",
-  SWIMMING = "Swimming",
-  MARATHON = "Marathon",
-}
-enum RewardEnum {
-  BRONZE = "bronze",
-  SILVER = "silver",
-  GOLD = "gold",
-  FLOCON = "flocon",
-  OURSON = "ourson",
-  CHAMOIS = "chamois",
-}
 
 interface SportsStoryFormValues {
   firstName: string;
   lastName: string;
-  gender: GenderEnum;
-  competition: CompetitionEnum;
-  rewards: RewardEnum[];
+  gender: string;
+  competition: string;
+  rewards: string[];
 }
 
 const sportsSchema = Yup.object().shape({
   firstName: Yup.string().required(),
   lastName: Yup.string().required(),
-  gender: Yup.string<GenderEnum>().required(),
-  competition: Yup.string()
-    .defined()
-    .required()
-    .oneOf(Object.values(CompetitionEnum)),
-  rewards: Yup.array().of(Yup.string<RewardEnum>().defined()).defined(),
+  gender: Yup.string().required(),
+  competition: Yup.string().defined().required(),
+  rewards: Yup.array().of(Yup.string().defined()).defined(),
 });
 
 export const Sports = () => {
-  const { register, handleSubmit, formState, control } =
-    useForm<SportsStoryFormValues>({
-      defaultValues: {
-        firstName: "",
-        lastName: "",
-        rewards: [],
-      },
-      mode: "onChange",
-      reValidateMode: "onChange",
-      resolver: yupResolver(sportsSchema),
-    });
-
-  const renderCompetitionSelect = ({
-    field,
-  }: {
-    field: ControllerRenderProps<SportsStoryFormValues, "competition">;
-  }) => {
-    return (
-      <Select
-        label="Competition"
-        options={[
-          {
-            label: "Athletics",
-            value: CompetitionEnum.ATHLETICS,
-          },
-          {
-            label: "Swimming",
-            value: CompetitionEnum.SWIMMING,
-          },
-          {
-            label: "Marathon",
-            value: CompetitionEnum.MARATHON,
-          },
-        ]}
-        state={getFieldState("competition", formState)}
-        text={getFieldErrorMessage("competition", formState)}
-        onBlur={field.onBlur}
-        onChange={field.onChange}
-        value={field.value}
-      />
-    );
-  };
-
-  const renderRewardsMultiSelect = ({
-    field,
-  }: {
-    field: ControllerRenderProps<SportsStoryFormValues, "rewards">;
-  }) => {
-    return (
-      <Select
-        label="Rewards"
-        options={[
-          {
-            label: "Bronze",
-            value: RewardEnum.BRONZE,
-          },
-          {
-            label: "Silver",
-            value: RewardEnum.SILVER,
-          },
-          {
-            label: "Gold",
-            value: RewardEnum.GOLD,
-          },
-          {
-            label: "Flocon",
-            value: RewardEnum.FLOCON,
-          },
-          {
-            label: "Ourson",
-            value: RewardEnum.OURSON,
-          },
-          {
-            label: "Chamois",
-            value: RewardEnum.CHAMOIS,
-          },
-        ]}
-        state={getFieldState("rewards", formState)}
-        text={getFieldErrorMessage("rewards", formState)}
-        onBlur={field.onBlur}
-        onChange={field.onChange}
-        value={field.value}
-        multi={true}
-      />
-    );
-  };
+  const methods = useForm<SportsStoryFormValues>({
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      rewards: [],
+    },
+    mode: "onChange",
+    reValidateMode: "onChange",
+    resolver: yupResolver(sportsSchema),
+  });
 
   return (
     <CunninghamProvider>
-      <form
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "1rem",
-          width: "400px",
-        }}
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <h1
-          className="fs-h3 fw-bold clr-greyscale-900"
-          style={{ textAlign: "center" }}
+      <FormProvider {...methods}>
+        <form
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "1rem",
+            width: "400px",
+          }}
+          onSubmit={methods.handleSubmit(onSubmit)}
         >
-          Register
-        </h1>
-        <div style={{ display: "flex", gap: "1rem" }}>
-          <Input
-            label="First name"
-            state={getFieldState("firstName", formState)}
-            text={getFieldErrorMessage("firstName", formState)}
-            {...register("firstName")}
-          />
-          <Input
-            label="Last name"
-            state={getFieldState("lastName", formState)}
-            text={getFieldErrorMessage("lastName", formState)}
-            {...register("lastName")}
-          />
-        </div>
+          <h1
+            className="fs-h3 fw-bold clr-greyscale-900"
+            style={{ textAlign: "center" }}
+          >
+            Register
+          </h1>
+          <div style={{ display: "flex", gap: "1rem" }}>
+            <Input
+              label="First name"
+              state={getFieldState("firstName", methods.formState)}
+              text={getFieldErrorMessage("firstName", methods.formState)}
+              {...methods.register("firstName")}
+            />
+            <Input
+              label="Last name"
+              state={getFieldState("lastName", methods.formState)}
+              text={getFieldErrorMessage("lastName", methods.formState)}
+              {...methods.register("lastName")}
+            />
+          </div>
 
-        <RadioGroup
-          state={getFieldState("gender", formState)}
-          text={getFieldErrorMessage("gender", formState)}
-          style={{ display: "flex", flexDirection: "row", gap: "0.5rem" }}
-        >
-          <Radio
-            label="Male"
+          <RadioGroup
+            state={getFieldState("gender", methods.formState)}
+            text={getFieldErrorMessage("gender", methods.formState)}
+            style={{ display: "flex", flexDirection: "row", gap: "0.5rem" }}
+          >
+            <Radio
+              label="Male"
+              state={getFieldState("gender", methods.formState)}
+              {...methods.register("gender")}
+            />
+            <Radio
+              label="Female"
+              state={getFieldState("gender", methods.formState)}
+              {...methods.register("gender")}
+            />
+            <Radio
+              label="Other"
+              state={getFieldState("gender", methods.formState)}
+              {...methods.register("gender")}
+            />
+          </RadioGroup>
+          <RhfSelect
+            name="competition"
+            label="Competition"
+            options={[
+              {
+                label: "Athletics",
+              },
+              {
+                label: "Swimming",
+              },
+              {
+                label: "Marathon",
+              },
+            ]}
             fullWidth={true}
-            state={getFieldState("gender", formState)}
-            {...register("gender")}
           />
-          <Radio
-            label="Female"
-            state={getFieldState("gender", formState)}
-            {...register("gender")}
+          <RhfSelect
+            name="rewards"
+            label="Previous rewards"
+            multi={true}
+            options={[
+              {
+                label: "Bronze",
+              },
+              {
+                label: "Silver",
+              },
+              {
+                label: "Gold",
+              },
+              {
+                label: "Flocon",
+              },
+              {
+                label: "Ourson",
+              },
+              {
+                label: "Chamois",
+              },
+            ]}
+            fullWidth={true}
           />
-          <Radio
-            label="Other"
-            state={getFieldState("gender", formState)}
-            {...register("gender")}
-          />
-        </RadioGroup>
-        <Controller
-          control={control}
-          name="competition"
-          render={renderCompetitionSelect}
-        />
-        <Controller
-          control={control}
-          name="rewards"
-          render={renderRewardsMultiSelect}
-        />
-        <Button fullWidth={true}>Apply</Button>
-        <Button fullWidth={true} color="secondary">
-          Need help ?
-        </Button>
-      </form>
+          <Button fullWidth={true}>Apply</Button>
+          <Button fullWidth={true} color="secondary">
+            Need help ?
+          </Button>
+        </form>
+      </FormProvider>
     </CunninghamProvider>
   );
 };

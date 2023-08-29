@@ -1,9 +1,14 @@
 import { Meta, StoryFn } from "@storybook/react";
 import React, { useState } from "react";
+import * as Yup from "yup";
+import { FormProvider, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { CunninghamProvider } from ":/components/Provider";
 import { Button } from ":/components/Button";
 import { DateRangePicker } from ":/components/Forms/DatePicker/DateRangePicker";
 import { DatePicker } from ":/components/Forms/DatePicker/DatePicker";
+import { onSubmit } from ":/components/Forms/Examples/ReactHookForm/reactHookFormUtils";
+import { RhfDatePicker } from ":/components/Forms/DatePicker/stories-utils";
 
 export default {
   title: "Components/Forms/DatePicker",
@@ -131,6 +136,38 @@ export const Controlled = () => {
         />
         <Button onClick={() => setValue("")}>Reset</Button>
       </div>
+    </CunninghamProvider>
+  );
+};
+
+export const ReactHookForm = () => {
+  const methods = useForm({
+    defaultValues: {
+      date: "",
+    },
+    resolver: yupResolver(
+      Yup.object().shape({
+        date: Yup.string().required(),
+      }),
+    ),
+  });
+
+  return (
+    <CunninghamProvider>
+      <FormProvider {...methods}>
+        <form
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "1rem",
+            width: "400px",
+          }}
+          onSubmit={methods.handleSubmit(onSubmit)}
+        >
+          <RhfDatePicker name="date" label="Pick a date" fullWidth={true} />
+          <Button fullWidth={true}>Submit</Button>
+        </form>
+      </FormProvider>
     </CunninghamProvider>
   );
 };

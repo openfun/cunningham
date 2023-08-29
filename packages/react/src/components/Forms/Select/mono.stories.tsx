@@ -1,17 +1,14 @@
 import { Meta, StoryFn } from "@storybook/react";
 import React, { useState } from "react";
-import { useForm, Controller, ControllerRenderProps } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import * as Yup from "yup";
 import { faker } from "@faker-js/faker";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { onSubmit } from ":/components/Forms/Examples/ReactHookForm/reactHookFormUtils";
 import { Select } from ":/components/Forms/Select";
 import { Button } from ":/components/Button";
 import { CunninghamProvider } from ":/components/Provider";
-import {
-  getFieldState,
-  getFieldErrorMessage,
-  onSubmit,
-} from ":/tests/reactHookFormUtils";
+import { RhfSelect } from ":/components/Forms/Select/stories-utils";
 
 export default {
   title: "Components/Forms/Select/Mono",
@@ -160,87 +157,6 @@ export const SearchableControlled = () => {
         />
         <Button onClick={() => setValue("")}>Reset</Button>
       </div>
-    </CunninghamProvider>
-  );
-};
-
-export const ReactHookForm = () => {
-  enum CitiesOptionEnum {
-    NONE = "",
-    DIJON = "dijon",
-    PARIS = "paris",
-    TOKYO = "tokyo",
-  }
-
-  interface SelectExampleFormValues {
-    joTown: CitiesOptionEnum;
-  }
-
-  const selectExampleSchema = Yup.object().shape({
-    joTown: Yup.string()
-      .required()
-      .oneOf([CitiesOptionEnum.PARIS], "That's not the right town!"),
-  });
-
-  const { handleSubmit, formState, control } = useForm<SelectExampleFormValues>(
-    {
-      defaultValues: {
-        joTown: CitiesOptionEnum.NONE,
-      },
-      mode: "onChange",
-      reValidateMode: "onChange",
-      resolver: yupResolver(selectExampleSchema),
-    },
-  );
-
-  const renderSelect = ({
-    field,
-  }: {
-    field: ControllerRenderProps<SelectExampleFormValues, "joTown">;
-  }) => {
-    return (
-      <>
-        <div>Where will the 2024 Olympics take place?</div>
-        <Select
-          label="Select a city"
-          options={[
-            {
-              label: "Dijon",
-              value: CitiesOptionEnum.DIJON,
-            },
-            {
-              label: "Paris",
-              value: CitiesOptionEnum.PARIS,
-            },
-            {
-              label: "Tokyo",
-              value: CitiesOptionEnum.TOKYO,
-            },
-          ]}
-          state={getFieldState("joTown", formState)}
-          text={getFieldErrorMessage("joTown", formState)}
-          onBlur={field.onBlur}
-          onChange={field.onChange}
-          value={field.value}
-        />
-      </>
-    );
-  };
-
-  return (
-    <CunninghamProvider>
-      <form
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "1rem",
-          width: "400px",
-        }}
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <Controller control={control} name="joTown" render={renderSelect} />
-        <Button fullWidth={true}>Submit</Button>
-      </form>
     </CunninghamProvider>
   );
 };
@@ -402,6 +318,72 @@ export const FormExample = () => {
         </div>
         <Button>Submit</Button>
       </form>
+    </CunninghamProvider>
+  );
+};
+
+export const ReactHookForm = () => {
+  enum CitiesOptionEnum {
+    NONE = "",
+    DIJON = "dijon",
+    PARIS = "paris",
+    TOKYO = "tokyo",
+  }
+
+  interface SelectExampleFormValues {
+    joTown: CitiesOptionEnum;
+  }
+
+  const selectExampleSchema = Yup.object().shape({
+    joTown: Yup.string()
+      .required()
+      .oneOf([CitiesOptionEnum.PARIS], "That's not the right town!"),
+  });
+
+  const methods = useForm<SelectExampleFormValues>({
+    defaultValues: {
+      joTown: CitiesOptionEnum.NONE,
+    },
+    mode: "onChange",
+    reValidateMode: "onChange",
+    resolver: yupResolver(selectExampleSchema),
+  });
+
+  return (
+    <CunninghamProvider>
+      <FormProvider {...methods}>
+        <form
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "1rem",
+            width: "400px",
+          }}
+          onSubmit={methods.handleSubmit(onSubmit)}
+        >
+          <div>Where will the 2024 Olympics take place?</div>
+          <RhfSelect
+            name="joTown"
+            label="Select a city"
+            fullWidth={true}
+            options={[
+              {
+                label: "Dijon",
+                value: CitiesOptionEnum.DIJON,
+              },
+              {
+                label: "Paris",
+                value: CitiesOptionEnum.PARIS,
+              },
+              {
+                label: "Tokyo",
+                value: CitiesOptionEnum.TOKYO,
+              },
+            ]}
+          />
+          <Button fullWidth={true}>Submit</Button>
+        </form>
+      </FormProvider>
     </CunninghamProvider>
   );
 };

@@ -3,13 +3,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Meta, StoryFn } from "@storybook/react";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
-import { Checkbox, CheckboxGroup } from ":/components/Forms/Checkbox/index";
-import { Button } from ":/components/Button";
 import {
   getFieldState,
   getFieldErrorMessage,
   onSubmit,
-} from ":/tests/reactHookFormUtils";
+} from ":/components/Forms/Examples/ReactHookForm/reactHookFormUtils";
+import { Checkbox, CheckboxGroup } from ":/components/Forms/Checkbox/index";
+import { Button } from ":/components/Button";
 
 export default {
   title: "Components/Forms/Checkbox",

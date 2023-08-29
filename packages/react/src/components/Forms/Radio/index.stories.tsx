@@ -3,13 +3,13 @@ import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Meta, StoryFn } from "@storybook/react";
-import { Radio, RadioGroup } from ":/components/Forms/Radio/index";
-import { Button } from ":/components/Button";
 import {
   getFieldState,
   getFieldErrorMessage,
   onSubmit,
-} from ":/tests/reactHookFormUtils";
+} from ":/components/Forms/Examples/ReactHookForm/reactHookFormUtils";
+import { Radio, RadioGroup } from ":/components/Forms/Radio/index";
+import { Button } from ":/components/Button";
 
 export default {
   title: "Components/Forms/Radio",
