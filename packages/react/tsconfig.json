@@ -8,6 +8,6 @@
     "types": ["vitest/globals", "vite/client"]
   },
   "include": ["src", "cunningham.ts"],
-  "exclude": ["node_modules", "dist", "**/tokens.ts", "**/*.stories.tsx"],
+  "exclude": ["node_modules", "dist", "**/tokens.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
