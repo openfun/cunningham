@@ -17,17 +17,7 @@ export type CheckboxProps = InputHTMLAttributes<HTMLInputElement> &
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   (
-    {
-      indeterminate,
-      className = "",
-      checked,
-      label,
-      text,
-      textItems,
-      rightText,
-      state,
-      ...props
-    }: CheckboxProps,
+    { indeterminate, className = "", checked, label, ...props }: CheckboxProps,
     ref,
   ) => {
     const inputRef = useRef<HTMLInputElement>();
@@ -49,13 +39,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           "c__checkbox--disabled": props.disabled,
         })}
       >
-        <Field
-          text={text}
-          rightText={rightText}
-          compact={true}
-          state={state}
-          textItems={textItems}
-        >
+        <Field compact={true} {...props}>
           <div className="c__checkbox__container">
             <div className="c__checkbox__wrapper">
               <input
@@ -87,19 +71,10 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
 
 export const CheckboxGroup = ({
   children,
-  state,
-  text,
-  textItems,
-  rightText,
+  ...props
 }: PropsWithChildren & FieldProps) => {
   return (
-    <Field
-      className="c__checkbox__group"
-      state={state}
-      text={text}
-      textItems={textItems}
-      rightText={rightText}
-    >
+    <Field className="c__checkbox__group" {...props}>
       <div className="c__checkbox__group__list">{children}</div>
     </Field>
   );

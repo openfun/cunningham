@@ -29,11 +29,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       id,
       icon,
       rightIcon,
-      state = "default",
-      text,
-      textItems,
-      rightText,
-      fullWidth,
       charCounter,
       charCounterMax,
       ...props
@@ -51,7 +46,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const idToUse = useRef(id || randomString());
     const rightTextToUse = charCounter
       ? `${value.toString().length}/${charCounterMax}`
-      : rightText;
+      : props.rightText;
 
     const updateLabel = () => {
       if (inputFocus) {
@@ -74,20 +69,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     }, [props.value]);
 
     return (
-      <Field
-        state={state}
-        text={text}
-        textItems={textItems}
-        rightText={rightTextToUse}
-        fullWidth={fullWidth}
-      >
+      <Field {...props} rightText={rightTextToUse}>
         {/* We disabled linting for this specific line because we consider that the onClick props is only used for */}
         {/* mouse users, so this do not engender any issue for accessibility. */}
         {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
         <div
           className={classNames(
             "c__input__wrapper",
-            "c__input__wrapper--" + state,
+            "c__input__wrapper--" + props.state,
             {
               "c__input__wrapper--disabled": props.disabled,
             },
