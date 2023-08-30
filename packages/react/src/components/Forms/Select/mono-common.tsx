@@ -195,7 +195,6 @@ export const SelectMonoAux = ({
                     {...downshiftReturn.getItemProps({
                       item,
                       index,
-                      isActive,
                     })}
                   >
                     <span>{item.label}</span>
