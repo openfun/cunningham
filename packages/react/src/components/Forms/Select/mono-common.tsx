@@ -57,10 +57,6 @@ export interface SelectAuxProps extends SubProps {
 export const SelectMonoAux = ({
   children,
   state = "default",
-  text,
-  textItems,
-  rightText,
-  fullWidth,
   options,
   name,
   label,
@@ -72,6 +68,7 @@ export const SelectMonoAux = ({
   disabled,
   clearable = true,
   onBlur,
+  ...props
 }: SelectAuxProps) => {
   const { t } = useCunningham();
   const labelProps = downshiftReturn.getLabelProps();
@@ -88,13 +85,7 @@ export const SelectMonoAux = ({
   }, [value]);
 
   return (
-    <Field
-      state={state}
-      text={text}
-      textItems={textItems}
-      rightText={rightText}
-      fullWidth={fullWidth}
-    >
+    <Field state={state} {...props}>
       <div
         className={classNames(
           "c__select",
