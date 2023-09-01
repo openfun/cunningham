@@ -420,7 +420,7 @@ describe("<DatePicker/>", () => {
 
     // Date field's value should be set to a placeholder value.
     const dateFieldContent = screen.getByRole("presentation").textContent;
-    expect(dateFieldContent).eq("mm/dd/yyyy");
+    expect(dateFieldContent).eq("MM/DD/YYYY");
 
     const isGridCellSelected = screen
       .getByRole("gridcell", { name: "24" })!
