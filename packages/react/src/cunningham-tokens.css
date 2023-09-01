@@ -87,6 +87,15 @@
 	--c--theme--font--weights--black: 800;
 	--c--theme--font--families--base: "Roboto Flex Variable", sans-serif;
 	--c--theme--font--families--accent: "Roboto Flex Variable", sans-serif;
+	--c--theme--font--letterspacings--h1: normal;
+	--c--theme--font--letterspacings--h2: normal;
+	--c--theme--font--letterspacings--h3: normal;
+	--c--theme--font--letterspacings--h4: normal;
+	--c--theme--font--letterspacings--h5: 1px;
+	--c--theme--font--letterspacings--h6: normal;
+	--c--theme--font--letterspacings--l: normal;
+	--c--theme--font--letterspacings--m: normal;
+	--c--theme--font--letterspacings--s: normal;
 	--c--theme--spacings--xl: 4rem;
 	--c--theme--spacings--l: 3rem;
 	--c--theme--spacings--b: 1.625rem;
@@ -200,8 +209,13 @@
 	--c--components--button--border-radius--focus: 8px;
 	--c--components--button--medium-height: 48px;
 	--c--components--button--small-height: 32px;
+	--c--components--button--nano-height: 24px;
 	--c--components--button--medium-font-size: var(--c--theme--font--sizes--l);
+	--c--components--button--medium-icon-font-size: 1.5rem;
 	--c--components--button--small-font-size: var(--c--theme--font--sizes--m);
+	--c--components--button--small-icon-font-size: var(--c--theme--font--sizes--l);
+	--c--components--button--nano-font-size: var(--c--theme--font--sizes--m);
+	--c--components--button--nano-icon-font-size: var(--c--theme--font--sizes--l);
 	--c--components--button--font-weight: var(--c--theme--font--weights--regular);
 	--c--components--button--font-family: var(--c--theme--font--families--base);
 }
