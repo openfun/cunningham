@@ -197,6 +197,7 @@
 	--c--components--forms-checkbox--size: 1.5rem;
 	--c--components--button--border-radius: 8px;
 	--c--components--button--border-radius--active: 2px;
+	--c--components--button--border-radius--focus: 8px;
 	--c--components--button--medium-height: 48px;
 	--c--components--button--small-height: 32px;
 	--c--components--button--medium-font-size: var(--c--theme--font--sizes--l);
