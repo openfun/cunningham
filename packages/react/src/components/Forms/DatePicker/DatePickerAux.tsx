@@ -153,7 +153,9 @@ const DatePickerAux = forwardRef(
                   size="small"
                   className="c__date-picker__wrapper__toggle"
                   onClick={pickerState.toggle}
-                  icon={<span className="material-icons">calendar_today</span>}
+                  icon={
+                    <span className="material-icons icon">calendar_today</span>
+                  }
                   disabled={disabled}
                 />
               </div>
@@ -165,7 +167,7 @@ const DatePickerAux = forwardRef(
                     labelAsPlaceholder || disabled,
                 })}
                 color="tertiary"
-                size="small"
+                size="nano"
                 icon={<span className="material-icons">cancel</span>}
                 onClick={onClear}
                 aria-label={t(
