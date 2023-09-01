@@ -47,6 +47,9 @@
     img {
       max-width: 400px;
       width: 80%;
+      padding: 0.625rem;
+      border-radius: 0.625rem;
+      border: 1px var(--c--theme--colors--greyscale-300) solid;
     }
   }
 
