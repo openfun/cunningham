@@ -10,6 +10,11 @@
   transition: all var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
   user-select: none;
 
+  &__icon {
+    display: flex;
+    align-items: center;
+  }
+
   &:hover, &:focus-visible, &:active, &.c__button--active {
     border-radius: var(--c--components--button--border-radius--active);
   }
@@ -45,6 +50,10 @@
     &.c__button--icon-only {
       width: var(--c--components--button--medium-height);
     }
+
+    .c__button__icon, .c__button__icon * {
+      font-size: var(--c--components--button--medium-icon-font-size);
+    }
   }
 
   &--small {
@@ -54,6 +63,25 @@
 
     &.c__button--icon-only {
       width: var(--c--components--button--small-height);
+    }
+
+    .c__button__icon, .c__button__icon * {
+      font-size: var(--c--components--button--small-icon-font-size);
+    }
+  }
+
+
+  &--nano {
+    height: var(--c--components--button--nano-height);
+    font-size: var(--c--components--button--nano-font-size);
+    padding: 0 0.5rem;
+
+    &.c__button--icon-only {
+      width: var(--c--components--button--nano-height);
+    }
+
+    .c__button__icon, .c__button__icon * {
+      font-size: var(--c--components--button--nano-icon-font-size);
     }
   }
 
