@@ -743,8 +743,8 @@ describe("<DateRangePicker/>", () => {
 
     // Date field's value should be set to a placeholder value.
     const [startInput, endInput] = await screen.queryAllByRole("presentation");
-    expect(startInput.textContent).eq("mm/dd/yyyy");
-    expect(endInput.textContent).eq("mm/dd/yyyy");
+    expect(startInput.textContent).eq("MM/DD/YYYY");
+    expect(endInput.textContent).eq("MM/DD/YYYY");
 
     const startGridCell = screen.getByRole("gridcell", {
       name: "25",

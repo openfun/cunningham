@@ -37,7 +37,7 @@ const DateSegmentInput = ({
           (currentSegment.type === "literal" && previousSegment?.isPlaceholder),
       })}
     >
-      {currentSegment.text}
+      {currentSegment.text?.toUpperCase()}
     </div>
   );
 };
