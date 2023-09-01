@@ -18,7 +18,10 @@ export const cssGenerator: Generator = async (tokens, opts) => {
   const flatTokens = flatify(tokens, Config.sass.varSeparator);
   const cssVars = Object.keys(flatTokens).reduce((acc, token) => {
     return (
-      acc + `\t--${Config.sass.varPrefix}${token}: ${flatTokens[token]};\n`
+      acc +
+      `\t--${Config.sass.varPrefix}${token.toLowerCase()}: ${
+        flatTokens[token]
+      };\n`
     );
   }, "");
   let cssContent = `${opts.selector} {\n${cssVars}}`;
@@ -99,7 +102,10 @@ function generateFwClasses(tokens: Tokens) {
 function generateFsClasses(tokens: Tokens) {
   return Object.keys(tokens.theme.font.sizes).map(
     (key) =>
-      `.fs-${key} { font-size: var(--${Config.sass.varPrefix}theme--font--sizes--${key}); }`,
+      `.fs-${key} { 
+        font-size: var(--${Config.sass.varPrefix}theme--font--sizes--${key}); 
+        letter-spacing: var(--${Config.sass.varPrefix}theme--font--letterspacings--${key}); 
+      }`,
   );
 }
 
