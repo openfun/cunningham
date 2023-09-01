@@ -225,6 +225,8 @@ export const DataGrid = <T extends Row>({
                           key={cell.id}
                           className={classNames({
                             "c__datagrid__row__cell--highlight": highlight,
+                            "c__datagrid__row__cell--actions":
+                              cell.column.id === "actions",
                           })}
                         >
                           {flexRender(

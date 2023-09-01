@@ -272,8 +272,8 @@ export const DataListOnly = () => {
           { field: "title" },
           { field: "date" },
           {
-            headerName: "action",
-            id: "action",
+            headerName: "actions",
+            id: "actions",
             renderCell: () => {
               return (
                 <Button size="small" color="secondary">
