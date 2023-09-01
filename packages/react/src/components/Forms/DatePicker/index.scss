@@ -178,16 +178,6 @@
     }
   }
 
-  &--focused {
-    .c__date-picker__wrapper {
-      border-radius: var(--c--components--forms-datepicker--border-radius--focus);
-      border-color: var(--c--components--forms-datepicker--border-color--focus);
-
-      &__toggle {
-        color: var(--c--components--forms-datepicker--border-color--focus);
-      }
-    }}
-
   &:not(&--focused):not(&--invalid):not(&--disabled):not(&--success) {
     &:hover {
       .c__date-picker__wrapper {
@@ -195,6 +185,30 @@
         border-color: var(--c--components--forms-datepicker--border-color--hover);
       }
     }
+  }
+
+  /**
+   * Even if usually !important is evil, in this case it is on purpose. Focus styling most have a greater priority
+   * than :hover. But here hover has more css specificity, so we need !important.
+   */
+  @mixin focused-wrapper {
+    border-radius: var(--c--components--forms-datepicker--border-radius--focus) !important;
+    border-color: var(--c--components--forms-datepicker--border-color--focus) !important;
+
+    .c__date-picker__wrapper__toggle {
+      color: var(--c--components--forms-datepicker--border-color--focus) !important;
+    }
+  }
+
+  &--focused {
+    .c__date-picker__wrapper {
+      @include focused-wrapper;
+    }
+  }
+
+  .c__date-picker__wrapper:focus-visible {
+    outline: none;
+    @include focused-wrapper;
   }
 
   &__range {
