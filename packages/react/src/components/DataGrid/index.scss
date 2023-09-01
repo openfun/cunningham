@@ -117,6 +117,11 @@
       background-color: var(--c--theme--colors--greyscale-000);
     }
 
+    .c__datagrid__row__cell--select, .c__datagrid__header--select {
+      width: 0;
+      padding-right: 0;
+    }
+
   }
 
 }

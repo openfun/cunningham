@@ -165,7 +165,14 @@ export const DataGrid = <T extends Row>({
                     <tr key={headerGroup.id}>
                       {headerGroup.headers.map((header) => {
                         return (
-                          <th key={header.id} colSpan={header.colSpan}>
+                          <th
+                            key={header.id}
+                            colSpan={header.colSpan}
+                            className={classNames({
+                              "c__datagrid__header--select":
+                                header.id === "select",
+                            })}
+                          >
                             {header.isPlaceholder ? null : (
                               <div
                                 className={classNames(
@@ -198,9 +205,10 @@ export const DataGrid = <T extends Row>({
                                     arrow_drop_down
                                   </span>
                                 )}
-                                {!header.column.getIsSorted() && (
-                                  <span className="c__datagrid__header__icon-placeholder" />
-                                )}
+                                {header.id !== "select" &&
+                                  !header.column.getIsSorted() && (
+                                    <span className="c__datagrid__header__icon-placeholder" />
+                                  )}
                               </div>
                             )}
                           </th>
@@ -227,6 +235,8 @@ export const DataGrid = <T extends Row>({
                             "c__datagrid__row__cell--highlight": highlight,
                             "c__datagrid__row__cell--actions":
                               cell.column.id === "actions",
+                            "c__datagrid__row__cell--select":
+                              cell.column.id === "select",
                           })}
                         >
                           {flexRender(
