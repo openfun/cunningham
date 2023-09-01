@@ -168,10 +168,13 @@ export const DataGrid = <T extends Row>({
                           <th key={header.id} colSpan={header.colSpan}>
                             {header.isPlaceholder ? null : (
                               <div
-                                className={classNames("c__datagrid__header", {
-                                  "c__datagrid__header--sortable":
-                                    header.column.getCanSort(),
-                                })}
+                                className={classNames(
+                                  "c__datagrid__header fs-h5",
+                                  {
+                                    "c__datagrid__header--sortable":
+                                      header.column.getCanSort(),
+                                  },
+                                )}
                                 {...(header.column.getCanSort()
                                   ? {
                                       role: "button",
