@@ -16,7 +16,8 @@
 
   &:focus-visible {
     border-color: #FFF;
-    box-shadow: 0 0 0 4px var(--c--theme--colors--primary-400);
+    border-radius: var(--c--components--button--border-radius--focus);
+    box-shadow: 0 0 0 2px var(--c--theme--colors--primary-400);
     outline: none;
   }
 
@@ -26,7 +27,7 @@
 
   &:disabled {
     background-color: var(--c--theme--colors--greyscale-200);
-    color: var(--c--theme--colors--greyscale-400);
+    color: var(--c--theme--colors--greyscale-600);
     cursor: not-allowed;
     pointer-events: none;
   }
@@ -74,7 +75,7 @@
   }
 
   &--primary {
-    background-color: var(--c--theme--colors--primary-500);
+    background-color: var(--c--theme--colors--primary-400);
     color: var(--c--theme--colors--primary-text);
 
     &:hover, &:focus-visible {

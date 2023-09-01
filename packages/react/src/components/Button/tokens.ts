@@ -4,6 +4,7 @@ export const tokens = (defaults: DefaultTokens) => {
   return {
     "border-radius": "8px",
     "border-radius--active": "2px",
+    "border-radius--focus": "8px",
     "medium-height": "48px",
     "small-height": "32px",
     "medium-font-size": defaults.theme.font.sizes.l,
