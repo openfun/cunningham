@@ -101,6 +101,18 @@ const fontSizes = {
   s: "0.6875rem",
 };
 
+const fontLetterSpacings = {
+  h1: "normal",
+  h2: "normal",
+  h3: "normal",
+  h4: "normal",
+  h5: "1px",
+  h6: "normal",
+  l: "normal",
+  m: "normal",
+  s: "normal",
+};
+
 const fontWeights = {
   thin: 200,
   light: 300,
@@ -147,6 +159,7 @@ export default {
       sizes: fontSizes,
       weights: fontWeights,
       families: fontFamilies,
+      letterSpacings: fontLetterSpacings,
     },
     spacings,
     transitions,
