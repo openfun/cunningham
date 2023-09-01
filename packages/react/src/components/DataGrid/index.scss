@@ -105,6 +105,11 @@
           color: var(--c--theme--colors--greyscale-800);
           font-weight: var(--c--theme--font--weights--medium);
         }
+        &--actions {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+        }
       }
     }
 
