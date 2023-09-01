@@ -1,6 +1,6 @@
+import "../src/icons.scss";
 import "../src/index.scss";
 import "../src/fonts.scss";
-import "../src/icons.scss";
 import { Preview } from "@storybook/react";
 
 const preview: Preview = {
