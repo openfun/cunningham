@@ -1,7 +1,7 @@
 {
   "components": {
     "pagination": {
-      "goto_label": "Go to",
+      "goto_label": "Go to page",
       "goto_label_aria": "Go to any page",
       "next_aria": "Go to next page",
       "previous_aria": "Go to previous page",
