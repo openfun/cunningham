@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Button } from ":/components/Button";
 import { Input } from ":/components/Forms/Input";
 import { useCunningham } from ":/components/Provider";
@@ -47,6 +47,10 @@ export const Pagination = ({
   const { t } = useCunningham();
   const [gotoValue, setGotoValue] = useState("");
 
+  useEffect(() => {
+    setGotoValue(page + "");
+  }, [page]);
+
   if (pagesCount <= 1) {
     return null;
   }
@@ -83,14 +87,13 @@ export const Pagination = ({
 
   const gotoPage = () => {
     let value = +gotoValue;
-    if (value < 0) {
+    if (value < 0 || !value) {
       value = 1;
     }
     if (value > pagesCount) {
       value = pagesCount;
     }
     onPageChange(value);
-    setGotoValue("");
   };
 
   const canPrevious = page > 1;
@@ -161,6 +164,8 @@ export const Pagination = ({
             onChange={(e) => setGotoValue(e.target.value)}
             min={1}
             max={pagesCount}
+            onBlur={() => gotoPage()}
+            onFocus={(e) => e.target.select()}
           />
         </form>
       </div>
