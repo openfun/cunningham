@@ -70,6 +70,11 @@
         &--empty {
           color: var(--c--components--forms-field--color);
         }
+
+        &:focus-visible {
+          background-color: var(--c--theme--colors--primary-100);
+          outline: none;
+        }
       }
     }
 
