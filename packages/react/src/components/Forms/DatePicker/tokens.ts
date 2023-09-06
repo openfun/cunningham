@@ -25,4 +25,5 @@ export const tokens = (defaults: DefaultTokens) => ({
     defaults.theme.colors["greyscale-100"],
   "grid-cell--border-color--today": defaults.theme.colors["primary-600"],
   "grid-cell--color--today": defaults.theme.colors["primary-600"],
+  "label-color--focus": defaults.theme.colors["primary-600"],
 });
