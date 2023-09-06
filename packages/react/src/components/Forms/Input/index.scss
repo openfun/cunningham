@@ -102,9 +102,18 @@
   &--success {
     border-color: var(--c--theme--colors--success-600);
 
+    .labelled-box label {
+      color: var(--c--theme--colors--success-600);
+    }
+
     &:not(.c__input__wrapper--disabled) {
       &:hover {
-        border-color: var(--c--theme--colors--success-400);
+        border-color: var(--c--theme--colors--success-800);
+        color: var(--c--theme--colors--success-800);
+
+        .labelled-box label {
+          color: var(--c--theme--colors--success-800);
+        }
       }
     }
   }
