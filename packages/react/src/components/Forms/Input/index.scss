@@ -114,7 +114,12 @@
 
     &:not(.c__input__wrapper--disabled) {
       &:hover {
-        border-color: var(--c--theme--colors--danger-200);
+        border-color: var(--c--theme--colors--danger-800);
+        color: var(--c--theme--colors--danger-800);
+
+        label {
+          color: var(--c--theme--colors--danger-800);
+        }
       }
     }
   }
