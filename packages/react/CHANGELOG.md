@@ -1,5 +1,16 @@
 # @openfun/cunningham-react
 
+## 1.0.2
+
+### Minor Changes
+
+- 468c816: add RHF examples
+- b530e96: add textItems to Field
+
+### Patch Changes
+
+- a88aa1a: fix isActive console warning
+
 ## 1.0.1
 
 ### Patch Changes
@@ -208,7 +219,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.0.1...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.0.2...main
+[1.0.2]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.0.1...@openfun/cunningham-react@1.0.2
 [1.0.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.0.0...@openfun/cunningham-react@1.0.1
 [1.0.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.11.1...@openfun/cunningham-react@1.0.0
 [0.11.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.11.0...@openfun/cunningham-react@0.11.1
