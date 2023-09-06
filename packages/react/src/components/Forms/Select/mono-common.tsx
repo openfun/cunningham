@@ -123,6 +123,7 @@ export const SelectMonoAux = ({
             labelAsPlaceholder={labelAsPlaceholder}
             htmlFor={labelProps.htmlFor}
             labelId={labelProps.id}
+            disabled={disabled}
           >
             <div className="c__select__inner">
               <div className="c__select__inner__value">{children}</div>

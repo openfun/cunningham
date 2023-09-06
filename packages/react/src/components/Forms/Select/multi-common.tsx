@@ -108,6 +108,7 @@ export const SelectMultiAux = ({
             htmlFor={labelProps.htmlFor}
             labelId={labelProps.id}
             hideLabel={hideLabel}
+            disabled={disabled}
           >
             <div className="c__select__inner">
               <div className="c__select__inner__actions">

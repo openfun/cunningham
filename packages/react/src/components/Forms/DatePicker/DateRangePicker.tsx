@@ -96,6 +96,7 @@ export const DateRangePicker = ({
           label: startLabel,
           labelAsPlaceholder,
           onFocusChange: setIsFocused,
+          disabled: props.disabled,
         }}
       />
       <div className="c__date-picker__range__separator" />
@@ -105,6 +106,7 @@ export const DateRangePicker = ({
           label: endLabel,
           labelAsPlaceholder,
           onFocusChange: setIsFocused,
+          disabled: props.disabled,
         }}
       />
     </DatePickerAux>

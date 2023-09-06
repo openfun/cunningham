@@ -121,7 +121,8 @@
 	--c--components--forms-select--border-radius--hover: 2px;
 	--c--components--forms-select--border-style: solid;
 	--c--components--forms-select--border-width: 1px;
-	--c--components--forms-select--color: var(--c--theme--colors--greyscale-800);
+	--c--components--forms-select--value-color: var(--c--theme--colors--greyscale-900);
+	--c--components--forms-select--value-color--disabled: var(--c--theme--colors--greyscale-800);
 	--c--components--forms-select--font-size: var(--c--theme--font--sizes--l);
 	--c--components--forms-select--height: 3.5rem;
 	--c--components--forms-select--item-background-color--hover: var(--c--theme--colors--greyscale-200);
@@ -138,6 +139,10 @@
 	--c--components--forms-radio--border-color: var(--c--theme--colors--greyscale-300);
 	--c--components--forms-radio--accent-color: var(--c--theme--colors--success-700);
 	--c--components--forms-radio--background-color: white;
+	--c--components--forms-labelledbox--label-color--small: var(--c--theme--colors--greyscale-600);
+	--c--components--forms-labelledbox--label-color--big: var(--c--theme--colors--greyscale-900);
+	--c--components--forms-labelledbox--label-color--small--disabled: var(--c--theme--colors--greyscale-600);
+	--c--components--forms-labelledbox--label-color--big--disabled: var(--c--theme--colors--greyscale-600);
 	--c--components--forms-input--font-weight: var(--c--theme--font--weights--regular);
 	--c--components--forms-input--font-size: var(--c--theme--font--sizes--l);
 	--c--components--forms-input--border-radius: 8px;
@@ -148,9 +153,10 @@
 	--c--components--forms-input--border-color--hover: var(--c--theme--colors--greyscale-500);
 	--c--components--forms-input--border-color--focus: var(--c--theme--colors--primary-600);
 	--c--components--forms-input--border-style: solid;
-	--c--components--forms-input--color: var(--c--theme--colors--greyscale-800);
 	--c--components--forms-input--label-color--focus: var(--c--theme--colors--primary-600);
 	--c--components--forms-input--background-color: white;
+	--c--components--forms-input--value-color: var(--c--theme--colors--greyscale-900);
+	--c--components--forms-input--value-color--disabled: var(--c--theme--colors--greyscale-800);
 	--c--components--forms-fileuploader--background-color: white;
 	--c--components--forms-fileuploader--border-color: var(--c--theme--colors--greyscale-300);
 	--c--components--forms-fileuploader--border-radius: 0.5rem;
@@ -175,6 +181,7 @@
 	--c--components--forms-field--font-size: var(--c--theme--font--sizes--s);
 	--c--components--forms-field--color: var(--c--theme--colors--greyscale-600);
 	--c--components--forms-datepicker--border-color: var(--c--theme--colors--greyscale-300);
+	--c--components--forms-datepicker--border-color--disabled: var(--c--theme--colors--greyscale-200);
 	--c--components--forms-datepicker--border-color--focus: var(--c--theme--colors--primary-600);
 	--c--components--forms-datepicker--border-color--hover: var(--c--theme--colors--greyscale-500);
 	--c--components--forms-datepicker--border-radius: 8px;
@@ -182,7 +189,8 @@
 	--c--components--forms-datepicker--border-radius--hover: 2px;
 	--c--components--forms-datepicker--border-style: solid;
 	--c--components--forms-datepicker--border-width: 1px;
-	--c--components--forms-datepicker--color: var(--c--theme--colors--greyscale-800);
+	--c--components--forms-datepicker--value-color: var(--c--theme--colors--greyscale-900);
+	--c--components--forms-datepicker--value-color--disabled: var(--c--theme--colors--greyscale-800);
 	--c--components--forms-datepicker--font-size: var(--c--theme--font--sizes--l);
 	--c--components--forms-datepicker--height: 3.5rem;
 	--c--components--forms-datepicker--item-background-color--hover: var(--c--theme--colors--greyscale-200);

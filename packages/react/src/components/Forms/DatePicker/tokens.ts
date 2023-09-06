@@ -2,6 +2,7 @@ import { DefaultTokens } from "@openfun/cunningham-tokens";
 
 export const tokens = (defaults: DefaultTokens) => ({
   "border-color": defaults.theme.colors["greyscale-300"],
+  "border-color--disabled": defaults.theme.colors["greyscale-200"],
   "border-color--focus": defaults.theme.colors["primary-600"],
   "border-color--hover": defaults.theme.colors["greyscale-500"],
   "border-radius": "8px",
@@ -9,7 +10,8 @@ export const tokens = (defaults: DefaultTokens) => ({
   "border-radius--hover": "2px",
   "border-style": "solid",
   "border-width": "1px",
-  color: defaults.theme.colors["greyscale-800"],
+  "value-color": defaults.theme.colors["greyscale-900"],
+  "value-color--disabled": defaults.theme.colors["greyscale-800"],
   "font-size": defaults.theme.font.sizes.l,
   height: "3.5rem",
   "item-background-color--hover": defaults.theme.colors["greyscale-200"],
