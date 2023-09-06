@@ -203,6 +203,7 @@
 	--c--components--forms-datepicker--range-selection-background-color--disabled: var(--c--theme--colors--greyscale-100);
 	--c--components--forms-datepicker--grid-cell--border-color--today: var(--c--theme--colors--primary-600);
 	--c--components--forms-datepicker--grid-cell--color--today: var(--c--theme--colors--primary-600);
+	--c--components--forms-datepicker--label-color--focus: var(--c--theme--colors--primary-600);
 	--c--components--forms-checkbox--background-color--hover: var(--c--theme--colors--greyscale-200);
 	--c--components--forms-checkbox--background-color: white;
 	--c--components--forms-checkbox--font-size: var(--c--theme--font--sizes--m);

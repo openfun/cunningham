@@ -203,6 +203,10 @@
     .c__date-picker__wrapper__toggle {
       color: var(--c--components--forms-datepicker--border-color--focus) !important;
     }
+
+    label {
+      color: var(--c--components--forms-datepicker--label-color--focus);
+    }
   }
 
   &--focused {
