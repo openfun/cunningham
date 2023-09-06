@@ -189,11 +189,19 @@
 
     .c__select__wrapper {
       border-color: var(--c--theme--colors--success-600);
+
+      label {
+        color: var(--c--theme--colors-success-600);
+      }
     }
 
     &:not(.c__select__wrapper--disabled) {
       .c__select__wrapper:hover {
-        border-color: var(--c--theme--colors--success-400);
+        border-color: var(--c--theme--colors--success-800);
+
+        label {
+          color: var(--c--theme--colors--success-800);
+        }
       }
     }
   }

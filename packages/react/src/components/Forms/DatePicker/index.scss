@@ -170,9 +170,13 @@
     &:not(.c__date-picker--disabled) {
       &:hover {
         .c__date-picker__wrapper {
-          border-color: var(--c--theme--colors--success-200);
+          border-color: var(--c--theme--colors--success-800);
           &__toggle {
-            color: var(--c--theme--colors--success-200);
+            color: var(--c--theme--colors--success-800);
+          }
+
+          label {
+            color: var(--c--theme--colors--success-800);
           }
         }
       }
