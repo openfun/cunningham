@@ -77,6 +77,7 @@ export const DatePicker = (props: DatePickerProps) => {
           label: props.label,
           labelAsPlaceholder,
           onFocusChange: setIsFocused,
+          disabled: props.disabled,
         }}
       />
     </DatePickerAux>

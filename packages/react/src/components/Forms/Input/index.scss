@@ -9,7 +9,6 @@
   padding: 0 1rem;
   gap: 1rem;
   cursor: text;
-  color: var(--c--components--forms-input--color);
   box-sizing: border-box;
   height: 3.5rem;
 
@@ -22,7 +21,7 @@
     box-sizing: border-box;
     outline: 0;
     border: none;
-    color: var(--c--theme--colors--greyscale-800);
+    color: var(--c--components--forms-input--value-color);
     flex-grow: 1;
     text-overflow: ellipsis;
     background-color: transparent;
@@ -88,11 +87,11 @@
 
   &--disabled {
     cursor: default;
-    color: var(--c--theme--colors--greyscale-400);
+
     border-color: var(--c--theme--colors--greyscale-200);
 
-    .c__input, .labelled-box label {
-      color: var(--c--theme--colors--greyscale-600);
+    .c__input {
+      color: var(--c--components--forms-input--value-color--disabled);
     }
 
     &:hover {

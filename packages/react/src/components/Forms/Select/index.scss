@@ -12,7 +12,6 @@
     transition: border var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
     padding: 0 0.75rem;
     gap: 1rem;
-    color: var(--c--components--forms-select--color);
     box-sizing: border-box;
     height: var(--c--components--forms-select--height);
     cursor: pointer;
@@ -50,6 +49,7 @@
       text-overflow: ellipsis;
       flex-grow: 1;
       font-size: var(--c--components--forms-select--font-size);
+      color: var(--c--components--forms-select--value-color);
 
       input {
         outline: 0;
@@ -147,13 +147,15 @@
   &--disabled {
 
     .c__select__wrapper {
-      color: var(--c--theme--colors--greyscale-600);
       border-color: var(--c--theme--colors--greyscale-200);
       cursor: default;
 
       label, input {
         cursor: default;
-        color: var(--c--theme--colors--greyscale-600);
+      }
+
+      .c__select__inner__value {
+        color: var(--c--components--forms-select--value-color--disabled)
       }
     }
 

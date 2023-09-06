@@ -90,6 +90,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             label={label}
             htmlFor={idToUse.current}
             labelAsPlaceholder={labelAsPlaceholder}
+            disabled={props.disabled}
           >
             <input
               type="text"

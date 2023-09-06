@@ -11,11 +11,9 @@
     border-color: var(--c--components--forms-datepicker--border-color);
     border-style: var(--c--components--forms-datepicker--border-style);
     display: flex;
-
     transition: border var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
     padding: 0 0.75rem;
     gap: 1rem;
-    color: var(--c--components--forms-datepicker--color);
     box-sizing: border-box;
     height: var(--c--components--forms-datepicker--height);
     background-color: var(--c--components--forms-datepicker--background-color);
@@ -63,6 +61,7 @@
     &__value {
       display: flex;
       font-size: var(--c--components--forms-datepicker--font-size);
+      color: var(--c--components--forms-datepicker--value-color);
       overflow: hidden;
       flex-grow: 1;
 
@@ -99,22 +98,22 @@
   &--disabled {
     .c__date-picker__wrapper {
       color: var(--c--theme--colors--greyscale-600);
-      border-color: var(--c--theme--colors--greyscale-300);
+      border-color: var(--c--components--forms-datepicker--border-color--disabled);
       cursor: default;
       pointer-events: none;
-
-      label {
-        color: var(--c--theme--colors--greyscale-400);
-      }
 
       &__toggle {
         color: var(--c--theme--colors--greyscale-400);
       }
 
       .c__date-picker__inner {
-        color: var(--c--theme--colors--greyscale-600);
+
         &__action {
           color: var(--c--theme--colors--greyscale-400);
+        }
+
+        &__value {
+          color: var(--c--components--forms-datepicker--value-color--disabled);
         }
       }
 

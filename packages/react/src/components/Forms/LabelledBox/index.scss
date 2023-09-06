@@ -14,12 +14,12 @@
     left: 0;
     top: 0.5rem;
     transition: all var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
-    color: var(--c--theme--colors--greyscale-900);
-    opacity: 0.8;
+    color: var(--c--components--forms-labelledbox--label-color--small);
 
     &.placeholder {
       @extend %text-style;
       top: 16px;
+      color: var(--c--components--forms-labelledbox--label-color--big);
     }
   }
 
@@ -52,6 +52,16 @@
     .labelled-box__children {
       flex-grow: 1;
       padding: 0;
+    }
+  }
+
+  &--disabled {
+    label {
+      color: var(--c--components--forms-labelledbox--label-color--small--disabled);
+
+      &.placeholder {
+        color: var(--c--components--forms-labelledbox--label-color--big--disabled);
+      }
     }
   }
 }
