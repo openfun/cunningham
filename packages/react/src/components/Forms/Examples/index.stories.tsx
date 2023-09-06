@@ -1,5 +1,6 @@
 import { Meta } from "@storybook/react";
-import React from "react";
+import React, { useState } from "react";
+import { DatePicker, DateRangePicker } from ":/components/Forms/DatePicker";
 import { Input } from ":/components/Forms/Input";
 import { Checkbox } from ":/components/Forms/Checkbox";
 import { Button } from ":/components/Button";
@@ -136,6 +137,7 @@ export const Sports = () => {
           <Radio name="gender" label="Female" />
           <Radio name="gender" label="Other" />
         </div>
+        <DatePicker label="Date of birth" fullWidth={true} />
         <Select
           label="Competition"
           options={[
@@ -176,8 +178,128 @@ export const Sports = () => {
           ]}
           fullWidth={true}
         />
+        <DateRangePicker
+          startLabel="Start date"
+          endLabel="End date"
+          defaultValue={[
+            "2023-05-23T00:00:00.000+00:00",
+            "2023-06-23T00:00:00.000+00:00",
+          ]}
+          fullWidth={true}
+        />
         <Button fullWidth={true}>Apply</Button>
         <Button fullWidth={true} color="secondary">
+          Need help ?
+        </Button>
+      </form>
+    </CunninghamProvider>
+  );
+};
+export const SportsDisabled = () => {
+  const [withValues, setWithValues] = useState(false);
+  return (
+    <CunninghamProvider>
+      <form
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "1rem",
+          width: "400px",
+        }}
+      >
+        <h1
+          className="fs-h3 fw-bold clr-greyscale-900"
+          style={{ textAlign: "center" }}
+        >
+          Register
+        </h1>
+        <div style={{ display: "flex", gap: "1rem" }}>
+          <Input
+            label="First name"
+            disabled={true}
+            value={withValues ? "John" : undefined}
+          />
+          <Input label="Last name" disabled={true} />
+        </div>
+
+        <div style={{ display: "flex", gap: "0.5rem" }}>
+          <Radio name="gender" label="Male" fullWidth={true} disabled={true} />
+          <Radio name="gender" label="Female" disabled={true} />
+          <Radio name="gender" label="Other" disabled={true} />
+        </div>
+        <DatePicker
+          label="Date of birth"
+          fullWidth={true}
+          disabled={true}
+          value={withValues ? "2023-05-23T00:00:00.000+00:00" : undefined}
+        />
+        <Select
+          disabled={true}
+          label="Competition"
+          options={[
+            {
+              label: "Athletics",
+            },
+            {
+              label: "Swimming",
+            },
+            {
+              label: "Marathon",
+            },
+          ]}
+          fullWidth={true}
+          value={withValues ? "Swimming" : undefined}
+        />
+        <Select
+          disabled={true}
+          label="Previous rewards"
+          multi={true}
+          options={[
+            {
+              label: "Bronze",
+            },
+            {
+              label: "Silver",
+            },
+            {
+              label: "Gold",
+            },
+            {
+              label: "Flocon",
+            },
+            {
+              label: "Ourson",
+            },
+            {
+              label: "Chamois",
+            },
+          ]}
+          fullWidth={true}
+          value={withValues ? ["Silver"] : undefined}
+        />
+        <DateRangePicker
+          startLabel="Start date"
+          endLabel="End date"
+          value={
+            withValues
+              ? [
+                  "2023-05-23T00:00:00.000+00:00",
+                  "2023-06-23T00:00:00.000+00:00",
+                ]
+              : undefined
+          }
+          fullWidth={true}
+          disabled={true}
+        />
+        <Switch
+          label="Enable values"
+          checked={withValues}
+          onChange={(e) => setWithValues(e.target.checked)}
+        />
+        <Button fullWidth={true} disabled={true}>
+          Apply
+        </Button>
+        <Button fullWidth={true} color="secondary" disabled={true}>
           Need help ?
         </Button>
       </form>
