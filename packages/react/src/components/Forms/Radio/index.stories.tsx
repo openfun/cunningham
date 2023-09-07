@@ -59,6 +59,17 @@ export const WithText = {
   },
 };
 
+export const FullWidth = {
+  render: Template,
+
+  args: {
+    checked: true,
+    fullWidth: true,
+    label: "Label",
+    text: "This is an optional text",
+  },
+};
+
 export const Disabled = {
   render: Template,
 
