@@ -17,6 +17,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
       <label
         className={classNames("c__checkbox", "c__radio", {
           "c__checkbox--disabled": props.disabled,
+          "c__checkbox--full-width": props.fullWidth,
         })}
       >
         <Field compact={true} {...props}>

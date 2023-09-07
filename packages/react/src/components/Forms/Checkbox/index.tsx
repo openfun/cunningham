@@ -37,6 +37,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       <label
         className={classNames("c__checkbox", {
           "c__checkbox--disabled": props.disabled,
+          "c__checkbox--full-width": props.fullWidth,
         })}
       >
         <Field compact={true} {...props}>

@@ -125,4 +125,12 @@
       color: var(--c--theme--colors--greyscale-600);
     }
   }
+
+  &--full-width {
+    width: 100%;
+
+    .c__field {
+      align-items: flex-start;
+    }
+  }
 }
