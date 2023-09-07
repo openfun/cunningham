@@ -8,6 +8,6 @@ export const tokens = (defaults: DefaultTokens) => ({
   color: defaults.theme.colors["greyscale-900"],
   "border-color": defaults.theme.colors["greyscale-300"],
   "border-radius": "2px",
-  "accent-color": defaults.theme.colors["success-700"],
+  "accent-color": defaults.theme.colors["success-600"],
   size: "1.5rem",
 });

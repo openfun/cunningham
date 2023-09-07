@@ -137,7 +137,7 @@
 	--c--components--forms-select--multi-pill-border-radius: 2px;
 	--c--components--forms-select--multi-pill-max-width: 68%;
 	--c--components--forms-radio--border-color: var(--c--theme--colors--greyscale-300);
-	--c--components--forms-radio--accent-color: var(--c--theme--colors--success-700);
+	--c--components--forms-radio--accent-color: var(--c--theme--colors--success-600);
 	--c--components--forms-radio--background-color: white;
 	--c--components--forms-labelledbox--label-color--small: var(--c--theme--colors--greyscale-600);
 	--c--components--forms-labelledbox--label-color--big: var(--c--theme--colors--greyscale-900);
@@ -211,7 +211,7 @@
 	--c--components--forms-checkbox--color: var(--c--theme--colors--greyscale-900);
 	--c--components--forms-checkbox--border-color: var(--c--theme--colors--greyscale-300);
 	--c--components--forms-checkbox--border-radius: 2px;
-	--c--components--forms-checkbox--accent-color: var(--c--theme--colors--success-700);
+	--c--components--forms-checkbox--accent-color: var(--c--theme--colors--success-600);
 	--c--components--forms-checkbox--size: 1.5rem;
 	--c--components--button--border-radius: 8px;
 	--c--components--button--border-radius--active: 2px;
