@@ -160,7 +160,7 @@
 	--c--components--forms-fileuploader--background-color: white;
 	--c--components--forms-fileuploader--border-color: var(--c--theme--colors--greyscale-300);
 	--c--components--forms-fileuploader--border-radius: 0.5rem;
-	--c--components--forms-fileuploader--border-width: 1px;
+	--c--components--forms-fileuploader--border-width: 2px;
 	--c--components--forms-fileuploader--border-style: dotted;
 	--c--components--forms-fileuploader--background-color--active: var(--c--theme--colors--primary-100);
 	--c--components--forms-fileuploader--color: var(--c--theme--colors--greyscale-900);

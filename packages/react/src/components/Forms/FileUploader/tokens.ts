@@ -4,7 +4,7 @@ export const tokens = (defaults: DefaultTokens) => ({
   "background-color": "white",
   "border-color": defaults.theme.colors["greyscale-300"],
   "border-radius": "0.5rem",
-  "border-width": "1px",
+  "border-width": "2px",
   "border-style": "dotted",
   "background-color--active": defaults.theme.colors["primary-100"],
   color: defaults.theme.colors["greyscale-900"],
