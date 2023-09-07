@@ -22,8 +22,12 @@
     }
   }
 
-  &__text, &__text-right {
+  &__text {
     word-break: break-word;
+  }
+
+  &__text__right {
+    margin-left: 0.75rem;
   }
 
   &--error {
