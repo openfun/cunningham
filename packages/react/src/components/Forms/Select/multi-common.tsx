@@ -116,7 +116,7 @@ export const SelectMultiAux = ({
                   <>
                     <Button
                       color="tertiary"
-                      size="small"
+                      size="nano"
                       aria-label={t(
                         "components.forms.select.clear_all_button_aria_label",
                       )}
@@ -132,7 +132,7 @@ export const SelectMultiAux = ({
                 )}
                 <Button
                   color="tertiary"
-                  size="small"
+                  size="nano"
                   className="c__select__inner__actions__open"
                   icon={
                     <span

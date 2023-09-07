@@ -65,6 +65,7 @@
       position: relative;
       top: 3px;
       display: flex;
+      gap: 0.5rem;
       align-items: center;
       // This is made to avoid this relative element to force its container height.
       height: 0;
