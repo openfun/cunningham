@@ -93,13 +93,14 @@
     font-size: var(--c--components--forms-fileuploader--file-text-size);
     font-weight: var(--c--components--forms-fileuploader--file-text-weight);
     color: var(--c--components--forms-fileuploader--file-text-color);
+    height: 2.5rem;
+    padding: 0 .75rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     overflow: hidden;
 
     &__name {
-      padding: 0.5rem;
       min-width: 0;
       text-overflow: ellipsis;
       overflow: hidden;
@@ -112,6 +113,7 @@
       font-size: var(--c--components--forms-fileuploader--file-specs-size);
       color: var(--c--components--forms-fileuploader--file-specs-color);
       flex-shrink: 0;
+      gap: 0.5rem;
 
       .material-icons {
         font-size: 1rem;
