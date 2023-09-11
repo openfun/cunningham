@@ -1,9 +1,20 @@
 import userEvent from "@testing-library/user-event";
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { Radio, RadioGroup } from ":/components/Forms/Radio/index";
+import { FieldProps } from "../Field";
+import {
+  Radio,
+  RadioGroup,
+  RadioOnlyProps,
+} from ":/components/Forms/Radio/index";
+
+const spyError = vi.spyOn(global.console, "error");
 
 describe("<Radio/>", () => {
+  afterAll(() => {
+    spyError.mockRestore();
+  });
+
   it("should render", async () => {
     render(<Radio label="Yes" />);
     expect(screen.getByLabelText("Yes")).toBeInTheDocument();
@@ -110,5 +121,21 @@ describe("<Radio/>", () => {
     expect(
       document.querySelector(".c__radio__group.c__field.c__field--error"),
     ).toBeInTheDocument();
+  });
+
+  it("checks the props doesn't create error warning", async () => {
+    const propsInput: Required<FieldProps & RadioOnlyProps> = {
+      label: "First name",
+      fullWidth: true,
+      className: "c__field--full-width",
+      compact: false,
+      state: "default",
+      text: "my text",
+      textItems: ["my text item 1", "my text item 2"],
+      rightText: "my right text",
+    };
+
+    render(<Radio {...propsInput} />);
+    expect(spyError).not.toHaveBeenCalled();
   });
 });

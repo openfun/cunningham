@@ -9,11 +9,14 @@ import React, {
 import classNames from "classnames";
 import { Field, FieldProps } from ":/components/Forms/Field";
 
+export type CheckboxOnlyProps = {
+  indeterminate?: boolean;
+  label?: string;
+};
+
 export type CheckboxProps = InputHTMLAttributes<HTMLInputElement> &
-  FieldProps & {
-    indeterminate?: boolean;
-    label?: string;
-  };
+  FieldProps &
+  CheckboxOnlyProps;
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   (
@@ -33,6 +36,16 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       }
     }, [indeterminate]);
 
+    const {
+      compact,
+      fullWidth,
+      rightText,
+      state,
+      text,
+      textItems,
+      ...inputProps
+    } = props;
+
     return (
       <label
         className={classNames("c__checkbox", {
@@ -46,7 +59,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
               <input
                 type="checkbox"
                 className={className}
-                {...props}
+                {...inputProps}
                 onChange={(e) => {
                   setValue(e.target.checked);
                   props.onChange?.(e);
