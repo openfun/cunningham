@@ -56,7 +56,13 @@
           "sibling",
           "index"
         ],
-        "alphabetize": { "order": "ignore" }
+        "alphabetize": { "order": "ignore" },
+        "pathGroups": [
+          {
+            "pattern": "+(:)/**",
+            "group": "internal"
+          }
+        ]
       }
     ],
     "import/prefer-default-export": "off",

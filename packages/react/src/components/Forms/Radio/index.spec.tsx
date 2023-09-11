@@ -1,12 +1,12 @@
 import userEvent from "@testing-library/user-event";
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { FieldProps } from "../Field";
 import {
   Radio,
   RadioGroup,
   RadioOnlyProps,
 } from ":/components/Forms/Radio/index";
+import { FieldProps } from "../Field";
 
 const spyError = vi.spyOn(global.console, "error");
 

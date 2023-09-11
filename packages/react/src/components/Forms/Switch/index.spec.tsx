@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
 import userEvent from "@testing-library/user-event";
-import { FieldProps } from "../Field";
 import { Switch, SwitchOnlyProps } from ":/components/Forms/Switch/index";
+import { FieldProps } from "../Field";
 
 const spyError = vi.spyOn(global.console, "error");
 

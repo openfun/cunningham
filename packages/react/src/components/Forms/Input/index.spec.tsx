@@ -2,9 +2,9 @@ import { render, screen, waitFor } from "@testing-library/react";
 import React, { useRef } from "react";
 import userEvent from "@testing-library/user-event";
 import { expect } from "vitest";
-import { FieldProps } from "../Field";
 import { Input, InputOnlyProps } from ":/components/Forms/Input/index";
 import { Button } from ":/components/Button";
+import { FieldProps } from "../Field";
 
 const spyError = vi.spyOn(global.console, "error");
 

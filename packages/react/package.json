@@ -25,7 +25,7 @@
     "dist/"
   ],
   "scripts": {
-    "lint": "eslint . 'src/**/*.{ts,tsx}'",
+    "lint": "eslint . \"src/**/*.{ts,tsx}\"",
     "dev": "yarn storybook",
     "build": "bash ./build",
     "build:watch": "yarn build && vite build --mode watch",
