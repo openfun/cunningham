@@ -64,6 +64,31 @@ export const Sports = () => {
           >
             Register
           </h1>
+
+          <div>
+            <div className="fs-l clr-greyscale-800 mb-t">Gender</div>
+            <RadioGroup
+              state={getFieldState("gender", methods.formState)}
+              text={getFieldErrorMessage("gender", methods.formState)}
+              style={{ display: "flex", flexDirection: "row", gap: "0.5rem" }}
+            >
+              <Radio
+                label="Male"
+                state={getFieldState("gender", methods.formState)}
+                {...methods.register("gender")}
+              />
+              <Radio
+                label="Female"
+                state={getFieldState("gender", methods.formState)}
+                {...methods.register("gender")}
+              />
+              <Radio
+                label="Other"
+                state={getFieldState("gender", methods.formState)}
+                {...methods.register("gender")}
+              />
+            </RadioGroup>
+          </div>
           <div style={{ display: "flex", gap: "1rem" }}>
             <Input
               label="First name"
@@ -79,27 +104,6 @@ export const Sports = () => {
             />
           </div>
 
-          <RadioGroup
-            state={getFieldState("gender", methods.formState)}
-            text={getFieldErrorMessage("gender", methods.formState)}
-            style={{ display: "flex", flexDirection: "row", gap: "0.5rem" }}
-          >
-            <Radio
-              label="Male"
-              state={getFieldState("gender", methods.formState)}
-              {...methods.register("gender")}
-            />
-            <Radio
-              label="Female"
-              state={getFieldState("gender", methods.formState)}
-              {...methods.register("gender")}
-            />
-            <Radio
-              label="Other"
-              state={getFieldState("gender", methods.formState)}
-              {...methods.register("gender")}
-            />
-          </RadioGroup>
           <RhfSelect
             name="competition"
             label="Competition"
@@ -143,9 +147,13 @@ export const Sports = () => {
             fullWidth={true}
           />
           <Button fullWidth={true}>Apply</Button>
-          <Button fullWidth={true} color="secondary">
+          <a
+            href="/#"
+            className="clr-greyscale-800 fs-m"
+            style={{ textAlign: "center" }}
+          >
             Need help ?
-          </Button>
+          </a>
         </form>
       </FormProvider>
     </CunninghamProvider>
