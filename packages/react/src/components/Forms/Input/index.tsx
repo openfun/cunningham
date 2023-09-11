@@ -11,14 +11,17 @@ import { randomString } from ":/utils";
 import { Field, FieldProps } from ":/components/Forms/Field";
 import { LabelledBox } from ":/components/Forms/LabelledBox";
 
+export type InputOnlyProps = {
+  label?: string;
+  icon?: ReactNode;
+  rightIcon?: ReactNode;
+  charCounter?: boolean;
+  charCounterMax?: number;
+};
+
 export type InputProps = InputHTMLAttributes<HTMLInputElement> &
-  FieldProps & {
-    label?: string;
-    icon?: ReactNode;
-    rightIcon?: ReactNode;
-    charCounter?: boolean;
-    charCounterMax?: number;
-  };
+  FieldProps &
+  InputOnlyProps;
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
@@ -68,6 +71,16 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       setValue(props.value || "");
     }, [props.value]);
 
+    const {
+      compact,
+      fullWidth,
+      rightText,
+      state,
+      text,
+      textItems,
+      ...inputProps
+    } = props;
+
     return (
       <Field {...props} rightText={rightTextToUse}>
         {/* We disabled linting for this specific line because we consider that the onClick props is only used for */}
@@ -76,7 +89,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         <div
           className={classNames(
             "c__input__wrapper",
-            "c__input__wrapper--" + props.state,
+            props.state && "c__input__wrapper--" + props.state,
             {
               "c__input__wrapper--disabled": props.disabled,
             },
@@ -95,7 +108,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             <input
               type="text"
               className={classes.join(" ")}
-              {...props}
+              {...inputProps}
               id={idToUse.current}
               value={value}
               onFocus={(e) => {

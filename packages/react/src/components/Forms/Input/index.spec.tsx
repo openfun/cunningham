@@ -2,10 +2,17 @@ import { render, screen, waitFor } from "@testing-library/react";
 import React, { useRef } from "react";
 import userEvent from "@testing-library/user-event";
 import { expect } from "vitest";
-import { Input } from ":/components/Forms/Input/index";
+import { FieldProps } from "../Field";
+import { Input, InputOnlyProps } from ":/components/Forms/Input/index";
 import { Button } from ":/components/Button";
 
+const spyError = vi.spyOn(global.console, "error");
+
 describe("<Input/>", () => {
+  afterAll(() => {
+    spyError.mockRestore();
+  });
+
   it("renders and can type", async () => {
     const user = userEvent.setup();
     render(<Input label="First name" />);
@@ -207,5 +214,25 @@ describe("<Input/>", () => {
     screen.getByText("Value: I am controlledJohn.");
     await user.clear(input);
     screen.getByText("Value: .");
+  });
+
+  it("checks the props doesn't create error warning", async () => {
+    const propsInput: Required<FieldProps & InputOnlyProps> = {
+      label: "First name",
+      fullWidth: true,
+      charCounter: true,
+      charCounterMax: 15,
+      className: "c__field--full-width",
+      compact: false,
+      state: "default",
+      icon: "my icon",
+      rightIcon: "my right icon",
+      text: "my text",
+      textItems: ["my text item 1", "my text item 2"],
+      rightText: "my right text",
+    };
+
+    render(<Input {...propsInput} />);
+    expect(spyError).not.toHaveBeenCalled();
   });
 });

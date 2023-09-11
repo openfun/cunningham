@@ -1,9 +1,20 @@
 import userEvent from "@testing-library/user-event";
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { Checkbox, CheckboxGroup } from ":/components/Forms/Checkbox/index";
+import { FieldProps } from "../Field";
+import {
+  Checkbox,
+  CheckboxGroup,
+  CheckboxOnlyProps,
+} from ":/components/Forms/Checkbox/index";
+
+const spyError = vi.spyOn(global.console, "error");
 
 describe("<Checkbox/>", () => {
+  afterAll(() => {
+    spyError.mockRestore();
+  });
+
   it("renders and can be checked", async () => {
     const user = userEvent.setup();
     render(<Checkbox label="Agree" />);
@@ -105,5 +116,22 @@ describe("<Checkbox/>", () => {
     expect(
       document.querySelector(".c__checkbox__group.c__field.c__field--error"),
     ).toBeInTheDocument();
+  });
+
+  it("checks the props doesn't create error warning", async () => {
+    const propsInput: Required<FieldProps & CheckboxOnlyProps> = {
+      label: "First name",
+      fullWidth: true,
+      className: "c__field--full-width",
+      compact: false,
+      state: "default",
+      text: "my text",
+      textItems: ["my text item 1", "my text item 2"],
+      rightText: "my right text",
+      indeterminate: true,
+    };
+
+    render(<Checkbox {...propsInput} />);
+    expect(spyError).not.toHaveBeenCalled();
   });
 });

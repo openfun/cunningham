@@ -1,9 +1,16 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
 import userEvent from "@testing-library/user-event";
-import { Switch } from ":/components/Forms/Switch/index";
+import { FieldProps } from "../Field";
+import { Switch, SwitchOnlyProps } from ":/components/Forms/Switch/index";
+
+const spyError = vi.spyOn(global.console, "error");
 
 describe("<Switch/>", () => {
+  afterAll(() => {
+    spyError.mockRestore();
+  });
+
   it("renders and can be checked", async () => {
     const user = userEvent.setup();
     render(<Switch label="Newsletter" />);
@@ -131,5 +138,22 @@ describe("<Switch/>", () => {
     await userEvent.click(input);
     expect(input.checked).toEqual(false);
     screen.queryByText("Value: false.");
+  });
+
+  it("checks the props doesn't create error warning", async () => {
+    const propsInput: Required<FieldProps & SwitchOnlyProps> = {
+      label: "First name",
+      fullWidth: true,
+      className: "c__field--full-width",
+      compact: false,
+      state: "default",
+      text: "my text",
+      textItems: ["my text item 1", "my text item 2"],
+      rightText: "my right text",
+      labelSide: "right",
+    };
+
+    render(<Switch {...propsInput} />);
+    expect(spyError).not.toHaveBeenCalled();
   });
 });

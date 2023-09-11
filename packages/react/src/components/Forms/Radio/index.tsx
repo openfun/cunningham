@@ -6,13 +6,26 @@ import React, {
 import classNames from "classnames";
 import { Field, FieldProps } from ":/components/Forms/Field";
 
+export type RadioOnlyProps = {
+  label?: string;
+};
+
 export type RadioProps = InputHTMLAttributes<HTMLInputElement> &
-  FieldProps & {
-    label?: string;
-  };
+  FieldProps &
+  RadioOnlyProps;
 
 export const Radio = forwardRef<HTMLInputElement, RadioProps>(
   ({ label, ...props }: RadioProps, ref) => {
+    const {
+      compact,
+      fullWidth,
+      rightText,
+      state,
+      text,
+      textItems,
+      ...inputProps
+    } = props;
+
     return (
       <label
         className={classNames("c__checkbox", "c__radio", {
@@ -22,7 +35,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
       >
         <Field compact={true} {...props}>
           <div className="c__checkbox__container">
-            <input type="radio" {...props} ref={ref} />
+            <input type="radio" {...inputProps} ref={ref} />
             {label && <div className="c__checkbox__label">{label}</div>}
           </div>
         </Field>
