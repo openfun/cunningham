@@ -1,5 +1,11 @@
 # @openfun/cunningham-tokens
 
+## 1.0.1
+
+### Patch Changes
+
+- 6236729: fix letter spacings
+
 ## 1.0.0
 
 ### Major Changes
@@ -70,7 +76,8 @@
 - 4ebbf16: Add utility classes
 - 4ebbf16: Add official design tokens
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@1.0.0...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@1.0.1...main
+[1.0.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@1.0.0...@openfun/cunningham-tokens@1.0.1
 [1.0.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@0.7.1...@openfun/cunningham-tokens@1.0.0
 [0.7.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@0.7.0...@openfun/cunningham-tokens@0.7.1
 [0.7.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@0.6.0...@openfun/cunningham-tokens@0.7.0

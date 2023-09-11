@@ -1,5 +1,33 @@
 # @openfun/cunningham-react
 
+## 1.1.0
+
+### Minor Changes
+
+- 9de9a97: improve Select actions ui
+- 32b8dc0: make DatePicker placeholders uppercase
+- 9be1ec5: make the DataGrid checkboxes column the smallest possible
+- 9a349c1: fix Select and Input error colors
+- c002896: add Button nano size
+- 94f392e: update DatePicker error color
+- 37772a4: add a background color to DatePicker segments
+- c90f66f: hide input number arrows
+- 09e474c: improve Pagination behavior
+- cf542e4: fix DatePicker, Select, Input success colors
+- d36e314: improve FileUploader style
+- c7000f3: fix props not recognized on the input element
+- 1c45b93: homogenize form fields colors
+- cf299d9: add auto right alignment for the actions column in DataGrid
+
+### Patch Changes
+
+- 4e6e5a2: fix button style
+- 4d2a5d1: improve DataGrid's empty placeholder's ui
+- 495f7d3: Fix DatePicker focus style
+- 6257dd9: fix DatePicker label focused
+- 7128e7f: using correct fs- class for DataGrid headers
+- 8fd34ad: fix Radio, Checkbox fullWidth
+
 ## 1.0.2
 
 ### Minor Changes
@@ -219,7 +247,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.0.2...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.1.0...main
+[1.1.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.0.2...@openfun/cunningham-react@1.1.0
 [1.0.2]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.0.1...@openfun/cunningham-react@1.0.2
 [1.0.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.0.0...@openfun/cunningham-react@1.0.1
 [1.0.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@0.11.1...@openfun/cunningham-react@1.0.0
