@@ -46,7 +46,7 @@ export const Login = () => {
         display: "flex",
         flexDirection: "column",
         gap: "1rem",
-        width: "400px",
+        width: "300px",
       }}
       onSubmit={handleSubmit(onSubmit)}
     >
@@ -54,10 +54,10 @@ export const Login = () => {
         className="fs-h3 fw-bold clr-greyscale-900"
         style={{ textAlign: "center" }}
       >
-        Please log-in!
+        Log in
       </h1>
       <Input
-        label="Email address"
+        label="Email"
         fullWidth={true}
         state={getFieldState("email", formState)}
         text={getFieldErrorMessage("email", formState)}
@@ -67,7 +67,9 @@ export const Login = () => {
         label="Password"
         state={getFieldState("password", formState)}
         type="password"
-        text={getFieldErrorMessage("password", formState)}
+        text={
+          getFieldErrorMessage("password", formState) || "Forgot your password?"
+        }
         fullWidth={true}
         {...register("password")}
       />
@@ -79,7 +81,13 @@ export const Login = () => {
           {...register("rememberMe")}
         />
       </div>
-      <Button fullWidth={true}>Log-in</Button>
+      <Button fullWidth={true}>Log in</Button>
+      <div className="fs-m clr-greyscale-800" style={{ textAlign: "center" }}>
+        You do not have an account?{" "}
+        <a href="/#" className="clr-greyscale-800">
+          Register
+        </a>
+      </div>
     </form>
   );
 };
