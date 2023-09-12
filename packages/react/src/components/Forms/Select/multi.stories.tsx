@@ -213,6 +213,14 @@ export const Error = {
   },
 };
 
+export const NoOptions = {
+  render: Template,
+  args: {
+    label: "No options available",
+    options: [],
+  },
+};
+
 export const FormExample = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

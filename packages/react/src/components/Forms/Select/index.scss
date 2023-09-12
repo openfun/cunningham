@@ -141,6 +141,11 @@
         cursor: default;
       }
     }
+
+    &__empty-placeholder {
+      color: var(--c--theme--colors--greyscale-600);
+      font-style: italic;
+    }
   }
 
   /** Modifiers */

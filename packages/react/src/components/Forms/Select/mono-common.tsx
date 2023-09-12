@@ -174,27 +174,35 @@ export const SelectMonoAux = ({
           {...downshiftReturn.getMenuProps()}
         >
           <ul>
-            {downshiftReturn.isOpen &&
-              options.map((item, index) => {
-                const isActive = index === downshiftReturn.highlightedIndex;
-                return (
-                  <li
-                    className={classNames("c__select__menu__item", {
-                      "c__select__menu__item--highlight": isActive,
-                      "c__select__menu__item--selected":
-                        downshiftReturn.selectedItem === item,
-                      "c__select__menu__item--disabled": item.disabled,
-                    })}
-                    key={`${item.value}${index}`}
-                    {...downshiftReturn.getItemProps({
-                      item,
-                      index,
-                    })}
-                  >
-                    <span>{item.label}</span>
+            {downshiftReturn.isOpen && (
+              <>
+                {options.map((item, index) => {
+                  const isActive = index === downshiftReturn.highlightedIndex;
+                  return (
+                    <li
+                      className={classNames("c__select__menu__item", {
+                        "c__select__menu__item--highlight": isActive,
+                        "c__select__menu__item--selected":
+                          downshiftReturn.selectedItem === item,
+                        "c__select__menu__item--disabled": item.disabled,
+                      })}
+                      key={`${item.value}${index.toString()}`}
+                      {...downshiftReturn.getItemProps({
+                        item,
+                        index,
+                      })}
+                    >
+                      <span>{item.label}</span>
+                    </li>
+                  );
+                })}
+                {options.length === 0 && (
+                  <li className="c__select__menu__item c__select__menu__empty-placeholder">
+                    {t("components.forms.select.menu_empty_placeholder")}
                   </li>
-                );
-              })}
+                )}
+              </>
+            )}
           </ul>
         </div>
       </div>
