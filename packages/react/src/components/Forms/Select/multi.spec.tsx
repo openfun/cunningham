@@ -1232,5 +1232,55 @@ describe("<Select multi={true} />", () => {
       await user.type(input, "Pa");
       expectMenuToBeClosed(menu);
     });
+
+    it("renders menu empty placeholder when there is no more options to display", async () => {
+      render(
+        <CunninghamProvider>
+          <Select
+            label="Cities"
+            options={[
+              {
+                label: "Paris",
+                value: "paris",
+              },
+              {
+                label: "London",
+                value: "london",
+              },
+            ]}
+            multi={true}
+          />
+        </CunninghamProvider>,
+      );
+      const input = screen.getByRole("combobox", {
+        name: "Cities",
+      });
+
+      // Expect no options to be selected.
+      expectSelectedOptions([]);
+
+      const user = userEvent.setup();
+      await user.click(input);
+
+      await user.click(
+        screen.getByRole("option", {
+          name: "Paris",
+        }),
+      );
+      expectSelectedOptions(["Paris"]);
+
+      expect(
+        screen.queryByText("No options available"),
+      ).not.toBeInTheDocument();
+
+      await user.click(
+        screen.getByRole("option", {
+          name: "London",
+        }),
+      );
+      expectSelectedOptions(["Paris", "London"]);
+
+      screen.getByText("No options available");
+    });
   });
 });

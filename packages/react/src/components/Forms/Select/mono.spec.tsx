@@ -1138,5 +1138,19 @@ describe("<Select/>", () => {
       const label = screen.getByText("City");
       expect(Array.from(label.classList)).toContain("offscreen");
     });
+
+    it("renders menu empty placeholder when there are no options to display", async () => {
+      render(
+        <CunninghamProvider>
+          <Select label="City" options={[]} hideLabel={true} />
+        </CunninghamProvider>,
+      );
+      const input = screen.getByRole("combobox", {
+        name: "City",
+      });
+      const user = userEvent.setup();
+      await user.click(input);
+      screen.getByText("No options available");
+    });
   });
 });

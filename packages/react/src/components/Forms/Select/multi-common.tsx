@@ -191,25 +191,33 @@ export const SelectMultiAux = ({
           {...downshiftReturn.getMenuProps()}
         >
           <ul>
-            {downshiftReturn.isOpen &&
-              options.map((option, index) => {
-                const isActive = index === downshiftReturn.highlightedIndex;
-                return (
-                  <li
-                    className={classNames("c__select__menu__item", {
-                      "c__select__menu__item--highlight": isActive,
-                      "c__select__menu__item--disabled": option.disabled,
-                    })}
-                    key={`${option.value}${index}`}
-                    {...downshiftReturn.getItemProps({
-                      item: option,
-                      index,
-                    })}
-                  >
-                    <span>{option.label}</span>
+            {downshiftReturn.isOpen && (
+              <>
+                {options.map((option, index) => {
+                  const isActive = index === downshiftReturn.highlightedIndex;
+                  return (
+                    <li
+                      className={classNames("c__select__menu__item", {
+                        "c__select__menu__item--highlight": isActive,
+                        "c__select__menu__item--disabled": option.disabled,
+                      })}
+                      key={`${option.value}${index.toString()}`}
+                      {...downshiftReturn.getItemProps({
+                        item: option,
+                        index,
+                      })}
+                    >
+                      <span>{option.label}</span>
+                    </li>
+                  );
+                })}
+                {options.length === 0 && (
+                  <li className="c__select__menu__item c__select__menu__empty-placeholder">
+                    {t("components.forms.select.menu_empty_placeholder")}
                   </li>
-                );
-              })}
+                )}
+              </>
+            )}
           </ul>
         </div>
       </div>

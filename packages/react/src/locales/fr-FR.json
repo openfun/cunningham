@@ -20,7 +20,8 @@
       "select": {
         "toggle_button_aria_label": "Ouvrir le menu",
         "clear_button_aria_label": "Effacer la sélection",
-        "clear_all_button_aria_label": "Effacer toutes les sélections"
+        "clear_all_button_aria_label": "Effacer toutes les sélections",
+        "menu_empty_placeholder": "Aucun choix disponible"
       },
       "file_uploader": {
         "delete_file_name": "Supprimer le fichier {name}",
