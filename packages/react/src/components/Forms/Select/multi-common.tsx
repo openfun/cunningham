@@ -1,7 +1,6 @@
 import React, { HTMLAttributes } from "react";
 import { useMultipleSelection } from "downshift";
 import classNames from "classnames";
-
 import { Field } from ":/components/Forms/Field";
 import { LabelledBox } from ":/components/Forms/LabelledBox";
 import { Button } from ":/components/Button";
@@ -96,7 +95,7 @@ export const SelectMultiAux = ({
         >
           {selectedItems.map((selectedItem, index) => (
             <input
-              key={`${selectedItem.value}${index}`}
+              key={`${optionToValue(selectedItem)}${index.toString()}`}
               type="hidden"
               name={name}
               value={optionToValue(selectedItem)}
@@ -152,7 +151,9 @@ export const SelectMultiAux = ({
                   return (
                     <div
                       className="c__select__inner__value__pill"
-                      key={`${selectedItemForRender.value}${index}`}
+                      key={`${optionToValue(
+                        selectedItemForRender,
+                      )}${index.toString()}`}
                       {...useMultipleSelectionReturn.getSelectedItemProps({
                         selectedItem: selectedItemForRender,
                         index,
@@ -201,7 +202,7 @@ export const SelectMultiAux = ({
                         "c__select__menu__item--highlight": isActive,
                         "c__select__menu__item--disabled": option.disabled,
                       })}
-                      key={`${option.value}${index.toString()}`}
+                      key={`${optionToValue(option)}${index.toString()}`}
                       {...downshiftReturn.getItemProps({
                         item: option,
                         index,

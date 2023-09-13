@@ -175,7 +175,7 @@ export const SelectMonoAux = ({
                           downshiftReturn.selectedItem === item,
                         "c__select__menu__item--disabled": item.disabled,
                       })}
-                      key={`${item.value}${index.toString()}`}
+                      key={`${optionToValue(item)}${index.toString()}`}
                       {...downshiftReturn.getItemProps({
                         item,
                         index,

@@ -52,7 +52,6 @@ export const SelectMultiSimple = (props: SubProps) => {
         case useSelect.stateChangeTypes.ToggleButtonKeyDownEnter:
         case useSelect.stateChangeTypes.ToggleButtonKeyDownSpaceButton:
         case useSelect.stateChangeTypes.ItemClick:
-        case useSelect.stateChangeTypes.ToggleButtonBlur:
           if (newSelectedItem) {
             props.onSelectedItemsChange([
               ...props.selectedItems,
