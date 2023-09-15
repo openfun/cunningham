@@ -724,6 +724,67 @@ describe("<Select multi={true} />", () => {
       const label = screen.getByText("Cities");
       expect(Array.from(label.classList)).toContain("offscreen");
     });
+
+    it("is possible to select again the last deleted item", async () => {
+      render(
+        <CunninghamProvider>
+          <Select
+            label="Cities"
+            options={[
+              {
+                label: "Paris",
+                value: "paris",
+              },
+              {
+                label: "London",
+                value: "london",
+              },
+              {
+                label: "New York",
+                value: "new_york",
+              },
+              {
+                label: "Tokyo",
+                value: "tokyo",
+              },
+            ]}
+            multi={true}
+          />
+        </CunninghamProvider>,
+      );
+
+      const input = screen.getByRole("combobox", {
+        name: "Cities",
+      });
+      expectSelectedOptions([]);
+
+      const user = userEvent.setup();
+      await user.click(input);
+
+      // Select options.
+      await user.click(
+        screen.getByRole("option", {
+          name: "Paris",
+        }),
+      );
+      expectSelectedOptions(["Paris"]);
+
+      // Clear selection.
+      const clearButton = screen.getByRole("button", {
+        name: "Clear all selections",
+      });
+      await user.click(clearButton);
+      expectSelectedOptions([]);
+
+      // Select again London.
+      await user.click(input);
+      await user.click(
+        screen.getByRole("option", {
+          name: "Paris",
+        }),
+      );
+      expectSelectedOptions(["Paris"]);
+    });
   });
 
   describe("Searchable", async () => {

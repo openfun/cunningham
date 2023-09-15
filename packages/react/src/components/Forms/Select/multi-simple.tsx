@@ -32,6 +32,7 @@ export const SelectMultiSimple = (props: SubProps) => {
   const downshiftReturn = useSelect({
     items: options,
     itemToString: optionToString,
+    selectedItem: null, // Important, without this we are not able to re-select the last removed option.
     defaultHighlightedIndex: 0, // after selection, highlight the first item.
     stateReducer: (state, actionAndChanges) => {
       const { changes, type } = actionAndChanges;

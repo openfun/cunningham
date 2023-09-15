@@ -37,7 +37,7 @@ export const SelectMultiSearchable = (props: SubProps) => {
     items: options,
     itemToString: optionToString,
     defaultHighlightedIndex: 0, // after selection, highlight the first item.
-    selectedItem: null,
+    selectedItem: null, // Important, without this we are not able to re-select the last removed option.
     stateReducer: (state, actionAndChanges) => {
       const { changes, type } = actionAndChanges;
       switch (type) {
