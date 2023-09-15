@@ -295,6 +295,7 @@ describe("<Select/>", () => {
             <div>
               <div>Value = {value}|</div>
               <Button onClick={() => setValue(undefined)}>Clear</Button>
+              <Button onClick={() => setValue("paris")}>Set Paris</Button>
               <Select
                 label="City"
                 options={[
@@ -367,6 +368,15 @@ describe("<Select/>", () => {
 
       // Make sure value is cleared.
       screen.getByText("Value = |");
+
+      // Make sure setting value works
+      const buttonParis = screen.getByRole("button", {
+        name: "Set Paris",
+      });
+      await user.click(buttonParis);
+
+      screen.getByText("Value = paris|");
+      expect(input).toHaveValue("Paris");
     });
     it("renders disabled", async () => {
       render(
