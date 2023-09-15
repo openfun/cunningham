@@ -87,6 +87,12 @@ export const Controlled = () => {
           onChange={(e) => setValue(e.target.value as string)}
         />
         <Button onClick={() => setValue("")}>Reset</Button>
+        <Button onClick={() => setValue(OPTIONS[0].value)}>
+          Set {OPTIONS[0].label}
+        </Button>
+        <Button onClick={() => setValue(OPTIONS[1].value)}>
+          Set {OPTIONS[1].label}
+        </Button>
       </div>
     </CunninghamProvider>
   );
@@ -156,6 +162,12 @@ export const SearchableControlled = () => {
           onChange={(e) => setValue(e.target.value as string)}
         />
         <Button onClick={() => setValue("")}>Reset</Button>
+        <Button onClick={() => setValue(OPTIONS[0].value)}>
+          Set {OPTIONS[0].label}
+        </Button>
+        <Button onClick={() => setValue(OPTIONS[1].value)}>
+          Set {OPTIONS[1].label}
+        </Button>
       </div>
     </CunninghamProvider>
   );

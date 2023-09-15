@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, useEffect } from "react";
+import React, { HTMLAttributes } from "react";
 import { UseSelectReturnValue } from "downshift";
 import classNames from "classnames";
 import { useCunningham } from ":/components/Provider";
@@ -72,17 +72,6 @@ export const SelectMonoAux = ({
 }: SelectAuxProps) => {
   const { t } = useCunningham();
   const labelProps = downshiftReturn.getLabelProps();
-
-  // When component is controlled, this useEffect will update the local selected item.
-  useEffect(() => {
-    if (downshiftProps.initialSelectedItem !== undefined) {
-      return;
-    }
-    const optionToSelect = options.find(
-      (option) => optionToValue(option) === value,
-    );
-    downshiftReturn.selectItem(optionToSelect ?? null);
-  }, [value]);
 
   return (
     <Field state={state} {...props}>
