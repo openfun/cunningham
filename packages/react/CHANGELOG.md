@@ -1,5 +1,16 @@
 # @openfun/cunningham-react
 
+## 1.2.0
+
+### Minor Changes
+
+- 4616ad9: add select menu empty placeholder
+
+### Patch Changes
+
+- 8470126: fix failing selection of last removed item
+- fd988c0: fix controlled searchable select triggering onChange undefined
+
 ## 1.1.0
 
 ### Minor Changes
@@ -247,7 +258,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.1.0...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.2.0...main
+[1.2.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.1.0...@openfun/cunningham-react@1.2.0
 [1.1.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.0.2...@openfun/cunningham-react@1.1.0
 [1.0.2]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.0.1...@openfun/cunningham-react@1.0.2
 [1.0.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.0.0...@openfun/cunningham-react@1.0.1
