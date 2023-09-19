@@ -84,7 +84,9 @@ export const Controlled = () => {
           label="Select a city"
           options={OPTIONS}
           value={value}
-          onChange={(e) => setValue(e.target.value as string)}
+          onChange={(e) => {
+            setValue(e.target.value as string);
+          }}
         />
         <Button onClick={() => setValue("")}>Reset</Button>
         <Button onClick={() => setValue(OPTIONS[0].value)}>
@@ -159,7 +161,9 @@ export const SearchableControlled = () => {
           options={OPTIONS}
           searchable={true}
           value={value}
-          onChange={(e) => setValue(e.target.value as string)}
+          onChange={(e) => {
+            setValue(e.target.value as string);
+          }}
         />
         <Button onClick={() => setValue("")}>Reset</Button>
         <Button onClick={() => setValue(OPTIONS[0].value)}>

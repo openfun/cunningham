@@ -8,11 +8,13 @@ import { CunninghamProvider } from ":/components/Provider";
 import {
   expectMenuToBeClosed,
   expectMenuToBeOpen,
+  expectNoOptions,
   expectOptions,
   expectOptionToBeDisabled,
   expectOptionToBeSelected,
   expectOptionToBeUnselected,
 } from ":/components/Forms/Select/test-utils";
+import { Input } from ":/components/Forms/Input";
 
 describe("<Select/>", () => {
   describe("Searchable", () => {
@@ -138,6 +140,141 @@ describe("<Select/>", () => {
       await user.click(option);
 
       expect(input).toHaveValue("Paris");
+    });
+    it("clears the text input if no item is selected", async () => {
+      const Wrapper = () => {
+        const [value, setValue] = useState<string | number | undefined>();
+        return (
+          <CunninghamProvider>
+            <div>Value = {value}|</div>
+            <Select
+              label="City"
+              options={[
+                {
+                  label: "Paris",
+                  value: "paris",
+                },
+                {
+                  label: "Panama",
+                  value: "panama",
+                },
+                {
+                  label: "London",
+                  value: "london",
+                },
+                {
+                  label: "New York",
+                  value: "new_york",
+                },
+                {
+                  label: "Tokyo",
+                  value: "tokyo",
+                },
+              ]}
+              searchable={true}
+              value={value}
+              onChange={(e) => setValue(e.target.value as any)}
+            />
+            <Input name="Something else" />
+          </CunninghamProvider>
+        );
+      };
+      render(<Wrapper />);
+
+      const user = userEvent.setup();
+      const input = screen.getByRole("combobox", {
+        name: "City",
+      });
+      screen.getByText("Value = |");
+      // It returns the input.
+      expect(input.tagName).toEqual("INPUT");
+
+      const menu: HTMLDivElement = screen.getByRole("listbox", {
+        name: "City",
+      });
+
+      expectMenuToBeClosed(menu);
+
+      // Click on the input.
+      await user.click(input);
+      expectMenuToBeOpen(menu);
+      expectOptions(["Paris", "Panama", "London", "New York", "Tokyo"]);
+
+      // Verify that filtering works.
+      await user.type(input, "Pa");
+      expectMenuToBeOpen(menu);
+      expectOptions(["Paris", "Panama"]);
+
+      await user.type(input, "rr");
+      expectNoOptions();
+
+      expect(input).toHaveValue("Parr");
+
+      // This is a way to blur the combobox.
+      await user.click(screen.getByRole("textbox"));
+
+      expect(input).toHaveValue("");
+      screen.getByText("Value = |");
+    });
+    it("clears the added text to the existing value input on blur if no other item is selected", async () => {
+      const Wrapper = () => {
+        const [value, setValue] = useState<string | number | undefined>(
+          "london",
+        );
+        return (
+          <CunninghamProvider>
+            <div>Value = {value}|</div>
+            <Select
+              label="City"
+              options={[
+                {
+                  label: "Paris",
+                  value: "paris",
+                },
+                {
+                  label: "Panama",
+                  value: "panama",
+                },
+                {
+                  label: "London",
+                  value: "london",
+                },
+                {
+                  label: "New York",
+                  value: "new_york",
+                },
+                {
+                  label: "Tokyo",
+                  value: "tokyo",
+                },
+              ]}
+              searchable={true}
+              value={value}
+              onChange={(e) => setValue(e.target.value as any)}
+            />
+            <Input name="Something else" />
+          </CunninghamProvider>
+        );
+      };
+      render(<Wrapper />);
+
+      const user = userEvent.setup();
+      const input = screen.getByRole("combobox", {
+        name: "City",
+      });
+      screen.getByText("Value = london|");
+      // It returns the input.
+      expect(input.tagName).toEqual("INPUT");
+
+      expect(input).toHaveValue("London");
+      await user.type(input, "rr");
+      expect(input).toHaveValue("Londonrr");
+
+      // This is a way to blur the combobox.
+      await user.click(screen.getByRole("textbox"));
+
+      expect(input).toHaveValue("London");
+      screen.getByText("Value = london|");
     });
     it("clears value", async () => {
       render(
@@ -290,10 +427,12 @@ describe("<Select/>", () => {
         const [value, setValue] = useState<string | number | undefined>(
           "london",
         );
+        const [onChangeCounts, setOnChangeCounts] = useState(0);
         return (
           <CunninghamProvider>
             <div>
               <div>Value = {value}|</div>
+              <div>onChangeCounts = {onChangeCounts}|</div>
               <Button onClick={() => setValue(undefined)}>Clear</Button>
               <Button onClick={() => setValue("paris")}>Set Paris</Button>
               <Select
@@ -317,7 +456,10 @@ describe("<Select/>", () => {
                   },
                 ]}
                 value={value}
-                onChange={(e) => setValue(e.target.value as string)}
+                onChange={(e) => {
+                  setValue(e.target.value as string);
+                  setOnChangeCounts(onChangeCounts + 1);
+                }}
                 searchable={true}
               />
             </div>
@@ -332,6 +474,7 @@ describe("<Select/>", () => {
 
       // Make sure value is selected.
       screen.getByText("Value = london|");
+      screen.getByText("onChangeCounts = 0|");
 
       // Change value.
       const user = userEvent.setup();
@@ -343,14 +486,16 @@ describe("<Select/>", () => {
       });
       expectOptionToBeSelected(option);
 
-      // List should show only selected value.
-      expectOptions(["London"]);
+      // List should display all available options when re-opening.
+      expectOptions(["Paris", "London", "New York", "Tokyo"]);
 
       // Clear value.
       const button = screen.getByRole("button", {
         name: "Clear",
       });
       await user.click(button);
+      screen.getByText("Value = |");
+      await screen.findByText("onChangeCounts = 0|");
 
       // Select an option.
       await user.click(input);
@@ -362,6 +507,7 @@ describe("<Select/>", () => {
 
       // Make sure value is selected.
       screen.getByText("Value = new_york|");
+      screen.getByText("onChangeCounts = 1|");
 
       // clear value.
       await user.click(button);
@@ -377,6 +523,7 @@ describe("<Select/>", () => {
 
       screen.getByText("Value = paris|");
       expect(input).toHaveValue("Paris");
+      screen.getByText("onChangeCounts = 1|");
     });
     it("renders disabled", async () => {
       render(

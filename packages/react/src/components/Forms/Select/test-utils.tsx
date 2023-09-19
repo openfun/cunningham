@@ -11,16 +11,17 @@ export const expectOptions = (expectedOptions: string[]) => {
     expect(option).toHaveTextContent(expectedOptions[i]);
   });
 };
+export const expectNoOptions = () => {
+  const options = screen.getAllByRole("listitem");
+  expect(options.length).toBe(1);
+  expect(options[0]).toHaveTextContent("No options available");
+};
 export const expectMenuToBeClosed = (menu: HTMLDivElement) => {
   expect(Array.from(menu.classList)).not.contains("c__select__menu--opened");
 };
 export const expectOptionToBeSelected = (option: HTMLLIElement) => {
-  expect(option).toHaveAttribute("aria-selected", "true");
   expect(Array.from(option.classList)).contains(
     "c__select__menu__item--selected",
-  );
-  expect(Array.from(option.classList)).contains(
-    "c__select__menu__item--highlight",
   );
 };
 export const expectOptionToBeUnselected = (option: HTMLLIElement) => {

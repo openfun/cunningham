@@ -52,6 +52,25 @@ export const SelectMonoSearchable = (props: SubProps) => {
     downshiftReturn.selectItem(optionToSelect ?? null);
   }, [props.value, props.options, props.downshiftProps]);
 
+  // Even there is already a value selected, when opening the combobox menu we want to display all available choices.
+  useEffect(() => {
+    if (downshiftReturn.isOpen) {
+      setOptionsToDisplay(props.options);
+    }
+  }, [downshiftReturn.isOpen]);
+
+  const onInputBlur = () => {
+    setHasInputFocused(false);
+    if (downshiftReturn.selectedItem) {
+      // Here the goal is to make sure that when the input in blurred then the input value
+      // has exactly the selectedItem label. Which is not the case by default.
+      downshiftReturn.selectItem(downshiftReturn.selectedItem);
+    } else {
+      // We want the input to be empty when no item is selected.
+      downshiftReturn.setInputValue("");
+    }
+  };
+
   const inputProps = downshiftReturn.getInputProps({
     ref: inputRef,
     disabled: props.disabled,
@@ -82,7 +101,7 @@ export const SelectMonoSearchable = (props: SubProps) => {
           setHasInputFocused(true);
         }}
         onBlur={() => {
-          setHasInputFocused(false);
+          onInputBlur();
         }}
       />
     </SelectMonoAux>

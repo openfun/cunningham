@@ -41,11 +41,19 @@ export const SelectMono = (props: SelectProps) => {
   const commonDownshiftProps: SubProps["downshiftProps"] = {
     initialSelectedItem: defaultSelectedItem,
     onSelectedItemChange: (e: UseSelectStateChange<Option>) => {
-      props.onChange?.({
-        target: {
-          value: e.selectedItem ? optionToValue(e.selectedItem) : undefined,
-        },
-      });
+      const eventCmp = e.selectedItem ? optionToValue(e.selectedItem) : null;
+      const valueCmp = props.value ?? null;
+      // We make sure to not trigger a onChange event if the value are not different.
+      // This could happen on first render when the component is controlled, the value will be
+      // set inside a useEffect down in SelectMonoSearchable or SelectMonoSimple. So that means the
+      // downshift component will always render empty the first time.
+      if (eventCmp !== valueCmp) {
+        props.onChange?.({
+          target: {
+            value: e.selectedItem ? optionToValue(e.selectedItem) : undefined,
+          },
+        });
+      }
     },
     isItemDisabled: (item) => !!item.disabled,
   };
