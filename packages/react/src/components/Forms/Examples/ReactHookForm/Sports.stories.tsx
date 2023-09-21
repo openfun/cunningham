@@ -1,9 +1,9 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Meta } from "@storybook/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import * as Yup from "yup";
-import { Input } from ":/components/Forms/Input";
+import { RhfInput } from ":/components/Forms/Input/stories-utils";
 import { Button } from ":/components/Button";
 import { CunninghamProvider } from ":/components/Provider";
 import { Radio, RadioGroup } from ":/components/Forms/Radio";
@@ -34,7 +34,11 @@ const sportsSchema = Yup.object().shape({
   rewards: Yup.array().of(Yup.string().defined()).defined(),
 });
 
-export const Sports = () => {
+export interface SportProps {
+  values?: SportsStoryFormValues;
+}
+
+const SportsBase = ({ values }: SportProps) => {
   const methods = useForm<SportsStoryFormValues>({
     defaultValues: {
       firstName: "",
@@ -45,6 +49,10 @@ export const Sports = () => {
     reValidateMode: "onChange",
     resolver: yupResolver(sportsSchema),
   });
+
+  useEffect(() => {
+    methods.reset(values);
+  }, [values]);
 
   return (
     <CunninghamProvider>
@@ -75,28 +83,31 @@ export const Sports = () => {
               <Radio
                 label="Male"
                 state={getFieldState("gender", methods.formState)}
+                value="male"
                 {...methods.register("gender")}
               />
               <Radio
                 label="Female"
+                value="female"
                 state={getFieldState("gender", methods.formState)}
                 {...methods.register("gender")}
               />
               <Radio
                 label="Other"
+                value="other"
                 state={getFieldState("gender", methods.formState)}
                 {...methods.register("gender")}
               />
             </RadioGroup>
           </div>
           <div style={{ display: "flex", gap: "1rem" }}>
-            <Input
+            <RhfInput
               label="First name"
               state={getFieldState("firstName", methods.formState)}
               text={getFieldErrorMessage("firstName", methods.formState)}
               {...methods.register("firstName")}
             />
-            <Input
+            <RhfInput
               label="Last name"
               state={getFieldState("lastName", methods.formState)}
               text={getFieldErrorMessage("lastName", methods.formState)}
@@ -159,3 +170,17 @@ export const Sports = () => {
     </CunninghamProvider>
   );
 };
+
+export const Sports = () => <SportsBase />;
+
+export const SportsEdit = () => (
+  <SportsBase
+    values={{
+      firstName: "Evans",
+      lastName: "Chebet",
+      competition: "Marathon",
+      rewards: ["Gold"],
+      gender: "male",
+    }}
+  />
+);
