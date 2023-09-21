@@ -3,7 +3,7 @@ import { Meta } from "@storybook/react";
 import React from "react";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
-import { Input } from ":/components/Forms/Input";
+import { RhfInput } from ":/components/Forms/Input/stories-utils";
 import { Checkbox } from ":/components/Forms/Checkbox";
 import { Button } from ":/components/Button";
 import {
@@ -56,14 +56,14 @@ export const Login = () => {
       >
         Log in
       </h1>
-      <Input
+      <RhfInput
         label="Email"
         fullWidth={true}
         state={getFieldState("email", formState)}
         text={getFieldErrorMessage("email", formState)}
         {...register("email")}
       />
-      <Input
+      <RhfInput
         label="Password"
         state={getFieldState("password", formState)}
         type="password"
