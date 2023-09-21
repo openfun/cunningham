@@ -4,7 +4,7 @@ import { Select } from ":/components/Forms/Select/index";
 import { SelectProps } from ":/components/Forms/Select/mono";
 
 export const RhfSelect = (props: SelectProps & { name: string }) => {
-  const { control } = useFormContext();
+  const { control, setValue } = useFormContext();
   return (
     <Controller
       control={control}
@@ -16,7 +16,7 @@ export const RhfSelect = (props: SelectProps & { name: string }) => {
             state={fieldState.error ? "error" : "default"}
             text={fieldState.error?.message}
             onBlur={field.onBlur}
-            onChange={field.onChange}
+            onChange={(e) => setValue(field.name, e.target.value)}
             value={field.value}
           />
         );
