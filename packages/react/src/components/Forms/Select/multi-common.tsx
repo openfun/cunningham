@@ -168,6 +168,7 @@ export const SelectMultiAux = ({
                         aria-label={t(
                           "components.forms.select.clear_button_aria_label",
                         )}
+                        type="button"
                         className="c__select__inner__value__pill__clear"
                         onClick={(e) => {
                           e.stopPropagation();
