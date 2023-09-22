@@ -30,7 +30,7 @@ export const SelectMonoSimple = (props: SubProps) => {
     }
 
     downshiftReturn.selectItem(optionToSelect ?? null);
-  }, [props.value, props.options]);
+  }, [props.value, props.downshiftProps.initialSelectedItem]);
 
   return (
     <SelectMonoAux
