@@ -1,5 +1,15 @@
 # @openfun/cunningham-react
 
+## 1.3.0
+
+### Minor Changes
+
+- 4e1d0f0: rework the behavior of the Select component
+
+### Patch Changes
+
+- 3fc464b: fix some edge effects on the mono select component
+
 ## 1.2.0
 
 ### Minor Changes
@@ -258,7 +268,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.2.0...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.3.0...main
+[1.3.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.2.0...@openfun/cunningham-react@1.3.0
 [1.2.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.1.0...@openfun/cunningham-react@1.2.0
 [1.1.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.0.2...@openfun/cunningham-react@1.1.0
 [1.0.2]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.0.1...@openfun/cunningham-react@1.0.2
