@@ -13,19 +13,19 @@ export const SelectMonoSearchable = (props: SubProps) => {
   const { t } = useCunningham();
   const [optionsToDisplay, setOptionsToDisplay] = useState(props.options);
   const [hasInputFocused, setHasInputFocused] = useState(false);
+  const [inputFilter, setInputFilter] = useState<string>();
   const inputRef = useRef<HTMLInputElement>(null);
   const downshiftReturn = useCombobox({
     ...props.downshiftProps,
     items: optionsToDisplay,
     itemToString: optionToString,
     onInputValueChange: (e) => {
-      setOptionsToDisplay(props.options.filter(getOptionsFilter(e.inputValue)));
+      setInputFilter(e.inputValue);
       if (!e.inputValue) {
         downshiftReturn.selectItem(null);
       }
     },
   });
-
   const [labelAsPlaceholder, setLabelAsPlaceholder] = useState(
     !downshiftReturn.selectedItem,
   );
@@ -43,21 +43,38 @@ export const SelectMonoSearchable = (props: SubProps) => {
 
   // When component is controlled, this useEffect will update the local selected item.
   useEffect(() => {
-    if (props.downshiftProps.initialSelectedItem !== undefined) {
+    if (inputFilter) {
       return;
     }
+
+    const selectedItem = downshiftReturn.selectedItem
+      ? optionToValue(downshiftReturn.selectedItem)
+      : undefined;
+
     const optionToSelect = props.options.find(
       (option) => optionToValue(option) === props.value,
     );
+
+    // Already selected
+    if (optionToSelect && selectedItem === props.value) {
+      return;
+    }
+
     downshiftReturn.selectItem(optionToSelect ?? null);
-  }, [props.value, props.options, props.downshiftProps]);
+  }, [props.value, props.options, inputFilter]);
 
   // Even there is already a value selected, when opening the combobox menu we want to display all available choices.
   useEffect(() => {
     if (downshiftReturn.isOpen) {
-      setOptionsToDisplay(props.options);
+      setOptionsToDisplay(
+        inputFilter
+          ? props.options.filter(getOptionsFilter(inputFilter))
+          : props.options,
+      );
+    } else {
+      setInputFilter(undefined);
     }
-  }, [downshiftReturn.isOpen]);
+  }, [downshiftReturn.isOpen, props.options, inputFilter]);
 
   const onInputBlur = () => {
     setHasInputFocused(false);
