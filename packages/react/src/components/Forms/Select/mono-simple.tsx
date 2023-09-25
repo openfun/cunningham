@@ -16,14 +16,21 @@ export const SelectMonoSimple = (props: SubProps) => {
 
   // When component is controlled, this useEffect will update the local selected item.
   useEffect(() => {
-    if (props.downshiftProps.initialSelectedItem !== undefined) {
-      return;
-    }
+    const selectedItem = downshiftReturn.selectedItem
+      ? optionToValue(downshiftReturn.selectedItem)
+      : undefined;
+
     const optionToSelect = props.options.find(
       (option) => optionToValue(option) === props.value,
     );
+
+    // Already selected
+    if (optionToSelect && selectedItem === props.value) {
+      return;
+    }
+
     downshiftReturn.selectItem(optionToSelect ?? null);
-  }, [props.value, props.options, props.downshiftProps]);
+  }, [props.value, props.options]);
 
   return (
     <SelectMonoAux

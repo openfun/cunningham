@@ -2,7 +2,7 @@ import userEvent from "@testing-library/user-event";
 import { render, screen, waitFor } from "@testing-library/react";
 import { expect } from "vitest";
 import React, { FormEvent, useState } from "react";
-import { Select } from ":/components/Forms/Select/index";
+import { Select, Option } from ":/components/Forms/Select/index";
 import { Button } from ":/components/Button";
 import { CunninghamProvider } from ":/components/Provider";
 import {
@@ -681,6 +681,110 @@ describe("<Select/>", () => {
       await user.click(button);
       expect(formData).toEqual({
         city: null,
+      });
+    });
+
+    [
+      {
+        defaultValue: "panama",
+        type: "default value",
+        expected: "Panama",
+      },
+      {
+        value: "panama",
+        type: "value",
+        expected: "Panama",
+      },
+      {
+        type: "without values props",
+        expected: "",
+      },
+    ].forEach(({ type, expected, ...props }) => {
+      it(`render mutated option when select open and keep the filter activated with ${type}`, async () => {
+        const myOptions = [
+          {
+            label: "Paris",
+            value: "paris",
+          },
+          {
+            label: "Panama",
+            value: "panama",
+          },
+          {
+            label: "London",
+            value: "london",
+          },
+        ];
+
+        const Wrapper = ({ options }: { options: Option[] }) => {
+          return (
+            <Select
+              label="City"
+              name="city"
+              options={options}
+              searchable={true}
+              {...props}
+            />
+          );
+        };
+
+        const { rerender } = render(<Wrapper options={myOptions} />, {
+          wrapper: CunninghamProvider,
+        });
+
+        const user = userEvent.setup();
+        const input = screen.getByRole("combobox", {
+          name: "City",
+        });
+        const menu: HTMLDivElement = screen.getByRole("listbox", {
+          name: "City",
+        });
+
+        // Check init value (defaultValue / value / nothing)
+        expect(input).toHaveValue(expected);
+
+        // Add filter
+        await user.clear(input);
+        await user.type(input, "Pa");
+
+        expectMenuToBeOpen(menu);
+
+        expectOptions(["Paris", "Panama"]);
+
+        myOptions.shift();
+
+        // Rerender the select with the options mutated
+        rerender(<Wrapper options={[...myOptions]} />);
+
+        expectMenuToBeOpen(menu);
+
+        // Options is refreshed
+        expectOptions(["Panama"]);
+
+        // Filter is still active
+        expect(input).toHaveValue("Pa");
+
+        myOptions.shift();
+
+        // Rerender the select with the options mutated (only london left)
+        rerender(<Wrapper options={[...myOptions]} />);
+
+        // Filter is still active
+        expect(input).toHaveValue("Pa");
+
+        expect(screen.getByText("No options available")).toBeInTheDocument();
+
+        await user.clear(input);
+
+        expectOptions(["London"]);
+
+        await user.click(
+          screen.getByRole("option", {
+            name: "London",
+          }),
+        );
+
+        expect(input).toHaveValue("London");
       });
     });
   });
