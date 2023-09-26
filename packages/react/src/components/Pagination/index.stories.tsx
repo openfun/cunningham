@@ -1,7 +1,6 @@
 import { Meta } from "@storybook/react";
 import React, { useEffect, useMemo, useState } from "react";
 import { Pagination, usePagination } from ":/components/Pagination/index";
-import { CunninghamProvider } from ":/components/Provider";
 
 export default {
   title: "Components/Pagination",
@@ -13,11 +12,7 @@ export const Basic = () => {
     defaultPagesCount: 100,
     defaultPage: 50,
   });
-  return (
-    <CunninghamProvider>
-      <Pagination {...pagination} />
-    </CunninghamProvider>
-  );
+  return <Pagination {...pagination} />;
 };
 
 export const List = () => {
@@ -49,18 +44,16 @@ export const List = () => {
   }, [pagination.page]);
 
   return (
-    <CunninghamProvider>
+    <div>
       <div>
-        <div>
-          {items.map((item) => (
-            <div className="p-t bg-secondary-300 mb-t" key={item}>
-              {item}
-            </div>
-          ))}
-        </div>
-        <Pagination {...pagination} />
+        {items.map((item) => (
+          <div className="p-t bg-secondary-300 mb-t" key={item}>
+            {item}
+          </div>
+        ))}
       </div>
-    </CunninghamProvider>
+      <Pagination {...pagination} />
+    </div>
   );
 };
 
@@ -76,9 +69,5 @@ export const ForcePage = () => {
       clearTimeout(timeout);
     };
   }, []);
-  return (
-    <CunninghamProvider>
-      <Pagination {...pagination} />
-    </CunninghamProvider>
-  );
+  return <Pagination {...pagination} />;
 };

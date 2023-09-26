@@ -7,7 +7,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { onSubmit } from ":/components/Forms/Examples/ReactHookForm/reactHookFormUtils";
 import { Select } from ":/components/Forms/Select";
 import { Button } from ":/components/Button";
-import { CunninghamProvider } from ":/components/Provider";
 import { RhfSelect } from ":/components/Forms/Select/stories-utils";
 
 export default {
@@ -17,9 +16,7 @@ export default {
 
 const Template: StoryFn<typeof Select> = (args) => (
   <div style={{ paddingBottom: "200px" }}>
-    <CunninghamProvider>
-      <Select {...args} />
-    </CunninghamProvider>
+    <Select {...args} />
   </div>
 );
 
@@ -75,28 +72,26 @@ export const HiddenLabel = {
 export const Controlled = () => {
   const [value, setValue] = useState(OPTIONS[8].value);
   return (
-    <CunninghamProvider>
+    <div>
       <div>
-        <div>
-          Value: <span>{value}</span>
-        </div>
-        <Select
-          label="Select a city"
-          options={OPTIONS}
-          value={value}
-          onChange={(e) => {
-            setValue(e.target.value as string);
-          }}
-        />
-        <Button onClick={() => setValue("")}>Reset</Button>
-        <Button onClick={() => setValue(OPTIONS[0].value)}>
-          Set {OPTIONS[0].label}
-        </Button>
-        <Button onClick={() => setValue(OPTIONS[1].value)}>
-          Set {OPTIONS[1].label}
-        </Button>
+        Value: <span>{value}</span>
       </div>
-    </CunninghamProvider>
+      <Select
+        label="Select a city"
+        options={OPTIONS}
+        value={value}
+        onChange={(e) => {
+          setValue(e.target.value as string);
+        }}
+      />
+      <Button onClick={() => setValue("")}>Reset</Button>
+      <Button onClick={() => setValue(OPTIONS[0].value)}>
+        Set {OPTIONS[0].label}
+      </Button>
+      <Button onClick={() => setValue(OPTIONS[1].value)}>
+        Set {OPTIONS[1].label}
+      </Button>
+    </div>
   );
 };
 
@@ -151,29 +146,27 @@ export const SearchableDisabled = {
 export const SearchableControlled = () => {
   const [value, setValue] = useState(OPTIONS[8].value);
   return (
-    <CunninghamProvider>
+    <div>
       <div>
-        <div>
-          Value: <span>{value}</span>
-        </div>
-        <Select
-          label="Select a city"
-          options={OPTIONS}
-          searchable={true}
-          value={value}
-          onChange={(e) => {
-            setValue(e.target.value as string);
-          }}
-        />
-        <Button onClick={() => setValue("")}>Reset</Button>
-        <Button onClick={() => setValue(OPTIONS[0].value)}>
-          Set {OPTIONS[0].label}
-        </Button>
-        <Button onClick={() => setValue(OPTIONS[1].value)}>
-          Set {OPTIONS[1].label}
-        </Button>
+        Value: <span>{value}</span>
       </div>
-    </CunninghamProvider>
+      <Select
+        label="Select a city"
+        options={OPTIONS}
+        searchable={true}
+        value={value}
+        onChange={(e) => {
+          setValue(e.target.value as string);
+        }}
+      />
+      <Button onClick={() => setValue("")}>Reset</Button>
+      <Button onClick={() => setValue(OPTIONS[0].value)}>
+        Set {OPTIONS[0].label}
+      </Button>
+      <Button onClick={() => setValue(OPTIONS[1].value)}>
+        Set {OPTIONS[1].label}
+      </Button>
+    </div>
   );
 };
 
@@ -244,105 +237,103 @@ export const FormExample = () => {
   };
 
   return (
-    <CunninghamProvider>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-s">
-          <Select
-            label="Your city"
-            name="city"
-            options={OPTIONS}
-            defaultValue={OPTIONS[2].value}
-            text="The city you were born in"
-            state="success"
-          />
-        </div>
-        <div className="mb-s">
-          <Select
-            label="Your gender"
-            name="gender"
-            options={[
-              {
-                label: "Male",
-              },
-              {
-                label: "Female",
-              },
-              {
-                label: "Other",
-              },
-            ]}
-          />
-        </div>
-        <div className="mb-s">
-          <Select
-            label="Your department"
-            name="department"
-            searchable={true}
-            options={[
-              {
-                label: "Legal",
-              },
-              {
-                label: "Tech",
-              },
-              {
-                label: "AI",
-              },
-              {
-                label: "Accounting",
-              },
-            ]}
-          />
-        </div>
-        <div className="mb-s">
-          <Select
-            label="Your grade"
-            text="Any error you want"
-            name="grade"
-            searchable={true}
-            options={[
-              {
-                label: "Level 1",
-              },
-              {
-                label: "Level 2",
-              },
-              {
-                label: "Level 3",
-              },
-              {
-                label: "Emperor",
-              },
-            ]}
-            state="error"
-          />
-        </div>
-        <div className="mb-s">
-          <Select
-            label="Your plan"
-            text="This field is disabled"
-            name="grade"
-            disabled={true}
-            options={[
-              {
-                label: "Bronze",
-              },
-              {
-                label: "Silver",
-              },
-              {
-                label: "Gold",
-              },
-              {
-                label: "Platinum",
-              },
-            ]}
-            defaultValue="Platinum"
-          />
-        </div>
-        <Button>Submit</Button>
-      </form>
-    </CunninghamProvider>
+    <form onSubmit={handleSubmit}>
+      <div className="mb-s">
+        <Select
+          label="Your city"
+          name="city"
+          options={OPTIONS}
+          defaultValue={OPTIONS[2].value}
+          text="The city you were born in"
+          state="success"
+        />
+      </div>
+      <div className="mb-s">
+        <Select
+          label="Your gender"
+          name="gender"
+          options={[
+            {
+              label: "Male",
+            },
+            {
+              label: "Female",
+            },
+            {
+              label: "Other",
+            },
+          ]}
+        />
+      </div>
+      <div className="mb-s">
+        <Select
+          label="Your department"
+          name="department"
+          searchable={true}
+          options={[
+            {
+              label: "Legal",
+            },
+            {
+              label: "Tech",
+            },
+            {
+              label: "AI",
+            },
+            {
+              label: "Accounting",
+            },
+          ]}
+        />
+      </div>
+      <div className="mb-s">
+        <Select
+          label="Your grade"
+          text="Any error you want"
+          name="grade"
+          searchable={true}
+          options={[
+            {
+              label: "Level 1",
+            },
+            {
+              label: "Level 2",
+            },
+            {
+              label: "Level 3",
+            },
+            {
+              label: "Emperor",
+            },
+          ]}
+          state="error"
+        />
+      </div>
+      <div className="mb-s">
+        <Select
+          label="Your plan"
+          text="This field is disabled"
+          name="grade"
+          disabled={true}
+          options={[
+            {
+              label: "Bronze",
+            },
+            {
+              label: "Silver",
+            },
+            {
+              label: "Gold",
+            },
+            {
+              label: "Platinum",
+            },
+          ]}
+          defaultValue="Platinum"
+        />
+      </div>
+      <Button>Submit</Button>
+    </form>
   );
 };
 
@@ -374,40 +365,40 @@ export const ReactHookForm = () => {
   });
 
   return (
-    <CunninghamProvider>
-      <FormProvider {...methods}>
-        <form
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "1rem",
-            width: "400px",
-          }}
-          onSubmit={methods.handleSubmit(onSubmit)}
-        >
-          <div>Where will the 2024 Olympics take place?</div>
-          <RhfSelect
-            name="joTown"
-            label="Select a city"
-            fullWidth={true}
-            options={[
-              {
-                label: "Dijon",
-                value: CitiesOptionEnum.DIJON,
-              },
-              {
-                label: "Paris",
-                value: CitiesOptionEnum.PARIS,
-              },
-              {
-                label: "Tokyo",
-                value: CitiesOptionEnum.TOKYO,
-              },
-            ]}
-          />
-          <Button fullWidth={true}>Submit</Button>
-        </form>
-      </FormProvider>
-    </CunninghamProvider>
+    <FormProvider {...methods}>
+      <form
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "1rem",
+          width: "400px",
+        }}
+        onSubmit={methods.handleSubmit(onSubmit)}
+      >
+        <div className="clr-greyscale-900">
+          Where will the 2024 Olympics take place?
+        </div>
+        <RhfSelect
+          name="joTown"
+          label="Select a city"
+          fullWidth={true}
+          options={[
+            {
+              label: "Dijon",
+              value: CitiesOptionEnum.DIJON,
+            },
+            {
+              label: "Paris",
+              value: CitiesOptionEnum.PARIS,
+            },
+            {
+              label: "Tokyo",
+              value: CitiesOptionEnum.TOKYO,
+            },
+          ]}
+        />
+        <Button fullWidth={true}>Submit</Button>
+      </form>
+    </FormProvider>
   );
 };

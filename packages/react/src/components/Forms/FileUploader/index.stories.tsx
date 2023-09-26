@@ -1,18 +1,11 @@
-import { Meta, StoryFn } from "@storybook/react";
+import { Meta } from "@storybook/react";
 import React, { useEffect, useRef, useState } from "react";
 import { faker } from "@faker-js/faker";
 import {
   FileUploader,
   FileUploaderRefType,
 } from ":/components/Forms/FileUploader/index";
-import { CunninghamProvider } from ":/components/Provider";
 import { Button } from ":/components/Button";
-
-const Template: StoryFn<typeof FileUploader> = (args) => (
-  <CunninghamProvider>
-    <FileUploader {...args} />
-  </CunninghamProvider>
-);
 
 const FAKE_FILES = [
   new File(["42"], faker.lorem.sentence(5) + "pdf"),
@@ -24,7 +17,6 @@ const FAKE_FILES = [
 const meta: Meta<typeof FileUploader> = {
   title: "Components/Forms/FileUploader",
   component: FileUploader,
-  render: Template,
 };
 
 export default meta;
@@ -146,7 +138,7 @@ export const MonoStatesShowcase = {
     // the fake default files. In all other step we want it to be persistant in order to see transitions ( like the
     // border color ).
     return (
-      <Template
+      <FileUploader
         key={step === "fileSelected" ? step : "const"}
         {...stepToProps[step]}
       />
@@ -159,16 +151,14 @@ export const MonoValue = {
     const ref = useRef<FileUploaderRefType>(null);
     const [value, setValue] = useState<File[]>([]);
     return (
-      <CunninghamProvider>
-        <div>
-          <div>Value: {value.map((file) => file.name).join(", ")}</div>
-          <FileUploader
-            onFilesChange={(e) => setValue(e.target.value)}
-            ref={ref}
-          />
-          <Button onClick={() => ref.current?.reset()}>Reset</Button>
-        </div>
-      </CunninghamProvider>
+      <div>
+        <div>Value: {value.map((file) => file.name).join(", ")}</div>
+        <FileUploader
+          onFilesChange={(e) => setValue(e.target.value)}
+          ref={ref}
+        />
+        <Button onClick={() => ref.current?.reset()}>Reset</Button>
+      </div>
     );
   },
 };
@@ -273,7 +263,7 @@ export const MultiStatesShowcase = {
     // the fake default files. In all other step we want it to be persistant in order to see transitions ( like the
     // border color ).
     return (
-      <Template
+      <FileUploader
         key={step === "fileSelected" ? step : "const"}
         multiple={true}
         {...stepToProps[step]}
@@ -287,17 +277,15 @@ export const MultiValue = {
     const ref = useRef<FileUploaderRefType>(null);
     const [value, setValue] = useState<File[]>([]);
     return (
-      <CunninghamProvider>
-        <div>
-          <div>Value: {value.map((file) => file.name).join(", ")}</div>
-          <FileUploader
-            onFilesChange={(e) => setValue(e.target.value)}
-            ref={ref}
-            multiple={true}
-          />
-          <Button onClick={() => ref.current?.reset()}>Reset</Button>
-        </div>
-      </CunninghamProvider>
+      <div>
+        <div>Value: {value.map((file) => file.name).join(", ")}</div>
+        <FileUploader
+          onFilesChange={(e) => setValue(e.target.value)}
+          ref={ref}
+          multiple={true}
+        />
+        <Button onClick={() => ref.current?.reset()}>Reset</Button>
+      </div>
     );
   },
 };
@@ -314,29 +302,27 @@ export const Form = {
     };
 
     return (
-      <CunninghamProvider>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <FileUploader
-              name="files"
-              text="JPG, PNG or GIF - Max file size 2MB"
-              accept="image/png, image/jpeg, image/gif"
-              multiple={true}
-            />
-          </div>
-          <div className="mt-s">
-            <FileUploader
-              name="file"
-              text="JPG, PNG or GIF - Max file size 2MB"
-              accept="image/png, image/jpeg, image/gif"
-            />
-          </div>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <FileUploader
+            name="files"
+            text="JPG, PNG or GIF - Max file size 2MB"
+            accept="image/png, image/jpeg, image/gif"
+            multiple={true}
+          />
+        </div>
+        <div className="mt-s">
+          <FileUploader
+            name="file"
+            text="JPG, PNG or GIF - Max file size 2MB"
+            accept="image/png, image/jpeg, image/gif"
+          />
+        </div>
 
-          <div className="mt-s">
-            <Button>Submit</Button>
-          </div>
-        </form>
-      </CunninghamProvider>
+        <div className="mt-s">
+          <Button>Submit</Button>
+        </div>
+      </form>
     );
   },
 };

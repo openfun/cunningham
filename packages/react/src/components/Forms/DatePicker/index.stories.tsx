@@ -16,16 +16,12 @@ export default {
 } as Meta<typeof DatePicker>;
 
 const Template: StoryFn<typeof DatePicker> = (args) => (
-  <CunninghamProvider>
-    <DatePicker {...args} label="Pick a date" />
-  </CunninghamProvider>
+  <DatePicker {...args} label="Pick a date" />
 );
 
 export const Default = () => (
   <div style={{ minHeight: "400px" }}>
-    <CunninghamProvider>
-      <DatePicker label="Pick a date" />
-    </CunninghamProvider>
+    <DatePicker label="Pick a date" />
   </div>
 );
 
@@ -98,13 +94,11 @@ export const Fullwidth = {
 
 export const CustomLocale = () => (
   <div style={{ minHeight: "400px" }}>
-    <CunninghamProvider>
-      <DatePicker
-        label="Pick a date"
-        locale="hi-IN-u-ca-indian"
-        defaultValue="2023-06-25T00:00:00.000+00:00"
-      />
-    </CunninghamProvider>
+    <DatePicker
+      label="Pick a date"
+      locale="hi-IN-u-ca-indian"
+      defaultValue="2023-06-25T00:00:00.000+00:00"
+    />
   </div>
 );
 
@@ -122,21 +116,19 @@ export const CunninghamLocale = () => (
 export const Controlled = () => {
   const [value, setValue] = useState<string | null>("2023-04-25T12:00:00.000Z");
   return (
-    <CunninghamProvider>
-      <div>
-        <div>
-          Value: <span>{value?.toString()}</span>
-        </div>
-        <DatePicker
-          label="Pick a date"
-          value={value}
-          onChange={(e) => {
-            setValue(e);
-          }}
-        />
-        <Button onClick={() => setValue("")}>Reset</Button>
+    <div>
+      <div className="clr-greyscale-900">
+        Value: <span>{value?.toString()}</span>
       </div>
-    </CunninghamProvider>
+      <DatePicker
+        label="Pick a date"
+        value={value}
+        onChange={(e) => {
+          setValue(e);
+        }}
+      />
+      <Button onClick={() => setValue("")}>Reset</Button>
+    </div>
   );
 };
 
@@ -153,47 +145,41 @@ export const ReactHookForm = () => {
   });
 
   return (
-    <CunninghamProvider>
-      <FormProvider {...methods}>
-        <form
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "1rem",
-            width: "400px",
-          }}
-          onSubmit={methods.handleSubmit(onSubmit)}
-        >
-          <RhfDatePicker name="date" label="Pick a date" fullWidth={true} />
-          <Button fullWidth={true}>Submit</Button>
-        </form>
-      </FormProvider>
-    </CunninghamProvider>
+    <FormProvider {...methods}>
+      <form
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "1rem",
+          width: "400px",
+        }}
+        onSubmit={methods.handleSubmit(onSubmit)}
+      >
+        <RhfDatePicker name="date" label="Pick a date" fullWidth={true} />
+        <Button fullWidth={true}>Submit</Button>
+      </form>
+    </FormProvider>
   );
 };
 
 export const RangeDefault = () => {
   return (
     <div style={{ minHeight: "400px" }}>
-      <CunninghamProvider>
-        <DateRangePicker startLabel="Start date" endLabel="Due date" />
-      </CunninghamProvider>
+      <DateRangePicker startLabel="Start date" endLabel="Due date" />
     </div>
   );
 };
 
 export const RangeDefaultValue = () => {
   return (
-    <CunninghamProvider>
-      <DateRangePicker
-        startLabel="Start date"
-        endLabel="Due date"
-        defaultValue={[
-          "2023-05-23T00:00:00.000+00:00",
-          "2023-06-23T00:00:00.000+00:00",
-        ]}
-      />
-    </CunninghamProvider>
+    <DateRangePicker
+      startLabel="Start date"
+      endLabel="Due date"
+      defaultValue={[
+        "2023-05-23T00:00:00.000+00:00",
+        "2023-06-23T00:00:00.000+00:00",
+      ]}
+    />
   );
 };
 
@@ -204,18 +190,16 @@ export const RangeControlled = () => {
   ]);
   return (
     <div>
-      <CunninghamProvider>
-        <div>Value: {value?.join("  ")}</div>
-        <DateRangePicker
-          startLabel="Start date"
-          endLabel="Due date"
-          minValue="2023-01-23T00:00:00.000+00:00"
-          maxValue="2023-08-23T00:00:00.000+00:00"
-          value={value}
-          onChange={(e) => setValue(e)}
-        />
-        <Button onClick={() => setValue(null)}>Reset</Button>
-      </CunninghamProvider>
+      <div className="clr-greyscale-900">Value: {value?.join("  ")}</div>
+      <DateRangePicker
+        startLabel="Start date"
+        endLabel="Due date"
+        minValue="2023-01-23T00:00:00.000+00:00"
+        maxValue="2023-08-23T00:00:00.000+00:00"
+        value={value}
+        onChange={(e) => setValue(e)}
+      />
+      <Button onClick={() => setValue(null)}>Reset</Button>
     </div>
   );
 };

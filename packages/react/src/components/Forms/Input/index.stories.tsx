@@ -163,7 +163,7 @@ export const Controlled = () => {
   const [value, setValue] = React.useState("I am controlled");
   return (
     <div>
-      <div>
+      <div className="clr-greyscale-900">
         Value: <span>{value}</span>
       </div>
       <Input

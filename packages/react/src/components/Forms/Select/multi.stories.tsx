@@ -6,7 +6,6 @@ import { Meta, StoryFn } from "@storybook/react";
 import { faker } from "@faker-js/faker";
 import { onSubmit } from ":/components/Forms/Examples/ReactHookForm/reactHookFormUtils";
 import { Select } from ":/components/Forms/Select";
-import { CunninghamProvider } from ":/components/Provider";
 import { Button } from ":/components/Button";
 import { RhfSelect } from ":/components/Forms/Select/stories-utils";
 
@@ -15,13 +14,13 @@ export default {
   component: Select,
 } as Meta<typeof Select>;
 
-const Template: StoryFn<typeof Select> = (args) => (
-  <div style={{ paddingBottom: "200px" }}>
-    <CunninghamProvider>
+const Template: StoryFn<typeof Select> = (args) => {
+  return (
+    <div style={{ paddingBottom: "200px" }}>
       <Select {...args} multi={true} />
-    </CunninghamProvider>
-  </div>
-);
+    </div>
+  );
+};
 
 const CITIES = Array.from({ length: 10 }).map(() => faker.location.city());
 const OPTIONS = CITIES.map((city) => ({
@@ -71,21 +70,19 @@ export const HiddenLabel = {
 export const Controlled = () => {
   const [value, setValue] = useState([OPTIONS[6].value, OPTIONS[8].value]);
   return (
-    <CunninghamProvider>
-      <div>
-        <div>
-          Value: <span>{JSON.stringify(value)}</span>
-        </div>
-        <Select
-          label="Select cities"
-          multi={true}
-          options={OPTIONS}
-          value={value}
-          onChange={(e) => setValue(e.target.value as string[])}
-        />
-        <Button onClick={() => setValue([])}>Reset</Button>
+    <div>
+      <div className="clr-greyscale-900">
+        Value: <span>{JSON.stringify(value)}</span>
       </div>
-    </CunninghamProvider>
+      <Select
+        label="Select cities"
+        multi={true}
+        options={OPTIONS}
+        value={value}
+        onChange={(e) => setValue(e.target.value as string[])}
+      />
+      <Button onClick={() => setValue([])}>Reset</Button>
+    </div>
   );
 };
 
@@ -136,22 +133,20 @@ export const SearchableDisabled = {
 export const SearchableControlled = () => {
   const [value, setValue] = useState([OPTIONS[6].value, OPTIONS[8].value]);
   return (
-    <CunninghamProvider>
-      <div>
-        <div>
-          Value: <span>{JSON.stringify(value)}</span>
-        </div>
-        <Select
-          label="Select cities"
-          options={OPTIONS}
-          searchable={true}
-          multi={true}
-          value={value}
-          onChange={(e) => setValue(e.target.value as string[])}
-        />
-        <Button onClick={() => setValue([])}>Reset</Button>
+    <div>
+      <div className="clr-greyscale-900">
+        Value: <span>{JSON.stringify(value)}</span>
       </div>
-    </CunninghamProvider>
+      <Select
+        label="Select cities"
+        options={OPTIONS}
+        searchable={true}
+        multi={true}
+        value={value}
+        onChange={(e) => setValue(e.target.value as string[])}
+      />
+      <Button onClick={() => setValue([])}>Reset</Button>
+    </div>
   );
 };
 
@@ -232,89 +227,87 @@ export const FormExample = () => {
   };
 
   return (
-    <CunninghamProvider>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-s">
-          <Select
-            label="Your favorite cities"
-            name="cities"
-            options={OPTIONS}
-            text="The cities you love the most"
-            state="success"
-            defaultValue={[OPTIONS[4].value]}
-            multi={true}
-          />
-        </div>
-        <div className="mb-s">
-          <Select
-            label="Your departments"
-            name="departments"
-            searchable={true}
-            multi={true}
-            options={[
-              {
-                label: "Legal",
-              },
-              {
-                label: "Tech",
-              },
-              {
-                label: "AI",
-              },
-              {
-                label: "Accounting",
-              },
-            ]}
-          />
-        </div>
-        <div className="mb-s">
-          <Select
-            label="Your skills"
-            text="Any error you want"
-            name="skills"
-            multi={true}
-            options={[
-              {
-                label: "Front-end",
-              },
-              {
-                label: "Back-end",
-              },
-              {
-                label: "Full-stack",
-              },
-            ]}
-            state="error"
-          />
-        </div>
-        <div className="mb-s">
-          <Select
-            label="Your options"
-            text="This field is disabled"
-            name="grade"
-            disabled={true}
-            multi={true}
-            options={[
-              {
-                label: "Bronze",
-              },
-              {
-                label: "Silver",
-              },
-              {
-                label: "Gold",
-              },
-              {
-                label: "Platinum",
-              },
-            ]}
-            defaultValue={["Platinum", "Gold"]}
-          />
-        </div>
+    <form onSubmit={handleSubmit}>
+      <div className="mb-s">
+        <Select
+          label="Your favorite cities"
+          name="cities"
+          options={OPTIONS}
+          text="The cities you love the most"
+          state="success"
+          defaultValue={[OPTIONS[4].value]}
+          multi={true}
+        />
+      </div>
+      <div className="mb-s">
+        <Select
+          label="Your departments"
+          name="departments"
+          searchable={true}
+          multi={true}
+          options={[
+            {
+              label: "Legal",
+            },
+            {
+              label: "Tech",
+            },
+            {
+              label: "AI",
+            },
+            {
+              label: "Accounting",
+            },
+          ]}
+        />
+      </div>
+      <div className="mb-s">
+        <Select
+          label="Your skills"
+          text="Any error you want"
+          name="skills"
+          multi={true}
+          options={[
+            {
+              label: "Front-end",
+            },
+            {
+              label: "Back-end",
+            },
+            {
+              label: "Full-stack",
+            },
+          ]}
+          state="error"
+        />
+      </div>
+      <div className="mb-s">
+        <Select
+          label="Your options"
+          text="This field is disabled"
+          name="grade"
+          disabled={true}
+          multi={true}
+          options={[
+            {
+              label: "Bronze",
+            },
+            {
+              label: "Silver",
+            },
+            {
+              label: "Gold",
+            },
+            {
+              label: "Platinum",
+            },
+          ]}
+          defaultValue={["Platinum", "Gold"]}
+        />
+      </div>
 
-        <Button>Submit</Button>
-      </form>
-    </CunninghamProvider>
+      <Button>Submit</Button>
+    </form>
   );
 };
 
@@ -353,45 +346,45 @@ export const ReactHookForm = () => {
   });
 
   return (
-    <CunninghamProvider>
-      <FormProvider {...methods}>
-        <form
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "1rem",
-            width: "400px",
-          }}
-          onSubmit={methods.handleSubmit(onSubmit)}
-        >
-          <div>Which cities are capital of countries ?</div>
-          <RhfSelect
-            name="capitalCity"
-            label="Select a city"
-            multi={true}
-            fullWidth={true}
-            options={[
-              {
-                label: "Dijon",
-                value: CitiesOptionEnum.DIJON,
-              },
-              {
-                label: "Paris",
-                value: CitiesOptionEnum.PARIS,
-              },
-              {
-                label: "Tokyo",
-                value: CitiesOptionEnum.TOKYO,
-              },
-              {
-                label: "Vannes",
-                value: CitiesOptionEnum.VANNES,
-              },
-            ]}
-          />
-          <Button fullWidth={true}>Submit</Button>
-        </form>
-      </FormProvider>
-    </CunninghamProvider>
+    <FormProvider {...methods}>
+      <form
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "1rem",
+          width: "400px",
+        }}
+        onSubmit={methods.handleSubmit(onSubmit)}
+      >
+        <div className="clr-greyscale-900">
+          Which cities are capital of countries ?
+        </div>
+        <RhfSelect
+          name="capitalCity"
+          label="Select a city"
+          multi={true}
+          fullWidth={true}
+          options={[
+            {
+              label: "Dijon",
+              value: CitiesOptionEnum.DIJON,
+            },
+            {
+              label: "Paris",
+              value: CitiesOptionEnum.PARIS,
+            },
+            {
+              label: "Tokyo",
+              value: CitiesOptionEnum.TOKYO,
+            },
+            {
+              label: "Vannes",
+              value: CitiesOptionEnum.VANNES,
+            },
+          ]}
+        />
+        <Button fullWidth={true}>Submit</Button>
+      </form>
+    </FormProvider>
   );
 };

@@ -3,7 +3,6 @@ import React, { useEffect, useMemo, useState } from "react";
 import { faker } from "@faker-js/faker";
 import { DataGrid, SortModel } from ":/components/DataGrid/index";
 import { usePagination } from ":/components/Pagination";
-import { CunninghamProvider } from ":/components/Provider";
 import { Button } from ":/components/Button";
 import { SimpleDataGrid } from ":/components/DataGrid/SimpleDataGrid";
 import { DataList } from ":/components/DataGrid/DataList";
@@ -15,36 +14,32 @@ export default {
 
 export const Empty = () => {
   return (
-    <CunninghamProvider>
-      <DataGrid
-        columns={[
-          {
-            field: "firstName",
-            headerName: "First name",
-            highlight: true,
-          },
-        ]}
-        rows={[]}
-      />
-    </CunninghamProvider>
+    <DataGrid
+      columns={[
+        {
+          field: "firstName",
+          headerName: "First name",
+          highlight: true,
+        },
+      ]}
+      rows={[]}
+    />
   );
 };
 
 export const Loading = () => {
   return (
-    <CunninghamProvider>
-      <DataGrid
-        columns={[
-          {
-            field: "firstName",
-            headerName: "First name",
-            highlight: true,
-          },
-        ]}
-        rows={[]}
-        isLoading={true}
-      />
-    </CunninghamProvider>
+    <DataGrid
+      columns={[
+        {
+          field: "firstName",
+          headerName: "First name",
+          highlight: true,
+        },
+      ]}
+      rows={[]}
+      isLoading={true}
+    />
   );
 };
 
@@ -61,43 +56,41 @@ export const ClientSideWithoutPagination = () => {
     [],
   );
   return (
-    <CunninghamProvider>
-      <SimpleDataGrid
-        columns={[
-          {
-            field: "firstName",
-            headerName: "First name",
-            highlight: true,
-          },
-          {
-            field: "lastName",
-            headerName: "Last name",
-          },
-          {
-            field: "email",
-            headerName: "Email",
-            highlight: true,
-          },
-          {
-            field: "address",
-            headerName: "Address",
-            enableSorting: false,
-          },
-          {
-            headerName: "Actions",
-            id: "actions",
-            renderCell: () => (
-              <Button
-                color="tertiary"
-                size="small"
-                icon={<span className="material-icons">delete</span>}
-              />
-            ),
-          },
-        ]}
-        rows={database}
-      />
-    </CunninghamProvider>
+    <SimpleDataGrid
+      columns={[
+        {
+          field: "firstName",
+          headerName: "First name",
+          highlight: true,
+        },
+        {
+          field: "lastName",
+          headerName: "Last name",
+        },
+        {
+          field: "email",
+          headerName: "Email",
+          highlight: true,
+        },
+        {
+          field: "address",
+          headerName: "Address",
+          enableSorting: false,
+        },
+        {
+          headerName: "Actions",
+          id: "actions",
+          renderCell: () => (
+            <Button
+              color="tertiary"
+              size="small"
+              icon={<span className="material-icons">delete</span>}
+            />
+          ),
+        },
+      ]}
+      rows={database}
+    />
   );
 };
 
@@ -116,7 +109,7 @@ export const ClientSideWithPagination = () => {
   const [rowSelection, setRowSelection] = useState({});
 
   return (
-    <CunninghamProvider>
+    <>
       <SimpleDataGrid
         columns={[
           {
@@ -149,7 +142,7 @@ export const ClientSideWithPagination = () => {
         onRowSelectionChange={setRowSelection}
       />
       <div>Selected rows: {Object.keys(rowSelection).join(", ")}</div>
-    </CunninghamProvider>
+    </>
   );
 };
 
@@ -208,48 +201,46 @@ export const FullServerSide = () => {
   }, [pagination.page, sortModel]);
 
   return (
-    <CunninghamProvider>
-      <DataGrid
-        columns={[
-          {
-            field: "firstName",
-            headerName: "First name",
-            highlight: true,
-          },
-          {
-            field: "lastName",
-            headerName: "Last name",
-          },
-          {
-            field: "email",
-            headerName: "Email",
-            highlight: true,
-          },
-          {
-            field: "address",
-            headerName: "Address",
-          },
-          {
-            id: "actions",
-            renderCell: () => (
-              <Button
-                color="tertiary"
-                size="small"
-                icon={<span className="material-icons">delete</span>}
-              />
-            ),
-          },
-        ]}
-        rows={rows}
-        pagination={pagination}
-        sortModel={sortModel}
-        onSortModelChange={setSortModel}
-        isLoading={isLoading}
-        enableRowSelection={true}
-        rowSelection={rowSelection}
-        onRowSelectionChange={setRowSelection}
-      />
-    </CunninghamProvider>
+    <DataGrid
+      columns={[
+        {
+          field: "firstName",
+          headerName: "First name",
+          highlight: true,
+        },
+        {
+          field: "lastName",
+          headerName: "Last name",
+        },
+        {
+          field: "email",
+          headerName: "Email",
+          highlight: true,
+        },
+        {
+          field: "address",
+          headerName: "Address",
+        },
+        {
+          id: "actions",
+          renderCell: () => (
+            <Button
+              color="tertiary"
+              size="small"
+              icon={<span className="material-icons">delete</span>}
+            />
+          ),
+        },
+      ]}
+      rows={rows}
+      pagination={pagination}
+      sortModel={sortModel}
+      onSortModelChange={setSortModel}
+      isLoading={isLoading}
+      enableRowSelection={true}
+      rowSelection={rowSelection}
+      onRowSelectionChange={setRowSelection}
+    />
   );
 };
 
@@ -265,25 +256,23 @@ export const DataListOnly = () => {
   );
 
   return (
-    <CunninghamProvider>
-      <DataList
-        rows={database}
-        columns={[
-          { field: "title" },
-          { field: "date" },
-          {
-            headerName: "actions",
-            id: "actions",
-            renderCell: () => {
-              return (
-                <Button size="small" color="secondary">
-                  Do it
-                </Button>
-              );
-            },
+    <DataList
+      rows={database}
+      columns={[
+        { field: "title" },
+        { field: "date" },
+        {
+          headerName: "actions",
+          id: "actions",
+          renderCell: () => {
+            return (
+              <Button size="small" color="secondary">
+                Do it
+              </Button>
+            );
           },
-        ]}
-      />
-    </CunninghamProvider>
+        },
+      ]}
+    />
   );
 };
