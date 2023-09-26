@@ -119,7 +119,9 @@ export const Controlled = {
     const [checked, setChecked] = React.useState(false);
     return (
       <div>
-        <div>Value: {JSON.stringify(checked)}</div>
+        <div className="clr-greyscale-900">
+          Value: {JSON.stringify(checked)}
+        </div>
         <Switch
           checked={checked}
           onChange={(e) => setChecked(e.target.checked)}
