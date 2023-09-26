@@ -34,11 +34,15 @@ If you prefer using Typescript, create a file named `cunningham.ts` at the root 
 import { DefaultTokens } from "@openfun/cunningham-react";
 
 const config: DefaultTokens = {
-  theme: {
-      colors: {
-        "primary-500": "purple",
+  themes: {
+    default: {
+      theme: {
+        colors: {
+          "primary-500": "purple",
+        },
       },
     },
+  },
 };
 
 export default config;
@@ -52,9 +56,13 @@ Or if you prefer Javascript, create a file named `cunningham.cjs` at the root of
 <Source dark={true} code={`
 // cunningham.cjs
 module.exports = {
-  theme: {
-    colors: {
-      "primary-500": "purple",
+  themes: {
+    default: {
+      theme: {
+        colors: {
+          "primary-500": "purple",
+        },
+      },
     },
   },
 };`}></Source>
@@ -93,12 +101,16 @@ For our example we focus on the `border-radius` design token. Now, incorporate t
 import { DefaultTokens } from "@openfun/cunningham-react";
 
 const config: DefaultTokens = {
-  theme: {
-    ...
-  },
-  components: {
-    button: {
-      "border-radius": "30px",
+  themes: {
+    default: {
+      theme: {
+        ...
+      },
+      components: {
+        button: {
+          "border-radius": "30px",
+        },
+      },
     },
   },
 };
@@ -129,12 +141,16 @@ let's say we want keep the same border radius when the `Button` component is act
 import { defaultTokens, DefaultTokens } from "@openfun/cunningham-react";
 
 const config: DefaultTokens = {
-  theme: {
-    ...
-  },
-  components: {
-    button: {
-      "border-radius--active": defaultTokens.components.button["border-radius"],
+  themes: {
+    default: {
+      theme: {
+        ...
+      },
+      components: {
+        button: {
+          "border-radius--active": defaultTokens.components.button["border-radius"],
+        },
+      },
     },
   },
 };
@@ -152,12 +168,16 @@ You can also use more global design tokens from `defaultTokens.theme`, like that
 import { defaultTokens, DefaultTokens } from "@openfun/cunningham-react";
 
 const config: DefaultTokens = {
-  theme: {
-    ...
-  },
-  components: {
-    button: {
-      "medium-font-size": defaultTokens.theme.font.sizes.s,
+  themes: {
+    default: {
+      theme: {
+        ...
+      },
+      components: {
+        button: {
+          "medium-font-size": defaultTokens.theme.font.sizes.s,
+        },
+      },
     },
   },
 };

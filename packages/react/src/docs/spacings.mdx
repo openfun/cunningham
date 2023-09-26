@@ -11,10 +11,10 @@ Here are the existing spacings:
 
 <Canvas sourceState="none">
   <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-    {Object.keys(tokens.theme.spacings).map(key => (
+    {Object.keys(tokens.themes.default.theme.spacings).map(key => (
       <div key={key} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
         <div className="fw-bold clr-secondary-text" style={{ width: '30px' }}>-{key}</div>
-        <div className="fw-medium fs-m clr-secondary-text" style={{ width: '100px' }}>{tokens.theme.spacings[key]}</div>
+        <div className="fw-medium fs-m clr-secondary-text" style={{ width: '100px' }}>{tokens.themes.default.theme.spacings[key]}</div>
         <div className={"bg-danger-100 pl-" + key} style={{ height: '48px', width: 0 }}></div>
       </div>
     ))}
@@ -51,8 +51,8 @@ You can use the following classes to add paddings to your elements:
 ## Example
 
 <Canvas sourceState="shown">
-  <div className="bg-danger-100">
-    <div className="bg-primary-500 clr-primary-text fw-medium p-t mb-l">Tiny padding + Large margin bottom</div>
-    <div className="bg-secondary-500 clr-secondary-text fw-medium p-l ml-b">Large padding + Base margin left</div>
+  <div className="clr-greyscale-800 bg-danger-100">
+    <div className="clr-greyscale-800 bg-primary-500 clr-primary-text fw-medium p-t mb-l">Tiny padding + Large margin bottom</div>
+    <div className="clr-secondary-900 bg-secondary-500 clr-secondary-text fw-medium p-l ml-b">Large padding + Base margin left</div>
   </div>
 </Canvas>

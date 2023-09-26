@@ -22,8 +22,8 @@ You can use custom utility classes to set the font size of an element. These cla
 
 <Canvas sourceState="none">
   <div style={{display: "flex", flexDirection: "column", gap: "20px"}}>
-    {Object.keys(tokens.theme.font.sizes).map(key => (
-      <div key={key} className={"fs-" + key}>Using the <code>fs-{key}</code> class</div>
+    {Object.keys(tokens.themes.default.theme.font.sizes).map(key => (
+      <div key={key} className={"clr-greyscale-800 fs-" + key}>Using the <code>fs-{key}</code> class</div>
     ))}
   </div>
 </Canvas>
@@ -37,15 +37,19 @@ You can customize the values of the font size design tokens with the configurati
   code={`
   // cunningham.ts|cjs
   export default {
-    theme: {
-      typo: {
-        sizes: {
-          m: '0.5rem', // You can customize the size of the existing medium text ( 'fs-m' class )
-          xxl: '3rem' // You can also add custom sizes yourself ( 'fs-xxl' class will be generated )
-          ...
+    themes: {
+      default: {
+        theme: {
+          typo: {
+            sizes: {
+              m: '0.5rem', // You can customize the size of the existing medium text ( 'fs-m' class )
+              xxl: '3rem' // You can also add custom sizes yourself ( 'fs-xxl' class will be generated )
+              ...
+            },
+          },
         },
-      }
-    }
+      },
+    },
   }
   `}
 />
@@ -65,8 +69,8 @@ You can use custom utility classes to set the font weight of an element. These c
 
 <Canvas sourceState="none">
   <div style={{display: "flex", flexDirection: "column", gap: "20px"}}>
-    {Object.keys(tokens.theme.font.weights).map(key => (
-      <div key={key} className={"fs-l fw-" + key}>Using the <code>fw-{key}</code> class</div>
+    {Object.keys(tokens.themes.default.theme.font.weights).map(key => (
+      <div key={key} className={"clr-greyscale-800 fs-l fw-" + key}>Using the <code>fw-{key}</code> class</div>
     ))}
   </div>
 </Canvas>
@@ -80,14 +84,18 @@ You can customize the values of the font weight design tokens with the configura
   code={`
   // cunningham.ts|cjs
   export default {
-    theme: {
-      typo: {
-        weights: {
-          regular: 500, // You can customize the size of the existing regular text ( 'fw-regular' class )
-          chunky: 900 // You can also add custom weights yourself ( 'fw-chunky' class will be generated )
-          ...
+    themes: {
+      default: {
+        theme: {
+          typo: {
+            weights: {
+              regular: 500, // You can customize the size of the existing regular text ( 'fw-regular' class )
+              chunky: 900 // You can also add custom weights yourself ( 'fw-chunky' class will be generated )
+              ...
+            },
+          },
         },
-      }
+      },
     }
   }
   `}
@@ -106,14 +114,14 @@ class on every dom element.
   dark
   format={false}
   code={`
-  <div className="f-accent">Accent text</div>
+  <div className="clr-greyscale-800 f-accent">Accent text</div>
   `}
 />
 
 <Canvas sourceState="none">
   <div style={{display: "flex", flexDirection: "column", gap: "20px"}}>
-    {Object.keys(tokens.theme.font.families).map(key => (
-    <div key={key} className={"f-" + key}>Using the <code>f-{key}</code> class</div>
+    {Object.keys(tokens.themes.default.theme.font.families).map(key => (
+    <div key={key} className={"clr-greyscale-800 f-" + key}>Using the <code>f-{key}</code> class</div>
     ))}
   </div>
 </Canvas>
@@ -127,15 +135,19 @@ You can customize the values of the font family design tokens with the configura
   code={`
   // cunningham.ts|cjs
   export default {
-    theme: {
-      typo: {
-        families: {
-          base: 'Inter', // You can customize the font family of the existing base variation ( 'f-base' class )
-          legend: 'Arial' // You can also add custom font families yourself ( 'f-legend' class will be generated )
-          ...
+    themes: {
+      default: {
+        theme: {
+          typo: {
+            families: {
+              base: 'Inter', // You can customize the font family of the existing base variation ( 'f-base' class )
+              legend: 'Arial' // You can also add custom font families yourself ( 'f-legend' class will be generated )
+              ...
+            },
+          },
         },
-      }
-    }
+      },
+    },
   }
   `}
 />
