@@ -12,7 +12,7 @@ export const tokens = (defaults: DefaultTokens) => ({
   "border-color--focus": defaults.theme.colors["primary-600"],
   "border-style": "solid",
   "label-color--focus": defaults.theme.colors["primary-600"],
-  "background-color": "white",
+  "background-color": defaults.theme.colors["greyscale-000"],
   "value-color": defaults.theme.colors["greyscale-900"],
   "value-color--disabled": defaults.theme.colors["greyscale-800"],
 });

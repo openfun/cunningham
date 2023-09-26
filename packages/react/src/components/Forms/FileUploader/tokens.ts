@@ -1,7 +1,7 @@
 import { DefaultTokens } from "@openfun/cunningham-tokens";
 
 export const tokens = (defaults: DefaultTokens) => ({
-  "background-color": "white",
+  "background-color": defaults.theme.colors["greyscale-000"],
   "border-color": defaults.theme.colors["greyscale-300"],
   "border-radius": "0.5rem",
   "border-width": "2px",
@@ -18,7 +18,7 @@ export const tokens = (defaults: DefaultTokens) => ({
   "file-border-color": defaults.theme.colors["greyscale-300"],
   "file-border-width": "1px",
   "file-border-radius": "0.5rem",
-  "file-background-color": "white",
+  "file-background-color": defaults.theme.colors["greyscale-000"],
   "file-specs-size": "0.6875rem",
   "file-specs-color": defaults.theme.colors["greyscale-600"],
 });
