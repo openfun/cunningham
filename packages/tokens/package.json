@@ -30,7 +30,8 @@
     "build": "yarn build-bin && yarn build-default-theme && yarn build-lib && cd ../.. && ln -sf ../../packages/tokens/dist/bin/Main.js node_modules/.bin/cunningham",
     "build-default-theme": "node ./dist/bin/Main.js -o dist -s html -g scss,css,js,ts --utility-classes",
     "test": "cross-env FORCE_COLOR=1 jest --runInBand --verbose src",
-    "test-ci": "cross-env FORCE_COLOR=1 jest --runInBand src"
+    "test-ci": "cross-env FORCE_COLOR=1 jest --runInBand src",
+    "figma-to-cunningham": "ts-node FigmaToCunningham.ts"
   },
   "dependencies": {
     "chalk": "4.1.2",
