@@ -55,17 +55,28 @@ describe("Cunningham Bin", () => {
     expect(fs.existsSync(cssTokensFile)).toEqual(false);
     await run(["", "", "-g", "css"]);
     expect(fs.existsSync(cssTokensFile)).toEqual(true);
-    expect(fs.readFileSync(cssTokensFile).toString()).toEqual(
-      fs
-        .readFileSync(
-          path.join(
-            __dirname,
-            "assets",
-            "expected-default-" + Config.tokenFilename + ".css",
-          ),
-        )
-        .toString(),
-    );
+    expect(fs.readFileSync(cssTokensFile).toString()).toMatchInlineSnapshot(`
+":root {
+	--c--theme--colors--primary: #055FD2;
+	--c--theme--colors--secondary: #DA0000;
+	--c--theme--colors--ternary-900: #022858;
+	--c--theme--colors--ogre-odor-is-orange-indeed: #FD5240;
+	--c--theme--font--sizes--m: 1rem;
+	--c--theme--font--weights--medium: 400;
+	--c--theme--font--families--base: Roboto;
+	--c--theme--spacings--s: 1rem;
+	--c--theme--transitions--ease: linear;
+	--c--theme--input--border-color: var(--c--theme--colors--ternary-900);
+	--c--components--button--font-family: Times New Roman;
+}
+.cunningham-theme--dark{
+	--c--theme--colors--primary: black;
+}
+.cunningham-theme--custom{
+	--c--theme--colors--primary: green;
+}
+"
+`);
   });
 
   it("Runs with existing JS config file using local values.", async () => {
@@ -83,17 +94,28 @@ describe("Cunningham Bin", () => {
 
     await run(["", "", "-g", "css"]);
     expect(fs.existsSync(cssTokensFile)).toEqual(true);
-    expect(fs.readFileSync(cssTokensFile).toString()).toEqual(
-      fs
-        .readFileSync(
-          path.join(
-            __dirname,
-            "assets",
-            "expected-js-" + Config.tokenFilename + ".css",
-          ),
-        )
-        .toString(),
-    );
+    expect(fs.readFileSync(cssTokensFile).toString()).toMatchInlineSnapshot(`
+":root {
+	--c--theme--colors--primary: AntiqueWhite;
+	--c--theme--colors--secondary: #DA0000;
+	--c--theme--colors--ternary-900: #022858;
+	--c--theme--colors--ogre-odor-is-orange-indeed: #FD5240;
+	--c--theme--font--sizes--m: 1rem;
+	--c--theme--font--weights--medium: 400;
+	--c--theme--font--families--base: Roboto;
+	--c--theme--spacings--s: 1rem;
+	--c--theme--transitions--ease: linear;
+	--c--theme--input--border-color: var(--c--theme--colors--ternary-900);
+	--c--components--button--font-family: Times New Roman;
+}
+.cunningham-theme--dark{
+	--c--theme--colors--primary: black;
+}
+.cunningham-theme--custom{
+	--c--theme--colors--primary: green;
+}
+"
+`);
   });
 
   it("Runs with existing TS config file using local values.", async () => {
@@ -113,7 +135,6 @@ describe("Cunningham Bin", () => {
     // TS will always work )
     await runBin(`-g css -cwd ${__dirname}`);
 
-    // await run(["", "", "-g", "css"]);
     expect(fs.existsSync(cssTokensFile)).toEqual(true);
     expect(fs.readFileSync(cssTokensFile).toString()).toContain(`
 \t--c--theme--colors--primary: typescript;`);
@@ -125,17 +146,28 @@ describe("Cunningham Bin", () => {
     expect(fs.existsSync(cssTokensFile)).toEqual(false);
     await run(["", "", "-g", "css", opt, outputDir]);
     expect(fs.existsSync(cssTokensFile)).toEqual(true);
-    expect(fs.readFileSync(cssTokensFile).toString()).toEqual(
-      fs
-        .readFileSync(
-          path.join(
-            __dirname,
-            "assets",
-            "expected-default-" + Config.tokenFilename + ".css",
-          ),
-        )
-        .toString(),
-    );
+    expect(fs.readFileSync(cssTokensFile).toString()).toMatchInlineSnapshot(`
+":root {
+	--c--theme--colors--primary: #055FD2;
+	--c--theme--colors--secondary: #DA0000;
+	--c--theme--colors--ternary-900: #022858;
+	--c--theme--colors--ogre-odor-is-orange-indeed: #FD5240;
+	--c--theme--font--sizes--m: 1rem;
+	--c--theme--font--weights--medium: 400;
+	--c--theme--font--families--base: Roboto;
+	--c--theme--spacings--s: 1rem;
+	--c--theme--transitions--ease: linear;
+	--c--theme--input--border-color: var(--c--theme--colors--ternary-900);
+	--c--components--button--font-family: Times New Roman;
+}
+.cunningham-theme--dark{
+	--c--theme--colors--primary: black;
+}
+.cunningham-theme--custom{
+	--c--theme--colors--primary: green;
+}
+"
+`);
   };
 
   it("Runs with -o options.", async () => {

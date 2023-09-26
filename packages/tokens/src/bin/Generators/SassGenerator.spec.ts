@@ -25,40 +25,58 @@ describe("SassGenerator", () => {
 
     expect(fs.existsSync(sassFile)).toEqual(true);
     expect(fs.readFileSync(sassFile).toString()).toMatchInlineSnapshot(`
-      "$theme: (
-        'colors': (
-          'primary': #055FD2,
-          'secondary': #DA0000,
-          'ternary-900': #022858,
-          'ogre-odor-is-orange-indeed': #FD5240
+"$themes: (
+  'default': (
+    'theme': (
+      'colors': (
+        'primary': #055FD2,
+        'secondary': #DA0000,
+        'ternary-900': #022858,
+        'ogre-odor-is-orange-indeed': #FD5240
+      ),
+      'font': (
+        'sizes': (
+          'm': 1rem
         ),
-        'font': (
-          'sizes': (
-            'm': 1rem
-          ),
-          'weights': (
-            'medium': 400
-          ),
-          'families': (
-            'base': Roboto
-          )
+        'weights': (
+          'medium': 400
         ),
-        'spacings': (
-          's': 1rem
-        ),
-        'transitions': (
-          'ease': linear
-        ),
-        'input': (
-          'border-color': #022858
+        'families': (
+          'base': Roboto
         )
-      ) !default;
-      $components: (
-        'button': (
-          'font-family': Times New Roman
-        )
-      ) !default;
-      "
-    `);
+      ),
+      'spacings': (
+        's': 1rem
+      ),
+      'transitions': (
+        'ease': linear
+      ),
+      'input': (
+        'border-color': #022858
+      )
+    ),
+    'components': (
+      'button': (
+        'font-family': Times New Roman
+      )
+    )
+  ),
+  'dark': (
+    'theme': (
+      'colors': (
+        'primary': black
+      )
+    )
+  ),
+  'custom': (
+    'theme': (
+      'colors': (
+        'primary': green
+      )
+    )
+  )
+) !default;
+"
+`);
   });
 });

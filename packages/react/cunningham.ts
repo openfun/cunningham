@@ -32,5 +32,9 @@ files.forEach((file) => {
 });
 
 export default {
-  components,
+  themes: {
+    default: {
+      components,
+    },
+  },
 };

@@ -1,7 +1,11 @@
 module.exports = {
-  theme: {
-    colors: {
-      primary: "AntiqueWhite",
-    },
-  },
+  themes: {
+    default: {
+      theme: {
+        colors: {
+          primary: "AntiqueWhite",
+        },
+      },
+    }
+  }
 };

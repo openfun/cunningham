@@ -13,6 +13,7 @@ const jestConfig: JestConfigWithTsJest = {
       { tsconfig: "./src/bin/tsconfig.json" },
     ],
   },
+  prettierPath: null,
 };
 
 export default jestConfig;

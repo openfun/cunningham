@@ -2,6 +2,7 @@ import React, {
   createContext,
   PropsWithChildren,
   useContext,
+  useEffect,
   useMemo,
 } from "react";
 import * as enUS from ":/locales/en-US.json";
@@ -30,10 +31,13 @@ export const useCunningham = () => {
 interface Props extends PropsWithChildren {
   customLocales?: Record<string, TranslationSet>;
   currentLocale?: string;
+  theme?: string;
 }
 
 export const DEFAULT_LOCALE = Locales.enUS;
+export const DEFAULT_THEME = "default";
 export const SUPPORTED_LOCALES = Object.values(Locales);
+const THEME_CLASSNAME_PREFIX = "cunningham-theme--";
 
 const findTranslation = (
   key: string,
@@ -46,6 +50,7 @@ const findTranslation = (
 export const CunninghamProvider = ({
   currentLocale = DEFAULT_LOCALE,
   customLocales,
+  theme = DEFAULT_THEME,
   children,
 }: Props) => {
   const locales: Record<string, TranslationSet> = useMemo(
@@ -82,6 +87,16 @@ export const CunninghamProvider = ({
     }),
     [currentLocale, locales],
   );
+
+  useEffect(() => {
+    const root = document.querySelector(":root")!;
+    root.classList.forEach((className) => {
+      if (className.startsWith(THEME_CLASSNAME_PREFIX)) {
+        root.classList.remove(className);
+      }
+    });
+    root.classList.add(THEME_CLASSNAME_PREFIX + theme);
+  }, [theme]);
 
   return (
     <CunninghamContext.Provider value={context}>

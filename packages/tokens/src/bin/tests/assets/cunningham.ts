@@ -1,7 +1,11 @@
 export default {
-  theme: {
-    colors: {
-      primary: "typescript",
-    },
-  },
+  themes: {
+    default: {
+      theme: {
+        colors: {
+          primary: "typescript",
+        },
+      },
+    }
+  }
 };

@@ -1,5 +1,5 @@
 import "./index.scss";
-import { PartialNested } from ":/types";
+import { PartialExtendableNested, PartialNested } from ":/types";
 import { tokens } from "./cunningham-tokens";
 
 export * from "./components/Button";
@@ -19,5 +19,8 @@ export * from "./components/Pagination";
 export * from "./components/Popover";
 export * from "./components/Provider";
 
-export type DefaultTokens = PartialNested<typeof tokens>;
-export const defaultTokens = tokens;
+export type DefaultTokens = PartialNested<typeof tokens.themes.default>;
+export const defaultTokens = tokens.themes.default;
+export type Configuration = {
+  themes: Record<string, PartialExtendableNested<typeof tokens.themes.default>>;
+};

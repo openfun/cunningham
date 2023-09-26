@@ -1,31 +1,8 @@
-const colorsGreyscale = {
-  "greyscale-000": "#FFFFFF",
-  "greyscale-100": "#FAFAFB",
-  "greyscale-200": "#F3F4F4",
-  "greyscale-300": "#E7E8EA",
-  "greyscale-400": "#C2C6CA",
-  "greyscale-500": "#9EA3AA",
-  "greyscale-600": "#79818A",
-  "greyscale-700": "#555F6B",
-  "greyscale-800": "#303C4B",
-  "greyscale-900": "#0C1A2B",
-};
-
-const colorsPrimary = {
-  "primary-text": colorsGreyscale["greyscale-000"],
-  "primary-100": "#EBF2FC",
-  "primary-200": "#8CB5EA",
-  "primary-300": "#5894E1",
-  "primary-400": "#377FDB",
-  "primary-500": "#055FD2",
-  "primary-600": "#0556BF",
-  "primary-700": "#044395",
-  "primary-800": "#033474",
-  "primary-900": "#022858",
-};
+import { colors as defaultColors } from "./ThemeColors/default";
+import { colors as darkColors } from "./ThemeColors/dark";
 
 const colorsSecondary = {
-  "secondary-text": colorsGreyscale["greyscale-700"],
+  "secondary-text": "ref(theme.colors.greyscale-700)",
   "secondary-100": "#F2F7FC",
   "secondary-200": "#EBF3FA",
   "secondary-300": "#E2EEF8",
@@ -37,21 +14,8 @@ const colorsSecondary = {
   "secondary-900": "#596067",
 };
 
-const colorsSuccess = {
-  "success-text": colorsGreyscale["greyscale-000"],
-  "success-100": "#EFFCD3",
-  "success-200": "#DBFAA9",
-  "success-300": "#BEF27C",
-  "success-400": "#A0E659",
-  "success-500": "#76D628",
-  "success-600": "#5AB81D",
-  "success-700": "#419A14",
-  "success-800": "#2C7C0C",
-  "success-900": "#1D6607",
-};
-
 const colorsInfo = {
-  "info-text": colorsGreyscale["greyscale-000"],
+  "info-text": "ref(theme.colors.greyscale-000)",
   "info-100": "#EBF2FC",
   "info-200": "#8CB5EA",
   "info-300": "#5894E1",
@@ -61,32 +25,6 @@ const colorsInfo = {
   "info-700": "#044395",
   "info-800": "#033474",
   "info-900": "#022858",
-};
-
-const colorsWarning = {
-  "warning-text": colorsGreyscale["greyscale-000"],
-  "warning-100": "#FFF8CD",
-  "warning-200": "#FFEF9B",
-  "warning-300": "#FFE469",
-  "warning-400": "#FFDA43",
-  "warning-500": "#FFC805",
-  "warning-600": "#DBA603",
-  "warning-700": "#B78702",
-  "warning-800": "#936901",
-  "warning-900": "#7A5400",
-};
-
-const colorsDanger = {
-  "danger-text": colorsGreyscale["greyscale-000"],
-  "danger-100": "#F4B0B0",
-  "danger-200": "#EE8A8A",
-  "danger-300": "#E65454",
-  "danger-400": "#E13333",
-  "danger-500": "#DA0000",
-  "danger-600": "#C60000",
-  "danger-700": "#9B0000",
-  "danger-800": "#780000",
-  "danger-900": "#5C0000",
 };
 
 const fontSizes = {
@@ -144,16 +82,16 @@ const transitions = {
   duration: "250ms",
 };
 
-export default {
+const defaultTheme = {
   theme: {
     colors: {
-      ...colorsPrimary,
       ...colorsSecondary,
-      ...colorsGreyscale,
-      ...colorsSuccess,
       ...colorsInfo,
-      ...colorsWarning,
-      ...colorsDanger,
+      ...defaultColors,
+      "primary-text": "ref(theme.colors.greyscale-000)",
+      "success-text": "ref(theme.colors.greyscale-000)",
+      "warning-text": "ref(theme.colors.greyscale-000)",
+      "danger-text": "ref(theme.colors.greyscale-000)",
     },
     font: {
       sizes: fontSizes,
@@ -163,5 +101,16 @@ export default {
     },
     spacings,
     transitions,
+  },
+};
+
+export default {
+  themes: {
+    default: defaultTheme,
+    dark: {
+      theme: {
+        colors: darkColors,
+      },
+    },
   },
 };

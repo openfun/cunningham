@@ -68,6 +68,8 @@ describe("<Button/>", () => {
   it("uses custom token", async () => {
     await buildTheme();
     const tokens = await loadTokens();
-    expect(tokens.components.button["border-radius"]).toBeDefined();
+    expect(
+      tokens.themes.default.components.button["border-radius"],
+    ).toBeDefined();
   });
 });
