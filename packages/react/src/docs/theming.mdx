@@ -1,0 +1,133 @@
+import { Canvas, Meta, Story, Source, ArgsTable } from '@storybook/addon-docs';
+
+<Meta title="Getting Started/Theming"/>
+
+# Theming
+
+Cunningham has a built-in theming feature available. You can customize themes already provided or add your own themes !
+
+## Included themes
+
+Cunningham natively has a `default` theme ( aka light theme ) and a `dark` theme.
+
+You can switch between these two themes by clicking on the button in the top-bar and visualize all the components in their
+different versions. ✨
+
+<div style={{textAlign: "center"}}>
+  <img src="/switch-theme.gif"/>
+</div>
+
+## Code implementation
+
+No panic it's easy. You can switch the current theme by using the prop `theme` of `CunninghamProvider`, here is an example
+with a `MyApp` component.
+
+<Source dark={true} code={`
+
+import {
+  Button,
+  CunninghamProvider
+} from "@openfun/cunningham-react";
+
+export const MyApp = () => {
+  const [theme, setTheme] = useState("default");
+  return (
+    <CunninghamProvider theme={theme}>
+      <Button onClick={() => setTheme(theme === "default" ? "dark" : "default"}>Switch theme</Button>
+    </CunninghamProvider>
+  );
+};
+
+`}></Source>
+
+> You can find a fully working example [here](https://github.com/openfun/cunningham/blob/main/apps/demo/src/App.tsx) in the demo app.
+
+## What about CSS variables ?
+
+It's seamless ! You can still use variables in CSS like this
+
+<Source dark={true} code={`
+
+.myClass {
+  background-color: var(--c--theme--colors--greyscale-000);
+}
+
+`}></Source>
+
+The variable will be automatically switched across the DOM when switching theme via `CunninghamProvider`.
+
+## Customizing themes
+
+As you have see in the previous sections you can customize the design tokens by editing `cunningham.ts`, you may have noticed
+that in all the examples you had to wrap the modifications inside the following fields:
+
+<Source dark={true} code={`
+// cunningham.ts
+import { DefaultTokens } from "@openfun/cunningham-react";
+
+const config: DefaultTokens = {
+  themes: {
+    default: {
+      ...
+    },
+  },
+};
+
+export default config;
+
+`}></Source>
+
+In reality in this case you are editing the theme called `default` ( which refer to the light theme ), if you want to edit
+the dark theme you have to provide the `dark` key accordingly
+
+<Source dark={true} code={`
+// cunningham.ts
+import { DefaultTokens } from "@openfun/cunningham-react";
+
+const config: DefaultTokens = {
+  themes: {
+    default: {
+      ...
+    },
+    dark: {
+      ...
+    },
+  },
+};
+
+export default config;
+
+`}></Source>
+
+## Creating your theme
+
+The logic is the same as what we saw previously. Just add a new key inside the `themes` object.
+
+> ⚠️ All themes extends the `default` theme by default, that's why it is named `default` and not `light`. A consequence is that you don't have to provide all existing design tokens when creating a new theme, you can just customize the one you want.
+
+<Source dark={true} code={`
+// cunningham.ts
+import { DefaultTokens } from "@openfun/cunningham-react";
+
+const config: DefaultTokens = {
+  themes: {
+    default: {
+      ...
+    },
+    dark: {
+      ...
+    },
+    pink: {
+      theme: {
+        colors: {
+          "primary-100": "pink",
+          ...
+        }
+      }
+    },
+  },
+};
+
+export default config;
+
+`}></Source>
