@@ -92,5 +92,5 @@ export const resolveRefs = (
  * @param resolvingTokens
  */
 export const resolveRefValue = (ref: string, resolvingTokens: Tokens) => {
-  return resolve(resolvingTokens, ref);
+  return resolve(resolvingTokens.themes.default, ref);
 };

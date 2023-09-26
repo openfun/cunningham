@@ -153,4 +153,37 @@ describe("<CunninghamProvider />", () => {
     };
     render(<Wrapped />, { wrapper: Wrapper });
   });
+
+  it("should change theme by updating :root classes", async () => {
+    const Wrapper = (props: PropsWithChildren) => {
+      const [theme, setTheme] = useState("default");
+      return (
+        <CunninghamProvider theme={theme}>
+          <Button onClick={() => setTheme("default")}>Default</Button>
+          <Button onClick={() => setTheme("dark")}>Dark</Button>
+          <Button onClick={() => setTheme("custom")}>Custom</Button>
+          {props.children}
+        </CunninghamProvider>
+      );
+    };
+    render(<Wrapper />);
+
+    expect(document.querySelector(":root")).toHaveClass(
+      "cunningham-theme--default",
+    );
+
+    const user = userEvent.setup();
+    const darkButton = screen.getByRole("button", { name: "Dark" });
+    await user.click(darkButton);
+
+    expect(document.querySelector(":root")).toHaveClass(
+      "cunningham-theme--dark",
+    );
+    const customButton = screen.getByRole("button", { name: "Custom" });
+    await user.click(customButton);
+
+    expect(Array.from(document.querySelector(":root")!.classList)).toEqual([
+      "cunningham-theme--custom",
+    ]);
+  });
 });

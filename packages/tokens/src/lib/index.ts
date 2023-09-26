@@ -1,7 +1,8 @@
 import { tokens } from "./cunningham-tokens";
 
-export type DefaultTokens = typeof tokens;
-export const defaultTokens = tokens;
+export type Configuration = typeof tokens;
+export type DefaultTokens = (typeof tokens)["themes"]["default"];
+export const defaultTokens = tokens.themes.default;
 
 /**
  * Transform such object:

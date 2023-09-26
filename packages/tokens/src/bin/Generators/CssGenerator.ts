@@ -5,6 +5,8 @@ import { Generator, resolveRefs } from "Generators/index";
 import { put } from "Utils/Files";
 import { Tokens } from "TokensGenerator";
 
+export const THEME_CLASSNAME_PREFIX = "cunningham-theme--";
+
 export const cssGenerator: Generator = async (tokens, opts) => {
   // Replace refs by CSS variables.
   tokens = resolveRefs(tokens, (ref) => {
@@ -15,7 +17,9 @@ export const cssGenerator: Generator = async (tokens, opts) => {
     return `var(${cssVar})`;
   });
 
-  const flatTokens = flatify(tokens, Config.sass.varSeparator);
+  const { default: defaultTheme, ...otherThemes } = tokens.themes;
+
+  const flatTokens = flatify(defaultTheme, Config.sass.varSeparator);
   const cssVars = Object.keys(flatTokens).reduce((acc, token) => {
     return (
       acc +
@@ -25,6 +29,18 @@ export const cssGenerator: Generator = async (tokens, opts) => {
     );
   }, "");
   let cssContent = `${opts.selector} {\n${cssVars}}`;
+
+  Object.entries(otherThemes).forEach(([themeName, themeTokens]) => {
+    const flatTokensOther = flatify(themeTokens, Config.sass.varSeparator);
+    const themeCssVars = Object.keys(flatTokensOther).reduce((acc, token) => {
+      return (
+        acc +
+        `\t--${Config.sass.varPrefix}${token}: ${flatTokensOther[token]};\n`
+      );
+    }, "");
+    cssContent += `\n.${THEME_CLASSNAME_PREFIX}${themeName}{\n${themeCssVars}}`;
+  });
+
   if (opts.utilityClasses) {
     cssContent += ` ${generateClasses(tokens)}`;
   }
@@ -53,7 +69,7 @@ function generateColorClasses(tokens: Tokens) {
  * @param tokens
  */
 function generateBgClasses(tokens: Tokens) {
-  return Object.keys(tokens.theme.colors).map(
+  return Object.keys(tokens.themes.default.theme.colors).map(
     (key) =>
       `.bg-${key} { background-color: var(--${Config.sass.varPrefix}theme--colors--${key}); }`,
   );
@@ -66,7 +82,7 @@ function generateBgClasses(tokens: Tokens) {
  * @param tokens
  */
 function generateClrClasses(tokens: Tokens) {
-  return Object.keys(tokens.theme.colors).map(
+  return Object.keys(tokens.themes.default.theme.colors).map(
     (key) =>
       `.clr-${key} { color: var(--${Config.sass.varPrefix}theme--colors--${key}); }`,
   );
@@ -87,7 +103,7 @@ function generateFontClasses(tokens: Tokens) {
  * @param tokens
  */
 function generateFwClasses(tokens: Tokens) {
-  return Object.keys(tokens.theme.font.weights).map(
+  return Object.keys(tokens.themes.default.theme.font.weights).map(
     (key) =>
       `.fw-${key} { font-weight: var(--${Config.sass.varPrefix}theme--font--weights--${key}); }`,
   );
@@ -100,7 +116,7 @@ function generateFwClasses(tokens: Tokens) {
  * @param tokens
  */
 function generateFsClasses(tokens: Tokens) {
-  return Object.keys(tokens.theme.font.sizes).map(
+  return Object.keys(tokens.themes.default.theme.font.sizes).map(
     (key) =>
       `.fs-${key} { 
         font-size: var(--${Config.sass.varPrefix}theme--font--sizes--${key}); 
@@ -116,7 +132,7 @@ function generateFsClasses(tokens: Tokens) {
  * @param tokens
  */
 function generateFClasses(tokens: Tokens) {
-  return Object.keys(tokens.theme.font.families).map(
+  return Object.keys(tokens.themes.default.theme.font.families).map(
     (key) =>
       `.f-${key} { font-family: var(--${Config.sass.varPrefix}theme--font--families--${key}); }`,
   );
@@ -133,7 +149,7 @@ function generateSpacingClasses(tokens: Tokens) {
  * @param tokens
  */
 function generateMarginClasses(tokens: Tokens) {
-  return Object.keys(tokens.theme.spacings).map(
+  return Object.keys(tokens.themes.default.theme.spacings).map(
     (key) =>
       `.m-${key} { margin: var(--${Config.sass.varPrefix}theme--spacings--${key}); }` +
       `.mb-${key} { margin-bottom: var(--${Config.sass.varPrefix}theme--spacings--${key}); }` +
@@ -150,7 +166,7 @@ function generateMarginClasses(tokens: Tokens) {
  * @param tokens
  */
 function generatePaddingClasses(tokens: Tokens) {
-  return Object.keys(tokens.theme.spacings).map(
+  return Object.keys(tokens.themes.default.theme.spacings).map(
     (key) =>
       `.p-${key} { padding: var(--${Config.sass.varPrefix}theme--spacings--${key}); }` +
       `.pb-${key} { padding-bottom: var(--${Config.sass.varPrefix}theme--spacings--${key}); }` +
