@@ -28,6 +28,9 @@
     "@changesets/cli": "2.26.2"
   },
   "packageManager": "yarn@1.22.19",
+  "resolutions": {
+    "@testing-library/dom": "9.3.3"
+  },
   "volta": {
     "node": "18.18.0",
     "yarn": "1.22.19"
