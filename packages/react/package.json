@@ -97,7 +97,7 @@
     "glob": "10.3.10",
     "jsdom": "22.1.0",
     "react-hook-form": "7.46.2",
-    "remark-gfm": "4.0.0",
+    "remark-gfm": "3.0.1",
     "sass": "1.68.0",
     "sass-loader": "13.3.2",
     "storybook": "7.4.5",
