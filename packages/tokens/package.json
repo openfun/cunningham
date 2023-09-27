@@ -41,21 +41,21 @@
   },
   "devDependencies": {
     "@types/figlet": "1.5.6",
-    "@types/jest": "29.5.4",
-    "@types/node": "18.17.15",
+    "@types/jest": "29.5.5",
+    "@types/node": "18.18.0",
     "eslint-config-custom": "*",
     "jest": "29.7.0",
     "nodemon": "3.0.1",
     "prettier": "3.0.3",
     "ts-jest": "29.1.1",
-    "tsc-alias": "1.8.7",
+    "tsc-alias": "1.8.8",
     "typescript": "5.2.2"
   },
   "engines": {
     "node": ">=16.0.0"
   },
   "volta": {
-    "node": "18.17.1",
+    "node": "18.18.0",
     "yarn": "1.22.19"
   }
 }
