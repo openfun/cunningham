@@ -136,6 +136,7 @@
 	--c--components--forms-select--multi-pill-background-color: var(--c--theme--colors--greyscale-200);
 	--c--components--forms-select--multi-pill-border-radius: 2px;
 	--c--components--forms-select--multi-pill-max-width: 68%;
+	--c--components--forms-select--multi-pill-font-size: var(--c--theme--font--sizes--m);
 	--c--components--forms-radio--border-color: var(--c--theme--colors--greyscale-300);
 	--c--components--forms-radio--accent-color: var(--c--theme--colors--success-600);
 	--c--components--forms-radio--background-color: white;
