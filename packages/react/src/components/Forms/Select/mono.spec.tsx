@@ -1413,5 +1413,139 @@ describe("<Select/>", () => {
       await user.click(input);
       screen.getByText("No options available");
     });
+
+    it("updates the value if the value is removed from the options (uncontrolled)", async () => {
+      let myOptions = [
+        {
+          label: "Paris",
+          value: "paris",
+        },
+        {
+          label: "Panama",
+          value: "panama",
+        },
+        {
+          label: "London",
+          value: "london",
+        },
+      ];
+
+      const Wrapper = ({ options }: { options: Option[] }) => {
+        return <Select label="City" name="city" options={options} />;
+      };
+
+      const { rerender } = render(<Wrapper options={myOptions} />, {
+        wrapper: CunninghamProvider,
+      });
+
+      const user = userEvent.setup();
+      const input = screen.getByRole("combobox", {
+        name: "City",
+      });
+      const valueRendered = document.querySelector(".c__select__inner__value");
+      const menu: HTMLDivElement = screen.getByRole("listbox", {
+        name: "City",
+      });
+
+      // Check init value (defaultValue / value / nothing)
+      expect(valueRendered).toHaveTextContent("");
+
+      await user.click(input);
+      expectMenuToBeOpen(menu);
+      expectOptions(["Paris", "Panama", "London"]);
+
+      // Select London.
+      await user.click(screen.getByRole("option", { name: "London" }));
+      expect(valueRendered).toHaveTextContent("London");
+
+      // Remove London from the options.
+      myOptions = myOptions.filter((option) => option.value !== "london");
+      // Rerender the select with the options mutated
+      rerender(<Wrapper options={[...myOptions]} />);
+
+      await user.click(input);
+      expectMenuToBeOpen(menu);
+      expectOptions(["Paris", "Panama"]);
+      expect(valueRendered).toHaveTextContent("");
+    });
+
+    it("updates the value if the value is removed from the options (controlled)", async () => {
+      let myOptions = [
+        {
+          label: "Paris",
+          value: "paris",
+        },
+        {
+          label: "Panama",
+          value: "panama",
+        },
+        {
+          label: "London",
+          value: "london",
+        },
+      ];
+
+      const Wrapper = ({ options }: { options: Option[] }) => {
+        const [value, setValue] = useState<string | number | undefined>();
+        const [onChangeCounts, setOnChangeCounts] = useState(0);
+        return (
+          <CunninghamProvider>
+            <div>
+              <div>Value = {value}|</div>
+              <div>onChangeCounts = {onChangeCounts}|</div>
+              <Select
+                label="City"
+                options={options}
+                value={value}
+                onChange={(e) => {
+                  setValue(e.target.value as string);
+                  setOnChangeCounts(onChangeCounts + 1);
+                }}
+              />
+            </div>
+          </CunninghamProvider>
+        );
+      };
+
+      const { rerender } = render(<Wrapper options={myOptions} />, {
+        wrapper: CunninghamProvider,
+      });
+
+      const user = userEvent.setup();
+      const input = screen.getByRole("combobox", {
+        name: "City",
+      });
+      const valueRendered = document.querySelector(".c__select__inner__value");
+      const menu: HTMLDivElement = screen.getByRole("listbox", {
+        name: "City",
+      });
+
+      // Check init value (defaultValue / value / nothing)
+      expect(valueRendered).toHaveTextContent("");
+      screen.getByText("Value = |");
+      screen.getByText("onChangeCounts = 0|");
+
+      await user.click(input);
+      expectMenuToBeOpen(menu);
+      expectOptions(["Paris", "Panama", "London"]);
+
+      // Select London.
+      await user.click(screen.getByRole("option", { name: "London" }));
+      screen.getByText("Value = london|");
+      screen.getByText("onChangeCounts = 1|");
+      expect(valueRendered).toHaveTextContent("London");
+
+      // Remove London from the options.
+      myOptions = myOptions.filter((option) => option.value !== "london");
+      // Rerender the select with the options mutated
+      rerender(<Wrapper options={[...myOptions]} />);
+
+      await user.click(input);
+      expectMenuToBeOpen(menu);
+      expectOptions(["Paris", "Panama"]);
+      expect(valueRendered).toHaveTextContent("");
+      screen.getByText("Value = |");
+      screen.getByText("onChangeCounts = 2|");
+    });
   });
 });
