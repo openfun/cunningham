@@ -235,7 +235,7 @@
 
         &__pill {
           background-color: var(--c--components--forms-select--multi-pill-background-color);
-          padding: 0.375rem 0.5rem;
+          padding: 0.125rem 0.5rem;
           border-radius: var(--c--components--forms-select--multi-pill-border-radius);
           display: inline-flex;
           align-items: center;
@@ -243,6 +243,7 @@
           margin-right: 0.25rem;
           margin-bottom: 0.25rem;
           max-width: var(--c--components--forms-select--multi-pill-max-width);
+          font-size: var(--c--components--forms-select--multi-pill-font-size);
 
           > span {
             min-width: 0;
@@ -301,7 +302,7 @@
       .c__select__inner__value {
         .c__select__inner__value__input {
           // To match the height of the pills.
-          height: 2rem;
+          height: 1.375rem;
         }
       }
 

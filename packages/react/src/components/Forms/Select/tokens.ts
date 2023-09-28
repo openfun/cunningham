@@ -24,4 +24,5 @@ export const tokens = (defaults: DefaultTokens) => ({
   "multi-pill-background-color": defaults.theme.colors["greyscale-200"],
   "multi-pill-border-radius": "2px",
   "multi-pill-max-width": "68%",
+  "multi-pill-font-size": defaults.theme.font.sizes.m,
 });
