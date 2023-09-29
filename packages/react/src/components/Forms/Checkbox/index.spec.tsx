@@ -1,5 +1,5 @@
 import userEvent from "@testing-library/user-event";
-import React from "react";
+import React, { useState } from "react";
 import { render, screen } from "@testing-library/react";
 import {
   Checkbox,
@@ -133,5 +133,42 @@ describe("<Checkbox/>", () => {
 
     render(<Checkbox {...propsInput} />);
     expect(spyError).not.toHaveBeenCalled();
+  });
+
+  /**
+   * From this issue: https://github.com/openfun/cunningham/issues/175
+   * The bug was that when clicking on the checkmark (svg) it was firing two onClick event to
+   * <section>.
+   */
+  it("can be unchecked when being controlled from a bigger parent", async () => {
+    const Wrapper = () => {
+      const [checked, setChecked] = useState(true);
+      return (
+        // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+        <section
+          className="center"
+          onClick={() => {
+            setChecked(!checked);
+          }}
+          style={{ width: "30%", background: "gainsboro", cursor: "pointer" }}
+        >
+          <header>Full Card clickable</header>
+          <div>Checked = {checked ? "true" : "false"}|</div>
+          <Checkbox checked={checked} />
+        </section>
+      );
+    };
+
+    const user = userEvent.setup();
+    render(<Wrapper />);
+    const input: HTMLInputElement = screen.getByRole("checkbox");
+    expect(input.checked).toEqual(true);
+    screen.getByText("Checked = true|");
+
+    // Uncheck by clicking on the SVG.
+    const checkmark = document.querySelector("svg.checkmark")!;
+    await user.click(checkmark);
+    expect(input.checked).toEqual(false);
+    screen.getByText("Checked = false|");
   });
 });
