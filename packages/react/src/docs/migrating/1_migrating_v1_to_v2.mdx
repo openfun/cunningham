@@ -1,0 +1,90 @@
+import { Canvas, Meta, Story, Source, ArgsTable } from '@storybook/addon-docs';
+
+<Meta title="Migrating/From v1 to v2"/>
+
+# From v1 to v2
+
+The `2.0.0` introduced themes management. This comes with some structural changes regarding `cunningham.ts|js` configuration
+file and tokens format.
+
+## Configuration file
+
+As a reminder here is the v1 format of the `cunningham.ts` file:
+
+<Source dark={true} code={`
+// cunningham.ts
+import { DefaultTokens } from "@openfun/cunningham-react";
+
+const config: DefaultTokens = {
+  theme: {
+    colors: {
+      ...
+    },
+  },
+  components: {
+    button: {
+      "border-radius": "30px",
+    },
+  },
+};
+
+export default config;
+`}></Source>
+
+The new version adds two top-level keys, which are `themes` and `default` ( which refers to the default theme name ), so
+the new format of the previous example will be:
+
+> ⚠ Updating your configuration file is mandatory ⚠
+
+<Source dark={true} code={`
+// cunningham.ts
+import { DefaultTokens } from "@openfun/cunningham-react";
+
+const config: DefaultTokens = {
+  themes: {
+    default: {
+      theme: {
+        colors: {
+          ...
+        },
+      },
+      components: {
+        button: {
+          "border-radius": "30px",
+        },
+      },
+    },
+  },
+};
+
+export default config;
+`}></Source>
+
+If you want to learn about theme please see this [Theming](?path=/docs/getting-started-theming--docs).
+
+## Token files
+
+Here we are talking about `cunningham-tokens.ts|js` files. As they are reflecting the structure of the configuration
+of the design tokens we added those two levels of nesting which are `themes.[themeName].*`
+
+Old way of retrieving design tokens:
+
+<Source dark={true} code={`
+import { tokens } from "./cunningham-tokens";
+
+console.log(tokens.theme.color['primary-500']);
+`}></Source>
+
+New way:
+
+<Source dark={true} code={`
+import { tokens } from "./cunningham-tokens";
+
+let currentTheme = "default";
+console.log(tokens.themes[currentTheme].theme.color['primary-500']);
+`}></Source>
+
+## What about CSS file ?
+
+What great is that nothing has changed! You can continue to use `var(--c--theme--colors--primary-500)` as before as their current value
+is automatically updated by Cunningham when the theme is updated in real time.
