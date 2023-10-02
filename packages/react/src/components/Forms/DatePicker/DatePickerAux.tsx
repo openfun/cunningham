@@ -116,7 +116,7 @@ const DatePickerAux = forwardRef(
                     type="hidden"
                     name={name && `${name}_start`}
                     value={convertDateValueToString(
-                      pickerState.value.start,
+                      pickerState.value?.start ?? null,
                       props.timezone,
                     )}
                   />
@@ -124,7 +124,7 @@ const DatePickerAux = forwardRef(
                     type="hidden"
                     name={name && `${name}_end`}
                     value={convertDateValueToString(
-                      pickerState.value.end,
+                      pickerState.value?.end ?? null,
                       props.timezone,
                     )}
                   />
