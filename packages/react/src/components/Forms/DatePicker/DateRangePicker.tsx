@@ -64,8 +64,8 @@ export const DateRangePicker = ({
     () =>
       !isFocused &&
       !pickerState.isOpen &&
-      !pickerState.value.start &&
-      !pickerState.value.end,
+      !pickerState.value?.start &&
+      !pickerState.value?.end,
     [pickerState.value, pickerState.isOpen, isFocused],
   );
 
