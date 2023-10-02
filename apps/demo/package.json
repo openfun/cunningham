@@ -14,7 +14,7 @@
     "@openfun/cunningham-react": "*",
     "@openfun/cunningham-tokens": "*",
     "@openfun/typescript-configs": "*",
-    "@types/react": "18.2.21",
+    "@types/react": "18.2.24",
     "@types/react-dom": "18.2.8",
     "@vitejs/plugin-react": "4.1.0",
     "react": "18.2.0",
