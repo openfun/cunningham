@@ -8,7 +8,7 @@ import React, {
 import classNames from "classnames";
 import { useHandleClickOutside } from ":/hooks/useHandleClickOutside";
 
-type PopoverProps = PropsWithChildren & {
+export type PopoverProps = PropsWithChildren & {
   parentRef: RefObject<HTMLDivElement>;
   onClickOutside: () => void;
   borderless?: boolean;
