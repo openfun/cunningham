@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Meta, StoryFn } from "@storybook/react";
 import { faker } from "@faker-js/faker";
 import { onSubmit } from ":/components/Forms/Examples/ReactHookForm/reactHookFormUtils";
-import { Select } from ":/components/Forms/Select";
+import { Select, SelectHandle } from ":/components/Forms/Select";
 import { Button } from ":/components/Button";
 import { RhfSelect } from ":/components/Forms/Select/stories-utils";
 
@@ -214,6 +214,58 @@ export const NoOptions = {
     label: "No options available",
     options: [],
   },
+};
+
+export const Ref = () => {
+  const ref = useRef<SelectHandle>(null);
+
+  return (
+    <>
+      <div className="pb-s">
+        <Button
+          onClick={() =>
+            setTimeout(() => {
+              // eslint-disable-next-line no-console
+              console.log("calling blur() ...");
+              ref.current?.blur();
+            }, 2000)
+          }
+        >
+          Trigger onBlur in 2 seconds
+        </Button>
+      </div>
+      <Select label="Select a city" options={OPTIONS} multi={true} ref={ref} />
+    </>
+  );
+};
+
+export const SearchableRef = () => {
+  const ref = useRef<SelectHandle>(null);
+
+  return (
+    <>
+      <div className="pb-s">
+        <Button
+          onClick={() =>
+            setTimeout(() => {
+              // eslint-disable-next-line no-console
+              console.log("calling blur() ...");
+              ref.current?.blur();
+            }, 2000)
+          }
+        >
+          Trigger onBlur in 2 seconds
+        </Button>
+      </div>
+      <Select
+        label="Select a city"
+        options={OPTIONS}
+        multi={true}
+        searchable={true}
+        ref={ref}
+      />
+    </>
+  );
 };
 
 export const FormExample = () => {
