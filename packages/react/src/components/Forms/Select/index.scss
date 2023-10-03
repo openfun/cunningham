@@ -28,7 +28,7 @@
       border-color: var(--c--components--forms-select--border-color--hover);
     }
 
-    &:focus-within {
+    &:focus-within, &--focus {
       border-radius: var(--c--components--forms-select--border-radius--focus);
       border-color: var(--c--components--forms-select--border-color--focus);
 
