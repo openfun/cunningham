@@ -1,10 +1,10 @@
 import userEvent from "@testing-library/user-event";
 import { render, screen, waitFor } from "@testing-library/react";
-import React, { FormEvent, useState } from "react";
+import React, { createRef, FormEvent, useState } from "react";
 import { expect } from "vitest";
 import { within } from "@testing-library/dom";
 import { CunninghamProvider } from ":/components/Provider";
-import { Select } from ":/components/Forms/Select/index";
+import { Select, SelectHandle } from ":/components/Forms/Select/index";
 import {
   expectMenuToBeClosed,
   expectMenuToBeOpen,
@@ -785,6 +785,55 @@ describe("<Select multi={true} />", () => {
       );
       expectSelectedOptions(["Paris"]);
     });
+
+    it("blurs from ref", async () => {
+      const ref = createRef<SelectHandle>();
+      render(
+        <CunninghamProvider>
+          <Select
+            label="City"
+            options={[
+              {
+                label: "Paris",
+                value: "paris",
+              },
+              {
+                label: "Panama",
+                value: "panama",
+              },
+              {
+                label: "London",
+                value: "london",
+              },
+            ]}
+            multi={true}
+            ref={ref}
+          />
+        </CunninghamProvider>,
+      );
+      const input = screen.getByRole("combobox", {
+        name: "City",
+      });
+      const menu: HTMLDivElement = screen.getByRole("listbox", {
+        name: "City",
+      });
+      const user = userEvent.setup();
+
+      // Make sure the select is not focused.
+      expect(document.activeElement?.className).toEqual("");
+
+      // Focus the select.
+      await user.click(input);
+      expectMenuToBeOpen(menu);
+      expect(document.activeElement?.className).toContain("c__button");
+
+      // Blur the select.
+      ref.current?.blur();
+
+      // Make sure the select is blured.
+      await waitFor(() => expectMenuToBeClosed(menu));
+      expect(document.activeElement?.className).toEqual("");
+    });
   });
 
   describe("Searchable", async () => {
@@ -1342,6 +1391,56 @@ describe("<Select multi={true} />", () => {
       expectSelectedOptions(["Paris", "London"]);
 
       screen.getByText("No options available");
+    });
+
+    it("blurs from ref", async () => {
+      const ref = createRef<SelectHandle>();
+      render(
+        <CunninghamProvider>
+          <Select
+            label="City"
+            options={[
+              {
+                label: "Paris",
+                value: "paris",
+              },
+              {
+                label: "Panama",
+                value: "panama",
+              },
+              {
+                label: "London",
+                value: "london",
+              },
+            ]}
+            multi={true}
+            searchable={true}
+            ref={ref}
+          />
+        </CunninghamProvider>,
+      );
+      const input = screen.getByRole("combobox", {
+        name: "City",
+      });
+      const menu: HTMLDivElement = screen.getByRole("listbox", {
+        name: "City",
+      });
+      const user = userEvent.setup();
+
+      // Make sure the select is not focused.
+      expect(document.activeElement?.tagName).toEqual("BODY");
+
+      // Focus the select by focusing input.
+      await user.click(input);
+      expectMenuToBeOpen(menu);
+      expect(document.activeElement?.tagName).toEqual("INPUT");
+
+      // Blur the select.
+      ref.current?.blur();
+
+      // Make sure the select is blured.
+      await waitFor(() => expectMenuToBeClosed(menu));
+      expect(document.activeElement?.tagName).toEqual("BODY");
     });
   });
 });
