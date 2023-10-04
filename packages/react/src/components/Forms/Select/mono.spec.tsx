@@ -868,7 +868,7 @@ describe("<Select/>", () => {
       const menu: HTMLDivElement = screen.getByRole("listbox", {
         name: "City",
       });
-      const label = screen.getByText("City");
+      const label = screen.getByText("City")!.parentElement!;
       const valueRendered = document.querySelector(".c__select__inner__value");
 
       // Make sure no value is rendered.
@@ -1445,7 +1445,7 @@ describe("<Select/>", () => {
       screen.getByRole("combobox", {
         name: "City",
       });
-      const label = screen.getByText("City");
+      const label = screen.getByText("City")!.parentElement!;
       expect(Array.from(label.classList)).toContain("offscreen");
     });
 

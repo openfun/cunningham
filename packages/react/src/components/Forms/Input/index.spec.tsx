@@ -51,7 +51,7 @@ describe("<Input/>", () => {
     const input2: HTMLInputElement = screen.getByRole("textbox", {
       name: "Second name",
     });
-    const label = screen.getByText("First name");
+    const label = screen.getByText("First name")!.parentElement!;
     expect(Array.from(label.classList)).toContain("placeholder");
 
     // Clicking on the input should remove the placeholder class.
