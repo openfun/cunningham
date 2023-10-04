@@ -15,11 +15,20 @@
     top: 0.5rem;
     transition: all var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
     color: var(--c--components--forms-labelledbox--label-color--small);
+    // Enable text overflow ellipsis.
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
 
     &.placeholder {
       @extend %text-style;
       top: 16px;
       color: var(--c--components--forms-labelledbox--label-color--big);
+    }
+
+    span {
+      white-space: nowrap;
     }
   }
 

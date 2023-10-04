@@ -50,7 +50,7 @@ describe("<Select multi={true} />", () => {
       const menu: HTMLDivElement = screen.getByRole("listbox", {
         name: "Cities",
       });
-      const label = screen.getByText("Cities");
+      const label = screen.getByText("Cities")!.parentElement!;
 
       // Expect no options to be selected.
       expectSelectedOptions([]);
@@ -721,7 +721,7 @@ describe("<Select multi={true} />", () => {
       screen.getByRole("combobox", {
         name: "Cities",
       });
-      const label = screen.getByText("Cities");
+      const label = screen.getByText("Cities")!.parentElement!;
       expect(Array.from(label.classList)).toContain("offscreen");
     });
 

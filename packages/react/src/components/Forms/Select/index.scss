@@ -21,6 +21,8 @@
 
     label {
       cursor: pointer;
+      // In case of text-overflow we do not want the text to render above the toggle button arrow.
+      max-width: calc(100% - 1.5rem);
     }
 
     &:hover {

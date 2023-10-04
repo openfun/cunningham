@@ -38,7 +38,7 @@ export const LabelledBox = ({
           htmlFor={htmlFor}
           id={labelId}
         >
-          {label}
+          <span>{label}</span>
         </label>
       )}
       <div className="labelled-box__children">{children}</div>
