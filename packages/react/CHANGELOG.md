@@ -1,5 +1,15 @@
 # @openfun/cunningham-react
 
+## 1.3.1
+
+### Patch Changes
+
+- 0c757957: Include Popover component to package exports
+- 3a6028f0: Fix Select usage with react hook form
+- 034e2994: Fix input usage with react hook form
+- a1e8f463: fix checkbox double onChange
+- a46d28f0: make multi select height homogeneous
+
 ## 1.3.0
 
 ### Minor Changes
@@ -268,7 +278,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.3.0...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.3.1...main
+[1.3.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.3.0...@openfun/cunningham-react@1.3.1
 [1.3.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.2.0...@openfun/cunningham-react@1.3.0
 [1.2.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.1.0...@openfun/cunningham-react@1.2.0
 [1.1.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.0.2...@openfun/cunningham-react@1.1.0
