@@ -3,8 +3,8 @@ import { optionToValue } from ":/components/Forms/Select/mono-common";
 import { SelectMultiSearchable } from ":/components/Forms/Select/multi-searchable";
 import { SelectMultiSimple } from ":/components/Forms/Select/multi-simple";
 import { SubProps } from ":/components/Forms/Select/multi-common";
-import { Option, SelectProps } from ":/components/Forms/Select/mono";
-import { SelectHandle } from ":/components/Forms/Select/index";
+import { Option } from ":/components/Forms/Select/mono";
+import { SelectHandle, SelectProps } from ":/components/Forms/Select/index";
 
 export type SelectMultiProps = Omit<SelectProps, "onChange"> & {
   onChange?: (event: { target: { value: string[] } }) => void;

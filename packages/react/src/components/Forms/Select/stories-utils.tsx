@@ -1,7 +1,6 @@
 import { Controller, useFormContext } from "react-hook-form";
 import React from "react";
-import { Select } from ":/components/Forms/Select/index";
-import { SelectProps } from ":/components/Forms/Select/mono";
+import { Select, SelectProps } from ":/components/Forms/Select/index";
 
 export const RhfSelect = (props: SelectProps & { name: string }) => {
   const { control, setValue } = useFormContext();

@@ -5,7 +5,8 @@ import { useCunningham } from ":/components/Provider";
 import { Field } from ":/components/Forms/Field";
 import { LabelledBox } from ":/components/Forms/LabelledBox";
 import { Button } from ":/components/Button";
-import { Option, SelectProps } from ":/components/Forms/Select/mono";
+import { Option } from ":/components/Forms/Select/mono";
+import { SelectProps } from ":/components/Forms/Select";
 
 export function getOptionsFilter(inputValue?: string) {
   return (option: Option) => {

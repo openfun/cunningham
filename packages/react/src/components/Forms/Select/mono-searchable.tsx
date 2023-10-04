@@ -14,7 +14,7 @@ import {
   SelectMonoAux,
   SubProps,
 } from ":/components/Forms/Select/mono-common";
-import { SelectHandle } from ":/components/Forms/Select/index";
+import { SelectHandle } from ":/components/Forms/Select";
 
 export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
   (props, ref) => {
