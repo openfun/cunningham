@@ -1,6 +1,6 @@
 import React, { ButtonHTMLAttributes, forwardRef, ReactNode } from "react";
 
-interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: "primary" | "secondary" | "tertiary" | "danger";
   size?: "medium" | "small" | "nano";
   icon?: ReactNode;
@@ -9,7 +9,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   fullWidth?: boolean;
 }
 
-export const Button = forwardRef<HTMLButtonElement, Props>(
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       children,
