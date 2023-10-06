@@ -1,5 +1,16 @@
 # @openfun/cunningham-react
 
+## 2.0.0
+
+### Major Changes
+
+- cce8eccf: add themes management
+
+### Minor Changes
+
+- cf3a589d: Export Button props
+- 1c7a114b: add ref to Select
+
 ## 1.3.1
 
 ### Patch Changes
@@ -278,7 +289,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.3.1...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.0.0...main
+[2.0.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.3.1...@openfun/cunningham-react@2.0.0
 [1.3.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.3.0...@openfun/cunningham-react@1.3.1
 [1.3.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.2.0...@openfun/cunningham-react@1.3.0
 [1.2.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.1.0...@openfun/cunningham-react@1.2.0
