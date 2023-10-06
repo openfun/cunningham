@@ -5,8 +5,8 @@ import { useCunningham } from ":/components/Provider";
 import { Field } from ":/components/Forms/Field";
 import { LabelledBox } from ":/components/Forms/LabelledBox";
 import { Button } from ":/components/Button";
-import { Option } from ":/components/Forms/Select/mono";
-import { SelectProps } from ":/components/Forms/Select";
+import { Option, SelectProps } from ":/components/Forms/Select";
+import { isOptionWithRender } from ":/components/Forms/Select/utils";
 
 export function getOptionsFilter(inputValue?: string) {
   return (option: Option) => {
@@ -22,8 +22,18 @@ export const optionToString = (option: Option | null) => {
   return option ? option.label : "";
 };
 
+/**
+ * Returns underlying value of option.
+ */
 export const optionToValue = (option: Option) => {
   return option.value ?? option.label;
+};
+
+export const renderOption = (option: Option) => {
+  if (isOptionWithRender(option)) {
+    return option.render();
+  }
+  return option.label;
 };
 
 export interface SubProps extends SelectProps {
@@ -159,12 +169,12 @@ export const SelectMonoAux = ({
         </div>
         <div
           className={classNames("c__select__menu", {
-            "c__select__menu--opened": downshiftReturn.isOpen,
+            "c__select__menu--opened": downshiftReturn.isOpen || false,
           })}
           {...downshiftReturn.getMenuProps()}
         >
           <ul>
-            {downshiftReturn.isOpen && (
+            {(downshiftReturn.isOpen || false) && (
               <>
                 {options.map((item, index) => {
                   const isActive = index === downshiftReturn.highlightedIndex;
@@ -182,7 +192,7 @@ export const SelectMonoAux = ({
                         index,
                       })}
                     >
-                      <span>{item.label}</span>
+                      <span>{renderOption(item)}</span>
                     </li>
                   );
                 })}

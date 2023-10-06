@@ -2,7 +2,13 @@ import userEvent from "@testing-library/user-event";
 import { render, screen, waitFor } from "@testing-library/react";
 import { expect } from "vitest";
 import React, { createRef, FormEvent, useState } from "react";
-import { Select, Option, SelectHandle } from ":/components/Forms/Select/index";
+import { within } from "@testing-library/dom";
+import {
+  Select,
+  Option,
+  SelectHandle,
+  SelectProps,
+} from ":/components/Forms/Select/index";
 import { Button } from ":/components/Button";
 import { CunninghamProvider } from ":/components/Provider";
 import {
@@ -836,6 +842,123 @@ describe("<Select/>", () => {
       await waitFor(() => expectMenuToBeClosed(menu));
       expect(document.activeElement?.tagName).toEqual("BODY");
     });
+
+    it("renders custom options", async () => {
+      const Wrapper = (props: SelectProps) => {
+        return (
+          <CunninghamProvider>
+            <Select {...props} />
+            <Button>Blur</Button>
+          </CunninghamProvider>
+        );
+      };
+
+      const props: SelectProps = {
+        label: "City",
+        searchable: true,
+        options: [
+          {
+            label: "Paris",
+            value: "paris",
+            render: () => (
+              <div>
+                <img src="paris.png" alt="Paris flag" />
+                Paris
+              </div>
+            ),
+          },
+          {
+            label: "Panama",
+            value: "panama",
+            render: () => (
+              <div>
+                <img src="panama.png" alt="Panama flag" />
+                Panama
+              </div>
+            ),
+          },
+          {
+            label: "London",
+            value: "london",
+            render: () => (
+              <div>
+                <img src="london.png" alt="London flag" />
+                London
+              </div>
+            ),
+          },
+        ],
+      };
+
+      const { rerender } = render(<Wrapper {...props} />);
+      const input = screen.getByRole("combobox", {
+        name: "City",
+      });
+      const menu: HTMLDivElement = screen.getByRole("listbox", {
+        name: "City",
+      });
+      const blurButton = screen.getByRole("button", { name: "Blur" });
+      const user = userEvent.setup();
+      const valueRendered = document.querySelector(
+        ".c__select__inner__value",
+      ) as HTMLElement;
+
+      await user.click(input);
+      expectMenuToBeOpen(menu);
+      screen.getByRole("img", { name: "Paris flag" });
+      screen.getByRole("img", { name: "Panama flag" });
+      screen.getByRole("img", { name: "London flag" });
+
+      await user.type(input, "Pa");
+      screen.getByRole("img", { name: "Paris flag" });
+      screen.getByRole("img", { name: "Panama flag" });
+      expect(
+        screen.queryByRole("img", { name: "London flag" }),
+      ).not.toBeInTheDocument();
+
+      await user.click(
+        screen.getByRole("option", { name: "Paris flag Paris" }),
+      );
+      await user.click(blurButton);
+
+      // Make sure only the label is rendered by default.
+      expect(input).toHaveValue("Paris");
+      expect(input).not.toHaveClass("c__select__inner__value__input--hidden");
+      expect(
+        within(valueRendered).queryByRole("img", {
+          name: "Paris flag",
+        }),
+      ).not.toBeInTheDocument();
+
+      // Now showLabelWhenSelected to false.
+      rerender(<Wrapper {...props} showLabelWhenSelected={false} />);
+
+      // Make sure the HTML content of the option is rendered.
+      // The input is still present in the DOM ( but hidden for users ).
+      expect(input).toHaveValue("Paris");
+      expect(input).toHaveClass("c__select__inner__value__input--hidden");
+      within(valueRendered).getByRole("img", {
+        name: "Paris flag",
+      });
+
+      // Focus on the input and make sure the custom HTML is removed.
+      await user.click(input);
+      expect(input).toHaveValue("Paris");
+      expect(input).not.toHaveClass("c__select__inner__value__input--hidden");
+      expect(
+        within(valueRendered).queryByRole("img", {
+          name: "Paris flag",
+        }),
+      ).not.toBeInTheDocument();
+
+      // Blur the input and make sure the custom HTML is rendered.
+      await user.click(blurButton);
+      expect(input).toHaveValue("Paris");
+      expect(input).toHaveClass("c__select__inner__value__input--hidden");
+      within(valueRendered).getByRole("img", {
+        name: "Paris flag",
+      });
+    });
   });
 
   describe("Simple", () => {
@@ -1643,6 +1766,92 @@ describe("<Select/>", () => {
       // Make sure the select is blured.
       await waitFor(() => expectMenuToBeClosed(menu));
       expect(document.activeElement?.className).toEqual("");
+    });
+
+    it("renders custom options", async () => {
+      const Wrapper = (props: SelectProps) => {
+        return (
+          <CunninghamProvider>
+            <Select {...props} />
+          </CunninghamProvider>
+        );
+      };
+
+      const props: SelectProps = {
+        label: "City",
+        options: [
+          {
+            label: "Paris",
+            value: "paris",
+            render: () => (
+              <div>
+                <img src="paris.png" alt="Paris flag" />
+                Paris
+              </div>
+            ),
+          },
+          {
+            label: "Panama",
+            value: "panama",
+            render: () => (
+              <div>
+                <img src="panama.png" alt="Panama flag" />
+                Panama
+              </div>
+            ),
+          },
+          {
+            label: "London",
+            value: "london",
+            render: () => (
+              <div>
+                <img src="london.png" alt="London flag" />
+                London
+              </div>
+            ),
+          },
+        ],
+      };
+
+      const { rerender } = render(<Wrapper {...props} />);
+      const input = screen.getByRole("combobox", {
+        name: "City",
+      });
+      const menu: HTMLDivElement = screen.getByRole("listbox", {
+        name: "City",
+      });
+      const user = userEvent.setup();
+      const valueRendered = document.querySelector(
+        ".c__select__inner__value",
+      ) as HTMLElement;
+
+      await user.click(input);
+      expectMenuToBeOpen(menu);
+
+      screen.getByRole("img", { name: "Paris flag" });
+      screen.getByRole("img", { name: "Panama flag" });
+      screen.getByRole("img", { name: "London flag" });
+
+      await user.click(
+        screen.getByRole("option", { name: "London flag London" }),
+      );
+
+      // Make sure only the label is rendered by default.
+      expect(valueRendered).toHaveTextContent("London");
+      expect(
+        within(valueRendered).queryByRole("img", {
+          name: "London flag",
+        }),
+      ).not.toBeInTheDocument();
+
+      // Now showLabelWhenSelected to false.
+      rerender(<Wrapper {...props} showLabelWhenSelected={false} />);
+
+      // Make sure the HTML content of the option is rendered.
+      expect(valueRendered).toHaveTextContent("London");
+      within(valueRendered).getByRole("img", {
+        name: "London flag",
+      });
     });
   });
 });

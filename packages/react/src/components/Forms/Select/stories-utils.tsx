@@ -23,3 +23,18 @@ export const RhfSelect = (props: SelectProps & { name: string }) => {
     />
   );
 };
+
+export const getCountryOption = (name: string, code: string) => ({
+  value: name.toLowerCase(),
+  label: name,
+  render: () => (
+    <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+      <img
+        style={{ height: "24px" }}
+        src={`https://flagsapi.com/${code}/shiny/64.png`}
+        alt="Flag"
+      />
+      {name}
+    </div>
+  ),
+});
