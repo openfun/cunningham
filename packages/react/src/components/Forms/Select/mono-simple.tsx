@@ -11,7 +11,8 @@ import {
   SelectMonoAux,
   SubProps,
 } from ":/components/Forms/Select/mono-common";
-import { SelectHandle } from ":/components/Forms/Select/index";
+import { SelectHandle } from ":/components/Forms/Select";
+import { SelectedOption } from ":/components/Forms/Select/utils";
 
 export const SelectMonoSimple = forwardRef<SelectHandle, SubProps>(
   (props, ref) => {
@@ -61,9 +62,7 @@ export const SelectMonoSimple = forwardRef<SelectHandle, SubProps>(
         }}
         labelAsPlaceholder={!downshiftReturn.selectedItem}
       >
-        {downshiftReturn.selectedItem && (
-          <span>{optionToString(downshiftReturn.selectedItem)}</span>
-        )}
+        <SelectedOption option={downshiftReturn.selectedItem} {...props} />
       </SelectMonoAux>
     );
   },

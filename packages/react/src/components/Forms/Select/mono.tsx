@@ -3,13 +3,7 @@ import { UseSelectStateChange } from "downshift";
 import { optionToValue, SubProps } from ":/components/Forms/Select/mono-common";
 import { SelectMonoSearchable } from ":/components/Forms/Select/mono-searchable";
 import { SelectMonoSimple } from ":/components/Forms/Select/mono-simple";
-import { SelectHandle, SelectProps } from ":/components/Forms/Select";
-
-export interface Option {
-  value?: string;
-  label: string;
-  disabled?: boolean;
-}
+import { Option, SelectHandle, SelectProps } from ":/components/Forms/Select";
 
 export const SelectMono = forwardRef<SelectHandle, SelectProps>(
   (props, ref) => {

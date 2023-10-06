@@ -6,6 +6,7 @@ import React, {
   useState,
 } from "react";
 import { useCombobox } from "downshift";
+import classNames from "classnames";
 import { useCunningham } from ":/components/Provider";
 import {
   getOptionsFilter,
@@ -15,9 +16,10 @@ import {
   SubProps,
 } from ":/components/Forms/Select/mono-common";
 import { SelectHandle } from ":/components/Forms/Select";
+import { isOptionWithRender } from ":/components/Forms/Select/utils";
 
 export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
-  (props, ref) => {
+  ({ showLabelWhenSelected = true, ...props }, ref) => {
     const { t } = useCunningham();
     const [optionsToDisplay, setOptionsToDisplay] = useState(props.options);
     const [hasInputFocused, setHasInputFocused] = useState(false);
@@ -108,6 +110,8 @@ export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
       disabled: props.disabled,
     });
 
+    const renderCustomSelectedOption = !showLabelWhenSelected;
+
     return (
       <SelectMonoAux
         {...props}
@@ -129,6 +133,10 @@ export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
       >
         <input
           {...inputProps}
+          className={classNames({
+            "c__select__inner__value__input--hidden":
+              renderCustomSelectedOption && !hasInputFocused,
+          })}
           onFocus={() => {
             setHasInputFocused(true);
           }}
@@ -136,6 +144,12 @@ export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
             onInputBlur();
           }}
         />
+
+        {renderCustomSelectedOption &&
+          !hasInputFocused &&
+          downshiftReturn.selectedItem &&
+          isOptionWithRender(downshiftReturn.selectedItem) &&
+          downshiftReturn.selectedItem.render()}
       </SelectMonoAux>
     );
   },

@@ -7,7 +7,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { onSubmit } from ":/components/Forms/Examples/ReactHookForm/reactHookFormUtils";
 import { Select, SelectHandle } from ":/components/Forms/Select";
 import { Button } from ":/components/Button";
-import { RhfSelect } from ":/components/Forms/Select/stories-utils";
+import {
+  getCountryOption,
+  RhfSelect,
+} from ":/components/Forms/Select/stories-utils";
 
 export default {
   title: "Components/Forms/Select/Mono",
@@ -225,6 +228,37 @@ export const NoOptions = {
   args: {
     label: "No options available",
     options: [],
+  },
+};
+
+export const CustomRender = {
+  render: Template,
+  args: {
+    label: "Select a country",
+    showLabelWhenSelected: false,
+    options: [
+      getCountryOption("Germany", "DE"),
+      getCountryOption("France", "FR"),
+      getCountryOption("United States", "US"),
+      getCountryOption("Spain", "ES"),
+      getCountryOption("China", "CN"),
+    ],
+    defaultValue: "france",
+  },
+};
+export const SearchableCustomRender = {
+  render: Template,
+  args: {
+    label: "Select a country",
+    showLabelWhenSelected: false,
+    searchable: true,
+    options: [
+      getCountryOption("Germany", "DE"),
+      getCountryOption("France", "FR"),
+      getCountryOption("United States", "US"),
+      getCountryOption("Spain", "ES"),
+      getCountryOption("China", "CN"),
+    ],
   },
 };
 

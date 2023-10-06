@@ -1,10 +1,26 @@
-import React, { forwardRef, PropsWithChildren } from "react";
+import React, { forwardRef, PropsWithChildren, ReactNode } from "react";
 import { SelectMulti } from ":/components/Forms/Select/multi";
-import { Option, SelectMono } from ":/components/Forms/Select/mono";
+import { SelectMono } from ":/components/Forms/Select/mono";
 import { FieldProps } from ":/components/Forms/Field";
 
 export * from ":/components/Forms/Select/mono";
 export * from ":/components/Forms/Select/multi";
+
+export type OptionWithRender = {
+  disabled?: boolean;
+  value: string;
+  label: string;
+  render: () => ReactNode;
+};
+
+export type Option =
+  | {
+      disabled?: boolean;
+      value?: string;
+      label: string;
+      render?: undefined;
+    }
+  | OptionWithRender;
 
 export interface SelectHandle {
   blur: () => void;
@@ -28,6 +44,7 @@ export type SelectProps = PropsWithChildren &
     disabled?: boolean;
     clearable?: boolean;
     multi?: boolean;
+    showLabelWhenSelected?: boolean;
   };
 export const Select = forwardRef<SelectHandle, SelectProps>((props, ref) => {
   if (props.defaultValue && props.value) {
