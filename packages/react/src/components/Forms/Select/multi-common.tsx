@@ -5,12 +5,13 @@ import { Field } from ":/components/Forms/Field";
 import { LabelledBox } from ":/components/Forms/LabelledBox";
 import { Button } from ":/components/Button";
 import { useCunningham } from ":/components/Provider";
-import { Option } from ":/components/Forms/Select/mono";
-import { SelectProps } from ":/components/Forms/Select";
+import { Option, SelectProps } from ":/components/Forms/Select";
 import {
   getOptionsFilter,
   optionToValue,
+  renderOption,
 } from ":/components/Forms/Select/mono-common";
+import { SelectedOption } from ":/components/Forms/Select/utils";
 
 /**
  * This method returns a comparator that can be used to filter out options for multi select.
@@ -160,7 +161,10 @@ export const SelectMultiAux = ({
                         index,
                       })}
                     >
-                      <span>{selectedItemForRender.label}</span>
+                      <SelectedOption
+                        option={selectedItemForRender}
+                        {...props}
+                      />
                       <Button
                         tabIndex={-1}
                         color="tertiary"
@@ -210,7 +214,7 @@ export const SelectMultiAux = ({
                         index,
                       })}
                     >
-                      <span>{option.label}</span>
+                      <span>{renderOption(option)}</span>
                     </li>
                   );
                 })}

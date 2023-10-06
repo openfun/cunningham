@@ -4,7 +4,11 @@ import React, { createRef, FormEvent, useState } from "react";
 import { expect } from "vitest";
 import { within } from "@testing-library/dom";
 import { CunninghamProvider } from ":/components/Provider";
-import { Select, SelectHandle } from ":/components/Forms/Select/index";
+import {
+  Select,
+  SelectHandle,
+  SelectProps,
+} from ":/components/Forms/Select/index";
 import {
   expectMenuToBeClosed,
   expectMenuToBeOpen,
@@ -834,6 +838,106 @@ describe("<Select multi={true} />", () => {
       await waitFor(() => expectMenuToBeClosed(menu));
       expect(document.activeElement?.className).toEqual("");
     });
+
+    it("renders custom options", async () => {
+      const Wrapper = (props: SelectProps) => {
+        return (
+          <CunninghamProvider>
+            <Select {...props} />
+          </CunninghamProvider>
+        );
+      };
+
+      const props: SelectProps = {
+        label: "City",
+        multi: true,
+        options: [
+          {
+            label: "Paris",
+            value: "paris",
+            render: () => (
+              <div>
+                <img src="paris.png" alt="Paris flag" />
+                Paris
+              </div>
+            ),
+          },
+          {
+            label: "Panama",
+            value: "panama",
+            render: () => (
+              <div>
+                <img src="panama.png" alt="Panama flag" />
+                Panama
+              </div>
+            ),
+          },
+          {
+            label: "London",
+            value: "london",
+            render: () => (
+              <div>
+                <img src="london.png" alt="London flag" />
+                London
+              </div>
+            ),
+          },
+        ],
+      };
+
+      const { rerender } = render(<Wrapper {...props} />);
+      const input = screen.getByRole("combobox", {
+        name: "City",
+      });
+      const menu: HTMLDivElement = screen.getByRole("listbox", {
+        name: "City",
+      });
+      const valueRendered = document.querySelector(
+        ".c__select__inner__value",
+      ) as HTMLElement;
+
+      const user = userEvent.setup();
+      expectSelectedOptions([]);
+
+      await user.click(input);
+      expectMenuToBeOpen(menu);
+      screen.getByRole("img", { name: "Paris flag" });
+      screen.getByRole("img", { name: "Panama flag" });
+      screen.getByRole("img", { name: "London flag" });
+
+      // Select Paris
+      await user.click(
+        screen.getByRole("option", { name: "Paris flag Paris" }),
+      );
+      await user.click(
+        screen.getByRole("option", { name: "London flag London" }),
+      );
+
+      // Make sure only the label is rendered by default.
+      expectSelectedOptions(["Paris", "London"]);
+      expect(
+        within(valueRendered).queryByRole("img", {
+          name: "Paris flag",
+        }),
+      ).not.toBeInTheDocument();
+      expect(
+        within(valueRendered).queryByRole("img", {
+          name: "London flag",
+        }),
+      ).not.toBeInTheDocument();
+
+      // Now showLabelWhenSelected to false.
+      rerender(<Wrapper {...props} showLabelWhenSelected={false} />);
+
+      // Make sure the HTML content of the options is rendered.
+      expectSelectedOptions(["Paris", "London"]);
+      within(valueRendered).getByRole("img", {
+        name: "Paris flag",
+      });
+      within(valueRendered).getByRole("img", {
+        name: "London flag",
+      });
+    });
   });
 
   describe("Searchable", async () => {
@@ -1441,6 +1545,134 @@ describe("<Select multi={true} />", () => {
       // Make sure the select is blured.
       await waitFor(() => expectMenuToBeClosed(menu));
       expect(document.activeElement?.tagName).toEqual("BODY");
+    });
+
+    it("renders custom options", async () => {
+      const Wrapper = (props: SelectProps) => {
+        return (
+          <CunninghamProvider>
+            <Select {...props} />
+          </CunninghamProvider>
+        );
+      };
+
+      const props: SelectProps = {
+        label: "City",
+        multi: true,
+        searchable: true,
+        options: [
+          {
+            label: "Paris",
+            value: "paris",
+            render: () => (
+              <div>
+                <img src="paris.png" alt="Paris flag" />
+                Paris
+              </div>
+            ),
+          },
+          {
+            label: "Panama",
+            value: "panama",
+            render: () => (
+              <div>
+                <img src="panama.png" alt="Panama flag" />
+                Panama
+              </div>
+            ),
+          },
+          {
+            label: "London",
+            value: "london",
+            render: () => (
+              <div>
+                <img src="london.png" alt="London flag" />
+                London
+              </div>
+            ),
+          },
+        ],
+      };
+
+      const { rerender } = render(<Wrapper {...props} />);
+      const input = screen.getByRole("combobox", {
+        name: "City",
+      });
+      const menu: HTMLDivElement = screen.getByRole("listbox", {
+        name: "City",
+      });
+      const valueRendered = document.querySelector(
+        ".c__select__inner__value",
+      ) as HTMLElement;
+
+      const user = userEvent.setup();
+      expectSelectedOptions([]);
+
+      await user.click(input);
+      expectMenuToBeOpen(menu);
+      screen.getByRole("img", { name: "Paris flag" });
+      screen.getByRole("img", { name: "Panama flag" });
+      screen.getByRole("img", { name: "London flag" });
+
+      // Filter options.
+      await user.type(input, "Pa");
+      screen.getByRole("img", { name: "Paris flag" });
+      screen.getByRole("img", { name: "Panama flag" });
+      expect(
+        screen.queryByRole("img", { name: "London flag" }),
+      ).not.toBeInTheDocument();
+
+      // Select Paris
+      await user.click(
+        screen.getByRole("option", { name: "Paris flag Paris" }),
+      );
+
+      // Filter to find London.
+      await user.clear(input);
+      expect(
+        screen.queryByRole("img", { name: "Paris flag" }),
+      ).not.toBeInTheDocument();
+      screen.getByRole("img", { name: "Panama flag" });
+      screen.getByRole("img", { name: "London flag" });
+
+      await user.type(input, "Lo");
+      expect(
+        screen.queryByRole("img", { name: "Paris flag" }),
+      ).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole("img", { name: "Panama flag" }),
+      ).not.toBeInTheDocument();
+      screen.getByRole("img", { name: "London flag" });
+
+      // Select London.
+      await user.click(
+        screen.getByRole("option", { name: "London flag London" }),
+      );
+
+      // Make sure only the label is rendered by default.
+      expectSelectedOptions(["Paris", "London"]);
+      expect(
+        within(valueRendered).queryByRole("img", {
+          name: "Paris flag",
+        }),
+      ).not.toBeInTheDocument();
+      expect(
+        within(valueRendered).queryByRole("img", {
+          name: "London flag",
+        }),
+      ).not.toBeInTheDocument();
+
+      // Now showLabelWhenSelected to false.
+      rerender(<Wrapper {...props} showLabelWhenSelected={false} />);
+
+      // Make sure the HTML content of the options is rendered.
+      expectSelectedOptions(["Paris", "London"]);
+      within(valueRendered).getByRole("img", {
+        name: "Paris flag",
+      });
+      within(valueRendered).getByRole("img", {
+        name: "London flag",
+      });
     });
   });
 });

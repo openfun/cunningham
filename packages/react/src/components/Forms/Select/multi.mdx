@@ -88,6 +88,19 @@ For some reasons you might want to hide the label of the Multi-Select. You can d
   <Story id="components-forms-select-multi--hidden-label"/>
 </Canvas>
 
+## Custom render option
+
+You can give customize the look of the options by providing `render` callback.
+
+> When you provide `render` the fields `label` and `value` are mandatory.
+
+Feel free to use the attribute `showLabelWhenSelected` to choose whether you want to display selected option with the custom
+HTML or with its `label`. It is set to `true` by default.
+
+<Canvas sourceState="shown">
+  <Story id="components-forms-select-multi--searchable-custom-render"/>
+</Canvas>
+
 ## Controlled / Non Controlled
 
 Like a native select, you can use the Select component in a controlled or non controlled way. You can see the example below
