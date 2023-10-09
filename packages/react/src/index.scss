@@ -1,22 +1,25 @@
-@import "cunningham-tokens";
-@import '@openfun/cunningham-tokens/default-tokens';
-@import './utils';
-@import './components/Accessibility';
-@import './components/Button';
-@import './components/DataGrid';
-@import './components/Forms/Checkbox';
-@import './components/Forms/Field';
-@import './components/Forms/FileUploader';
-@import './components/Forms/Radio';
-@import './components/Forms/TextArea';
-@import './components/Forms/Input';
-@import './components/Forms/LabelledBox';
-@import './components/Forms/Select';
-@import './components/Forms/Switch';
-@import './components/Forms/DatePicker';
-@import './components/Loader';
-@import './components/Pagination';
-@import './components/Popover';
+
+@forward "./utils";
+
+@use "cunningham-tokens";
+@use "@openfun/cunningham-tokens/default-tokens";
+
+@use "./components/Accessibility";
+@use "./components/Button";
+@use "./components/DataGrid";
+@use "./components/Forms/Checkbox";
+@use "./components/Forms/Field";
+@use "./components/Forms/FileUploader";
+@use "./components/Forms/Radio";
+@use './components/Forms/TextArea';
+@use "./components/Forms/Input";
+@use "./components/Forms/LabelledBox";
+@use "./components/Forms/Select";
+@use "./components/Forms/Switch";
+@use "./components/Forms/DatePicker";
+@use "./components/Loader";
+@use "./components/Pagination";
+@use "./components/Popover";
 
 body {
   font-family: var(--c--theme--font--families--base);
