@@ -1,7 +1,7 @@
-@import "@openfun/cunningham-react/sass/fonts";
-@import "@openfun/cunningham-react/sass/icons";
-@import "@openfun/cunningham-react/style";
-@import "cunningham-tokens";
+@use "@openfun/cunningham-react/sass/fonts";
+@use "@openfun/cunningham-react/sass/icons";
+@use "@openfun/cunningham-react/style";
+@use "cunningham-tokens";
 
 :root {
   font-family: Roboto, sans-serif;
