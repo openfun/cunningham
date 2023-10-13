@@ -1569,7 +1569,7 @@ describe("<Select/>", () => {
         name: "City",
       });
       const label = screen.getByText("City")!.parentElement!;
-      expect(Array.from(label.classList)).toContain("offscreen");
+      expect(Array.from(label.classList)).toContain("c__offscreen");
     });
 
     it("renders menu empty placeholder when there are no options to display", async () => {
