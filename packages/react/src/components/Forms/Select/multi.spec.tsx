@@ -726,7 +726,7 @@ describe("<Select multi={true} />", () => {
         name: "Cities",
       });
       const label = screen.getByText("Cities")!.parentElement!;
-      expect(Array.from(label.classList)).toContain("offscreen");
+      expect(Array.from(label.classList)).toContain("c__offscreen");
     });
 
     it("is possible to select again the last deleted item", async () => {

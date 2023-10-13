@@ -33,7 +33,7 @@ export const LabelledBox = ({
         <label
           className={classNames("labelled-box__label", {
             placeholder: labelAsPlaceholder,
-            offscreen: hideLabel,
+            c__offscreen: hideLabel,
           })}
           htmlFor={htmlFor}
           id={labelId}

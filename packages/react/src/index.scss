@@ -4,7 +4,7 @@
 @use "cunningham-tokens";
 @use "@openfun/cunningham-tokens/default-tokens";
 
-@use "./components/Accessibility";
+@use "utils/accessibility";
 @use "./components/Button";
 @use "./components/DataGrid";
 @use "./components/Forms/Checkbox";
