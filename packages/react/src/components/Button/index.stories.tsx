@@ -103,3 +103,14 @@ export const IconOnly: Story = {
     color: "primary",
   },
 };
+
+export const AsLink: Story = {
+  args: {
+    children: "Go to fun-mooc.fr",
+    icon: <span className="material-icons">link</span>,
+    color: "primary",
+    href: "https://www.fun-mooc.fr/",
+    target: "_blank",
+    rel: "noopener noreferrer",
+  },
+};

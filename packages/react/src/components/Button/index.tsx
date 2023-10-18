@@ -1,15 +1,24 @@
-import React, { ButtonHTMLAttributes, forwardRef, ReactNode } from "react";
+import React, {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  createElement,
+  forwardRef,
+  ReactNode,
+} from "react";
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  color?: "primary" | "secondary" | "tertiary" | "danger";
-  size?: "medium" | "small" | "nano";
-  icon?: ReactNode;
-  iconPosition?: "left" | "right";
-  active?: boolean;
-  fullWidth?: boolean;
-}
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
+  AnchorHTMLAttributes<HTMLAnchorElement> & {
+    color?: "primary" | "secondary" | "tertiary" | "danger";
+    size?: "medium" | "small" | "nano";
+    icon?: ReactNode;
+    iconPosition?: "left" | "right";
+    active?: boolean;
+    fullWidth?: boolean;
+  };
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+export type ButtonElement = HTMLButtonElement & HTMLAnchorElement;
+
+export const Button = forwardRef<ButtonElement, ButtonProps>(
   (
     {
       children,
@@ -43,13 +52,19 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       classes.push("c__button--full-width");
     }
     const iconElement = <span className="c__button__icon">{icon}</span>;
-    // const iconElement = icon;
-    return (
-      <button className={classes.join(" ")} {...props} ref={ref}>
+    const tagName = props.href ? "a" : "button";
+    return createElement(
+      tagName,
+      {
+        className: classes.join(" "),
+        ...props,
+        ref,
+      },
+      <>
         {!!icon && iconPosition === "left" && iconElement}
         {children}
         {!!icon && iconPosition === "right" && iconElement}
-      </button>
+      </>,
     );
   },
 );

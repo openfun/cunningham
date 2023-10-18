@@ -4,7 +4,9 @@
   border: thin solid transparent;
   box-sizing: border-box;
   cursor: pointer;
-  display: flex;
+  display: inline-flex;
+  // When button is rendered as link.
+  text-decoration: none;
   font-weight: var(--c--components--button--font-weight);
   font-family: var(--c--components--button--font-family);
   transition: all var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
