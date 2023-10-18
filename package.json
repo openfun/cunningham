@@ -19,7 +19,7 @@
     "cross-env": "7.0.3",
     "make-dir-cli": "3.1.0",
     "prettier": "3.0.3",
-    "turbo": "1.10.14"
+    "turbo": "1.10.15"
   },
   "engines": {
     "node": ">=16.0.0"
@@ -32,7 +32,7 @@
     "@testing-library/dom": "9.3.3"
   },
   "volta": {
-    "node": "18.18.0",
+    "node": "18.18.2",
     "yarn": "1.22.19"
   }
 }
