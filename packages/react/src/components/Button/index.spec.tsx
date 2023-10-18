@@ -65,6 +65,21 @@ describe("<Button/>", () => {
     expect(handleClick).not.toHaveBeenCalled();
   });
 
+  it("renders as link when href is used", () => {
+    render(
+      <Button
+        href="https://www.fun-mooc.fr/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Open link
+      </Button>,
+    );
+    const button = screen.getByRole("link", { name: "Open link" });
+    expect(button).toHaveAttribute("target", "_blank");
+    expect(button).toHaveAttribute("rel", "noopener noreferrer");
+  });
+
   it("uses custom token", async () => {
     await buildTheme();
     const tokens = await loadTokens();

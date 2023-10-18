@@ -8,7 +8,7 @@ import {
   isToday,
 } from "@internationalized/date";
 import { CalendarState, RangeCalendarState } from "@react-stately/calendar";
-import { Button } from ":/components/Button";
+import { Button, ButtonElement } from ":/components/Button";
 
 interface CalendarCellProps {
   state: CalendarState | RangeCalendarState;
@@ -20,7 +20,7 @@ const isRangeCalendar = (object: any): object is RangeCalendarState => {
 };
 
 export const CalendarCell = ({ state, date }: CalendarCellProps) => {
-  const ref = useRef<HTMLButtonElement>(null);
+  const ref = useRef<ButtonElement>(null);
   const {
     cellProps,
     buttonProps,
