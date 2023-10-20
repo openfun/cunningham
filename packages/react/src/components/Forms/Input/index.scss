@@ -25,6 +25,7 @@
     flex-grow: 1;
     text-overflow: ellipsis;
     background-color: transparent;
+    font-family: var(--c--theme--font--families--base);
     @extend %text-style;
 
     &__icon-left,
@@ -87,7 +88,6 @@
 
   &--disabled {
     cursor: default;
-
     border-color: var(--c--theme--colors--greyscale-200);
 
     .c__input {
