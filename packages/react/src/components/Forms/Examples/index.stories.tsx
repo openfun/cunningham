@@ -8,6 +8,7 @@ import { Select } from ":/components/Forms/Select";
 import { FileUploader } from ":/components/Forms/FileUploader";
 import { Switch } from ":/components/Forms/Switch";
 import { Radio } from ":/components/Forms/Radio";
+import { TextArea } from ":/components/Forms/TextArea";
 
 export default {
   title: "Components/Forms/Examples",
@@ -105,6 +106,9 @@ export const Application = () => {
           text="pdf only ( 4mb maximum )"
           accept="application/pdf"
         />
+      </div>
+      <div>
+        <TextArea label="Cover letter" fullWidth={true} rows={5} />
       </div>
       <div>
         <Switch label="SMS Notification" fullWidth={true} />
