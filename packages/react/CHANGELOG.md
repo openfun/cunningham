@@ -1,5 +1,17 @@
 # @openfun/cunningham-react
 
+## 2.1.0
+
+### Minor Changes
+
+- 01528b93: render Button as link
+- bbf3df85: add TextArea component
+
+### Patch Changes
+
+- b714c3d5: Update stylesheet to use modern SASS
+- d39d33d0: fix inputs overflowing placeholder
+
 ## 2.0.0
 
 ### Major Changes
@@ -289,7 +301,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.0.0...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.1.0...main
+[2.1.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.0.0...@openfun/cunningham-react@2.1.0
 [2.0.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.3.1...@openfun/cunningham-react@2.0.0
 [1.3.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.3.0...@openfun/cunningham-react@1.3.1
 [1.3.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.2.0...@openfun/cunningham-react@1.3.0
