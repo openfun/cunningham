@@ -22,7 +22,7 @@
     "eslint-plugin-react-hooks": "4.6.0"
   },
   "volta": {
-    "node": "20.9.0",
+    "node": "18.18.2",
     "yarn": "1.22.21"
   }
 }
