@@ -49,7 +49,7 @@ jobs:
   # ---- Codebase -----
   build:
     docker:
-      - image: cimg/node:16.18
+      - image: cimg/node:18.18
     working_directory: ~/cunningham
     steps:
       - *checkout_cunningham
@@ -81,7 +81,7 @@ jobs:
           key: v1-front-dependencies-{{ checksum "yarn.lock" }}
   lint:
     docker:
-      - image: cimg/node:16.18
+      - image: cimg/node:18.18
     working_directory: ~/cunningham
     steps:
       - *checkout_cunningham
@@ -92,7 +92,7 @@ jobs:
 
   test:
     docker:
-      - image: cimg/node:16.18
+      - image: cimg/node:18.18
     parallelism: 4
     resource_class: large
     working_directory: ~/cunningham
@@ -122,7 +122,7 @@ jobs:
   # ---- Deploy ----
   publish-storybook:
     docker:
-      - image: cimg/node:16.18
+      - image: cimg/node:18.18
     working_directory: ~/cunningham
     steps:
       - add_ssh_keys:
@@ -141,7 +141,7 @@ jobs:
             yarn deploy-storybook
   publish-packages:
     docker:
-      - image: cimg/node:16.15
+      - image: cimg/node:18.18
         auth:
           username: $DOCKER_USER
           password: $DOCKER_PASS
