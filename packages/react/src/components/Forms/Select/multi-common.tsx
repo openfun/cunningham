@@ -37,14 +37,11 @@ export function getMultiOptionsFilter(
   };
 }
 
-export type SelectMultiProps = Omit<SelectProps, "onChange"> & {
+export type SubProps = Omit<SelectProps, "onChange"> & {
   onChange?: (event: { target: { value: string[] } }) => void;
-};
-
-export interface SubProps extends SelectMultiProps {
-  selectedItems: Option[];
   onSelectedItemsChange: (selectedItems: Option[]) => void;
-}
+  selectedItems: Option[];
+};
 
 export const SelectMultiAux = ({
   options,
