@@ -88,6 +88,18 @@ For some reasons you might want to hide the label of the Multi-Select. You can d
   <Story id="components-forms-select-multi--hidden-label"/>
 </Canvas>
 
+## Monoline
+
+You can use `monoline` props in order to make sure the component will never wrap on multiple lines.
+When using this mode the selected options will be kept in the menu with checkboxes in order to make sure the user can
+always see the full list of selected options without having to scroll.
+
+> At the moment this props cannot be used in conjunction with `searchable` props.
+
+<Canvas sourceState="shown">
+  <Story id="components-forms-select-multi--monoline"/>
+</Canvas>
+
 ## Custom render option
 
 You can give customize the look of the options by providing `render` callback.

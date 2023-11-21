@@ -127,6 +127,7 @@ export const SelectMultiSearchable = forwardRef<SelectHandle, SubProps>(
     return (
       <SelectMultiAux
         {...props}
+        monoline={false}
         options={options}
         labelAsPlaceholder={labelAsPlaceholder}
         selectedItems={props.selectedItems}

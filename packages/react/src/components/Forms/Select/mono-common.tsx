@@ -29,6 +29,10 @@ export const optionToValue = (option: Option) => {
   return option.value ?? option.label;
 };
 
+export const optionsEqual = (a: Option, b: Option) => {
+  return optionToValue(a) === optionToValue(b);
+};
+
 export const renderOption = (option: Option) => {
   if (isOptionWithRender(option)) {
     return option.render();

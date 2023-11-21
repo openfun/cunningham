@@ -16,6 +16,7 @@ import {
   expectOptionToBeDisabled,
   expectOptionToBeUnselected,
   expectSelectedOptions,
+  expectSelectedOptionsText,
 } from ":/components/Forms/Select/test-utils";
 import { Button } from ":/components/Button";
 
@@ -937,6 +938,139 @@ describe("<Select multi={true} />", () => {
       within(valueRendered).getByRole("img", {
         name: "London flag",
       });
+    });
+
+    it("renders checkboxes in the menu and selected options as text when using monoline mode", async () => {
+      const user = userEvent.setup();
+      render(
+        <CunninghamProvider>
+          <Select
+            label="Cities"
+            options={[
+              {
+                label: "Paris",
+              },
+              {
+                label: "Panama",
+              },
+              {
+                label: "London",
+              },
+              {
+                label: "New York",
+              },
+              {
+                label: "Tokyo",
+              },
+            ]}
+            multi={true}
+            monoline={true}
+          />
+        </CunninghamProvider>,
+      );
+      const input = screen.getByRole("combobox", {
+        name: "Cities",
+      });
+      const menu: HTMLDivElement = screen.getByRole("listbox", {
+        name: "Cities",
+      });
+      const label = screen.getByText("Cities")!.parentElement!;
+
+      const expectCheckedOptions = ({
+        checked,
+        notChecked,
+      }: {
+        checked: string[];
+        notChecked: string[];
+      }) => {
+        checked.forEach((option) => {
+          const optionElement = screen.getByRole("option", { name: option });
+          const checkbox: HTMLInputElement =
+            within(optionElement).getByRole("checkbox");
+          expect(checkbox.checked).toEqual(true);
+        });
+        notChecked.forEach((option) => {
+          const optionElement = screen.getByRole("option", { name: option });
+          const checkbox: HTMLInputElement =
+            within(optionElement).getByRole("checkbox");
+          expect(checkbox.checked).toEqual(false);
+        });
+      };
+
+      // Expect no options to be selected.
+      expectSelectedOptionsText([]);
+
+      // Make sure the label is set as placeholder.
+      expect(Array.from(label.classList)).toContain("placeholder");
+
+      await user.click(input);
+
+      // Make sure the menu is opened and options are rendered.
+      expectMenuToBeOpen(menu);
+      expectOptions(["Paris", "Panama", "London", "New York", "Tokyo"]);
+
+      expectCheckedOptions({
+        checked: [],
+        notChecked: ["Paris", "Panama", "London", "New York", "Tokyo"],
+      });
+
+      // Make sure the option is not selected.
+      const option: HTMLLIElement = screen.getByRole("option", {
+        name: "London",
+      });
+      expectOptionToBeUnselected(option);
+
+      // Select an option.
+      await user.click(option);
+
+      // Make sure the option is selected.
+      expectSelectedOptionsText(["London"]);
+
+      // Make sure the menu stays open.
+      expectMenuToBeOpen(menu);
+
+      // Make sure the option is still present in the menu and is highlighted.
+      expectCheckedOptions({
+        checked: ["London"],
+        notChecked: ["Paris", "Panama", "New York", "Tokyo"],
+      });
+
+      // Select Paris
+      await user.click(screen.getByRole("option", { name: "Paris" }));
+
+      // Make sure the option is selected.
+      expectSelectedOptionsText(["London", "Paris"]);
+
+      screen.logTestingPlaygroundURL();
+
+      // Make sure the menu stays open.
+      expectMenuToBeOpen(menu);
+
+      // Make sure the option is still present in the menu and is highlighted.
+      expectCheckedOptions({
+        checked: ["London", "Paris"],
+        notChecked: ["Panama", "New York", "Tokyo"],
+      });
+
+      // Click on London and make sure it is removed from the selected.
+      await user.click(screen.getByRole("option", { name: "London" }));
+
+      // We need to move the cursor away from London otherwise the option will be highlighted.
+      await user.hover(screen.getByRole("option", { name: "Paris" }));
+
+      // Make sure the option is not selected anymore.
+      expectSelectedOptionsText(["Paris"]);
+
+      // Make sure the menu stays open.
+      expectMenuToBeOpen(menu);
+
+      // Make sure the option is still present in the menu and is not highlighted anymore.
+      await waitFor(() =>
+        expectCheckedOptions({
+          checked: ["Paris"],
+          notChecked: ["London", "Panama", "New York", "Tokyo"],
+        }),
+      );
     });
   });
 

@@ -6,21 +6,22 @@ import { FieldProps } from ":/components/Forms/Field";
 export * from ":/components/Forms/Select/mono";
 export * from ":/components/Forms/Select/multi";
 
-export type OptionWithRender = {
-  disabled?: boolean;
+type BaseOption = {
   value: string;
   label: string;
   render: () => ReactNode;
+  highlighted?: boolean;
+  disabled?: boolean;
 };
 
-export type Option =
-  | {
-      disabled?: boolean;
-      value?: string;
-      label: string;
-      render?: undefined;
-    }
-  | OptionWithRender;
+export type OptionWithRender = BaseOption;
+
+export type OptionWithoutRender = Omit<BaseOption, "value" | "render"> & {
+  value?: string;
+  render?: undefined;
+};
+
+export type Option = OptionWithoutRender | OptionWithRender;
 
 export interface SelectHandle {
   blur: () => void;
@@ -45,6 +46,9 @@ export type SelectProps = PropsWithChildren &
     clearable?: boolean;
     multi?: boolean;
     showLabelWhenSelected?: boolean;
+    monoline?: boolean;
+    selectedItemsStyle?: "pills" | "text";
+    menuOptionsStyle?: "plain" | "checkbox";
   };
 export const Select = forwardRef<SelectHandle, SelectProps>((props, ref) => {
   if (props.defaultValue && props.value) {

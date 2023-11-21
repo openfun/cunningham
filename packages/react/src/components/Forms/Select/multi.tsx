@@ -44,11 +44,17 @@ export const SelectMulti = forwardRef<SelectHandle, SelectMultiProps>(
       newSelectedItems,
     ) => {
       setSelectedItems(newSelectedItems);
-      // props.onSelectedItemsChange?.(newSelectedItems);
+    };
+
+    const defaultProps: Partial<SelectMultiProps> = {
+      selectedItemsStyle: "pills",
+      menuOptionsStyle: "plain",
+      clearable: true,
     };
 
     return props.searchable ? (
       <SelectMultiSearchable
+        {...defaultProps}
         {...props}
         selectedItems={selectedItems}
         onSelectedItemsChange={onSelectedItemsChange}
@@ -56,6 +62,7 @@ export const SelectMulti = forwardRef<SelectHandle, SelectMultiProps>(
       />
     ) : (
       <SelectMultiSimple
+        {...defaultProps}
         {...props}
         selectedItems={selectedItems}
         onSelectedItemsChange={onSelectedItemsChange}
