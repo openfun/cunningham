@@ -5,16 +5,30 @@ import {
   SelectMultiAux,
   SubProps,
 } from ":/components/Forms/Select/multi-common";
-import { optionToString } from ":/components/Forms/Select/mono-common";
-import { SelectHandle } from ":/components/Forms/Select/index";
+import {
+  optionsEqual,
+  optionToString,
+} from ":/components/Forms/Select/mono-common";
+import { Option, SelectHandle } from ":/components/Forms/Select/index";
 
 export const SelectMultiSimple = forwardRef<SelectHandle, SubProps>(
   (props, ref) => {
-    const options = React.useMemo(
-      () =>
-        props.options.filter(getMultiOptionsFilter(props.selectedItems, "")),
-      [props.selectedItems],
-    );
+    const isSelected = (option: Option) =>
+      !!props.selectedItems.find((selectedItem) =>
+        optionsEqual(selectedItem, option),
+      );
+
+    const options = React.useMemo(() => {
+      if (props.monoline) {
+        return props.options.map((option) => ({
+          ...option,
+          highlighted: isSelected(option),
+        }));
+      }
+      return props.options.filter(
+        getMultiOptionsFilter(props.selectedItems, ""),
+      );
+    }, [props.selectedItems]);
 
     const useMultipleSelectionReturn = useMultipleSelection({
       selectedItems: props.selectedItems,
@@ -47,7 +61,7 @@ export const SelectMultiSimple = forwardRef<SelectHandle, SubProps>(
             return {
               ...changes,
               isOpen: true, // keep the menu open after selection.
-              highlightedIndex: 0, // with the first option highlighted.
+              highlightedIndex: state.highlightedIndex, // avoid automatic scroll up on click.
             };
         }
         return changes;
@@ -57,7 +71,18 @@ export const SelectMultiSimple = forwardRef<SelectHandle, SubProps>(
           case useSelect.stateChangeTypes.ToggleButtonKeyDownEnter:
           case useSelect.stateChangeTypes.ToggleButtonKeyDownSpaceButton:
           case useSelect.stateChangeTypes.ItemClick:
-            if (newSelectedItem) {
+            if (!newSelectedItem) {
+              break;
+            }
+            if (isSelected(newSelectedItem)) {
+              // Remove the item if it is already selected.
+              props.onSelectedItemsChange(
+                props.selectedItems.filter(
+                  (selectedItem) =>
+                    !optionsEqual(selectedItem, newSelectedItem),
+                ),
+              );
+            } else {
               props.onSelectedItemsChange([
                 ...props.selectedItems,
                 newSelectedItem,
@@ -86,6 +111,8 @@ export const SelectMultiSimple = forwardRef<SelectHandle, SubProps>(
         options={options}
         labelAsPlaceholder={props.selectedItems.length === 0}
         selectedItems={props.selectedItems}
+        selectedItemsStyle={props.monoline ? "text" : "pills"}
+        menuOptionsStyle={props.monoline ? "checkbox" : "plain"}
         downshiftReturn={{
           ...downshiftReturn,
           wrapperProps: {

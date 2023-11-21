@@ -9,9 +9,9 @@ import { Option, SelectProps } from ":/components/Forms/Select";
 import {
   getOptionsFilter,
   optionToValue,
-  renderOption,
 } from ":/components/Forms/Select/mono-common";
-import { SelectedOption } from ":/components/Forms/Select/utils";
+import { SelectedItems } from ":/components/Forms/Select/multi-selected-items";
+import { SelectMultiMenu } from ":/components/Forms/Select/multi-menu";
 
 /**
  * This method returns a comparator that can be used to filter out options for multi select.
@@ -43,19 +43,7 @@ export type SubProps = Omit<SelectProps, "onChange"> & {
   selectedItems: Option[];
 };
 
-export const SelectMultiAux = ({
-  options,
-  labelAsPlaceholder,
-  selectedItems,
-  clearable = true,
-  disabled,
-  hideLabel,
-  name,
-  downshiftReturn,
-  useMultipleSelectionReturn,
-  children,
-  ...props
-}: SubProps & {
+export interface SelectMultiAuxProps extends SubProps {
   options: Option[];
   labelAsPlaceholder: boolean;
   selectedItems: Option[];
@@ -70,9 +58,11 @@ export const SelectMultiAux = ({
     wrapperProps?: HTMLAttributes<HTMLDivElement>;
   };
   useMultipleSelectionReturn: ReturnType<typeof useMultipleSelection<Option>>;
-}) => {
+}
+
+export const SelectMultiAux = ({ children, ...props }: SelectMultiAuxProps) => {
   const { t } = useCunningham();
-  const labelProps = downshiftReturn.getLabelProps();
+  const labelProps = props.downshiftReturn.getLabelProps();
   return (
     <Field {...props}>
       <div
@@ -80,54 +70,60 @@ export const SelectMultiAux = ({
           "c__select",
           "c__select--multi",
           "c__select--" + props.state,
+          "c__select--" + props.selectedItemsStyle,
           {
-            "c__select--disabled": disabled,
-            "c__select--populated": selectedItems.length > 0,
+            "c__select--disabled": props.disabled,
+            "c__select--populated": props.selectedItems.length > 0,
+            "c__select--monoline": props.monoline,
+            "c__select--multiline": !props.monoline,
           },
         )}
       >
         <div
           className={classNames("c__select__wrapper", {
-            "c__select__wrapper--focus": downshiftReturn.isOpen && !disabled,
+            "c__select__wrapper--focus":
+              props.downshiftReturn.isOpen && !props.disabled,
           })}
-          {...downshiftReturn.wrapperProps}
+          {...props.downshiftReturn.wrapperProps}
         >
-          {selectedItems.map((selectedItem, index) => (
+          {props.selectedItems.map((selectedItem, index) => (
             <input
               key={`${optionToValue(selectedItem)}${index.toString()}`}
               type="hidden"
-              name={name}
+              name={props.name}
               value={optionToValue(selectedItem)}
             />
           ))}
           <LabelledBox
             label={props.label}
-            labelAsPlaceholder={labelAsPlaceholder}
+            labelAsPlaceholder={props.labelAsPlaceholder}
             htmlFor={labelProps.htmlFor}
             labelId={labelProps.id}
-            hideLabel={hideLabel}
-            disabled={disabled}
+            hideLabel={props.hideLabel}
+            disabled={props.disabled}
           >
             <div className="c__select__inner">
               <div className="c__select__inner__actions">
-                {clearable && !disabled && selectedItems.length > 0 && (
-                  <>
-                    <Button
-                      color="tertiary"
-                      size="nano"
-                      aria-label={t(
-                        "components.forms.select.clear_all_button_aria_label",
-                      )}
-                      className="c__select__inner__actions__clear"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        props.onSelectedItemsChange([]);
-                      }}
-                      icon={<span className="material-icons">close</span>}
-                    />
-                    <div className="c__select__inner__actions__separator" />
-                  </>
-                )}
+                {props.clearable &&
+                  !props.disabled &&
+                  props.selectedItems.length > 0 && (
+                    <>
+                      <Button
+                        color="tertiary"
+                        size="nano"
+                        aria-label={t(
+                          "components.forms.select.clear_all_button_aria_label",
+                        )}
+                        className="c__select__inner__actions__clear"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          props.onSelectedItemsChange([]);
+                        }}
+                        icon={<span className="material-icons">close</span>}
+                      />
+                      <div className="c__select__inner__actions__separator" />
+                    </>
+                  )}
                 <Button
                   color="tertiary"
                   size="nano"
@@ -135,95 +131,24 @@ export const SelectMultiAux = ({
                   icon={
                     <span
                       className={classNames("material-icons", {
-                        opened: downshiftReturn.isOpen,
+                        opened: props.downshiftReturn.isOpen,
                       })}
                     >
                       arrow_drop_down
                     </span>
                   }
-                  disabled={disabled}
-                  {...downshiftReturn.toggleButtonProps}
+                  disabled={props.disabled}
+                  {...props.downshiftReturn.toggleButtonProps}
                 />
               </div>
               <div className="c__select__inner__value">
-                {selectedItems.map((selectedItemForRender, index) => {
-                  return (
-                    <div
-                      className="c__select__inner__value__pill"
-                      key={`${optionToValue(
-                        selectedItemForRender,
-                      )}${index.toString()}`}
-                      {...useMultipleSelectionReturn.getSelectedItemProps({
-                        selectedItem: selectedItemForRender,
-                        index,
-                      })}
-                    >
-                      <SelectedOption
-                        option={selectedItemForRender}
-                        {...props}
-                      />
-                      <Button
-                        tabIndex={-1}
-                        color="tertiary"
-                        disabled={disabled}
-                        size="small"
-                        aria-label={t(
-                          "components.forms.select.clear_button_aria_label",
-                        )}
-                        type="button"
-                        className="c__select__inner__value__pill__clear"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          useMultipleSelectionReturn.removeSelectedItem(
-                            selectedItemForRender,
-                          );
-                        }}
-                        icon={<span className="material-icons">close</span>}
-                      />
-                    </div>
-                  );
-                })}
+                <SelectedItems {...props} />
                 {children}
               </div>
             </div>
           </LabelledBox>
         </div>
-        <div
-          className={classNames("c__select__menu", {
-            "c__select__menu--opened": downshiftReturn.isOpen,
-          })}
-          {...downshiftReturn.getMenuProps()}
-        >
-          <ul>
-            {downshiftReturn.isOpen && (
-              <>
-                {options.map((option, index) => {
-                  const isActive = index === downshiftReturn.highlightedIndex;
-                  return (
-                    <li
-                      className={classNames("c__select__menu__item", {
-                        "c__select__menu__item--highlight": isActive,
-                        "c__select__menu__item--disabled": option.disabled,
-                      })}
-                      key={`${optionToValue(option)}${index.toString()}`}
-                      {...downshiftReturn.getItemProps({
-                        item: option,
-                        index,
-                      })}
-                    >
-                      <span>{renderOption(option)}</span>
-                    </li>
-                  );
-                })}
-                {options.length === 0 && (
-                  <li className="c__select__menu__item c__select__menu__empty-placeholder">
-                    {t("components.forms.select.menu_empty_placeholder")}
-                  </li>
-                )}
-              </>
-            )}
-          </ul>
-        </div>
+        <SelectMultiMenu {...props} />
       </div>
     </Field>
   );

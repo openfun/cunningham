@@ -50,6 +50,17 @@ export const Disabled = {
   },
 };
 
+export const Monoline = {
+  render: Template,
+  args: {
+    label: "Select cities",
+    options: OPTIONS,
+    defaultValue: [OPTIONS[4].value, OPTIONS[2].value, OPTIONS[1].value],
+    monoline: true,
+    clearable: true,
+  },
+};
+
 export const WithText = {
   render: Template,
   args: {

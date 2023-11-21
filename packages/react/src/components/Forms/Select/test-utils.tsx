@@ -44,3 +44,8 @@ export const expectSelectedOptions = (expectedOptions: string[]) => {
   });
   expect(actualOptions).toEqual(expectedOptions);
 };
+
+export const expectSelectedOptionsText = (expectedOptions: string[]) => {
+  const valueElement = document.querySelector(".c__select__inner__value");
+  expect(valueElement?.textContent).toEqual(expectedOptions.join(", "));
+};

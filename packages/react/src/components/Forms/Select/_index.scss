@@ -157,6 +157,23 @@
       color: var(--c--theme--colors--greyscale-600);
       font-style: italic;
     }
+
+    &.c__select__menu--checkbox {
+      .c__select__menu__item {
+        padding: 0;
+
+        .c__checkbox {
+          padding: 0.75rem;
+          margin-left: 0;
+
+          &__label {
+            font-size: var(--c--components--forms-select--item-font-size);
+            color: var(--c--components--forms-select--item-color);
+            font-weight: normal;
+          }
+        }
+      }
+    }
   }
 
   /** Modifiers */
@@ -233,13 +250,44 @@
   }
 
   &--multi {
-    .c__select__wrapper {
-      height: auto;
-      min-height: var(--c--components--forms-select--height);
+    &.c__select--monoline {
+      .c__select__inner {
+        .c__select__inner__value {
+          overflow: hidden;
+        }
+
+        .c__select__inner__actions {
+          order: 2;
+        }
+      }
+    }
+
+    &.c__select--multiline {
+      .c__select__wrapper {
+        height: auto;
+        min-height: var(--c--components--forms-select--height);
+      }
+
+      .c__select__inner {
+        display: block;
+
+        &__actions {
+          float: right;
+          position: relative;
+          height: 0;
+          top: px-to-rem(3px);
+        }
+      }
+    }
+
+    &.c__select--text {
+      .c__select__inner__value {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
     }
 
     .c__select__inner {
-      display: block;
 
       &__value {
         gap: 0.25rem;
@@ -297,13 +345,6 @@
             white-space: pre-wrap;
           }
         }
-      }
-
-      &__actions {
-        float: right;
-        position: relative;
-        height: 0;
-        top: 3px;
       }
     }
 
