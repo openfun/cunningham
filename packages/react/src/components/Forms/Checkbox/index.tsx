@@ -5,13 +5,14 @@ import React, {
   useEffect,
   useRef,
   useState,
+  ReactNode,
 } from "react";
 import classNames from "classnames";
 import { Field, FieldProps } from ":/components/Forms/Field";
 
 export type CheckboxOnlyProps = {
   indeterminate?: boolean;
-  label?: string;
+  label?: ReactNode;
 };
 
 export type CheckboxProps = InputHTMLAttributes<HTMLInputElement> &

@@ -2,12 +2,13 @@ import React, {
   InputHTMLAttributes,
   PropsWithChildren,
   forwardRef,
+  ReactNode,
 } from "react";
 import classNames from "classnames";
 import { Field, FieldProps } from ":/components/Forms/Field";
 
 export type RadioOnlyProps = {
-  label?: string;
+  label?: ReactNode;
 };
 
 export type RadioProps = InputHTMLAttributes<HTMLInputElement> &
