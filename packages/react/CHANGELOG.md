@@ -1,5 +1,11 @@
 # @openfun/cunningham-react
 
+## 2.2.0
+
+### Minor Changes
+
+- 94b32be5: add monoline props to multi select
+
 ## 2.1.0
 
 ### Minor Changes
@@ -301,7 +307,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.1.0...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.2.0...main
+[2.2.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.1.0...@openfun/cunningham-react@2.2.0
 [2.1.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.0.0...@openfun/cunningham-react@2.1.0
 [2.0.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.3.1...@openfun/cunningham-react@2.0.0
 [1.3.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@1.3.0...@openfun/cunningham-react@1.3.1
