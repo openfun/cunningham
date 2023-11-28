@@ -136,7 +136,11 @@ export const SelectMultiSearchable = forwardRef<SelectHandle, SubProps>(
           wrapperProps: {
             onClick: () => {
               inputRef.current?.focus();
-              downshiftReturn.openMenu();
+              // This is important because if we don't check that: when clicking on the toggle button
+              // when the menu is open, it will close and reopen immediately.
+              if (!downshiftReturn.isOpen) {
+                downshiftReturn.openMenu();
+              }
             },
           },
           toggleButtonProps: downshiftReturn.getToggleButtonProps(),

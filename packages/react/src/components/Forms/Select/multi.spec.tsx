@@ -1247,7 +1247,7 @@ describe("<Select multi={true} />", () => {
       await user.type(input, "Par");
       expectOptions(["Paris"]);
 
-      await user.type(input, "{enter}");
+      await user.type(input, "{enter}", { skipClick: true });
 
       await waitFor(() => expectSelectedOptions(["Paris"]));
     });
@@ -1504,9 +1504,9 @@ describe("<Select multi={true} />", () => {
       const user = userEvent.setup();
       await user.click(input);
       await waitFor(() => expectOptions(["Paris", "New York", "Tokyo"]));
-      await user.type(input, "New");
+      await user.type(input, "New", { skipClick: true });
       await waitFor(() => expectOptions(["New York"]));
-      await user.type(input, "{enter}}");
+      await user.type(input, "{enter}}", { skipClick: true });
       expectSelectedOptions(["London", "New York"]);
       screen.getByText('Value = ["london","new_york"]|');
 

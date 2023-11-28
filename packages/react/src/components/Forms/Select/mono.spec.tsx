@@ -136,7 +136,7 @@ describe("<Select/>", () => {
       expectMenuToBeOpen(menu);
       expectOptions(["Paris", "Panama"]);
 
-      await user.type(input, "r");
+      await user.type(input, "r", { skipClick: true });
       expectOptions(["Paris"]);
 
       // Select option.
@@ -211,7 +211,7 @@ describe("<Select/>", () => {
       expectMenuToBeOpen(menu);
       expectOptions(["Paris", "Panama"]);
 
-      await user.type(input, "rr");
+      await user.type(input, "rr", { skipClick: true });
       expectNoOptions();
 
       expect(input).toHaveValue("Parr");
