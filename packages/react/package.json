@@ -32,7 +32,7 @@
     "build:watch-polling": "yarn build && vite build --mode watch-polling",
     "build-fonts": "vite build -c vite.fonts.config.ts && rm -rf dist/fonts.js && make-dir dist/sass && cp src/fonts.scss dist/sass/",
     "build-icons": "vite build -c vite.icons.config.ts && rm -rf dist/icons.js && make-dir dist/sass && cp src/icons.scss dist/sass/",
-    "build-theme": "cunningham -o src -g css,ts,js",
+    "build-theme": "cunningham -o src -g css,ts,js,scss",
     "preview": "vite preview",
     "test": "cross-env FORCE_COLOR=1 vitest run",
     "test-ci": "cross-env VITEST_MIN_THREADS=1 cross-env VITEST_MAX_THREADS=3 cross-env FORCE_COLOR=1 vitest run --shard $(($CIRCLE_NODE_INDEX + 1))/$CIRCLE_NODE_TOTAL",
