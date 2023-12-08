@@ -158,98 +158,100 @@ export const DataGrid = <T extends Row>({
         )}
         {!isEmpty && (
           <>
-            <table>
-              <thead>
-                {displayHeader &&
-                  table.getHeaderGroups().map((headerGroup) => (
-                    <tr key={headerGroup.id}>
-                      {headerGroup.headers.map((header) => {
+            <div className="c__datagrid__table__container">
+              <table>
+                <thead>
+                  {displayHeader &&
+                    table.getHeaderGroups().map((headerGroup) => (
+                      <tr key={headerGroup.id}>
+                        {headerGroup.headers.map((header) => {
+                          return (
+                            <th
+                              key={header.id}
+                              colSpan={header.colSpan}
+                              className={classNames({
+                                "c__datagrid__header--select":
+                                  header.id === "select",
+                              })}
+                            >
+                              {header.isPlaceholder ? null : (
+                                <div
+                                  className={classNames(
+                                    "c__datagrid__header fs-h5",
+                                    {
+                                      "c__datagrid__header--sortable":
+                                        header.column.getCanSort(),
+                                    },
+                                  )}
+                                  {...(header.column.getCanSort()
+                                    ? {
+                                        role: "button",
+                                        tabIndex: 0,
+                                        onClick:
+                                          header.column.getToggleSortingHandler(),
+                                      }
+                                    : {})}
+                                >
+                                  {flexRender(
+                                    header.column.columnDef.header,
+                                    header.getContext(),
+                                  )}
+                                  {header.column.getIsSorted() === "asc" && (
+                                    <span className="material-icons">
+                                      arrow_drop_up
+                                    </span>
+                                  )}
+                                  {header.column.getIsSorted() === "desc" && (
+                                    <span className="material-icons">
+                                      arrow_drop_down
+                                    </span>
+                                  )}
+                                  {header.id !== "select" &&
+                                    !header.column.getIsSorted() && (
+                                      <span className="c__datagrid__header__icon-placeholder" />
+                                    )}
+                                </div>
+                              )}
+                            </th>
+                          );
+                        })}
+                      </tr>
+                    ))}
+                </thead>
+                <tbody>
+                  {table.getRowModel().rows.map((row) => (
+                    <tr key={row.id} data-testid={row.id}>
+                      {row.getVisibleCells().map((cell, i) => {
+                        let highlight = false;
+                        if (enableRowSelection && i > 0) {
+                          // Enabling selection adds a column at the beginning of the table.
+                          highlight = !!columns[i - 1].highlight;
+                        } else {
+                          highlight = !!columns[i].highlight;
+                        }
                         return (
-                          <th
-                            key={header.id}
-                            colSpan={header.colSpan}
+                          <td
+                            key={cell.id}
                             className={classNames({
-                              "c__datagrid__header--select":
-                                header.id === "select",
+                              "c__datagrid__row__cell--highlight": highlight,
+                              "c__datagrid__row__cell--actions":
+                                cell.column.id === "actions",
+                              "c__datagrid__row__cell--select":
+                                cell.column.id === "select",
                             })}
                           >
-                            {header.isPlaceholder ? null : (
-                              <div
-                                className={classNames(
-                                  "c__datagrid__header fs-h5",
-                                  {
-                                    "c__datagrid__header--sortable":
-                                      header.column.getCanSort(),
-                                  },
-                                )}
-                                {...(header.column.getCanSort()
-                                  ? {
-                                      role: "button",
-                                      tabIndex: 0,
-                                      onClick:
-                                        header.column.getToggleSortingHandler(),
-                                    }
-                                  : {})}
-                              >
-                                {flexRender(
-                                  header.column.columnDef.header,
-                                  header.getContext(),
-                                )}
-                                {header.column.getIsSorted() === "asc" && (
-                                  <span className="material-icons">
-                                    arrow_drop_up
-                                  </span>
-                                )}
-                                {header.column.getIsSorted() === "desc" && (
-                                  <span className="material-icons">
-                                    arrow_drop_down
-                                  </span>
-                                )}
-                                {header.id !== "select" &&
-                                  !header.column.getIsSorted() && (
-                                    <span className="c__datagrid__header__icon-placeholder" />
-                                  )}
-                              </div>
+                            {flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext(),
                             )}
-                          </th>
+                          </td>
                         );
                       })}
                     </tr>
                   ))}
-              </thead>
-              <tbody>
-                {table.getRowModel().rows.map((row) => (
-                  <tr key={row.id} data-testid={row.id}>
-                    {row.getVisibleCells().map((cell, i) => {
-                      let highlight = false;
-                      if (enableRowSelection && i > 0) {
-                        // Enabling selection adds a column at the beginning of the table.
-                        highlight = !!columns[i - 1].highlight;
-                      } else {
-                        highlight = !!columns[i].highlight;
-                      }
-                      return (
-                        <td
-                          key={cell.id}
-                          className={classNames({
-                            "c__datagrid__row__cell--highlight": highlight,
-                            "c__datagrid__row__cell--actions":
-                              cell.column.id === "actions",
-                            "c__datagrid__row__cell--select":
-                              cell.column.id === "select",
-                          })}
-                        >
-                          {flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext(),
-                          )}
-                        </td>
-                      );
-                    })}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                </tbody>
+              </table>
+            </div>
             {!!pagination && <Pagination {...pagination} />}
           </>
         )}
