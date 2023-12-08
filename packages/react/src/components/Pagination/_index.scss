@@ -1,23 +1,42 @@
+@use "../../utils/responsive" as *;
+
 .c__pagination {
+  display: flex;
+  gap: 2rem;
+
+  &__list {
     display: flex;
-    gap: 2rem;
+    align-items: center;
+    border: 1px var(--c--theme--colors--greyscale-300) solid;
+    border-radius: 2px;
+    padding: var(--c--theme--spacings--st);
+    background: var(--c--theme--colors--greyscale-000);
+  }
+
+  &__goto {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    .c__field--default {
+      width: 100px;
+    }
+  }
+}
+
+@include container(md) {
+  .c__pagination {
+    width: 100%;
+    display: block;
 
     &__list {
-        display: flex;
-        align-items: center;
-        border: 1px var(--c--theme--colors--greyscale-300) solid;
-        border-radius: 2px;
-        padding: var(--c--theme--spacings--st);
-        background: var(--c--theme--colors--greyscale-000);
+      justify-content: center;
+      height: 3.5rem;
+      box-sizing: border-box;
     }
 
     &__goto {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-
-        .c__field--default {
-            width: 100px;
-        }
+      display: none;
     }
+  }
 }
