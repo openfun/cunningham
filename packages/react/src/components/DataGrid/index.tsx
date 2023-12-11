@@ -54,7 +54,7 @@ export interface BaseProps<T extends Row = Row> {
   rowSelection?: RowSelectionState;
 }
 
-interface Props<T extends Row = Row> extends BaseProps<T> {
+export interface DataGridProps<T extends Row = Row> extends BaseProps<T> {
   pagination?: PaginationProps;
   sortModel?: SortModel;
   onSortModelChange?: (newSortModel: SortModel) => void;
@@ -75,7 +75,7 @@ export const DataGrid = <T extends Row>({
   rowSelection,
   tableOptions,
   displayHeader = true,
-}: Props<T>) => {
+}: DataGridProps<T>) => {
   const { t } = useCunningham();
   const headlessColumns = useHeadlessColumns({ columns, enableRowSelection });
 
