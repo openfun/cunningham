@@ -1,5 +1,11 @@
 # @openfun/cunningham-tokens
 
+## 2.1.0
+
+### Minor Changes
+
+- 5e3deb23: add breakpoints tokens
+
 ## 2.0.0
 
 ### Major Changes
@@ -82,7 +88,8 @@
 - 4ebbf16: Add utility classes
 - 4ebbf16: Add official design tokens
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@2.0.0...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@2.1.0...main
+[2.1.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@2.0.0...@openfun/cunningham-tokens@2.1.0
 [2.0.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@1.0.1...@openfun/cunningham-tokens@2.0.0
 [1.0.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@1.0.0...@openfun/cunningham-tokens@1.0.1
 [1.0.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@0.7.1...@openfun/cunningham-tokens@1.0.0
