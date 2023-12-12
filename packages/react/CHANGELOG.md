@@ -1,5 +1,16 @@
 # @openfun/cunningham-react
 
+## 2.4.0
+
+### Minor Changes
+
+- da3761b: make DataGrid responsive
+- 72f7048: make Pagination responsive
+
+### Patch Changes
+
+- 7ddcfeb: fix closing of menu via toggle button
+
 ## 2.3.0
 
 ### Patch Changes
@@ -313,7 +324,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.3.0...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.4.0...main
+[2.4.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.3.0...@openfun/cunningham-react@2.4.0
 [2.3.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.2.0...@openfun/cunningham-react@2.3.0
 [2.2.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.1.0...@openfun/cunningham-react@2.2.0
 [2.1.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.0.0...@openfun/cunningham-react@2.1.0
