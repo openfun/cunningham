@@ -2,6 +2,7 @@ import "./index.scss";
 import { PartialExtendableNested, PartialNested } from ":/types";
 import { tokens } from "./cunningham-tokens";
 
+export * from "./components/Alert";
 export * from "./components/Button";
 export * from "./components/DataGrid";
 export * from "./components/DataGrid/DataList";

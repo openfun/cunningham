@@ -1,5 +1,10 @@
 {
   "components": {
+    "alert": {
+      "close_aria_label": "Delete alert",
+      "expand_aria_label": "Expand alert",
+      "shrink_aria_label": "Shrink alert"
+    },
     "pagination": {
       "goto_label": "Go to page",
       "goto_label_aria": "Go to any page",
