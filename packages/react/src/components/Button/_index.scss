@@ -39,6 +39,10 @@
     pointer-events: none;
   }
 
+  &--text {
+    font-weight: var(--c--components--button--text-font-weight);
+  }
+
   &--full-width {
     width: 100%;
     justify-content: center;
@@ -48,6 +52,10 @@
     height: var(--c--components--button--medium-height);
     font-size: var(--c--components--button--medium-font-size);
     padding: 0 var(--c--theme--spacings--s);
+
+    &.c__button--text {
+      height: var(--c--components--button--medium-text-height);
+    }
 
     &.c__button--icon-only {
       width: var(--c--components--button--medium-height);
@@ -119,6 +127,24 @@
     }
   }
 
+  &--primary-text {
+    color: var(--c--theme--colors--primary-600);
+    background-color: transparent;
+
+    &:hover, &:focus-visible {
+      background-color: var(--c--theme--colors--primary-100);
+      color: var(--c--theme--colors--primary-700);
+    }
+
+    &:active, &.c__button--active {
+      background-color: transparent;
+    }
+
+    &:disabled {
+      background-color: transparent;
+    }
+  }
+
   &--secondary {
     background-color: var(--c--theme--colors--primary-100);
     color: var(--c--theme--colors--primary-700);
@@ -135,16 +161,17 @@
   }
 
   &--tertiary {
-    background-color: transparent;
-    color: var(--c--theme--colors--greyscale-800);
+    background-color: var(--c--theme--colors--greyscale-100);
+    color: var(--c--theme--colors--greyscale-700);
+    font-weight: var(--c--theme--font--weights--medium);
 
     &:hover, &:focus-visible {
-      background-color: var(--c--theme--colors--greyscale-200);
-      color: var(--c--theme--colors--greyscale-900);
+      background-color: var(--c--theme--colors--greyscale-700);
+      color: var(--c--theme--colors--greyscale-000);
     }
 
     &:active, &.c__button--active {
-      background-color: var(--c--theme--colors--greyscale-100);
+      background-color: var(--c--theme--colors--greyscale-000);
       color: var(--c--theme--colors--greyscale-800);
     }
 
@@ -152,6 +179,25 @@
       background-color: transparent;
     }
   }
+
+  &--tertiary-text {
+    color: var(--c--theme--colors--greyscale-700);
+    background-color: transparent;
+
+    &:hover, &:focus-visible {
+      background-color: var(--c--theme--colors--greyscale-100);
+      color: var(--c--theme--colors--greyscale-800);
+    }
+
+    &:active, &.c__button--active {
+      background-color: transparent;
+    }
+
+    &:disabled {
+      background-color: transparent;
+    }
+  }
+
 
   &--danger {
     background-color: var(--c--theme--colors--danger-500);

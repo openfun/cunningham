@@ -8,7 +8,13 @@ import React, {
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
   AnchorHTMLAttributes<HTMLAnchorElement> & {
-    color?: "primary" | "secondary" | "tertiary" | "danger";
+    color?:
+      | "primary"
+      | "primary-text"
+      | "secondary"
+      | "tertiary"
+      | "tertiary-text"
+      | "danger";
     size?: "medium" | "small" | "nano";
     icon?: ReactNode;
     iconPosition?: "left" | "right";
@@ -50,6 +56,9 @@ export const Button = forwardRef<ButtonElement, ButtonProps>(
     }
     if (fullWidth) {
       classes.push("c__button--full-width");
+    }
+    if (["primary-text", "tertiary-text"].includes(color)) {
+      classes.push("c__button--text");
     }
     const iconElement = <span className="c__button__icon">{icon}</span>;
     const tagName = props.href ? "a" : "button";
