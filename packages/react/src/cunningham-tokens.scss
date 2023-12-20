@@ -280,6 +280,7 @@ $themes: (
         'border-radius': 8px,
         'border-radius--active': 2px,
         'border-radius--focus': 8px,
+        'medium-text-height': 36px,
         'medium-height': 48px,
         'small-height': 32px,
         'nano-height': 24px,
@@ -290,7 +291,17 @@ $themes: (
         'nano-font-size': 0.8125rem,
         'nano-icon-font-size': 1rem,
         'font-weight': 400,
-        'font-family': \Roboto Flex Variable\, sans-serif
+        'font-family': \Roboto Flex Variable\, sans-serif,
+        'text-font-weight': 500
+      ),
+      'alert': (
+        'background-color': #FAFAFB,
+        'border-radius': 4px,
+        'font-weight': 500,
+        'color': #0C1A2B,
+        'icon-size': 1rem,
+        'additional-font-weight': 400,
+        'additional-color': #555F6B
       )
     )
   ),

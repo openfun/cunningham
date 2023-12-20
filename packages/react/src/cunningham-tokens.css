@@ -237,6 +237,7 @@
 	--c--components--button--border-radius: 8px;
 	--c--components--button--border-radius--active: 2px;
 	--c--components--button--border-radius--focus: 8px;
+	--c--components--button--medium-text-height: 36px;
 	--c--components--button--medium-height: 48px;
 	--c--components--button--small-height: 32px;
 	--c--components--button--nano-height: 24px;
@@ -248,6 +249,14 @@
 	--c--components--button--nano-icon-font-size: var(--c--theme--font--sizes--l);
 	--c--components--button--font-weight: var(--c--theme--font--weights--regular);
 	--c--components--button--font-family: var(--c--theme--font--families--base);
+	--c--components--button--text-font-weight: var(--c--theme--font--weights--medium);
+	--c--components--alert--background-color: var(--c--theme--colors--greyscale-100);
+	--c--components--alert--border-radius: 4px;
+	--c--components--alert--font-weight: var(--c--theme--font--weights--medium);
+	--c--components--alert--color: var(--c--theme--colors--greyscale-900);
+	--c--components--alert--icon-size: var(--c--theme--font--sizes--l);
+	--c--components--alert--additional-font-weight: var(--c--theme--font--weights--regular);
+	--c--components--alert--additional-color: var(--c--theme--colors--greyscale-700);
 }
 .cunningham-theme--dark{
 	--c--theme--colors--greyscale-100: #182536;
