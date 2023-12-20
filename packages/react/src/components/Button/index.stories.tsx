@@ -17,6 +17,14 @@ export const Primary: Story = {
   },
 };
 
+export const PrimaryText: Story = {
+  args: {
+    children: "Primary Text",
+    color: "primary-text",
+    icon: <span className="material-icons">bolt</span>,
+  },
+};
+
 export const Secondary: Story = {
   args: {
     children: "Secondary",
@@ -28,6 +36,13 @@ export const Tertiary: Story = {
   args: {
     children: "Tertiary",
     color: "tertiary",
+  },
+};
+
+export const TertiaryText: Story = {
+  args: {
+    children: "Tertiary Text",
+    color: "tertiary-text",
   },
 };
 
