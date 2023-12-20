@@ -10,6 +10,22 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof Button>;
 
+export const All: Story = {
+  render: () => {
+    return (
+      <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+        <Button {...Primary.args} />
+        <Button {...PrimaryText.args} />
+        <Button {...Secondary.args} />
+        <Button {...Tertiary.args} />
+        <Button {...TertiaryText.args} />
+        <Button {...Disabled.args} />
+        <Button {...Danger.args} />
+      </div>
+    );
+  },
+};
+
 export const Primary: Story = {
   args: {
     children: "Primary",
