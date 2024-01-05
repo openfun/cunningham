@@ -117,7 +117,7 @@
 	--c--components--toast--background-color: var(--c--theme--colors--greyscale-100);
 	--c--components--toast--color: var(--c--theme--colors--greyscale-900);
 	--c--components--toast--font-weight: var(--c--theme--font--weights--regular);
-	--c--components--toast--icon-size: var(--c--theme--font--sizes--l);
+	--c--components--toast--icon-size: 19px;
 	--c--components--toast--progress-bar-height: 3px;
 	--c--components--forms-textarea--font-weight: var(--c--theme--font--weights--regular);
 	--c--components--forms-textarea--font-size: var(--c--theme--font--sizes--l);
@@ -261,7 +261,7 @@
 	--c--components--alert--border-radius: 4px;
 	--c--components--alert--font-weight: var(--c--theme--font--weights--medium);
 	--c--components--alert--color: var(--c--theme--colors--greyscale-900);
-	--c--components--alert--icon-size: var(--c--theme--font--sizes--l);
+	--c--components--alert--icon-size: 19px;
 	--c--components--alert--additional-font-weight: var(--c--theme--font--weights--regular);
 	--c--components--alert--additional-color: var(--c--theme--colors--greyscale-700);
 }

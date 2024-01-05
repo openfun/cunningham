@@ -6,7 +6,7 @@ export const tokens = (defaults: DefaultTokens) => {
     "border-radius": "4px",
     "font-weight": defaults.theme.font.weights.medium,
     color: defaults.theme.colors["greyscale-900"],
-    "icon-size": defaults.theme.font.sizes.l,
+    "icon-size": "19px",
     "additional-font-weight": defaults.theme.font.weights.regular,
     "additional-color": defaults.theme.colors["greyscale-700"],
   };
