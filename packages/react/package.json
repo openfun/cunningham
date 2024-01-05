@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "@fontsource-variable/roboto-flex": "5.0.8",
-    "@fontsource/material-icons": "5.0.11",
+    "@fontsource/material-icons-outlined": "5.0.11",
     "@internationalized/date": "3.5.0",
     "@openfun/cunningham-tokens": "*",
     "@react-aria/calendar": "3.5.3",

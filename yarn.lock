@@ -2390,10 +2390,10 @@
   resolved "https://registry.yarnpkg.com/@fontsource-variable/roboto-flex/-/roboto-flex-5.0.8.tgz#d6685dbcdb9ba939717f995dfeb77cd22f7d82a3"
   integrity sha512-zSnE0htmk1tlKqVNfMGWJfxgLxLYQH9eYNvXFzWJ3GuDMXVBEiKuaYytkrItaP/svX3t5y8qsIXC+cpflsfvWQ==
 
-"@fontsource/material-icons@5.0.11":
+"@fontsource/material-icons-outlined@^5.0.11":
   version "5.0.11"
-  resolved "https://registry.yarnpkg.com/@fontsource/material-icons/-/material-icons-5.0.11.tgz#01b7cc91c2897d043acf4e5dc45ea190c098d72d"
-  integrity sha512-6JVVgGSrcDmst31WXaLG1MVNL6Sn0JLHwrGGLcg8u2KtXW+lTAJnscKEgj1pMpK73ks9Q193Mw2Oh9aebDj26g==
+  resolved "https://registry.yarnpkg.com/@fontsource/material-icons-outlined/-/material-icons-outlined-5.0.11.tgz#1661f444a834ae2055c82778aa2c44579459be00"
+  integrity sha512-V0U/WCRXijxVHWr5ACj9CcUzxwAeCBayEGawKQFDB7f12tyCWTIVLKRDEhf1EaNVpSStkjl738jesY4j8Dr94Q==
 
 "@formatjs/ecma402-abstract@1.15.0":
   version "1.15.0"
