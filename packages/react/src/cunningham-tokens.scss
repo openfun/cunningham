@@ -134,6 +134,15 @@ $themes: (
       )
     ),
     'components': (
+      'toast': (
+        'slide-in-duration': 1000ms,
+        'slide-out-duration': 300ms,
+        'background-color': #FAFAFB,
+        'color': #0C1A2B,
+        'font-weight': 400,
+        'icon-size': 1rem,
+        'progress-bar-height': 3px
+      ),
       'forms-textarea': (
         'font-weight': 400,
         'font-size': 1rem,

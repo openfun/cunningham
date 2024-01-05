@@ -21,6 +21,7 @@
 @use "./components/Loader";
 @use "./components/Pagination";
 @use "./components/Popover";
+@use "./components/Toast";
 
 body {
   font-family: var(--c--theme--font--families--base);

@@ -112,6 +112,13 @@
 	--c--theme--breakpoints--lg: 992px;
 	--c--theme--breakpoints--xl: 1200px;
 	--c--theme--breakpoints--xxl: 1400px;
+	--c--components--toast--slide-in-duration: 1000ms;
+	--c--components--toast--slide-out-duration: 300ms;
+	--c--components--toast--background-color: var(--c--theme--colors--greyscale-100);
+	--c--components--toast--color: var(--c--theme--colors--greyscale-900);
+	--c--components--toast--font-weight: var(--c--theme--font--weights--regular);
+	--c--components--toast--icon-size: var(--c--theme--font--sizes--l);
+	--c--components--toast--progress-bar-height: 3px;
 	--c--components--forms-textarea--font-weight: var(--c--theme--font--weights--regular);
 	--c--components--forms-textarea--font-size: var(--c--theme--font--sizes--l);
 	--c--components--forms-textarea--border-radius: 8px;
