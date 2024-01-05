@@ -27,9 +27,9 @@ export const iconFromType = (type?: AlertType | ToastType) => {
     case AlertType.INFO:
       return "info";
     case AlertType.SUCCESS:
-      return "task_alt";
+      return "check_circle";
     case AlertType.WARNING:
-      return "warning";
+      return "error_outline";
     case AlertType.ERROR:
       return "cancel";
     default:
