@@ -11,3 +11,9 @@
     @content;
   }
 }
+@mixin media($name, $tokens: $themes) {
+  $breakpoint: breakpoint($name, $tokens);
+  @media (max-width: #{$breakpoint}) {
+    @content;
+  }
+}
