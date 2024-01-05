@@ -1,0 +1,97 @@
+import { Canvas, Meta, Story, Source, ArgTypes } from '@storybook/blocks';
+import * as Stories from './index.stories';
+import { toast } from './DocUtils';
+import { ToastProvider } from './ToastProvider';
+import { Toast } from './index';
+
+<Meta of={Stories}/>
+
+# Toast
+
+Cunningham provides a powerful Toast component for displaying any kind of information for a defined amount of time.
+
+<Canvas of={Stories.Demo} sourceState="none"/>
+
+## Usage
+
+Toasts are really simple to use, you need to wrap your app inside `CunninghamProvider`.
+
+<Source
+  language='tsx'
+  dark
+  format={false}
+  code={`
+import { CunninghamProvider } from "@openfun/cunningham-react";
+
+const App = () => (
+  <CunninghamProvider>
+    <InnerApp />
+  </CunninghamProvider>
+);
+  `}
+/>
+
+And then simply use the `toast` function from `useToastProvider` hook.
+
+<Source
+  language='tsx'
+  dark
+  format={false}
+  code={`
+const InnerApp = () => {
+  const { toast } = useToastProvider();
+
+  return (
+    <button onClick={() => toast("Hello world!")}>
+      Create toast
+    </button>
+  );
+};
+`}/>
+
+You can also customize the appearance of the toast with the `toast` function. See the API.
+
+<ArgTypes of={toast} />
+
+## Type
+
+Toast can be of different types, each type has a different color and icon.
+
+<Canvas of={Stories.Info} />
+<Canvas of={Stories.Success} />
+<Canvas of={Stories.Warning} />
+<Canvas of={Stories.Error} />
+<Canvas of={Stories.Neutral} />
+
+## Actions
+
+You can quickly add an action to your toast by passing `primaryLabel` and `primaryOnClick` props to the `toast` function.
+
+<Canvas of={Stories.InfoWithButton} />
+
+## Customize
+
+You can customize the appearance of the toast by passing `actions` when calling `toast` function.
+
+<Canvas of={Stories.InfoCustom} />
+
+## Props
+
+These are the props of `Toast` component which you might not need to create by yourself as the `toast` function does all
+the heavy lifting for you.
+
+<ArgTypes of={Toast} />
+
+## Design tokens
+
+Here a the custom design tokens defined by the Toast.
+
+| Token        	| Description                 	|
+|---------------	|-----------------------------	|
+| slide-in-duration 	| Time the toast takes to slide in 	|
+| slide-out-duration 	| Time the toast takes to slide out	|
+| background-color 	| Default background color 	|
+| color 	| Color of the content	|
+| font-weight 	| Font weight of the content 	|
+| icon-size 	| Size of the left icon	|
+| progress-bar-height 	| Height of the progress bar	|
