@@ -8,8 +8,8 @@ import { CunninghamProvider } from ":/components/Provider";
 describe("<Alert/>", () => {
   it.each([
     [AlertType.INFO, "info"],
-    [AlertType.SUCCESS, "task_alt"],
-    [AlertType.WARNING, "warning"],
+    [AlertType.SUCCESS, "check_circle"],
+    [AlertType.WARNING, "error_outline"],
     [AlertType.ERROR, "cancel"],
     [AlertType.NEUTRAL, undefined],
   ])("renders % alert with according icon", (type, icon) => {

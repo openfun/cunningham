@@ -124,8 +124,8 @@ describe("<Toast />", () => {
 
   it.each([
     [ToastType.INFO, "info"],
-    [ToastType.SUCCESS, "task_alt"],
-    [ToastType.WARNING, "warning"],
+    [ToastType.SUCCESS, "check_circle"],
+    [ToastType.WARNING, "error_outline"],
     [ToastType.ERROR, "cancel"],
     [ToastType.NEUTRAL, undefined],
   ])("shows a %s toast", async (type, iconName) => {
