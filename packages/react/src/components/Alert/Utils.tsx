@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { Button } from ":/components/Button";
 import { AlertProps, AlertType } from ":/components/Alert/index";
 import { useCunningham } from ":/components/Provider";
+import { ToastType } from ":/components/Toast/ToastProvider";
 
 export const AlertWrapper = (props: AlertProps) => {
   return (
@@ -21,21 +22,23 @@ export const AlertWrapper = (props: AlertProps) => {
   );
 };
 
+export const iconFromType = (type?: AlertType | ToastType) => {
+  switch (type) {
+    case AlertType.INFO:
+      return "info";
+    case AlertType.SUCCESS:
+      return "task_alt";
+    case AlertType.WARNING:
+      return "warning";
+    case AlertType.ERROR:
+      return "cancel";
+    default:
+      return "";
+  }
+};
+
 export const AlertIcon = ({ type, ...props }: AlertProps) => {
-  const icon = useMemo(() => {
-    switch (type) {
-      case AlertType.INFO:
-        return "info";
-      case AlertType.SUCCESS:
-        return "task_alt";
-      case AlertType.WARNING:
-        return "warning";
-      case AlertType.ERROR:
-        return "cancel";
-      default:
-        return "";
-    }
-  }, [type]);
+  const icon = useMemo(() => iconFromType(type), [type]);
   if (props.icon) {
     return props.icon;
   }
@@ -54,7 +57,6 @@ export const AlertClose = (props: AlertProps) => {
   return (
     props.canClose && (
       <Button
-        className="ml-st"
         color="tertiary"
         size="small"
         icon={<span className="material-icons">close</span>}
