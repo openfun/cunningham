@@ -82,7 +82,7 @@ export const ClientSideWithoutPagination = () => {
           id: "actions",
           renderCell: () => (
             <Button
-              color="tertiary"
+              color="tertiary-text"
               size="small"
               icon={<span className="material-icons">delete</span>}
             />
@@ -225,7 +225,7 @@ export const FullServerSide = () => {
           id: "actions",
           renderCell: () => (
             <Button
-              color="tertiary"
+              color="tertiary-text"
               size="small"
               icon={<span className="material-icons">delete</span>}
             />
