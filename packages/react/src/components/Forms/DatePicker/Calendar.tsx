@@ -222,7 +222,7 @@ const CalendarAux = forwardRef(
           <div className="c__calendar__wrapper__header">
             <div className="c__calendar__wrapper__header__actions">
               <Button
-                color="tertiary"
+                color="tertiary-text"
                 size="small"
                 icon={<span className="material-icons">navigate_before</span>}
                 {...{
@@ -236,7 +236,7 @@ const CalendarAux = forwardRef(
               />
               <Button
                 className="c__calendar__wrapper__header__actions__dropdown"
-                color="tertiary"
+                color="tertiary-text"
                 size="small"
                 iconPosition="right"
                 icon={<span className="material-icons">arrow_drop_down</span>}
@@ -247,7 +247,7 @@ const CalendarAux = forwardRef(
                 )}
               </Button>
               <Button
-                color="tertiary"
+                color="tertiary-text"
                 size="small"
                 icon={<span className="material-icons">navigate_next</span>}
                 {...{
@@ -262,7 +262,7 @@ const CalendarAux = forwardRef(
             </div>
             <div className="c__calendar__wrapper__header__actions">
               <Button
-                color="tertiary"
+                color="tertiary-text"
                 size="small"
                 icon={<span className="material-icons">navigate_before</span>}
                 onClick={() => state.focusPreviousSection(true)}
@@ -277,7 +277,7 @@ const CalendarAux = forwardRef(
               />
               <Button
                 className="c__calendar__wrapper__header__actions__dropdown"
-                color="tertiary"
+                color="tertiary-text"
                 size="small"
                 iconPosition="right"
                 icon={<span className="material-icons">arrow_drop_down</span>}
@@ -288,7 +288,7 @@ const CalendarAux = forwardRef(
                 )}
               </Button>
               <Button
-                color="tertiary"
+                color="tertiary-text"
                 size="small"
                 icon={<span className="material-icons">navigate_next</span>}
                 onClick={() => state.focusNextSection(true)}

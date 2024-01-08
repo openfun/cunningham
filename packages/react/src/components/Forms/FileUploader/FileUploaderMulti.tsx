@@ -39,7 +39,7 @@ export const FileUploaderMulti = forwardRef<
               <div className="c__file-uploader__file__specs">
                 <span>{formatBytes(file.size)}</span>
                 <Button
-                  color="tertiary"
+                  color="tertiary-text"
                   size="nano"
                   aria-label={t(
                     "components.forms.file_uploader.delete_file_name",

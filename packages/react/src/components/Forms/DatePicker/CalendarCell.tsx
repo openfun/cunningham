@@ -65,7 +65,7 @@ export const CalendarCell = ({ state, date }: CalendarCellProps) => {
                 : isSelected
             )
               ? "primary"
-              : "tertiary"
+              : "tertiary-text"
           }
           className={classNames(
             "c__calendar__wrapper__grid__week-row__button",

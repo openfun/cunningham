@@ -135,7 +135,7 @@ export const SelectMonoAux = ({
                 {clearable && !disabled && downshiftReturn.selectedItem && (
                   <>
                     <Button
-                      color="tertiary"
+                      color="tertiary-text"
                       size="nano"
                       aria-label={t(
                         "components.forms.select.clear_button_aria_label",
@@ -152,7 +152,7 @@ export const SelectMonoAux = ({
                 )}
 
                 <Button
-                  color="tertiary"
+                  color="tertiary-text"
                   size="nano"
                   className="c__select__inner__actions__open"
                   icon={

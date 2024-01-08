@@ -149,7 +149,7 @@ const DatePickerAux = forwardRef(
                         : "components.forms.date_picker.toggle_button_aria_label_open",
                     ),
                   }}
-                  color="tertiary"
+                  color="tertiary-text"
                   size="small"
                   className="c__date-picker__wrapper__toggle"
                   onClick={pickerState.toggle}
@@ -166,7 +166,7 @@ const DatePickerAux = forwardRef(
                   "c__date-picker__inner__action--hidden":
                     labelAsPlaceholder || disabled,
                 })}
-                color="tertiary"
+                color="tertiary-text"
                 size="nano"
                 icon={<span className="material-icons">cancel</span>}
                 onClick={onClear}
