@@ -22,7 +22,7 @@ describe("<Toast />", () => {
       return (
         <Button
           onClick={() =>
-            toast("Toast content", ToastType.NEUTRAL, { duration: 10 })
+            toast("Toast content", ToastType.NEUTRAL, { duration: 50 })
           }
         >
           Create toast
