@@ -80,6 +80,7 @@ export const DateRangePicker = ({
         pickerState,
         pickerProps,
         optionalClassName: "c__date-picker__range",
+        isRange: true,
         onClear: () => {
           pickerState.setValue({
             start: null as unknown as DateValue,

@@ -221,7 +221,12 @@
   }
 
   &__range {
-    min-width: px-to-rem(350px);
+    $component-min-width: px-to-rem(350px);
+    min-width: $component-min-width;
+
+    &__container {
+      min-width: $component-min-width;
+    }
 
     &__separator {
       background-color: var(--c--theme--colors--greyscale-400);

@@ -46,6 +46,7 @@ export type DatePickerAuxProps = PropsWithChildren &
     isFocused: boolean;
     labelAsPlaceholder: boolean;
     optionalClassName?: string;
+    isRange?: boolean;
     onClear: () => void;
   };
 
@@ -67,6 +68,7 @@ const DatePickerAux = forwardRef(
       locale,
       disabled = false,
       optionalClassName,
+      isRange,
       ...props
     }: DatePickerAuxProps,
     ref: Ref<HTMLDivElement>,
@@ -82,7 +84,12 @@ const DatePickerAux = forwardRef(
 
     return (
       <I18nProvider locale={locale || currentLocale}>
-        <Field {...props}>
+        <Field
+          {...props}
+          className={classNames({
+            "c__date-picker__range__container": isRange,
+          })}
+        >
           <div
             ref={pickerRef}
             className={classNames(["c__date-picker", optionalClassName], {
