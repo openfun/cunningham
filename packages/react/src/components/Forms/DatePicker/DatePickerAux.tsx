@@ -168,7 +168,7 @@ const DatePickerAux = forwardRef(
                 })}
                 color="tertiary-text"
                 size="nano"
-                icon={<span className="material-icons">cancel</span>}
+                icon={<span className="material-icons">close</span>}
                 onClick={onClear}
                 aria-label={t(
                   "components.forms.date_picker.clear_button_aria_label",
