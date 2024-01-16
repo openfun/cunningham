@@ -29,6 +29,7 @@
     padding: 0 1rem;
     box-sizing: border-box;
     font-family: var(--c--theme--font--families--base);
+    color: var(--c--components--forms-textarea--value-color);
 
     &:focus-visible {
       outline: none;
