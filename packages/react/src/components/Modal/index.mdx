@@ -1,0 +1,266 @@
+import { Canvas, Meta, Story, Source, ArgTypes } from '@storybook/blocks';
+import * as Stories from './index.stories';
+import * as PreBuiltStories from './PreBuilt.stories';
+import { Modal } from './index';
+
+<Meta of={Stories}/>
+
+# Modal
+
+Cunningham provides a versatile Modal component for displaying any kind of information.
+
+<Canvas>
+  <Story of={Stories.ThreeButtons} inline={false}/>
+</Canvas>
+
+<Source
+  language='ts'
+  dark
+  format={false}
+  code={`import { Modal } from "@openfun/cunningham-react";`}
+/>
+
+> ⚠️ If you want to try dark theme on the modal, you need to go on individual stories. It will not work on this page due to iframe wrapping.
+
+## Usage
+
+The component is easy to use. You need to use the `useModal()` hook to get all the needed props and helper functions.
+
+<Source
+  language='tsx'
+  dark
+  format={false}
+  code={`
+import { CunninghamProvider, Button, Modal } from "@openfun/cunningham-react";
+
+const App = () => {
+  const modal = useModal();
+  return (
+    <CunninghamProvider>
+      <Button onClick={modal.open}>Open Modal</Button>
+      <Modal {...modal} size={ModalSize.SMALL} title="My title">
+        My modal
+      </Modal>
+    </CunninghamProvider>
+  );
+};
+  `}/>
+
+Here you go! You bring to live your first modal! 🥳
+
+### About `useModal()` hook
+
+This hook is just a simple wrapper around the `useState()` hook to store some internal states, avoiding you to do it yourself each time you use a modal.
+It returns an object with the following properties:
+
+- `isOpen`: A boolean indicating if the modal is open or not.
+- `onClose`: A function called when modal closes.
+- `open`: A function to open the modal.
+- `close`: A function to close the modal. It does the same as `onClose` but it makes more semantic sense to use it in your code.
+
+### Programatically close the modal
+
+You can close the modal by calling the `close()` function returned by the `useModal()` hook.
+
+Here is an example of a modal automatically closing after 2 seconds.
+
+<Source
+  language='tsx'
+  dark
+  format={false}
+  code={`
+import { CunninghamProvider, Button, Modal } from "@openfun/cunningham-react";
+
+const App = () => {
+  const modal = useModal();
+  useEffect(() => {
+    modal.open();
+    setTimeout(() => {
+      modal.close();
+    }, 2000);
+  }, []);
+  return (
+    <CunninghamProvider>
+      <Modal {...modal} size={ModalSize.SMALL} title="My title">
+        My modal
+      </Modal>
+    </CunninghamProvider>
+  );
+};
+  `}/>
+
+## Sizes
+
+The modal component comes with multiple sizes: `ModalSize.SMALL`, `ModalSize.MEDIUM`, `ModalSize.LARGE` and `ModalSize.FULL`.
+
+You can set the size of the modal by passing the `size` prop.
+
+
+### Small
+
+
+<Canvas>
+  <Story of={Stories.Small} inline={false}/>
+</Canvas>
+
+### Medium
+
+<Canvas>
+  <Story of={Stories.Medium} inline={false}/>
+</Canvas>
+
+### Large
+
+<Canvas>
+  <Story of={Stories.Large} inline={false}/>
+</Canvas>
+
+### Full
+
+<Canvas>
+  <Story of={Stories.FullWithContent} inline={false}/>
+</Canvas>
+
+## Close button
+
+You can hide the close button by passing the `hideCloseButton` prop.
+
+<Canvas>
+  <Story of={Stories.HideCloseButton} inline={false}/>
+</Canvas>
+
+## Buttons
+
+### Right buttons
+
+You can add buttons on the right side of the modal by passing the `rightActions` prop.
+
+<Canvas>
+  <Story of={Stories.PrimaryButton} inline={false}/>
+</Canvas>
+
+### Left buttons
+
+You can add buttons on the left side of the modal by passing the `leftActions` prop.
+
+<Canvas>
+  <Story of={Stories.ThreeButtons} inline={false}/>
+</Canvas>
+
+### Center buttons
+
+You can add buttons on the center of the modal by passing the `actions` prop.
+
+<Canvas>
+  <Story of={Stories.CenterButtons} inline={false}/>
+</Canvas>
+
+## Icon
+
+You can add an icon to the modal by passing the `titleIcon` prop.
+
+<Canvas>
+  <Story of={Stories.ExampleApplication} inline={false}/>
+</Canvas>
+
+## Close on click outside
+
+By default, the modal will not be closed when you click outside of it in order to match the default behavior of the `<dialog/>` element.
+You can change this behavior by passing the `closeOnClickOutside` prop.
+
+<Canvas>
+  <Story of={Stories.CloseOnClickOutside} inline={false}/>
+</Canvas>
+
+## Pre Built Modals
+
+As we know that developers love to have handy shortcuts for common use cases, we provide some pre built modals that we
+prevent you from adding `<Modal/>` and using `useModal()` each time you want to use those pre built modals.
+
+The way you will be able to use those pre built modals is by using async calls that return the decision of the user.
+
+> For instance the following code shows how to display a confirmation modal asking the user if he wants to continue or not.
+
+<Source
+  language='tsx'
+  dark
+  format={false}
+  code={`
+import { CunninghamProvider, Button, Modal } from "@openfun/cunningham-react";
+
+const App = () => {
+  const modals = useModals();
+  const ask = async () => {
+      const decision = await modals.confirmationModal();
+      alert("You decided: " + decision);
+  };
+  return <Button onClick={ask}>Open</Button>;
+};
+`}/>
+
+**About the `decision` variable:**
+
+- `decision` is truthy if the user accepted.
+- `decision` is null if the user denied.
+- `decision` is undefined if the user closed the modal via `esc` or close button.
+
+**Of course you can customize the title and the content of the modal by using the `props` first argument of the functions.**
+
+### Confirmation modal
+
+<Canvas>
+  <Story of={PreBuiltStories.ConfirmationModal} inline={false}/>
+</Canvas>
+
+### Delete confirmation modal
+
+<Canvas>
+  <Story of={PreBuiltStories.DeleteConfirmationModal} inline={false}/>
+</Canvas>
+
+### Message modal
+
+This modal can be used to display a message to the user. It is possible to use multiple variant of it by using `messageType` with `VariantType` enum.
+
+#### Neutral
+
+<Canvas>
+  <Story of={PreBuiltStories.NeutralModal} inline={false}/>
+</Canvas>
+<Canvas>
+  <Story of={PreBuiltStories.SuccessModal} inline={false}/>
+</Canvas>
+<Canvas>
+  <Story of={PreBuiltStories.InfoModal} inline={false}/>
+</Canvas>
+<Canvas>
+  <Story of={PreBuiltStories.ErrorModal} inline={false}/>
+</Canvas>
+<Canvas>
+  <Story of={PreBuiltStories.WarningModal} inline={false}/>
+</Canvas>
+
+## Props
+
+These are the props of `Modal`.
+
+<ArgTypes of={Modal} />
+
+## Design tokens
+
+Here a the custom design tokens defined by the Toast.
+
+| Token        	| Description                 	|
+|---------------	|-----------------------------	|
+| background-color 	| Default background color 	|
+| border-radius 	| Border radius of the modal 	|
+| border-color 	| Border color of the modal 	|
+| box-shadow 	| Box shadow of the modal 	|
+| title-font-weight 	| Font weight of the modal title	|
+| color 	| Color of the modal title 	|
+| content-font-size 	| Font size of the modal content	|
+| content-font-weight 	| Font weight of the modal content	|
+| content-color 	| Font Color of the modal content	|
+| width-small 	| Width of the small modal size	|
+| width-medium 	| Width of the medium modal size	|
+| width-large 	| Width of the large modal size	|

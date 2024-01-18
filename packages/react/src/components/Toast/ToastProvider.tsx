@@ -2,19 +2,12 @@ import React, { PropsWithChildren, useContext, useMemo, useRef } from "react";
 import { Toast, ToastProps } from ":/components/Toast/index";
 import { tokens } from ":/cunningham-tokens";
 import { Queue } from ":/utils/Queue";
-
-export enum ToastType {
-  INFO = "info",
-  SUCCESS = "success",
-  WARNING = "warning",
-  ERROR = "error",
-  NEUTRAL = "neutral",
-}
+import { VariantType } from ":/utils/VariantUtils";
 
 export interface ToastProviderContext {
   toast: (
     message: string,
-    type?: ToastType,
+    type?: VariantType,
     options?: Partial<Omit<ToastInterface, "message" | "type">>,
   ) => void;
 }
@@ -57,7 +50,7 @@ export const ToastProvider = ({ children }: PropsWithChildren) => {
 
   const context: ToastProviderContext = useMemo(
     () => ({
-      toast: (message, type = ToastType.NEUTRAL, options = {}) => {
+      toast: (message, type = VariantType.NEUTRAL, options = {}) => {
         // We want to wait for the previous toast to be added ( taking into account the animation )
         // before adding a new one, that's why we use a queue.
         queue.current?.push(

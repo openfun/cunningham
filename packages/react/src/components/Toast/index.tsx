@@ -6,13 +6,12 @@ import React, {
   useRef,
 } from "react";
 import classNames from "classnames";
-import { ToastType } from ":/components/Toast/ToastProvider";
-import { iconFromType } from ":/components/Alert/Utils";
 import { Button, ButtonProps } from ":/components/Button";
+import { iconFromType, VariantType } from ":/utils/VariantUtils";
 
 export interface ToastProps extends PropsWithChildren {
   duration: number;
-  type: ToastType;
+  type: VariantType;
   onDelete?: () => void;
   icon?: ReactNode;
   primaryLabel?: string;

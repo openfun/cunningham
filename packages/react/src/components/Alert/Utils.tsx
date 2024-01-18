@@ -1,9 +1,9 @@
 import React, { useMemo } from "react";
 import classNames from "classnames";
 import { Button } from ":/components/Button";
-import { AlertProps, AlertType } from ":/components/Alert/index";
+import { AlertProps } from ":/components/Alert/index";
 import { useCunningham } from ":/components/Provider";
-import { ToastType } from ":/components/Toast/ToastProvider";
+import { iconFromType } from ":/utils/VariantUtils";
 
 export const AlertWrapper = (props: AlertProps) => {
   return (
@@ -20,36 +20,6 @@ export const AlertWrapper = (props: AlertProps) => {
       {props.children}
     </div>
   );
-};
-
-export const iconFromType = (type?: AlertType | ToastType) => {
-  switch (type) {
-    case AlertType.INFO:
-      return "info";
-    case AlertType.SUCCESS:
-      return "check_circle";
-    case AlertType.WARNING:
-      return "error_outline";
-    case AlertType.ERROR:
-      return "cancel";
-    default:
-      return "";
-  }
-};
-
-export const colorFromType = (type?: AlertType | ToastType) => {
-  switch (type) {
-    case AlertType.INFO:
-      return "info";
-    case AlertType.SUCCESS:
-      return "success";
-    case AlertType.WARNING:
-      return "warning";
-    case AlertType.ERROR:
-      return "danger";
-    default:
-      return "neutral";
-  }
 };
 
 export const AlertIcon = ({ type, ...props }: AlertProps) => {

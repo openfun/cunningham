@@ -3,7 +3,7 @@ import {
   Button,
   DataGrid,
   SortModel,
-  ToastType,
+  VariantType,
   usePagination,
   useToastProvider,
 } from "@openfun/cunningham-react";
@@ -119,7 +119,10 @@ export const Home = ({ changePage }: PageProps) => {
                     );
                     database.splice(index, 1);
                     setRefresh(refresh + 1);
-                    toast("Character deleted successfully", ToastType.WARNING);
+                    toast(
+                      "Character deleted successfully",
+                      VariantType.WARNING,
+                    );
                   }}
                   icon={<span className="material-icons">delete</span>}
                 />

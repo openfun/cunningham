@@ -3,7 +3,8 @@ import React, { useEffect } from "react";
 import { faker } from "@faker-js/faker";
 import { ProgressBar, Toast } from ":/components/Toast/index";
 import { Button } from ":/components/Button";
-import { ToastType, useToastProvider } from ":/components/Toast/ToastProvider";
+import { useToastProvider } from ":/components/Toast/ToastProvider";
+import { VariantType } from ":/utils/VariantUtils";
 
 const meta: Meta<typeof Toast> = {
   title: "Components/Toast",
@@ -22,15 +23,15 @@ export const Demo: Story = {
   render: () => {
     const { toast } = useToastProvider();
     const TYPES = [
-      ToastType.INFO,
-      ToastType.SUCCESS,
-      ToastType.WARNING,
-      ToastType.ERROR,
-      ToastType.NEUTRAL,
+      VariantType.INFO,
+      VariantType.SUCCESS,
+      VariantType.WARNING,
+      VariantType.ERROR,
+      VariantType.NEUTRAL,
     ];
 
     useEffect(() => {
-      toast(faker.lorem.sentence({ min: 5, max: 10 }), ToastType.SUCCESS, {
+      toast(faker.lorem.sentence({ min: 5, max: 10 }), VariantType.SUCCESS, {
         primaryLabel: "Read more",
         primaryOnClick: () => {
           // eslint-disable-next-line no-alert
@@ -62,20 +63,20 @@ export const Demo: Story = {
 
 export const Info: Story = {
   args: {
-    type: ToastType.INFO,
+    type: VariantType.INFO,
   },
 };
 
 export const InfoWithButton: Story = {
   args: {
-    type: ToastType.INFO,
+    type: VariantType.INFO,
     primaryLabel: "Primary",
   },
 };
 
 export const InfoCustom: Story = {
   args: {
-    type: ToastType.INFO,
+    type: VariantType.INFO,
     actions: (
       <>
         <Button color="primary">Primary</Button>
@@ -87,25 +88,25 @@ export const InfoCustom: Story = {
 
 export const Success: Story = {
   args: {
-    type: ToastType.SUCCESS,
+    type: VariantType.SUCCESS,
   },
 };
 
 export const Warning: Story = {
   args: {
-    type: ToastType.WARNING,
+    type: VariantType.WARNING,
   },
 };
 
 export const Error: Story = {
   args: {
-    type: ToastType.ERROR,
+    type: VariantType.ERROR,
   },
 };
 
 export const Neutral: Story = {
   args: {
-    type: ToastType.NEUTRAL,
+    type: VariantType.NEUTRAL,
   },
 };
 

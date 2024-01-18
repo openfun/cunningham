@@ -143,6 +143,20 @@ $themes: (
         'icon-size': 19px,
         'progress-bar-height': 3px
       ),
+      'modal': (
+        'background-color': #FFFFFF,
+        'border-radius': 4px,
+        'border-color': #E7E8EA,
+        'box-shadow': 0px 1px 2px 0px #0C1A2B4D,
+        'color': #0C1A2B,
+        'title-font-weight': 600,
+        'content-font-size': 0.8125rem,
+        'content-font-weight': 400,
+        'content-color': #303C4B,
+        'width-small': 300px,
+        'width-medium': 600px,
+        'width-large': 75%
+      ),
       'forms-textarea': (
         'font-weight': 400,
         'font-size': 1rem,

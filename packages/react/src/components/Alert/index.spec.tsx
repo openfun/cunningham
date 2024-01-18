@@ -1,17 +1,18 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
 import userEvent from "@testing-library/user-event";
-import { Alert, AlertType } from ":/components/Alert/index";
+import { Alert } from ":/components/Alert/index";
 import { Button } from ":/components/Button";
 import { CunninghamProvider } from ":/components/Provider";
+import { VariantType } from ":/utils/VariantUtils";
 
 describe("<Alert/>", () => {
   it.each([
-    [AlertType.INFO, "info"],
-    [AlertType.SUCCESS, "check_circle"],
-    [AlertType.WARNING, "error_outline"],
-    [AlertType.ERROR, "cancel"],
-    [AlertType.NEUTRAL, undefined],
+    [VariantType.INFO, "info"],
+    [VariantType.SUCCESS, "check_circle"],
+    [VariantType.WARNING, "error_outline"],
+    [VariantType.ERROR, "cancel"],
+    [VariantType.NEUTRAL, undefined],
   ])("renders % alert with according icon", (type, icon) => {
     render(
       <CunninghamProvider>
@@ -28,7 +29,7 @@ describe("<Alert/>", () => {
   it("renders additional information", () => {
     render(
       <CunninghamProvider>
-        <Alert type={AlertType.INFO} additional="Additional information">
+        <Alert type={VariantType.INFO} additional="Additional information">
           Alert component
         </Alert>
       </CunninghamProvider>,
@@ -38,7 +39,7 @@ describe("<Alert/>", () => {
   it("renders primary button when primaryLabel is provided", () => {
     render(
       <CunninghamProvider>
-        <Alert type={AlertType.INFO} primaryLabel="Primary">
+        <Alert type={VariantType.INFO} primaryLabel="Primary">
           Alert component
         </Alert>
       </CunninghamProvider>,
@@ -48,7 +49,7 @@ describe("<Alert/>", () => {
   it("renders tertiary button when tertiaryLabel is provided", () => {
     render(
       <CunninghamProvider>
-        <Alert type={AlertType.INFO} tertiaryLabel="Tertiary">
+        <Alert type={VariantType.INFO} tertiaryLabel="Tertiary">
           Alert component
         </Alert>
       </CunninghamProvider>,
@@ -59,7 +60,7 @@ describe("<Alert/>", () => {
     render(
       <CunninghamProvider>
         <Alert
-          type={AlertType.INFO}
+          type={VariantType.INFO}
           primaryLabel="Primary"
           tertiaryLabel="Tertiary"
         >
@@ -74,7 +75,7 @@ describe("<Alert/>", () => {
     render(
       <CunninghamProvider>
         <Alert
-          type={AlertType.INFO}
+          type={VariantType.INFO}
           buttons={
             <>
               <Button color="primary">Primary Custom</Button>
@@ -92,7 +93,7 @@ describe("<Alert/>", () => {
   it("can close the alert non controlled", async () => {
     render(
       <CunninghamProvider>
-        <Alert type={AlertType.INFO} canClose={true}>
+        <Alert type={VariantType.INFO} canClose={true}>
           Alert component
         </Alert>
       </CunninghamProvider>,
@@ -113,7 +114,7 @@ describe("<Alert/>", () => {
       return (
         <CunninghamProvider>
           <Alert
-            type={AlertType.INFO}
+            type={VariantType.INFO}
             canClose={true}
             closed={closed}
             onClose={(flag) => setClosed(flag)}
@@ -158,7 +159,7 @@ describe("<Alert/>", () => {
     render(
       <CunninghamProvider>
         <Alert
-          type={AlertType.INFO}
+          type={VariantType.INFO}
           additional="Additional information"
           expandable={true}
         >
@@ -192,7 +193,7 @@ describe("<Alert/>", () => {
       return (
         <CunninghamProvider>
           <Alert
-            type={AlertType.INFO}
+            type={VariantType.INFO}
             additional="Additional information"
             expandable={true}
             expanded={expanded}

@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import { ToastType } from ":/components/Toast/ToastProvider";
 import { ButtonProps } from ":/components/Button";
+import { VariantType } from ":/utils/VariantUtils";
 
 /**
  * This function is used for doc purpose only.
@@ -16,7 +16,7 @@ export const toast = ({
   /** Message displayed inside the toast */
   message: string;
   /** Type of the toast */
-  type?: ToastType;
+  type?: VariantType;
   /** Various options */
   options?: {
     duration: number;

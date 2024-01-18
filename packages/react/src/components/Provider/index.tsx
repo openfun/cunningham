@@ -10,6 +10,7 @@ import * as frFR from ":/locales/fr-FR.json";
 import { PartialNested } from ":/types";
 import { Locales } from ":/components/Provider/Locales";
 import { ToastProvider } from ":/components/Toast/ToastProvider";
+import { ModalProvider } from ":/components/Modal/ModalProvider";
 
 type TranslationSet = PartialNested<typeof enUS>;
 
@@ -101,7 +102,9 @@ export const CunninghamProvider = ({
 
   return (
     <CunninghamContext.Provider value={context}>
-      <ToastProvider>{children}</ToastProvider>
+      <ModalProvider>
+        <ToastProvider>{children}</ToastProvider>
+      </ModalProvider>
     </CunninghamContext.Provider>
   );
 };
