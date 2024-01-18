@@ -106,7 +106,12 @@
 	--c--theme--transitions--ease-out: cubic-bezier(0.33, 1, 0.68, 1);
 	--c--theme--transitions--ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 	--c--theme--transitions--duration: 250ms;
-	--c--components--button--border-radius: 30px;
+	--c--theme--breakpoints--xs: 0;
+	--c--theme--breakpoints--sm: 576px;
+	--c--theme--breakpoints--md: 768px;
+	--c--theme--breakpoints--lg: 992px;
+	--c--theme--breakpoints--xl: 1200px;
+	--c--theme--breakpoints--xxl: 1400px;
 }
 .cunningham-theme--dark{
 	--c--theme--colors--greyscale-100: #182536;
