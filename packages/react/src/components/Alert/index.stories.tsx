@@ -1,7 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-import { Alert, AlertProps, AlertType } from ":/components/Alert";
+import { Alert, AlertProps } from ":/components/Alert";
 import { Button } from ":/components/Button";
+import { VariantType } from ":/utils/VariantUtils";
 
 const meta: Meta<typeof Alert> = {
   title: "Components/Alert",
@@ -13,7 +14,7 @@ type Story = StoryObj<typeof Alert>;
 
 export const All: Story = {
   render: (args) => {
-    const customProps: AlertProps = { type: args.type ?? AlertType.INFO };
+    const customProps: AlertProps = { type: args.type ?? VariantType.INFO };
     return (
       <div style={{ display: "flex", gap: "1rem", flexDirection: "column" }}>
         <Alert {...Info.args} primaryLabel={undefined} {...customProps} />
@@ -69,7 +70,7 @@ export const Success: Story = {
     children: "Alert component Success",
     canClose: true,
     primaryLabel: "Primary",
-    type: AlertType.SUCCESS,
+    type: VariantType.SUCCESS,
   },
 };
 
@@ -78,7 +79,7 @@ export const Warning: Story = {
     children: "Alert component Warning",
     canClose: true,
     primaryLabel: "Primary",
-    type: AlertType.WARNING,
+    type: VariantType.WARNING,
   },
 };
 
@@ -87,7 +88,7 @@ export const Error: Story = {
     children: "Alert component Error",
     canClose: true,
     primaryLabel: "Primary",
-    type: AlertType.ERROR,
+    type: VariantType.ERROR,
   },
 };
 
@@ -96,7 +97,7 @@ export const Neutral: Story = {
     children: "Alert component Neutral",
     canClose: true,
     primaryLabel: "Primary",
-    type: AlertType.NEUTRAL,
+    type: VariantType.NEUTRAL,
   },
 };
 

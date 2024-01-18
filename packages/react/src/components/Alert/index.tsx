@@ -4,14 +4,7 @@ import { useControllableState } from ":/hooks/useControllableState";
 import { AlertAdditionalExpandable } from ":/components/Alert/AlertAdditionalExpandable";
 import { AlertAdditional } from ":/components/Alert/AlertAdditional";
 import { AlertOneLine } from ":/components/Alert/AlertOneLine";
-
-export enum AlertType {
-  INFO = "info",
-  SUCCESS = "success",
-  WARNING = "warning",
-  ERROR = "error",
-  NEUTRAL = "neutral",
-}
+import { VariantType } from ":/utils/VariantUtils";
 
 export interface AlertProps extends PropsWithChildren {
   additional?: React.ReactNode;
@@ -31,7 +24,7 @@ export interface AlertProps extends PropsWithChildren {
   tertiaryLabel?: string;
   tertiaryOnClick?: ButtonProps["onClick"];
   tertiaryProps?: ButtonProps;
-  type?: AlertType;
+  type?: VariantType;
 }
 
 export const Alert = (props: AlertProps) => {
@@ -42,7 +35,7 @@ export const Alert = (props: AlertProps) => {
   );
 
   const propsWithDefault = {
-    type: AlertType.INFO,
+    type: VariantType.INFO,
     ...props,
     onClose,
   };

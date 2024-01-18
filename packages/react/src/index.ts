@@ -17,11 +17,13 @@ export * from "./components/Forms/Select";
 export * from "./components/Forms/Switch";
 export * from "./components/Forms/TextArea";
 export * from "./components/Loader";
+export * from "./components/Modal";
 export * from "./components/Pagination";
 export * from "./components/Popover";
 export * from "./components/Provider";
 export * from "./components/Toast";
 export * from "./components/Toast/ToastProvider";
+export * from "./utils/VariantUtils";
 
 export type DefaultTokens = PartialNested<typeof tokens.themes.default>;
 export const defaultTokens = tokens.themes.default;

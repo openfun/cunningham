@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Alert,
-  AlertType,
   Button,
   Checkbox,
   DatePicker,
@@ -13,8 +12,8 @@ import {
   Select,
   Switch,
   TextArea,
-  ToastType,
   useToastProvider,
+  VariantType,
 } from "@openfun/cunningham-react";
 import { faker } from "@faker-js/faker";
 import { Character, database, randomDates } from "./Character";
@@ -35,7 +34,7 @@ export const Create = ({ changePage }: PageProps) => {
     database.unshift(character);
 
     changePage(Page.HOME);
-    toast("Character created successfully", ToastType.SUCCESS);
+    toast("Character created successfully", VariantType.SUCCESS);
   };
 
   return (
@@ -43,7 +42,7 @@ export const Create = ({ changePage }: PageProps) => {
       <h1>Add a character</h1>
       <div className="card">
         <h3 className="fw-bold fs-h3">General Information</h3>
-        <Alert type={AlertType.INFO}>
+        <Alert type={VariantType.INFO}>
           You are about to add a new character to the collection
         </Alert>
         <Input
@@ -77,7 +76,7 @@ export const Create = ({ changePage }: PageProps) => {
       </div>
       <div className="card mt-l">
         <h3 className="fw-bold fs-h3">Bio</h3>
-        <Alert type={AlertType.WARNING}>
+        <Alert type={VariantType.WARNING}>
           Please be exhaustive, every detail counts!
         </Alert>
         <TextArea

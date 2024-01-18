@@ -8,8 +8,9 @@ import {
 import userEvent from "@testing-library/user-event";
 import { within } from "@testing-library/dom";
 import { CunninghamProvider } from ":/components/Provider";
-import { ToastType, useToastProvider } from ":/components/Toast/ToastProvider";
+import { useToastProvider } from ":/components/Toast/ToastProvider";
 import { Button } from ":/components/Button";
+import { VariantType } from ":/utils/VariantUtils";
 
 describe("<Toast />", () => {
   const Wrapper = ({ children }: PropsWithChildren) => {
@@ -22,7 +23,7 @@ describe("<Toast />", () => {
       return (
         <Button
           onClick={() =>
-            toast("Toast content", ToastType.NEUTRAL, { duration: 50 })
+            toast("Toast content", VariantType.NEUTRAL, { duration: 50 })
           }
         >
           Create toast
@@ -54,7 +55,7 @@ describe("<Toast />", () => {
       return (
         <Button
           onClick={() =>
-            toast("Toast content", ToastType.NEUTRAL, {
+            toast("Toast content", VariantType.NEUTRAL, {
               primaryLabel: "Action",
               primaryOnClick: () => {
                 flag = true;
@@ -95,7 +96,7 @@ describe("<Toast />", () => {
       return (
         <Button
           onClick={() =>
-            toast("Toast content", ToastType.NEUTRAL, {
+            toast("Toast content", VariantType.NEUTRAL, {
               actions: <Button color="tertiary">Tertiary</Button>,
             })
           }
@@ -123,11 +124,11 @@ describe("<Toast />", () => {
   });
 
   it.each([
-    [ToastType.INFO, "info"],
-    [ToastType.SUCCESS, "check_circle"],
-    [ToastType.WARNING, "error_outline"],
-    [ToastType.ERROR, "cancel"],
-    [ToastType.NEUTRAL, undefined],
+    [VariantType.INFO, "info"],
+    [VariantType.SUCCESS, "check_circle"],
+    [VariantType.WARNING, "error_outline"],
+    [VariantType.ERROR, "cancel"],
+    [VariantType.NEUTRAL, undefined],
   ])("shows a %s toast", async (type, iconName) => {
     const Inner = () => {
       const { toast } = useToastProvider();

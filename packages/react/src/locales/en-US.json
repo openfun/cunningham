@@ -48,6 +48,27 @@
         "year_select_button_aria_label": "Select a year",
         "month_select_button_aria_label": "Select a month"
       }
+    },
+    "modals": {
+      "helpers": {
+        "delete_confirmation": {
+          "title": "Are you sure?",
+          "children": "Are you sure to delete this item?",
+          "cancel": "Cancel",
+          "delete": "Delete"
+        },
+        "confirmation": {
+          "title": "Are you sure?",
+          "children": "Are you sure you want to do that?",
+          "cancel": "Cancel",
+          "yes": "Yes"
+        },
+        "disclaimer": {
+          "title": "Disclaimer",
+          "children": "This is a disclaimer",
+          "ok": "Ok"
+        }
+      }
     }
   }
 }
