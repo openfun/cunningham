@@ -37,6 +37,21 @@ export const iconFromType = (type?: AlertType | ToastType) => {
   }
 };
 
+export const colorFromType = (type?: AlertType | ToastType) => {
+  switch (type) {
+    case AlertType.INFO:
+      return "info";
+    case AlertType.SUCCESS:
+      return "success";
+    case AlertType.WARNING:
+      return "warning";
+    case AlertType.ERROR:
+      return "danger";
+    default:
+      return "neutral";
+  }
+};
+
 export const AlertIcon = ({ type, ...props }: AlertProps) => {
   const icon = useMemo(() => iconFromType(type), [type]);
   if (props.icon) {
