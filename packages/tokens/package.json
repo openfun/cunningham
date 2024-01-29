@@ -43,7 +43,7 @@
   "devDependencies": {
     "@types/figlet": "1.5.8",
     "@types/jest": "29.5.11",
-    "@types/node": "20.11.5",
+    "@types/node": "20.11.10",
     "eslint-config-custom": "*",
     "jest": "29.7.0",
     "nodemon": "3.0.3",
