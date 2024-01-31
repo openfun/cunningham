@@ -39,7 +39,7 @@ const SelectedItemsChips = ({
         <SelectedOption option={selectedItemForRender} {...props} />
         <Button
           tabIndex={-1}
-          color="tertiary"
+          color="tertiary-text"
           disabled={disabled}
           size="small"
           aria-label={t("components.forms.select.clear_button_aria_label")}
