@@ -63,6 +63,10 @@ export interface SelectMultiAuxProps extends SubProps {
 export const SelectMultiAux = ({ children, ...props }: SelectMultiAuxProps) => {
   const { t } = useCunningham();
   const labelProps = props.downshiftReturn.getLabelProps();
+
+  // We need to remove onBlur from toggleButtonProps because it triggers a menu closing each time
+  // we tick a checkbox using the monoline style.
+  const { onBlur, ...toggleProps } = props.downshiftReturn.toggleButtonProps;
   return (
     <Field {...props}>
       <div
@@ -85,6 +89,7 @@ export const SelectMultiAux = ({ children, ...props }: SelectMultiAuxProps) => {
               props.downshiftReturn.isOpen && !props.disabled,
           })}
           {...props.downshiftReturn.wrapperProps}
+          {...toggleProps}
         >
           {props.selectedItems.map((selectedItem, index) => (
             <input
@@ -138,7 +143,6 @@ export const SelectMultiAux = ({ children, ...props }: SelectMultiAuxProps) => {
                     </span>
                   }
                   disabled={props.disabled}
-                  {...props.downshiftReturn.toggleButtonProps}
                 />
               </div>
               <div className="c__select__inner__value">

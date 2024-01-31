@@ -115,13 +115,6 @@ export const SelectMultiSimple = forwardRef<SelectHandle, SubProps>(
         menuOptionsStyle={props.monoline ? "checkbox" : "plain"}
         downshiftReturn={{
           ...downshiftReturn,
-          wrapperProps: {
-            onClick: () => {
-              if (!props.disabled) {
-                downshiftReturn.toggleMenu();
-              }
-            },
-          },
           toggleButtonProps: downshiftReturn.getToggleButtonProps({
             ...useMultipleSelectionReturn.getDropdownProps({
               preventKeyAction: downshiftReturn.isOpen,
