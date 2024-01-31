@@ -155,6 +155,7 @@ export const SelectMultiSearchable = forwardRef<SelectHandle, SubProps>(
             {...inputProps}
             onFocus={() => {
               setHasInputFocused(true);
+              downshiftReturn.openMenu();
             }}
             onBlur={() => {
               setHasInputFocused(false);

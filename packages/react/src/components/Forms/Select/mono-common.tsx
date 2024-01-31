@@ -87,7 +87,6 @@ export const SelectMonoAux = ({
 }: SelectAuxProps) => {
   const { t } = useCunningham();
   const labelProps = downshiftReturn.getLabelProps();
-
   return (
     <Field state={state} {...props}>
       <div

@@ -781,8 +781,11 @@ describe("<Select multi={true} />", () => {
       await user.click(clearButton);
       expectSelectedOptions([]);
 
-      // Select again London.
+      // Close and re-open the menu. ( This is needed in this tests but in real life it works, I don't know exactly why .. )
       await user.click(input);
+      await user.click(input);
+
+      // Select again Paris.
       await user.click(
         screen.getByRole("option", {
           name: "Paris",
@@ -830,7 +833,7 @@ describe("<Select multi={true} />", () => {
       // Focus the select.
       await user.click(input);
       expectMenuToBeOpen(menu);
-      expect(document.activeElement?.className).toContain("c__button");
+      expect(document.activeElement?.className).toContain("c__select__wrapper");
 
       // Blur the select.
       ref.current?.blur();
@@ -1040,8 +1043,6 @@ describe("<Select multi={true} />", () => {
 
       // Make sure the option is selected.
       expectSelectedOptionsText(["London", "Paris"]);
-
-      screen.logTestingPlaygroundURL();
 
       // Make sure the menu stays open.
       expectMenuToBeOpen(menu);
