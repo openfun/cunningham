@@ -62,6 +62,7 @@ export const Application = () => {
         gap: "1rem",
         width: "400px",
       }}
+      method="get"
     >
       <h1
         className="fs-h3 fw-bold clr-greyscale-900"
@@ -83,6 +84,7 @@ export const Application = () => {
           },
         ]}
         fullWidth={true}
+        clearable={true}
       />
       <div style={{ display: "flex", gap: "1rem" }}>
         <Input label="First name" />
@@ -107,6 +109,28 @@ export const Application = () => {
           accept="application/pdf"
         />
       </div>
+      <Select
+        label="Skills"
+        options={[
+          {
+            label: "Communication",
+          },
+          {
+            label: "Teamwork",
+          },
+          {
+            label: "Problem solving",
+          },
+          {
+            label: "Leadership",
+          },
+          {
+            label: "Work ethic",
+          },
+        ]}
+        multi={true}
+        fullWidth={true}
+      />
       <div>
         <TextArea label="Cover letter" fullWidth={true} rows={5} />
       </div>
