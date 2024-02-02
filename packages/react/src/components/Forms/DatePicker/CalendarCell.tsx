@@ -78,6 +78,7 @@ export const CalendarCell = ({ state, date }: CalendarCellProps) => {
               ),
             },
           )}
+          type="button"
           disabled={isDisabled}
           {...buttonProps}
           // The keyboard's ENTER event triggers the button twice.

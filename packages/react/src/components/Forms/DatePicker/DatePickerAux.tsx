@@ -80,11 +80,6 @@ const DatePickerAux = forwardRef(
       [pickerState.validationState, props.state],
     );
 
-    // onPress props don't exist on the <Button /> component.
-    // Remove it to avoid any warning.
-    const { onPress: onPressToggleButton, ...otherButtonProps } =
-      pickerProps.buttonProps;
-
     return (
       <I18nProvider locale={locale || currentLocale}>
         <Field {...props}>
@@ -141,18 +136,21 @@ const DatePickerAux = forwardRef(
               )}
               <div className="c__date-picker__wrapper__icon">
                 <Button
-                  {...{
-                    ...otherButtonProps,
-                    "aria-label": t(
-                      pickerState.isOpen
-                        ? "components.forms.date_picker.toggle_button_aria_label_close"
-                        : "components.forms.date_picker.toggle_button_aria_label_open",
-                    ),
+                  type="button"
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      pickerState.toggle();
+                    }
                   }}
+                  onClick={pickerState.toggle}
+                  aria-label={t(
+                    pickerState.isOpen
+                      ? "components.forms.date_picker.toggle_button_aria_label_close"
+                      : "components.forms.date_picker.toggle_button_aria_label_open",
+                  )}
                   color="tertiary-text"
                   size="small"
                   className="c__date-picker__wrapper__toggle"
-                  onClick={pickerState.toggle}
                   icon={
                     <span className="material-icons icon">calendar_today</span>
                   }
@@ -170,10 +168,16 @@ const DatePickerAux = forwardRef(
                 size="nano"
                 icon={<span className="material-icons">close</span>}
                 onClick={onClear}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    onClear();
+                  }
+                }}
                 aria-label={t(
                   "components.forms.date_picker.clear_button_aria_label",
                 )}
                 disabled={disabled}
+                type="button"
               />
             </div>
             {pickerState.isOpen && (
