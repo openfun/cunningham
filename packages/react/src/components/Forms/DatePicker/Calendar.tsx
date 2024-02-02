@@ -233,6 +233,7 @@ const CalendarAux = forwardRef(
                 }}
                 disabled={isPrevButtonDisabled}
                 onClick={() => state.focusPreviousSection()}
+                type="button"
               />
               <Button
                 className="c__calendar__wrapper__header__actions__dropdown"
@@ -240,6 +241,7 @@ const CalendarAux = forwardRef(
                 size="small"
                 iconPosition="right"
                 icon={<span className="material-icons">arrow_drop_down</span>}
+                type="button"
                 {...getToggleButtonProps("month", monthItems, downshiftMonth)}
               >
                 {selectedMonthItemFormatter.format(
@@ -250,6 +252,7 @@ const CalendarAux = forwardRef(
                 color="tertiary-text"
                 size="small"
                 icon={<span className="material-icons">navigate_next</span>}
+                type="button"
                 {...{
                   ...nextButtonOtherProps,
                   "aria-label": t(
@@ -274,6 +277,7 @@ const CalendarAux = forwardRef(
                 aria-label={t(
                   "components.forms.date_picker.previous_year_button_aria_label",
                 )}
+                type="button"
               />
               <Button
                 className="c__calendar__wrapper__header__actions__dropdown"
@@ -281,6 +285,7 @@ const CalendarAux = forwardRef(
                 size="small"
                 iconPosition="right"
                 icon={<span className="material-icons">arrow_drop_down</span>}
+                type="button"
                 {...getToggleButtonProps("year", yearItems, downshiftYear)}
               >
                 {yearItemsFormatter.format(
@@ -299,6 +304,7 @@ const CalendarAux = forwardRef(
                 aria-label={t(
                   "components.forms.date_picker.next_year_button_aria_label",
                 )}
+                type="button"
               />
             </div>
           </div>
