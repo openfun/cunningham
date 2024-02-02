@@ -145,6 +145,7 @@ export const SelectMonoAux = ({
                         e.stopPropagation();
                       }}
                       icon={<span className="material-icons">close</span>}
+                      type="button"
                     />
                     <div className="c__select__inner__actions__separator" />
                   </>
@@ -164,6 +165,7 @@ export const SelectMonoAux = ({
                     </span>
                   }
                   disabled={disabled}
+                  type="button"
                   {...downshiftReturn.toggleButtonProps}
                 />
               </div>
