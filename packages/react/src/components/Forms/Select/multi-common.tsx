@@ -125,6 +125,7 @@ export const SelectMultiAux = ({ children, ...props }: SelectMultiAuxProps) => {
                           props.onSelectedItemsChange([]);
                         }}
                         icon={<span className="material-icons">close</span>}
+                        type="button"
                       />
                       <div className="c__select__inner__actions__separator" />
                     </>
@@ -143,6 +144,7 @@ export const SelectMultiAux = ({ children, ...props }: SelectMultiAuxProps) => {
                     </span>
                   }
                   disabled={props.disabled}
+                  type="button"
                 />
               </div>
               <div className="c__select__inner__value">
