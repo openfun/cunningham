@@ -1641,6 +1641,70 @@ describe("<Select/>", () => {
       expect(valueRendered).toHaveTextContent("");
     });
 
+    it("still shows the selected current choice even if the options are different objects", async () => {
+      const Wrapper = () => {
+        const [value, setValue] = useState<string | number | undefined>();
+        const [count, setCount] = useState(0);
+        return (
+          <CunninghamProvider>
+            <div>
+              <div>Value = {value}|</div>
+              <Button onClick={() => setCount(count + 1)}>Rerender</Button>
+              <Select
+                label="City"
+                options={[
+                  {
+                    label: "Paris",
+                    value: "paris",
+                  },
+                  {
+                    label: "Panama",
+                    value: "panama",
+                  },
+                  {
+                    label: "London",
+                    value: "london",
+                  },
+                ]}
+                value={value}
+                onChange={(e) => {
+                  setValue(e.target.value as string);
+                }}
+              />
+            </div>
+          </CunninghamProvider>
+        );
+      };
+
+      render(<Wrapper />, {
+        wrapper: CunninghamProvider,
+      });
+
+      const user = userEvent.setup();
+      const input = screen.getByRole("combobox", {
+        name: "City",
+      });
+
+      // Select an option
+      await user.click(input);
+      await user.click(
+        screen.getByRole("option", {
+          name: "Panama",
+        }),
+      );
+
+      // Verify that the value is selected.
+      await user.click(input);
+      expectOptionToBeSelected(screen.getByRole("option", { name: "Panama" }));
+
+      // Rerender the select with the options mutated.
+      await user.click(screen.getByRole("button", { name: "Rerender" }));
+
+      // Verify that the value is still selected.
+      await user.click(input);
+      expectOptionToBeSelected(screen.getByRole("option", { name: "Panama" }));
+    });
+
     it("updates the value if the value is removed from the options (controlled)", async () => {
       let myOptions = [
         {

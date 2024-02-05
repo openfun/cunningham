@@ -186,7 +186,8 @@ export const SelectMonoAux = ({
                       className={classNames("c__select__menu__item", {
                         "c__select__menu__item--highlight": isActive,
                         "c__select__menu__item--selected":
-                          downshiftReturn.selectedItem === item,
+                          downshiftReturn.selectedItem &&
+                          optionsEqual(downshiftReturn.selectedItem, item),
                         "c__select__menu__item--disabled": item.disabled,
                       })}
                       key={`${optionToValue(item)}${index.toString()}`}
