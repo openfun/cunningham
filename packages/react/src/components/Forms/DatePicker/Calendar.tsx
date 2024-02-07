@@ -1,4 +1,4 @@
-import React, { forwardRef, Ref, useMemo, useRef } from "react";
+import React, { forwardRef, Ref, useMemo, useRef, useState } from "react";
 import {
   CalendarDate,
   createCalendar,
@@ -114,6 +114,7 @@ const CalendarAux = forwardRef(
     const monthItemsFormatter = useTimeZoneFormatter({ month: "long" });
     const selectedMonthItemFormatter = useTimeZoneFormatter({ month: "short" });
     const yearItemsFormatter = useTimeZoneFormatter({ year: "numeric" });
+    const [showGrid, setShowGrid] = useState(true);
 
     const monthItems: Array<Option> = useMemo(() => {
       // Note that in some calendar systems, such as the Hebrew, the number of months may differ between years.
@@ -167,7 +168,30 @@ const CalendarAux = forwardRef(
           const updatedFocusedDate = state.focusedDate.set({
             [key]: e?.selectedItem?.value,
           });
-          state.setFocusedDate(updatedFocusedDate);
+
+          /**
+           * We need to hide the grid before updated the focused date because if the mouse hovers a cell it will
+           * automatically internally call the focusCell method which sets the focused date to the hovered cell date.
+           *
+           * (Current year = 2024) The steps are:
+           * 1 - Select year 2050 in the dropdown.
+           * 2 - Hide the dropdown
+           * 3 - state.setFocusedDate(2050)
+           * 3 - Mouse hovers a cell in the grid before the state takes into account the new focused date ( 2050 ).
+           * 4 - focusCell is called with the current year (2024) overriding the previous call with year=2050
+           *
+           * The resulting bug will be the year 2024 being selected in the grid instead of 2050.
+           *
+           * So instead why first hide the grid, wait for the state to be updated, set the focused date to 2050, and
+           * then show the grid again. This way we will prevent the mouse from hovering a cell before the state is updated.
+           */
+          setShowGrid(false);
+          setTimeout(() => {
+            state.setFocusedDate(updatedFocusedDate);
+            setTimeout(() => {
+              setShowGrid(true);
+            });
+          });
         },
       });
     };
@@ -214,6 +238,22 @@ const CalendarAux = forwardRef(
         <div
           ref={ref}
           {...calendarProps}
+          // We need to remove the id from the calendar when the dropdowns are open to avoid having the following bug:
+          // 1 - Open the calendar
+          // 2 - Select a start date
+          // 3 - Click on the dropdown to select another year
+          // 4 - BUG: The calendar closes abruptly.
+          //
+          // This way caused by this internal call from Spectrum: https://github.com/adobe/react-spectrum/blob/cdb2fe21213d9e8b03d782d82bda07742ab3afbd/packages/%40react-aria/calendar/src/useRangeCalendar.ts#L59
+          //
+          // So instead we decided to remove the id of the calendar when the dropdowns are open and add it back when
+          // the dropdowns are closed in order to make this condition fail: https://github.com/adobe/react-spectrum/blob/cdb2fe21213d9e8b03d782d82bda07742ab3afbd/packages/%40react-aria/calendar/src/useRangeCalendar.ts#L55
+          // This way the `body` variable will never be found.
+          id={
+            !downshiftMonth.isOpen && !downshiftYear.isOpen
+              ? calendarProps.id
+              : ""
+          }
           className={classNames("c__calendar__wrapper", {
             "c__calendar__wrapper--opened":
               !downshiftMonth.isOpen && !downshiftYear.isOpen,
@@ -308,7 +348,7 @@ const CalendarAux = forwardRef(
               />
             </div>
           </div>
-          {!downshiftMonth.isOpen && !downshiftYear.isOpen && (
+          {!downshiftMonth.isOpen && !downshiftYear.isOpen && showGrid && (
             <CalendarGrid state={state} />
           )}
         </div>
