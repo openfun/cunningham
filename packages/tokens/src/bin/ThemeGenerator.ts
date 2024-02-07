@@ -1,4 +1,4 @@
-import { program } from "commander";
+import { Command } from "commander";
 import chalk from "chalk";
 import figlet from "figlet";
 import { getConfig } from "ConfigLoader";
@@ -7,7 +7,7 @@ import { workPath } from "Paths";
 import { Generators } from "Generators";
 
 export const buildTheme = async () => {
-  const options = program.opts();
+  const options = ThemeGeneratorProgram.instance.opts();
   const config = await getConfig();
   const tokens = tokensGenerator(config);
   const { generators } = options;
@@ -26,6 +26,10 @@ export const buildTheme = async () => {
   );
 };
 
+export class ThemeGeneratorProgram {
+  static instance: Command;
+}
+
 export const run = async (args: string[]) => {
   console.log(
     chalk.red(figlet.textSync("Cunningham", { horizontalLayout: "full" })),
@@ -35,7 +39,8 @@ export const run = async (args: string[]) => {
     return value.split(",");
   };
 
-  program
+  ThemeGeneratorProgram.instance = new Command();
+  ThemeGeneratorProgram.instance
     .description("Cunningham's CLI tool.")
     .option(
       "-s, --selector <selector>",

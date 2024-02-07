@@ -1,5 +1,5 @@
-import { program } from "commander";
+import { ThemeGeneratorProgram } from "ThemeGenerator";
 
 export const workPath = () => {
-  return program.opts().workingDir ?? process.cwd();
+  return ThemeGeneratorProgram.instance.opts().workingDir ?? process.cwd();
 };
