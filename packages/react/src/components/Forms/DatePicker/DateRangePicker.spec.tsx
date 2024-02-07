@@ -538,6 +538,60 @@ describe("<DateRangePicker/>", () => {
     expectDatesToBeEqual(endDate, endInput.textContent);
   });
 
+  it("picks a date range spanning multiple years using dropdown", async () => {
+    const user = userEvent.setup();
+    render(
+      <CunninghamProvider>
+        <DateRangePicker
+          startLabel="Start date"
+          endLabel="End date"
+          name="datepicker"
+        />
+      </CunninghamProvider>,
+    );
+    const [input] = await screen.findAllByRole("button");
+    await user.click(input);
+    expectCalendarToBeOpen();
+
+    // Select the start date.
+    const yearButton = screen.getByRole("combobox", {
+      name: "Select a year",
+    });
+    await user.click(yearButton);
+    await user.click(screen.getByRole("option", { name: "1910" }));
+
+    const monthButton = screen.getByRole("combobox", {
+      name: "Select a month",
+    });
+    await user.click(monthButton);
+    await user.click(screen.getByRole("option", { name: "January" }));
+
+    await user.click(
+      screen.getByRole("button", {
+        name: "Saturday, January 1, 1910",
+      }),
+    );
+
+    // Select the end date.
+    await user.click(yearButton);
+    await user.click(screen.getByRole("option", { name: "2040" }));
+    await user.click(monthButton);
+    await user.click(screen.getByRole("option", { name: "September" }));
+    await user.click(
+      screen.getByRole("button", {
+        name: "Sunday, September 2, 2040",
+      }),
+    );
+
+    // Make sure the correct dates are set.
+    expectCalendarToBeClosed();
+    const startDate = "Saturday, January 1, 1910";
+    const endDate = "Sunday, September 2, 2040";
+    const [startInput, endInput] = await screen.queryAllByRole("presentation");
+    expectDatesToBeEqual(startDate, startInput.textContent);
+    expectDatesToBeEqual(endDate, endInput.textContent);
+  });
+
   it("types a date range", async () => {
     const user = userEvent.setup();
     render(
