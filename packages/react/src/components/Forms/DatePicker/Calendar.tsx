@@ -67,7 +67,6 @@ const DropdownValues = ({ options, downShift }: DropdownValuesProps) => (
             {...downShift.getItemProps({
               item,
               index,
-              disabled: item.disabled,
             })}
             className={classNames("c__calendar__menu__item", {
               "c__calendar__menu__item--highlight":
