@@ -83,8 +83,13 @@ export const Home = ({ changePage }: PageProps) => {
               headerName: "Name",
             },
             {
-              field: "sex",
+              id: "sex",
               headerName: "Sex",
+              renderCell: (params) => {
+                return (
+                  <span className="material-icons">{params.row.sex}</span>
+                );
+              },
             },
             {
               id: "birthDate",
@@ -104,7 +109,13 @@ export const Home = ({ changePage }: PageProps) => {
               id: "isGuest",
               headerName: "Is Guest",
               renderCell: (params) => {
-                return params.row.isGuest ? "yes" : "no";
+                return params.row.isGuest ? (
+                  <span className="material-icons ml-s">check_box</span>
+                ) : (
+                  <span className="material-icons ml-s">
+                    check_box_outline_blank
+                  </span>
+                );
               },
             },
             {
