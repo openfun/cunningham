@@ -84,6 +84,11 @@ html {
   }
 }
 
+html[data-theme="redflux"] {
+  background: #000000D7 url(redflux_bg.webp) 50%/cover no-repeat fixed;
+  background-blend-mode: darken;
+}
+
 // Create
 .page__create {
   h1 {
