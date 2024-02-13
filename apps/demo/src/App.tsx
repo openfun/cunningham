@@ -6,6 +6,7 @@ import { Home } from "./Home";
 enum Theme {
   CUNNINGHAM = "cunningham",
   REDFLUX = "redflux",
+  BLUENEY = "blueney",
 }
 
 enum Variant {
@@ -21,6 +22,10 @@ const THEMES: Record<Theme, Record<Variant, string | undefined>> = {
   [Theme.REDFLUX]: {
     light: undefined,
     dark: "redflux_dark",
+  },
+  [Theme.BLUENEY]: {
+    light: undefined,
+    dark: "blueney_dark",
   },
 };
 
