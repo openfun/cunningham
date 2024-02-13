@@ -83,8 +83,8 @@ export const Home = ({ changePage }: PageProps) => {
               headerName: "Name",
             },
             {
-              field: "gender",
-              headerName: "Gender",
+              field: "sex",
+              headerName: "Sex",
             },
             {
               id: "birthDate",
