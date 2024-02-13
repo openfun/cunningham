@@ -21,15 +21,22 @@ import { Page, PageProps } from "./App";
 
 export const Create = ({ changePage }: PageProps) => {
   const { toast } = useToastProvider();
-  const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const submit = () => {
+  const submit: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target as HTMLFormElement);
+    const fakeDates = randomDates();
     const character: Character = {
       id: faker.string.uuid(),
-      name: inputRef.current?.value || "",
-      sex: "male",
-      isGuest: false,
-      ...randomDates(),
+      name: (formData.get("name") as any) || "",
+      sex: (formData.get("sex") as any) || "",
+      isGuest: (formData.get("is_guest") as any) || "",
+      birthDate:
+        new Date(formData.get("birthdate") as any) || fakeDates.birthDate,
+      firstAppearanceDate:
+        new Date(formData.get("appearance_dates_start") as any) ||
+        fakeDates.firstAppearanceDate,
+      lastAppearanceDate: fakeDates.lastAppearanceDate,
     };
     database.unshift(character);
 
@@ -38,7 +45,7 @@ export const Create = ({ changePage }: PageProps) => {
   };
 
   return (
-    <div className="page__create clr-greyscale-900">
+    <form className="page__create clr-greyscale-900" onSubmit={submit}>
       <h1>Add a character</h1>
       <div className="card">
         <h3 className="fw-bold fs-h3">General Information</h3>
@@ -46,30 +53,35 @@ export const Create = ({ changePage }: PageProps) => {
           You are about to add a new character to the collection
         </Alert>
         <Input
-          ref={inputRef}
+          name="name"
           label="Name"
           text="Enter first and last name"
           fullWidth={true}
+          required
         />
         <Select
+          name="sex"
           label="Sex"
           fullWidth={true}
           options={[
             {
-              label: "Male",
+              label: "Female",
+              value: "female",
             },
             {
-              label: "Female",
+              label: "Male",
+              value: "male",
             },
           ]}
         />
-        <DatePicker label="Birth Date" fullWidth={true} />
+        <DatePicker name="birthdate" label="Birth Date" fullWidth={true} />
         <DateRangePicker
+          name="appearance_dates"
           startLabel="First appearance"
           endLabel="Last appearance"
           fullWidth={true}
         />
-        <Checkbox label="This character is a guest" />
+        <Checkbox name="is_guest" label="This character is a guest" />
       </div>
       <div className="card mt-l">
         <h3 className="fw-bold fs-h3">Bio</h3>
@@ -77,6 +89,7 @@ export const Create = ({ changePage }: PageProps) => {
           Please be exhaustive, every detail counts!
         </Alert>
         <TextArea
+          name="bio"
           label="Biography"
           text="Enter a detailed biography"
           fullWidth={true}
@@ -104,7 +117,7 @@ export const Create = ({ changePage }: PageProps) => {
             value="D"
           />
         </RadioGroup>
-        <Switch label="Make this character public" />
+        <Switch name="is_public" label="Make this character public" />
 
         <div>
           <h4>Add pictures</h4>
@@ -119,10 +132,10 @@ export const Create = ({ changePage }: PageProps) => {
         </div>
       </div>
       <div className="mt-l">
-        <Button fullWidth={true} onClick={() => submit()}>
+        <Button fullWidth={true} type="submit">
           Add character
         </Button>
       </div>
-    </div>
+    </form>
   );
 };
