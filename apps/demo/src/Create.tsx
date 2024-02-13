@@ -27,7 +27,7 @@ export const Create = ({ changePage }: PageProps) => {
     const character: Character = {
       id: faker.string.uuid(),
       name: inputRef.current?.value || "",
-      gender: "male",
+      sex: "male",
       isGuest: false,
       ...randomDates(),
     };
@@ -52,7 +52,7 @@ export const Create = ({ changePage }: PageProps) => {
           fullWidth={true}
         />
         <Select
-          label="Gender"
+          label="Sex"
           fullWidth={true}
           options={[
             {
@@ -60,9 +60,6 @@ export const Create = ({ changePage }: PageProps) => {
             },
             {
               label: "Female",
-            },
-            {
-              label: "Other",
             },
           ]}
         />
