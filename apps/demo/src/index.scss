@@ -46,9 +46,9 @@ html {
 .card {
   background-color: var(--c--theme--colors--greyscale-000);
   padding: 2rem;
-  border-radius: 4px;
-  border: 1px var(--c--theme--colors--greyscale-300) solid;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: var(--c--components--card--border-radius, 4px);
+  border: var(--c--components--card--border-width, 1px) var(--c--theme--colors--greyscale-300) solid;
+  box-shadow: var(--c--components--card--box-shadow, rgba(149, 157, 165, 0.2) 0px 8px 24px);
 }
 
 .cunningham-theme--dark {
@@ -87,6 +87,10 @@ html {
 html[data-theme="redflux"] {
   background: #000000D7 url(redflux_bg.webp) 50%/cover no-repeat fixed;
   background-blend-mode: darken;
+}
+
+html[data-theme="blueney"] {
+  background: url(blueney_bg.jpg) 50%/cover no-repeat fixed;
 }
 
 // Create
