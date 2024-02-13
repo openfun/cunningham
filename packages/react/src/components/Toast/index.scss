@@ -79,11 +79,11 @@
 
   &--info {
     .c__progress-bar {
-      --c--progress--color: var(--c--theme--colors--primary-500);
+      --c--progress--color: var(--c--theme--colors--info-500);
     }
 
     .c__toast__icon {
-      color: var(--c--theme--colors--primary-600);
+      color: var(--c--theme--colors--info-600);
     }
   }
 

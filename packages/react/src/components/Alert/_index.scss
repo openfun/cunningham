@@ -65,11 +65,11 @@
   }
 
   &--info {
-    border-color: var(--c--theme--colors--primary-300);
-    border-left-color: var(--c--theme--colors--primary-600);
+    border-color: var(--c--theme--colors--info-300);
+    border-left-color: var(--c--theme--colors--info-600);
 
     .c__alert__icon {
-      color: var(--c--theme--colors--primary-600);
+      color: var(--c--theme--colors--info-600);
     }
   }
 
