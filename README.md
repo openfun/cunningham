@@ -9,7 +9,8 @@
 **A design system and a components library.**
 
 <a href="https://openfun.github.io/cunningham/storybook"><b>📚&nbsp;&nbsp;Documentation</b></a> •
-<a href="https://www.figma.com/file/JbPT1R6YUFW4oH8jHvH960/DS-Cunningham---PUBLIC?type=design"><b>🖌️&nbsp;&nbsp;Figma</b></a>
+<a href="https://www.figma.com/file/JbPT1R6YUFW4oH8jHvH960/DS-Cunningham---PUBLIC?type=design"><b>🖌️&nbsp;&nbsp;Figma</b></a> •
+<a href="https://openfun.github.io/cunningham/demo"><b>🕹️&nbsp;&nbsp;Demo</b></a>
 
 </div>
 
