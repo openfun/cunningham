@@ -3,14 +3,15 @@ import {
   Button,
   DataGrid,
   SortModel,
-  VariantType,
   usePagination,
   useToastProvider,
+  VariantType,
 } from "@openfun/cunningham-react";
-import { Page, PageProps } from "./App";
+
+import { PageProps } from "./App";
 import { database } from "./Character";
 
-export const Home = ({ changePage }: PageProps) => {
+export const Home = ({ modal }: { modal: PageProps }) => {
   const { toast } = useToastProvider();
   const [rowSelection, setRowSelection] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -21,6 +22,7 @@ export const Home = ({ changePage }: PageProps) => {
       sort: "desc",
     },
   ]);
+
   const [rows, setRows] = useState<typeof database>([]);
   const [refresh, setRefresh] = useState(1);
 
@@ -49,7 +51,7 @@ export const Home = ({ changePage }: PageProps) => {
       ),
     );
     setIsLoading(false);
-  }, [pagination.page, sortModel, refresh]);
+  }, [pagination.page, sortModel, modal.isOpen, refresh]);
 
   return (
     <div className="page__home">
@@ -70,7 +72,7 @@ export const Home = ({ changePage }: PageProps) => {
         <Button
           color="primary"
           icon={<span className="material-icons">movie</span>}
-          onClick={() => changePage(Page.CREATE)}
+          onClick={modal.open}
         >
           Add character
         </Button>

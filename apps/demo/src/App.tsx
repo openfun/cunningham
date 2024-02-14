@@ -1,4 +1,9 @@
-import { Button, CunninghamProvider, Select } from "@openfun/cunningham-react";
+import {
+  Button,
+  CunninghamProvider,
+  Select,
+  useModal,
+} from "@openfun/cunningham-react";
 import React, { useEffect, useMemo, useState } from "react";
 import { Create } from "./Create";
 import { Home } from "./Home";
@@ -29,14 +34,7 @@ const THEMES: Record<Theme, Record<Variant, string | undefined>> = {
   },
 };
 
-export enum Page {
-  HOME,
-  CREATE,
-}
-
-export interface PageProps {
-  changePage: (page: Page) => void;
-}
+export type PageProps = ReturnType<typeof useModal>;
 
 const preferredScheme = window.matchMedia("(prefers-color-scheme: dark)")
   .matches
@@ -54,7 +52,7 @@ export const App = () => {
       preferredScheme.variant,
   );
   const activeTheme = useMemo(() => THEMES[theme][variant], [theme, variant]);
-  const [page, setPage] = useState<Page>(Page.HOME);
+  const modal = useModal();
   const handleThemeChange = (event: MediaQueryListEvent) => {
     const nextVariant = event.matches ? Variant.DARK : Variant.LIGHT;
     if (THEMES[theme][nextVariant] !== undefined) {
@@ -92,8 +90,8 @@ export const App = () => {
             alt="Background pattern"
           />
         )}
-        {page === Page.HOME && <Home changePage={(p) => setPage(p)} />}
-        {page === Page.CREATE && <Create changePage={(p) => setPage(p)} />}
+        <Home modal={modal} />
+        <Create {...modal} />
       </div>
 
       <div className="theme-switch">
