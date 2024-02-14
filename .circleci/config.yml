@@ -135,10 +135,9 @@ jobs:
       - run:
           name: Publish storybook
           command: |
-            cd packages/react
             git config user.email "funmoocbot@users.noreply.github.com"
             git config user.name "FUN MOOC bot"
-            yarn deploy-storybook
+            yarn deploy-ghpages
   publish-packages:
     docker:
       - image: cimg/node:18.18

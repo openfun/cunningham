@@ -28,3 +28,4 @@ dist
 vite.config.ts.timestamp-*
 env.d
 .turbo
+ghpages-output
