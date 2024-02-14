@@ -1,5 +1,5 @@
 <div align="center">
-  <a href="https://openfun.github.io/cunningham"><img src="./resources/banner.png" alt="" /></a>
+  <a href="https://openfun.github.io/cunningham/storybook"><img src="./resources/banner.png" alt="" /></a>
 </div>
 
 <div align="center">
@@ -16,7 +16,7 @@
 - **Atomic**: We follow [atomic design principles](https://bradfrost.com/blog/post/atomic-web-design/).
 - **Modular and Reusable**: Each component is designed to be self-contained and reusable across different projects, promoting consistency and saving development time.
 - **Accessibility-focused**: Our components prioritize accessibility standards, making them usable and inclusive for all users.
-- **Design tokens based**: We use [design tokens](https://openfun.github.io/cunningham/?path=/docs/getting-started-customization--docs#what-are-design-tokens-) to ensure consistency between design and code and allow high customization.
+- **Design tokens based**: We use [design tokens](https://openfun.github.io/cunningham/storybook/?path=/docs/getting-started-customization--docs#what-are-design-tokens-) to ensure consistency between design and code and allow high customization.
 - **React** based: at the moment we only support React, but we are open to other frameworks, feel free to [contribute](./CONTRIBUTING.md) !
 
 <div align="center">
@@ -30,11 +30,11 @@
 
 Here are some examples of real life usage of Cunningham components.
 
-<a href="https://openfun.github.io/cunningham"><img src="./resources/examples.png" alt=""/></a>
+<a href="https://openfun.github.io/cunningham/storybook"><img src="./resources/examples.png" alt=""/></a>
 
 <div align="center">
 
-See the [documentation](https://openfun.github.io/cunningham) 📚 to learn more about customization, typography, spacings and available components!
+See the [documentation](https://openfun.github.io/cunningham/storybook) 📚 to learn more about customization, typography, spacings and available components!
 
 </div>
 
@@ -73,13 +73,13 @@ It will generate a file named `cunningham-tokens.css`.
 @import "cunningham-tokens"; // Imports the file you just generated.
 ```
 
-> Please take a look at [customization documentation](https://openfun.github.io/cunningham/?path=/docs/getting-started-customization--docs) for more informations about the `cunningham` command line tool and to customize your local theme.
+> Please take a look at [customization documentation](https://openfun.github.io/cunningham/storybook/?path=/docs/getting-started-customization--docs) for more informations about the `cunningham` command line tool and to customize your local theme.
 
 We're done! 🎉
 
-To ensure everything works well, let's test rendering a component, such as the [Button](https://openfun.github.io/cunningham/?path=/docs/components-button--docs) for example.
+To ensure everything works well, let's test rendering a component, such as the [Button](https://openfun.github.io/cunningham/storybook/?path=/docs/components-button--docs) for example.
 
-Now please see the [documentation](https://openfun.github.io/cunningham) 📚 to learn more about customization, typography, spacings and available components!
+Now please see the [documentation](https://openfun.github.io/cunningham/storybook) 📚 to learn more about customization, typography, spacings and available components!
 
 ## Contributors
 
