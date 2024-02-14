@@ -8,6 +8,7 @@
     "dev": "vite & nodemon --watch cunningham.ts --exec yarn build-theme",
     "build-theme": "cunningham -o src -g css,ts",
     "build": "tsc && vite build",
+    "build-demo": "tsc && vite build --base=/cunningham/demo/",
     "preview": "vite preview"
   },
   "dependencies": {

@@ -1,9 +1,15 @@
 rm -rf ghpages-output
-mkdir -p ghpages-output/storybook
 
+mkdir -p ghpages-output/storybook
 cd packages/react && yarn build-storybook
 cd ../..
 mv packages/react/storybook-static/* ghpages-output/storybook
 
+mkdir -p ghpages-output/demo
+cd apps/demo && yarn build-demo
+cd ../..
+mv apps/demo/dist/* ghpages-output/demo
+
 touch ./ghpages-output/.nojekyll
 touch ./ghpages-output/storybook/.nojekyll
+touch ./ghpages-output/demo/.nojekyll
