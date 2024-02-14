@@ -19,7 +19,6 @@ p {
 // App
 html {
   min-height: 100vh;
-  padding-bottom: 5rem;
   background: linear-gradient(153deg, var(--c--theme--colors--greyscale-100) 0%, var(--c--theme--colors--greyscale-000) 100%);
 }
 
@@ -95,6 +94,10 @@ html[data-theme="blueney"] {
 
 // Create
 .page__create {
+  max-width: 960px;
+  margin: 0 auto;
+  padding-bottom: 5rem;
+
   h1 {
     text-align: center;
     margin: 4rem 0;
@@ -104,6 +107,7 @@ html[data-theme="blueney"] {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    text-align: left;
 
     h3, h4 {
       margin: 0;
