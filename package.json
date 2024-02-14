@@ -13,7 +13,9 @@
     "test-ci": "turbo run test-ci",
     "lint": "turbo run lint",
     "deploy": "turbo run deploy",
-    "format": "prettier --write \"**/*.{ts,tsx,md,json,cjs,js}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md,json,cjs,js}\"",
+    "predeploy-ghpages": "./scripts/predeploy-ghpages",
+    "deploy-ghpages": "storybook-to-ghpages --existing-output-dir ./ghpages-output"
   },
   "devDependencies": {
     "cross-env": "7.0.3",

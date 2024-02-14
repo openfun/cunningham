@@ -39,9 +39,7 @@
     "test-watch": "vitest",
     "coverage": "vitest run --coverage",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "predeploy-storybook": "yarn build-storybook && touch ./storybook-static/.nojekyll",
-    "deploy-storybook": "storybook-to-ghpages --existing-output-dir ./storybook-static"
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@fontsource-variable/roboto-flex": "5.0.8",
