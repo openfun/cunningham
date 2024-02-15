@@ -2,6 +2,14 @@ import { Configuration } from "@openfun/cunningham-react";
 
 const defaultConfig: Configuration = {
   themes: {
+    dark: {
+      components: {
+        card: {
+          "border-width": "none",
+          "box-shadow": "rgba(0, 8, 16, 0.3) 0px 16px 24px",
+        },
+      },
+    },
     redflux_dark: {
       theme: {
         colors: {

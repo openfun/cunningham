@@ -160,6 +160,8 @@
 	--c--theme--colors--danger-700: #C36666;
 	--c--theme--colors--danger-800: #AE6666;
 	--c--theme--colors--danger-900: #9D6666;
+	--c--components--card--border-width: none;
+	--c--components--card--box-shadow: rgba(0, 8, 16, 0.3) 0px 16px 24px;
 }
 .cunningham-theme--redflux_dark{
 	--c--theme--colors--primary-text: #FFFFFF;
