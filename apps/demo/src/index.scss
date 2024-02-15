@@ -22,14 +22,15 @@ a {
 
 
 // App
-html {
-  background: linear-gradient(153deg, var(--c--theme--colors--greyscale-100) 0%, var(--c--theme--colors--greyscale-000) 100%);
-}
-
 html, body, #root {
   width: 100%;
-  min-height: 100%;
+  height: 100%;
   margin: 0;
+}
+
+html {
+  background: linear-gradient(153deg, var(--c--theme--colors--greyscale-100) 0%, var(--c--theme--colors--greyscale-000) 100%);
+  background-attachment: fixed;
 }
 
 .pattern {
