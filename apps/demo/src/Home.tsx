@@ -54,8 +54,8 @@ export const Home = ({ modal }: { modal: PageProps }) => {
   }, [pagination.page, sortModel, modal.isOpen, refresh]);
 
   return (
-    <div className="page__home">
-      <div className="page__home__title">
+    <main className="page__home">
+      <header className="page__home__title">
         <h1 className="clr-greyscale-900">
           {/* eslint-disable-next-line react/no-unescaped-entities */}
           🍿Cunningham's <span className="clr-primary-400">Cast</span>
@@ -76,82 +76,145 @@ export const Home = ({ modal }: { modal: PageProps }) => {
         >
           Add character
         </Button>
-      </div>
-      <div className="card">
-        <DataGrid
-          columns={[
-            {
-              field: "name",
-              headerName: "Name",
-            },
-            {
-              id: "sex",
-              headerName: "Sex",
-              renderCell: (params) => {
-                return (
-                  <span className="material-icons">{params.row.sex}</span>
-                );
+      </header>
+      <section>
+        <div className="card">
+          <DataGrid
+            columns={[
+              {
+                field: "name",
+                headerName: "Name",
               },
-            },
-            {
-              id: "birthDate",
-              headerName: "Birth Date",
-              renderCell: (params) => {
-                return params.row.birthDate.toLocaleDateString();
+              {
+                id: "sex",
+                headerName: "Sex",
+                renderCell: (params) => {
+                  return (
+                    <span className="material-icons">{params.row.sex}</span>
+                  );
+                },
               },
-            },
-            {
-              id: "firstAppearanceDate",
-              headerName: "First Appearance",
-              renderCell: (params) => {
-                return params.row.firstAppearanceDate.toLocaleDateString();
+              {
+                id: "birthDate",
+                headerName: "Birth Date",
+                renderCell: (params) => {
+                  return params.row.birthDate.toLocaleDateString();
+                },
               },
-            },
-            {
-              id: "isGuest",
-              headerName: "Is Guest",
-              renderCell: (params) => {
-                return params.row.isGuest ? (
-                  <span className="material-icons ml-s">check_box</span>
-                ) : (
-                  <span className="material-icons ml-s">
-                    check_box_outline_blank
-                  </span>
-                );
+              {
+                id: "firstAppearanceDate",
+                headerName: "First Appearance",
+                renderCell: (params) => {
+                  return params.row.firstAppearanceDate.toLocaleDateString();
+                },
               },
-            },
-            {
-              id: "actions",
-              renderCell: (params) => (
-                <Button
-                  color="tertiary-text"
-                  size="small"
-                  onClick={() => {
-                    const index = database.findIndex(
-                      (character) => character.id === params.row.id,
-                    );
-                    database.splice(index, 1);
-                    setRefresh(refresh + 1);
-                    toast(
-                      "Character deleted successfully",
-                      VariantType.WARNING,
-                    );
-                  }}
-                  icon={<span className="material-icons">delete</span>}
-                />
-              ),
-            },
-          ]}
-          rows={rows}
-          pagination={pagination}
-          sortModel={sortModel}
-          onSortModelChange={setSortModel}
-          isLoading={isLoading}
-          enableRowSelection={true}
-          rowSelection={rowSelection}
-          onRowSelectionChange={setRowSelection}
-        />
-      </div>
-    </div>
+              {
+                id: "isGuest",
+                headerName: "Is Guest",
+                renderCell: (params) => {
+                  return params.row.isGuest ? (
+                    <span className="material-icons ml-s">check_box</span>
+                  ) : (
+                    <span className="material-icons ml-s">
+                      check_box_outline_blank
+                    </span>
+                  );
+                },
+              },
+              {
+                id: "actions",
+                renderCell: (params) => (
+                  <Button
+                    color="tertiary-text"
+                    size="small"
+                    onClick={() => {
+                      const index = database.findIndex(
+                        (character) => character.id === params.row.id,
+                      );
+                      database.splice(index, 1);
+                      setRefresh(refresh + 1);
+                      toast(
+                        "Character deleted successfully",
+                        VariantType.WARNING,
+                      );
+                    }}
+                    icon={<span className="material-icons">delete</span>}
+                  />
+                ),
+              },
+            ]}
+            rows={rows}
+            pagination={pagination}
+            sortModel={sortModel}
+            onSortModelChange={setSortModel}
+            isLoading={isLoading}
+            enableRowSelection={true}
+            rowSelection={rowSelection}
+            onRowSelectionChange={setRowSelection}
+          />
+        </div>
+      </section>
+      <footer className="links">
+        <ul>
+          <li>
+            <Button
+              size="small"
+              color="tertiary-text"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.france-universite-numerique.fr/en/"
+            >
+              France Université Numérique
+            </Button>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <Button
+              size="small"
+              color="tertiary-text"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://discord.gg/TXPSCMeDzd"
+            >
+              Discord
+            </Button>
+          </li>
+          <li>
+            <Button
+              size="small"
+              color="tertiary-text"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://github.com/openfun/cunningham"
+            >
+              Github
+            </Button>
+          </li>
+          <li>
+            <Button
+              size="small"
+              color="tertiary-text"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://openfun.github.io/cunningham/storybook"
+            >
+              Documentation
+            </Button>
+          </li>
+          <li>
+            <Button
+              size="small"
+              color="tertiary-text"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.figma.com/file/JbPT1R6YUFW4oH8jHvH960/DS-Cunningham---PUBLIC?type=design"
+            >
+              UI Kit
+            </Button>
+          </li>
+        </ul>
+      </footer>
+    </main>
   );
 };
