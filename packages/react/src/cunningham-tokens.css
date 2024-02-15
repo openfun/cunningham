@@ -120,6 +120,7 @@
 	--c--components--toast--icon-size: 19px;
 	--c--components--toast--progress-bar-height: 3px;
 	--c--components--modal--background-color: var(--c--theme--colors--greyscale-000);
+	--c--components--modal--backdrop-color: #0C1A2B99;
 	--c--components--modal--border-radius: 4px;
 	--c--components--modal--border-color: var(--c--theme--colors--greyscale-300);
 	--c--components--modal--box-shadow: 0px 1px 2px 0px #0C1A2B4D;

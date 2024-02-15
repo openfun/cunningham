@@ -11,10 +11,26 @@
 
   &::backdrop {
     // ::backdrop does not inherit from its element so CSS vars does not work.
-    // ( https://stackoverflow.com/a/77393321 ) So we need to use the color directly.
-    // In the future we will maybe be able to use the following:
-    // background: var(--c--components--modal--backdrop-color);
-    background: #0C1A2B99;
+    // ( https://stackoverflow.com/a/77393321 )
+    // So for now, we hide the backdrop element and use a dom element to create the backdrop.
+    visibility: hidden;
+  }
+
+  &__backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: var(--c--components--modal--backdrop-color);
+    opacity: 0;
+    animation: backdrop-fade-in 0.2s ease-out forwards;
+  }
+
+  @keyframes backdrop-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   &__title {

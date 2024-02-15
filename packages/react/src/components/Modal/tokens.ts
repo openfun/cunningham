@@ -3,6 +3,7 @@ import { DefaultTokens } from "@openfun/cunningham-tokens";
 export const tokens = (defaults: DefaultTokens) => {
   return {
     "background-color": defaults.theme.colors["greyscale-000"],
+    "backdrop-color": "#0C1A2B99",
     "border-radius": "4px",
     "border-color": defaults.theme.colors["greyscale-300"],
     "box-shadow": "0px 1px 2px 0px #0C1A2B4D",
