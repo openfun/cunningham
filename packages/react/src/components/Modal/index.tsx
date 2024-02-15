@@ -104,31 +104,36 @@ export const Modal = (props: ModalProps) => {
   return (
     <>
       {createPortal(
-        <dialog
-          ref={ref}
-          className={classNames("c__modal", "c__modal--" + props.size)}
-        >
-          {!props.hideCloseButton && !props.preventClose && (
-            <div className="c__modal__close">
-              <Button
-                icon={<span className="material-icons">close</span>}
-                color="tertiary-text"
-                size="nano"
-                onClick={() => props.onClose()}
-              />
-            </div>
-          )}
-          {props.titleIcon && (
-            <div className="c__modal__title-icon">{props.titleIcon}</div>
-          )}
-          {props.title && <div className="c__modal__title">{props.title}</div>}
+        <>
+          <div aria-hidden={true} className="c__modal__backdrop" />
+          <dialog
+            ref={ref}
+            className={classNames("c__modal", "c__modal--" + props.size)}
+          >
+            {!props.hideCloseButton && !props.preventClose && (
+              <div className="c__modal__close">
+                <Button
+                  icon={<span className="material-icons">close</span>}
+                  color="tertiary-text"
+                  size="nano"
+                  onClick={() => props.onClose()}
+                />
+              </div>
+            )}
+            {props.titleIcon && (
+              <div className="c__modal__title-icon">{props.titleIcon}</div>
+            )}
+            {props.title && (
+              <div className="c__modal__title">{props.title}</div>
+            )}
 
-          {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
-          <div className="c__modal__content" tabIndex={0}>
-            {props.children}
-          </div>
-          <ModalFooter {...props} />
-        </dialog>,
+            {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
+            <div className="c__modal__content" tabIndex={0}>
+              {props.children}
+            </div>
+            <ModalFooter {...props} />
+          </dialog>
+        </>,
         document.getElementById("c__modals-portal")!,
       )}
     </>
