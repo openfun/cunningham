@@ -147,6 +147,7 @@ const defaultConfig: Configuration = {
         modal: {
           "border-radius": "0.1875rem",
           "background-color": "#191919",
+          "backdrop-color": "ref(theme.colors.greyscale-000)",
         },
         card: {
           "border-radius": "0.1875rem",
@@ -262,6 +263,10 @@ const defaultConfig: Configuration = {
         modal: {
           "border-radius": "0.25rem",
           "background-color": "ref(theme.colors.greyscale-100)",
+          "backdrop-color": "#00172AAB",
+          "border-color": "transparent",
+          "box-shadow":
+            "rgba(0, 0, 0, 0.69) 0px 26px 30px -10px, rgba(0, 0, 0, 0.73) 0px 16px 10px -10px",
         },
       },
     },

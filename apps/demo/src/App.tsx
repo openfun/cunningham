@@ -7,6 +7,7 @@ import {
 import React, { useEffect, useMemo, useState } from "react";
 import { Create } from "./Create";
 import { Home } from "./Home";
+import Onboarding from "./Onboarding";
 
 enum Theme {
   CUNNINGHAM = "cunningham",
@@ -90,6 +91,7 @@ export const App = () => {
             alt="Background pattern"
           />
         )}
+        <Onboarding />
         <Home modal={modal} />
         <Create {...modal} />
       </div>
