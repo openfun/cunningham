@@ -7,7 +7,7 @@
 // Reset
 h1 {
   font-family: var(--c--theme--font--families--accent);
-  font-size: 4rem;
+  font-size: clamp(2.5rem, 7vw, 4rem);
   margin: 0;
 }
 
@@ -60,13 +60,6 @@ html, body, #root {
   box-shadow: var(--c--components--card--box-shadow, rgba(149, 157, 165, 0.2) 0px 8px 24px);
 }
 
-.cunningham-theme--dark {
-  .card {
-    box-shadow: none;
-    border: none;
-  }
-}
-
 .container {
   margin: auto;
   position: relative;
@@ -88,9 +81,6 @@ html, body, #root {
   &__title {
     gap: 1.5rem;
     margin: 4rem 0;
-
-    h1 {
-    }
 
     button {
       margin-top: 1.5rem;
