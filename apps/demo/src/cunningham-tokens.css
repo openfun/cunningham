@@ -278,6 +278,7 @@
 	--c--components--forms-radio--background-color: var(--c--theme--colors--greyscale-800);
 	--c--components--modal--border-radius: 0.1875rem;
 	--c--components--modal--background-color: #191919;
+	--c--components--modal--backdrop-color: var(--c--theme--colors--greyscale-000);
 	--c--components--card--border-radius: 0.1875rem;
 	--c--components--card--border-width: none;
 	--c--components--card--box-shadow: rgba(255, 220, 220, 0.05) 0px 0px 60px 10px;
@@ -358,4 +359,7 @@
 	--c--components--forms-radio--background-color: var(--c--theme--colors--greyscale-200);
 	--c--components--modal--border-radius: 0.25rem;
 	--c--components--modal--background-color: var(--c--theme--colors--greyscale-100);
+	--c--components--modal--backdrop-color: #00172AAB;
+	--c--components--modal--border-color: transparent;
+	--c--components--modal--box-shadow: rgba(0, 0, 0, 0.69) 0px 26px 30px -10px, rgba(0, 0, 0, 0.73) 0px 16px 10px -10px;
 }

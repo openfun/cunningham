@@ -15,6 +15,11 @@ p {
   margin: 0;
 }
 
+a {
+  color: var(--c--theme--colors--greyscale-800);
+  text-decoration: underline;
+}
+
 
 // App
 html {
@@ -112,5 +117,36 @@ html[data-theme="blueney"] {
     h3, h4 {
       margin: 0;
     }
+  }
+}
+
+// Onboarding Modal
+.onboarding__title {
+  margin-top: 0;
+}
+
+.onboarding__title-icon {
+  font-size: 2rem;
+  margin: 0;
+}
+.onboarding__content {
+  max-width: 680px;
+  line-height: 1.5rem;
+  text-align: left;
+
+  & p {
+    margin-bottom: 1rem;
+  }
+}
+.onboarding__footer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 1rem;
+
+  & > .c__button:first-child {
+    min-width: 200px;
+    justify-content: center;
   }
 }
