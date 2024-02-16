@@ -18,6 +18,7 @@ export * from "./components/Forms/Switch";
 export * from "./components/Forms/TextArea";
 export * from "./components/Loader";
 export * from "./components/Modal";
+export * from "./components/Modal/ModalProvider";
 export * from "./components/Pagination";
 export * from "./components/Popover";
 export * from "./components/Provider";
