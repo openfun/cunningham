@@ -7,6 +7,22 @@ import { useModals } from ":/components/Modal/ModalProvider";
 import { VariantType } from ":/utils/VariantUtils";
 
 describe("<Modal/>", () => {
+  it("shows a modal opened by default", async () => {
+    const Wrapper = () => {
+      const modal = useModal({ isOpenDefault: true });
+      return (
+        <CunninghamProvider>
+          <button onClick={modal.open}>Open Modal</button>
+          <Modal size={ModalSize.SMALL} {...modal}>
+            <div>Modal Content</div>
+          </Modal>
+        </CunninghamProvider>
+      );
+    };
+    render(<Wrapper />);
+    expect(await screen.findByText("Modal Content")).toBeInTheDocument();
+  });
+
   it("shows a modal when clicking on the button", async () => {
     const Wrapper = () => {
       const modal = useModal();
