@@ -140,11 +140,7 @@ export const Modal = (props: ModalProps) => {
   );
 };
 
-export const ModalFooter = ({
-  leftActions,
-  rightActions,
-  actions,
-}: ModalProps) => {
+const ModalFooter = ({ leftActions, rightActions, actions }: ModalProps) => {
   if ((leftActions || rightActions) && actions) {
     throw new Error("Cannot use leftActions or rightActions with actions");
   }
