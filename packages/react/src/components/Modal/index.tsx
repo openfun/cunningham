@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useEffect } from "react";
+import React, { PropsWithChildren, ReactNode, useEffect } from "react";
 import classNames from "classnames";
 import { createPortal } from "react-dom";
 import { Button } from ":/components/Button";
@@ -44,7 +44,7 @@ export interface ModalProps
     leftActions?: React.ReactNode;
     rightActions?: React.ReactNode;
     actions?: React.ReactNode;
-    title?: string;
+    title?: ReactNode;
     titleIcon?: React.ReactNode;
     hideCloseButton?: boolean;
     closeOnClickOutside?: boolean;
