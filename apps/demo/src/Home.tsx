@@ -6,13 +6,14 @@ import {
   usePagination,
   useToastProvider,
   VariantType,
+  useModals,
 } from "@openfun/cunningham-react";
-
 import { PageProps } from "./App";
 import { database } from "./Character";
 
 export const Home = ({ modal }: { modal: PageProps }) => {
   const { toast } = useToastProvider();
+  const modals = useModals();
   const [rowSelection, setRowSelection] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const pagination = usePagination({ defaultPage: 1 });
@@ -127,7 +128,11 @@ export const Home = ({ modal }: { modal: PageProps }) => {
                   <Button
                     color="tertiary-text"
                     size="small"
-                    onClick={() => {
+                    onClick={async () => {
+                      const decision = await modals.deleteConfirmationModal();
+                      if (!decision) {
+                        return;
+                      }
                       const index = database.findIndex(
                         (character) => character.id === params.row.id,
                       );
