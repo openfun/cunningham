@@ -52,6 +52,23 @@ export interface ModalProps
   }> {}
 
 export const Modal = (props: ModalProps) => {
+  /**
+   * This is a workaround to prevent the modal from rendering on the first render because if the modal is open on the
+   * first render, it will not be able to resolve document.getElementById("c__modals-portal") which is not rendered yet.
+   */
+  const [firstRender, setFirstRender] = React.useState(true);
+  useEffect(() => {
+    setFirstRender(false);
+  }, []);
+
+  if (firstRender) {
+    return null;
+  }
+
+  return <ModalInner {...props} />;
+};
+
+export const ModalInner = (props: ModalProps) => {
   const ref = React.useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
