@@ -6,6 +6,7 @@ import React, {
   PropsWithChildren,
   ReactNode,
   useContext,
+  useEffect,
   useMemo,
   useState,
 } from "react";
@@ -24,6 +25,8 @@ import {
   MessageModal,
   MessageModalProps,
 } from ":/components/Modal/MessageModal";
+
+export const NOSCROLL_CLASS = "c__noscroll";
 
 export type Decision = string | null | undefined;
 export type DecisionModalProps = WithOptional<ModalProps, "size"> & {
@@ -146,6 +149,28 @@ export const ModalProvider = ({ children }: PropsWithChildren) => {
     }),
     [],
   );
+
+  useEffect(() => {
+    const portalElement = document.getElementById("c__modals-portal")!;
+    // Create an observer instance linked to the callback function
+    const observer = new MutationObserver(() => {
+      const dialogs = portalElement.querySelectorAll("dialog");
+      if (dialogs.length > 0) {
+        document.querySelector("body")!.classList.add(NOSCROLL_CLASS);
+      } else {
+        document.querySelector("body")!.classList.remove(NOSCROLL_CLASS);
+      }
+    });
+
+    // Start observing the target node for configured mutations
+    observer.observe(portalElement, {
+      childList: true,
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <ModalContext.Provider value={context}>
