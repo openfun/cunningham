@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Modal, ModalSize, useModal } from ":/components/Modal/index";
 import { CunninghamProvider } from ":/components/Provider";
-import { useModals } from ":/components/Modal/ModalProvider";
+import { NOSCROLL_CLASS, useModals } from ":/components/Modal/ModalProvider";
 import { VariantType } from ":/utils/VariantUtils";
 
 describe("<Modal/>", () => {
@@ -431,5 +431,105 @@ describe("<Modal/>", () => {
 
     // Decision is undefined.
     expect(decision).toBeUndefined();
+  });
+
+  it("sets a noscroll class to body when a modal is open and remove it on close", async () => {
+    const Wrapper = () => {
+      const modal = useModal();
+      return (
+        <CunninghamProvider>
+          <button onClick={modal.open}>Open Modal</button>
+          <Modal size={ModalSize.SMALL} {...modal}>
+            <div>Modal Content</div>
+          </Modal>
+        </CunninghamProvider>
+      );
+    };
+
+    render(<Wrapper />);
+    const user = userEvent.setup();
+    const button = screen.getByText("Open Modal");
+
+    expect(document.body.classList.contains(NOSCROLL_CLASS)).toBeFalsy();
+    await user.click(button);
+    expect(document.body.classList.contains(NOSCROLL_CLASS)).toBeTruthy();
+
+    const closeButton = screen.getByRole("button", {
+      name: "close",
+    });
+    await user.click(closeButton);
+    expect(document.body.classList.contains(NOSCROLL_CLASS)).toBeFalsy();
+  });
+
+  it("removes noscroll body class only when last modal is closed when multiple are opened", async () => {
+    const Wrapper = () => {
+      const modal1 = useModal();
+      const modal2 = useModal();
+      const modal3 = useModal();
+      const openModals = () => {
+        modal1.open();
+        modal2.open();
+        modal3.open();
+      };
+      return (
+        <CunninghamProvider>
+          <button onClick={openModals}>Open Modals</button>
+          <Modal size={ModalSize.LARGE} {...modal1}>
+            Modal 1
+          </Modal>
+          <Modal size={ModalSize.MEDIUM} {...modal2}>
+            Modal 2
+          </Modal>
+          <Modal size={ModalSize.SMALL} {...modal3}>
+            Modal 3
+          </Modal>
+        </CunninghamProvider>
+      );
+    };
+
+    render(<Wrapper />);
+    const user = userEvent.setup();
+    const button = screen.getByText("Open Modals");
+
+    expect(document.body.classList.contains(NOSCROLL_CLASS)).toBeFalsy();
+    await user.click(button);
+
+    expect(screen.getByText("Modal 1")).toBeInTheDocument();
+    expect(screen.getByText("Modal 2")).toBeInTheDocument();
+    expect(screen.getByText("Modal 3")).toBeInTheDocument();
+
+    expect(document.body.classList.contains(NOSCROLL_CLASS)).toBeTruthy();
+
+    const closeButtons = screen.getAllByRole("button", {
+      name: "close",
+    });
+    expect(closeButtons).toHaveLength(3);
+
+    // Close modal 1.
+    await user.click(closeButtons[0]);
+    expect(screen.queryByText("Modal 1")).not.toBeInTheDocument();
+    expect(screen.getByText("Modal 2")).toBeInTheDocument();
+    expect(screen.getByText("Modal 3")).toBeInTheDocument();
+
+    // class is still on body.
+    expect(document.body.classList.contains(NOSCROLL_CLASS)).toBeTruthy();
+
+    // Close modal 2.
+    await user.click(closeButtons[1]);
+    expect(screen.queryByText("Modal 1")).not.toBeInTheDocument();
+    expect(screen.queryByText("Modal 2")).not.toBeInTheDocument();
+    expect(screen.getByText("Modal 3")).toBeInTheDocument();
+
+    // class is still on body.
+    expect(document.body.classList.contains(NOSCROLL_CLASS)).toBeTruthy();
+
+    // Close modal 3.
+    await user.click(closeButtons[2]);
+    expect(screen.queryByText("Modal 1")).not.toBeInTheDocument();
+    expect(screen.queryByText("Modal 2")).not.toBeInTheDocument();
+    expect(screen.queryByText("Modal 3")).not.toBeInTheDocument();
+
+    // class is removed from body.
+    expect(document.body.classList.contains(NOSCROLL_CLASS)).toBeFalsy();
   });
 });
