@@ -1,22 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Button, Modal, ModalSize, useModal } from "@openfun/cunningham-react";
 
 const Onboarding = () => {
   const modal = useModal({ isOpenDefault: true });
-  // FIXME: remove this workaround once issue #259 will be resolved
-  // https://github.com/openfun/cunningham/issues/259
-  const [ready, setReady] = React.useState(false);
 
   const handleClose = () => {
     sessionStorage.setItem("onboarded", "1");
     modal.close();
   };
 
-  useEffect(() => {
-    setReady(true);
-  }, []);
-
-  if (!ready || sessionStorage.getItem("onboarded")) return null;
+  if (sessionStorage.getItem("onboarded")) return null;
 
   return (
     <Modal
