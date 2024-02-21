@@ -1,5 +1,28 @@
 # @openfun/cunningham-react
 
+## 2.5.0
+
+### Minor Changes
+
+- 77921e0: switch icons to material-icons-outlined
+- 6d91c1d: add useControllableState hook
+- e90a5dd: add text variants to Button
+- 132b676: add Toast component
+- 33d0c9f: add Alert
+- be1e2e2: Make modal backdrop customisable
+- 1445f4a: Add Modal component
+
+### Patch Changes
+
+- ebfccc1: fix DatePicker dropdowns closing
+- d61ab65: fix multi select menu opening
+- f685abb: use info design tokens
+- f16eed9: fix Select submit button
+- 540cdc6: update Alert and Toast icon size
+- e79768c: fix DatePicker submit button
+- a32bac7: fix missing selected option of Select
+- 9795b71: fix DateRangePicker layout overflow
+
 ## 2.4.0
 
 ### Minor Changes
@@ -324,7 +347,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.4.0...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.5.0...main
+[2.5.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.4.0...@openfun/cunningham-react@2.5.0
 [2.4.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.3.0...@openfun/cunningham-react@2.4.0
 [2.3.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.2.0...@openfun/cunningham-react@2.3.0
 [2.2.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.1.0...@openfun/cunningham-react@2.2.0
