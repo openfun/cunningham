@@ -13,7 +13,10 @@
     // ::backdrop does not inherit from its element so CSS vars does not work.
     // ( https://stackoverflow.com/a/77393321 )
     // So for now, we hide the backdrop element and use a dom element to create the backdrop.
-    visibility: hidden;
+    // We cannot use visibility: hidden because the component will not be able to receive click events for the
+    // closeOnClickOutside prop. The backdrop is the only element able to capture click as the dialog is displayed in
+    // the Top-Layer.
+    background: transparent;
   }
 
   &__backdrop {
