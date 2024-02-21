@@ -2,14 +2,14 @@ import React from "react";
 import { Button, Modal, ModalSize, useModal } from "@openfun/cunningham-react";
 
 const Onboarding = () => {
-  const modal = useModal({ isOpenDefault: true });
+  const modal = useModal({
+    isOpenDefault: !sessionStorage.getItem("onboarded"),
+  });
 
   const handleClose = () => {
     sessionStorage.setItem("onboarded", "1");
     modal.close();
   };
-
-  if (sessionStorage.getItem("onboarded")) return null;
 
   return (
     <Modal
