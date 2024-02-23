@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint . 'src/**/*.{ts,tsx}'",
     "dev": "vite & nodemon --watch cunningham.ts --exec yarn build-theme",
-    "build-theme": "cunningham -o src -g css,ts",
+    "build-theme": "cunningham -o src -g css,ts,scss && mv src/cunningham-tokens.scss src/cunningham-tokens-sass.scss",
     "build": "tsc && vite build",
     "build-demo": "tsc && vite build --base=/cunningham/demo/",
     "preview": "vite preview"

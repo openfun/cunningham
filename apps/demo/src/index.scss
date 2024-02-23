@@ -2,7 +2,10 @@
 @use "@openfun/cunningham-react/sass/icons";
 @use "@openfun/cunningham-react/style";
 @use "cunningham-tokens";
+@use "cunningham-tokens-sass" as *;
 
+$lg: map-get($themes, "default", "theme", "breakpoints", "lg");
+$sm: map-get($themes, "default", "theme", "breakpoints", "sm");
 
 // Reset
 h1 {
@@ -64,9 +67,13 @@ html {
 .container {
   margin: auto;
   position: relative;
-  height: 100%;
-
+  overflow: hidden;
   width: 1100px;
+
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  
   @media (max-width: 1200px) {
     width: calc(100% - 2rem);
   }
@@ -76,12 +83,16 @@ html {
 // Home
 .page__home {
   display: flex;
-  height: 100%;
+  flex-grow: 1;
   flex-direction: column;
 
   &__title {
     gap: 1.5rem;
     margin: 4rem 0;
+
+    @media (max-width: $lg) {
+      margin: 6rem 0 4rem 0;
+    }
 
     button {
       margin-top: 1.5rem;
@@ -93,6 +104,20 @@ html {
   }
 }
 
+html[data-theme="cunningham"] body {
+  background-repeat: no-repeat;
+  background-position: -300px -300px;
+  background-attachment: fixed;
+}
+
+html[data-theme="cunningham"][data-variant="dark"] body {
+  background-image: url(/pattern_dark.png);
+}
+
+html[data-theme="cunningham"][data-variant="light"] body {
+  background-image: url(/pattern_default.png);
+}
+
 html[data-theme="redflux"] {
   background: #000000D7 url(/redflux_bg.webp) 50%/cover no-repeat fixed;
   background-blend-mode: darken;
@@ -100,21 +125,17 @@ html[data-theme="redflux"] {
 
 html[data-theme="blueney"] {
   background: url(/blueney_bg.jpg) 50%/cover no-repeat fixed;
-
 }
 
 // Create
 .page__create {
-  max-width: 960px;
-  margin: 0 auto;
-  padding-bottom: 5rem;
 
   h1 {
     text-align: center;
     margin: 4rem 0;
   }
 
-  .card {
+  &__group {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -155,14 +176,24 @@ html[data-theme="blueney"] {
     min-width: 200px;
     justify-content: center;
   }
+
+  @media (max-width: $sm) {
+    flex-direction: column;
+    flex-grow: 1;
+
+    > .c__button {
+      width: 100%;
+      min-width: auto;
+    }
+  }
 }
 
-// links
 .links {
   border-top: thin solid var(--c--theme--colors--greyscale-300);
   display: flex;
   justify-content: space-between;
   gap: 0.5rem;
+  margin-top: 5rem;
 
   ul {
     text-align: right;

@@ -19,7 +19,12 @@ const Onboarding = () => {
       closeOnClickOutside
       rightActions={
         <div className="onboarding__footer">
-          <Button color="primary" iconPosition="right" onClick={handleClose}>
+          <Button
+            color="primary"
+            iconPosition="right"
+            fullWidth={true}
+            onClick={handleClose}
+          >
             Let&apos;s go!
           </Button>
           <Button
@@ -27,6 +32,7 @@ const Onboarding = () => {
             color="tertiary-text"
             size="small"
             icon={<span className="material-icons">open_in_new</span>}
+            fullWidth={true}
           >
             Go to the documentation
           </Button>
