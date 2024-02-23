@@ -47,10 +47,14 @@ export const Create = (props: PageProps) => {
   };
 
   return (
-    <Modal {...props} size={ModalSize.LARGE} closeOnClickOutside>
+    <Modal
+      {...props}
+      size={ModalSize.MEDIUM}
+      title="Add character"
+      closeOnClickOutside
+    >
       <form className="page__create clr-greyscale-900" onSubmit={submit}>
-        <h1>Add a character</h1>
-        <div className="card">
+        <div className="page__create__group">
           <h3 className="fw-bold fs-h3">General Information</h3>
           <Alert type={VariantType.INFO}>
             You are about to add a new character to the collection
@@ -86,7 +90,7 @@ export const Create = (props: PageProps) => {
           />
           <Checkbox name="is_guest" label="This character is a guest" />
         </div>
-        <div className="card mt-l">
+        <div className="page__create__group mt-l">
           <h3 className="fw-bold fs-h3">Bio</h3>
           <Alert type={VariantType.WARNING}>
             Please be exhaustive, every detail counts!

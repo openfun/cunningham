@@ -80,17 +80,6 @@ export const App = () => {
   return (
     <CunninghamProvider currentLocale={locale} theme={activeTheme}>
       <div className="container">
-        {theme === Theme.CUNNINGHAM && (
-          <img
-            className="pattern"
-            src={
-              variant === Variant.DARK
-                ? "pattern_dark.png"
-                : "pattern_default.png"
-            }
-            alt="Background pattern"
-          />
-        )}
         <Onboarding />
         <Home modal={modal} />
         <Create {...modal} />
