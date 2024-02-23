@@ -1,5 +1,5 @@
 @use 'src/utils' as *;
-
+@use "../../../utils/responsive" as *;
 
 .c__date-picker {
   position: relative;
@@ -222,11 +222,47 @@
 
   &__range {
     $component-min-width: px-to-rem(350px);
-    min-width: $component-min-width;
+
+    // MUST READ:
+    // We can only use @container property for full-width fields, as the container-type: inline-size property
+    // should not be based on the children's width. We cannot at the same time use container-type and a default
+    // width.
+    // So in order to make this work we use @media for the non-full-width fields and @container for the full-width.
 
     &__container {
-      min-width: $component-min-width;
+
+      &:not(.c__field--full-width) {
+        min-width: $component-min-width;
+
+        @include media(sm) {
+          min-width: auto;
+
+          .c__date-picker__wrapper__icon {
+            display: none;
+          }
+        }
+      }
+
+      &.c__field--full-width {
+
+        .c__date-picker__wrapper {
+          // The container-type must absolutely not be parent of the calendar popover or otherwise the popover will
+          // not be able to float above other DOM elements as a container-type: inline-size defines a new stacking
+          // context.
+          container-type: inline-size;
+        }
+
+        @container (max-width: #{$component-min-width}) {
+
+          .c__date-picker__wrapper__icon {
+            display: none;
+          }
+        }
+      }
     }
+
+
+
 
     &__separator {
       background-color: var(--c--theme--colors--greyscale-400);

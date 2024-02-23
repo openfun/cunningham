@@ -212,3 +212,34 @@ export const RangeControlled = () => {
     </>
   );
 };
+
+export const RangeControlledFull = () => {
+  const [value, setValue] = useState<[string, string] | null>([
+    "2023-05-23T13:37:00.000+02:00",
+    "2023-06-23T13:37:00.000+02:00",
+  ]);
+  return (
+    <>
+      <div className="clr-greyscale-900">Value: {value?.join("  ")}</div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "1rem",
+          marginTop: "1rem",
+        }}
+      >
+        <DateRangePicker
+          startLabel="Start date"
+          endLabel="Due date"
+          minValue="2023-01-23T00:00:00.000+00:00"
+          maxValue="2023-08-23T00:00:00.000+00:00"
+          value={value}
+          onChange={(e) => setValue(e)}
+          fullWidth={true}
+        />
+        <Button onClick={() => setValue(null)}>Reset</Button>
+      </div>
+    </>
+  );
+};
