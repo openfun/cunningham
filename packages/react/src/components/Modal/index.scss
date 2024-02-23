@@ -62,6 +62,10 @@
     font-size: var(--c--components--modal--content-font-size);
     font-weight: var(--c--components--modal--content-font-weight);
     color: var(--c--components--modal--content-color);
+
+    &:focus-visible {
+      outline: none;
+    }
   }
 
   &__close {
