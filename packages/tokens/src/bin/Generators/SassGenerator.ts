@@ -28,12 +28,23 @@ function toSassVariable(varName: string, value: any, isDefault = true) {
 }
 
 function JSONToSassMap(json: Object, isDefault = true) {
+  function toSassValue(value: any) {
+    if (typeof value === "object") {
+      return deepQuoteObjectKeys(value);
+    }
+    if (typeof value === "string") {
+      // If we have value = Font 1, Font 2 it will break the map so we need to use interpolation operator.
+      if (value.indexOf(",") >= 0) {
+        return `#__OPEN_BRACKET__${value}__CLOSE_BRACKET__`;
+      }
+    }
+    return value;
+  }
   function deepQuoteObjectKeys(object: Object) {
     return Object.entries(object).reduce(
       (acc, [key, value]): Record<string, any> => ({
         ...acc,
-        [`'${key}'`]:
-          typeof value === "object" ? deepQuoteObjectKeys(value) : value,
+        [`'${key}'`]: toSassValue(value),
       }),
       {},
     );
@@ -44,5 +55,7 @@ function JSONToSassMap(json: Object, isDefault = true) {
     .replace(/{/g, "(")
     .replace(/}/g, ")")
     .replace(/"/g, "")
+    .replace(/__OPEN_BRACKET__/g, "{")
+    .replace(/__CLOSE_BRACKET__/g, "}")
     .concat(isDefault ? " !default;" : "");
 }

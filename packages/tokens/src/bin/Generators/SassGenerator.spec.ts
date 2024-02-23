@@ -10,7 +10,7 @@ jest.mock("../Paths", () => ({
 
 describe("SassGenerator", () => {
   beforeAll(() => {
-    jest.spyOn(console, "log").mockImplementation(() => {});
+    // jest.spyOn(console, "log").mockImplementation(() => {});
     cleanup(__dirname);
   });
 
@@ -57,7 +57,7 @@ describe("SassGenerator", () => {
     ),
     'components': (
       'button': (
-        'font-family': Times New Roman
+        'font-family': #{Times New Roman,Helvetica Neue,Segoe UI}
       )
     )
   ),
