@@ -35,7 +35,7 @@ describe("CssGenerator", () => {
 	--c--theme--spacings--s: 1rem;
 	--c--theme--transitions--ease: linear;
 	--c--theme--input--border-color: var(--c--theme--colors--ternary-900);
-	--c--components--button--font-family: Times New Roman;
+	--c--components--button--font-family: Times New Roman,Helvetica Neue,Segoe UI;
 }
 .cunningham-theme--dark{
 	--c--theme--colors--primary: black;
@@ -71,7 +71,7 @@ describe("CssGenerator", () => {
 	--c--theme--spacings--s: 1rem;
 	--c--theme--transitions--ease: linear;
 	--c--theme--input--border-color: var(--c--theme--colors--ternary-900);
-	--c--components--button--font-family: Times New Roman;
+	--c--components--button--font-family: Times New Roman,Helvetica Neue,Segoe UI;
 }
 .cunningham-theme--dark{
 	--c--theme--colors--primary: black;

@@ -31,7 +31,7 @@ module.exports = {
       },
       components: {
         button: {
-          "font-family": "Times New Roman",
+          "font-family": "Times New Roman,Helvetica Neue,Segoe UI",
         },
       },
     },

@@ -95,8 +95,8 @@ $themes: (
           'black': 800
         ),
         'families': (
-          'base': \Roboto Flex Variable\, sans-serif,
-          'accent': \Roboto Flex Variable\, sans-serif
+          'base': #{\Roboto Flex Variable\, sans-serif},
+          'accent': #{\Roboto Flex Variable\, sans-serif}
         ),
         'letterSpacings': (
           'h1': normal,
@@ -119,9 +119,9 @@ $themes: (
         'st': 0.25rem
       ),
       'transitions': (
-        'ease-in': cubic-bezier(0.32, 0, 0.67, 0),
-        'ease-out': cubic-bezier(0.33, 1, 0.68, 1),
-        'ease-in-out': cubic-bezier(0.65, 0, 0.35, 1),
+        'ease-in': #{cubic-bezier(0.32, 0, 0.67, 0)},
+        'ease-out': #{cubic-bezier(0.33, 1, 0.68, 1)},
+        'ease-in-out': #{cubic-bezier(0.65, 0, 0.35, 1)},
         'duration': 250ms
       ),
       'breakpoints': (
@@ -315,7 +315,7 @@ $themes: (
         'nano-font-size': 0.8125rem,
         'nano-icon-font-size': 1rem,
         'font-weight': 400,
-        'font-family': \Roboto Flex Variable\, sans-serif,
+        'font-family': #{\Roboto Flex Variable\, sans-serif},
         'text-font-weight': 500
       ),
       'alert': (
