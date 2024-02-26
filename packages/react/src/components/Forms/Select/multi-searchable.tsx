@@ -16,7 +16,7 @@ import { SelectHandle } from ":/components/Forms/Select/index";
 
 export const SelectMultiSearchable = forwardRef<SelectHandle, SubProps>(
   (props, ref) => {
-    const [inputValue, setInputValue] = React.useState<string>("");
+    const [inputValue, setInputValue] = React.useState<string>();
     const inputRef = useRef<HTMLInputElement>(null);
     const options = React.useMemo(
       () =>
@@ -75,11 +75,11 @@ export const SelectMultiSearchable = forwardRef<SelectHandle, SubProps>(
                 ...props.selectedItems,
                 newSelectedItem,
               ]);
-              setInputValue("");
+              setInputValue(undefined);
             }
             break;
           case useCombobox.stateChangeTypes.InputChange:
-            setInputValue(newInputValue ?? "");
+            setInputValue(newInputValue);
             break;
           default:
             break;
@@ -123,6 +123,10 @@ export const SelectMultiSearchable = forwardRef<SelectHandle, SubProps>(
         inputRef.current?.blur();
       },
     }));
+
+    useEffect(() => {
+      props.onSearchInputChange?.({ target: { value: inputValue } });
+    }, [inputValue]);
 
     return (
       <SelectMultiAux

@@ -93,6 +93,10 @@ export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
       },
     }));
 
+    useEffect(() => {
+      props.onSearchInputChange?.({ target: { value: inputFilter } });
+    }, [inputFilter]);
+
     const onInputBlur = () => {
       setHasInputFocused(false);
       if (downshiftReturn.selectedItem) {
