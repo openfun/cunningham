@@ -49,6 +49,9 @@ export type SelectProps = PropsWithChildren &
     monoline?: boolean;
     selectedItemsStyle?: "pills" | "text";
     menuOptionsStyle?: "plain" | "checkbox";
+    onSearchInputChange?: (event: {
+      target: { value: string | undefined };
+    }) => void;
   };
 export const Select = forwardRef<SelectHandle, SelectProps>((props, ref) => {
   if (props.defaultValue && props.value) {

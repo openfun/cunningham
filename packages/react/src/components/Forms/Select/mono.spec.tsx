@@ -959,6 +959,64 @@ describe("<Select/>", () => {
         name: "Paris flag",
       });
     });
+
+    it("get the search term using onSearchInputChange", async () => {
+      const user = userEvent.setup();
+      let searchTerm: string | undefined;
+      render(
+        <CunninghamProvider>
+          <Select
+            label="City"
+            options={[
+              {
+                label: "Paris",
+                value: "paris",
+              },
+              {
+                label: "Panama",
+                value: "panama",
+              },
+              {
+                label: "London",
+                value: "london",
+              },
+              {
+                label: "New York",
+                value: "new_york",
+              },
+              {
+                label: "Tokyo",
+                value: "tokyo",
+              },
+            ]}
+            searchable={true}
+            onSearchInputChange={(e) => {
+              searchTerm = e.target.value;
+            }}
+          />
+        </CunninghamProvider>,
+      );
+
+      const input = screen.getByRole("combobox", {
+        name: "City",
+      });
+
+      await user.click(input);
+      expect(searchTerm).toBeUndefined();
+
+      await user.type(input, "Pa");
+      expect(searchTerm).toEqual("Pa");
+
+      await user.type(input, "r", { skipClick: true });
+      expect(searchTerm).toEqual("Par");
+
+      // Select option.
+      const option: HTMLLIElement = screen.getByRole("option", {
+        name: "Paris",
+      });
+      await user.click(option);
+      expect(searchTerm).toBeUndefined();
+    });
   });
 
   describe("Simple", () => {
