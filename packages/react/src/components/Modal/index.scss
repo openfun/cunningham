@@ -84,6 +84,16 @@
     &--sided {
       justify-content: space-between;
       gap: 0;
+
+      @include media(sm) {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+
+        > div {
+          width: 100%;
+        }
+      }
     }
 
     &__left, &__right {
