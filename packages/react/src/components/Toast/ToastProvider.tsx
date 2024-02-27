@@ -85,27 +85,33 @@ export const ToastProvider = ({ children }: PropsWithChildren) => {
   );
 
   const animateContainer = async () => {
+    if (!container.current) {
+      return;
+    }
     // FLIP pattern: https://aerotwist.com/blog/flip-your-animations/
     // FIRST
     const first = previousContainerHeight.current;
 
     // LAST
-    const last = container.current!.offsetHeight;
+    const last = container.current.offsetHeight;
 
     // INVERT
     const invert = last - first;
 
     // PLAY
-    container.current!.animate(
-      [
-        { transform: `translateY(${invert}px)` },
-        { transform: "translateY(0)" },
-      ],
-      {
-        duration: getSlideInDuration(),
-        easing: "ease",
-      },
-    );
+    // We need to check if the animate function exists because it's not available in some testing environments ( like jest-dom )
+    if (typeof container.current.animate === "function") {
+      container.current.animate(
+        [
+          { transform: `translateY(${invert}px)` },
+          { transform: "translateY(0)" },
+        ],
+        {
+          duration: getSlideInDuration(),
+          easing: "ease",
+        },
+      );
+    }
   };
 
   // We only want this to be triggered when an item gets ADDED to the list, not when
