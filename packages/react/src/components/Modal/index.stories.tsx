@@ -85,33 +85,57 @@ export const PreventClose: Story = {
 export const PrimaryButton: Story = {
   args: {
     size: ModalSize.MEDIUM,
-    rightActions: <Button color="primary">Primary</Button>,
+    rightActions: (
+      <Button color="primary" fullWidth={true}>
+        Primary
+      </Button>
+    ),
   },
 };
 
 export const SecondaryButton: Story = {
   args: {
     size: ModalSize.MEDIUM,
-    rightActions: <Button color="secondary">Secondary</Button>,
+    rightActions: (
+      <Button color="secondary" fullWidth={true}>
+        Secondary
+      </Button>
+    ),
   },
 };
 
 export const TwoButtons: Story = {
   args: {
     size: ModalSize.MEDIUM,
-    leftActions: <Button color="secondary">Secondary</Button>,
-    rightActions: <Button color="primary">Primary</Button>,
+    leftActions: (
+      <Button color="secondary" fullWidth={true}>
+        Secondary
+      </Button>
+    ),
+    rightActions: (
+      <Button color="primary" fullWidth={true}>
+        Primary
+      </Button>
+    ),
   },
 };
 
 export const ThreeButtons: Story = {
   args: {
     size: ModalSize.MEDIUM,
-    leftActions: <Button color="tertiary">Tertiary</Button>,
+    leftActions: (
+      <Button color="tertiary" fullWidth={true}>
+        Tertiary
+      </Button>
+    ),
     rightActions: (
       <>
-        <Button color="secondary">Secondary</Button>
-        <Button color="primary">Primary</Button>
+        <Button color="secondary" fullWidth={true}>
+          Secondary
+        </Button>
+        <Button color="primary" fullWidth={true}>
+          Primary
+        </Button>
       </>
     ),
   },
