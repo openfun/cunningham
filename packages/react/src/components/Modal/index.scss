@@ -69,9 +69,19 @@
   }
 
   &__close {
-    position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: end;
+    z-index: 1;
+    height: 0;
+
+    .c__button {
+      right: -0.75rem;
+      top: -0.75rem;
+      position: relative;
+      background: var(--c--components--modal--background-color);
+    }
   }
 
   &__footer {

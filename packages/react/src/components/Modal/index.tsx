@@ -132,7 +132,7 @@ export const ModalInner = (props: ModalProps) => {
                 <Button
                   icon={<span className="material-icons">close</span>}
                   color="tertiary-text"
-                  size="nano"
+                  size="small"
                   onClick={() => props.onClose()}
                 />
               </div>
