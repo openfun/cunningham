@@ -6,21 +6,23 @@ import React, {
   ReactNode,
 } from "react";
 
-export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
-  AnchorHTMLAttributes<HTMLAnchorElement> & {
-    color?:
-      | "primary"
-      | "primary-text"
-      | "secondary"
-      | "tertiary"
-      | "tertiary-text"
-      | "danger";
-    size?: "medium" | "small" | "nano";
-    icon?: ReactNode;
-    iconPosition?: "left" | "right";
-    active?: boolean;
-    fullWidth?: boolean;
-  };
+type DomProps = ButtonHTMLAttributes<HTMLButtonElement> &
+  AnchorHTMLAttributes<HTMLAnchorElement>;
+
+export type ButtonProps = Omit<DomProps, "color"> & {
+  size?: "medium" | "small" | "nano";
+  color?:
+    | "primary"
+    | "primary-text"
+    | "secondary"
+    | "tertiary"
+    | "tertiary-text"
+    | "danger";
+  icon?: ReactNode;
+  iconPosition?: "left" | "right";
+  active?: boolean;
+  fullWidth?: boolean;
+};
 
 export type ButtonElement = HTMLButtonElement & HTMLAnchorElement;
 
