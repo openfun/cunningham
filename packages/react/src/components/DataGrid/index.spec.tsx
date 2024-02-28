@@ -381,4 +381,44 @@ describe("<DataGrid/>", () => {
       expect(tds[0].textContent).toEqual(row.sub.name);
     });
   });
+
+  it("should render column with specific width", async () => {
+    const database = Array.from(Array(10)).map(() => ({
+      id: faker.string.uuid(),
+      name: faker.person.fullName(),
+      email: faker.internet.email(),
+    }));
+
+    const Component = () => {
+      return (
+        <CunninghamProvider>
+          <DataGrid
+            columns={[
+              {
+                field: "firstName",
+                headerName: "First name",
+                size: 50,
+              },
+              {
+                field: "email",
+                headerName: "Email",
+              },
+            ]}
+            rows={database}
+          />
+        </CunninghamProvider>
+      );
+    };
+
+    render(<Component />);
+
+    const table = screen.getByRole("table");
+    const ths = getAllByRole(table, "columnheader");
+    expect(ths.length).toBe(2);
+    expect(ths[0].textContent).toEqual("First name");
+    expect(ths[1].textContent).toEqual("Email");
+
+    expect(ths[0].style.width).toEqual("50px");
+    expect(ths[1].style.width).toEqual("");
+  });
 });

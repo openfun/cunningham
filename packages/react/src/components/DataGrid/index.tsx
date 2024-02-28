@@ -1,4 +1,4 @@
-import React, { ReactNode, useMemo } from "react";
+import React, { CSSProperties, ReactNode, useMemo } from "react";
 import classNames from "classnames";
 import {
   flexRender,
@@ -48,6 +48,7 @@ export type Column<T extends Row = Row> = (
   headerName?: string;
   highlight?: boolean;
   enableSorting?: boolean;
+  size?: number;
 };
 
 export type SortModel = { field: string; sort: "asc" | "desc" | null }[];
@@ -192,7 +193,13 @@ export const DataGrid = <T extends Row>({
                   {displayHeader &&
                     table.getHeaderGroups().map((headerGroup) => (
                       <tr key={headerGroup.id}>
-                        {headerGroup.headers.map((header) => {
+                        {headerGroup.headers.map((header, i) => {
+                          const style: CSSProperties = {};
+                          const column = columns[i];
+                          if (column && typeof column.size === "number") {
+                            style.width = `${column.size}px`;
+                          }
+
                           return (
                             <th
                               key={header.id}
@@ -201,6 +208,7 @@ export const DataGrid = <T extends Row>({
                                 "c__datagrid__header--select":
                                   header.id === "select",
                               })}
+                              style={style}
                             >
                               {header.isPlaceholder ? null : (
                                 <div

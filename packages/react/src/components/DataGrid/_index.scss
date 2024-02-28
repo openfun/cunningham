@@ -23,6 +23,7 @@
       border-collapse: collapse;
       font-weight: var(--c--theme--font--weights--regular);
       width: 100%;
+      table-layout: fixed;
 
       th, td {
         text-align: left;
@@ -30,6 +31,7 @@
         white-space: nowrap;
         font-size: var(--c--theme--font--sizes--m);
         height: 3rem;
+        overflow: hidden;
       }
 
       th {

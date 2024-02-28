@@ -335,3 +335,57 @@ export const DataListOnly = () => {
     />
   );
 };
+
+export const WithColumnWidth = () => {
+  const database = useMemo(
+    () =>
+      Array.from(Array(23)).map(() => ({
+        id: faker.string.uuid(),
+        firstName: faker.person.firstName(),
+        lastName: faker.person.lastName(),
+        email: faker.internet.email(),
+        address: faker.location.streetAddress(),
+      })),
+    [],
+  );
+  return (
+    <SimpleDataGrid
+      columns={[
+        {
+          field: "firstName",
+          headerName: "First name",
+          highlight: true,
+          size: 100,
+        },
+        {
+          field: "lastName",
+          headerName: "Last name",
+          size: 100,
+        },
+        {
+          field: "email",
+          headerName: "Email",
+          highlight: true,
+        },
+        {
+          field: "address",
+          headerName: "Address",
+          enableSorting: false,
+        },
+        {
+          headerName: "Actions",
+          id: "actions",
+          size: 50,
+          renderCell: () => (
+            <Button
+              color="tertiary-text"
+              size="small"
+              icon={<span className="material-icons">delete</span>}
+            />
+          ),
+        },
+      ]}
+      rows={database}
+    />
+  );
+};
