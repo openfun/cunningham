@@ -382,6 +382,26 @@ describe("<DataGrid/>", () => {
     });
   });
 
+  it("renders with className", async () => {
+    render(
+      <CunninghamProvider>
+        <DataGrid
+          columns={[
+            {
+              field: "name",
+              headerName: "Name",
+            },
+          ]}
+          rows={[]}
+          className="my-custom-class"
+        />
+      </CunninghamProvider>,
+    );
+    expect(
+      document.querySelector(".c__datagrid.my-custom-class"),
+    ).toBeInTheDocument();
+  });
+
   it("should render column with specific width", async () => {
     const database = Array.from(Array(10)).map(() => ({
       id: faker.string.uuid(),

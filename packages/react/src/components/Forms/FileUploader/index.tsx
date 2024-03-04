@@ -28,7 +28,7 @@ export interface FileUploaderRefType {
 export const FileUploader = forwardRef<FileUploaderRefType, FileUploaderProps>(
   ({ fullWidth, ...props }, ref) => {
     return (
-      <Field fullWidth={fullWidth}>
+      <Field fullWidth={fullWidth} className={props.className}>
         {props.multiple ? (
           <FileUploaderMulti {...props} ref={ref} />
         ) : (

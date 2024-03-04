@@ -156,4 +156,11 @@ describe("<Switch/>", () => {
     render(<Switch {...propsInput} />);
     expect(spyError).not.toHaveBeenCalled();
   });
+
+  it("renders with className", async () => {
+    render(<Switch className="my-custom-class" />);
+    expect(
+      document.querySelector(".c__switch.my-custom-class"),
+    ).toBeInTheDocument();
+  });
 });

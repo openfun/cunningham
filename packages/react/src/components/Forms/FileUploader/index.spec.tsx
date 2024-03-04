@@ -1,6 +1,7 @@
 import { act, render, screen } from "@testing-library/react";
 import React, { useRef, useState } from "react";
 import userEvent from "@testing-library/user-event";
+import { expect } from "vitest";
 import { CunninghamProvider } from ":/components/Provider";
 import {
   FileUploader,
@@ -272,6 +273,17 @@ describe("<FileUploader />", () => {
         await user.click(resetButton);
       });
       screen.getByText("Value: |");
+    });
+
+    it("renders with className", async () => {
+      render(
+        <CunninghamProvider>
+          <FileUploader className="my-custom-class" />
+        </CunninghamProvider>,
+      );
+      expect(
+        document.querySelector(".c__field.my-custom-class"),
+      ).toBeInTheDocument();
     });
   });
   describe("Multi", () => {

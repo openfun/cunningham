@@ -16,7 +16,7 @@ export type RadioProps = InputHTMLAttributes<HTMLInputElement> &
   RadioOnlyProps;
 
 export const Radio = forwardRef<HTMLInputElement, RadioProps>(
-  ({ label, ...props }: RadioProps, ref) => {
+  ({ className, label, ...props }: RadioProps, ref) => {
     const {
       compact,
       fullWidth,
@@ -29,7 +29,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
 
     return (
       <label
-        className={classNames("c__checkbox", "c__radio", {
+        className={classNames("c__checkbox", "c__radio", className, {
           "c__checkbox--disabled": props.disabled,
           "c__checkbox--full-width": props.fullWidth,
         })}
@@ -46,13 +46,14 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
 );
 
 export const RadioGroup = ({
+  className,
   children,
   style,
   ...props
 }: PropsWithChildren & FieldProps & { style?: React.CSSProperties }) => {
   return (
     <Field
-      className="c__radio__group c__checkbox__group"
+      className={classNames("c__radio__group c__checkbox__group", className)}
       compact={true}
       {...props}
     >

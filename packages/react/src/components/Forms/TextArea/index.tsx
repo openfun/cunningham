@@ -44,12 +44,13 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       setValue(props.value || "");
     }, [props.value]);
 
-    const { fullWidth, rightText, text, textItems, ...areaProps } = props;
+    const { fullWidth, rightText, text, textItems, className, ...areaProps } =
+      props;
 
     return (
       <Field
         {...props}
-        className="c__field--textarea"
+        className={classNames("c__field--textarea", className)}
         rightText={rightTextToUse}
       >
         {/* We disabled linting for this specific line because we consider that the onClick props is only used for */}

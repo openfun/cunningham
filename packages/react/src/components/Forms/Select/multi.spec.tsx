@@ -1871,4 +1871,24 @@ describe("<Select multi={true} />", () => {
       });
     });
   });
+
+  it("renders with className", async () => {
+    render(
+      <CunninghamProvider>
+        <Select
+          label="City"
+          options={[
+            {
+              label: "Paris",
+            },
+          ]}
+          multi={true}
+          className="my-custom-class"
+        />
+      </CunninghamProvider>,
+    );
+    expect(
+      document.querySelector(".c__field.my-custom-class"),
+    ).toBeInTheDocument();
+  });
 });

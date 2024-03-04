@@ -1976,4 +1976,23 @@ describe("<Select/>", () => {
       });
     });
   });
+
+  it("renders with className", async () => {
+    render(
+      <CunninghamProvider>
+        <Select
+          label="City"
+          options={[
+            {
+              label: "Paris",
+            },
+          ]}
+          className="my-custom-class"
+        />
+      </CunninghamProvider>,
+    );
+    expect(
+      document.querySelector(".c__field.my-custom-class"),
+    ).toBeInTheDocument();
+  });
 });

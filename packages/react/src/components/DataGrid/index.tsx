@@ -64,6 +64,7 @@ export interface BaseProps<T extends Row = Row> {
   emptyCta?: ReactNode;
   hideEmptyPlaceholderImage?: boolean;
   enableSorting?: boolean;
+  className?: string;
 }
 
 export interface DataGridProps<T extends Row = Row> extends BaseProps<T> {
@@ -86,6 +87,7 @@ export const DataGrid = <T extends Row>({
   onRowSelectionChange,
   rowSelection,
   tableOptions,
+  className,
   emptyPlaceholderLabel,
   emptyCta,
   hideEmptyPlaceholderImage,
@@ -297,7 +299,7 @@ export const DataGrid = <T extends Row>({
 
   return (
     <div
-      className={classNames("c__datagrid", {
+      className={classNames("c__datagrid", className, {
         "c__datagrid--empty": isEmpty,
         "c__datagrid--loading": isLoading,
       })}

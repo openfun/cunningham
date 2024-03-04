@@ -1175,4 +1175,18 @@ describe("<DateRangePicker/>", () => {
       datepickerEnd: "",
     });
   });
+  it("renders with className", async () => {
+    render(
+      <CunninghamProvider>
+        <DateRangePicker
+          startLabel="Start"
+          endLabel="End"
+          className="my-custom-class"
+        />
+      </CunninghamProvider>,
+    );
+    expect(
+      document.querySelector(".c__field.my-custom-class"),
+    ).toBeInTheDocument();
+  });
 });

@@ -22,7 +22,6 @@ const Template: StoryFn<typeof Checkbox> = (args) => (
 
 export const Default = {
   render: Template,
-  args: {},
 };
 
 export const Checked = {

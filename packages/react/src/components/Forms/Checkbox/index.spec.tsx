@@ -1,6 +1,7 @@
 import userEvent from "@testing-library/user-event";
 import React, { useState } from "react";
 import { render, screen } from "@testing-library/react";
+import { expect } from "vitest";
 import {
   Checkbox,
   CheckboxGroup,
@@ -170,5 +171,19 @@ describe("<Checkbox/>", () => {
     await user.click(checkmark);
     expect(input.checked).toEqual(false);
     screen.getByText("Checked = false|");
+  });
+  it("renders with className", async () => {
+    render(
+      <Checkbox label="Agree" checked={true} className="my-custom-class" />,
+    );
+    expect(
+      document.querySelector(".c__checkbox.my-custom-class"),
+    ).toBeInTheDocument();
+  });
+  it("renders group with className", async () => {
+    render(<CheckboxGroup className="my-custom-class" />);
+    expect(
+      document.querySelector(".c__checkbox__group.my-custom-class"),
+    ).toBeInTheDocument();
   });
 });

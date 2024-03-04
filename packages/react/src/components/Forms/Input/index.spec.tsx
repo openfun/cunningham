@@ -235,4 +235,11 @@ describe("<Input/>", () => {
     render(<Input {...propsInput} />);
     expect(spyError).not.toHaveBeenCalled();
   });
+
+  it("renders with className", async () => {
+    render(<Input label="First name" className="my-custom-class" />);
+    expect(
+      document.querySelector(".c__field.my-custom-class"),
+    ).toBeInTheDocument();
+  });
 });

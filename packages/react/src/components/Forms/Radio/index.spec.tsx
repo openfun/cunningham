@@ -1,6 +1,7 @@
 import userEvent from "@testing-library/user-event";
 import React from "react";
 import { render, screen } from "@testing-library/react";
+import { expect } from "vitest";
 import {
   Radio,
   RadioGroup,
@@ -137,5 +138,18 @@ describe("<Radio/>", () => {
 
     render(<Radio {...propsInput} />);
     expect(spyError).not.toHaveBeenCalled();
+  });
+
+  it("renders with className", async () => {
+    render(<Radio label="Agree" checked={true} className="my-custom-class" />);
+    expect(
+      document.querySelector(".c__checkbox.my-custom-class"),
+    ).toBeInTheDocument();
+  });
+  it("renders group with className", async () => {
+    render(<RadioGroup className="my-custom-class" />);
+    expect(
+      document.querySelector(".c__checkbox__group.my-custom-class"),
+    ).toBeInTheDocument();
   });
 });

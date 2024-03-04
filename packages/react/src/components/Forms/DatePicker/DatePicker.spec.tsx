@@ -1448,4 +1448,15 @@ describe("<DatePicker/>", () => {
     // Make sure value is selected, with the same time as the initial value.
     screen.getByText(`Value = 2023-04-12T12:00:00.000Z|`);
   });
+
+  it("renders with className", async () => {
+    render(
+      <CunninghamProvider>
+        <DatePicker label="Date" className="my-custom-class" />
+      </CunninghamProvider>,
+    );
+    expect(
+      document.querySelector(".c__field.my-custom-class"),
+    ).toBeInTheDocument();
+  });
 });

@@ -57,6 +57,7 @@ export type DatePickerAuxProps = PropsWithChildren &
 const DatePickerAux = forwardRef(
   (
     {
+      className,
       pickerState,
       pickerProps,
       onClear,
@@ -86,7 +87,7 @@ const DatePickerAux = forwardRef(
       <I18nProvider locale={locale || currentLocale}>
         <Field
           {...props}
-          className={classNames({
+          className={classNames(className, {
             "c__date-picker__range__container": isRange,
           })}
         >
