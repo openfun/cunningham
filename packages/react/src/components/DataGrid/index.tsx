@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { ReactNode, useMemo } from "react";
 import classNames from "classnames";
 import {
   flexRender,
@@ -52,6 +52,9 @@ export interface BaseProps<T extends Row = Row> {
   enableRowSelection?: TableOptions<T>["enableRowSelection"];
   onRowSelectionChange?: (newSelection: RowSelectionState) => void;
   rowSelection?: RowSelectionState;
+  emptyPlaceholderLabel?: string;
+  emptyCta?: ReactNode;
+  hideEmptyPlaceholderImage?: boolean;
 }
 
 export interface DataGridProps<T extends Row = Row> extends BaseProps<T> {
@@ -74,6 +77,9 @@ export const DataGrid = <T extends Row>({
   onRowSelectionChange,
   rowSelection,
   tableOptions,
+  emptyPlaceholderLabel,
+  emptyCta,
+  hideEmptyPlaceholderImage,
   displayHeader = true,
 }: DataGridProps<T>) => {
   const { t } = useCunningham();
@@ -143,8 +149,12 @@ export const DataGrid = <T extends Row>({
     if (showEmptyPlaceholder) {
       return (
         <div className="c__datagrid__empty-placeholder fs-h3 clr-greyscale-900 fw-bold">
-          <img src={emptyImageUrl} alt={t("components.datagrid.empty_alt")} />
-          {t("components.datagrid.empty")}
+          {!hideEmptyPlaceholderImage && (
+            <img src={emptyImageUrl} alt={t("components.datagrid.empty_alt")} />
+          )}
+
+          {emptyPlaceholderLabel ?? t("components.datagrid.empty")}
+          {emptyCta}
         </div>
       );
     }

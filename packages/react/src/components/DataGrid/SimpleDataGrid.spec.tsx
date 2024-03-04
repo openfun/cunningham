@@ -512,6 +512,51 @@ describe("<SimpleDataGrid/>", () => {
     screen.getByRole("img", { name: /illustration of an empty table/i });
     screen.getByText(/this table is empty/i);
   });
+  it("should render an empty grid with custom label and cta", async () => {
+    const rows: Row[] = [];
+    render(
+      <CunninghamProvider>
+        <SimpleDataGrid
+          columns={[
+            {
+              field: "firstName",
+              headerName: "First name",
+            },
+          ]}
+          rows={rows}
+          emptyPlaceholderLabel="Custom empty label"
+          emptyCta={<button>Custom empty CTA</button>}
+        />
+      </CunninghamProvider>,
+    );
+
+    screen.getByRole("img", { name: /illustration of an empty table/i });
+    expect(screen.queryByText(/this table is empty/i)).not.toBeInTheDocument();
+    screen.getByText(/Custom empty label/i);
+    screen.getByRole("button", { name: /Custom empty CTA/i });
+  });
+  it("should render an empty grid without image", async () => {
+    const rows: Row[] = [];
+    render(
+      <CunninghamProvider>
+        <SimpleDataGrid
+          columns={[
+            {
+              field: "firstName",
+              headerName: "First name",
+            },
+          ]}
+          rows={rows}
+          hideEmptyPlaceholderImage={true}
+        />
+      </CunninghamProvider>,
+    );
+
+    expect(
+      screen.queryByRole("img", { name: /illustration of an empty table/i }),
+    ).not.toBeInTheDocument();
+    screen.getByText(/this table is empty/i);
+  });
   it("should render a loading grid even if rows are empty", async () => {
     const rows: Row[] = [];
     render(

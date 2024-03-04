@@ -26,6 +26,46 @@ export const Empty = () => {
     />
   );
 };
+export const EmptyCustomWithButton = () => {
+  return (
+    <DataGrid
+      columns={[
+        {
+          field: "firstName",
+          headerName: "First name",
+          highlight: true,
+        },
+      ]}
+      rows={[]}
+      emptyPlaceholderLabel="This table is empty, create the first object"
+      emptyCta={
+        <Button
+          color="secondary"
+          icon={<span className="material-icons">add</span>}
+        >
+          Create object
+        </Button>
+      }
+    />
+  );
+};
+
+export const EmptyCustomNoImage = () => {
+  return (
+    <DataGrid
+      columns={[
+        {
+          field: "firstName",
+          headerName: "First name",
+          highlight: true,
+        },
+      ]}
+      rows={[]}
+      hideEmptyPlaceholderImage={true}
+      emptyPlaceholderLabel="This table is empty :("
+    />
+  );
+};
 
 export const Loading = () => {
   return (
