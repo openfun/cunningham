@@ -1,5 +1,17 @@
 # @openfun/cunningham-react
 
+## 2.6.0
+
+### Minor Changes
+
+- 680365a: make Modal close button sticky
+- 04ab330: add onSearchInputChange callback to searchable select
+
+### Patch Changes
+
+- 54df5d6: remove modal content outline on focus
+- 7461626: improve DateRangerPicker responsive
+
 ## 2.5.0
 
 ### Minor Changes
@@ -347,7 +359,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.5.0...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.6.0...main
+[2.6.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.5.0...@openfun/cunningham-react@2.6.0
 [2.5.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.4.0...@openfun/cunningham-react@2.5.0
 [2.4.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.3.0...@openfun/cunningham-react@2.4.0
 [2.3.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.2.0...@openfun/cunningham-react@2.3.0
