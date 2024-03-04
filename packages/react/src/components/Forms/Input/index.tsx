@@ -39,9 +39,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     ref,
   ) => {
     const classes = ["c__input"];
-    if (className) {
-      classes.push(className);
-    }
     const inputRef = useRef<HTMLInputElement | null>(null);
     const [inputFocus, setInputFocus] = useState(false);
     const [value, setValue] = useState(defaultValue || props.value || "");
@@ -82,7 +79,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     } = props;
 
     return (
-      <Field {...props} rightText={rightTextToUse}>
+      <Field {...props} rightText={rightTextToUse} className={className}>
         {/* We disabled linting for this specific line because we consider that the onClick props is only used for */}
         {/* mouse users, so this do not engender any issue for accessibility. */}
         {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}

@@ -49,7 +49,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
 
     return (
       <label
-        className={classNames("c__checkbox", {
+        className={classNames("c__checkbox", className, {
           "c__checkbox--disabled": props.disabled,
           "c__checkbox--full-width": props.fullWidth,
         })}
@@ -59,7 +59,6 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             <div className="c__checkbox__wrapper">
               <input
                 type="checkbox"
-                className={className}
                 {...inputProps}
                 onChange={(e) => {
                   setValue(e.target.checked);
@@ -86,10 +85,11 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
 
 export const CheckboxGroup = ({
   children,
+  className,
   ...props
 }: PropsWithChildren & FieldProps) => {
   return (
-    <Field className="c__checkbox__group" {...props}>
+    <Field className={classNames("c__checkbox__group", className)} {...props}>
       <div className="c__checkbox__group__list">{children}</div>
     </Field>
   );

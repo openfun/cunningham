@@ -249,4 +249,11 @@ describe("<Alert/>", () => {
       screen.queryByText("Additional information"),
     ).not.toBeInTheDocument();
   });
+
+  it("renders with className", async () => {
+    render(<Alert className="my-custom-class" />);
+    expect(
+      document.querySelector(".c__alert.my-custom-class"),
+    ).toBeInTheDocument();
+  });
 });

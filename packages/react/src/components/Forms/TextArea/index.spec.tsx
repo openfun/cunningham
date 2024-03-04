@@ -191,4 +191,12 @@ describe("<TextArea/>", () => {
     await user.clear(textarea);
     screen.getByText("Value: .");
   });
+
+  it("renders with className", async () => {
+    render(<TextArea className="my-custom-class" />);
+    screen.debug();
+    expect(
+      document.querySelector(".c__field--textarea.my-custom-class"),
+    ).toBeInTheDocument();
+  });
 });

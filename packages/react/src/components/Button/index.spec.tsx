@@ -87,4 +87,11 @@ describe("<Button/>", () => {
       tokens.themes.default.components.button["border-radius"],
     ).toBeDefined();
   });
+
+  it("renders with className", async () => {
+    render(<Button className="my-custom-class" />);
+    expect(
+      document.querySelector(".c__button.my-custom-class"),
+    ).toBeInTheDocument();
+  });
 });
