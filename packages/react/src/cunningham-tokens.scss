@@ -134,6 +134,14 @@ $themes: (
       )
     ),
     'components': (
+      'tooltip': (
+        'border-radius': 0.5rem,
+        'background-color': #0C1A2B,
+        'color': #FFFFFF,
+        'font-size': 0.6875rem,
+        'padding': 1rem,
+        'max-width': 150px
+      ),
       'toast': (
         'slide-in-duration': 1000ms,
         'slide-out-duration': 300ms,

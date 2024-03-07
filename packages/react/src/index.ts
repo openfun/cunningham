@@ -27,6 +27,7 @@ export * from "./components/Popover";
 export * from "./components/Provider";
 export * from "./components/Toast";
 export * from "./components/Toast/ToastProvider";
+export * from "./components/Tooltip";
 export * from "./utils/VariantUtils";
 
 export type DefaultTokens = PartialNested<typeof tokens.themes.default>;
