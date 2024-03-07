@@ -23,6 +23,7 @@
 @use "./components/Pagination";
 @use "./components/Popover";
 @use "./components/Toast";
+@use "./components/Tooltip";
 
 body {
   font-family: var(--c--theme--font--families--base);

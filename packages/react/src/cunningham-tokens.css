@@ -112,6 +112,12 @@
 	--c--theme--breakpoints--lg: 992px;
 	--c--theme--breakpoints--xl: 1200px;
 	--c--theme--breakpoints--xxl: 1400px;
+	--c--components--tooltip--border-radius: 0.5rem;
+	--c--components--tooltip--background-color: var(--c--theme--colors--greyscale-900);
+	--c--components--tooltip--color: var(--c--theme--colors--greyscale-000);
+	--c--components--tooltip--font-size: var(--c--theme--font--sizes--s);
+	--c--components--tooltip--padding: 1rem;
+	--c--components--tooltip--max-width: 150px;
 	--c--components--toast--slide-in-duration: 1000ms;
 	--c--components--toast--slide-out-duration: 300ms;
 	--c--components--toast--background-color: var(--c--theme--colors--greyscale-100);
