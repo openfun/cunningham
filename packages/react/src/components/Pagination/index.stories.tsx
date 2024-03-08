@@ -71,3 +71,11 @@ export const ForcePage = () => {
   }, []);
   return <Pagination {...pagination} />;
 };
+
+export const WithoutGoto = () => {
+  const pagination = usePagination({
+    defaultPagesCount: 100,
+    defaultPage: 50,
+  });
+  return <Pagination {...pagination} displayGoto={false} />;
+};

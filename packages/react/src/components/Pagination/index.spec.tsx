@@ -201,4 +201,20 @@ describe("<Pagination/>", () => {
       screen.getByRole("button", { name: "You are currently on page 1" }),
     );
   });
+  it("can hide go to input", async () => {
+    const LocalWrapper = () => {
+      const pagination = usePagination({
+        defaultPage: 50,
+        defaultPagesCount: 100,
+      });
+      return (
+        <CunninghamProvider>
+          <Pagination {...pagination} displayGoto={false} />
+        </CunninghamProvider>
+      );
+    };
+
+    render(<LocalWrapper />);
+    expect(document.querySelector(".c__pagination__goto")).toBeNull();
+  });
 });
