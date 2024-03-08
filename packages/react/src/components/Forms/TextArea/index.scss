@@ -13,7 +13,7 @@
   border-color: var(--c--components--forms-textarea--border-color);
   border-style: var(--c--components--forms-textarea--border-style);
   background-color: var(--c--components--forms-textarea--background-color);
-  transition: border var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
+  transition: border var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out), border-radius var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
   overflow: hidden;
 
   .labelled-box__label {
