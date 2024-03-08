@@ -11,7 +11,7 @@
     border-color: var(--c--components--forms-datepicker--border-color);
     border-style: var(--c--components--forms-datepicker--border-style);
     display: flex;
-    transition: border var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
+    transition: border var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out), border-radius var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
     padding: 0 0.75rem;
     gap: 1rem;
     box-sizing: border-box;

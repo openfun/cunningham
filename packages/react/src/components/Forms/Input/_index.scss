@@ -5,7 +5,7 @@
   border-style: var(--c--components--forms-input--border-style);
   background-color: var(--c--components--forms-input--background-color);
   display: flex;
-  transition: border var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
+  transition: border var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out), border-radius var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
   padding: 0 1rem;
   gap: 1rem;
   cursor: text;
