@@ -13,6 +13,8 @@ export interface PaginationProps {
   /** Total number of items per page */
   // eslint-disable-next-line react/no-unused-prop-types
   pageSize: number;
+  /** Display the goto input */
+  displayGoto?: boolean;
 }
 
 export const usePagination = ({
@@ -43,6 +45,7 @@ export const Pagination = ({
   page,
   onPageChange,
   pagesCount = 0,
+  displayGoto = true,
 }: PaginationProps) => {
   const { t } = useCunningham();
   const [gotoValue, setGotoValue] = useState("");
@@ -148,27 +151,29 @@ export const Pagination = ({
           size="small"
         />
       </div>
-      <div className="c__pagination__goto">
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            gotoPage();
-          }}
-        >
-          <Input
-            type="number"
-            label={t("components.pagination.goto_label")}
-            aria-label={t("components.pagination.goto_label_aria")}
-            size={2}
-            value={gotoValue}
-            onChange={(e) => setGotoValue(e.target.value)}
-            min={1}
-            max={pagesCount}
-            onBlur={() => gotoPage()}
-            onFocus={(e) => e.target.select()}
-          />
-        </form>
-      </div>
+      {displayGoto && (
+        <div className="c__pagination__goto">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              gotoPage();
+            }}
+          >
+            <Input
+              type="number"
+              label={t("components.pagination.goto_label")}
+              aria-label={t("components.pagination.goto_label_aria")}
+              size={2}
+              value={gotoValue}
+              onChange={(e) => setGotoValue(e.target.value)}
+              min={1}
+              max={pagesCount}
+              onBlur={() => gotoPage()}
+              onFocus={(e) => e.target.select()}
+            />
+          </form>
+        </div>
+      )}
     </div>
   );
 };
