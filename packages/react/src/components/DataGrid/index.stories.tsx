@@ -195,6 +195,7 @@ export const FullServerSide = () => {
         lastName: faker.person.lastName(),
         email: faker.internet.email(),
         address: faker.location.streetAddress(),
+        country: faker.location.countryCode(),
       })),
     [],
   );
@@ -260,6 +261,24 @@ export const FullServerSide = () => {
         {
           field: "address",
           headerName: "Address",
+        },
+        {
+          headerName: "Country",
+          field: "country",
+          renderCell: (context) => {
+            return (
+              <span
+                style={{ display: "flex", alignItems: "center", gap: "8px" }}
+              >
+                <img
+                  style={{ height: "24px" }}
+                  src={`https://flagsapi.com/${context.row.country}/shiny/64.png`}
+                  alt="Flag"
+                />
+                {context.row.country}
+              </span>
+            );
+          },
         },
         {
           id: "actions",
