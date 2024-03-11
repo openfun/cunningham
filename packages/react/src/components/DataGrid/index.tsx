@@ -92,6 +92,14 @@ export const DataGrid = <T extends Row>({
   const { t } = useCunningham();
   const headlessColumns = useHeadlessColumns({ columns, enableRowSelection });
 
+  headlessColumns.forEach((column) => {
+    if (column.enableSorting && !onSortModelChange) {
+      console.warn(
+        "You are using a column with sorting enabled, but you are not providing an `onSortModelChange` handler. The sorting will not work as expected.",
+      );
+    }
+  });
+
   /**
    * Features.
    */
