@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import React, { useState } from "react";
 import { faker } from "@faker-js/faker";
-import { getAllByRole, getByRole } from "@testing-library/dom";
+import { getAllByRole, getByRole, within } from "@testing-library/dom";
 import { expect } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { expectPaginationList } from ":/components/Pagination/utils";
@@ -415,6 +415,99 @@ describe("<SimpleDataGrid/>", () => {
           expect(tds[1].textContent).toEqual(row.lastName);
           expect(tds[2].textContent).toEqual(row.email);
           expect(tds[3].textContent).toEqual(row.address);
+        });
+    });
+  });
+  it("should render a grid with working sortable custom columns", async () => {
+    const rows = Array.from(Array(23))
+      .map(() => ({
+        id: faker.string.uuid(),
+        firstName: faker.person.firstName(),
+        country: faker.location.country(),
+      }))
+      .sort((a, b) => a.firstName.localeCompare(b.firstName));
+    render(
+      <CunninghamProvider>
+        <SimpleDataGrid
+          columns={[
+            {
+              field: "firstName",
+              headerName: "First name",
+            },
+            {
+              field: "country",
+              headerName: "Country",
+              renderCell: ({ row }) => <h1>{row.country}</h1>,
+            },
+          ]}
+          rows={rows}
+          defaultPaginationParams={{
+            pageSize: 10,
+          }}
+          defaultSortModel={[
+            {
+              field: "firstName",
+              sort: "asc",
+            },
+          ]}
+        />
+      </CunninghamProvider>,
+    );
+
+    const user = userEvent.setup();
+
+    // Verify first page rows are sorted by firstName ASC.
+    expect(screen.getAllByRole("row").length).toBe(11);
+    rows.slice(0, 10).forEach((row) => {
+      const element = screen.getByTestId(row.id);
+      const tds = getAllByRole(element, "cell");
+      expect(tds.length).toBe(2);
+      expect(tds[0].textContent).toEqual(row.firstName);
+    });
+
+    // Sort by country ASC.
+    const table = screen.getByRole("table");
+    const ths = getAllByRole(table, "columnheader");
+    expect(ths.length).toBe(2);
+    expect(ths[1].textContent).toContain("Country");
+    expect(ths[1].textContent).not.toContain("arrow_drop_up");
+    expect(ths[1].textContent).not.toContain("arrow_drop_down");
+    await user.click(ths[1].querySelector("div")!);
+
+    // Verify first page rows are sorted by country ASC.
+    await waitFor(() => {
+      expect(ths[1].textContent).toContain("arrow_drop_up");
+      [...rows]
+        .sort((a, b) => a.country.localeCompare(b.country))
+        .slice(0, 10)
+        .forEach((row) => {
+          const element = screen.getByTestId(row.id);
+          const tds = getAllByRole(element, "cell");
+          expect(tds.length).toBe(2);
+          expect(tds[0].textContent).toEqual(row.firstName);
+          within(tds[1]).getByRole("heading", { name: row.country, level: 1 });
+        });
+    });
+
+    // Sort by country DESC.
+    expect(ths.length).toBe(2);
+    expect(ths[1].textContent).toContain("Country");
+    expect(ths[1].textContent).toContain("arrow_drop_up");
+    expect(ths[1].textContent).not.toContain("arrow_drop_down");
+    await user.click(ths[1].querySelector("div")!);
+
+    await waitFor(() => {
+      expect(ths[1].textContent).toContain("arrow_drop_down");
+      [...rows]
+        .sort((a, b) => a.country.localeCompare(b.country))
+        .reverse()
+        .slice(0, 10)
+        .forEach((row) => {
+          const element = screen.getByTestId(row.id);
+          const tds = getAllByRole(element, "cell");
+          expect(tds.length).toBe(2);
+          expect(tds[0].textContent).toEqual(row.firstName);
+          within(tds[1]).getByRole("heading", { name: row.country, level: 1 });
         });
     });
   });

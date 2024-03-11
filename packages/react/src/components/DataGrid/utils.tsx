@@ -1,4 +1,5 @@
 import {
+  CellContext,
   ColumnDef,
   createColumnHelper,
   PaginationState,
@@ -23,23 +24,23 @@ export const useHeadlessColumns = <T extends Row>({
   const { t } = useCunningham();
   const columnHelper = createColumnHelper<T>();
   let headlessColumns = columns.map((column) => {
+    // Based on types we can assume that at least one of both is defined.
+    const id = (column.id ?? column.field) as string;
     const opts = {
-      id: column.renderCell ? column.id : column.id ?? column.field,
+      id,
       enableSorting: column.enableSorting,
       header: column.headerName,
+      cell: (info: CellContext<any, any>) => {
+        if (column.renderCell) {
+          return column.renderCell({ row: info.row.original });
+        }
+        return info.cell.getValue();
+      },
     };
-    if (!column.renderCell) {
-      // The any cast is needed because the type of the accessor is hard-defined on react-table.
-      // On our side we only use string as type for simplicity purpose.
+    if (column.field) {
       return columnHelper.accessor(column.field as any, opts);
     }
-
-    return columnHelper.display({
-      ...opts,
-      cell: (info) => {
-        return column.renderCell({ row: info.row.original });
-      },
-    });
+    return columnHelper.display(opts);
   });
   if (enableRowSelection) {
     headlessColumns = [

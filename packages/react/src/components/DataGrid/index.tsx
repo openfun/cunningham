@@ -30,12 +30,19 @@ export interface ColumnField {
 }
 
 export interface ColumnCustomCell<T extends Row = Row> {
+  id?: string;
+  field: string;
+  renderCell: (params: { row: T }) => React.ReactNode;
+}
+export interface ColumnDisplayCell<T extends Row = Row> {
   id: string;
+  field?: never;
   renderCell: (params: { row: T }) => React.ReactNode;
 }
 
 export type Column<T extends Row = Row> = (
   | ColumnCustomCell<T>
+  | ColumnDisplayCell<T>
   | ColumnField
 ) & {
   headerName?: string;
