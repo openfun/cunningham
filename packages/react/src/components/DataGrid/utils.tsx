@@ -28,7 +28,8 @@ export const useHeadlessColumns = <T extends Row>({
     const id = (column.id ?? column.field) as string;
     const opts = {
       id,
-      enableSorting: column.enableSorting,
+      enableSorting:
+        column.enableSorting === undefined ? true : column.enableSorting,
       header: column.headerName,
       cell: (info: CellContext<any, any>) => {
         if (column.renderCell) {
