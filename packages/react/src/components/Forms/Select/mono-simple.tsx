@@ -34,13 +34,35 @@ const useKeepSelectedItemInSyncWithOptions = (
 
 export const SelectMonoSimple = forwardRef<SelectHandle, SubProps>(
   (props, ref) => {
+    const arrayOptions: Option[] = Array.isArray(props.options)
+      ? props.options
+      : [];
+
     const downshiftReturn = useSelect({
       ...props.downshiftProps,
-      items: props.options,
+      items: arrayOptions,
       itemToString: optionToString,
     });
 
     useKeepSelectedItemInSyncWithOptions(downshiftReturn, props);
+
+    // When component is controlled, this useEffect will update the local selected item.
+    useEffect(() => {
+      const selectedItem = downshiftReturn.selectedItem
+        ? optionToValue(downshiftReturn.selectedItem)
+        : undefined;
+
+      const optionToSelect = arrayOptions.find(
+        (option) => optionToValue(option) === props.value,
+      );
+
+      // Already selected
+      if (optionToSelect && selectedItem === props.value) {
+        return;
+      }
+
+      downshiftReturn.selectItem(optionToSelect ?? null);
+    }, [props.value, arrayOptions]);
 
     const wrapperRef = useRef<HTMLElement>(null);
 
@@ -54,6 +76,7 @@ export const SelectMonoSimple = forwardRef<SelectHandle, SubProps>(
     return (
       <SelectMonoAux
         {...props}
+        options={arrayOptions}
         downshiftReturn={{
           ...downshiftReturn,
           wrapperProps: downshiftReturn.getToggleButtonProps({

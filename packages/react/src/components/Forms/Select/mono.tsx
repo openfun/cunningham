@@ -7,11 +7,19 @@ import { Option, SelectHandle, SelectProps } from ":/components/Forms/Select";
 
 export const SelectMono = forwardRef<SelectHandle, SelectProps>(
   (props, ref) => {
-    const defaultSelectedItem = props.defaultValue
-      ? props.options.find(
-          (option) => optionToValue(option) === props.defaultValue,
-        )
-      : undefined;
+    const { options } = props;
+
+    const isPropOptionsAnArray = Array.isArray(options);
+
+    const arrayOptions: Option[] = isPropOptionsAnArray ? options : [];
+
+    const defaultSelectedItem =
+      props.defaultValue && arrayOptions?.length
+        ? arrayOptions.find(
+            (option) => optionToValue(option) === props.defaultValue,
+          )
+        : undefined;
+
     const [value, setValue] = useState(
       defaultSelectedItem ? optionToValue(defaultSelectedItem) : props.value,
     );
@@ -58,6 +66,7 @@ export const SelectMono = forwardRef<SelectHandle, SelectProps>(
     ) : (
       <SelectMonoSimple
         {...props}
+        options={arrayOptions}
         downshiftProps={commonDownshiftProps}
         value={value}
         ref={ref}

@@ -17,9 +17,11 @@ export const SelectMulti = forwardRef<SelectHandle, SelectMultiProps>(
   (props, ref) => {
     const getSelectedItemsFromProps = () => {
       const valueToUse = props.defaultValue ?? props.value ?? [];
-      return props.options.filter((option) =>
-        (valueToUse as string[]).includes(optionToValue(option)),
-      );
+      return Array.isArray(props.options)
+        ? props.options.filter((option) =>
+            (valueToUse as string[]).includes(optionToValue(option)),
+          )
+        : [];
     };
 
     const [selectedItems, setSelectedItems] = React.useState<Option[]>(

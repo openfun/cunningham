@@ -1,6 +1,6 @@
 import userEvent from "@testing-library/user-event";
 import { act, render, screen, waitFor } from "@testing-library/react";
-import { expect } from "vitest";
+import { expect, vi } from "vitest";
 import React, { createRef, FormEvent, useState } from "react";
 import { within } from "@testing-library/dom";
 import {
@@ -8,6 +8,7 @@ import {
   Option,
   SelectHandle,
   SelectProps,
+  CallbackFetchOptions,
 } from ":/components/Forms/Select/index";
 import { Button } from ":/components/Button";
 import { CunninghamProvider } from ":/components/Provider";
@@ -756,6 +757,7 @@ describe("<Select/>", () => {
         expectMenuToBeOpen(menu);
 
         expectOptions(["Paris", "Panama"]);
+
         myOptions.shift();
 
         // Rerender the select with the options mutated
@@ -1086,6 +1088,109 @@ describe("<Select/>", () => {
       await waitFor(() => expect(input).toHaveValue("Paname"));
       screen.getByText("Value = paris|");
       screen.getByText("onChangeCounts = 0|");
+    });
+
+    it("gets the search term using onSearchInputChange through an async function provided as the options prop", async () => {
+      type Spy = {
+        asyncOptions: CallbackFetchOptions;
+      };
+
+      const spy: Spy = {
+        asyncOptions: async (context) =>
+          new Promise((resolve) => {
+            const arrayCities = [
+              {
+                label: "Paris",
+                value: "paris",
+              },
+              {
+                label: "Panama",
+                value: "panama",
+              },
+              {
+                label: "London",
+                value: "london",
+              },
+              {
+                label: "New York",
+                value: "new_york",
+              },
+              {
+                label: "Tokyo",
+                value: "tokyo",
+              },
+            ];
+
+            // simulate a delayed response
+            setTimeout(() => {
+              const stringSearch = context?.search ?? "";
+
+              const filterOptions = (arrayOptions: Option[], search: string) =>
+                arrayOptions.filter((option) =>
+                  option.label
+                    .toLocaleLowerCase()
+                    .includes(search.toLowerCase()),
+                );
+
+              const arrayOptions: Option[] = stringSearch
+                ? filterOptions(arrayCities, stringSearch)
+                : arrayCities;
+
+              resolve(arrayOptions);
+            }, 1);
+          }),
+      };
+      const spiedAsyncOptions = vi.spyOn(spy, "asyncOptions");
+
+      expect(spiedAsyncOptions).toHaveBeenCalledTimes(0);
+
+      const user = userEvent.setup();
+      render(
+        <CunninghamProvider>
+          <Select label="City" options={spy.asyncOptions} searchable={true} />
+        </CunninghamProvider>,
+      );
+
+      expect(spiedAsyncOptions).toHaveBeenCalledTimes(1);
+
+      const input = screen.getByRole("combobox", {
+        name: "City",
+      });
+
+      // It returns the input.
+      expect(input.tagName).toEqual("INPUT");
+
+      const menu: HTMLDivElement = screen.getByRole("listbox", {
+        name: "City",
+      });
+
+      expectMenuToBeClosed(menu);
+
+      // Click on the input.
+      await user.click(input);
+      expectMenuToBeOpen(menu);
+
+      expectOptions(["Paris", "Panama", "London", "New York", "Tokyo"]);
+
+      // Verify that filtering works.
+      await user.type(input, "Pa");
+
+      expect(spiedAsyncOptions).toHaveBeenCalledTimes(3);
+      expectMenuToBeOpen(menu);
+      expectOptions(["Paris", "Panama"]);
+
+      await user.type(input, "r", { skipClick: true });
+      expect(spiedAsyncOptions).toHaveBeenCalledTimes(4);
+      expectOptions(["Paris"]);
+
+      // Select option.
+      const option: HTMLLIElement = screen.getByRole("option", {
+        name: "Paris",
+      });
+      await user.click(option);
+
+      expect(input).toHaveValue("Paris");
+      expect(spiedAsyncOptions).toHaveBeenCalledTimes(5);
     });
   });
 

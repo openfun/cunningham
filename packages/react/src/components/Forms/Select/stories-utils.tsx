@@ -1,6 +1,11 @@
 import { Controller, useFormContext } from "react-hook-form";
 import React from "react";
-import { Select, SelectProps } from ":/components/Forms/Select/index";
+import {
+  ContextCallbackFetchOptions,
+  Option,
+  Select,
+  SelectProps,
+} from ":/components/Forms/Select/index";
 
 export const RhfSelect = (props: SelectProps & { name: string }) => {
   const { control, setValue } = useFormContext();
@@ -38,3 +43,25 @@ export const getCountryOption = (name: string, code: string) => ({
     </div>
   ),
 });
+
+export const fetchOptions = async (
+  context: ContextCallbackFetchOptions,
+  options: Option[],
+): Promise<Option[]> =>
+  new Promise((resolve) => {
+    // simulate a delayed response
+    setTimeout(() => {
+      const stringSearch = context?.search ?? undefined;
+
+      const filterOptions = (arrayOptions: Option[], search: string) =>
+        arrayOptions.filter((option) =>
+          option.label.toLocaleLowerCase().includes(search.toLowerCase()),
+        );
+
+      const arrayOptions: Option[] = stringSearch
+        ? filterOptions(options, stringSearch)
+        : options;
+
+      resolve(arrayOptions);
+    }, 500);
+  });

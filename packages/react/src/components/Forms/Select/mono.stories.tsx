@@ -4,11 +4,16 @@ import { FormProvider, useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { onSubmit } from ":/components/Forms/Examples/ReactHookForm/reactHookFormUtils";
-import { Select, SelectHandle } from ":/components/Forms/Select";
+import {
+  ContextCallbackFetchOptions,
+  Select,
+  SelectHandle,
+} from ":/components/Forms/Select";
 import { Button } from ":/components/Button";
 import {
   getCountryOption,
   RhfSelect,
+  fetchOptions,
 } from ":/components/Forms/Select/stories-utils";
 import { Modal, ModalSize, useModal } from ":/components/Modal";
 import { Input } from ":/components/Forms/Input";
@@ -170,6 +175,27 @@ export const SearchableUncontrolled = {
   args: {
     label: "Select a city",
     options: OPTIONS,
+    defaultValue: OPTIONS[4].value,
+    searchable: true,
+  },
+};
+
+export const SearchableUncontrolledWithAsyncOptionsFetching = {
+  render: Template,
+  args: {
+    label: "Select a city",
+    options: async (context: ContextCallbackFetchOptions) =>
+      fetchOptions(context, OPTIONS),
+    searchable: true,
+  },
+};
+
+export const SearchableUncontrolledWithAsyncOptionsFetchingAndDefaultValue = {
+  render: Template,
+  args: {
+    label: "Select a city",
+    options: async (context: ContextCallbackFetchOptions) =>
+      fetchOptions(context, OPTIONS),
     defaultValue: OPTIONS[4].value,
     searchable: true,
   },
