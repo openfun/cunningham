@@ -20,9 +20,11 @@ export const SelectMultiSearchable = forwardRef<SelectHandle, SubProps>(
     const inputRef = useRef<HTMLInputElement>(null);
     const options = React.useMemo(
       () =>
-        props.options.filter(
-          getMultiOptionsFilter(props.selectedItems, inputValue),
-        ),
+        Array.isArray(props.options)
+          ? props.options.filter(
+              getMultiOptionsFilter(props.selectedItems, inputValue),
+            )
+          : [],
       [props.selectedItems, inputValue],
     );
     const [hasInputFocused, setHasInputFocused] = useState(false);
