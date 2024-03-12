@@ -678,4 +678,66 @@ describe("<SimpleDataGrid/>", () => {
       name: "Loading data",
     });
   });
+
+  it("should render a grid with non-sortable columns by using enableSorting=false at DataGrid level", async () => {
+    const rows = Array.from(Array(23))
+      .map(() => ({
+        id: faker.string.uuid(),
+        firstName: faker.person.firstName(),
+        lastName: faker.person.lastName(),
+        email: faker.internet.email(),
+        address: faker.location.streetAddress(),
+      }))
+      .sort((a, b) => a.firstName.localeCompare(b.firstName));
+
+    const Wrapper = ({ enableSorting }: { enableSorting: boolean }) => {
+      return (
+        <CunninghamProvider>
+          <SimpleDataGrid
+            columns={[
+              {
+                field: "firstName",
+                headerName: "First name",
+              },
+              {
+                field: "lastName",
+                headerName: "Last name",
+              },
+              {
+                field: "email",
+                headerName: "Email",
+              },
+              {
+                field: "address",
+                headerName: "Address",
+              },
+            ]}
+            rows={rows}
+            defaultPaginationParams={{
+              pageSize: 10,
+            }}
+            enableSorting={enableSorting}
+          />
+        </CunninghamProvider>
+      );
+    };
+
+    const { rerender } = render(<Wrapper enableSorting={true} />);
+
+    const table = screen.getByRole("table");
+    const ths = getAllByRole(table, "columnheader");
+    expect(ths.length).toBe(4);
+
+    ths.forEach((th) => {
+      // headers are turned into buttons exclusively when they are sortable
+      expect(within(th).queryByRole("button")).toBeInTheDocument();
+    });
+
+    rerender(<Wrapper enableSorting={false} />);
+
+    ths.forEach((th) => {
+      // headers are turned into buttons exclusively when they are sortable
+      expect(within(th).queryByRole("button")).not.toBeInTheDocument();
+    });
+  });
 });

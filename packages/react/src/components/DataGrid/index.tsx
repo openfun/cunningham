@@ -62,6 +62,7 @@ export interface BaseProps<T extends Row = Row> {
   emptyPlaceholderLabel?: string;
   emptyCta?: ReactNode;
   hideEmptyPlaceholderImage?: boolean;
+  enableSorting?: boolean;
 }
 
 export interface DataGridProps<T extends Row = Row> extends BaseProps<T> {
@@ -88,6 +89,7 @@ export const DataGrid = <T extends Row>({
   emptyCta,
   hideEmptyPlaceholderImage,
   displayHeader = true,
+  enableSorting = true,
 }: DataGridProps<T>) => {
   const { t } = useCunningham();
   const headlessColumns = useHeadlessColumns({ columns, enableRowSelection });
@@ -124,6 +126,7 @@ export const DataGrid = <T extends Row>({
       pagination: paginationState,
     },
     // Sorting
+    enableSorting,
     getSortedRowModel: getSortedRowModel(),
     manualSorting: true,
     onSortingChange: (newHeadlessSorting) => {
