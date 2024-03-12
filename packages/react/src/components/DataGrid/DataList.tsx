@@ -9,8 +9,8 @@ export const DataList = <T extends Row>({ rows, ...props }: BaseProps<T>) => {
       rows={rows}
       columns={props.columns.map((column) => ({
         ...column,
-        enableSorting: false,
       }))}
+      enableSorting={false}
     />
   );
 };
