@@ -1,7 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Meta } from "@storybook/react";
 import React from "react";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { RhfInput } from ":/components/Forms/Input/stories-utils";
 import { Checkbox } from ":/components/Forms/Checkbox";
@@ -29,7 +29,7 @@ const loginSchema = Yup.object().shape({
 });
 
 export const Login = () => {
-  const { register, handleSubmit, formState } = useForm<LoginStoryFormValues>({
+  const methods = useForm<LoginStoryFormValues>({
     defaultValues: {
       email: "",
       password: "",
@@ -41,53 +41,56 @@ export const Login = () => {
   });
 
   return (
-    <form
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "1rem",
-        width: "300px",
-      }}
-      onSubmit={handleSubmit(onSubmit)}
-    >
-      <h1
-        className="fs-h3 fw-bold clr-greyscale-900"
-        style={{ textAlign: "center" }}
+    <FormProvider {...methods}>
+      <form
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "1rem",
+          width: "300px",
+        }}
+        onSubmit={methods.handleSubmit(onSubmit)}
       >
-        Log in
-      </h1>
-      <RhfInput
-        label="Email"
-        fullWidth={true}
-        state={getFieldState("email", formState)}
-        text={getFieldErrorMessage("email", formState)}
-        {...register("email")}
-      />
-      <RhfInput
-        label="Password"
-        state={getFieldState("password", formState)}
-        type="password"
-        text={
-          getFieldErrorMessage("password", formState) || "Forgot your password?"
-        }
-        fullWidth={true}
-        {...register("password")}
-      />
-      <div>
-        <Checkbox
-          label="Remember me"
-          state={getFieldState("rememberMe", formState)}
-          text={getFieldErrorMessage("rememberMe", formState)}
-          {...register("rememberMe")}
+        <h1
+          className="fs-h3 fw-bold clr-greyscale-900"
+          style={{ textAlign: "center" }}
+        >
+          Log in
+        </h1>
+        <RhfInput
+          label="Email"
+          fullWidth={true}
+          state={getFieldState("email", methods.formState)}
+          text={getFieldErrorMessage("email", methods.formState)}
+          {...methods.register("email")}
         />
-      </div>
-      <Button fullWidth={true}>Log in</Button>
-      <div className="fs-m clr-greyscale-800" style={{ textAlign: "center" }}>
-        You do not have an account?{" "}
-        <a href="/#" className="clr-greyscale-800">
-          Register
-        </a>
-      </div>
-    </form>
+        <RhfInput
+          label="Password"
+          state={getFieldState("password", methods.formState)}
+          type="password"
+          text={
+            getFieldErrorMessage("password", methods.formState) ||
+            "Forgot your password?"
+          }
+          fullWidth={true}
+          {...methods.register("password")}
+        />
+        <div>
+          <Checkbox
+            label="Remember me"
+            state={getFieldState("rememberMe", methods.formState)}
+            text={getFieldErrorMessage("rememberMe", methods.formState)}
+            {...methods.register("rememberMe")}
+          />
+        </div>
+        <Button fullWidth={true}>Log in</Button>
+        <div className="fs-m clr-greyscale-800" style={{ textAlign: "center" }}>
+          You do not have an account?{" "}
+          <a href="/#" className="clr-greyscale-800">
+            Register
+          </a>
+        </div>
+      </form>
+    </FormProvider>
   );
 };
