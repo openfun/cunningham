@@ -23,6 +23,14 @@ export type OptionWithoutRender = Omit<BaseOption, "value" | "render"> & {
 
 export type Option = OptionWithoutRender | OptionWithRender;
 
+export type ContextCallbackFetchOptions = {
+  search?: string;
+};
+
+export type CallbackFetchOptions = (
+  context: ContextCallbackFetchOptions,
+) => Promise<Option[]>;
+
 export interface SelectHandle {
   blur: () => void;
 }
@@ -31,7 +39,7 @@ export type SelectProps = PropsWithChildren &
   FieldProps & {
     label: string;
     hideLabel?: boolean;
-    options: Option[];
+    options: Option[] | CallbackFetchOptions;
     searchable?: boolean;
     name?: string;
     defaultValue?: string | number | string[];
