@@ -12,12 +12,14 @@ import { Pagination, PaginationProps } from ":/components/Pagination";
 import { useCunningham } from ":/components/Provider";
 import { Loader } from ":/components/Loader";
 import {
+  HEADER_ID_SELECT,
   paginationToPaginationState,
   sortingStateToSortModel,
   sortModelToSortingState,
   useHeadlessColumns,
 } from ":/components/DataGrid/utils";
 import emptyImageUrl from ":/components/DataGrid/empty.svg";
+import { Checkbox } from ":/components/Forms/Checkbox";
 
 export interface Row extends Record<string, any> {
   id: string;
@@ -208,7 +210,7 @@ export const DataGrid = <T extends Row>({
                               colSpan={header.colSpan}
                               className={classNames({
                                 "c__datagrid__header--select":
-                                  header.id === "select",
+                                  header.id === HEADER_ID_SELECT,
                               })}
                               style={style}
                             >
@@ -230,9 +232,22 @@ export const DataGrid = <T extends Row>({
                                       }
                                     : {})}
                                 >
-                                  {flexRender(
-                                    header.column.columnDef.header,
-                                    header.getContext(),
+                                  {/* We cant use flexRender for select header because it triggers a re-render each time */}
+                                  {/* a row is selected or unselected, re-triggering the animation each time, which looks buggy. */}
+                                  {header.id === HEADER_ID_SELECT ? (
+                                    <Checkbox
+                                      checked={table.getIsAllRowsSelected()}
+                                      indeterminate={table.getIsSomeRowsSelected()}
+                                      onChange={table.getToggleAllRowsSelectedHandler()}
+                                      aria-label={t(
+                                        "components.datagrid.rows_selection_aria",
+                                      )}
+                                    />
+                                  ) : (
+                                    flexRender(
+                                      header.column.columnDef.header,
+                                      header.getContext(),
+                                    )
                                   )}
                                   {header.column.getIsSorted() === "asc" && (
                                     <span className="material-icons">
