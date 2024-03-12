@@ -11,6 +11,8 @@ import { PaginationProps } from ":/components/Pagination";
 import { BaseProps, Column, Row, SortModel } from ":/components/DataGrid/index";
 import { useCunningham } from ":/components/Provider";
 
+export const HEADER_ID_SELECT = "cunningham-select";
+
 /**
  * Converts Cunningham's columns to the underlying tanstack table.
  */
@@ -47,15 +49,8 @@ export const useHeadlessColumns = <T extends Row>({
   if (enableRowSelection) {
     headlessColumns = [
       columnHelper.display({
-        id: "select",
-        header: ({ table }) => (
-          <Checkbox
-            checked={table.getIsAllRowsSelected()}
-            indeterminate={table.getIsSomeRowsSelected()}
-            onChange={table.getToggleAllRowsSelectedHandler()}
-            aria-label={t("components.datagrid.rows_selection_aria")}
-          />
-        ),
+        id: HEADER_ID_SELECT,
+        header: () => null,
         cell: ({ row }) => (
           <Checkbox
             checked={row.getIsSelected()}
