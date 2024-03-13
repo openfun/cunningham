@@ -4,6 +4,8 @@ import userEvent from "@testing-library/user-event";
 import { expect } from "vitest";
 import { Input, InputOnlyProps } from ":/components/Forms/Input/index";
 import { Button } from ":/components/Button";
+import { InputPassword } from ":/components/Forms/Input/InputPassword";
+import { CunninghamProvider } from ":/components/Provider";
 import { FieldProps } from "../Field";
 
 const spyError = vi.spyOn(global.console, "error");
@@ -241,5 +243,33 @@ describe("<Input/>", () => {
     expect(
       document.querySelector(".c__field.my-custom-class"),
     ).toBeInTheDocument();
+  });
+
+  it("renders with className", async () => {
+    render(<Input label="First name" className="my-custom-class" />);
+    expect(
+      document.querySelector(".c__field.my-custom-class"),
+    ).toBeInTheDocument();
+  });
+
+  it("allows to show/hide password", async () => {
+    render(
+      <CunninghamProvider>
+        <InputPassword label="Password" />
+      </CunninghamProvider>,
+    );
+    const user = userEvent.setup();
+    const input: HTMLInputElement = screen.getByLabelText("Password");
+
+    await user.type(input, "azerty");
+    expect(input.type).toEqual("password");
+
+    let button = screen.getByRole("button", { name: "Show password" });
+    await user.click(button);
+    expect(input.type).toEqual("text");
+
+    button = screen.getByRole("button", { name: "Hide password" });
+    await user.click(button);
+    expect(input.type).toEqual("password");
   });
 });
