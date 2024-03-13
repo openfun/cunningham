@@ -159,6 +159,55 @@ export const CharCounter = {
   },
 };
 
+export const Password = {
+  args: {
+    label: "Password",
+    text: "Please use at least 8 characters, uppercase and digits",
+    type: "password",
+    rightIcon: <span className="material-icons">visibility</span>,
+  },
+};
+export const PasswordImpl = {
+  render: () => {
+    const [showPassword, setShowPassword] = React.useState(false);
+    return (
+      <div>
+        <Input
+          label="Password"
+          text="Please use at least 8 characters, uppercase and digits"
+          type={showPassword ? "text" : "password"}
+          className="c__input__"
+          rightIcon={
+            showPassword ? (
+              <Button
+                onClick={() => setShowPassword(false)}
+                icon={
+                  <span className="material-icons" style={{ fontSize: "24px" }}>
+                    visibility_off
+                  </span>
+                }
+                color="tertiary-text"
+                size="small"
+              />
+            ) : (
+              <Button
+                onClick={() => setShowPassword(true)}
+                icon={
+                  <span className="material-icons" style={{ fontSize: "24px" }}>
+                    visibility
+                  </span>
+                }
+                color="tertiary-text"
+                size="small"
+              />
+            )
+          }
+        />
+      </div>
+    );
+  },
+};
+
 export const Controlled = () => {
   const [value, setValue] = React.useState("I am controlled");
   return (
