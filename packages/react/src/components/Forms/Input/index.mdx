@@ -1,6 +1,7 @@
 import { Canvas, Meta, Story, Source, ArgTypes } from '@storybook/blocks';
 import { Input } from "./index";
 import * as Stories from './index.stories';
+import * as InputPasswordStories from './InputPassword.stories';
 
 <Meta of={Stories}/>
 
@@ -64,6 +65,12 @@ You can display a counter of the number of characters entered in the input by us
 in mind to also define `charCounterMax`.
 
 <Canvas of={Stories.CharCounter} sourceState="shown"/>
+
+## Password
+
+You can also use a built-in password input that includes a button to show or hide the password.
+
+<Canvas of={InputPasswordStories.Password} sourceState="shown"/>
 
 ## Controlled / Non Controlled
 

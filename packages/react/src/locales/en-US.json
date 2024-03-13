@@ -24,6 +24,12 @@
       "test": "This is a test: {name}"
     },
     "forms": {
+      "input": {
+        "password": {
+            "show_password": "Show password",
+            "hide_password": "Hide password"
+        }
+      },
       "select": {
         "toggle_button_aria_label": "Toggle dropdown",
         "clear_button_aria_label": "Clear selection",

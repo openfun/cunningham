@@ -12,6 +12,7 @@ export * from "./components/Forms/DatePicker";
 export * from "./components/Forms/Field";
 export * from "./components/Forms/FileUploader";
 export * from "./components/Forms/Input";
+export * from "./components/Forms/Input/InputPassword";
 export * from "./components/Forms/Radio";
 export * from "./components/Forms/Select";
 export * from "./components/Forms/Switch";
