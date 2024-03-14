@@ -8,9 +8,7 @@ import * as Stories from './index.stories';
 
 Cunningham provides a versatile Input component that you can use in your forms.
 
-<Canvas>
-  <Story id="components-forms-input--default"/>
-</Canvas>
+<Canvas of={Stories.Default} sourceState="shown"/>
 
 <Source
   language='ts'
@@ -23,96 +21,68 @@ Cunningham provides a versatile Input component that you can use in your forms.
 
 You can use the following props to change the state of the Input component by using the `state` props.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-input--default"/>
-</Canvas>
-
-<Canvas sourceState="shown">
-  <Story id="components-forms-input--success"/>
-</Canvas>
-
-<Canvas sourceState="shown">
-  <Story id="components-forms-input--error"/>
-</Canvas>
+<Canvas of={Stories.Default} sourceState="shown"/>
+<Canvas of={Stories.Success} sourceState="shown"/>
+<Canvas of={Stories.Error} sourceState="shown"/>
 
 ## Disabled
 
 As a regular input, you can disable it by using the `disabled` props.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-input--disabled-empty"/>
-  <Story id="components-forms-input--disabled-filled"/>
-</Canvas>
+<Canvas of={Stories.DisabledEmpty} sourceState="shown"/>
+<Canvas of={Stories.DisabledFilled} sourceState="shown"/>
 
 ## Icons
 
 You can define an icon that will appear on the left side of the input by using the `icon` props.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-input--icon"/>
-</Canvas>
+<Canvas of={Stories.Icon} sourceState="shown"/>
 
 You can also independently add an icon on the right side by using the `rightIcon` props.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-input--icon-right"/>
-</Canvas>
+<Canvas of={Stories.IconRight} sourceState="shown"/>
 
 ## Texts
 
 You can define a text that will appear below the input by using the `text` props.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-input--with-text"/>
-</Canvas>
+<Canvas of={Stories.WithText} sourceState="shown"/>
 
 You can also independently add a text on the right side by using the `rightText` props.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-input--with-both-texts"/>
-</Canvas>
+<Canvas of={Stories.WithBothTexts} sourceState="shown"/>
 
 ## Width
 
 By default, the input has a default width, like all inputs. But you can force it to take the full width of its container by using the `fullWidth` props.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-input--full-width"/>
-</Canvas>
+<Canvas of={Stories.FullWidth} sourceState="shown"/>
 
 ## Chars Counter
 
 You can display a counter of the number of characters entered in the input by using the `charsCounter` props. Please bare
 in mind to also define `charCounterMax`.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-input--char-counter"/>
-</Canvas>
+<Canvas of={Stories.CharCounter} sourceState="shown"/>
 
 ## Controlled / Non Controlled
 
 Like a native input, you can use the Input component in a controlled or non controlled way. You can see the example below
 using the component in a controlled way.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-input--controlled"/>
-</Canvas>
+<Canvas of={Stories.Controlled} sourceState="shown"/>
 
 ## Ref
 
 You can use the `ref` props to get a reference to the input element.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-input--with-ref"/>
-</Canvas>
+<Canvas of={Stories.WithRef} sourceState="shown"/>
 
 ## Usage with react-hook-form
 
 You can use this input with [react-hook-form](https://react-hook-form.com/docs)
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-input--react-hook-form"/>
-</Canvas>
+<Canvas of={Stories.ReactHookForm} sourceState="shown"/>
 
 ## Props
 

@@ -2,6 +2,7 @@ import { Canvas, Meta, Source, ArgTypes } from '@storybook/blocks';
 import { DataGrid } from './index';
 import { SimpleDataGrid } from './SimpleDataGrid';
 import { DataList } from './DataList';
+
 import * as Stories from './index.stories';
 
 <Meta of={Stories}/>
@@ -11,9 +12,7 @@ import * as Stories from './index.stories';
 Cunningham provides a DataGrid component that can be used to display data in a tabular format. The DataGrid component
 is built on top of [Tan Stack Table](https://tanstack.com/table/v8). It can be used for client only data or server side data.
 
-<Canvas>
-  <Story id="components-datagrid--full-server-side"/>
-</Canvas>
+<Canvas of={Stories.FullServerSide}/>
 
 ## Get Started
 
@@ -39,9 +38,7 @@ This component is a wrapper around the more complicated DataGrid component. It i
 
 Here a quick usage example
 
-<Canvas sourceState="shown">
-  <Story id="components-datagrid--data-list-only"/>
-</Canvas>
+<Canvas sourceState="shown" of={Stories.DataListOnly}/>
 
 ### Props
 
@@ -62,9 +59,7 @@ Sorting etc ...
 
 Take a look at the following example that renders a table of users.
 
-<Canvas sourceState="shown">
-  <Story id="components-datagrid--client-side-without-pagination"/>
-</Canvas>
+<Canvas sourceState="shown" of={Stories.ClientSideWithoutPagination}/>
 
 As you can see in this example there is no pagination, but we can simply add it by adding a `defaultPaginationParams` props.
 We will also enable a default sorting on the `price` column with the `defaultSortModel` props, along with the row selection
@@ -73,9 +68,7 @@ with `enableRowSelection`, `rowSelection` and `onRowSelectionChange` props.
 > Please click on checkboxes to select rows to see hows the `onRowSelectionChange` prop works, selected ids are displayed
 below the table.
 
-<Canvas sourceState="shown">
-  <Story id="components-datagrid--client-side-with-pagination"/>
-</Canvas>
+<Canvas sourceState="shown" of={Stories.ClientSideWithPagination}/>
 
 As you can see, with `SimpleDataGrid` you can easily add pagination, sorting without have to worry about controlling
 their states.
@@ -93,9 +86,7 @@ pagination, sorting etc ...
 Please take a look at the following example that simulates a server side data that's re-fetched on each page and sorting
 change.
 
-<Canvas sourceState="shown">
-  <Story id="components-datagrid--full-server-side"/>
-</Canvas>
+<Canvas sourceState="shown" of={Stories.FullServerSide}/>
 
 As you can see, in this example the pagination and sorting are now controlled, this is more verbose but gives you more
 control over the state of the table, like being able to use `useEffect` to fetch data when the state changes.
@@ -151,17 +142,13 @@ outside the grid component ( for example to delete selected rows ).
 The component provides out of the box a loading state that can be enabled by setting the `isLoading` props to `true`.
 So feel free to use it between page or sorting changes when you are fetching data from a server.
 
-<Canvas sourceState="shown">
-  <Story id="components-datagrid--loading"/>
-</Canvas>
+<Canvas sourceState="shown" of={Stories.Loading}/>
 
 ## Empty State
 
 The component automatically displays an empty state when there is no data to display and it is not loading.
 
-<Canvas sourceState="shown">
-  <Story id="components-datagrid--empty"/>
-</Canvas>
+<Canvas sourceState="shown" of={Stories.Empty}/>
 
 ## Actions alignment
 

@@ -11,9 +11,7 @@ for synchronous loading as well as asynchronous loading. You can paginate your a
 fetch it from a server, the component is really versatile.
 
 
-<Canvas sourceState="none">
-  <Story id="components-pagination--basic"/>
-</Canvas>
+<Canvas sourceState="none" of={Stories.Basic}/>
 
 <Source
   language='ts'
@@ -31,9 +29,7 @@ The most basic usage you can make of it is this one, defining a pagination with 
 
 ### Basic
 
-<Canvas sourceState="shown">
-  <Story id="components-pagination--basic"/>
-</Canvas>
+<Canvas sourceState="none" of={Stories.Basic}/>
 
 
 ### List of items
@@ -41,17 +37,13 @@ The most basic usage you can make of it is this one, defining a pagination with 
 But this won't make you really happy if you want to paginate your list of items, so you can wire things a bit better.
 Let's make a component that paginate a list of random number.
 
-<Canvas sourceState="shown">
-  <Story id="components-pagination--list"/>
-</Canvas>
+<Canvas sourceState="none" of={Stories.List}/>
 
 ### Set page programmatically
 
 You can also set the page programmatically, for example, if you want to use a query parameter to set the page.
 
-<Canvas sourceState="shown">
-  <Story id="components-pagination--force-page"/>
-</Canvas>
+<Canvas sourceState="none" of={Stories.ForcePage}/>
 
 
 ### Hide go to input

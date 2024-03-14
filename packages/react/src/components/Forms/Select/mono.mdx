@@ -11,9 +11,7 @@ using [Downshift](https://www.downshift-js.com/), so that mean there is no `sele
 
 > You can also use the [multi version](?path=/docs/components-forms-select-multi--docs) if you need
 
-<Canvas>
-  <Story id="components-forms-select-mono--uncontrolled"/>
-</Canvas>
+<Canvas of={Stories.Uncontrolled}/>
 
 ## Options
 
@@ -36,9 +34,7 @@ As you can see the `value` is optional, if not provided, the `label` will be use
 
 You can enable the text live filtering simply by using the `searchable` props.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-select-mono--searchable-uncontrolled"/>
-</Canvas>
+<Canvas of={Stories.SearchableUncontrolled} />
 
 > You can use `onSearchInputChange` to get the value of the input when the user is typing.
 
@@ -46,54 +42,38 @@ You can enable the text live filtering simply by using the `searchable` props.
 
 You can use the following props to change the state of the Select component by using the `state` props.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-select-mono--success"/>
-</Canvas>
-
-<Canvas sourceState="shown">
-  <Story id="components-forms-select-mono--error"/>
-</Canvas>
+<Canvas of={Stories.Success}/>
+<Canvas of={Stories.Error}/>
 
 ## Disabled
 
 As a regular select, you can disable it by using the `disabled` props.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-select-mono--disabled"/>
-</Canvas>
+<Canvas of={Stories.Disabled}/>
 
 ## Texts
 
 As the component uses [Field](?path=/docs/components-forms-field--docs), you can use the `text` props to provide a description of the checkbox.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-select-mono--with-text"/>
-</Canvas>
+<Canvas of={Stories.WithText}/>
 
 ## Width
 
 By default, the select has a default width, like all inputs. But you can force it to take the full width of its container by using the `fullWidth` props.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-select-mono--full-width"/>
-</Canvas>
+<Canvas of={Stories.FullWidth}/>
 
 ## Clearable
 
 By default, the select is clearable ( the cross icon on the right is shown ). You can disable it by using the `clearable` props.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-select-mono--not-clearable"/>
-</Canvas>
-
+<Canvas of={Stories.NotClearable}/>
 
 ## Disabled options
 
 You can disable some options by using the `disabled` props on the `Option` object.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-select-mono--disabled-options"/>
-</Canvas>
+<Canvas of={Stories.DisabledOptions}/>
 
 ## Hide label
 
@@ -101,9 +81,7 @@ For some reasons you might want to hide the label of the select. You can do that
 
 > It is important for accessibility to always have a label for your inputs. Keep in mind that setting `hideLabel` to `true`, will only hide the label visually, but it will still be available for screen readers in the DOM.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-select-mono--hidden-label"/>
-</Canvas>
+<Canvas of={Stories.HiddenLabel}/>
 
 ## Custom render option
 
@@ -114,26 +92,20 @@ You can give customize the look of the options by providing `render` callback.
 Feel free to use the attribute `showLabelWhenSelected` to choose whether you want to display selected option with the custom
 HTML or with its `label`. It is set to `true` by default.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-select-mono--custom-render"/>
-</Canvas>
+<Canvas of={Stories.CustomRender}/>
 
 ## Controlled / Non Controlled
 
 Like a native select, you can use the Select component in a controlled or non controlled way. You can see the example below
 using the component in a controlled way.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-select-mono--controlled"/>
-</Canvas>
+<Canvas of={Stories.Controlled}/>
 
 ## Usage with react-hook-form
 
 You can use this input with [react-hook-form](https://react-hook-form.com/docs)
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-select-mono--react-hook-form"/>
-</Canvas>
+<Canvas of={Stories.ReactHookForm}/>
 
 ## Props
 
@@ -172,9 +144,7 @@ See also [Field](?path=/story/components-forms-field-doc--page)
 
 ## Form Example
 
-<Canvas>
-  <Story id="components-forms-select-mono--form-example"/>
-</Canvas>
+<Canvas of={Stories.FormExample}/>
 
 ##
 

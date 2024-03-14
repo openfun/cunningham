@@ -23,19 +23,13 @@ You can use icons within the button by passing the icon name as a prop.
 
 > Use the attribute `iconPosition` to position the icon on the left or right side of the button. The default is `left`.
 
-<Canvas sourceState="shown">
-  <Story id="components-button--icon-left"/>
-</Canvas>
+<Canvas sourceState="shown" of={Stories.IconLeft}/>
 
-<Canvas sourceState="shown">
-  <Story id="components-button--icon-right"/>
-</Canvas>
+<Canvas sourceState="shown" of={Stories.IconRight}/>
 
 You can also use button with only an icon.
 
-<Canvas sourceState="shown">
-  <Story id="components-button--icon-only"/>
-</Canvas>
+<Canvas sourceState="shown" of={Stories.IconOnly}/>
 
 ## Disabled
 
@@ -43,42 +37,28 @@ The button can be disabled. The disabled button will render the same no matter w
 
 > Keep in the mind that a disabled button will never call `onClick` if it is provided.
 
-<Canvas sourceState="shown">
-  <Story id="components-button--disabled"/>
-</Canvas>
+<Canvas sourceState="shown" of={Stories.Disabled}/>
 
 ## Full width
 
 The button can be set to full width. You can use the `fullWidth` prop to do so.
 
-<Canvas sourceState="shown">
-  <Story id="components-button--full-width"/>
-</Canvas>
-<Canvas sourceState="shown">
-  <Story id="components-button--full-width-with-icon"/>
-</Canvas>
+<Canvas sourceState="shown" of={Stories.FullWidth}/>
+<Canvas sourceState="shown" of={Stories.FullWidthWithIcon}/>
 
 ## Size
 
 You can adjust the size of the button by using the `size` prop. Default value is `medium`.
 
-<Canvas sourceState="shown">
-  <Story id="components-button--primary"/>
-</Canvas>
-<Canvas sourceState="shown">
-  <Story id="components-button--small"/>
-</Canvas>
-<Canvas sourceState="shown">
-  <Story id="components-button--nano"/>
-</Canvas>
+<Canvas sourceState="shown" of={Stories.Primary}/>
+<Canvas sourceState="shown" of={Stories.Small}/>
+<Canvas sourceState="shown" of={Stories.Nano}/>
 
 ## Props
 
 You can use all the props of the native html `<button>` element props plus the following.
 
 <ArgTypes of={Button} />
-
-
 
 ## Design tokens
 

@@ -1,6 +1,7 @@
-import { Canvas, Story, Meta, ArgsTable, Source } from '@storybook/addon-docs';
+import { Canvas, Story, Meta, Source } from '@storybook/addon-docs';
 import { Switch } from './index';
 import * as Stories from './index.stories';
+import { ArgTypes } from '@storybook/blocks';
 
 <Meta of={Stories}/>
 
@@ -10,10 +11,7 @@ Cunningham provides a Switch component that can be used in a variety of ways.
 
 > To better understand the Switch component, keep in mind that it is kind of a wrapper around the native HTML checkbox element.
 
-<Canvas>
-  <Story id="components-forms-switch--form-example"/>
-</Canvas>
-
+<Canvas of={Stories.FormExample}/>
 
 ## Label
 
@@ -21,15 +19,11 @@ The `label` props is optional, but you can use it to provide a description of th
 
 **Without label**
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-switch--default"/>
-</Canvas>
+<Canvas of={Stories.Default}/>
 
 **With label**
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-switch--with-label"/>
-</Canvas>
+<Canvas of={Stories.WithLabel}/>
 
 ## Label Side
 
@@ -39,53 +33,34 @@ You can decide where to place the label by using the `labelSide` prop.
 
 **Label on the left (default)**
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-switch--with-label"/>
-</Canvas>
+<Canvas of={Stories.WithLabel}/>
 
 **Label on the right**
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-switch--with-label-right"/>
-</Canvas>
+<Canvas of={Stories.WithLabelRight}/>
 
 ## Disabled
 
 You can disable the switch by using the `disabled` prop.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-switch--disabled"/>
-  <Story id="components-forms-switch--disabled-checked"/>
-</Canvas>
+<Canvas of={Stories.Disabled}/>
+<Canvas of={Stories.DisabledChecked}/>
 
 ## States
 
 You can use the following props to change the state of the component by using the `state` props.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-switch--with-text"/>
-</Canvas>
-
-<Canvas sourceState="shown">
-  <Story id="components-forms-switch--success"/>
-</Canvas>
-
-<Canvas sourceState="shown">
-  <Story id="components-forms-switch--error"/>
-</Canvas>
+<Canvas of={Stories.WithText}/>
+<Canvas of={Stories.Success}/>
+<Canvas of={Stories.Error}/>
 
 ## Width
 
 By default, the Switch will automatically take the minimum needed width. But you can force it to take the full width of
 its container by using the `fullWidth` prop.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-switch--full-width"/>
-</Canvas>
-
-<Canvas sourceState="shown">
-  <Story id="components-forms-switch--with-label-right-and-full-width"/>
-</Canvas>
+<Canvas of={Stories.FullWidth}/>
+<Canvas of={Stories.WithLabelRightAndFullWidth}/>
 
 ## Controlled / Non Controlled
 
@@ -95,23 +70,19 @@ In order to control the value of the switch, you can use the `checked` or `defau
 
 > If you use the `defaultChecked` prop, the switch will be uncontrolled.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-switch--controlled"/>
-</Canvas>
+<Canvas of={Stories.Controlled}/>
 
 ## Usage with react-hook-form
 
 You can use this input with [react-hook-form](https://react-hook-form.com/docs)
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-switch--react-hook-form"/>
-</Canvas>
+<Canvas of={Stories.ReactHookForm}/>
 
 ## Props
 
 The props of this component are as close as possible to the native checkbox component. You can see the list of props below.
 
-<ArgsTable of={Switch} />
+<ArgTypes of={Switch} />
 
 ## Design tokens
 
