@@ -7,7 +7,8 @@ import {
   Select,
   Option,
   SelectHandle,
-  SelectProps, OptionAsaCallback, ContextOptionAsaCallback,
+  SelectProps,
+  OptionAsaCallback,
 } from ":/components/Forms/Select/index";
 import { Button } from ":/components/Button";
 import { CunninghamProvider } from ":/components/Provider";
@@ -1019,52 +1020,52 @@ describe("<Select/>", () => {
     });
 
     it("gets the search term using onSearchInputChange through an async function provided as the options prop", async () => {
-      const optionAsaCallback: OptionAsaCallback = async(context)  => new Promise(resolve => {
-        let arrayCities = [
-          {
-            label: "Paris",
-            value: "paris",
-          },
-          {
-            label: "Panama",
-            value: "panama",
-          },
-          {
-            label: "London",
-            value: "london",
-          },
-          {
-            label: "New York",
-            value: "new_york",
-          },
-          {
-            label: "Tokyo",
-            value: "tokyo",
-          },
-        ]
+      const optionAsaCallback: OptionAsaCallback = async (context) =>
+        new Promise((resolve) => {
+          const arrayCities = [
+            {
+              label: "Paris",
+              value: "paris",
+            },
+            {
+              label: "Panama",
+              value: "panama",
+            },
+            {
+              label: "London",
+              value: "london",
+            },
+            {
+              label: "New York",
+              value: "new_york",
+            },
+            {
+              label: "Tokyo",
+              value: "tokyo",
+            },
+          ];
 
-        // simulate a delayed response
-        setTimeout(() => {
-          const searchTerm = context?.search ?? undefined;
+          // simulate a delayed response
+          setTimeout(() => {
+            const stringSearch = context?.search ?? "";
 
-          const filterOptions = (arrayOptions: Option[], searchTerm: string) => arrayOptions
-            .filter(option => option.label.toLocaleLowerCase().includes(searchTerm.toLowerCase())
-          );
+            const filterOptions = (arrayOptions: Option[], search: string) =>
+              arrayOptions.filter((option) =>
+                option.label.toLocaleLowerCase().includes(search.toLowerCase()),
+              );
 
-          let arrayOptions: Option[] = searchTerm ? filterOptions(arrayCities, searchTerm) : arrayCities;
+            const arrayOptions: Option[] = stringSearch
+              ? filterOptions(arrayCities, stringSearch)
+              : arrayCities;
 
-          resolve(arrayOptions);
-        }, 1)
-      })
+            resolve(arrayOptions);
+          }, 1);
+        });
 
       const user = userEvent.setup();
       render(
         <CunninghamProvider>
-          <Select
-            label="City"
-            options={optionAsaCallback}
-            searchable={true}
-          />
+          <Select label="City" options={optionAsaCallback} searchable={true} />
         </CunninghamProvider>,
       );
 

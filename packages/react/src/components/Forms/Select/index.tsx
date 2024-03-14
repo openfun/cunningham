@@ -24,10 +24,12 @@ export type OptionWithoutRender = Omit<BaseOption, "value" | "render"> & {
 export type Option = OptionWithoutRender | OptionWithRender;
 
 export type ContextOptionAsaCallback = {
-  search?: string | undefined
-}
+  search?: string | undefined;
+};
 
-export type OptionAsaCallback = (context: ContextOptionAsaCallback) => Promise<Option[]>;
+export type OptionAsaCallback = (
+  context: ContextOptionAsaCallback,
+) => Promise<Option[]>;
 
 export interface SelectHandle {
   blur: () => void;
