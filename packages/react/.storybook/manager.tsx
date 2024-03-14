@@ -1,7 +1,7 @@
 import { addons, types, useStorybookApi } from '@storybook/manager-api';
 import { getThemeFromGlobals, themes } from './themes';
 import React, { useEffect } from 'react';
-import { useGlobals } from '@storybook/api';
+import { useGlobals } from '@storybook/manager-api';
 
 addons.setConfig({ theme: themes.default });
 
