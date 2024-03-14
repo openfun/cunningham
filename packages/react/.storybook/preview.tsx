@@ -42,7 +42,7 @@ const preview: Preview = {
         },
         options: {
             storySort: (a, b) => {
-                const roots = ['Getting Started', 'Components', 'Migrating'];
+                const roots = ['Getting Started', 'Components', 'Migrating', 'Misc'];
                 const gettingStartedOrder = [
                     'Installation',
                     'First steps',

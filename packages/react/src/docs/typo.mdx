@@ -1,5 +1,5 @@
-import { Canvas, Meta, Story, Source, ArgsTable } from '@storybook/addon-docs';
-import { tokens } from '../cunningham-tokens';
+import { Canvas, Meta, Source } from '@storybook/addon-docs';
+import * as Stories from "./typo.stories";
 
 <Meta title="Getting Started/Typography"/>
 
@@ -20,13 +20,7 @@ You can use custom utility classes to set the font size of an element. These cla
   `}
 />
 
-<Canvas sourceState="none">
-  <div style={{display: "flex", flexDirection: "column", gap: "20px"}}>
-    {Object.keys(tokens.themes.default.theme.font.sizes).map(key => (
-      <div key={key} className={"clr-greyscale-800 fs-" + key}>Using the <code>fs-{key}</code> class</div>
-    ))}
-  </div>
-</Canvas>
+<Canvas sourceState="none" of={Stories.Sizes}/>
 
 You can customize the values of the font size design tokens with the configuration file this way:
 
@@ -67,13 +61,7 @@ You can use custom utility classes to set the font weight of an element. These c
   `}
 />
 
-<Canvas sourceState="none">
-  <div style={{display: "flex", flexDirection: "column", gap: "20px"}}>
-    {Object.keys(tokens.themes.default.theme.font.weights).map(key => (
-      <div key={key} className={"clr-greyscale-800 fs-l fw-" + key}>Using the <code>fw-{key}</code> class</div>
-    ))}
-  </div>
-</Canvas>
+<Canvas sourceState="none" of={Stories.Weights}/>
 
 You can customize the values of the font weight design tokens with the configuration file this way:
 
@@ -118,13 +106,7 @@ class on every dom element.
   `}
 />
 
-<Canvas sourceState="none">
-  <div style={{display: "flex", flexDirection: "column", gap: "20px"}}>
-    {Object.keys(tokens.themes.default.theme.font.families).map(key => (
-    <div key={key} className={"clr-greyscale-800 f-" + key}>Using the <code>f-{key}</code> class</div>
-    ))}
-  </div>
-</Canvas>
+<Canvas sourceState="none" of={Stories.Families}/>
 
 You can customize the values of the font family design tokens with the configuration file this way:
 

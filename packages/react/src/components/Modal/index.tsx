@@ -36,20 +36,19 @@ export const useModal = ({
   };
 };
 
-export interface ModalProps
-  extends PropsWithChildren<{
-    size: ModalSize;
-    isOpen: boolean;
-    onClose: () => void;
-    leftActions?: React.ReactNode;
-    rightActions?: React.ReactNode;
-    actions?: React.ReactNode;
-    title?: ReactNode;
-    titleIcon?: React.ReactNode;
-    hideCloseButton?: boolean;
-    closeOnClickOutside?: boolean;
-    preventClose?: boolean;
-  }> {}
+export type ModalProps = PropsWithChildren & {
+  size: ModalSize;
+  isOpen: boolean;
+  onClose: () => void;
+  leftActions?: React.ReactNode;
+  rightActions?: React.ReactNode;
+  actions?: React.ReactNode;
+  title?: ReactNode;
+  titleIcon?: React.ReactNode;
+  hideCloseButton?: boolean;
+  closeOnClickOutside?: boolean;
+  preventClose?: boolean;
+};
 
 export const Modal = (props: ModalProps) => {
   /**
@@ -157,7 +156,11 @@ export const ModalInner = (props: ModalProps) => {
   );
 };
 
-const ModalFooter = ({ leftActions, rightActions, actions }: ModalProps) => {
+const ModalFooter = ({
+  leftActions,
+  rightActions,
+  actions,
+}: Pick<ModalProps, "leftActions" | "rightActions" | "actions">) => {
   if ((leftActions || rightActions) && actions) {
     throw new Error("Cannot use leftActions or rightActions with actions");
   }
