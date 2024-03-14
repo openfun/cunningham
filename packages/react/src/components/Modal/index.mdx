@@ -9,9 +9,7 @@ import { Modal } from './index';
 
 Cunningham provides a versatile Modal component for displaying any kind of information.
 
-<Canvas>
-  <Story of={Stories.ThreeButtons} inline={false}/>
-</Canvas>
+<Canvas of={Stories.ThreeButtons} story={{inline: false}}/>
 
 <Source
   language='ts'
@@ -98,36 +96,25 @@ You can set the size of the modal by passing the `size` prop.
 
 ### Small
 
-
-<Canvas>
-  <Story of={Stories.Small} inline={false}/>
-</Canvas>
+<Canvas of={Stories.Small} story={{inline: false}}/>
 
 ### Medium
 
-<Canvas>
-  <Story of={Stories.Medium} inline={false}/>
-</Canvas>
+<Canvas of={Stories.Medium} story={{inline: false}}/>
 
 ### Large
 
-<Canvas>
-  <Story of={Stories.Large} inline={false}/>
-</Canvas>
+<Canvas of={Stories.Large} story={{inline: false}}/>
 
 ### Full
 
-<Canvas>
-  <Story of={Stories.FullWithContent} inline={false}/>
-</Canvas>
+<Canvas of={Stories.FullWithContent} story={{inline: false}}/>
 
 ## Close button
 
 You can hide the close button by passing the `hideCloseButton` prop.
 
-<Canvas>
-  <Story of={Stories.HideCloseButton} inline={false}/>
-</Canvas>
+<Canvas of={Stories.HideCloseButton} story={{inline: false}}/>
 
 ## Buttons
 
@@ -135,42 +122,32 @@ You can hide the close button by passing the `hideCloseButton` prop.
 
 You can add buttons on the right side of the modal by passing the `rightActions` prop.
 
-<Canvas>
-  <Story of={Stories.PrimaryButton} inline={false}/>
-</Canvas>
+<Canvas of={Stories.PrimaryButton} story={{inline: false}}/>
 
 ### Left buttons
 
 You can add buttons on the left side of the modal by passing the `leftActions` prop.
 
-<Canvas>
-  <Story of={Stories.ThreeButtons} inline={false}/>
-</Canvas>
+<Canvas of={Stories.ThreeButtons} story={{inline: false}}/>
 
 ### Center buttons
 
 You can add buttons on the center of the modal by passing the `actions` prop.
 
-<Canvas>
-  <Story of={Stories.CenterButtons} inline={false}/>
-</Canvas>
+<Canvas of={Stories.CenterButtons} story={{inline: false}}/>
 
 ## Icon
 
 You can add an icon to the modal by passing the `titleIcon` prop.
 
-<Canvas>
-  <Story of={Stories.ExampleApplication} inline={false}/>
-</Canvas>
+<Canvas of={Stories.ExampleApplication} story={{inline: false}}/>
 
 ## Close on click outside
 
 By default, the modal will not be closed when you click outside of it in order to match the default behavior of the `<dialog/>` element.
 You can change this behavior by passing the `closeOnClickOutside` prop.
 
-<Canvas>
-  <Story of={Stories.CloseOnClickOutside} inline={false}/>
-</Canvas>
+<Canvas of={Stories.CloseOnClickOutside} story={{inline: false}}/>
 
 ## Pre Built Modals
 
@@ -208,15 +185,11 @@ const App = () => {
 
 ### Confirmation modal
 
-<Canvas>
-  <Story of={PreBuiltStories.ConfirmationModal} inline={false}/>
-</Canvas>
+<Canvas of={PreBuiltStories.ConfirmationModal} story={{inline: false}}/>
 
 ### Delete confirmation modal
 
-<Canvas>
-  <Story of={PreBuiltStories.DeleteConfirmationModal} inline={false}/>
-</Canvas>
+<Canvas of={PreBuiltStories.DeleteConfirmationModal} story={{inline: false}}/>
 
 ### Message modal
 
@@ -224,21 +197,11 @@ This modal can be used to display a message to the user. It is possible to use m
 
 #### Neutral
 
-<Canvas>
-  <Story of={PreBuiltStories.NeutralModal} inline={false}/>
-</Canvas>
-<Canvas>
-  <Story of={PreBuiltStories.SuccessModal} inline={false}/>
-</Canvas>
-<Canvas>
-  <Story of={PreBuiltStories.InfoModal} inline={false}/>
-</Canvas>
-<Canvas>
-  <Story of={PreBuiltStories.ErrorModal} inline={false}/>
-</Canvas>
-<Canvas>
-  <Story of={PreBuiltStories.WarningModal} inline={false}/>
-</Canvas>
+<Canvas of={PreBuiltStories.NeutralModal} story={{inline: false}}/>
+<Canvas of={PreBuiltStories.SuccessModal} story={{inline: false}}/>
+<Canvas of={PreBuiltStories.InfoModal} story={{inline: false}}/>
+<Canvas of={PreBuiltStories.ErrorModal} story={{inline: false}}/>
+<Canvas of={PreBuiltStories.WarningModal} story={{inline: false}}/>
 
 ## Props
 

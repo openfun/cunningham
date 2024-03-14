@@ -8,9 +8,7 @@ import { Checkbox } from './index';
 
 Cunningham provides a versatile Checkbox component that you can use in your forms.
 
-<Canvas>
-  <Story id="components-forms-checkbox--group"/>
-</Canvas>
+<Canvas of={Stories.Group} />
 
 ## Label
 
@@ -18,80 +16,58 @@ The `label` props is optional, but you can use it to provide a description of th
 
 **Without label**
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-checkbox--default"/>
-</Canvas>
+<Canvas of={Stories.Default} />
 
 **With label**
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-checkbox--with-label"/>
-</Canvas>
+<Canvas of={Stories.WithLabel} />
 
 ## Value
 
 You can set the value of the checkbox in 3 different ways.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-checkbox--default"/>
-  <Story id="components-forms-checkbox--indeterminate"/>
-  <Story id="components-forms-checkbox--checked"/>
-</Canvas>
+<Canvas of={Stories.Default} />
+<Canvas of={Stories.Indeterminate} />
+<Canvas of={Stories.Checked} />
 
 ## Texts
 
 As the component uses [Field](?path=/story/components-forms-field-doc--page), you can use the `text` props to provide a description of the checkbox.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-checkbox--with-texts"/>
-</Canvas>
+<Canvas of={Stories.WithTexts} />
 
 ## Disabled
 
 As a regular checkbox, you can disable it by using the `disabled` props.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-checkbox--disabled"/>
-</Canvas>
+<Canvas of={Stories.Disabled} />
 
 ## States
 
 You can use the following props to change the state of the Input component by using the `state` props.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-checkbox--with-texts"/>
-</Canvas>
+<Canvas of={Stories.WithTexts} />
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-checkbox--success"/>
-</Canvas>
+<Canvas of={Stories.Success} />
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-checkbox--error"/>
-</Canvas>
+<Canvas of={Stories.Error} />
 
 ## Group
 
 It will happen often that you will need to use multiple grouped checkboxes. You can use the `CheckboxGroup` component to do so.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-checkbox--group"/>
-</Canvas>
+<Canvas of={Stories.Group} />
 
 You can also define `state`, `text` props on the group component
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-checkbox--group-error"/>
-  <Story id="components-forms-checkbox--group-success"/>
-</Canvas>
+<Canvas of={Stories.GroupError} />
+<Canvas of={Stories.GroupSuccess} />
 
 ## Usage with react-hook-form
 
 You can use this input with [react-hook-form](https://react-hook-form.com/docs)
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-checkbox--react-hook-form"/>
-</Canvas>
+<Canvas of={Stories.ReactHookForm} />
 
 
 ### Props

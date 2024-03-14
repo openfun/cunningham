@@ -1,9 +1,10 @@
-
-import { Canvas, Meta, Story, Source, ArgsTable } from '@storybook/addon-docs';
+import { Canvas, Meta, Story, Source } from '@storybook/addon-docs';
 import { DatePicker } from "./index";
 import { DateRangePicker } from "./index";
+import * as Stories from "./index.stories"
+import { ArgTypes } from '@storybook/blocks';
 
-<Meta title="Components/Forms/DatePicker/Doc" component={DatePicker}/>
+<Meta of={Stories}/>
 
 
 # DatePicker
@@ -26,16 +27,13 @@ UI components provided by [React-Spectrum](https://react-spectrum.adobe.com/reac
   `}
 />
 
-<Canvas>
-  <Story id="components-forms-datepicker--default"/>
-</Canvas>
+<Canvas of={Stories.Default}/>
+
 
 ## Default value
 You can use the following props to change the default value of the DatePicker component by using the `state` props.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-datepicker--default-value"/>
-</Canvas>
+<Canvas of={Stories.DefaultValue} sourceState="shown"/>
 
 ## Range
 
@@ -65,62 +63,47 @@ Ex: If a `DateRangePicker` is named `"subscription"`, you would access its value
   `}
 />
 
-<Canvas>
-  <Story id="components-forms-datepicker--range-default"/>
-</Canvas>
-
+<Canvas of={Stories.RangeDefault}/>
 
 ## States
 
 You can use the following props to change the state of the DatePicker component by using the `state` props.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-datepicker--error"/>
-  <Story id="components-forms-datepicker--success"/>
-</Canvas>
+<Canvas of={Stories.Error}/>
+<Canvas of={Stories.Success}/>
 
 ## Disabled
 
 As a regular input, you can disable it by using the `disabled` props.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-datepicker--disabled"/>
-  <Story id="components-forms-datepicker--disabled-value"/>
-</Canvas>
+<Canvas of={Stories.Disabled} sourceState="shown"/>
+<Canvas of={Stories.DisabledValue} sourceState="shown"/>
 
 ## Texts
 
 As the component uses [Field](?path=/story/components-forms-field-doc--page), you can use the `text` props to provide a description of the checkbox.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-datepicker--with-text"/>
-</Canvas>
+<Canvas of={Stories.WithText} sourceState="shown"/>
 
 ## Controlled / Non Controlled
 
 Like a native input, you can use the DatePicker component in a controlled or non controlled way. You can see the example below
 using the component in a controlled way.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-datepicker--controlled"/>
-  <Story id="components-forms-datepicker--range-controlled"/>
-</Canvas>
+<Canvas of={Stories.Controlled} sourceState="shown"/>
+<Canvas of={Stories.RangeControlled} sourceState="shown"/>
 
 ## MinValue / MaxValue
 
 You can pass a date range that are valid using the `minValue` and `maxValue` props.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-datepicker--min-max-value"/>
-</Canvas>
+<Canvas of={Stories.MinMaxValue} sourceState="shown"/>
 
 ## Invalid date
 
 When passing an invalid date, for example outside of the valid range, the DatePicker component would render invalid.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-datepicker--invalid-value"/>
-</Canvas>
+<Canvas of={Stories.InvalidValue} sourceState="shown"/>
 
 ## International calendars
 
@@ -131,6 +114,8 @@ By default, the DatePicker component uses the CunninghamProvider locale.
   <Story id="components-forms-datepicker--custom-locale"/>
   <Story id="components-forms-datepicker--cunningham-locale"/>
 </Canvas>
+<Canvas of={Stories.CustomLocale}/>
+<Canvas of={Stories.CunninghamLocale}/>
 
 ## Timezone management
 
@@ -147,11 +132,11 @@ You can see the list of props below.
 
 ### DatePicker
 
-<ArgsTable of={DatePicker} />
+<ArgTypes of={DatePicker} />
 
 ### DateRangePicker
 
-<ArgsTable of={DateRangePicker} />
+<ArgTypes of={DateRangePicker} />
 
 
 ## Design tokens

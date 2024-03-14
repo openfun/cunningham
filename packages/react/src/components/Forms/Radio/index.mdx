@@ -8,9 +8,7 @@ import * as Stories from './index.stories';
 
 Cunningham provides a versatile Radio component that can be used in a variety of ways. The radio component is a form element that allows the user to select one option from a set of options.
 
-<Canvas>
-  <Story id="components-forms-radio--group"/>
-</Canvas>
+<Canvas of={Stories.Group} sourceState="shown"/>
 
 ## Label
 
@@ -18,80 +16,55 @@ The `label` props is optional, but you can use it to provide a description of th
 
 **Without label**
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-radio--default"/>
-</Canvas>
+<Canvas of={Stories.Default} sourceState="shown"/>
 
 **With label**
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-radio--with-label"/>
-</Canvas>
+<Canvas of={Stories.WithLabel} sourceState="shown"/>
 
 ## Value
 
 You can set the value of the radio with the `checked` attribute.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-radio--default"/>
-  <Story id="components-forms-radio--checked"/>
-</Canvas>
+<Canvas of={Stories.Default}/>
+<Canvas of={Stories.Checked}/>
 
 ## Texts
 
 As the component uses [Field](?path=/story/components-forms-field-doc--page), you can use the `text` props to provide a description of the radio.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-radio--with-text"/>
-</Canvas>
+<Canvas of={Stories.WithText} sourceState="shown"/>
 
 ## Disabled
 
 As a regular radio, you can disable it by using the `disabled` props.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-radio--disabled"/>
-</Canvas>
+<Canvas of={Stories.Disabled} sourceState="shown"/>
 
 ## States
 
 You can use the following props to change the state of the Input component by using the `state` props.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-radio--with-text"/>
-</Canvas>
-
-<Canvas sourceState="shown">
-  <Story id="components-forms-radio--success"/>
-</Canvas>
-
-<Canvas sourceState="shown">
-  <Story id="components-forms-radio--error"/>
-</Canvas>
+<Canvas of={Stories.WithText} sourceState="shown"/>
+<Canvas of={Stories.Success} sourceState="shown"/>
+<Canvas of={Stories.Error} sourceState="shown"/>
 
 ## Group
 
 Here is how you can leverage the `RadioGroup` component to create a group of radio buttons.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-radio--group"/>
-</Canvas>
+<Canvas of={Stories.Group} sourceState="shown"/>
 
 You can also define `state`, `text` props on the group component
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-radio--group-error"/>
-  <Story id="components-forms-radio--group-success"/>
-</Canvas>
+<Canvas of={Stories.GroupError} sourceState="shown"/>
+<Canvas of={Stories.GroupSuccess} sourceState="shown"/>
 
 ## Usage with react-hook-form
 
 You can use this radio with [react-hook-form](https://react-hook-form.com/docs)
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-radio--react-hook-form"/>
-</Canvas>
-
+<Canvas of={Stories.ReactHookForm} sourceState="shown"/>
 
 ### Props
 

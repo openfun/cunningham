@@ -8,10 +8,7 @@ import { FileUploader } from './index';
 
 Cunningham provides a file uploader component that you can use in your forms.
 
-
-<Canvas>
-  <Story id="components-forms-fileuploader--mono"/>
-</Canvas>
+<Canvas of={Stories.Mono}/>
 
 <Source
   language='ts'
@@ -24,38 +21,22 @@ Cunningham provides a file uploader component that you can use in your forms.
 
 The file uploader comes with a multi version to handle multiple files.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-fileuploader--multi-wih-files"/>
-</Canvas>
-
+<Canvas of={Stories.MultiWihFiles} sourceState="shown"/>
 
 ## States
 
 You can use the following props to change the state of the FileUploader component by using the `state` props.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-fileuploader--mono-with-file-success"/>
-</Canvas>
-
-<Canvas sourceState="shown">
-  <Story id="components-forms-fileuploader--mono-error"/>
-</Canvas>
-
-<Canvas sourceState="shown">
-  <Story id="components-forms-fileuploader--mono-uploading"/>
-</Canvas>
+<Canvas of={Stories.MultiWithFileSuccess} sourceState="shown"/>
+<Canvas of={Stories.MonoError} sourceState="shown"/>
+<Canvas of={Stories.MonoUploading} sourceState="shown"/>
 
 ## Texts
 
 You can customize displayed texts by using `bigText` and `text` props.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-fileuploader--mono-with-text"/>
-</Canvas>
-
-<Canvas sourceState="shown">
-  <Story id="components-forms-fileuploader--mono-with-big-text"/>
-</Canvas>
+<Canvas of={Stories.MonoWithText} sourceState="shown"/>
+<Canvas of={Stories.MonoWithBigText} sourceState="shown"/>
 
 ## Icons
 
@@ -63,15 +44,9 @@ You can customize the icons used by the FileUploader using `icon`, `successIcon`
 
 > You can also disable the icon animation on hover by using `animateIcon` props.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-fileuploader--mono-custom-icons"/>
-</Canvas>
-<Canvas sourceState="shown">
-  <Story id="components-forms-fileuploader--mono-custom-icons-success"/>
-</Canvas>
-<Canvas sourceState="shown">
-  <Story id="components-forms-fileuploader--mono-custom-icons-uploading"/>
-</Canvas>
+<Canvas of={Stories.MonoCustomIcons} sourceState="shown"/>
+<Canvas of={Stories.MonoCustomIconsSuccess} sourceState="shown"/>
+<Canvas of={Stories.MonoCustomIconsUploading} sourceState="shown"/>
 
 ## Controlled / Non Controlled
 
@@ -83,9 +58,7 @@ You can also reset the input by using the `reset` method available via the ref.
 
 It works the same for multiple or mono version.
 
-<Canvas sourceState="shown">
-  <Story id="components-forms-fileuploader--multi-value"/>
-</Canvas>
+<Canvas of={Stories.MultiValue} sourceState="shown"/>
 
 ## Props
 
