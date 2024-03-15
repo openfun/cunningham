@@ -15,13 +15,20 @@ import {
   SelectMonoAux,
   SubProps,
 } from ":/components/Forms/Select/mono-common";
-import { SelectHandle } from ":/components/Forms/Select";
+import {
+  ContextOptionAsaCallback,
+  Option,
+  OptionAsaCallback,
+  SelectHandle,
+} from ":/components/Forms/Select";
 import { isOptionWithRender } from ":/components/Forms/Select/utils";
 
 export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
   ({ showLabelWhenSelected = true, ...props }, ref) => {
     const { t } = useCunningham();
-    const [optionsToDisplay, setOptionsToDisplay] = useState(props.options);
+    const [optionsToDisplay, setOptionsToDisplay] = useState<Option[]>(
+      Array.isArray(props.options) ? props.options : [],
+    );
     const [hasInputFocused, setHasInputFocused] = useState(false);
     const [inputFilter, setInputFilter] = useState<string>();
     const inputRef = useRef<HTMLInputElement>(null);
@@ -39,6 +46,15 @@ export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
     const [labelAsPlaceholder, setLabelAsPlaceholder] = useState(
       !downshiftReturn.selectedItem,
     );
+
+    const computeOptionsToDisplay = async (
+      context: ContextOptionAsaCallback,
+    ): Promise<void> => {
+      const arrayOptions = await (props.options as OptionAsaCallback)(context);
+
+      setOptionsToDisplay(arrayOptions);
+    };
+
     useEffect(() => {
       if (hasInputFocused || downshiftReturn.inputValue) {
         setLabelAsPlaceholder(false);
@@ -57,30 +73,39 @@ export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
         return;
       }
 
-      const selectedItem = downshiftReturn.selectedItem
-        ? optionToValue(downshiftReturn.selectedItem)
-        : undefined;
+      if (Array.isArray(props.options)) {
+        const selectedItem = downshiftReturn.selectedItem
+          ? optionToValue(downshiftReturn.selectedItem)
+          : undefined;
 
-      const optionToSelect = props.options.find(
-        (option) => optionToValue(option) === props.value,
-      );
+        const optionToSelect = props.options.find(
+          (option) => optionToValue(option) === props.value,
+        );
 
-      // Already selected
-      if (optionToSelect && selectedItem === props.value) {
-        return;
+        // Already selected
+        if (optionToSelect && selectedItem === props.value) {
+          return;
+        }
+
+        downshiftReturn.selectItem(optionToSelect ?? null);
       }
-
-      downshiftReturn.selectItem(optionToSelect ?? null);
     }, [props.value, props.options, inputFilter]);
 
     // Even there is already a value selected, when opening the combobox menu we want to display all available choices.
     useEffect(() => {
       if (downshiftReturn.isOpen) {
-        setOptionsToDisplay(
-          inputFilter
-            ? props.options.filter(getOptionsFilter(inputFilter))
-            : props.options,
-        );
+        if (Array.isArray(props.options))
+          setOptionsToDisplay(
+            inputFilter
+              ? props.options.filter(getOptionsFilter(inputFilter))
+              : props.options,
+          );
+
+        if (typeof props.options === "function") {
+          (async () => {
+            await computeOptionsToDisplay({ search: inputFilter });
+          })();
+        }
       } else {
         setInputFilter(undefined);
       }
@@ -115,6 +140,12 @@ export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
     });
 
     const renderCustomSelectedOption = !showLabelWhenSelected;
+
+    if (typeof props.options === "function") {
+      (async () => {
+        await computeOptionsToDisplay({ search: inputFilter });
+      })();
+    }
 
     return (
       <SelectMonoAux
