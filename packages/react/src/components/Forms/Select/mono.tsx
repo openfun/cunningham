@@ -7,7 +7,9 @@ import { Option, SelectHandle, SelectProps } from ":/components/Forms/Select";
 
 export const SelectMono = forwardRef<SelectHandle, SelectProps>(
   (props, ref) => {
-    const arrayOptions = Array.isArray(props.options) ? props.options : [];
+    const arrayOptions: Option[] = Array.isArray(props.options)
+      ? props.options
+      : [];
 
     const defaultSelectedItem = props.defaultValue
       ? arrayOptions.find(

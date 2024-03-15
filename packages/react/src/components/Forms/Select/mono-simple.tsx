@@ -11,14 +11,18 @@ import {
   SelectMonoAux,
   SubProps,
 } from ":/components/Forms/Select/mono-common";
-import { SelectHandle } from ":/components/Forms/Select";
+import { Option, SelectHandle } from ":/components/Forms/Select";
 import { SelectedOption } from ":/components/Forms/Select/utils";
 
 export const SelectMonoSimple = forwardRef<SelectHandle, SubProps>(
   (props, ref) => {
+    const arrayOptions: Option[] = Array.isArray(props.options)
+      ? props.options
+      : [];
+
     const downshiftReturn = useSelect({
       ...props.downshiftProps,
-      items: props.options,
+      items: arrayOptions,
       itemToString: optionToString,
     });
 
@@ -28,7 +32,7 @@ export const SelectMonoSimple = forwardRef<SelectHandle, SubProps>(
         ? optionToValue(downshiftReturn.selectedItem)
         : undefined;
 
-      const optionToSelect = props.options.find(
+      const optionToSelect = arrayOptions.find(
         (option) => optionToValue(option) === props.value,
       );
 
@@ -38,7 +42,7 @@ export const SelectMonoSimple = forwardRef<SelectHandle, SubProps>(
       }
 
       downshiftReturn.selectItem(optionToSelect ?? null);
-    }, [props.value, props.options]);
+    }, [props.value, arrayOptions]);
 
     const wrapperRef = useRef<HTMLElement>(null);
 
@@ -52,6 +56,7 @@ export const SelectMonoSimple = forwardRef<SelectHandle, SubProps>(
     return (
       <SelectMonoAux
         {...props}
+        options={arrayOptions}
         downshiftReturn={{
           ...downshiftReturn,
           wrapperProps: downshiftReturn.getToggleButtonProps({
