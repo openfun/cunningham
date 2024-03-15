@@ -5,7 +5,12 @@ import * as Yup from "yup";
 import { faker } from "@faker-js/faker";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { onSubmit } from ":/components/Forms/Examples/ReactHookForm/reactHookFormUtils";
-import { Select, SelectHandle } from ":/components/Forms/Select";
+import {
+  ContextOptionAsaCallback,
+  Option,
+  Select,
+  SelectHandle,
+} from ":/components/Forms/Select";
 import { Button } from ":/components/Button";
 import {
   getCountryOption,
@@ -129,6 +134,57 @@ export const SearchableUncontrolled = {
   args: {
     label: "Select a city",
     options: OPTIONS,
+    defaultValue: OPTIONS[4].value,
+    searchable: true,
+  },
+};
+
+export const AsyncSearchableUncontrolled = {
+  render: Template,
+
+  args: {
+    label: "Select a city",
+    options: async (context: ContextOptionAsaCallback) =>
+      new Promise((resolve) => {
+        const arrayCities = [
+          {
+            label: "Paris",
+            value: "paris",
+          },
+          {
+            label: "Panama",
+            value: "panama",
+          },
+          {
+            label: "London",
+            value: "london",
+          },
+          {
+            label: "New York",
+            value: "new_york",
+          },
+          {
+            label: "Tokyo",
+            value: "tokyo",
+          },
+        ];
+
+        // simulate a delayed response
+        setTimeout(() => {
+          const stringSearch = context?.search ?? undefined;
+
+          const filterOptions = (arrayOptions: Option[], search: string) =>
+            arrayOptions.filter((option) =>
+              option.label.toLocaleLowerCase().includes(search.toLowerCase()),
+            );
+
+          const arrayOptions: Option[] = stringSearch
+            ? filterOptions(arrayCities, stringSearch)
+            : arrayCities;
+
+          resolve(arrayOptions);
+        }, 500);
+      }),
     defaultValue: OPTIONS[4].value,
     searchable: true,
   },
