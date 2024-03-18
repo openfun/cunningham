@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
 import React, { useEffect } from "react";
-import { faker } from "@faker-js/faker";
 import { Modal, ModalSize, useModal } from ":/components/Modal/index";
 import { Button } from ":/components/Button";
 import { CunninghamProvider } from ":/components/Provider";
+import longLorem from ":/components/Modal/resources/longLorem.json";
 
 const meta: Meta<typeof Modal> = {
   title: "Components/Modal",
@@ -189,6 +189,6 @@ export const FullWithContent: Story = {
         <Button color="primary">Primary</Button>
       </>
     ),
-    children: faker.lorem.lines(400),
+    children: longLorem.text,
   },
 };

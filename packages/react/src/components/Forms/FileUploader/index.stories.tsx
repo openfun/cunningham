@@ -1,6 +1,5 @@
 import { Meta } from "@storybook/react";
 import React, { useEffect, useRef, useState } from "react";
-import { faker } from "@faker-js/faker";
 import {
   FileUploader,
   FileUploaderRefType,
@@ -8,10 +7,10 @@ import {
 import { Button } from ":/components/Button";
 
 const FAKE_FILES = [
-  new File(["42"], faker.lorem.sentence(5) + "pdf"),
-  new File(["42"], faker.lorem.sentence(1) + "pdf"),
-  new File(["42"], faker.lorem.sentence(2) + "pdf"),
-  new File(["42"], faker.lorem.sentence(3) + "pdf"),
+  new File(["42"], "Adhuc civis creber super amita.pdf"),
+  new File(["42"], "CV.pdf"),
+  new File(["42"], "Adhuc civis.pdf"),
+  new File(["42"], "Adhuc civis creber.pdf"),
 ];
 
 const meta: Meta<typeof FileUploader> = {

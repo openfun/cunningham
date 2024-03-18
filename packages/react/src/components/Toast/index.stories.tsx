@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
 import React, { useEffect } from "react";
-import { faker } from "@faker-js/faker";
 import { ProgressBar, Toast } from ":/components/Toast/index";
 import { Button } from ":/components/Button";
 import { useToastProvider } from ":/components/Toast/ToastProvider";
@@ -31,7 +30,7 @@ export const Demo: Story = {
     ];
 
     useEffect(() => {
-      toast(faker.lorem.sentence({ min: 5, max: 10 }), VariantType.SUCCESS, {
+      toast("Adhuc civis creber super amita", VariantType.SUCCESS, {
         primaryLabel: "Read more",
         primaryOnClick: () => {
           // eslint-disable-next-line no-alert
@@ -45,7 +44,7 @@ export const Demo: Story = {
         <Button
           onClick={() => {
             const type = TYPES[Math.floor(Math.random() * TYPES.length)];
-            toast(faker.lorem.sentence({ min: 5, max: 10 }), type, {
+            toast("Adhuc civis creber super amita", type, {
               primaryLabel: "Primary",
               primaryOnClick: () => {
                 // eslint-disable-next-line no-alert
