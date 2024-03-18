@@ -3,7 +3,6 @@ import { useForm, FormProvider } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Meta, StoryFn } from "@storybook/react";
-import { faker } from "@faker-js/faker";
 import { onSubmit } from ":/components/Forms/Examples/ReactHookForm/reactHookFormUtils";
 import { Select, SelectHandle } from ":/components/Forms/Select";
 import { Button } from ":/components/Button";
@@ -25,7 +24,18 @@ const Template: StoryFn<typeof Select> = (args) => {
   );
 };
 
-const CITIES = Array.from({ length: 10 }).map(() => faker.location.city());
+const CITIES = [
+  "Woodbury",
+  "Port Gayle",
+  "Geovannichester",
+  "San Rafael",
+  "Conradchester",
+  "Geraldinehaven",
+  "Bofield",
+  "East Ansel",
+  "New Carlo",
+  "West Minnieborough",
+];
 const OPTIONS = CITIES.map((city) => ({
   label: city,
   value: city.toLowerCase(),

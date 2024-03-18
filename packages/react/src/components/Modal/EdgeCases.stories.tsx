@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { faker } from "@faker-js/faker";
 import { Meta } from "@storybook/react";
 import { Button } from ":/components/Button";
 import { CunninghamProvider } from ":/components/Provider";
 import { Modal, ModalSize, useModal } from ":/components/Modal/index";
+import longLorem from ":/components/Modal/resources/longLorem.json";
 
 const meta: Meta = {
   title: "Components/Modal/Edge Cases",
@@ -67,7 +67,7 @@ export const StackedModals = {
             size={ModalSize.LARGE}
             {...modal1}
           >
-            {faker.lorem.lines(400)}
+            {longLorem.text}
           </Modal>
           <Modal
             leftActions={<Button color="tertiary">Tertiary</Button>}
@@ -80,7 +80,7 @@ export const StackedModals = {
             size={ModalSize.MEDIUM}
             {...modal2}
           >
-            {faker.lorem.lines(400)}
+            {longLorem.text}
           </Modal>
           <Modal
             leftActions={<Button color="tertiary">Tertiary</Button>}
@@ -93,7 +93,7 @@ export const StackedModals = {
             size={ModalSize.SMALL}
             {...modal3}
           >
-            {faker.lorem.lines(400)}
+            {longLorem.text}
           </Modal>
           {array.map((i) => (
             <div key={i}>{i}</div>

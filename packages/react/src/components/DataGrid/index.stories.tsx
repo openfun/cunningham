@@ -1,6 +1,9 @@
 import { Meta } from "@storybook/react";
 import React, { useEffect, useMemo, useState } from "react";
-import { faker } from "@faker-js/faker";
+import databaseUsers from ":/components/DataGrid/resources/databaseUsers.json";
+import databaseUsersServer from ":/components/DataGrid/resources/databaseUsersServer.json";
+import databaseCars from ":/components/DataGrid/resources/databaseCars.json";
+import databaseListOnly from ":/components/DataGrid/resources/databaseListOnly.json";
 import { DataGrid, SortModel } from ":/components/DataGrid/index";
 import { usePagination } from ":/components/Pagination";
 import { Button } from ":/components/Button";
@@ -84,17 +87,6 @@ export const Loading = () => {
 };
 
 export const ClientSideWithoutPagination = () => {
-  const database = useMemo(
-    () =>
-      Array.from(Array(23)).map(() => ({
-        id: faker.string.uuid(),
-        firstName: faker.person.firstName(),
-        lastName: faker.person.lastName(),
-        email: faker.internet.email(),
-        address: faker.location.streetAddress(),
-      })),
-    [],
-  );
   return (
     <SimpleDataGrid
       columns={[
@@ -129,23 +121,12 @@ export const ClientSideWithoutPagination = () => {
           ),
         },
       ]}
-      rows={database}
+      rows={databaseUsers}
     />
   );
 };
 
 export const ClientSideWithPagination = () => {
-  const database = useMemo(
-    () =>
-      Array.from(Array(23)).map(() => ({
-        id: faker.string.uuid(),
-        carName: faker.company.name(),
-        year: faker.date.past().getFullYear(),
-        price: +faker.commerce.price({ min: 5000, max: 5005 }),
-      })),
-    [],
-  );
-
   const [rowSelection, setRowSelection] = useState({});
 
   return (
@@ -167,7 +148,7 @@ export const ClientSideWithPagination = () => {
             highlight: true,
           },
         ]}
-        rows={database}
+        rows={databaseCars}
         defaultPaginationParams={{
           pageSize: 5,
         }}
@@ -187,18 +168,7 @@ export const ClientSideWithPagination = () => {
 };
 
 export const FullServerSide = () => {
-  const database = useMemo(
-    () =>
-      Array.from(Array(191)).map(() => ({
-        id: faker.string.uuid(),
-        firstName: faker.person.firstName(),
-        lastName: faker.person.lastName(),
-        email: faker.internet.email(),
-        address: faker.location.streetAddress(),
-        country: faker.location.countryCode(),
-      })),
-    [],
-  );
+  const database = useMemo(() => [...databaseUsersServer], []);
   const [rowSelection, setRowSelection] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const pagination = usePagination({ defaultPage: 10 });
@@ -304,19 +274,9 @@ export const FullServerSide = () => {
 };
 
 export const DataListOnly = () => {
-  const database = useMemo(
-    () =>
-      Array.from(Array(5)).map((_value, index) => ({
-        id: `list key for element ${index}`,
-        title: faker.word.sample(),
-        date: faker.date.past({ years: 1 }).toISOString(),
-      })),
-    [],
-  );
-
   return (
     <DataList
-      rows={database}
+      rows={databaseListOnly}
       columns={[
         { field: "title" },
         { field: "date" },
@@ -337,17 +297,6 @@ export const DataListOnly = () => {
 };
 
 export const WithColumnWidth = () => {
-  const database = useMemo(
-    () =>
-      Array.from(Array(23)).map(() => ({
-        id: faker.string.uuid(),
-        firstName: faker.person.firstName(),
-        lastName: faker.person.lastName(),
-        email: faker.internet.email(),
-        address: faker.location.streetAddress(),
-      })),
-    [],
-  );
   return (
     <SimpleDataGrid
       columns={[
@@ -385,7 +334,7 @@ export const WithColumnWidth = () => {
           ),
         },
       ]}
-      rows={database}
+      rows={databaseUsersServer}
     />
   );
 };
