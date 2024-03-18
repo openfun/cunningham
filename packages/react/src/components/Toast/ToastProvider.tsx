@@ -1,4 +1,5 @@
 import React, { PropsWithChildren, useContext, useMemo, useRef } from "react";
+import isChromatic from "chromatic/isChromatic";
 import { Toast, ToastProps } from ":/components/Toast/index";
 import { tokens } from ":/cunningham-tokens";
 import { Queue } from ":/utils/Queue";
@@ -100,7 +101,7 @@ export const ToastProvider = ({ children }: PropsWithChildren) => {
 
     // PLAY
     // We need to check if the animate function exists because it's not available in some testing environments ( like jest-dom )
-    if (typeof container.current.animate === "function") {
+    if (typeof container.current.animate === "function" && !isChromatic()) {
       container.current.animate(
         [
           { transform: `translateY(${invert}px)` },

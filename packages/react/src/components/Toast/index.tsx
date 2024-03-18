@@ -6,6 +6,7 @@ import React, {
   useRef,
 } from "react";
 import classNames from "classnames";
+import isChromatic from "chromatic/isChromatic";
 import { Button, ButtonProps } from ":/components/Button";
 import { iconFromType, VariantType } from ":/utils/VariantUtils";
 
@@ -105,6 +106,9 @@ export const ProgressBar = ({ duration }: { duration: number }) => {
   const content = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (isChromatic()) {
+      return;
+    }
     content.current!.animate([{ width: "0%" }, { width: "100%" }], {
       duration,
       easing: "linear",
