@@ -1,0 +1,5 @@
+{
+  "projectId": "<PROJECT ID>",
+  "zip": true,
+  "storybookBaseDir": "packages/react"
+}
