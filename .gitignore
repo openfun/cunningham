@@ -29,3 +29,5 @@ vite.config.ts.timestamp-*
 env.d
 .turbo
 ghpages-output
+
+packages/react/chromatic.config.json

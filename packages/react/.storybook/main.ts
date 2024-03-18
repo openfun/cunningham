@@ -20,6 +20,7 @@ const config: StorybookConfig = {
         },
       },
     },
+    "@chromatic-com/storybook"
   ],
 
   framework: {
