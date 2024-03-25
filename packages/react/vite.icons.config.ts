@@ -5,6 +5,7 @@ export default defineConfig({
   build: {
     emptyOutDir: false,
     outDir: "dist",
+    copyPublicDir: false,
     lib: {
       entry: {
         icons: "./src/icons.scss",

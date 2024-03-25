@@ -49,6 +49,7 @@ export default defineConfig(({ mode }) => {
           },
         },
       },
+      copyPublicDir: false,
       ...buildOptions,
     },
     plugins: [
