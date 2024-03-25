@@ -32,3 +32,13 @@ addons.register('theme-synchronizer', () => {
         },
     });
 });
+
+addons.setConfig({
+    sidebar: {
+        filters: {
+            hidden: item => {
+                return !item.title.startsWith('Misc/');
+            }
+        }
+    }
+});
