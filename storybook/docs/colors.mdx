@@ -1,0 +1,75 @@
+import { Canvas, Meta, Source } from '@storybook/addon-docs';
+import * as Stories from './colors.stories.tsx';
+
+<Meta title="Getting Started/Colors"/>
+
+export const colors = ['primary', 'secondary', 'greyscale', 'success', 'info', 'warning', 'danger'];
+export const tints = [900, 800, 700, 600, 500, 400, 300, 200, 100];
+
+# Colors
+
+Cunningham comes with an existing toolkit to deal with colors, and it's easy. 🎨
+
+## Background color
+
+You can use custom utility classes to set the background color of an element. These classes are named using the format `.bg-{color}`.
+
+<Source
+  language='tsx'
+  dark
+  format={false}
+  code={`
+  <div className="bg-primary-500"></div>
+  `}
+/>
+
+You can find all existing classes below.
+
+<Canvas sourceState="none" of={Stories.BackgroundColors}/>
+
+## Text color
+
+You can use custom utility classes to set the color attribute of an element. These classes are named using the format `.clr-{color}`.
+
+<Source
+  language='tsx'
+  dark
+  format={false}
+  code={`
+  <div className="clr-primary-500">Nice primary-500 colored text</div>
+  `}
+/>
+
+You can find all existing classes below.
+
+<Canvas sourceState="none" of={Stories.TextColors}/>
+
+Pay attention the special `{color}-text` variation. Each color must have a text color variation, which is supposed to
+render readable text on top of a -500 background of its own color variation. Please check out the following examples:
+
+<Canvas sourceState="none" of={Stories.Example}/>
+
+## Customize
+
+You can customize the values of the color design tokens with the configuration file this way:
+
+<Source
+  language='ts'
+  dark
+  format={true}
+  code={`
+  // cunningham.ts|cjs
+  export default {
+    themes: {
+      default: {
+        theme: {
+          colors: {
+            'primary-500': 'purple', // You can customize the existing primary-500 color. ( bg-primary-500, clr-primary-500 classes ),
+            'primary-text': 'cream',
+            'amazing-500': 'pink', // You can add a new color. ( bg-amazing-500, clr-amazing-500 classes will be generated )
+        },
+      },
+    },
+  }
+  `}
+/>

@@ -1,0 +1,146 @@
+import { Canvas, Meta, Story, Source, ArgTypes } from '@storybook/blocks';
+import { Input } from "./index";
+import * as Stories from './index.stories';
+import * as InputPasswordStories from './InputPassword.stories';
+
+<Meta of={Stories}/>
+
+# Input
+
+Cunningham provides a versatile Input component that you can use in your forms.
+
+<Canvas of={Stories.Default} sourceState="shown"/>
+
+<Source
+  language='ts'
+  dark
+  format={false}
+  code={`import { Input } from "@openfun/cunningham-react";`}
+/>
+
+## States
+
+You can use the following props to change the state of the Input component by using the `state` props.
+
+<Canvas of={Stories.Default} sourceState="shown"/>
+<Canvas of={Stories.Success} sourceState="shown"/>
+<Canvas of={Stories.Error} sourceState="shown"/>
+
+## Disabled
+
+As a regular input, you can disable it by using the `disabled` props.
+
+<Canvas of={Stories.DisabledEmpty} sourceState="shown"/>
+<Canvas of={Stories.DisabledFilled} sourceState="shown"/>
+
+## Icons
+
+You can define an icon that will appear on the left side of the input by using the `icon` props.
+
+<Canvas of={Stories.Icon} sourceState="shown"/>
+
+You can also independently add an icon on the right side by using the `rightIcon` props.
+
+<Canvas of={Stories.IconRight} sourceState="shown"/>
+
+## Texts
+
+You can define a text that will appear below the input by using the `text` props.
+
+<Canvas of={Stories.WithText} sourceState="shown"/>
+
+You can also independently add a text on the right side by using the `rightText` props.
+
+<Canvas of={Stories.WithBothTexts} sourceState="shown"/>
+
+## Width
+
+By default, the input has a default width, like all inputs. But you can force it to take the full width of its container by using the `fullWidth` props.
+
+<Canvas of={Stories.FullWidth} sourceState="shown"/>
+
+## Chars Counter
+
+You can display a counter of the number of characters entered in the input by using the `charsCounter` props. Please bare
+in mind to also define `charCounterMax`.
+
+<Canvas of={Stories.CharCounter} sourceState="shown"/>
+
+## Password
+
+You can also use a built-in password input that includes a button to show or hide the password.
+
+<Canvas of={InputPasswordStories.Password} sourceState="shown"/>
+
+## Controlled / Non Controlled
+
+Like a native input, you can use the Input component in a controlled or non controlled way. You can see the example below
+using the component in a controlled way.
+
+<Canvas of={Stories.Controlled} sourceState="shown"/>
+
+## Ref
+
+You can use the `ref` props to get a reference to the input element.
+
+<Canvas of={Stories.WithRef} sourceState="shown"/>
+
+## Usage with react-hook-form
+
+You can use this input with [react-hook-form](https://react-hook-form.com/docs)
+
+<Canvas of={Stories.ReactHookForm} sourceState="shown"/>
+
+## Props
+
+You can use all the props of the native html `<input>` element props plus the following.
+
+<ArgTypes of={Input} />
+
+## Design tokens
+
+Here are the custom design tokens defined by the input.
+
+| Token        	| Description                 	|
+|---------------	|-----------------------------	|
+| font-weight 	| Value font weight 	|
+| font-size        	| Value font size        	|
+| value-color   	| Value color  	|
+| value-color--disabled   	| Value color when disabled  	|
+| border-radius     	| Border radius of the input      	|
+| border-radius--hover   	| Border radius of the input on mouse hover    	|
+| border-radius--focus   	| Border radius of the input when focused    	|
+| border-width   	| Border width of the input    	|
+| border-color   	| Border color of the input    	|
+| border-color--hover   	| Border color of the input on mouse hover   	|
+| border-color--focus   	| Border color of the input when focus   	|
+| border-style   	| Border style of the input  	|
+| label-color--focus | Label color when focused    	|
+
+See also [Field](?path=/story/components-forms-field-doc--page)
+
+## Form Example
+
+<Canvas>
+  <Story id="components-forms-input--form-example"/>
+</Canvas>
+
+##
+
+<img src="components/Forms/Input/resources/dd_1.svg"/>
+
+##
+
+<img src="components/Forms/Input/resources/dd_2.svg"/>
+
+##
+
+<img src="components/Forms/Input/resources/dd_3.svg"/>
+
+##
+
+<img src="components/Forms/Input/resources/dd_4.svg"/>
+
+##
+
+<img src="components/Forms/Input/resources/dd_5.svg"/>
