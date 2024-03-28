@@ -8,6 +8,7 @@ import {
   Option,
   SelectHandle,
   SelectProps,
+  OptionAsaCallback,
 } from ":/components/Forms/Select/index";
 import { Button } from ":/components/Button";
 import { CunninghamProvider } from ":/components/Provider";
@@ -1016,6 +1017,92 @@ describe("<Select/>", () => {
       });
       await user.click(option);
       expect(searchTerm).toBeUndefined();
+    });
+
+    it("gets the search term using onSearchInputChange through an async function provided as the options prop", async () => {
+      const optionAsaCallback: OptionAsaCallback = async (context) =>
+        new Promise((resolve) => {
+          const arrayCities = [
+            {
+              label: "Paris",
+              value: "paris",
+            },
+            {
+              label: "Panama",
+              value: "panama",
+            },
+            {
+              label: "London",
+              value: "london",
+            },
+            {
+              label: "New York",
+              value: "new_york",
+            },
+            {
+              label: "Tokyo",
+              value: "tokyo",
+            },
+          ];
+
+          // simulate a delayed response
+          setTimeout(() => {
+            const stringSearch = context?.search ?? "";
+
+            const filterOptions = (arrayOptions: Option[], search: string) =>
+              arrayOptions.filter((option) =>
+                option.label.toLocaleLowerCase().includes(search.toLowerCase()),
+              );
+
+            const arrayOptions: Option[] = stringSearch
+              ? filterOptions(arrayCities, stringSearch)
+              : arrayCities;
+
+            resolve(arrayOptions);
+          }, 1);
+        });
+
+      const user = userEvent.setup();
+      render(
+        <CunninghamProvider>
+          <Select label="City" options={optionAsaCallback} searchable={true} />
+        </CunninghamProvider>,
+      );
+
+      const input = screen.getByRole("combobox", {
+        name: "City",
+      });
+
+      // It returns the input.
+      expect(input.tagName).toEqual("INPUT");
+
+      const menu: HTMLDivElement = screen.getByRole("listbox", {
+        name: "City",
+      });
+
+      expectMenuToBeClosed(menu);
+
+      // Click on the input.
+      await user.click(input);
+      expectMenuToBeOpen(menu);
+
+      expectOptions(["Paris", "Panama", "London", "New York", "Tokyo"]);
+
+      // Verify that filtering works.
+      await user.type(input, "Pa");
+      expectMenuToBeOpen(menu);
+      expectOptions(["Paris", "Panama"]);
+
+      await user.type(input, "r", { skipClick: true });
+      expectOptions(["Paris"]);
+
+      // Select option.
+      const option: HTMLLIElement = screen.getByRole("option", {
+        name: "Paris",
+      });
+      await user.click(option);
+
+      expect(input).toHaveValue("Paris");
     });
   });
 
