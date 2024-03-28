@@ -1,5 +1,26 @@
 # @openfun/cunningham-react
 
+## 2.7.0
+
+### Minor Changes
+
+- a8ec9fb: add InputPassword
+- f398e51: add width property to DataGrid columns
+- 20f5bb7: make className standard across components
+- 30ec253: make Pagination goto input optionnal
+- 0ef7684: add Tooltip component
+- 8e7300b: add border-radius transition
+- 31fa91e: add empty placeholder customization props
+- 317cab4: add sorting on custom columns
+
+### Patch Changes
+
+- 974f139: add warning on DataGrid when sortModel is missing
+- dd1f2be: remove public files from build
+- b4a6367: fix DataGrid selection checkbox rerendering
+- d63c203: fix CSS end warning usage
+- 25e61c2: add enableSorting support on DataGrid
+
 ## 2.6.0
 
 ### Minor Changes
@@ -359,7 +380,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.6.0...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.7.0...main
+[2.7.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.6.0...@openfun/cunningham-react@2.7.0
 [2.6.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.5.0...@openfun/cunningham-react@2.6.0
 [2.5.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.4.0...@openfun/cunningham-react@2.5.0
 [2.4.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.3.0...@openfun/cunningham-react@2.4.0
