@@ -139,6 +139,22 @@
   &--large {
     width: var(--c--components--modal--width-large);
 
+    @include media(lg) {
+      width: calc(100vw - 4rem);
+    }
+
+    @include media(md) {
+      width: calc(100vw - 2rem);
+    }
+
+    .c__modal__title-icon {
+        --icon-size: 4rem;
+    }
+  }
+
+  &--extra-large {
+    width: var(--c--components--modal--width-extra-large);
+
     @include media(md) {
       width: calc(100vw - 1rem);
     }

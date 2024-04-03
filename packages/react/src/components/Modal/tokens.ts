@@ -15,6 +15,7 @@ export const tokens = (defaults: DefaultTokens) => {
     "content-color": defaults.theme.colors["greyscale-800"],
     "width-small": "300px",
     "width-medium": "600px",
-    "width-large": "75%",
+    "width-large": "800px",
+    "width-extra-large": "75%",
   };
 };

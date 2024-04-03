@@ -56,6 +56,11 @@ export const Large: Story = {
     size: ModalSize.LARGE,
   },
 };
+export const ExtraLarge: Story = {
+  args: {
+    size: ModalSize.EXTRA_LARGE,
+  },
+};
 export const Full: Story = {
   args: {
     size: ModalSize.FULL,
