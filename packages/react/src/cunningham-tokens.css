@@ -137,7 +137,8 @@
 	--c--components--modal--content-color: var(--c--theme--colors--greyscale-800);
 	--c--components--modal--width-small: 300px;
 	--c--components--modal--width-medium: 600px;
-	--c--components--modal--width-large: 75%;
+	--c--components--modal--width-large: 800px;
+	--c--components--modal--width-extra-large: 75%;
 	--c--components--forms-textarea--font-weight: var(--c--theme--font--weights--regular);
 	--c--components--forms-textarea--font-size: var(--c--theme--font--sizes--l);
 	--c--components--forms-textarea--border-radius: 8px;
