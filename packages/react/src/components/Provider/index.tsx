@@ -34,6 +34,7 @@ interface Props extends PropsWithChildren {
   customLocales?: Record<string, TranslationSet>;
   currentLocale?: string;
   theme?: string;
+  modalParentSelector?: () => HTMLElement;
 }
 
 export const DEFAULT_LOCALE = Locales.enUS;
@@ -53,6 +54,7 @@ export const CunninghamProvider = ({
   currentLocale = DEFAULT_LOCALE,
   customLocales,
   theme = DEFAULT_THEME,
+  modalParentSelector,
   children,
 }: Props) => {
   const locales: Record<string, TranslationSet> = useMemo(
@@ -102,7 +104,7 @@ export const CunninghamProvider = ({
 
   return (
     <CunninghamContext.Provider value={context}>
-      <ModalProvider>
+      <ModalProvider modalParentSelector={modalParentSelector}>
         <div className="c__app">
           <ToastProvider>{children}</ToastProvider>
         </div>

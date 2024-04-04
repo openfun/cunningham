@@ -2,7 +2,7 @@ import React, { PropsWithChildren, ReactNode, useEffect } from "react";
 import classNames from "classnames";
 import ReactModal from "react-modal";
 import { Button } from ":/components/Button";
-import { NOSCROLL_CLASS } from ":/components/Modal/ModalProvider";
+import { NOSCROLL_CLASS, useModals } from ":/components/Modal/ModalProvider";
 
 export type ModalHandle = {};
 

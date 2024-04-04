@@ -44,6 +44,7 @@ interface ModalContextType {
     props?: Partial<ConfirmationModalProps>,
   ) => Promise<Decision>;
   messageModal: (props?: Partial<MessageModalProps>) => Promise<Decision>;
+  modalParentSelector?: () => HTMLElement;
 }
 
 const ModalContext = createContext<undefined | ModalContextType>(undefined);
@@ -102,7 +103,14 @@ const ModalContainer = ({
 
 type ModalMap = Map<string, ReactNode>;
 
-export const ModalProvider = ({ children }: PropsWithChildren) => {
+interface ModalProviderProps extends PropsWithChildren {
+  modalParentSelector?: () => HTMLElement;
+}
+
+export const ModalProvider = ({
+  children,
+  modalParentSelector,
+}: ModalProviderProps) => {
   const [modals, setModals] = useState<ModalMap>({} as ModalMap);
 
   useEffect(() => {
@@ -151,6 +159,12 @@ export const ModalProvider = ({ children }: PropsWithChildren) => {
       deleteConfirmationModal: ModalHelper(DeleteConfirmationModal),
       confirmationModal: ModalHelper(ConfirmationModal),
       messageModal: ModalHelper(MessageModal),
+      modalParentSelector: () => {
+        if (modalParentSelector) {
+          return modalParentSelector();
+        }
+        return document.getElementById("c__modals-portal")!;
+      },
     }),
     [],
   );
