@@ -69,6 +69,43 @@ describe("<Modal/>", () => {
     expect(screen.getByText("Modal Content")).toBeInTheDocument();
     expect(app).toHaveAttribute("aria-hidden", "true");
   });
+  it("use modalParentSelector to change the modal portal", async () => {
+    const Wrapper = () => {
+      const modal = useModal();
+      return (
+        <>
+          <CunninghamProvider
+            modalParentSelector={() =>
+              document.querySelector("#my-custom-portal")!
+            }
+          >
+            <button onClick={modal.open}>Open Modal</button>
+            <Modal size={ModalSize.SMALL} {...modal}>
+              <div>Modal Content</div>
+            </Modal>
+          </CunninghamProvider>
+          <div id="my-custom-portal" />
+        </>
+      );
+    };
+
+    render(<Wrapper />);
+    const user = userEvent.setup();
+    const button = screen.getByText("Open Modal");
+    const portal = document.querySelector("#my-custom-portal")!;
+
+    expect(portal.children.length).toEqual(0);
+    expect(screen.queryByText("Modal Content")).not.toBeInTheDocument();
+
+    await user.click(button);
+
+    const content = screen.getByText("Modal Content");
+    expect(content).toBeInTheDocument();
+    expect(portal.children.length).toEqual(1);
+    expect(portal.children[0].className).toEqual("ReactModalPortal");
+    expect(portal.children[0].children.length).toEqual(1);
+    expect(portal).toContain(content);
+  });
   it("closes the modal when clicking on the close button", async () => {
     const Wrapper = () => {
       const modal = useModal();

@@ -21,10 +21,10 @@ const meta: Meta<typeof Modal> = {
       }, []);
 
       return (
-        <CunninghamProvider>
+        <>
           <Button onClick={() => modal.open()}>Open Modal</Button>
           <Story args={{ ...context.args, ...modal }} />
-        </CunninghamProvider>
+        </>
       );
     },
   ],
@@ -195,5 +195,22 @@ export const FullWithContent: Story = {
       </>
     ),
     children: longLorem.text,
+  },
+};
+
+export const CustomParentSelect: Story = {
+  render: () => {
+    return (
+      <CunninghamProvider
+        modalParentSelector={() =>
+          document.querySelector("#my-custom-modal-parent")!
+        }
+      >
+        <Modal isOpen={true} onClose={() => {}} size={ModalSize.MEDIUM}>
+          I am rendered inside #my-custom-modal-parent
+        </Modal>
+        <div id="my-custom-modal-parent" />
+      </CunninghamProvider>
+    );
   },
 };
