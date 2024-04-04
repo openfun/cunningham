@@ -22,7 +22,6 @@ describe("<Modal/>", () => {
     render(<Wrapper />);
     expect(await screen.findByText("Modal Content")).toBeInTheDocument();
   });
-
   it("shows a modal when clicking on the button", async () => {
     const Wrapper = () => {
       const modal = useModal();
@@ -43,6 +42,32 @@ describe("<Modal/>", () => {
     expect(screen.queryByText("Modal Content")).not.toBeInTheDocument();
     await user.click(button);
     expect(screen.getByText("Modal Content")).toBeInTheDocument();
+  });
+  it("sets aria-hidden on app when a modal is opened", async () => {
+    const Wrapper = () => {
+      const modal = useModal();
+      return (
+        <CunninghamProvider>
+          <button onClick={modal.open}>Open Modal</button>
+          <Modal size={ModalSize.SMALL} {...modal}>
+            <div>Modal Content</div>
+          </Modal>
+        </CunninghamProvider>
+      );
+    };
+
+    render(<Wrapper />);
+    const user = userEvent.setup();
+    const button = screen.getByText("Open Modal");
+    const app = document.querySelector(".c__app");
+
+    expect(screen.queryByText("Modal Content")).not.toBeInTheDocument();
+    expect(app).not.toHaveAttribute("aria-hidden", "true");
+
+    await user.click(button);
+
+    expect(screen.getByText("Modal Content")).toBeInTheDocument();
+    expect(app).toHaveAttribute("aria-hidden", "true");
   });
   it("closes the modal when clicking on the close button", async () => {
     const Wrapper = () => {
@@ -118,16 +143,7 @@ describe("<Modal/>", () => {
     await user.click(button);
     expect(screen.getByText("Modal Content")).toBeInTheDocument();
 
-    const modal = screen.getByRole("dialog");
-    // We move the pointer on the edge of the screen in order to simulate the click outside.
-    await user.pointer({
-      coords: {
-        x: 1,
-        y: 1,
-      },
-    });
-
-    await user.click(modal);
+    await user.click(document.querySelector(".c__modal__backdrop")!);
 
     expect(screen.queryByText("Modal Content")).not.toBeInTheDocument();
   });
@@ -292,7 +308,6 @@ describe("<Modal/>", () => {
 
     // Display the modal.
     await user.click(button);
-
     // Modal is open.
     expect(screen.getByText("Are you sure?")).toBeInTheDocument();
     expect(
@@ -452,6 +467,7 @@ describe("<Modal/>", () => {
 
     expect(document.body.classList.contains(NOSCROLL_CLASS)).toBeFalsy();
     await user.click(button);
+
     expect(document.body.classList.contains(NOSCROLL_CLASS)).toBeTruthy();
 
     const closeButton = screen.getByRole("button", {

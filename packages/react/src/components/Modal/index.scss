@@ -8,6 +8,17 @@
   box-shadow: var(--c--components--modal--box-shadow);
   color: var(--c--components--modal--color);
   box-sizing: border-box;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: calc(100% - 2em - 6px);
+  max-height: calc(100% - 2em - 6px);
+  overflow: auto;
+
+  &:focus-visible {
+    outline: none;
+  }
 
   &::backdrop {
     // ::backdrop does not inherit from its element so CSS vars does not work.
@@ -181,6 +192,7 @@
     border: none;
     display: flex;
     flex-direction: column;
+    transform: none;
 
     .c__modal__content {
       flex-grow: 1;

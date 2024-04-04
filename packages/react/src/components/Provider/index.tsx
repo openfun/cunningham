@@ -103,7 +103,9 @@ export const CunninghamProvider = ({
   return (
     <CunninghamContext.Provider value={context}>
       <ModalProvider>
-        <ToastProvider>{children}</ToastProvider>
+        <div className="c__app">
+          <ToastProvider>{children}</ToastProvider>
+        </div>
       </ModalProvider>
     </CunninghamContext.Provider>
   );
