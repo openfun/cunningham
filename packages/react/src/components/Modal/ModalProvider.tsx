@@ -10,6 +10,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
+import ReactModal from "react-modal";
 import {
   DeleteConfirmationModal,
   DeleteConfirmationModalProps,
@@ -104,6 +105,10 @@ type ModalMap = Map<string, ReactNode>;
 export const ModalProvider = ({ children }: PropsWithChildren) => {
   const [modals, setModals] = useState<ModalMap>({} as ModalMap);
 
+  useEffect(() => {
+    ReactModal.setAppElement(".c__app");
+  }, []);
+
   const addModal = (
     component: FunctionComponent<DecisionModalProps>,
     props: Partial<DecisionModalProps>,
@@ -149,28 +154,6 @@ export const ModalProvider = ({ children }: PropsWithChildren) => {
     }),
     [],
   );
-
-  useEffect(() => {
-    const portalElement = document.getElementById("c__modals-portal")!;
-    // Create an observer instance linked to the callback function
-    const observer = new MutationObserver(() => {
-      const dialogs = portalElement.querySelectorAll("dialog");
-      if (dialogs.length > 0) {
-        document.querySelector("body")!.classList.add(NOSCROLL_CLASS);
-      } else {
-        document.querySelector("body")!.classList.remove(NOSCROLL_CLASS);
-      }
-    });
-
-    // Start observing the target node for configured mutations
-    observer.observe(portalElement, {
-      childList: true,
-    });
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
 
   return (
     <ModalContext.Provider value={context}>
