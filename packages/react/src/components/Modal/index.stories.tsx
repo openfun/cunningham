@@ -80,6 +80,12 @@ export const CloseOnClickOutside: Story = {
     closeOnClickOutside: true,
   },
 };
+export const DontCloseOnEsc: Story = {
+  args: {
+    size: ModalSize.MEDIUM,
+    closeOnEsc: false,
+  },
+};
 export const PreventClose: Story = {
   args: {
     size: ModalSize.MEDIUM,

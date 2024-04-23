@@ -209,6 +209,54 @@ describe("<Modal/>", () => {
     await user.click(modal);
     expect(screen.queryByText("Modal Content")).toBeInTheDocument();
   });
+  it("close on esc by default", async () => {
+    const Wrapper = () => {
+      const modal = useModal();
+      return (
+        <CunninghamProvider>
+          <button onClick={modal.open}>Open Modal</button>
+          <Modal size={ModalSize.SMALL} {...modal}>
+            <div>Modal Content</div>
+          </Modal>
+        </CunninghamProvider>
+      );
+    };
+
+    render(<Wrapper />);
+    const user = userEvent.setup();
+    const button = screen.getByText("Open Modal");
+
+    expect(screen.queryByText("Modal Content")).not.toBeInTheDocument();
+    await user.click(button);
+    expect(screen.getByText("Modal Content")).toBeInTheDocument();
+
+    await user.keyboard("{Escape}");
+    expect(screen.queryByText("Modal Content")).not.toBeInTheDocument();
+  });
+  it("does not close on esc when using closeOnEsc=false", async () => {
+    const Wrapper = () => {
+      const modal = useModal();
+      return (
+        <CunninghamProvider>
+          <button onClick={modal.open}>Open Modal</button>
+          <Modal size={ModalSize.SMALL} closeOnEsc={false} {...modal}>
+            <div>Modal Content</div>
+          </Modal>
+        </CunninghamProvider>
+      );
+    };
+
+    render(<Wrapper />);
+    const user = userEvent.setup();
+    const button = screen.getByText("Open Modal");
+
+    expect(screen.queryByText("Modal Content")).not.toBeInTheDocument();
+    await user.click(button);
+    expect(screen.getByText("Modal Content")).toBeInTheDocument();
+
+    await user.keyboard("{Escape}");
+    expect(screen.queryByText("Modal Content")).toBeInTheDocument();
+  });
 
   /**
    * It should also prevent the modal from closing when pressing the escape key, but it appears
