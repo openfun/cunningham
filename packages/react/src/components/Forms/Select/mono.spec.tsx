@@ -756,7 +756,6 @@ describe("<Select/>", () => {
         expectMenuToBeOpen(menu);
 
         expectOptions(["Paris", "Panama"]);
-
         myOptions.shift();
 
         // Rerender the select with the options mutated
@@ -1016,6 +1015,75 @@ describe("<Select/>", () => {
       });
       await user.click(option);
       expect(searchTerm).toBeUndefined();
+    });
+
+    it("updates the selected value label if the option label changes", async () => {
+      const myOptions = [
+        {
+          label: "Paris",
+          value: "paris",
+        },
+        {
+          label: "Panama",
+          value: "panama",
+        },
+        {
+          label: "London",
+          value: "london",
+        },
+      ];
+
+      const Wrapper = ({ options }: { options: Option[] }) => {
+        const [value, setValue] = useState<string | number | undefined>(
+          "paris",
+        );
+        const [onChangeCounts, setOnChangeCounts] = useState(0);
+        return (
+          <CunninghamProvider>
+            <div>
+              <div>Value = {value}|</div>
+              <div>onChangeCounts = {onChangeCounts}|</div>
+              <Select
+                label="City"
+                options={options}
+                value={value}
+                onChange={(e) => {
+                  setValue(e.target.value as string);
+                  setOnChangeCounts(onChangeCounts + 1);
+                }}
+                searchable={true}
+              />
+            </div>
+          </CunninghamProvider>
+        );
+      };
+
+      const { rerender } = render(<Wrapper options={myOptions} />, {
+        wrapper: CunninghamProvider,
+      });
+
+      const input = screen.getByRole("combobox", {
+        name: "City",
+      });
+      expect(input).toHaveValue("Paris");
+      screen.getByText("Value = paris|");
+      screen.getByText("onChangeCounts = 0|");
+
+      rerender(
+        <Wrapper
+          options={[
+            {
+              label: "Paname",
+              value: "paris",
+            },
+            ...myOptions.slice(1),
+          ]}
+        />,
+      );
+
+      await waitFor(() => expect(input).toHaveValue("Paname"));
+      screen.getByText("Value = paris|");
+      screen.getByText("onChangeCounts = 0|");
     });
   });
 
@@ -1840,6 +1908,72 @@ describe("<Select/>", () => {
       expect(valueRendered).toHaveTextContent("");
       screen.getByText("Value = |");
       screen.getByText("onChangeCounts = 2|");
+    });
+
+    it("updates the selected value label if the option label changes", async () => {
+      const myOptions = [
+        {
+          label: "Paris",
+          value: "paris",
+        },
+        {
+          label: "Panama",
+          value: "panama",
+        },
+        {
+          label: "London",
+          value: "london",
+        },
+      ];
+
+      const Wrapper = ({ options }: { options: Option[] }) => {
+        const [value, setValue] = useState<string | number | undefined>(
+          "paris",
+        );
+        const [onChangeCounts, setOnChangeCounts] = useState(0);
+        return (
+          <CunninghamProvider>
+            <div>
+              <div>Value = {value}|</div>
+              <div>onChangeCounts = {onChangeCounts}|</div>
+              <Select
+                label="City"
+                options={options}
+                value={value}
+                onChange={(e) => {
+                  setValue(e.target.value as string);
+                  setOnChangeCounts(onChangeCounts + 1);
+                }}
+              />
+            </div>
+          </CunninghamProvider>
+        );
+      };
+
+      const { rerender } = render(<Wrapper options={myOptions} />, {
+        wrapper: CunninghamProvider,
+      });
+
+      const valueRendered = document.querySelector(".c__select__inner__value");
+      expect(valueRendered).toHaveTextContent("Paris");
+      screen.getByText("Value = paris|");
+      screen.getByText("onChangeCounts = 0|");
+
+      rerender(
+        <Wrapper
+          options={[
+            {
+              label: "Paname",
+              value: "paris",
+            },
+            ...myOptions.slice(1),
+          ]}
+        />,
+      );
+
+      expect(valueRendered).toHaveTextContent("Paname");
+      screen.getByText("Value = paris|");
+      screen.getByText("onChangeCounts = 0|");
     });
 
     it("blurs from ref", async () => {

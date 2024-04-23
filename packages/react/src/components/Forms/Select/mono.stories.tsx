@@ -108,6 +108,35 @@ export const Controlled = () => {
   );
 };
 
+export const ControlledEdit = () => {
+  const [value, setValue] = useState(OPTIONS[0].value);
+  const [options, setOptions] = useState(OPTIONS);
+
+  const edit = () => {
+    setOptions([{ value: "woodbury", label: "EDITTED" }, ...OPTIONS.slice(1)]);
+  };
+
+  return (
+    <div>
+      <div>
+        Value: <span>{value}</span>
+        <Button onClick={edit}>Edit</Button>
+      </div>
+      <Select
+        label="Select a city"
+        options={options}
+        value={value}
+        multi={false}
+        searchable={true}
+        onChange={(e) => {
+          setValue(e.target.value as string);
+        }}
+      />
+      <Button onClick={() => setValue("")}>Reset</Button>
+    </div>
+  );
+};
+
 export const Overflow = {
   render: Template,
 
