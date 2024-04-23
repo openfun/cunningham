@@ -51,25 +51,17 @@ export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
       downshiftReturn.inputValue,
     ]);
 
-    // When component is controlled, this useEffect will update the local selected item.
+    // Similar to: useKeepSelectedItemInSyncWithOptions ( see docs )
+    // The only difference is that it does not apply when there is an inputFilter. ( See below why )
     useEffect(() => {
+      // If there is an inputFilter, using selectItem will trigger onInputValueChange that will sets inputFilter to
+      // empty, and then ignoring the existing filter and displaying all options.
       if (inputFilter) {
         return;
       }
-
-      const selectedItem = downshiftReturn.selectedItem
-        ? optionToValue(downshiftReturn.selectedItem)
-        : undefined;
-
       const optionToSelect = props.options.find(
         (option) => optionToValue(option) === props.value,
       );
-
-      // Already selected
-      if (optionToSelect && selectedItem === props.value) {
-        return;
-      }
-
       downshiftReturn.selectItem(optionToSelect ?? null);
     }, [props.value, props.options, inputFilter]);
 

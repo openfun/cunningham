@@ -1,4 +1,4 @@
-import { useSelect } from "downshift";
+import { useSelect, UseSelectReturnValue } from "downshift";
 import React, {
   forwardRef,
   useEffect,
@@ -11,8 +11,26 @@ import {
   SelectMonoAux,
   SubProps,
 } from ":/components/Forms/Select/mono-common";
-import { SelectHandle } from ":/components/Forms/Select";
+import { Option, SelectHandle, SelectProps } from ":/components/Forms/Select";
 import { SelectedOption } from ":/components/Forms/Select/utils";
+
+/**
+ * Here we ensure that the selected item is always in sync with the options.
+ * Ex: If the selected options changes label we want to reflect that.
+ * @param downshiftReturn
+ * @param props
+ */
+const useKeepSelectedItemInSyncWithOptions = (
+  downshiftReturn: UseSelectReturnValue<Option>,
+  props: Pick<SelectProps, "value" | "options">,
+) => {
+  useEffect(() => {
+    const optionToSelect = props.options.find(
+      (option) => optionToValue(option) === props.value,
+    );
+    downshiftReturn.selectItem(optionToSelect ?? null);
+  }, [props.value, props.options]);
+};
 
 export const SelectMonoSimple = forwardRef<SelectHandle, SubProps>(
   (props, ref) => {
@@ -22,23 +40,7 @@ export const SelectMonoSimple = forwardRef<SelectHandle, SubProps>(
       itemToString: optionToString,
     });
 
-    // When component is controlled, this useEffect will update the local selected item.
-    useEffect(() => {
-      const selectedItem = downshiftReturn.selectedItem
-        ? optionToValue(downshiftReturn.selectedItem)
-        : undefined;
-
-      const optionToSelect = props.options.find(
-        (option) => optionToValue(option) === props.value,
-      );
-
-      // Already selected
-      if (optionToSelect && selectedItem === props.value) {
-        return;
-      }
-
-      downshiftReturn.selectItem(optionToSelect ?? null);
-    }, [props.value, props.options]);
+    useKeepSelectedItemInSyncWithOptions(downshiftReturn, props);
 
     const wrapperRef = useRef<HTMLElement>(null);
 

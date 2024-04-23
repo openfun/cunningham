@@ -6,7 +6,7 @@ import { FieldProps } from ":/components/Forms/Field";
 export * from ":/components/Forms/Select/mono";
 export * from ":/components/Forms/Select/multi";
 
-type BaseOption = {
+export type BaseOption = {
   value: string;
   label: string;
   render: () => ReactNode;
