@@ -51,6 +51,7 @@ export type ModalProps = PropsWithChildren & {
   titleIcon?: React.ReactNode;
   hideCloseButton?: boolean;
   closeOnClickOutside?: boolean;
+  closeOnEsc?: boolean;
   preventClose?: boolean;
 };
 
@@ -71,7 +72,7 @@ export const Modal = (props: ModalProps) => {
   return <ModalInner {...props} />;
 };
 
-export const ModalInner = (props: ModalProps) => {
+export const ModalInner = ({ closeOnEsc = true, ...props }: ModalProps) => {
   const { modalParentSelector } = useModals();
 
   if (!props.isOpen) {
@@ -90,6 +91,7 @@ export const ModalInner = (props: ModalProps) => {
       overlayClassName="c__modal__backdrop"
       className={classNames(MODAL_CLASS, `${MODAL_CLASS}--${props.size}`)}
       shouldCloseOnOverlayClick={!!props.closeOnClickOutside}
+      shouldCloseOnEsc={closeOnEsc}
       bodyOpenClassName={classNames("c__modals--opened", NOSCROLL_CLASS)}
     >
       {!props.hideCloseButton && !props.preventClose && (
