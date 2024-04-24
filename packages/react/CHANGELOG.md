@@ -1,5 +1,16 @@
 # @openfun/cunningham-react
 
+## 2.8.0
+
+### Minor Changes
+
+- c61b2ac: introduce large and extra-large new modal sizes
+- 6ebeb11: migrate Modals to react modal
+
+### Patch Changes
+
+- 91c8935: fix Select mono selected item update label
+
 ## 2.7.0
 
 ### Minor Changes
@@ -380,7 +391,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.7.0...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.8.0...main
+[2.8.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.7.0...@openfun/cunningham-react@2.8.0
 [2.7.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.6.0...@openfun/cunningham-react@2.7.0
 [2.6.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.5.0...@openfun/cunningham-react@2.6.0
 [2.5.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.4.0...@openfun/cunningham-react@2.5.0
