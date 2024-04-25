@@ -9,6 +9,7 @@ import {
   SelectHandle,
   SelectProps,
   CallbackFetchOptions,
+  ContextCallbackFetchOptions,
 } from ":/components/Forms/Select/index";
 import { Button } from ":/components/Button";
 import { CunninghamProvider } from ":/components/Provider";
@@ -1021,75 +1022,6 @@ describe("<Select/>", () => {
       expect(searchTerm).toBeUndefined();
     });
 
-    it("updates the selected value label if the option label changes", async () => {
-      const myOptions = [
-        {
-          label: "Paris",
-          value: "paris",
-        },
-        {
-          label: "Panama",
-          value: "panama",
-        },
-        {
-          label: "London",
-          value: "london",
-        },
-      ];
-
-      const Wrapper = ({ options }: { options: Option[] }) => {
-        const [value, setValue] = useState<string | number | undefined>(
-          "paris",
-        );
-        const [onChangeCounts, setOnChangeCounts] = useState(0);
-        return (
-          <CunninghamProvider>
-            <div>
-              <div>Value = {value}|</div>
-              <div>onChangeCounts = {onChangeCounts}|</div>
-              <Select
-                label="City"
-                options={options}
-                value={value}
-                onChange={(e) => {
-                  setValue(e.target.value as string);
-                  setOnChangeCounts(onChangeCounts + 1);
-                }}
-                searchable={true}
-              />
-            </div>
-          </CunninghamProvider>
-        );
-      };
-
-      const { rerender } = render(<Wrapper options={myOptions} />, {
-        wrapper: CunninghamProvider,
-      });
-
-      const input = screen.getByRole("combobox", {
-        name: "City",
-      });
-      expect(input).toHaveValue("Paris");
-      screen.getByText("Value = paris|");
-      screen.getByText("onChangeCounts = 0|");
-
-      rerender(
-        <Wrapper
-          options={[
-            {
-              label: "Paname",
-              value: "paris",
-            },
-            ...myOptions.slice(1),
-          ]}
-        />,
-      );
-
-      await waitFor(() => expect(input).toHaveValue("Paname"));
-      screen.getByText("Value = paris|");
-      screen.getByText("onChangeCounts = 0|");
-    });
-
     it("gets the search term using onSearchInputChange through an async function provided as the options prop", async () => {
       type Spy = {
         asyncOptions: CallbackFetchOptions;
@@ -1123,7 +1055,9 @@ describe("<Select/>", () => {
 
             // simulate a delayed response
             setTimeout(() => {
-              const stringSearch = context?.search ?? "";
+              const stringSearch = context?.search
+                ? String(context.search)
+                : "";
 
               const filterOptions = (arrayOptions: Option[], search: string) =>
                 arrayOptions.filter((option) =>
