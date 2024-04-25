@@ -16,13 +16,16 @@ import {
   SubProps,
 } from ":/components/Forms/Select/mono-common";
 import {
+  CallbackFetchOptions,
   ContextCallbackFetchOptions,
   Option,
-  CallbackFetchOptions,
   SelectHandle,
 } from ":/components/Forms/Select";
 import { isOptionWithRender } from ":/components/Forms/Select/utils";
 
+// https://react.dev/learn/you-might-not-need-an-effect#sharing-logic-between-event-handlers
+let previousSearch: string | undefined;
+let previousInputFilter: string | undefined;
 export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
   ({ showLabelWhenSelected = true, ...props }, ref) => {
     const { t } = useCunningham();
@@ -53,14 +56,14 @@ export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
     ): Promise<void> => {
       const arrayOptions = await fetchOptions(context);
 
-      setOptionsToDisplay(arrayOptions);
+      setOptionsToDisplay(Array.isArray(arrayOptions) ? arrayOptions : []);
     };
 
     const fetchOptions = async (
       context: ContextCallbackFetchOptions,
     ): Promise<Option[]> => (props.options as CallbackFetchOptions)(context);
 
-    const computeDefaultOptionToSelect = async (defaultValue: string) => {
+    const computeInitialOptionToSelect = async (defaultValue: string) => {
       const arrayOptions = await fetchOptions({
         search: defaultValue,
       });
@@ -74,6 +77,45 @@ export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
       }
     };
 
+    const computeInitialOption = async (
+      defaultValue: string,
+    ): Promise<void> => {
+      const arrayOptions = await fetchOptions({
+        search: "",
+      });
+
+      if (arrayOptions) {
+        setOptionsToDisplay(arrayOptions);
+
+        const defaultOption = defaultValue
+          ? arrayOptions.find((option) => String(option.value) === defaultValue)
+          : undefined;
+
+        if (defaultOption) {
+          downshiftReturn.selectItem(defaultOption);
+        }
+      }
+    };
+
+    const onInputBlur = () => {
+      setHasInputFocused(false);
+      if (downshiftReturn.selectedItem) {
+        // Here the goal is to make sure that when the input in blurred then the input value
+        // has exactly the selectedItem label. Which is not the case by default.
+        downshiftReturn.selectItem(downshiftReturn.selectedItem);
+      } else {
+        // We want the input to be empty when no item is selected.
+        downshiftReturn.setInputValue("");
+      }
+    };
+
+    const inputProps = downshiftReturn.getInputProps({
+      ref: inputRef,
+      disabled: props.disabled,
+    });
+
+    const renderCustomSelectedOption = !showLabelWhenSelected;
+
     useEffect(() => {
       if (hasInputFocused || downshiftReturn.inputValue) {
         setLabelAsPlaceholder(false);
@@ -86,26 +128,17 @@ export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
       downshiftReturn.inputValue,
     ]);
 
+    // When component is controlled, this useEffect will update the local selected item.
     useEffect(() => {
       if (
         typeof props.defaultValue === "string" &&
         typeof props.options === "function"
       ) {
         (async () => {
-          await computeDefaultOptionToSelect(String(props.defaultValue));
+          await computeInitialOptionToSelect(String(props.defaultValue));
         })();
       }
     }, []);
-
-    useEffect(() => {
-      props.onSearchInputChange?.({ target: { value: inputFilter } });
-
-      if (typeof props.options === "function") {
-        (async () => {
-          await computeOptionsToDisplay({ search: inputFilter });
-        })();
-      }
-    }, [inputFilter]);
 
     // Similar to: useKeepSelectedItemInSyncWithOptions ( see docs )
     // The only difference is that it does not apply when there is an inputFilter. ( See below why )
@@ -136,18 +169,58 @@ export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
 
     // Even there is already a value selected, when opening the combobox menu we want to display all available choices.
     useEffect(() => {
+      if (previousInputFilter !== inputFilter) {
+        props.onSearchInputChange?.({ target: { value: inputFilter } });
+        previousInputFilter = inputFilter;
+      }
+
       if (downshiftReturn.isOpen) {
         if (Array.isArray(props.options)) {
-          setOptionsToDisplay(
-            inputFilter
-              ? props.options.filter(getOptionsFilter(inputFilter))
-              : props.options,
-          );
+          const arrayFilteredOptions = inputFilter
+            ? props.options.filter(getOptionsFilter(inputFilter))
+            : props.options;
+
+          setOptionsToDisplay(arrayFilteredOptions);
         }
       } else {
         setInputFilter(undefined);
       }
-    }, [downshiftReturn.isOpen, props.options, inputFilter]);
+
+      if (typeof props.options === "function") {
+        let fetchOptionsCallback = async ({ search }: { search: string }) =>
+          computeOptionsToDisplay({ search });
+
+        const isInitialSearch =
+          inputFilter === undefined && previousSearch === undefined;
+
+        const isInputFilterTouched = inputFilter !== undefined;
+
+        let currentSearch;
+
+        if (isInitialSearch) {
+          currentSearch = props.defaultValue ? String(props.defaultValue) : "";
+
+          fetchOptionsCallback = async ({ search }: { search: string }) =>
+            computeInitialOption(search);
+        } else {
+          currentSearch = inputFilter ? String(inputFilter) : "";
+        }
+
+        const isNewSearch = previousSearch !== currentSearch;
+
+        if ((isNewSearch && isInputFilterTouched) || isInitialSearch) {
+          (async () => {
+            await fetchOptionsCallback({ search: currentSearch });
+          })();
+          previousSearch = currentSearch;
+        }
+      }
+    }, [
+      downshiftReturn.isOpen,
+      props.options,
+      inputFilter,
+      props.defaultValue,
+    ]);
 
     useImperativeHandle(ref, () => ({
       blur: () => {
@@ -155,25 +228,6 @@ export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
         inputRef.current?.blur();
       },
     }));
-
-    const onInputBlur = () => {
-      setHasInputFocused(false);
-      if (downshiftReturn.selectedItem) {
-        // Here the goal is to make sure that when the input in blurred then the input value
-        // has exactly the selectedItem label. Which is not the case by default.
-        downshiftReturn.selectItem(downshiftReturn.selectedItem);
-      } else {
-        // We want the input to be empty when no item is selected.
-        downshiftReturn.setInputValue("");
-      }
-    };
-
-    const inputProps = downshiftReturn.getInputProps({
-      ref: inputRef,
-      disabled: props.disabled,
-    });
-
-    const renderCustomSelectedOption = !showLabelWhenSelected;
 
     return (
       <SelectMonoAux

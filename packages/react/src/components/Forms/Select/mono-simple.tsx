@@ -19,17 +19,19 @@ import { SelectedOption } from ":/components/Forms/Select/utils";
  * Ex: If the selected options changes label we want to reflect that.
  * @param downshiftReturn
  * @param props
+ * @param arrayOptions
  */
 const useKeepSelectedItemInSyncWithOptions = (
   downshiftReturn: UseSelectReturnValue<Option>,
-  props: Pick<SelectProps, "value" | "options">,
+  props: Pick<SelectProps, "value">,
+  arrayOptions: Option[],
 ) => {
   useEffect(() => {
-    const optionToSelect = props.options.find(
+    const optionToSelect = arrayOptions.find(
       (option) => optionToValue(option) === props.value,
     );
     downshiftReturn.selectItem(optionToSelect ?? null);
-  }, [props.value, props.options]);
+  }, [props.value, arrayOptions]);
 };
 
 export const SelectMonoSimple = forwardRef<SelectHandle, SubProps>(
@@ -44,27 +46,9 @@ export const SelectMonoSimple = forwardRef<SelectHandle, SubProps>(
       itemToString: optionToString,
     });
 
-    useKeepSelectedItemInSyncWithOptions(downshiftReturn, props);
-
-    // When component is controlled, this useEffect will update the local selected item.
-    useEffect(() => {
-      const selectedItem = downshiftReturn.selectedItem
-        ? optionToValue(downshiftReturn.selectedItem)
-        : undefined;
-
-      const optionToSelect = arrayOptions.find(
-        (option) => optionToValue(option) === props.value,
-      );
-
-      // Already selected
-      if (optionToSelect && selectedItem === props.value) {
-        return;
-      }
-
-      downshiftReturn.selectItem(optionToSelect ?? null);
-    }, [props.value, arrayOptions]);
-
     const wrapperRef = useRef<HTMLElement>(null);
+
+    useKeepSelectedItemInSyncWithOptions(downshiftReturn, props, arrayOptions);
 
     useImperativeHandle(ref, () => ({
       blur: () => {
