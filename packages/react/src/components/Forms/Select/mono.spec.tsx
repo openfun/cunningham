@@ -9,7 +9,6 @@ import {
   SelectHandle,
   SelectProps,
   CallbackFetchOptions,
-  ContextCallbackFetchOptions,
 } from ":/components/Forms/Select/index";
 import { Button } from ":/components/Button";
 import { CunninghamProvider } from ":/components/Provider";
@@ -1124,7 +1123,7 @@ describe("<Select/>", () => {
       await user.click(option);
 
       expect(input).toHaveValue("Paris");
-      expect(spiedAsyncOptions).toHaveBeenCalledTimes(5);
+      expect(spiedAsyncOptions).toHaveBeenCalledTimes(4);
     });
   });
 
