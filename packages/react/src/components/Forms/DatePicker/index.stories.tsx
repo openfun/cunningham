@@ -165,7 +165,11 @@ export const ReactHookForm = () => {
 export const RangeDefault = () => {
   return (
     <div style={{ minHeight: "400px" }}>
-      <DateRangePicker startLabel="Start date" endLabel="Due date" />
+      <DateRangePicker
+        label="Pick a date"
+        startLabel="Start date"
+        endLabel="Due date"
+      />
     </div>
   );
 };
@@ -173,6 +177,7 @@ export const RangeDefault = () => {
 export const RangeDefaultValue = () => {
   return (
     <DateRangePicker
+      label="Pick a date"
       startLabel="Start date"
       endLabel="Due date"
       defaultValue={[
@@ -200,6 +205,7 @@ export const RangeControlled = () => {
         }}
       >
         <DateRangePicker
+          label="Pick a date"
           startLabel="Start date"
           endLabel="Due date"
           minValue="2023-01-23T00:00:00.000+00:00"
@@ -230,6 +236,7 @@ export const RangeControlledFull = () => {
         }}
       >
         <DateRangePicker
+          label="Pick a date"
           startLabel="Start date"
           endLabel="Due date"
           minValue="2023-01-23T00:00:00.000+00:00"

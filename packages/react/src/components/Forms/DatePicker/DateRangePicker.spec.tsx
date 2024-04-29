@@ -76,6 +76,7 @@ describe("<DateRangePicker/>", () => {
     render(
       <CunninghamProvider>
         <DateRangePicker
+          label="Pick a date"
           startLabel="Pick a date"
           endLabel="Pick a date"
           name="datepicker"
@@ -127,6 +128,7 @@ describe("<DateRangePicker/>", () => {
     render(
       <CunninghamProvider>
         <DateRangePicker
+          label="Pick a date"
           startLabel="Start date"
           endLabel="End date"
           name="datepicker"
@@ -157,6 +159,7 @@ describe("<DateRangePicker/>", () => {
     render(
       <CunninghamProvider>
         <DateRangePicker
+          label="Pick a date"
           startLabel="Start date"
           endLabel="End date"
           name="datepicker"
@@ -176,6 +179,7 @@ describe("<DateRangePicker/>", () => {
     render(
       <CunninghamProvider>
         <DateRangePicker
+          label="Pick a date"
           startLabel="Start date"
           endLabel="End date"
           name="datepicker"
@@ -235,6 +239,7 @@ describe("<DateRangePicker/>", () => {
     render(
       <CunninghamProvider>
         <DateRangePicker
+          label="Pick a date"
           startLabel="Start date"
           endLabel="End date"
           name="datepicker"
@@ -310,6 +315,7 @@ describe("<DateRangePicker/>", () => {
     render(
       <CunninghamProvider>
         <DateRangePicker
+          label="Pick a date"
           startLabel="Start date"
           endLabel="End date"
           name="datepicker"
@@ -375,6 +381,7 @@ describe("<DateRangePicker/>", () => {
     render(
       <CunninghamProvider>
         <DateRangePicker
+          label="Pick a date"
           startLabel="Start date"
           endLabel="End date"
           defaultValue={[
@@ -439,6 +446,7 @@ describe("<DateRangePicker/>", () => {
     render(
       <CunninghamProvider>
         <DateRangePicker
+          label="Pick a date"
           startLabel="Start date"
           endLabel="End date"
           name="datepicker"
@@ -491,6 +499,7 @@ describe("<DateRangePicker/>", () => {
     render(
       <CunninghamProvider>
         <DateRangePicker
+          label="Pick a date"
           startLabel="Start date"
           endLabel="End date"
           name="datepicker"
@@ -543,6 +552,7 @@ describe("<DateRangePicker/>", () => {
     render(
       <CunninghamProvider>
         <DateRangePicker
+          label="Pick a date"
           startLabel="Start date"
           endLabel="End date"
           name="datepicker"
@@ -597,6 +607,7 @@ describe("<DateRangePicker/>", () => {
     render(
       <CunninghamProvider>
         <DateRangePicker
+          label="Pick a date"
           startLabel="Start date"
           endLabel="End date"
           name="datepicker"
@@ -656,6 +667,7 @@ describe("<DateRangePicker/>", () => {
     render(
       <CunninghamProvider>
         <DateRangePicker
+          label="Pick a date"
           startLabel="Start date"
           endLabel="End date"
           name="datepicker"
@@ -719,6 +731,7 @@ describe("<DateRangePicker/>", () => {
       render(
         <CunninghamProvider>
           <DateRangePicker
+            label="Pick a date"
             startLabel="Start date"
             endLabel="End date"
             name="datepicker"
@@ -745,6 +758,7 @@ describe("<DateRangePicker/>", () => {
       render(
         <CunninghamProvider>
           <DateRangePicker
+            label="Pick a date"
             startLabel="Start date"
             endLabel="End date"
             name="datepicker"
@@ -760,6 +774,7 @@ describe("<DateRangePicker/>", () => {
     render(
       <CunninghamProvider>
         <DateRangePicker
+          label="Pick a date"
           startLabel="Start date"
           endLabel="End date"
           name="datepicker"
@@ -778,6 +793,7 @@ describe("<DateRangePicker/>", () => {
     render(
       <CunninghamProvider>
         <DateRangePicker
+          label="Pick a date"
           startLabel="Start date"
           endLabel="End date"
           name="datepicker"
@@ -840,6 +856,7 @@ describe("<DateRangePicker/>", () => {
       render(
         <CunninghamProvider>
           <DateRangePicker
+            label="Pick a date"
             startLabel="Start date"
             endLabel="End date"
             name="datepicker"
@@ -861,6 +878,7 @@ describe("<DateRangePicker/>", () => {
       render(
         <CunninghamProvider>
           <DateRangePicker
+            label="Pick a date"
             startLabel="Start date"
             endLabel="End date"
             name="datepicker"
@@ -877,6 +895,7 @@ describe("<DateRangePicker/>", () => {
     render(
       <CunninghamProvider>
         <DateRangePicker
+          label="Pick a date"
           startLabel="Start date"
           endLabel="End date"
           name="datepicker"
@@ -913,6 +932,7 @@ describe("<DateRangePicker/>", () => {
     render(
       <CunninghamProvider>
         <DateRangePicker
+          label="Pick a date"
           startLabel="Start date"
           endLabel="End date"
           name="datepicker"
@@ -934,6 +954,7 @@ describe("<DateRangePicker/>", () => {
     render(
       <CunninghamProvider>
         <DateRangePicker
+          label="Pick a date"
           startLabel="Start date"
           endLabel="End date"
           name="datepicker"
@@ -988,6 +1009,7 @@ describe("<DateRangePicker/>", () => {
             <div>Value = {value?.join(" ")}|</div>
             <Button onClick={() => setValue(null)}>Clear</Button>
             <DateRangePicker
+              label="Pick a date"
               startLabel="Start date"
               endLabel="End date"
               value={value}
@@ -1053,6 +1075,7 @@ describe("<DateRangePicker/>", () => {
             <div>Value = {value?.join(" ")}|</div>
             <Button onClick={() => setValue(null)}>Clear</Button>
             <DateRangePicker
+              label="Pick a date"
               startLabel="Start date"
               endLabel="End date"
               value={value}
@@ -1104,6 +1127,7 @@ describe("<DateRangePicker/>", () => {
           <div>
             <form onSubmit={onSubmit}>
               <DateRangePicker
+                label="Pick a date"
                 startLabel="Pick a date"
                 endLabel="Pick a date"
                 name="datepicker"
@@ -1179,6 +1203,7 @@ describe("<DateRangePicker/>", () => {
     render(
       <CunninghamProvider>
         <DateRangePicker
+          label="Pick a date"
           startLabel="Start"
           endLabel="End"
           className="my-custom-class"

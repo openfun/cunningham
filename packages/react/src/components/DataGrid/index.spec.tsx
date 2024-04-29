@@ -110,7 +110,7 @@ describe("<DataGrid/>", () => {
 
     // Resolve request.
     database.sort((a, b) => a.firstName.localeCompare(b.firstName));
-    await act(() =>
+    await act(async () =>
       deferred.resolve(
         JSON.stringify({
           rows: database.slice(0, 10),
@@ -182,7 +182,7 @@ describe("<DataGrid/>", () => {
     });
 
     // Resolve page 2 mock.
-    await act(() =>
+    await act(async () =>
       deferred.resolve(
         JSON.stringify({
           rows: database.slice(10, 20),

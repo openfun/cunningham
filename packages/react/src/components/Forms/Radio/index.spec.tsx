@@ -141,7 +141,14 @@ describe("<Radio/>", () => {
   });
 
   it("renders with className", async () => {
-    render(<Radio label="Agree" checked={true} className="my-custom-class" />);
+    render(
+      <Radio
+        label="Agree"
+        checked={true}
+        readOnly={true}
+        className="my-custom-class"
+      />,
+    );
     expect(
       document.querySelector(".c__checkbox.my-custom-class"),
     ).toBeInTheDocument();
