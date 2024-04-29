@@ -21,7 +21,7 @@
     "cross-env": "7.0.3",
     "make-dir-cli": "3.1.0",
     "prettier": "3.2.5",
-    "turbo": "1.12.5"
+    "turbo": "1.13.3"
   },
   "engines": {
     "node": ">=18.0.0"
@@ -31,7 +31,7 @@
   },
   "packageManager": "yarn@1.22.22",
   "resolutions": {
-    "@testing-library/dom": "9.3.4"
+    "@testing-library/dom": "10.1.0"
   },
   "volta": {
     "node": "18.18.2",
