@@ -1,5 +1,11 @@
 # @openfun/cunningham-react
 
+## 2.9.0
+
+### Minor Changes
+
+- 737c8f4: Upgrade to React 18.3.x
+
 ## 2.8.0
 
 ### Minor Changes
@@ -391,7 +397,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.8.0...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.9.0...main
+[2.9.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.8.0...@openfun/cunningham-react@2.9.0
 [2.8.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.7.0...@openfun/cunningham-react@2.8.0
 [2.7.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.6.0...@openfun/cunningham-react@2.7.0
 [2.6.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.5.0...@openfun/cunningham-react@2.6.0
