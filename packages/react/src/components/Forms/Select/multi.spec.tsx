@@ -1,5 +1,5 @@
 import userEvent from "@testing-library/user-event";
-import { render, screen, waitFor } from "@testing-library/react";
+import { act, render, screen, waitFor } from "@testing-library/react";
 import React, { createRef, FormEvent, useState } from "react";
 import { expect } from "vitest";
 import { within } from "@testing-library/dom";
@@ -836,7 +836,9 @@ describe("<Select multi={true} />", () => {
       expect(document.activeElement?.className).toContain("c__select__wrapper");
 
       // Blur the select.
-      ref.current?.blur();
+      await act(async () => {
+        ref.current?.blur();
+      });
 
       // Make sure the select is blured.
       await waitFor(() => expectMenuToBeClosed(menu));
@@ -1736,7 +1738,9 @@ describe("<Select multi={true} />", () => {
       expect(document.activeElement?.tagName).toEqual("INPUT");
 
       // Blur the select.
-      ref.current?.blur();
+      await act(async () => {
+        ref.current?.blur();
+      });
 
       // Make sure the select is blured.
       await waitFor(() => expectMenuToBeClosed(menu));
