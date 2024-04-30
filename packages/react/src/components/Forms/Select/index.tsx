@@ -53,6 +53,7 @@ export type SelectProps = PropsWithChildren &
     disabled?: boolean;
     clearable?: boolean;
     multi?: boolean;
+    isLoading?: boolean;
     showLabelWhenSelected?: boolean;
     monoline?: boolean;
     selectedItemsStyle?: "pills" | "text";

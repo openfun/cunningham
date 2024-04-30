@@ -47,6 +47,7 @@ export const getCountryOption = (name: string, code: string) => ({
 export const fetchOptions = async (
   context: ContextCallbackFetchOptions,
   options: Option[],
+  msTimeOut?: number,
 ): Promise<Option[]> =>
   new Promise((resolve) => {
     // simulate a delayed response
@@ -63,5 +64,5 @@ export const fetchOptions = async (
         : options;
 
       resolve(arrayOptions);
-    }, 500);
+    }, msTimeOut || 500);
   });

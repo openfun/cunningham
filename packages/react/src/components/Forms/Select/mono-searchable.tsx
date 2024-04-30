@@ -22,6 +22,7 @@ import {
   SelectHandle,
 } from ":/components/Forms/Select";
 import { isOptionWithRender } from ":/components/Forms/Select/utils";
+import { Loader } from ":/components/Loader";
 
 // https://react.dev/learn/you-might-not-need-an-effect#sharing-logic-between-event-handlers
 let previousSearch: string | undefined;
@@ -252,6 +253,15 @@ export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
         labelAsPlaceholder={labelAsPlaceholder}
         options={optionsToDisplay}
       >
+        {props?.isLoading ? (
+          <div className="c__select__loader">
+            <Loader
+              aria-label={t("components.forms.select.loader_aria")}
+              size="small"
+            />
+          </div>
+        ) : null}
+
         <input
           {...inputProps}
           className={classNames({
