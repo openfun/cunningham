@@ -1,6 +1,6 @@
 import userEvent from "@testing-library/user-event";
 import { act, render, screen, waitFor } from "@testing-library/react";
-import { expect, vi } from "vitest";
+import { expect, Mock, vi } from "vitest";
 import React, { createRef, FormEvent, useState } from "react";
 import { within } from "@testing-library/dom";
 import {
@@ -9,10 +9,13 @@ import {
   SelectHandle,
   SelectProps,
   CallbackFetchOptions,
+  ContextCallbackFetchOptions,
 } from ":/components/Forms/Select/index";
 import { Button } from ":/components/Button";
 import { CunninghamProvider } from ":/components/Provider";
 import {
+  expectLoaderNotToBeInTheDocument,
+  expectLoaderToBeVisible,
   expectMenuToBeClosed,
   expectMenuToBeOpen,
   expectNoOptions,
@@ -23,8 +26,69 @@ import {
 } from ":/components/Forms/Select/test-utils";
 import { Input } from ":/components/Forms/Input";
 
+const arrayCityOptions = [
+  {
+    label: "Paris",
+    value: "paris",
+  },
+  {
+    label: "Panama",
+    value: "panama",
+  },
+  {
+    label: "London",
+    value: "london",
+  },
+  {
+    label: "New York",
+    value: "new_york",
+  },
+  {
+    label: "Tokyo",
+    value: "tokyo",
+  },
+];
+
+const SearchableOptionsFetchingSelect = ({
+  optionsCallback,
+  defaultValue,
+  label,
+}: {
+  optionsCallback: (context: ContextCallbackFetchOptions) => Promise<Option[]>;
+  defaultValue?: string;
+  label: string;
+}) => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  const localCallback: CallbackFetchOptions = async (context) => {
+    let arrayResults = [];
+    setIsLoading(true);
+    arrayResults = await optionsCallback(context);
+    setIsLoading(false);
+
+    return arrayResults;
+  };
+
+  return (
+    <CunninghamProvider>
+      <Select
+        label={label}
+        options={localCallback}
+        searchable={true}
+        isLoading={isLoading}
+        defaultValue={defaultValue}
+      />
+    </CunninghamProvider>
+  );
+};
+
+const callbackFetchOptionsMock: Mock = vi.fn();
 describe("<Select/>", () => {
   describe("Searchable", () => {
+    afterEach(() => {
+      vi.clearAllMocks();
+    });
+
     it("shows all options when clicking on the input", async () => {
       const user = userEvent.setup();
       render(
@@ -1021,99 +1085,88 @@ describe("<Select/>", () => {
       expect(searchTerm).toBeUndefined();
     });
 
-    it("gets the search term using onSearchInputChange through an async function provided as the options prop", async () => {
-      type Spy = {
-        asyncOptions: CallbackFetchOptions;
-      };
-
-      const spy: Spy = {
-        asyncOptions: async (context) =>
-          new Promise((resolve) => {
-            const arrayCities = [
-              {
-                label: "Paris",
-                value: "paris",
-              },
-              {
-                label: "Panama",
-                value: "panama",
-              },
-              {
-                label: "London",
-                value: "london",
-              },
-              {
-                label: "New York",
-                value: "new_york",
-              },
-              {
-                label: "Tokyo",
-                value: "tokyo",
-              },
-            ];
-
-            // simulate a delayed response
-            setTimeout(() => {
-              const stringSearch = context?.search
-                ? String(context.search)
-                : "";
-
-              const filterOptions = (arrayOptions: Option[], search: string) =>
-                arrayOptions.filter((option) =>
-                  option.label
-                    .toLocaleLowerCase()
-                    .includes(search.toLowerCase()),
-                );
-
-              const arrayOptions: Option[] = stringSearch
-                ? filterOptions(arrayCities, stringSearch)
-                : arrayCities;
-
-              resolve(arrayOptions);
-            }, 1);
-          }),
-      };
-      const spiedAsyncOptions = vi.spyOn(spy, "asyncOptions");
-
-      expect(spiedAsyncOptions).toHaveBeenCalledTimes(0);
-
+    it("executes the provided callback in options prop to fetch and passes search term param to it using onSearchInputChange prop", async () => {
       const user = userEvent.setup();
-      render(
-        <CunninghamProvider>
-          <Select label="City" options={spy.asyncOptions} searchable={true} />
-        </CunninghamProvider>,
-      );
 
-      expect(spiedAsyncOptions).toHaveBeenCalledTimes(1);
+      callbackFetchOptionsMock
+        .mockResolvedValueOnce(arrayCityOptions)
+        .mockResolvedValueOnce([
+          {
+            label: "Paris",
+            value: "paris",
+          },
+          {
+            label: "Panama",
+            value: "panama",
+          },
+        ])
+        .mockResolvedValueOnce([
+          {
+            label: "Paris",
+            value: "paris",
+          },
+          {
+            label: "Panama",
+            value: "panama",
+          },
+        ])
+        .mockResolvedValueOnce([
+          {
+            label: "Paris",
+            value: "paris",
+          },
+        ])
+        .mockResolvedValueOnce(arrayCityOptions);
+
+      expect(vi.isMockFunction(callbackFetchOptionsMock)).toBeTruthy();
+
+      render(
+        <SearchableOptionsFetchingSelect
+          optionsCallback={callbackFetchOptionsMock}
+          label="City"
+        />,
+      );
 
       const input = screen.getByRole("combobox", {
         name: "City",
       });
 
-      // It returns the input.
-      expect(input.tagName).toEqual("INPUT");
-
       const menu: HTMLDivElement = screen.getByRole("listbox", {
         name: "City",
       });
 
+      expect(input.tagName).toEqual("INPUT");
+
+      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(1, {
+        search: "",
+      });
+
       expectMenuToBeClosed(menu);
 
-      // Click on the input.
       await user.click(input);
-      expectMenuToBeOpen(menu);
 
+      expectMenuToBeOpen(menu);
       expectOptions(["Paris", "Panama", "London", "New York", "Tokyo"]);
 
-      // Verify that filtering works.
-      await user.type(input, "Pa");
+      await user.type(input, "P");
+      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(2, {
+        search: "P",
+      });
 
-      expect(spiedAsyncOptions).toHaveBeenCalledTimes(3);
+      expectMenuToBeOpen(menu);
+      expectOptions(["Paris", "Panama"]);
+
+      await user.type(input, "a", { skipClick: true });
+      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(3, {
+        search: "Pa",
+      });
       expectMenuToBeOpen(menu);
       expectOptions(["Paris", "Panama"]);
 
       await user.type(input, "r", { skipClick: true });
-      expect(spiedAsyncOptions).toHaveBeenCalledTimes(4);
+      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(4, {
+        search: "Par",
+      });
       expectOptions(["Paris"]);
 
       // Select option.
@@ -1123,7 +1176,70 @@ describe("<Select/>", () => {
       await user.click(option);
 
       expect(input).toHaveValue("Paris");
-      expect(spiedAsyncOptions).toHaveBeenCalledTimes(4);
+
+      await user.clear(input);
+      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(5, {
+        search: "",
+      });
+      expectOptions(["Paris", "Panama", "London", "New York", "Tokyo"]);
+    });
+
+    it("executes the provided callback in options prop to fetch data and select a default option matching the defaultValue prop", async () => {
+      callbackFetchOptionsMock.mockResolvedValue(arrayCityOptions);
+
+      expect(vi.isMockFunction(callbackFetchOptionsMock)).toBeTruthy();
+
+      const user = userEvent.setup();
+
+      render(
+        <SearchableOptionsFetchingSelect
+          optionsCallback={callbackFetchOptionsMock}
+          label="Select a city"
+          defaultValue="london"
+        />,
+      );
+
+      const input = screen.getByRole("combobox", {
+        name: "Select a city",
+      });
+      const menu: HTMLDivElement = screen.getByRole("listbox", {
+        name: "Select a city",
+      });
+
+      await expectLoaderToBeVisible();
+      expect(input.tagName).toEqual("INPUT");
+      expectMenuToBeClosed(menu);
+      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(1, {
+        search: "london",
+      });
+      await expectLoaderNotToBeInTheDocument();
+      expect(input).toHaveValue("London");
+
+      // Click on the input.
+      await user.click(input);
+
+      expectMenuToBeOpen(menu);
+      expectOptions(["Paris", "Panama", "London", "New York", "Tokyo"]);
+    });
+
+    it("shows and hides the loader according to the isLoading prop", async () => {
+      callbackFetchOptionsMock.mockResolvedValue(arrayCityOptions);
+
+      expect(vi.isMockFunction(callbackFetchOptionsMock)).toBeTruthy();
+
+      render(
+        <SearchableOptionsFetchingSelect
+          optionsCallback={callbackFetchOptionsMock}
+          label="Select a city"
+          defaultValue="london"
+        />,
+      );
+
+      await expectLoaderToBeVisible();
+      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(1, {
+        search: "london",
+      });
+      await expectLoaderNotToBeInTheDocument();
     });
   });
 
