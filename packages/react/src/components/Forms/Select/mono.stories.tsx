@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { onSubmit } from ":/components/Forms/Examples/ReactHookForm/reactHookFormUtils";
 import {
   ContextCallbackFetchOptions,
+  Option,
   Select,
   SelectHandle,
 } from ":/components/Forms/Select";
@@ -180,26 +181,65 @@ export const SearchableUncontrolled = {
   },
 };
 
-export const SearchableUncontrolledWithAsyncOptionsFetching = {
-  render: Template,
-  args: {
-    label: "Select a city",
-    options: async (context: ContextCallbackFetchOptions) =>
-      fetchOptions(context, OPTIONS),
-    searchable: true,
-  },
+export const SearchableUncontrolledWithAsyncOptionsFetching = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  const fetchAsyncOptions = async (context: ContextCallbackFetchOptions) => {
+    let arrayOptions: Option[] = [];
+
+    setIsLoading(true);
+    try {
+      arrayOptions = await fetchOptions(context, OPTIONS, 1000);
+    } catch (error) {
+      /* empty */
+    }
+
+    setIsLoading(false);
+    return arrayOptions;
+  };
+
+  return (
+    <div>
+      <Select
+        label="Select a city"
+        options={fetchAsyncOptions}
+        isLoading={isLoading}
+        searchable={true}
+      />
+    </div>
+  );
 };
 
-export const SearchableUncontrolledWithAsyncOptionsFetchingAndDefaultValue = {
-  render: Template,
-  args: {
-    label: "Select a city",
-    options: async (context: ContextCallbackFetchOptions) =>
-      fetchOptions(context, OPTIONS),
-    defaultValue: OPTIONS[4].value,
-    searchable: true,
-  },
-};
+export const SearchableUncontrolledWithAsyncOptionsFetchingAndDefaultValue =
+  () => {
+    const [isLoading, setIsLoading] = useState(true);
+
+    const fetchAsyncOptions = async (context: ContextCallbackFetchOptions) => {
+      let arrayOptions: Option[] = [];
+
+      setIsLoading(true);
+      try {
+        arrayOptions = await fetchOptions(context, OPTIONS, 1000);
+      } catch (error) {
+        /* empty */
+      }
+
+      setIsLoading(false);
+      return arrayOptions;
+    };
+
+    return (
+      <div>
+        <Select
+          label="Select a city"
+          options={fetchAsyncOptions}
+          isLoading={isLoading}
+          defaultValue={OPTIONS[4].value}
+          searchable={true}
+        />
+      </div>
+    );
+  };
 
 export const SearchableDisabled = {
   render: Template,
