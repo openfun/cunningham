@@ -8,19 +8,20 @@ import {
 import { useCunningham } from ":/components/Provider";
 import { Checkbox } from ":/components/Forms/Checkbox";
 import { Option } from ":/components/Forms/Select/index";
+import { SelectMenu } from ":/components/Forms/Select/select-menu";
 
-export const SelectMultiMenu = (props: SelectMultiAuxProps) => {
+export const SelectMultiMenu = (
+  props: SelectMultiAuxProps & {
+    selectRef: React.RefObject<HTMLDivElement>;
+  },
+) => {
   const { t } = useCunningham();
   return (
-    <div
-      className={classNames(
-        "c__select__menu",
-        "c__select__menu--" + props.menuOptionsStyle,
-        {
-          "c__select__menu--opened": props.downshiftReturn.isOpen,
-        },
-      )}
-      {...props.downshiftReturn.getMenuProps()}
+    <SelectMenu
+      isOpen={props.downshiftReturn.isOpen}
+      selectRef={props.selectRef}
+      downshiftReturn={props.downshiftReturn}
+      menuOptionsStyle={props.menuOptionsStyle}
     >
       <ul>
         {props.downshiftReturn.isOpen && (
@@ -41,7 +42,7 @@ export const SelectMultiMenu = (props: SelectMultiAuxProps) => {
           </>
         )}
       </ul>
-    </div>
+    </SelectMenu>
   );
 };
 

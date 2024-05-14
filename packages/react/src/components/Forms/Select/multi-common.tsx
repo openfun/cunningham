@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from "react";
+import React, { HTMLAttributes, useRef } from "react";
 import { useMultipleSelection } from "downshift";
 import classNames from "classnames";
 import { Field } from ":/components/Forms/Field";
@@ -63,99 +63,103 @@ export interface SelectMultiAuxProps extends SubProps {
 export const SelectMultiAux = ({ children, ...props }: SelectMultiAuxProps) => {
   const { t } = useCunningham();
   const labelProps = props.downshiftReturn.getLabelProps();
+  const ref = useRef<HTMLDivElement>(null);
 
   // We need to remove onBlur from toggleButtonProps because it triggers a menu closing each time
   // we tick a checkbox using the monoline style.
   const { onBlur, ...toggleProps } = props.downshiftReturn.toggleButtonProps;
   return (
-    <Field {...props}>
-      <div
-        className={classNames(
-          "c__select",
-          "c__select--multi",
-          "c__select--" + props.state,
-          "c__select--" + props.selectedItemsStyle,
-          {
-            "c__select--disabled": props.disabled,
-            "c__select--populated": props.selectedItems.length > 0,
-            "c__select--monoline": props.monoline,
-            "c__select--multiline": !props.monoline,
-          },
-        )}
-      >
+    <>
+      <Field {...props}>
         <div
-          className={classNames("c__select__wrapper", {
-            "c__select__wrapper--focus":
-              props.downshiftReturn.isOpen && !props.disabled,
-          })}
-          {...props.downshiftReturn.wrapperProps}
-          {...toggleProps}
+          ref={ref}
+          className={classNames(
+            "c__select",
+            "c__select--multi",
+            "c__select--" + props.state,
+            "c__select--" + props.selectedItemsStyle,
+            {
+              "c__select--disabled": props.disabled,
+              "c__select--populated": props.selectedItems.length > 0,
+              "c__select--monoline": props.monoline,
+              "c__select--multiline": !props.monoline,
+            },
+          )}
         >
-          {props.selectedItems.map((selectedItem, index) => (
-            <input
-              key={`${optionToValue(selectedItem)}${index.toString()}`}
-              type="hidden"
-              name={props.name}
-              value={optionToValue(selectedItem)}
-            />
-          ))}
-          <LabelledBox
-            label={props.label}
-            labelAsPlaceholder={props.labelAsPlaceholder}
-            htmlFor={labelProps.htmlFor}
-            labelId={labelProps.id}
-            hideLabel={props.hideLabel}
-            disabled={props.disabled}
+          <div
+            className={classNames("c__select__wrapper", {
+              "c__select__wrapper--focus":
+                props.downshiftReturn.isOpen && !props.disabled,
+            })}
+            {...props.downshiftReturn.wrapperProps}
+            {...toggleProps}
           >
-            <div className="c__select__inner">
-              <div className="c__select__inner__actions">
-                {props.clearable &&
-                  !props.disabled &&
-                  props.selectedItems.length > 0 && (
-                    <>
-                      <Button
-                        color="tertiary-text"
-                        size="nano"
-                        aria-label={t(
-                          "components.forms.select.clear_all_button_aria_label",
-                        )}
-                        className="c__select__inner__actions__clear"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          props.onSelectedItemsChange([]);
-                        }}
-                        icon={<span className="material-icons">close</span>}
-                        type="button"
-                      />
-                      <div className="c__select__inner__actions__separator" />
-                    </>
-                  )}
-                <Button
-                  color="tertiary-text"
-                  size="nano"
-                  className="c__select__inner__actions__open"
-                  icon={
-                    <span
-                      className={classNames("material-icons", {
-                        opened: props.downshiftReturn.isOpen,
-                      })}
-                    >
-                      arrow_drop_down
-                    </span>
-                  }
-                  disabled={props.disabled}
-                  type="button"
-                />
+            {props.selectedItems.map((selectedItem, index) => (
+              <input
+                key={`${optionToValue(selectedItem)}${index.toString()}`}
+                type="hidden"
+                name={props.name}
+                value={optionToValue(selectedItem)}
+              />
+            ))}
+            <LabelledBox
+              label={props.label}
+              labelAsPlaceholder={props.labelAsPlaceholder}
+              htmlFor={labelProps.htmlFor}
+              labelId={labelProps.id}
+              hideLabel={props.hideLabel}
+              disabled={props.disabled}
+            >
+              <div className="c__select__inner">
+                <div className="c__select__inner__actions">
+                  {props.clearable &&
+                    !props.disabled &&
+                    props.selectedItems.length > 0 && (
+                      <>
+                        <Button
+                          color="tertiary-text"
+                          size="nano"
+                          aria-label={t(
+                            "components.forms.select.clear_all_button_aria_label",
+                          )}
+                          className="c__select__inner__actions__clear"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            props.onSelectedItemsChange([]);
+                          }}
+                          icon={<span className="material-icons">close</span>}
+                          type="button"
+                        />
+                        <div className="c__select__inner__actions__separator" />
+                      </>
+                    )}
+                  <Button
+                    color="tertiary-text"
+                    size="nano"
+                    className="c__select__inner__actions__open"
+                    icon={
+                      <span
+                        className={classNames("material-icons", {
+                          opened: props.downshiftReturn.isOpen,
+                        })}
+                      >
+                        arrow_drop_down
+                      </span>
+                    }
+                    disabled={props.disabled}
+                    type="button"
+                  />
+                </div>
+                <div className="c__select__inner__value">
+                  <SelectedItems {...props} />
+                  {children}
+                </div>
               </div>
-              <div className="c__select__inner__value">
-                <SelectedItems {...props} />
-                {children}
-              </div>
-            </div>
-          </LabelledBox>
+            </LabelledBox>
+          </div>
         </div>
-        <SelectMultiMenu {...props} />
-      </div>
-    </Field>
+      </Field>
+      <SelectMultiMenu {...props} selectRef={ref} />
+    </>
   );
 };
