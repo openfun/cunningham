@@ -94,26 +94,28 @@ export const ModalInner = ({ closeOnEsc = true, ...props }: ModalProps) => {
       shouldCloseOnEsc={closeOnEsc}
       bodyOpenClassName={classNames("c__modals--opened", NOSCROLL_CLASS)}
     >
-      {!props.hideCloseButton && !props.preventClose && (
-        <div className="c__modal__close">
-          <Button
-            icon={<span className="material-icons">close</span>}
-            color="tertiary-text"
-            size="small"
-            onClick={() => props.onClose()}
-          />
-        </div>
-      )}
-      {props.titleIcon && (
-        <div className="c__modal__title-icon">{props.titleIcon}</div>
-      )}
-      {props.title && <div className="c__modal__title">{props.title}</div>}
+      <div className="c__modal__scroller">
+        {!props.hideCloseButton && !props.preventClose && (
+          <div className="c__modal__close">
+            <Button
+              icon={<span className="material-icons">close</span>}
+              color="tertiary-text"
+              size="small"
+              onClick={props.onClose}
+            />
+          </div>
+        )}
+        {props.titleIcon && (
+          <div className="c__modal__title-icon">{props.titleIcon}</div>
+        )}
+        {props.title && <div className="c__modal__title">{props.title}</div>}
 
-      {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
-      <div className="c__modal__content" tabIndex={0}>
-        {props.children}
+        {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
+        <div className="c__modal__content" tabIndex={0}>
+          {props.children}
+        </div>
+        <ModalFooter {...props} />
       </div>
-      <ModalFooter {...props} />
     </ReactModal>
   );
 };
