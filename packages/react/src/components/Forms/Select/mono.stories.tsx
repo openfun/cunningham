@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react";
 import React, { useRef, useState } from "react";
-import { useForm, FormProvider } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { onSubmit } from ":/components/Forms/Examples/ReactHookForm/reactHookFormUtils";
@@ -10,6 +10,8 @@ import {
   getCountryOption,
   RhfSelect,
 } from ":/components/Forms/Select/stories-utils";
+import { Modal, ModalSize, useModal } from ":/components/Modal";
+import { Input } from ":/components/Forms/Input";
 
 export default {
   title: "Components/Forms/Select/Mono",
@@ -17,7 +19,7 @@ export default {
 } as Meta<typeof Select>;
 
 const Template: StoryFn<typeof Select> = (args) => (
-  <div style={{ paddingBottom: "200px" }}>
+  <div style={{ paddingBottom: "200px", position: "relative" }}>
     <Select {...args} />
   </div>
 );
@@ -458,6 +460,74 @@ export const FormExample = () => {
       </div>
       <Button>Submit</Button>
     </form>
+  );
+};
+
+export const SelectInModal = () => {
+  const modal = useModal({ isOpenDefault: true });
+  return (
+    <Modal size={ModalSize.MEDIUM} {...modal} title="Example">
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "1rem",
+        }}
+      >
+        <Select
+          label="Context"
+          options={[
+            {
+              label: "Ask a document",
+            },
+            {
+              label: "Download files",
+            },
+            {
+              label: "Ask for help",
+            },
+          ]}
+          fullWidth={true}
+          clearable={true}
+        />
+        <div style={{ display: "flex", gap: "1rem" }}>
+          <Input label="First name" />
+          <Input label="Last name" />
+        </div>
+        <Input
+          label="Email address"
+          fullWidth={true}
+          text="Only @acme.com domain is authorized"
+        />
+        <div style={{ display: "flex", gap: "1rem" }}>
+          <div style={{ width: "25%" }}>
+            <Input label="ZIP" fullWidth={true} />
+          </div>
+          <Input label="City" fullWidth={true} />
+        </div>
+        <Select
+          label="Skills"
+          options={[
+            {
+              label: "Communication",
+            },
+            {
+              label: "Teamwork",
+            },
+            {
+              label: "Problem solving",
+            },
+            {
+              label: "Leadership",
+            },
+            {
+              label: "Work ethic",
+            },
+          ]}
+          fullWidth={true}
+        />
+      </div>
+    </Modal>
   );
 };
 
