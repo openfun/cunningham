@@ -41,7 +41,9 @@ export const MessageModal = ({
       }
       {...props}
     >
-      {children ?? t("components.modals.helpers.disclaimer.children")}
+      <div className="c__modal__content__text">
+        {children ?? t("components.modals.helpers.disclaimer.children")}
+      </div>
     </Modal>
   );
 };

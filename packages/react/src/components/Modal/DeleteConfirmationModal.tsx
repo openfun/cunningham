@@ -38,7 +38,10 @@ export const DeleteConfirmationModal = ({
       }
       {...props}
     >
-      {children ?? t("components.modals.helpers.delete_confirmation.children")}
+      <div className="c__modal__content__text">
+        {children ??
+          t("components.modals.helpers.delete_confirmation.children")}
+      </div>
     </Modal>
   );
 };
