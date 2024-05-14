@@ -33,7 +33,9 @@ export const ConfirmationModal = ({
       }
       {...props}
     >
-      {children ?? t("components.modals.helpers.confirmation.children")}
+      <div className="c__modal__content__text">
+        {children ?? t("components.modals.helpers.confirmation.children")}
+      </div>
     </Modal>
   );
 };
