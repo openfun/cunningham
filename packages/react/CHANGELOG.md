@@ -1,5 +1,13 @@
 # @openfun/cunningham-react
 
+## 2.9.1
+
+### Patch Changes
+
+- 582027f: ♻️(react) add a scroller div inside modal
+- 06c5c9d: ♻️(react) use react aria for select menu
+- e53cc73: 💄(react) disable default Modal text align center
+
 ## 2.9.0
 
 ### Minor Changes
@@ -397,7 +405,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.9.0...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.9.1...main
+[2.9.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.9.0...@openfun/cunningham-react@2.9.1
 [2.9.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.8.0...@openfun/cunningham-react@2.9.0
 [2.8.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.7.0...@openfun/cunningham-react@2.8.0
 [2.7.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.6.0...@openfun/cunningham-react@2.7.0
