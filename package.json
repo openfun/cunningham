@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "cross-env": "7.0.3",
-    "make-dir-cli": "3.1.0",
+    "make-dir-cli": "4.0.0",
     "prettier": "3.2.5",
     "turbo": "1.13.3"
   },
@@ -27,7 +27,7 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "@changesets/cli": "2.27.1"
+    "@changesets/cli": "2.27.3"
   },
   "packageManager": "yarn@1.22.22",
   "resolutions": {
