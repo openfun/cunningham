@@ -1,5 +1,11 @@
 # @openfun/cunningham-react
 
+## 2.9.2
+
+### Patch Changes
+
+- cba9ca8: Fix modal scroller height issue that prevent modal to be scrollable with high content
+
 ## 2.9.1
 
 ### Patch Changes
@@ -405,7 +411,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.9.1...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.9.2...main
+[2.9.2]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.9.1...@openfun/cunningham-react@2.9.2
 [2.9.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.9.0...@openfun/cunningham-react@2.9.1
 [2.9.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.8.0...@openfun/cunningham-react@2.9.0
 [2.8.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.7.0...@openfun/cunningham-react@2.8.0
