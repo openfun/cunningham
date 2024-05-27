@@ -1,5 +1,11 @@
 # @openfun/cunningham-react
 
+## 2.9.3
+
+### Patch Changes
+
+- 2d42461: allow to set column size for data grid without header
+
 ## 2.9.2
 
 ### Patch Changes
@@ -411,7 +417,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.9.2...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.9.3...main
+[2.9.3]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.9.2...@openfun/cunningham-react@2.9.3
 [2.9.2]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.9.1...@openfun/cunningham-react@2.9.2
 [2.9.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.9.0...@openfun/cunningham-react@2.9.1
 [2.9.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.8.0...@openfun/cunningham-react@2.9.0
