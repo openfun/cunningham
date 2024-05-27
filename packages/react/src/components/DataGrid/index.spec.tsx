@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
 import { act, render, screen, waitFor } from "@testing-library/react";
-import { getAllByRole, getByRole } from "@testing-library/dom";
+import { getAllByRole, getByRole, queryAllByRole } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 import { usePagination } from ":/components/Pagination";
 import { DataGrid, SortModel } from ":/components/DataGrid/index";
@@ -440,5 +440,53 @@ describe("<DataGrid/>", () => {
 
     expect(ths[0].style.width).toEqual("50px");
     expect(ths[1].style.width).toEqual("");
+  });
+
+  it("should render column with specific width even without header", async () => {
+    const database = Array.from(Array(10)).map(() => ({
+      id: faker.string.uuid(),
+      name: faker.person.fullName(),
+      email: faker.internet.email(),
+    }));
+
+    const Component = () => {
+      return (
+        <CunninghamProvider>
+          <DataGrid
+            displayHeader={false}
+            columns={[
+              {
+                field: "name",
+                size: 50,
+              },
+              {
+                field: "email",
+                headerName: "Email",
+              },
+            ]}
+            rows={database}
+          />
+        </CunninghamProvider>
+      );
+    };
+
+    render(<Component />);
+
+    const table = screen.getByRole("table");
+    const ths = queryAllByRole(table, "columnheader");
+
+    // No header should be displayed.
+    expect(ths.length).toBe(0);
+
+    database.forEach((data) => {
+      // Each data should have a row.
+      const element = screen.getByTestId(data.id);
+      // Then cells containing "name" should have a width of 50px.
+      let td = getByRole(element, "cell", { name: data.name });
+      expect(td.style.width).toEqual("50px");
+
+      td = getByRole(element, "cell", { name: data.email });
+      expect(td.style.width).toEqual("");
+    });
   });
 });
