@@ -282,6 +282,13 @@ export const DataGrid = <T extends Row>({
                         } else {
                           highlight = !!columns[i].highlight;
                         }
+                        const style: CSSProperties = {};
+                        if (displayHeader === false) {
+                          const column = columns[i];
+                          if (column && typeof column.size === "number") {
+                            style.width = `${column.size}px`;
+                          }
+                        }
                         return (
                           <td
                             key={cell.id}
@@ -292,6 +299,7 @@ export const DataGrid = <T extends Row>({
                               "c__datagrid__row__cell--select":
                                 cell.column.id === "select",
                             })}
+                            style={style}
                           >
                             {flexRender(
                               cell.column.columnDef.cell,
