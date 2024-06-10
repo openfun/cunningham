@@ -20,8 +20,8 @@
   "devDependencies": {
     "cross-env": "7.0.3",
     "make-dir-cli": "4.0.0",
-    "prettier": "3.3.0",
-    "turbo": "1.13.3"
+    "prettier": "3.3.1",
+    "turbo": "2.0.3"
   },
   "engines": {
     "node": ">=18.0.0"
