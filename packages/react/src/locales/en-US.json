@@ -34,7 +34,8 @@
         "toggle_button_aria_label": "Toggle dropdown",
         "clear_button_aria_label": "Clear selection",
         "clear_all_button_aria_label": "Clear all selections",
-        "menu_empty_placeholder": "No options available"
+        "menu_empty_placeholder": "No options available",
+        "loader_aria": "Loading data"
       },
       "file_uploader": {
         "delete_file_name": "Delete file {name}",
