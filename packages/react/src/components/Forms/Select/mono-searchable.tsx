@@ -17,7 +17,6 @@ import {
 } from ":/components/Forms/Select/mono-common";
 import {
   CallbackFetchOptions,
-  ContextCallbackFetchOptions,
   Option,
   SelectHandle,
 } from ":/components/Forms/Select";
@@ -53,47 +52,31 @@ export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
     );
 
     const computeOptionsToDisplay = async (
-      context: ContextCallbackFetchOptions,
-    ): Promise<void> => {
-      const arrayOptions = await fetchOptions(context);
+      search: string,
+    ): Promise<Option[]> => {
+      const options = await (props.options as CallbackFetchOptions)({ search });
 
-      setOptionsToDisplay(Array.isArray(arrayOptions) ? arrayOptions : []);
-    };
-
-    const fetchOptions = async (
-      context: ContextCallbackFetchOptions,
-    ): Promise<Option[]> => (props.options as CallbackFetchOptions)(context);
-
-    const computeInitialOptionToSelect = async (defaultValue: string) => {
-      const arrayOptions = await fetchOptions({
-        search: defaultValue,
-      });
-
-      const defaultOption = arrayOptions.find(
-        (option) => String(option.value) === props.defaultValue,
-      );
-
-      if (defaultOption) {
-        downshiftReturn.selectItem(defaultOption);
+      if (Array.isArray(options)) {
+        setOptionsToDisplay(options);
       }
+
+      return options;
     };
 
-    const computeInitialOption = async (
+    const computeOptionsToDisplayAndDefaultOption = async (
       defaultValue: string,
-    ): Promise<void> => {
-      const arrayOptions = await fetchOptions({
-        search: "",
-      });
+    ) => {
+      const options = await computeOptionsToDisplay(defaultValue);
 
-      if (arrayOptions) {
-        setOptionsToDisplay(arrayOptions);
+      if (Array.isArray(options)) {
+        if (defaultValue) {
+          const defaultOption = options.find(
+            (option) => String(option.value) === defaultValue,
+          );
 
-        const defaultOption = defaultValue
-          ? arrayOptions.find((option) => String(option.value) === defaultValue)
-          : undefined;
-
-        if (defaultOption) {
-          downshiftReturn.selectItem(defaultOption);
+          if (defaultOption) {
+            downshiftReturn.selectItem(defaultOption);
+          }
         }
       }
     };
@@ -129,15 +112,14 @@ export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
       downshiftReturn.inputValue,
     ]);
 
-    // When component is controlled, this useEffect will update the local selected item.
     useEffect(() => {
-      if (
-        typeof props.defaultValue === "string" &&
-        typeof props.options === "function"
-      ) {
+      if (typeof props.options === "function") {
+        const search = props.defaultValue ? String(props.defaultValue) : "";
+
         (async () => {
-          await computeInitialOptionToSelect(String(props.defaultValue));
+          await computeOptionsToDisplayAndDefaultOption(search);
         })();
+        previousSearch = search;
       }
     }, []);
 
@@ -170,6 +152,9 @@ export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
 
     // Even there is already a value selected, when opening the combobox menu we want to display all available choices.
     useEffect(() => {
+      const isInitialSearch = previousSearch === undefined;
+      const search = inputFilter ? String(inputFilter) : "";
+
       if (previousInputFilter !== inputFilter) {
         props.onSearchInputChange?.({ target: { value: inputFilter } });
         previousInputFilter = inputFilter;
@@ -187,41 +172,17 @@ export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
         setInputFilter(undefined);
       }
 
-      if (typeof props.options === "function") {
-        let fetchOptionsCallback = async ({ search }: { search: string }) =>
-          computeOptionsToDisplay({ search });
+      if (typeof props.options === "function" && !isInitialSearch) {
+        const isNewSearch = previousSearch !== search;
 
-        const isInitialSearch =
-          inputFilter === undefined && previousSearch === undefined;
-
-        const isInputFilterTouched = inputFilter !== undefined;
-
-        let currentSearch;
-
-        if (isInitialSearch) {
-          currentSearch = props.defaultValue ? String(props.defaultValue) : "";
-
-          fetchOptionsCallback = async ({ search }: { search: string }) =>
-            computeInitialOption(search);
-        } else {
-          currentSearch = inputFilter ? String(inputFilter) : "";
-        }
-
-        const isNewSearch = previousSearch !== currentSearch;
-
-        if ((isNewSearch && isInputFilterTouched) || isInitialSearch) {
+        if (isNewSearch) {
           (async () => {
-            await fetchOptionsCallback({ search: currentSearch });
+            await computeOptionsToDisplay(search);
           })();
-          previousSearch = currentSearch;
+          previousSearch = search;
         }
       }
-    }, [
-      downshiftReturn.isOpen,
-      props.options,
-      inputFilter,
-      props.defaultValue,
-    ]);
+    }, [downshiftReturn.isOpen, props.options, inputFilter]);
 
     useImperativeHandle(ref, () => ({
       blur: () => {
