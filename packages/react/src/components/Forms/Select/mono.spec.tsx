@@ -1085,7 +1085,27 @@ describe("<Select/>", () => {
       expect(searchTerm).toBeUndefined();
     });
 
-    it("executes the provided callback in options prop to fetch and passes search term param to it using onSearchInputChange prop", async () => {
+    it("shows and hides the loader according to the loading status", async () => {
+      callbackFetchOptionsMock.mockResolvedValue(arrayCityOptions);
+
+      expect(vi.isMockFunction(callbackFetchOptionsMock)).toBeTruthy();
+
+      render(
+        <SearchableOptionsFetchingSelect
+          optionsCallback={callbackFetchOptionsMock}
+          label="Select a city"
+          defaultValue="london"
+        />,
+      );
+
+      await expectLoaderToBeVisible();
+      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(1, {
+        search: "london",
+      });
+      await expectLoaderNotToBeInTheDocument();
+    });
+
+    it("gets new options asynchronously on search update when component is uncontrolled", async () => {
       const user = userEvent.setup();
 
       callbackFetchOptionsMock
@@ -1184,7 +1204,7 @@ describe("<Select/>", () => {
       expectOptions(["Paris", "Panama", "London", "New York", "Tokyo"]);
     });
 
-    it("executes the provided callback in options prop to fetch data and select a default option matching the defaultValue prop", async () => {
+    it("gets new options asynchronously on default value and search updates when component is uncontrolled", async () => {
       callbackFetchOptionsMock.mockResolvedValue(arrayCityOptions);
 
       expect(vi.isMockFunction(callbackFetchOptionsMock)).toBeTruthy();
@@ -1220,26 +1240,6 @@ describe("<Select/>", () => {
 
       expectMenuToBeOpen(menu);
       expectOptions(["Paris", "Panama", "London", "New York", "Tokyo"]);
-    });
-
-    it("shows and hides the loader according to the isLoading prop", async () => {
-      callbackFetchOptionsMock.mockResolvedValue(arrayCityOptions);
-
-      expect(vi.isMockFunction(callbackFetchOptionsMock)).toBeTruthy();
-
-      render(
-        <SearchableOptionsFetchingSelect
-          optionsCallback={callbackFetchOptionsMock}
-          label="Select a city"
-          defaultValue="london"
-        />,
-      );
-
-      await expectLoaderToBeVisible();
-      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(1, {
-        search: "london",
-      });
-      await expectLoaderNotToBeInTheDocument();
     });
   });
 
