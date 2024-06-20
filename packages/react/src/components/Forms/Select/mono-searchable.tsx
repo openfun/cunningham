@@ -112,9 +112,16 @@ export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
       downshiftReturn.inputValue,
     ]);
 
+    const isAsyncOptionsFetching = typeof props.options === "function";
+
     useEffect(() => {
-      if (typeof props.options === "function") {
-        const search = props.defaultValue ? String(props.defaultValue) : "";
+      if (isAsyncOptionsFetching) {
+        let search = props.defaultValue ? String(props.defaultValue) : "";
+
+        // a controlled select can not use props.defaultValue and props.value at the same time
+        if (!props.defaultValue) {
+          search = props.value ? String(props.value) : "";
+        }
 
         (async () => {
           await computeOptionsToDisplayAndDefaultOption(search);
@@ -123,9 +130,37 @@ export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
       }
     }, []);
 
-    // Similar to: useKeepSelectedItemInSyncWithOptions ( see docs )
-    // The only difference is that it does not apply when there is an inputFilter. ( See below why )
     useEffect(() => {
+      if (isAsyncOptionsFetching) {
+        const isControlled =
+          props.value !== undefined &&
+          inputFilter === undefined &&
+          previousInputFilter === undefined;
+
+        const isInitialSearch = previousSearch === undefined;
+        let search = "";
+        let isNewSearch = false;
+
+        if (!isInitialSearch) {
+          search = inputFilter ? String(inputFilter) : "";
+
+          if (isControlled) {
+            search = props.value ? String(props.value) : "";
+          }
+
+          isNewSearch = previousSearch !== search;
+        }
+
+        if (isNewSearch) {
+          (async () => {
+            await computeOptionsToDisplay(search);
+          })();
+          previousSearch = search;
+        }
+      }
+
+      // Similar to: useKeepSelectedItemInSyncWithOptions ( see docs )
+      // The only difference is that it does not apply when there is an inputFilter. ( See below why )
       // If there is an inputFilter, using selectItem will trigger onInputValueChange that will sets inputFilter to
       // empty, and then ignoring the existing filter and displaying all options.
       if (inputFilter) {
@@ -152,9 +187,6 @@ export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
 
     // Even there is already a value selected, when opening the combobox menu we want to display all available choices.
     useEffect(() => {
-      const isInitialSearch = previousSearch === undefined;
-      const search = inputFilter ? String(inputFilter) : "";
-
       if (previousInputFilter !== inputFilter) {
         props.onSearchInputChange?.({ target: { value: inputFilter } });
         previousInputFilter = inputFilter;
@@ -170,17 +202,6 @@ export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
         }
       } else {
         setInputFilter(undefined);
-      }
-
-      if (typeof props.options === "function" && !isInitialSearch) {
-        const isNewSearch = previousSearch !== search;
-
-        if (isNewSearch) {
-          (async () => {
-            await computeOptionsToDisplay(search);
-          })();
-          previousSearch = search;
-        }
       }
     }, [downshiftReturn.isOpen, props.options, inputFilter]);
 
