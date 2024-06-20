@@ -60,7 +60,9 @@ export const expectLoaderToBeVisible = async () => {
 };
 export const expectLoaderNotToBeInTheDocument = async () => {
   await waitFor(() => {
-    const loader = screen.queryByRole("status");
+    const loader = screen.queryByRole("status", {
+      name: "Loading data",
+    });
     expect(loader).not.toBeInTheDocument();
   });
 };

@@ -1242,7 +1242,7 @@ describe("<Select/>", () => {
       expectOptions(["Paris", "Panama", "London", "New York", "Tokyo"]);
     });
 
-    it.skip("gets new options asynchronously on search update when component is controlled", async () => {
+    it("gets new options asynchronously on search update when component is controlled", async () => {
       const ControlledSearchableFetchedOptionsSelectWrapper = ({
         optionsCallback,
         defaultValue,
@@ -1293,34 +1293,34 @@ describe("<Select/>", () => {
             value: "london",
           },
         ])
+        .mockResolvedValueOnce(arrayCityOptions)
+        .mockResolvedValueOnce([
+          {
+            label: "Paris",
+            value: "paris",
+          },
+          {
+            label: "Panama",
+            value: "panama",
+          },
+        ])
+        .mockResolvedValueOnce([
+          {
+            label: "Paris",
+            value: "paris",
+          },
+          {
+            label: "Panama",
+            value: "panama",
+          },
+        ])
+        .mockResolvedValueOnce([
+          {
+            label: "Paris",
+            value: "paris",
+          },
+        ])
         .mockResolvedValueOnce(arrayCityOptions);
-      // .mockResolvedValueOnce([
-      //   {
-      //     label: "Paris",
-      //     value: "paris",
-      //   },
-      //   {
-      //     label: "Panama",
-      //     value: "panama",
-      //   },
-      // ]);
-      // .mockResolvedValueOnce([
-      //   {
-      //     label: "Paris",
-      //     value: "paris",
-      //   },
-      //   {
-      //     label: "Panama",
-      //     value: "panama",
-      //   },
-      // ])
-      // .mockResolvedValueOnce([
-      //   {
-      //     label: "Paris",
-      //     value: "paris",
-      //   },
-      // ])
-      // .mockResolvedValueOnce(arrayCityOptions);
 
       expect(vi.isMockFunction(callbackFetchOptionsMock)).toBeTruthy();
 
@@ -1351,11 +1351,7 @@ describe("<Select/>", () => {
       expect(input.tagName).toEqual("INPUT");
 
       // Make sure value is selected.
-      screen.getByText("Value = london|");
-
-      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(1, {
-        search: "london",
-      });
+      expect(screen.getByText("Value = london|")).toBeVisible();
 
       expect(input).toHaveValue("London");
       expectMenuToBeClosed(menu);
@@ -1363,6 +1359,7 @@ describe("<Select/>", () => {
       await user.click(input);
 
       expectMenuToBeOpen(menu);
+
       expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(1, {
         search: "london",
       });
@@ -1370,51 +1367,58 @@ describe("<Select/>", () => {
 
       await userEvent.click(clearButton);
 
-      // Make sure value is cleared.
       expect(input).toHaveValue("");
-      screen.getByText("Value = |");
+      expect(screen.getByText("Value = |")).toBeVisible();
 
-      expect(callbackFetchOptionsMock).toHaveBeenCalledTimes(2);
-      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(1, {
+      expectMenuToBeClosed(menu);
+
+      await user.click(input);
+
+      expectMenuToBeOpen(menu);
+
+      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(2, {
         search: "",
       });
-
       expectOptions(["Paris", "Panama", "London", "New York", "Tokyo"]);
 
-      // await user.type(input, "P");
-      // expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(2, {
-      //   search: "P",
-      // });
-      //
-      // expectMenuToBeOpen(menu);
-      // expectOptions(["Paris", "Panama"]);
-      //
-      // await user.type(input, "a", { skipClick: true });
-      // expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(3, {
-      //   search: "Pa",
-      // });
-      // expectMenuToBeOpen(menu);
-      // expectOptions(["Paris", "Panama"]);
-      //
-      // await user.type(input, "r", { skipClick: true });
-      // expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(4, {
-      //   search: "Par",
-      // });
-      // expectOptions(["Paris"]);
-      //
-      // // Select option.
-      // const option: HTMLLIElement = screen.getByRole("option", {
-      //   name: "Paris",
-      // });
-      // await user.click(option);
-      //
-      // expect(input).toHaveValue("Paris");
-      //
-      // await user.clear(input);
-      // expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(5, {
-      //   search: "",
-      // });
-      // expectOptions(["Paris", "Panama", "London", "New York", "Tokyo"]);
+      await user.type(input, "P");
+      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(3, {
+        search: "P",
+      });
+
+      expectMenuToBeOpen(menu);
+      expectOptions(["Paris", "Panama"]);
+
+      await user.type(input, "a", { skipClick: true });
+      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(4, {
+        search: "Pa",
+      });
+      expectMenuToBeOpen(menu);
+      expectOptions(["Paris", "Panama"]);
+
+      await user.type(input, "r", { skipClick: true });
+      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(5, {
+        search: "Par",
+      });
+      expectOptions(["Paris"]);
+
+      // Select option.
+      const option: HTMLLIElement = screen.getByRole("option", {
+        name: "Paris",
+      });
+      await user.click(option);
+
+      expect(screen.getByText("Value = paris|")).toBeVisible();
+      expect(input).toHaveValue("Paris");
+
+      await user.clear(input);
+
+      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(6, {
+        search: "",
+      });
+      expect(screen.getByText("Value = |")).toBeVisible();
+      expect(input).toHaveValue("");
+      expectOptions(["Paris", "Panama", "London", "New York", "Tokyo"]);
     });
   });
 
