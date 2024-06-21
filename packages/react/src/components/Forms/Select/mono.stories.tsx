@@ -18,6 +18,7 @@ import {
 } from ":/components/Forms/Select/stories-utils";
 import { Modal, ModalSize, useModal } from ":/components/Modal";
 import { Input } from ":/components/Forms/Input";
+import { CunninghamProvider } from ":/components/Provider";
 
 export default {
   title: "Components/Forms/Select/Mono",
@@ -240,6 +241,42 @@ export const SearchableUncontrolledWithAsyncOptionsFetchingAndDefaultValue =
       </div>
     );
   };
+
+export const SearchableControlledWithAsyncOptionsFetching = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [value, setValue] = useState<string | number | undefined>("woodbury");
+
+  const fetchAsyncOptions = async (context: ContextCallbackFetchOptions) => {
+    let arrayOptions: Option[] = [];
+
+    setIsLoading(true);
+    try {
+      arrayOptions = await fetchOptions(context, OPTIONS, 1000);
+    } catch (error) {
+      /* empty */
+    }
+
+    setIsLoading(false);
+    return arrayOptions;
+  };
+
+  return (
+    <CunninghamProvider>
+      <div>
+        <div>Value = {value}|</div>
+        <Button onClick={() => setValue(undefined)}>Clear</Button>
+        <Select
+          label="City"
+          options={fetchAsyncOptions}
+          searchable={true}
+          isLoading={isLoading}
+          value={value}
+          onChange={(e) => setValue(e.target.value as string)}
+        />
+      </div>
+    </CunninghamProvider>
+  );
+};
 
 export const SearchableDisabled = {
   render: Template,
