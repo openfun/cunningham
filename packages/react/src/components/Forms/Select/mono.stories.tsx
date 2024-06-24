@@ -200,7 +200,7 @@ export const SearchableUncontrolledWithAsyncOptionsFetching = () => {
   };
 
   return (
-    <div>
+    <div style={{ paddingBottom: "200px", position: "relative" }}>
       <Select
         label="Select a city"
         options={fetchAsyncOptions}
@@ -230,7 +230,7 @@ export const SearchableUncontrolledWithAsyncOptionsFetchingAndDefaultValue =
     };
 
     return (
-      <div>
+      <div style={{ paddingBottom: "200px", position: "relative" }}>
         <Select
           label="Select a city"
           options={fetchAsyncOptions}
@@ -262,7 +262,7 @@ export const SearchableControlledWithAsyncOptionsFetching = () => {
 
   return (
     <CunninghamProvider>
-      <div>
+      <div style={{ paddingBottom: "200px", position: "relative" }}>
         <div>Value = {value}|</div>
         <Button onClick={() => setValue(undefined)}>Clear</Button>
         <Select
