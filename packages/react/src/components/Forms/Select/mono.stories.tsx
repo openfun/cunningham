@@ -184,13 +184,16 @@ export const SearchableUncontrolled = {
 
 export const SearchableUncontrolledWithAsyncOptionsFetching = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [isInitialOptionFetching, setIsInitialOptionFetching] = useState(true);
 
   const fetchAsyncOptions = async (context: ContextCallbackFetchOptions) => {
     let arrayOptions: Option[] = [];
 
     setIsLoading(true);
     try {
+      context.search = isInitialOptionFetching ? "" : context.search;
       arrayOptions = await fetchOptions(context, OPTIONS, 1000);
+      setIsInitialOptionFetching(false);
     } catch (error) {
       /* empty */
     }
@@ -214,13 +217,17 @@ export const SearchableUncontrolledWithAsyncOptionsFetching = () => {
 export const SearchableUncontrolledWithAsyncOptionsFetchingAndDefaultValue =
   () => {
     const [isLoading, setIsLoading] = useState(true);
+    const [isInitialOptionFetching, setIsInitialOptionFetching] =
+      useState(true);
 
     const fetchAsyncOptions = async (context: ContextCallbackFetchOptions) => {
       let arrayOptions: Option[] = [];
 
       setIsLoading(true);
       try {
+        context.search = isInitialOptionFetching ? "" : context.search;
         arrayOptions = await fetchOptions(context, OPTIONS, 1000);
+        setIsInitialOptionFetching(false);
       } catch (error) {
         /* empty */
       }
@@ -244,6 +251,7 @@ export const SearchableUncontrolledWithAsyncOptionsFetchingAndDefaultValue =
 
 export const SearchableControlledWithAsyncOptionsFetching = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [isInitialOptionFetching, setIsInitialOptionFetching] = useState(true);
   const [value, setValue] = useState<string | number | undefined>("woodbury");
 
   const fetchAsyncOptions = async (context: ContextCallbackFetchOptions) => {
@@ -251,7 +259,9 @@ export const SearchableControlledWithAsyncOptionsFetching = () => {
 
     setIsLoading(true);
     try {
+      context.search = isInitialOptionFetching ? "" : context.search;
       arrayOptions = await fetchOptions(context, OPTIONS, 1000);
+      setIsInitialOptionFetching(false);
     } catch (error) {
       /* empty */
     }
