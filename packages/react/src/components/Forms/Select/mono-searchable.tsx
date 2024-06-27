@@ -163,6 +163,8 @@ export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
         return;
       }
 
+      // this block will not be triggered when component uses options fetching (otherwise it will conflict with the value
+      // passed to onInputChange)
       if (Array.isArray(props.options)) {
         const selectedItem = downshiftReturn.selectedItem
           ? optionToValue(downshiftReturn.selectedItem)
@@ -180,6 +182,27 @@ export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
         downshiftReturn.selectItem(optionToSelect ?? null);
       }
     }, [props.value, props.options, inputFilter]);
+
+    useEffect(() => {
+      if (!isAsyncOptionsFetching) {
+        return;
+      }
+
+      const selectedItem = downshiftReturn.selectedItem
+        ? optionToValue(downshiftReturn.selectedItem)
+        : undefined;
+
+      const optionToSelect = optionsToDisplay.find(
+        (option) => optionToValue(option) === props.value,
+      );
+
+      // Already selected
+      if (optionToSelect && selectedItem === props.value) {
+        return;
+      }
+
+      downshiftReturn.selectItem(optionToSelect ?? null);
+    }, [props.value]);
 
     // Even there is already a value selected, when opening the combobox menu we want to display all available choices.
     useEffect(() => {
