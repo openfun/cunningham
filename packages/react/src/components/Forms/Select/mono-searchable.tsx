@@ -222,6 +222,8 @@ export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
               // when the menu is open, it will close and reopen immediately.
               if (!downshiftReturn.isOpen) {
                 downshiftReturn.openMenu();
+              } else if (isAsyncOptionsFetching) {
+                downshiftReturn.closeMenu();
               }
             },
           },
