@@ -163,16 +163,12 @@ export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
         return;
       }
 
-      const arrayOptions = Array.isArray(props.options)
-        ? props.options
-        : optionsToDisplay || undefined;
-
-      if (arrayOptions) {
+      if (Array.isArray(props.options)) {
         const selectedItem = downshiftReturn.selectedItem
           ? optionToValue(downshiftReturn.selectedItem)
           : undefined;
 
-        const optionToSelect = arrayOptions.find(
+        const optionToSelect = props.options.find(
           (option) => optionToValue(option) === props.value,
         );
 
