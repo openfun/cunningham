@@ -134,45 +134,47 @@ export const SelectMonoAux = ({
             >
               <div className="c__select__inner">
                 <div className="c__select__inner__value">{children}</div>
-                <div className="c__select__inner__actions">
-                  {clearable && !disabled && downshiftReturn.selectedItem && (
-                    <>
-                      <Button
-                        color="tertiary-text"
-                        size="nano"
-                        aria-label={t(
-                          "components.forms.select.clear_button_aria_label",
-                        )}
-                        className="c__select__inner__actions__clear"
-                        onClick={(e) => {
-                          downshiftReturn.selectItem(null);
-                          e.stopPropagation();
-                        }}
-                        icon={<span className="material-icons">close</span>}
-                        type="button"
-                      />
-                      <div className="c__select__inner__actions__separator" />
-                    </>
-                  )}
+                {!props.isLoading && (
+                  <div className="c__select__inner__actions">
+                    {clearable && !disabled && downshiftReturn.selectedItem && (
+                      <>
+                        <Button
+                          color="tertiary-text"
+                          size="nano"
+                          aria-label={t(
+                            "components.forms.select.clear_button_aria_label",
+                          )}
+                          className="c__select__inner__actions__clear"
+                          onClick={(e) => {
+                            downshiftReturn.selectItem(null);
+                            e.stopPropagation();
+                          }}
+                          icon={<span className="material-icons">close</span>}
+                          type="button"
+                        />
+                        <div className="c__select__inner__actions__separator" />
+                      </>
+                    )}
 
-                  <Button
-                    color="tertiary-text"
-                    size="nano"
-                    className="c__select__inner__actions__open"
-                    icon={
-                      <span
-                        className={classNames("material-icons", {
-                          opened: downshiftReturn.isOpen,
-                        })}
-                      >
-                        arrow_drop_down
-                      </span>
-                    }
-                    disabled={disabled}
-                    type="button"
-                    {...downshiftReturn.toggleButtonProps}
-                  />
-                </div>
+                    <Button
+                      color="tertiary-text"
+                      size="nano"
+                      className="c__select__inner__actions__open"
+                      icon={
+                        <span
+                          className={classNames("material-icons", {
+                            opened: downshiftReturn.isOpen,
+                          })}
+                        >
+                          arrow_drop_down
+                        </span>
+                      }
+                      disabled={disabled}
+                      type="button"
+                      {...downshiftReturn.toggleButtonProps}
+                    />
+                  </div>
+                )}
               </div>
             </LabelledBox>
           </div>
