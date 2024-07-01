@@ -13,6 +13,10 @@ import { Option, SelectHandle } from ":/components/Forms/Select/index";
 
 export const SelectMultiSimple = forwardRef<SelectHandle, SubProps>(
   (props, ref) => {
+    const arrayOptions: Option[] = Array.isArray(props.options)
+      ? props.options
+      : [];
+
     const isSelected = (option: Option) =>
       !!props.selectedItems.find((selectedItem) =>
         optionsEqual(selectedItem, option),
@@ -20,12 +24,12 @@ export const SelectMultiSimple = forwardRef<SelectHandle, SubProps>(
 
     const options = React.useMemo(() => {
       if (props.monoline) {
-        return props.options.map((option) => ({
+        return arrayOptions.map((option) => ({
           ...option,
           highlighted: isSelected(option),
         }));
       }
-      return props.options.filter(
+      return arrayOptions.filter(
         getMultiOptionsFilter(props.selectedItems, ""),
       );
     }, [props.selectedItems]);

@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { screen } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 
 export const expectMenuToBeOpen = (menu: HTMLDivElement) => {
   expect(Array.from(menu.classList)).contains("c__select__menu--opened");
@@ -48,4 +48,21 @@ export const expectSelectedOptions = (expectedOptions: string[]) => {
 export const expectSelectedOptionsText = (expectedOptions: string[]) => {
   const valueElement = document.querySelector(".c__select__inner__value");
   expect(valueElement?.textContent).toEqual(expectedOptions.join(", "));
+};
+
+export const expectLoaderToBeVisible = async () => {
+  await waitFor(() => {
+    const loader = screen.queryByRole("status", {
+      name: "Loading data",
+    });
+    expect(loader).toBeVisible();
+  });
+};
+export const expectLoaderNotToBeInTheDocument = async () => {
+  await waitFor(() => {
+    const loader = screen.queryByRole("status", {
+      name: "Loading data",
+    });
+    expect(loader).not.toBeInTheDocument();
+  });
 };
