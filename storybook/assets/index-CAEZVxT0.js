@@ -1,0 +1,1 @@
+function a(r=8){const t="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";let o="";for(let n=r;n>0;--n)o+=t[Math.floor(Math.random()*t.length)];return o}function e(r,t){if(t<r)throw new Error("`min` arg must be inferior to `max` arg.");return Array.from({length:t-r+1},(o,n)=>n+r)}export{e as a,a as r};
