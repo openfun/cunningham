@@ -23,7 +23,7 @@
     "react-dom": "18.3.1",
     "sass": "1.77.6",
     "typescript": "5.5.2",
-    "vite": "5.3.1"
+    "vite": "5.3.2"
   },
   "engines": {
     "node": ">=18.0.0"
