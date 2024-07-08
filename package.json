@@ -31,7 +31,7 @@
   },
   "packageManager": "yarn@1.22.22",
   "resolutions": {
-    "@testing-library/dom": "10.2.0"
+    "@testing-library/dom": "10.3.1"
   },
   "volta": {
     "node": "18.18.2",

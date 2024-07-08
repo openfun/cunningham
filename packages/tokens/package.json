@@ -43,14 +43,14 @@
   "devDependencies": {
     "@types/figlet": "1.5.8",
     "@types/jest": "29.5.12",
-    "@types/node": "20.14.9",
+    "@types/node": "20.14.10",
     "eslint-config-custom": "*",
     "jest": "29.7.0",
     "nodemon": "3.1.4",
     "prettier": "3.3.2",
     "ts-jest": "29.1.5",
     "tsc-alias": "1.8.10",
-    "typescript": "5.5.2"
+    "typescript": "5.5.3"
   },
   "engines": {
     "node": ">=18.0.0"
