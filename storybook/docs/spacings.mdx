@@ -1,0 +1,43 @@
+import { Canvas, Meta } from '@storybook/addon-docs';
+import * as Stories from "./spacings.stories";
+
+<Meta title="Getting Started/Spacings" />
+
+# Spacings
+
+Cunningham comes with an existing toolkit to deal with spacings. 📏
+
+Here are the existing spacings:
+
+<Canvas sourceState="none" of={Stories.Default}/>
+
+Those can be used both with paddings and margins.
+
+## Margins
+
+You can use the following classes to add margins to your elements:
+
+| Class        | Equivalent                 |
+|--------------|----------------------------|
+| m-[spacing]  | `margin: [spacing]`        |
+| mt-[spacing] | `margin-top: [spacing]`    |
+| mr-[spacing] | `margin-right: [spacing]`  |
+| mb-[spacing] | `margin-bottom: [spacing]` |
+| ml-[spacing] | `margin-left: [spacing]`   |
+
+## Paddings
+
+You can use the following classes to add paddings to your elements:
+
+| Class        | Equivalent                 |
+|--------------|----------------------------|
+| p-[spacing]  | `padding: [spacing]`        |
+| pt-[spacing] | `padding-top: [spacing]`    |
+| pr-[spacing] | `padding-right: [spacing]`  |
+| pb-[spacing] | `padding-bottom: [spacing]` |
+| pl-[spacing] | `padding-left: [spacing]`   |
+
+
+## Example
+
+<Canvas sourceState="shown" of={Stories.Example} />
