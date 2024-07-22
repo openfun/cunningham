@@ -108,6 +108,10 @@
       }
       &__open {
         color: var(--c--theme--colors--greyscale-900);
+
+        &--hidden {
+          display: none;
+        }
       }
     }
   }
