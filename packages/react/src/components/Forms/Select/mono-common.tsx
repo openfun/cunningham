@@ -134,9 +134,11 @@ export const SelectMonoAux = ({
             >
               <div className="c__select__inner">
                 <div className="c__select__inner__value">{children}</div>
-                {!props.isLoading && (
-                  <div className="c__select__inner__actions">
-                    {clearable && !disabled && downshiftReturn.selectedItem && (
+                <div className="c__select__inner__actions">
+                  {!props.isLoading &&
+                    clearable &&
+                    !disabled &&
+                    downshiftReturn.selectedItem && (
                       <>
                         <Button
                           color="tertiary-text"
@@ -156,25 +158,26 @@ export const SelectMonoAux = ({
                       </>
                     )}
 
-                    <Button
-                      color="tertiary-text"
-                      size="nano"
-                      className="c__select__inner__actions__open"
-                      icon={
-                        <span
-                          className={classNames("material-icons", {
-                            opened: downshiftReturn.isOpen,
-                          })}
-                        >
-                          arrow_drop_down
-                        </span>
-                      }
-                      disabled={disabled}
-                      type="button"
-                      {...downshiftReturn.toggleButtonProps}
-                    />
-                  </div>
-                )}
+                  <Button
+                    color="tertiary-text"
+                    size="nano"
+                    className={`c__select__inner__actions__open 
+                      c__select__inner__actions__open${props.isLoading ? "--hidden" : ""}
+                    `}
+                    icon={
+                      <span
+                        className={classNames("material-icons", {
+                          opened: downshiftReturn.isOpen,
+                        })}
+                      >
+                        arrow_drop_down
+                      </span>
+                    }
+                    disabled={disabled}
+                    type="button"
+                    {...downshiftReturn.toggleButtonProps}
+                  />
+                </div>
               </div>
             </LabelledBox>
           </div>
