@@ -133,16 +133,6 @@ export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
     }, []);
 
     useEffect(() => {
-      if (isAsyncOptionsFetching) {
-        const toggleMenu = props.isLoading
-          ? () => downshiftReturn.closeMenu()
-          : () => downshiftReturn.openMenu();
-
-        toggleMenu();
-      }
-    }, [props.isLoading]);
-
-    useEffect(() => {
       if (hasInputFocused || downshiftReturn.inputValue) {
         setLabelAsPlaceholder(false);
         return;
@@ -182,27 +172,6 @@ export const SelectMonoSearchable = forwardRef<SelectHandle, SubProps>(
         downshiftReturn.selectItem(optionToSelect ?? null);
       }
     }, [props.value, props.options, inputFilter]);
-
-    useEffect(() => {
-      if (!isAsyncOptionsFetching) {
-        return;
-      }
-
-      const selectedItem = downshiftReturn.selectedItem
-        ? optionToValue(downshiftReturn.selectedItem)
-        : undefined;
-
-      const optionToSelect = optionsToDisplay.find(
-        (option) => optionToValue(option) === props.value,
-      );
-
-      // Already selected
-      if (optionToSelect && selectedItem === props.value) {
-        return;
-      }
-
-      downshiftReturn.selectItem(optionToSelect ?? null);
-    }, [props.value]);
 
     // Even there is already a value selected, when opening the combobox menu we want to display all available choices.
     useEffect(() => {

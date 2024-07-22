@@ -1,7 +1,7 @@
 import userEvent from "@testing-library/user-event";
 import { act, render, screen, waitFor } from "@testing-library/react";
 import { expect, Mock, vi } from "vitest";
-import React, { createRef, FormEvent, useState } from "react";
+import React, { createRef, FormEvent, useEffect, useState } from "react";
 import { within } from "@testing-library/dom";
 import {
   Select,
@@ -1085,7 +1085,7 @@ describe("<Select/>", () => {
       expect(searchTerm).toBeUndefined();
     });
 
-    it("shows and hides the loader according to the loading status", async () => {
+    it("add and remove elements according to loading state", async () => {
       callbackFetchOptionsMock.mockResolvedValue(arrayCityOptions);
 
       expect(vi.isMockFunction(callbackFetchOptionsMock)).toBeTruthy();
@@ -1098,14 +1098,47 @@ describe("<Select/>", () => {
         />,
       );
 
+      const user = userEvent.setup();
+
+      expect(
+        document.querySelector(".c__select__inner__actions__separator"),
+      ).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole("button", {
+          name: "Clear selection",
+        }),
+      ).not.toBeInTheDocument();
       await expectLoaderToBeVisible();
-      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(1, {
-        search: "london",
-      });
+
       await expectLoaderNotToBeInTheDocument();
+
+      const menu: HTMLDivElement = screen.getByRole("listbox", {
+        name: "Select a city",
+      });
+
+      expectMenuToBeClosed(menu);
+
+      await user.click(
+        screen.getByRole("combobox", {
+          name: "Select a city",
+        }),
+      );
+
+      expectMenuToBeOpen(menu);
+
+      expectOptions(["Paris", "Panama", "London", "New York", "Tokyo"]);
+
+      expect(
+        document.querySelector(".c__select__inner__actions__separator"),
+      ).toBeInTheDocument();
+      expect(
+        screen.queryByRole("button", {
+          name: "Clear selection",
+        }),
+      ).toBeInTheDocument();
     });
 
-    it("gets new options asynchronously on search update when component is uncontrolled", async () => {
+    it("fetch options asynchronously on search update when component is uncontrolled", async () => {
       const user = userEvent.setup();
 
       callbackFetchOptionsMock
@@ -1156,15 +1189,12 @@ describe("<Select/>", () => {
       });
 
       expect(input.tagName).toEqual("INPUT");
-
       expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(1, {
         search: "",
       });
-
       expectMenuToBeClosed(menu);
 
       await user.click(input);
-
       expectMenuToBeOpen(menu);
       expectOptions(["Paris", "Panama", "London", "New York", "Tokyo"]);
 
@@ -1204,7 +1234,7 @@ describe("<Select/>", () => {
       expectOptions(["Paris", "Panama", "London", "New York", "Tokyo"]);
     });
 
-    it("gets new options asynchronously on default value and search updates when component is uncontrolled", async () => {
+    it("fetch options asynchronously on default value and search updates when component is uncontrolled", async () => {
       callbackFetchOptionsMock.mockResolvedValue(arrayCityOptions);
 
       expect(vi.isMockFunction(callbackFetchOptionsMock)).toBeTruthy();
