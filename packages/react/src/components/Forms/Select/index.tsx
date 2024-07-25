@@ -24,7 +24,7 @@ export type OptionWithoutRender = Omit<BaseOption, "value" | "render"> & {
 export type Option = OptionWithoutRender | OptionWithRender;
 
 export type ContextCallbackFetchOptions = {
-  search?: string;
+  search?: string | number;
 };
 
 export type CallbackFetchOptions = (
@@ -72,6 +72,10 @@ export const Select = forwardRef<SelectHandle, SelectProps>((props, ref) => {
   return props.multi ? (
     <SelectMulti {...props} ref={ref} />
   ) : (
-    <SelectMono {...props} ref={ref} />
+    <SelectMono
+      {...props}
+      ref={ref}
+      value={Array.isArray(props.value) ? undefined : props.value}
+    />
   );
 });

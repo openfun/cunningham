@@ -258,31 +258,34 @@ export const SearchableControlledWithAsyncOptionsFetching = () => {
     let arrayOptions: Option[] = [];
 
     setIsLoading(true);
-    try {
-      context.search = isInitialOptionFetching ? "" : context.search;
-      arrayOptions = await fetchOptions(context, OPTIONS, 1000);
-      setIsInitialOptionFetching(false);
-    } catch (error) {
-      /* empty */
-    }
+    context.search = isInitialOptionFetching ? "" : context.search;
+
+    arrayOptions = await fetchOptions(context, OPTIONS, 200);
+
+    setIsInitialOptionFetching(false);
 
     setIsLoading(false);
+
     return arrayOptions;
   };
 
   return (
     <CunninghamProvider>
       <div style={{ paddingBottom: "200px", position: "relative" }}>
-        <div>Value = {value}|</div>
-        <Button onClick={() => setValue(undefined)}>Clear</Button>
+        <div>
+          Value: <span>{value}</span>
+        </div>
         <Select
-          label="City"
+          label="Select a city"
           options={fetchAsyncOptions}
           searchable={true}
           isLoading={isLoading}
           value={value}
-          onChange={(e) => setValue(e.target.value as string)}
+          onChange={(e) => {
+            setValue(e.target.value as string);
+          }}
         />
+        <Button onClick={() => setValue(undefined)}>Reset</Button>
       </div>
     </CunninghamProvider>
   );

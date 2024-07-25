@@ -1,7 +1,7 @@
 import userEvent from "@testing-library/user-event";
 import { act, render, screen, waitFor } from "@testing-library/react";
 import { expect, Mock, vi } from "vitest";
-import React, { createRef, FormEvent, useEffect, useState } from "react";
+import React, { createRef, FormEvent, useState } from "react";
 import { within } from "@testing-library/dom";
 import {
   Select,
@@ -1138,7 +1138,7 @@ describe("<Select/>", () => {
       ).toBeInTheDocument();
     });
 
-    it("fetch options asynchronously on search update when component is uncontrolled", async () => {
+    it("fetch new options on search update when component is uncontrolled", async () => {
       const user = userEvent.setup();
 
       callbackFetchOptionsMock
@@ -1190,7 +1190,7 @@ describe("<Select/>", () => {
 
       expect(input.tagName).toEqual("INPUT");
       expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(1, {
-        search: "",
+        search: undefined,
       });
       expectMenuToBeClosed(menu);
 
@@ -1234,7 +1234,7 @@ describe("<Select/>", () => {
       expectOptions(["Paris", "Panama", "London", "New York", "Tokyo"]);
     });
 
-    it("fetch options asynchronously on default value and search updates when component is uncontrolled", async () => {
+    it("fetch new options on default value and search update when component is uncontrolled", async () => {
       callbackFetchOptionsMock.mockResolvedValue(arrayCityOptions);
 
       expect(vi.isMockFunction(callbackFetchOptionsMock)).toBeTruthy();
@@ -1272,7 +1272,7 @@ describe("<Select/>", () => {
       expectOptions(["Paris", "Panama", "London", "New York", "Tokyo"]);
     });
 
-    it("gets new options asynchronously on search update when component is controlled", async () => {
+    it("fetch new options on search update when component is controlled", async () => {
       const ControlledSearchableFetchedOptionsSelectWrapper = ({
         optionsCallback,
         defaultValue,
@@ -1317,12 +1317,6 @@ describe("<Select/>", () => {
       };
 
       callbackFetchOptionsMock
-        .mockResolvedValueOnce([
-          {
-            label: "London",
-            value: "london",
-          },
-        ])
         .mockResolvedValueOnce(arrayCityOptions)
         .mockResolvedValueOnce([
           {
@@ -1393,7 +1387,7 @@ describe("<Select/>", () => {
       expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(1, {
         search: "london",
       });
-      expectOptions(["London"]);
+      expectOptions(["Paris", "Panama", "London", "New York", "Tokyo"]);
 
       await userEvent.click(clearButton);
 
@@ -1406,13 +1400,10 @@ describe("<Select/>", () => {
 
       expectMenuToBeOpen(menu);
 
-      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(2, {
-        search: "",
-      });
       expectOptions(["Paris", "Panama", "London", "New York", "Tokyo"]);
 
       await user.type(input, "P");
-      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(3, {
+      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(2, {
         search: "P",
       });
 
@@ -1420,14 +1411,14 @@ describe("<Select/>", () => {
       expectOptions(["Paris", "Panama"]);
 
       await user.type(input, "a", { skipClick: true });
-      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(4, {
+      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(3, {
         search: "Pa",
       });
       expectMenuToBeOpen(menu);
       expectOptions(["Paris", "Panama"]);
 
       await user.type(input, "r", { skipClick: true });
-      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(5, {
+      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(4, {
         search: "Par",
       });
       expectOptions(["Paris"]);
@@ -1443,7 +1434,7 @@ describe("<Select/>", () => {
 
       await user.clear(input);
 
-      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(6, {
+      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(5, {
         search: "",
       });
       expect(screen.getByText("Value = |")).toBeVisible();
