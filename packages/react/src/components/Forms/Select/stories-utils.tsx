@@ -60,7 +60,7 @@ export const fetchOptions = async (
         );
 
       const arrayOptions: Option[] = stringSearch
-        ? filterOptions(options, stringSearch)
+        ? filterOptions(options, String(stringSearch))
         : options;
 
       resolve(arrayOptions);
