@@ -16,7 +16,7 @@ interface CalendarCellProps {
 }
 
 const isRangeCalendar = (object: any): object is RangeCalendarState => {
-  return object?.highlightedRange;
+  return Boolean(object?.highlightedRange);
 };
 
 export const CalendarCell = ({ state, date }: CalendarCellProps) => {
@@ -31,15 +31,15 @@ export const CalendarCell = ({ state, date }: CalendarCellProps) => {
   } = useCalendarCell({ date }, state, ref);
 
   const isSelectionEnd =
-    isRangeCalendar(state) && isSameDay(date, state?.highlightedRange?.end);
+    isRangeCalendar(state) && isSameDay(date, state.highlightedRange!.end);
 
   const isSelectionStart =
-    isRangeCalendar(state) && isSameDay(date, state?.highlightedRange?.start);
+    isRangeCalendar(state) && isSameDay(date, state?.highlightedRange!.start);
 
   const isWithinHighlightedRange =
     isRangeCalendar(state) &&
-    state?.highlightedRange?.start <= date &&
-    state?.highlightedRange?.end >= date;
+    state?.highlightedRange!.start <= date &&
+    state?.highlightedRange!.end >= date;
 
   return (
     <td {...cellProps}>
