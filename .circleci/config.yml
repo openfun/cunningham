@@ -49,7 +49,7 @@ jobs:
   # ---- Codebase -----
   build:
     docker:
-      - image: cimg/node:18.18
+      - image: cimg/node:20.16
     working_directory: ~/cunningham
     steps:
       - *checkout_cunningham
@@ -81,7 +81,7 @@ jobs:
           key: v1-front-dependencies-{{ checksum "yarn.lock" }}
   lint:
     docker:
-      - image: cimg/node:18.18
+      - image: cimg/node:20.16
     working_directory: ~/cunningham
     steps:
       - *checkout_cunningham
@@ -92,7 +92,7 @@ jobs:
 
   test:
     docker:
-      - image: cimg/node:18.18
+      - image: cimg/node:20.16
     parallelism: 4
     resource_class: large
     working_directory: ~/cunningham
@@ -122,7 +122,7 @@ jobs:
   # ---- Deploy ----
   publish-storybook:
     docker:
-      - image: cimg/node:18.18
+      - image: cimg/node:20.16
     working_directory: ~/cunningham
     steps:
       - add_ssh_keys:
@@ -140,7 +140,7 @@ jobs:
             yarn deploy-ghpages
   publish-packages:
     docker:
-      - image: cimg/node:18.18
+      - image: cimg/node:20.16
         auth:
           username: $DOCKER_USER
           password: $DOCKER_PASS
