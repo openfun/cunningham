@@ -2,7 +2,7 @@ version: "3.5"
 
 services:
   node:
-    image: node:18.18
+    image: node:20.16
     working_dir: /app
     user: "${DOCKER_USER:-1000}"
     ports:
