@@ -3,6 +3,15 @@
 .c__select {
   position: relative;
 
+  &__loader {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    cursor: wait;
+  }
+
   &__wrapper {
     border-radius: var(--c--components--forms-select--border-radius);
     border-width: var(--c--components--forms-select--border-width);
@@ -99,6 +108,10 @@
       }
       &__open {
         color: var(--c--theme--colors--greyscale-900);
+
+        &--hidden {
+          display: none;
+        }
       }
     }
   }

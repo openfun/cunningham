@@ -8,6 +8,7 @@ import { Button } from ":/components/Button";
 import { Option, SelectProps } from ":/components/Forms/Select";
 import { isOptionWithRender } from ":/components/Forms/Select/utils";
 import { SelectMenu } from ":/components/Forms/Select/select-menu";
+import { UpdateArrayOptionsType } from ":/components/Forms/Select/mono-searchable";
 
 export function getOptionsFilter(inputValue?: string) {
   return (option: Option) => {
@@ -53,6 +54,7 @@ export interface SubProps extends SelectProps {
 export interface SelectAuxProps extends SubProps {
   options: Option[];
   labelAsPlaceholder: boolean;
+  updateArrayOptions?: UpdateArrayOptionsType;
   downshiftReturn: {
     isOpen: boolean;
     wrapperProps?: HTMLAttributes<HTMLDivElement>;
@@ -84,6 +86,7 @@ export const SelectMonoAux = ({
   disabled,
   clearable = true,
   onBlur,
+  updateArrayOptions,
   ...props
 }: SelectAuxProps) => {
   const { t } = useCunningham();
@@ -135,30 +138,38 @@ export const SelectMonoAux = ({
               <div className="c__select__inner">
                 <div className="c__select__inner__value">{children}</div>
                 <div className="c__select__inner__actions">
-                  {clearable && !disabled && downshiftReturn.selectedItem && (
-                    <>
-                      <Button
-                        color="tertiary-text"
-                        size="nano"
-                        aria-label={t(
-                          "components.forms.select.clear_button_aria_label",
-                        )}
-                        className="c__select__inner__actions__clear"
-                        onClick={(e) => {
-                          downshiftReturn.selectItem(null);
-                          e.stopPropagation();
-                        }}
-                        icon={<span className="material-icons">close</span>}
-                        type="button"
-                      />
-                      <div className="c__select__inner__actions__separator" />
-                    </>
-                  )}
+                  {!props.isLoading &&
+                    clearable &&
+                    !disabled &&
+                    downshiftReturn.selectedItem && (
+                      <>
+                        <Button
+                          color="tertiary-text"
+                          size="nano"
+                          aria-label={t(
+                            "components.forms.select.clear_button_aria_label",
+                          )}
+                          className="c__select__inner__actions__clear"
+                          onClick={(e) => {
+                            downshiftReturn.selectItem(null);
+                            if (typeof updateArrayOptions === "function") {
+                              updateArrayOptions(undefined);
+                            }
+                            e.stopPropagation();
+                          }}
+                          icon={<span className="material-icons">close</span>}
+                          type="button"
+                        />
+                        <div className="c__select__inner__actions__separator" />
+                      </>
+                    )}
 
                   <Button
                     color="tertiary-text"
                     size="nano"
-                    className="c__select__inner__actions__open"
+                    className={`c__select__inner__actions__open 
+                      c__select__inner__actions__open${props.isLoading ? "--hidden" : ""}
+                    `}
                     icon={
                       <span
                         className={classNames("material-icons", {

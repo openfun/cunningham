@@ -23,6 +23,14 @@ export type OptionWithoutRender = Omit<BaseOption, "value" | "render"> & {
 
 export type Option = OptionWithoutRender | OptionWithRender;
 
+export type ContextCallbackFetchOptions = {
+  search?: string | number;
+};
+
+export type CallbackFetchOptions = (
+  context: ContextCallbackFetchOptions,
+) => Promise<Option[]>;
+
 export interface SelectHandle {
   blur: () => void;
 }
@@ -31,7 +39,7 @@ export type SelectProps = PropsWithChildren &
   FieldProps & {
     label: string;
     hideLabel?: boolean;
-    options: Option[];
+    options: Option[] | CallbackFetchOptions;
     searchable?: boolean;
     name?: string;
     defaultValue?: string | number | string[];
@@ -45,6 +53,7 @@ export type SelectProps = PropsWithChildren &
     disabled?: boolean;
     clearable?: boolean;
     multi?: boolean;
+    isLoading?: boolean;
     showLabelWhenSelected?: boolean;
     monoline?: boolean;
     selectedItemsStyle?: "pills" | "text";
@@ -63,6 +72,10 @@ export const Select = forwardRef<SelectHandle, SelectProps>((props, ref) => {
   return props.multi ? (
     <SelectMulti {...props} ref={ref} />
   ) : (
-    <SelectMono {...props} ref={ref} />
+    <SelectMono
+      {...props}
+      ref={ref}
+      value={Array.isArray(props.value) ? undefined : props.value}
+    />
   );
 });

@@ -38,6 +38,21 @@ You can enable the text live filtering simply by using the `searchable` props.
 
 > You can use `onSearchInputChange` to get the value of the input when the user is typing.
 
+## Searchable with options fetching
+
+You can enable the text live filtering simply by using the `searchable` prop, and the options fetching by providing
+a callback (async or not) receiving the search term in its parameters in the `options` prop. This latter is triggered
+every time the search term is different from the previous one. An optional `isLoading` prop can be used to show
+a loader while the options are being fetched. You can also provide an optional `defaultValue` prop. It works both in
+controlled and uncontrolled state.
+
+### uncontrolled
+<Canvas of={Stories.SearchableUncontrolledWithAsyncOptionsFetchingAndDefaultValue} />
+
+### controlled
+<Canvas of={Stories.SearchableControlledWithAsyncOptionsFetching} />
+
+
 ## States
 
 You can use the following props to change the state of the Select component by using the `state` props.
