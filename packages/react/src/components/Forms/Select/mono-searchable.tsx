@@ -26,6 +26,10 @@ import { Loader } from ":/components/Loader";
 
 type SelectMonoSearchableType = SubProps & SelectMonoProps;
 
+export type UpdateArrayOptionsType = (
+  search?: string | number,
+) => Promise<Option[]>;
+
 export const SelectMonoSearchable = forwardRef<
   SelectHandle,
   SelectMonoSearchableType
@@ -53,9 +57,7 @@ export const SelectMonoSearchable = forwardRef<
     !downshiftReturn.selectedItem,
   );
 
-  const updateArrayOptions = async (
-    search?: string | number,
-  ): Promise<Option[]> => {
+  const updateArrayOptions: UpdateArrayOptionsType = async (search) => {
     const options = await (props.options as CallbackFetchOptions)({ search });
 
     if (Array.isArray(options)) {
@@ -217,6 +219,9 @@ export const SelectMonoSearchable = forwardRef<
       }}
       labelAsPlaceholder={labelAsPlaceholder}
       options={arrayOptions}
+      updateArrayOptions={
+        isAsyncOptionsFetching ? updateArrayOptions : undefined
+      }
     >
       <input
         {...inputProps}
