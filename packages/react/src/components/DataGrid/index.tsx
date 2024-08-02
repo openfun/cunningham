@@ -199,8 +199,8 @@ export const DataGrid = <T extends Row>({
                       <tr key={headerGroup.id}>
                         {headerGroup.headers.map((header, i) => {
                           const style: CSSProperties = {};
-                          const column = columns[i];
-                          if (column && typeof column.size === "number") {
+                          const column = headlessColumns[i];
+                          if (column && typeof column.size !== "undefined") {
                             style.width = `${column.size}px`;
                           }
 
