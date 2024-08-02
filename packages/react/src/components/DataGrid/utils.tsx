@@ -50,6 +50,7 @@ export const useHeadlessColumns = <T extends Row>({
     headlessColumns = [
       columnHelper.display({
         id: HEADER_ID_SELECT,
+        size: 34,
         header: () => null,
         cell: ({ row }) => (
           <Checkbox
