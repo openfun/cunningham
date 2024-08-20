@@ -99,7 +99,13 @@
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
     "react/require-default-props": "off",
-    "react/style-prop-object": ["error", { "allow": ["FormattedNumber"] }]
+    "react/style-prop-object": ["error", { "allow": ["FormattedNumber"] }],
+    /*
+      The two following rules can be removed once airbnb-typescript will be updated (18.0.0)
+      https://github.com/iamturns/eslint-config-airbnb-typescript/issues/354
+    */
+    "@typescript-eslint/no-throw-literal": "off",
+    "@typescript-eslint/only-throw-error": "error"
   },
   "settings": {
     "polyfills": ["fetch", "Promise"],

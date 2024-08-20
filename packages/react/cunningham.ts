@@ -26,7 +26,8 @@ files.forEach((file) => {
       .replace(sep, "-");
 
     components[componentName] = res.tokens(defaultTokenRefs);
-  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (_error) {
     throw new Error("Could not find component name from file path " + file);
   }
 });
