@@ -25,7 +25,8 @@ export const isValidTimeZone = (timezone: string) => {
     Intl.DateTimeFormat(undefined, { timeZone: timezone });
 
     return true;
-  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (_error) {
     // If an error occurs, it could be due to an invalid time zone or lack of Intl support
     return false;
   }
