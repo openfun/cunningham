@@ -1,5 +1,12 @@
 # @openfun/cunningham-react
 
+## 2.9.4
+
+### Patch Changes
+
+- 1514e4f: make datagrid select column visible
+- b374eb8: Use `overflow:auto` instead of `overflow:scroll`
+
 ## 2.9.3
 
 ### Patch Changes
