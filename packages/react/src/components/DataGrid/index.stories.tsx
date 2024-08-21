@@ -167,6 +167,47 @@ export const ClientSideWithPagination = () => {
   );
 };
 
+export const RowSelectionOptional = () => {
+  const [rowSelection, setRowSelection] = useState({});
+
+  return (
+    <>
+      <SimpleDataGrid
+        columns={[
+          {
+            field: "carName",
+            headerName: "Car name",
+            enableSorting: false,
+          },
+          {
+            field: "year",
+            headerName: "Year",
+          },
+          {
+            field: "price",
+            headerName: "Price ($)",
+            highlight: true,
+          },
+        ]}
+        rows={databaseCars}
+        defaultPaginationParams={{
+          pageSize: 5,
+        }}
+        defaultSortModel={[
+          {
+            field: "price",
+            sort: "desc",
+          },
+        ]}
+        enableRowSelection={(row) => row.original.year < 2024}
+        rowSelection={rowSelection}
+        onRowSelectionChange={setRowSelection}
+      />
+      <div>Selected rows: {Object.keys(rowSelection).join(", ")}</div>
+    </>
+  );
+};
+
 export const FullServerSide = () => {
   const database = useMemo(() => [...databaseUsersServer], []);
   const [rowSelection, setRowSelection] = useState({});
