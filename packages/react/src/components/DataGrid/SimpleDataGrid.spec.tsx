@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { queryByRole, render, screen, waitFor } from "@testing-library/react";
 import React, { useState } from "react";
 import { faker } from "@faker-js/faker";
 import { getAllByRole, getByRole, within } from "@testing-library/dom";
@@ -266,6 +266,69 @@ describe("<SimpleDataGrid/>", () => {
       expect(lastRowSelection[rowsToSelect[0].id]).toBe(undefined);
       expect(lastRowSelection[rowsToSelect[1].id]).toBe(true);
     });
+  });
+  it("should not render selection checkboxes for unselectable rows", async () => {
+    const rows = Array.from(Array(2))
+      .map(() => ({
+        id: faker.string.uuid(),
+        firstName: faker.person.firstName(),
+        lastName: faker.person.lastName(),
+        email: faker.internet.email(),
+        address: faker.location.streetAddress(),
+      }))
+      .sort((a, b) => a.firstName.localeCompare(b.firstName));
+    rows[0].email = "admin@example.com";
+
+    const Wrapper = () => {
+      const [rowSelection, setRowSelection] = useState({});
+
+      return (
+        <CunninghamProvider>
+          <SimpleDataGrid
+            columns={[
+              {
+                field: "firstName",
+                headerName: "First name",
+              },
+              {
+                field: "lastName",
+                headerName: "Last name",
+              },
+              {
+                field: "email",
+                headerName: "Email",
+              },
+              {
+                field: "address",
+                headerName: "Address",
+              },
+            ]}
+            rows={rows}
+            defaultSortModel={[
+              {
+                field: "firstName",
+                sort: "asc",
+              },
+            ]}
+            enableRowSelection={(row) =>
+              row.original.email !== "admin@example.com"
+            }
+            rowSelection={rowSelection}
+            onRowSelectionChange={setRowSelection}
+          />
+        </CunninghamProvider>
+      );
+    };
+
+    render(<Wrapper />);
+
+    // Check first row.
+    let element = screen.getByTestId(rows[0].id);
+    expect(queryByRole(element, "checkbox")).not.toBeInTheDocument();
+
+    // Check second row.
+    element = screen.getByTestId(rows[1].id);
+    expect(getByRole(element, "checkbox")).toBeInTheDocument();
   });
   it("should render a grid with working sortable columns", async () => {
     const rows = Array.from(Array(23))
