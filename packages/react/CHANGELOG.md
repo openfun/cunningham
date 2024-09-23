@@ -1,5 +1,11 @@
 # @openfun/cunningham-react
 
+## 2.10.0
+
+### Minor Changes
+
+- 0b45f51: add async option fetching mode to select mono
+
 ## 2.9.4
 
 ### Patch Changes
@@ -425,6 +431,8 @@
 - 4ebbf16: Add component's tokens handling
 
 [unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.9.3...main
+[2.10.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.9.4...@openfun/cunningham-react@2.10.0
+[2.9.4]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.9.3...@openfun/cunningham-react@2.9.4
 [2.9.3]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.9.2...@openfun/cunningham-react@2.9.3
 [2.9.2]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.9.1...@openfun/cunningham-react@2.9.2
 [2.9.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.9.0...@openfun/cunningham-react@2.9.1

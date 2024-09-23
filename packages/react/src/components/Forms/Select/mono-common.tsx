@@ -93,6 +93,9 @@ export const SelectMonoAux = ({
   const labelProps = downshiftReturn.getLabelProps();
   const ref = useRef<HTMLDivElement>(null);
 
+  const isToReset =
+    !props.isLoading && clearable && !disabled && downshiftReturn.selectedItem;
+
   return (
     <>
       <Field state={state} {...props}>
@@ -138,31 +141,28 @@ export const SelectMonoAux = ({
               <div className="c__select__inner">
                 <div className="c__select__inner__value">{children}</div>
                 <div className="c__select__inner__actions">
-                  {!props.isLoading &&
-                    clearable &&
-                    !disabled &&
-                    downshiftReturn.selectedItem && (
-                      <>
-                        <Button
-                          color="tertiary-text"
-                          size="nano"
-                          aria-label={t(
-                            "components.forms.select.clear_button_aria_label",
-                          )}
-                          className="c__select__inner__actions__clear"
-                          onClick={(e) => {
-                            downshiftReturn.selectItem(null);
-                            if (typeof updateArrayOptions === "function") {
-                              updateArrayOptions(undefined);
-                            }
-                            e.stopPropagation();
-                          }}
-                          icon={<span className="material-icons">close</span>}
-                          type="button"
-                        />
-                        <div className="c__select__inner__actions__separator" />
-                      </>
-                    )}
+                  {isToReset && (
+                    <>
+                      <Button
+                        color="tertiary-text"
+                        size="nano"
+                        aria-label={t(
+                          "components.forms.select.clear_button_aria_label",
+                        )}
+                        className="c__select__inner__actions__clear"
+                        onClick={(e) => {
+                          downshiftReturn.selectItem(null);
+                          if (typeof updateArrayOptions === "function") {
+                            updateArrayOptions(undefined);
+                          }
+                          e.stopPropagation();
+                        }}
+                        icon={<span className="material-icons">close</span>}
+                        type="button"
+                      />
+                      <div className="c__select__inner__actions__separator" />
+                    </>
+                  )}
 
                   <Button
                     color="tertiary-text"
