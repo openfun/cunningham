@@ -190,13 +190,9 @@ export const SearchableUncontrolledWithAsyncOptionsFetching = () => {
     let arrayOptions: Option[] = [];
 
     setIsLoading(true);
-    try {
-      context.search = isInitialOptionFetching ? "" : context.search;
-      arrayOptions = await fetchOptions(context, OPTIONS, 1000);
-      setIsInitialOptionFetching(false);
-    } catch (error) {
-      /* empty */
-    }
+    context.search = isInitialOptionFetching ? "" : context.search;
+    arrayOptions = await fetchOptions(context, OPTIONS, 1000);
+    setIsInitialOptionFetching(false);
 
     setIsLoading(false);
     return arrayOptions;
@@ -224,13 +220,9 @@ export const SearchableUncontrolledWithAsyncOptionsFetchingAndDefaultValue =
       let arrayOptions: Option[] = [];
 
       setIsLoading(true);
-      try {
-        context.search = isInitialOptionFetching ? "" : context.search;
-        arrayOptions = await fetchOptions(context, OPTIONS, 1000);
-        setIsInitialOptionFetching(false);
-      } catch (error) {
-        /* empty */
-      }
+      context.search = isInitialOptionFetching ? "" : context.search;
+      arrayOptions = await fetchOptions(context, OPTIONS, 1000);
+      setIsInitialOptionFetching(false);
 
       setIsLoading(false);
       return arrayOptions;
