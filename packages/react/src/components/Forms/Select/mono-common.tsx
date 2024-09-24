@@ -8,6 +8,7 @@ import { Button } from ":/components/Button";
 import { Option, SelectProps } from ":/components/Forms/Select";
 import { isOptionWithRender } from ":/components/Forms/Select/utils";
 import { SelectMenu } from ":/components/Forms/Select/select-menu";
+import { UpdateArrayOptionsType } from ":/components/Forms/Select/mono-searchable";
 
 export function getOptionsFilter(inputValue?: string) {
   return (option: Option) => {
@@ -53,6 +54,7 @@ export interface SubProps extends SelectProps {
 export interface SelectAuxProps extends SubProps {
   options: Option[];
   labelAsPlaceholder: boolean;
+  updateArrayOptions?: UpdateArrayOptionsType;
   downshiftReturn: {
     isOpen: boolean;
     wrapperProps?: HTMLAttributes<HTMLDivElement>;
@@ -84,11 +86,15 @@ export const SelectMonoAux = ({
   disabled,
   clearable = true,
   onBlur,
+  updateArrayOptions,
   ...props
 }: SelectAuxProps) => {
   const { t } = useCunningham();
   const labelProps = downshiftReturn.getLabelProps();
   const ref = useRef<HTMLDivElement>(null);
+
+  const isToReset =
+    !props.isLoading && clearable && !disabled && downshiftReturn.selectedItem;
 
   return (
     <>
@@ -135,7 +141,7 @@ export const SelectMonoAux = ({
               <div className="c__select__inner">
                 <div className="c__select__inner__value">{children}</div>
                 <div className="c__select__inner__actions">
-                  {clearable && !disabled && downshiftReturn.selectedItem && (
+                  {isToReset && (
                     <>
                       <Button
                         color="tertiary-text"
@@ -146,6 +152,9 @@ export const SelectMonoAux = ({
                         className="c__select__inner__actions__clear"
                         onClick={(e) => {
                           downshiftReturn.selectItem(null);
+                          if (typeof updateArrayOptions === "function") {
+                            updateArrayOptions(undefined);
+                          }
                           e.stopPropagation();
                         }}
                         icon={<span className="material-icons">close</span>}
@@ -158,7 +167,9 @@ export const SelectMonoAux = ({
                   <Button
                     color="tertiary-text"
                     size="nano"
-                    className="c__select__inner__actions__open"
+                    className={`c__select__inner__actions__open 
+                      c__select__inner__actions__open${props.isLoading ? "--hidden" : ""}
+                    `}
                     icon={
                       <span
                         className={classNames("material-icons", {

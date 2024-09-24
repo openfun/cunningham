@@ -4,14 +4,21 @@ import { FormProvider, useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { onSubmit } from ":/components/Forms/Examples/ReactHookForm/reactHookFormUtils";
-import { Select, SelectHandle } from ":/components/Forms/Select";
+import {
+  ContextCallbackFetchOptions,
+  Option,
+  Select,
+  SelectHandle,
+} from ":/components/Forms/Select";
 import { Button } from ":/components/Button";
 import {
   getCountryOption,
   RhfSelect,
+  fetchOptions,
 } from ":/components/Forms/Select/stories-utils";
 import { Modal, ModalSize, useModal } from ":/components/Modal";
 import { Input } from ":/components/Forms/Input";
+import { CunninghamProvider } from ":/components/Provider";
 
 export default {
   title: "Components/Forms/Select/Mono",
@@ -173,6 +180,107 @@ export const SearchableUncontrolled = {
     defaultValue: OPTIONS[4].value,
     searchable: true,
   },
+};
+
+export const SearchableUncontrolledWithAsyncOptionsFetching = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isInitialOptionFetching, setIsInitialOptionFetching] = useState(true);
+
+  const fetchAsyncOptions = async (context: ContextCallbackFetchOptions) => {
+    let arrayOptions: Option[] = [];
+
+    setIsLoading(true);
+    context.search = isInitialOptionFetching ? "" : context.search;
+    arrayOptions = await fetchOptions(context, OPTIONS, 1000);
+    setIsInitialOptionFetching(false);
+
+    setIsLoading(false);
+    return arrayOptions;
+  };
+
+  return (
+    <div style={{ paddingBottom: "200px", position: "relative" }}>
+      <Select
+        label="Select a city"
+        options={fetchAsyncOptions}
+        isLoading={isLoading}
+        searchable={true}
+      />
+    </div>
+  );
+};
+
+export const SearchableUncontrolledWithAsyncOptionsFetchingAndDefaultValue =
+  () => {
+    const [isLoading, setIsLoading] = useState(true);
+    const [isInitialOptionFetching, setIsInitialOptionFetching] =
+      useState(true);
+
+    const fetchAsyncOptions = async (context: ContextCallbackFetchOptions) => {
+      let arrayOptions: Option[] = [];
+
+      setIsLoading(true);
+      context.search = isInitialOptionFetching ? "" : context.search;
+      arrayOptions = await fetchOptions(context, OPTIONS, 1000);
+      setIsInitialOptionFetching(false);
+
+      setIsLoading(false);
+      return arrayOptions;
+    };
+
+    return (
+      <div style={{ paddingBottom: "200px", position: "relative" }}>
+        <Select
+          label="Select a city"
+          options={fetchAsyncOptions}
+          isLoading={isLoading}
+          defaultValue={OPTIONS[4].value}
+          searchable={true}
+        />
+      </div>
+    );
+  };
+
+export const SearchableControlledWithAsyncOptionsFetching = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isInitialOptionFetching, setIsInitialOptionFetching] = useState(true);
+  const [value, setValue] = useState<string | number | undefined>("woodbury");
+
+  const fetchAsyncOptions = async (context: ContextCallbackFetchOptions) => {
+    let arrayOptions: Option[] = [];
+
+    setIsLoading(true);
+    context.search = isInitialOptionFetching ? "" : context.search;
+
+    arrayOptions = await fetchOptions(context, OPTIONS, 200);
+
+    setIsInitialOptionFetching(false);
+
+    setIsLoading(false);
+
+    return arrayOptions;
+  };
+
+  return (
+    <CunninghamProvider>
+      <div style={{ paddingBottom: "200px", position: "relative" }}>
+        <div>
+          Value: <span>{value}</span>
+        </div>
+        <Select
+          label="Select a city"
+          options={fetchAsyncOptions}
+          searchable={true}
+          isLoading={isLoading}
+          value={value}
+          onChange={(e) => {
+            setValue(e.target.value as string);
+          }}
+        />
+        <Button onClick={() => setValue(undefined)}>Reset</Button>
+      </div>
+    </CunninghamProvider>
+  );
 };
 
 export const SearchableDisabled = {

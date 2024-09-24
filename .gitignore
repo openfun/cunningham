@@ -27,6 +27,7 @@ dist
 *.njsproj
 *.sln
 *.sw?
+*.tool-versions
 
 vite.config.ts.timestamp-*
 env.d

@@ -1,6 +1,6 @@
 import userEvent from "@testing-library/user-event";
 import { act, render, screen, waitFor } from "@testing-library/react";
-import { expect } from "vitest";
+import { expect, Mock, vi } from "vitest";
 import React, { createRef, FormEvent, useState } from "react";
 import { within } from "@testing-library/dom";
 import {
@@ -8,10 +8,14 @@ import {
   Option,
   SelectHandle,
   SelectProps,
+  CallbackFetchOptions,
+  ContextCallbackFetchOptions,
 } from ":/components/Forms/Select/index";
 import { Button } from ":/components/Button";
 import { CunninghamProvider } from ":/components/Provider";
 import {
+  expectLoaderNotToBeInTheDocument,
+  expectLoaderToBeVisible,
   expectMenuToBeClosed,
   expectMenuToBeOpen,
   expectNoOptions,
@@ -22,8 +26,69 @@ import {
 } from ":/components/Forms/Select/test-utils";
 import { Input } from ":/components/Forms/Input";
 
+const arrayCityOptions = [
+  {
+    label: "Paris",
+    value: "paris",
+  },
+  {
+    label: "Panama",
+    value: "panama",
+  },
+  {
+    label: "London",
+    value: "london",
+  },
+  {
+    label: "New York",
+    value: "new_york",
+  },
+  {
+    label: "Tokyo",
+    value: "tokyo",
+  },
+];
+
+const UncontrolledSearchableFetchedOptionsSelectWrapper = ({
+  optionsCallback,
+  defaultValue,
+  label,
+}: {
+  optionsCallback: (context: ContextCallbackFetchOptions) => Promise<Option[]>;
+  defaultValue?: string;
+  label: string;
+}) => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  const localCallback: CallbackFetchOptions = async (context) => {
+    let arrayResults = [];
+    setIsLoading(true);
+    arrayResults = await optionsCallback(context);
+    setIsLoading(false);
+
+    return arrayResults;
+  };
+
+  return (
+    <CunninghamProvider>
+      <Select
+        label={label}
+        options={localCallback}
+        searchable={true}
+        isLoading={isLoading}
+        defaultValue={defaultValue}
+      />
+    </CunninghamProvider>
+  );
+};
+
+const callbackFetchOptionsMock: Mock = vi.fn();
 describe("<Select/>", () => {
   describe("Searchable", () => {
+    afterEach(() => {
+      vi.clearAllMocks();
+    });
+
     it("shows all options when clicking on the input", async () => {
       const user = userEvent.setup();
       render(
@@ -756,6 +821,7 @@ describe("<Select/>", () => {
         expectMenuToBeOpen(menu);
 
         expectOptions(["Paris", "Panama"]);
+
         myOptions.shift();
 
         // Rerender the select with the options mutated
@@ -1019,73 +1085,364 @@ describe("<Select/>", () => {
       expect(searchTerm).toBeUndefined();
     });
 
-    it("updates the selected value label if the option label changes", async () => {
-      const myOptions = [
-        {
-          label: "Paris",
-          value: "paris",
-        },
-        {
-          label: "Panama",
-          value: "panama",
-        },
-        {
-          label: "London",
-          value: "london",
-        },
-      ];
+    it("add and remove elements according to loading state", async () => {
+      callbackFetchOptionsMock.mockResolvedValue(arrayCityOptions);
 
-      const Wrapper = ({ options }: { options: Option[] }) => {
+      expect(vi.isMockFunction(callbackFetchOptionsMock)).toBeTruthy();
+
+      render(
+        <UncontrolledSearchableFetchedOptionsSelectWrapper
+          optionsCallback={callbackFetchOptionsMock}
+          label="Select a city"
+          defaultValue="london"
+        />,
+      );
+
+      const user = userEvent.setup();
+
+      expect(
+        document.querySelector(".c__select__inner__actions__separator"),
+      ).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole("button", {
+          name: "Clear selection",
+        }),
+      ).not.toBeInTheDocument();
+      await expectLoaderToBeVisible();
+
+      await expectLoaderNotToBeInTheDocument();
+
+      const menu: HTMLDivElement = screen.getByRole("listbox", {
+        name: "Select a city",
+      });
+
+      expectMenuToBeClosed(menu);
+
+      await user.click(
+        screen.getByRole("combobox", {
+          name: "Select a city",
+        }),
+      );
+
+      expectMenuToBeOpen(menu);
+
+      expectOptions(["Paris", "Panama", "London", "New York", "Tokyo"]);
+
+      expect(
+        document.querySelector(".c__select__inner__actions__separator"),
+      ).toBeInTheDocument();
+      expect(
+        screen.queryByRole("button", {
+          name: "Clear selection",
+        }),
+      ).toBeInTheDocument();
+    });
+
+    it("fetch new options on button clear click", async () => {
+      callbackFetchOptionsMock.mockResolvedValue(arrayCityOptions);
+
+      expect(vi.isMockFunction(callbackFetchOptionsMock)).toBeTruthy();
+
+      render(
+        <UncontrolledSearchableFetchedOptionsSelectWrapper
+          optionsCallback={callbackFetchOptionsMock}
+          label="Select a city"
+          defaultValue="london"
+        />,
+      );
+
+      const user = userEvent.setup();
+      const input = screen.getByRole("combobox", {
+        name: "Select a city",
+      });
+
+      expect(input.tagName).toEqual("INPUT");
+
+      await user.click(input);
+
+      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(1, {
+        search: "london",
+      });
+      expectOptions(["Paris", "Panama", "London", "New York", "Tokyo"]);
+
+      await userEvent.click(
+        screen.getByRole("button", {
+          name: "Clear selection",
+        }),
+      );
+
+      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(2, {
+        search: undefined,
+      });
+
+      await user.click(input);
+      expectOptions(["Paris", "Panama", "London", "New York", "Tokyo"]);
+    });
+
+    it("fetch new options on search update when component is uncontrolled", async () => {
+      callbackFetchOptionsMock
+        .mockResolvedValueOnce(arrayCityOptions)
+        .mockResolvedValueOnce([
+          {
+            label: "Paris",
+            value: "paris",
+          },
+          {
+            label: "Panama",
+            value: "panama",
+          },
+        ])
+        .mockResolvedValueOnce([
+          {
+            label: "Paris",
+            value: "paris",
+          },
+          {
+            label: "Panama",
+            value: "panama",
+          },
+        ])
+        .mockResolvedValueOnce([
+          {
+            label: "Paris",
+            value: "paris",
+          },
+        ])
+        .mockResolvedValueOnce(arrayCityOptions);
+
+      expect(vi.isMockFunction(callbackFetchOptionsMock)).toBeTruthy();
+
+      render(
+        <UncontrolledSearchableFetchedOptionsSelectWrapper
+          optionsCallback={callbackFetchOptionsMock}
+          label="City"
+        />,
+      );
+
+      const user = userEvent.setup();
+      const input = screen.getByRole("combobox", {
+        name: "City",
+      });
+
+      expect(input.tagName).toEqual("INPUT");
+      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(1, {
+        search: undefined,
+      });
+
+      await user.click(input);
+
+      expectOptions(["Paris", "Panama", "London", "New York", "Tokyo"]);
+
+      await user.type(input, "P");
+      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(2, {
+        search: "P",
+      });
+
+      expectOptions(["Paris", "Panama"]);
+
+      await user.type(input, "a", { skipClick: true });
+
+      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(3, {
+        search: "Pa",
+      });
+      expectOptions(["Paris", "Panama"]);
+
+      await user.type(input, "r", { skipClick: true });
+
+      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(4, {
+        search: "Par",
+      });
+      expectOptions(["Paris"]);
+
+      const option: HTMLLIElement = screen.getByRole("option", {
+        name: "Paris",
+      });
+
+      await user.click(option);
+
+      expect(input).toHaveValue("Paris");
+
+      await user.clear(input);
+
+      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(5, {
+        search: "",
+      });
+      expectOptions(["Paris", "Panama", "London", "New York", "Tokyo"]);
+    });
+
+    it("fetch new options on default value and search update when component is uncontrolled", async () => {
+      callbackFetchOptionsMock.mockResolvedValue(arrayCityOptions);
+
+      expect(vi.isMockFunction(callbackFetchOptionsMock)).toBeTruthy();
+
+      render(
+        <UncontrolledSearchableFetchedOptionsSelectWrapper
+          optionsCallback={callbackFetchOptionsMock}
+          label="Select a city"
+          defaultValue="london"
+        />,
+      );
+
+      const user = userEvent.setup();
+      const input = screen.getByRole("combobox", {
+        name: "Select a city",
+      });
+      const menu: HTMLDivElement = screen.getByRole("listbox", {
+        name: "Select a city",
+      });
+
+      await expectLoaderToBeVisible();
+      expect(input.tagName).toEqual("INPUT");
+      expectMenuToBeClosed(menu);
+      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(1, {
+        search: "london",
+      });
+      await expectLoaderNotToBeInTheDocument();
+      expect(input).toHaveValue("London");
+
+      await user.click(input);
+
+      expectMenuToBeOpen(menu);
+      expectOptions(["Paris", "Panama", "London", "New York", "Tokyo"]);
+    });
+
+    it("fetch new options on search update when component is controlled", async () => {
+      callbackFetchOptionsMock
+        .mockResolvedValueOnce(arrayCityOptions)
+        .mockResolvedValueOnce(arrayCityOptions)
+        .mockResolvedValueOnce([
+          {
+            label: "Paris",
+            value: "paris",
+          },
+          {
+            label: "Panama",
+            value: "panama",
+          },
+        ])
+        .mockResolvedValueOnce(arrayCityOptions);
+
+      expect(vi.isMockFunction(callbackFetchOptionsMock)).toBeTruthy();
+
+      const ControlledSearchableFetchedOptionsSelectWrapper = ({
+        optionsCallback,
+        defaultValue,
+        label,
+      }: {
+        optionsCallback: (
+          context: ContextCallbackFetchOptions,
+        ) => Promise<Option[]>;
+        defaultValue?: string;
+        label: string;
+      }) => {
+        const [isLoading, setIsLoading] = useState(true);
         const [value, setValue] = useState<string | number | undefined>(
-          "paris",
+          defaultValue,
         );
-        const [onChangeCounts, setOnChangeCounts] = useState(0);
+
+        const localCallback: CallbackFetchOptions = async (context) => {
+          let arrayResults = [];
+          setIsLoading(true);
+          arrayResults = await optionsCallback(context);
+          setIsLoading(false);
+
+          return arrayResults;
+        };
+
         return (
           <CunninghamProvider>
             <div>
               <div>Value = {value}|</div>
-              <div>onChangeCounts = {onChangeCounts}|</div>
+              <Button onClick={() => setValue(undefined)}>Clear</Button>
               <Select
-                label="City"
-                options={options}
-                value={value}
-                onChange={(e) => {
-                  setValue(e.target.value as string);
-                  setOnChangeCounts(onChangeCounts + 1);
-                }}
+                label={label}
+                options={localCallback}
                 searchable={true}
+                isLoading={isLoading}
+                value={value}
+                onChange={(e) => setValue(e.target.value as string)}
               />
             </div>
           </CunninghamProvider>
         );
       };
 
-      const { rerender } = render(<Wrapper options={myOptions} />, {
-        wrapper: CunninghamProvider,
-      });
+      await act(async () =>
+        render(
+          <ControlledSearchableFetchedOptionsSelectWrapper
+            optionsCallback={callbackFetchOptionsMock}
+            label="City"
+            defaultValue="london"
+          />,
+        ),
+      );
 
       const input = screen.getByRole("combobox", {
         name: "City",
       });
+
+      const menu: HTMLDivElement = screen.getByRole("listbox", {
+        name: "City",
+      });
+
+      const clearButton = screen.getByRole("button", {
+        name: "Clear selection",
+      });
+
+      const user = userEvent.setup();
+
+      expect(input.tagName).toEqual("INPUT");
+      expect(screen.getByText("Value = london|")).toBeVisible();
+      expect(input).toHaveValue("London");
+      expectMenuToBeClosed(menu);
+
+      await user.click(input);
+
+      expectMenuToBeOpen(menu);
+      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(1, {
+        search: "london",
+      });
+      expectOptions(["Paris", "Panama", "London", "New York", "Tokyo"]);
+
+      await userEvent.click(clearButton);
+
+      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(2, {
+        search: undefined,
+      });
+      expect(input).toHaveValue("");
+      expect(screen.getByText("Value = |")).toBeVisible();
+      expectMenuToBeClosed(menu);
+
+      await user.click(input);
+
+      expectMenuToBeOpen(menu);
+      expectOptions(["Paris", "Panama", "London", "New York", "Tokyo"]);
+
+      await user.type(input, "P");
+
+      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(3, {
+        search: "P",
+      });
+      expectMenuToBeOpen(menu);
+      expectOptions(["Paris", "Panama"]);
+
+      const option: HTMLLIElement = screen.getByRole("option", {
+        name: "Paris",
+      });
+
+      await user.click(option);
+
+      expect(screen.getByText("Value = paris|")).toBeVisible();
       expect(input).toHaveValue("Paris");
-      screen.getByText("Value = paris|");
-      screen.getByText("onChangeCounts = 0|");
 
-      rerender(
-        <Wrapper
-          options={[
-            {
-              label: "Paname",
-              value: "paris",
-            },
-            ...myOptions.slice(1),
-          ]}
-        />,
-      );
+      await user.clear(input);
 
-      await waitFor(() => expect(input).toHaveValue("Paname"));
-      screen.getByText("Value = paris|");
-      screen.getByText("onChangeCounts = 0|");
+      expect(callbackFetchOptionsMock).toHaveBeenNthCalledWith(4, {
+        search: "",
+      });
+      expect(screen.getByText("Value = |")).toBeVisible();
+      expect(input).toHaveValue("");
+      expectOptions(["Paris", "Panama", "London", "New York", "Tokyo"]);
     });
   });
 

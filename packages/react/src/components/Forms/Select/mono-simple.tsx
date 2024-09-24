@@ -19,30 +19,36 @@ import { SelectedOption } from ":/components/Forms/Select/utils";
  * Ex: If the selected options changes label we want to reflect that.
  * @param downshiftReturn
  * @param props
+ * @param arrayOptions
  */
 const useKeepSelectedItemInSyncWithOptions = (
   downshiftReturn: UseSelectReturnValue<Option>,
-  props: Pick<SelectProps, "value" | "options">,
+  props: Pick<SelectProps, "value">,
+  arrayOptions: Option[],
 ) => {
   useEffect(() => {
-    const optionToSelect = props.options.find(
+    const optionToSelect = arrayOptions.find(
       (option) => optionToValue(option) === props.value,
     );
     downshiftReturn.selectItem(optionToSelect ?? null);
-  }, [props.value, props.options]);
+  }, [props.value, arrayOptions]);
 };
 
 export const SelectMonoSimple = forwardRef<SelectHandle, SubProps>(
   (props, ref) => {
+    const arrayOptions: Option[] = Array.isArray(props.options)
+      ? props.options
+      : [];
+
     const downshiftReturn = useSelect({
       ...props.downshiftProps,
-      items: props.options,
+      items: arrayOptions,
       itemToString: optionToString,
     });
 
-    useKeepSelectedItemInSyncWithOptions(downshiftReturn, props);
-
     const wrapperRef = useRef<HTMLElement>(null);
+
+    useKeepSelectedItemInSyncWithOptions(downshiftReturn, props, arrayOptions);
 
     useImperativeHandle(ref, () => ({
       blur: () => {
@@ -54,6 +60,7 @@ export const SelectMonoSimple = forwardRef<SelectHandle, SubProps>(
     return (
       <SelectMonoAux
         {...props}
+        options={arrayOptions}
         downshiftReturn={{
           ...downshiftReturn,
           wrapperProps: downshiftReturn.getToggleButtonProps({
