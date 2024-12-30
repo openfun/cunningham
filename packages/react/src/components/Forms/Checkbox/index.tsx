@@ -24,7 +24,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     { indeterminate, className = "", checked, label, ...props }: CheckboxProps,
     ref,
   ) => {
-    const inputRef = useRef<HTMLInputElement>();
+    const inputRef = useRef<HTMLInputElement | null>(null);
     const [value, setValue] = useState<boolean>(!!checked);
 
     useEffect(() => {
@@ -69,7 +69,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
                   if (typeof ref === "function") {
                     ref(checkboxRef);
                   }
-                  inputRef.current = checkboxRef || undefined;
+                  inputRef.current = checkboxRef || null;
                 }}
               />
               <Indeterminate />

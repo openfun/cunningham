@@ -72,7 +72,7 @@ export const Tooltip = ({
   return (
     <>
       {React.cloneElement(
-        React.Children.toArray(props.children)[0] as ReactElement,
+        React.Children.toArray(props.children)[0] as ReactElement<any>,
         {
           ref,
           ...useTooltipTriggerRes.triggerProps,

@@ -9,7 +9,7 @@ import classNames from "classnames";
 import { useHandleClickOutside } from ":/hooks/useHandleClickOutside";
 
 export type PopoverProps = PropsWithChildren & {
-  parentRef: RefObject<HTMLDivElement>;
+  parentRef: RefObject<HTMLDivElement | null>;
   onClickOutside: () => void;
   borderless?: boolean;
 };
@@ -22,7 +22,7 @@ export const Popover = ({
 }: PopoverProps) => {
   const popoverRef = useRef<HTMLDivElement>(null);
   useHandleClickOutside(parentRef, onClickOutside);
-  const timeout = useRef<ReturnType<typeof setTimeout>>();
+  const timeout = useRef<ReturnType<typeof setTimeout>>(null);
   const [topPosition, setTopPosition] = useState<number | undefined>();
 
   useLayoutEffect(() => {

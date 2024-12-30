@@ -25,7 +25,7 @@ export interface ToastProps extends PropsWithChildren {
 export const Toast = (props: ToastProps) => {
   const [animateDisappear, setAnimateDisappear] = React.useState(false);
   const container = useRef<HTMLDivElement>(null);
-  const disappearTimeout = useRef<NodeJS.Timeout>();
+  const disappearTimeout = useRef<NodeJS.Timeout>(null);
 
   // Register a timeout to remove the toast after the duration.
   useEffect(() => {
@@ -34,7 +34,7 @@ export const Toast = (props: ToastProps) => {
     }
     disappearTimeout.current = setTimeout(async () => {
       setAnimateDisappear(true);
-      disappearTimeout.current = undefined;
+      disappearTimeout.current = null;
     }, props.duration);
     return () => {
       if (disappearTimeout.current) {
