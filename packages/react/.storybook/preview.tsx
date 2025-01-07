@@ -5,10 +5,10 @@ import { Preview } from '@storybook/react';
 import { DocsContainer } from '@storybook/blocks';
 
 import { CunninghamProvider } from ':/components/Provider';
-import { BACKGROUND_COLOR_TO_THEME, getThemeFromGlobals, themes } from './themes';
+import {BACKGROUND_COLOR_TO_THEME, getThemeFromGlobals, Themes, themes} from './themes';
 
 export const DocsWithTheme = (props, context) => {
-    const theme = getThemeFromGlobals(props.context.store.globals.globals);
+    const theme = getThemeFromGlobals(props.context.store.userGlobals.globals);
     return <CunninghamProvider theme={theme}>
         <DocsContainer {...props} theme={themes[theme]} />
     </CunninghamProvider>;
@@ -23,7 +23,6 @@ const preview: Preview = {
         ),
     ],
     parameters: {
-        actions: { argTypesRegex: '^on[A-Z].*' },
         backgrounds: {
             default: null,
             values: Object.entries(BACKGROUND_COLOR_TO_THEME).map(value => ({
