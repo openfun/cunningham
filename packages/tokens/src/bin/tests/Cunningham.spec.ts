@@ -133,7 +133,7 @@ describe("Cunningham Bin", () => {
 
     // We must run the bin directly to be sure that it compiles the TS file. ( Importing TS from
     // TS will always work )
-    await runBin(`-g css -cwd ${__dirname}`);
+    await runBin(`-g css -w ${__dirname}`);
 
     expect(fs.existsSync(cssTokensFile)).toEqual(true);
     expect(fs.readFileSync(cssTokensFile).toString()).toContain(`
