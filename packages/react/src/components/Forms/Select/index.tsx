@@ -1,4 +1,4 @@
-import React, { forwardRef, PropsWithChildren, ReactNode } from "react";
+import React, { PropsWithChildren, ReactNode, RefAttributes } from "react";
 import { SelectMulti } from ":/components/Forms/Select/multi";
 import { SelectMono } from ":/components/Forms/Select/mono";
 import { FieldProps } from ":/components/Forms/Field";
@@ -28,6 +28,7 @@ export interface SelectHandle {
 }
 
 export type SelectProps = PropsWithChildren &
+  RefAttributes<SelectHandle> &
   FieldProps & {
     label: string;
     hideLabel?: boolean;
@@ -53,16 +54,12 @@ export type SelectProps = PropsWithChildren &
       target: { value: string | undefined };
     }) => void;
   };
-export const Select = forwardRef<SelectHandle, SelectProps>((props, ref) => {
+export const Select = (props: SelectProps) => {
   if (props.defaultValue && props.value) {
     throw new Error(
       "You cannot use both defaultValue and value props on Select component",
     );
   }
 
-  return props.multi ? (
-    <SelectMulti {...props} ref={ref} />
-  ) : (
-    <SelectMono {...props} ref={ref} />
-  );
-});
+  return props.multi ? <SelectMulti {...props} /> : <SelectMono {...props} />;
+};

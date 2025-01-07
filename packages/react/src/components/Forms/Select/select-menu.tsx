@@ -7,7 +7,7 @@ import { SelectMultiAuxProps } from ":/components/Forms/Select/multi-common";
 
 export interface SelectDropdownProps extends PropsWithChildren {
   isOpen: boolean;
-  selectRef: React.RefObject<HTMLDivElement>;
+  selectRef: React.RefObject<HTMLDivElement | null>;
   menuOptionsStyle?: SelectProps["menuOptionsStyle"];
   downshiftReturn:
     | SelectAuxProps["downshiftReturn"]

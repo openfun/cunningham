@@ -1,17 +1,16 @@
-import React, { forwardRef, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useCunningham } from ":/components/Provider";
 import { formatBytes } from ":/components/Forms/FileUploader/utils";
 import { Button } from ":/components/Button";
-import {
-  FileUploaderProps,
-  FileUploaderRefType,
-} from ":/components/Forms/FileUploader/index";
+import { FileUploaderProps } from ":/components/Forms/FileUploader/index";
 import { DropZone } from ":/components/Forms/FileUploader/DropZone";
 
-export const FileUploaderMulti = forwardRef<
-  FileUploaderRefType,
-  FileUploaderProps
->(({ fullWidth, fakeDefaultFiles, ...props }, ref) => {
+export const FileUploaderMulti = ({
+  fullWidth,
+  fakeDefaultFiles,
+  ref,
+  ...props
+}: FileUploaderProps) => {
   const { t } = useCunningham();
   const [files, setFiles] = useState<File[]>(fakeDefaultFiles || []);
 
@@ -59,4 +58,4 @@ export const FileUploaderMulti = forwardRef<
       )}
     </>
   );
-});
+};
