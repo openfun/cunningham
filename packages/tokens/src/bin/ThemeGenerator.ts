@@ -48,7 +48,7 @@ export const run = async (args: string[]) => {
       ":root",
     )
     .option(
-      "-cwd, --working-dir <directory>",
+      "-w, --working-dir <directory>",
       "Specify the working dir ( you might not need this ).",
     )
     .option(
