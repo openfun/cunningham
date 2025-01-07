@@ -12,7 +12,7 @@ import { SelectMenu } from ":/components/Forms/Select/select-menu";
 
 export const SelectMultiMenu = (
   props: SelectMultiAuxProps & {
-    selectRef: React.RefObject<HTMLDivElement>;
+    selectRef: React.RefObject<HTMLDivElement | null>;
   },
 ) => {
   const { t } = useCunningham();

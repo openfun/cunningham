@@ -1,4 +1,9 @@
-import React, { PropsWithChildren, ReactElement, ReactNode } from "react";
+import React, {
+  PropsWithChildren,
+  ReactElement,
+  ReactNode,
+  RefObject,
+} from "react";
 import { OverlayArrow } from "react-aria-components";
 import {
   mergeProps,
@@ -72,7 +77,11 @@ export const Tooltip = ({
   return (
     <>
       {React.cloneElement(
-        React.Children.toArray(props.children)[0] as ReactElement,
+        React.Children.toArray(props.children)[0] as ReactElement<
+          typeof useTooltipTriggerRes.triggerProps & {
+            ref: RefObject<ReactElement | null>;
+          }
+        >,
         {
           ref,
           ...useTooltipTriggerRes.triggerProps,

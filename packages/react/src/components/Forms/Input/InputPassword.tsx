@@ -1,12 +1,9 @@
-import React, { forwardRef } from "react";
+import React from "react";
 import { Input, InputProps } from ":/components/Forms/Input/index";
 import { Button } from ":/components/Button";
 import { useCunningham } from ":/components/Provider";
 
-export const InputPassword = forwardRef<
-  HTMLInputElement,
-  Omit<InputProps, "rightIcon">
->((props: InputProps, ref) => {
+export const InputPassword = (props: Omit<InputProps, "rightIcon">) => {
   const [showPassword, setShowPassword] = React.useState(false);
   const { className, ...otherProps } = props;
   const customClassName = "c__input--password";
@@ -14,7 +11,6 @@ export const InputPassword = forwardRef<
   return (
     <Input
       {...otherProps}
-      ref={ref}
       className={className + " " + customClassName}
       type={showPassword ? "text" : "password"}
       rightIcon={
@@ -38,4 +34,4 @@ export const InputPassword = forwardRef<
       }
     />
   );
-});
+};

@@ -1,11 +1,11 @@
 import React, {
   InputHTMLAttributes,
   PropsWithChildren,
-  forwardRef,
   useEffect,
   useRef,
   useState,
   ReactNode,
+  RefAttributes,
 } from "react";
 import classNames from "classnames";
 import { Field, FieldProps } from ":/components/Forms/Field";
@@ -16,72 +16,75 @@ export type CheckboxOnlyProps = {
 };
 
 export type CheckboxProps = InputHTMLAttributes<HTMLInputElement> &
+  RefAttributes<HTMLInputElement> &
   FieldProps &
   CheckboxOnlyProps;
 
-export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
-  (
-    { indeterminate, className = "", checked, label, ...props }: CheckboxProps,
-    ref,
-  ) => {
-    const inputRef = useRef<HTMLInputElement>();
-    const [value, setValue] = useState<boolean>(!!checked);
+export const Checkbox = ({
+  indeterminate,
+  className = "",
+  checked,
+  label,
+  ref,
+  ...props
+}: CheckboxProps) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [value, setValue] = useState<boolean>(!!checked);
 
-    useEffect(() => {
-      setValue(!!checked);
-    }, [checked]);
+  useEffect(() => {
+    setValue(!!checked);
+  }, [checked]);
 
-    useEffect(() => {
-      if (inputRef.current) {
-        inputRef.current.indeterminate = !!indeterminate;
-      }
-    }, [indeterminate]);
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.indeterminate = !!indeterminate;
+    }
+  }, [indeterminate]);
 
-    const {
-      compact,
-      fullWidth,
-      rightText,
-      state,
-      text,
-      textItems,
-      ...inputProps
-    } = props;
+  const {
+    compact,
+    fullWidth,
+    rightText,
+    state,
+    text,
+    textItems,
+    ...inputProps
+  } = props;
 
-    return (
-      <label
-        className={classNames("c__checkbox", className, {
-          "c__checkbox--disabled": props.disabled,
-          "c__checkbox--full-width": props.fullWidth,
-        })}
-      >
-        <Field compact={true} {...props}>
-          <div className="c__checkbox__container">
-            <div className="c__checkbox__wrapper">
-              <input
-                type="checkbox"
-                {...inputProps}
-                onChange={(e) => {
-                  setValue(e.target.checked);
-                  props.onChange?.(e);
-                }}
-                checked={value}
-                ref={(checkboxRef) => {
-                  if (typeof ref === "function") {
-                    ref(checkboxRef);
-                  }
-                  inputRef.current = checkboxRef || undefined;
-                }}
-              />
-              <Indeterminate />
-              <Checkmark />
-            </div>
-            {label && <div className="c__checkbox__label">{label}</div>}
+  return (
+    <label
+      className={classNames("c__checkbox", className, {
+        "c__checkbox--disabled": props.disabled,
+        "c__checkbox--full-width": props.fullWidth,
+      })}
+    >
+      <Field compact={true} {...props}>
+        <div className="c__checkbox__container">
+          <div className="c__checkbox__wrapper">
+            <input
+              type="checkbox"
+              {...inputProps}
+              onChange={(e) => {
+                setValue(e.target.checked);
+                props.onChange?.(e);
+              }}
+              checked={value}
+              ref={(checkboxRef) => {
+                if (typeof ref === "function") {
+                  ref(checkboxRef);
+                }
+                inputRef.current = checkboxRef || null;
+              }}
+            />
+            <Indeterminate />
+            <Checkmark />
           </div>
-        </Field>
-      </label>
-    );
-  },
-);
+          {label && <div className="c__checkbox__label">{label}</div>}
+        </div>
+      </Field>
+    </label>
+  );
+};
 
 export const CheckboxGroup = ({
   children,
