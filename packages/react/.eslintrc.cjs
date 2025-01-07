@@ -11,8 +11,8 @@ module.exports = {
       {
         devDependencies: [
           "vite.config.ts",
-          "vite.icons.config.ts",
-          "vite.fonts.config.ts",
+          "vite.icons.config.mts",
+          "vite.fonts.config.mts",
           "cunningham.ts",
           "**/*.stories.tsx",
           "**/*.spec.tsx",
