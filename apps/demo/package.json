@@ -12,18 +12,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@faker-js/faker": "8.4.1",
+    "@faker-js/faker": "9.3.0",
     "@openfun/cunningham-react": "*",
     "@openfun/cunningham-tokens": "*",
     "@openfun/typescript-configs": "*",
-    "@types/react": "18.3.3",
-    "@types/react-dom": "18.3.0",
-    "@vitejs/plugin-react": "4.3.1",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
-    "sass": "1.77.8",
-    "typescript": "5.5.4",
-    "vite": "5.4.1"
+    "@types/react": "19.0.3",
+    "@types/react-dom": "19.0.2",
+    "@vitejs/plugin-react": "4.3.4",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "sass": "1.83.1",
+    "typescript": "5.7.2",
+    "vite": "6.0.7"
   },
   "engines": {
     "node": ">=18.0.0"
