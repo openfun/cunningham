@@ -39,6 +39,7 @@ export default defineConfig(({ mode }) => {
           index: "./src/index.ts",
         },
         formats: ["es", "cjs"],
+        cssFileName: 'style'
       },
       rollupOptions: {
         external: ["react", "react-dom"],
@@ -84,6 +85,10 @@ export default defineConfig(({ mode }) => {
           find: ":",
           replacement: resolve(__dirname, "./src"),
         },
+        {
+          find: "src",
+          replacement: resolve(__dirname, "./src"),
+        }
       ],
     },
   };
