@@ -1,4 +1,5 @@
 @use "sass:math";
+@use "sass:meta";
 
 @function strip-unit($number) {
   // Divide $number by its own unit to get a unitless number.
@@ -6,7 +7,7 @@
   // while different unit between numerator and denominator would be kept.
   // More to read here https://sass-lang.com/documentation/modules/math#div.
   // i.e. 16px / 1px = 16
-  @if type-of($number) == 'number' and not unitless($number) {
+  @if meta.type-of($number) == 'number' and not math.is-unitless($number) {
     @return math.div($number, ($number * 0 + 1));
   }
   @return $number;
