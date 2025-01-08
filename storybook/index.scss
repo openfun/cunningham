@@ -1,0 +1,30 @@
+
+@forward "./utils";
+
+@use "cunningham-tokens.css";
+@use "@openfun/cunningham-tokens/default-tokens";
+
+@use "utils/accessibility";
+@use "./components/Alert";
+@use "./components/Button";
+@use "./components/DataGrid";
+@use "./components/Forms/Checkbox";
+@use "./components/Forms/Field";
+@use "./components/Forms/FileUploader";
+@use "./components/Forms/Radio";
+@use './components/Forms/TextArea';
+@use "./components/Forms/Input";
+@use "./components/Forms/LabelledBox";
+@use "./components/Forms/Select";
+@use "./components/Forms/Switch";
+@use "./components/Forms/DatePicker";
+@use "./components/Loader";
+@use "./components/Modal";
+@use "./components/Pagination";
+@use "./components/Popover";
+@use "./components/Toast";
+@use "./components/Tooltip";
+
+body {
+  font-family: var(--c--theme--font--families--base);
+}

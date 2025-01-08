@@ -1,0 +1,100 @@
+import { Canvas, Meta, Story, Source, ArgTypes } from '@storybook/blocks';
+import * as Stories from './index.stories';
+import { TextArea } from '.';
+
+<Meta of={Stories}/>
+
+# TextArea
+
+Cunningham provides a versatile TextArea component that you can use in your forms.
+
+<Canvas of={Stories.Default}/>
+
+<Source
+  language='ts'
+  dark
+  format={false}
+  code={`import { TextArea } from "@openfun/cunningham-react";`}
+/>
+
+## States
+
+You can use the following props to change the state of the TextArea component by using the `state` props.
+
+<Canvas of={Stories.Default}/>
+<Canvas of={Stories.Success}/>
+<Canvas of={Stories.Error}/>
+
+## Disabled
+
+As a regular textarea, you can disable it by using the `disabled` props.
+
+<Canvas of={Stories.DisabledEmpty}/>
+<Canvas of={Stories.DisabledFilled}/>
+
+## Texts
+
+You can define a text that will appear below the input by using the `text` props.
+
+<Canvas of={Stories.WithText}/>
+
+You can also independently add a text on the right side by using the `rightText` props.
+
+<Canvas of={Stories.WithBothTexts}/>
+
+## Width
+
+By default, the textarea has a default width, like all inputs. But you can force it to take the full width of its container by using the `fullWidth` props.
+
+<Canvas of={Stories.FullWidth}/>
+
+## Chars Counter
+
+You can display a counter of the number of characters entered in the textarea by using the `charsCounter` props. Please bare
+in mind to also define `charCounterMax`.
+
+<Canvas of={Stories.CharCounter}/>
+
+## Controlled / Non Controlled
+
+Like a native textarea, you can use the TextArea component in a controlled or non controlled way. You can see the example below
+using the component in a controlled way.
+
+<Canvas of={Stories.Controlled}/>
+
+## Ref
+
+You can use the `ref` props to get a reference to the textarea element.
+
+<Canvas of={Stories.WithRef}/>
+
+## Props
+
+You can use all the props of the native html `<textarea>` element props plus the following.
+
+<ArgTypes of={TextArea} />
+
+## Design tokens
+
+Here are the custom design tokens defined by the textarea.
+
+| Token        	| Description                 	|
+|---------------	|-----------------------------	|
+| font-weight 	| Value font weight 	|
+| font-size        	| Value font size        	|
+| value-color   	| Value color  	|
+| value-color--disabled   	| Value color when disabled  	|
+| border-radius     	| Border radius of the textarea      	|
+| border-radius--hover   	| Border radius of the textarea on mouse hover    	|
+| border-radius--focus   	| Border radius of the textarea when focused    	|
+| border-width   	| Border width of the textarea    	|
+| border-color   	| Border color of the textarea    	|
+| border-color--hover   	| Border color of the textarea on mouse hover   	|
+| border-color--focus   	| Border color of the textarea when focus   	|
+| border-style   	| Border style of the textarea  	|
+| label-color--focus | Label color when focused    	|
+
+
+## Form Example
+
+<Canvas of={Stories.FormExample}/>
