@@ -1,5 +1,11 @@
 # @openfun/cunningham-tokens
 
+## 2.2.0
+
+### Minor Changes
+
+- 1c1300b: Replace `-cwd` option by `-w`
+
 ## 2.1.1
 
 ### Patch Changes
@@ -94,7 +100,8 @@
 - 4ebbf16: Add utility classes
 - 4ebbf16: Add official design tokens
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@2.1.1...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@2.2.0...main
+[2.2.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@2.1.1...@openfun/cunningham-tokens@2.2.0
 [2.1.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@2.1.0...@openfun/cunningham-tokens@2.1.1
 [2.1.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@2.0.0...@openfun/cunningham-tokens@2.1.0
 [2.0.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-tokens@1.0.1...@openfun/cunningham-tokens@2.0.0
