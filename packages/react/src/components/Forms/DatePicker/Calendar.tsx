@@ -233,24 +233,20 @@ const CalendarAux = ({
   return (
     <div className="c__calendar">
       <div
-        ref={ref}
-        {...calendarProps}
         // We need to remove the id from the calendar when the dropdowns are open to avoid having the following bug:
         // 1 - Open the calendar
         // 2 - Select a start date
         // 3 - Click on the dropdown to select another year
         // 4 - BUG: The calendar closes abruptly.
         //
-        // This way caused by this internal call from Spectrum: https://github.com/adobe/react-spectrum/blob/cdb2fe21213d9e8b03d782d82bda07742ab3afbd/packages/%40react-aria/calendar/src/useRangeCalendar.ts#L59
+        // This way caused by this internal call from Spectrum: https://github.com/adobe/react-spectrum/blob/74cac946a8e6c62cd111d062c58626f774372b91/packages/%40react-aria/calendar/src/useRangeCalendar.ts#L52-L60
         //
         // So instead we decided to remove the id of the calendar when the dropdowns are open and add it back when
-        // the dropdowns are closed in order to make this condition fail: https://github.com/adobe/react-spectrum/blob/cdb2fe21213d9e8b03d782d82bda07742ab3afbd/packages/%40react-aria/calendar/src/useRangeCalendar.ts#L55
-        // This way the `body` variable will never be found.
-        id={
-          !downshiftMonth.isOpen && !downshiftYear.isOpen
-            ? calendarProps.id
-            : ""
-        }
+        // the dropdowns are closed in order to make this condition fail: https://github.com/adobe/react-spectrum/blob/74cac946a8e6c62cd111d062c58626f774372b91/packages/%40react-aria/calendar/src/useRangeCalendar.ts#L55
+        // This way the referenced element will never be found.
+        ref={!downshiftMonth.isOpen && !downshiftYear.isOpen ? ref : null}
+        {...calendarProps}
+        id={calendarProps.id}
         className={classNames("c__calendar__wrapper", {
           "c__calendar__wrapper--opened":
             !downshiftMonth.isOpen && !downshiftYear.isOpen,
