@@ -41,6 +41,10 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
+  "peerDependencies": {
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  },
   "dependencies": {
     "@fontsource-variable/roboto-flex": "5.2.5",
     "@fontsource/material-icons-outlined": "5.2.5",
@@ -56,10 +60,8 @@
     "chromatic": "11.27.0",
     "classnames": "2.5.1",
     "downshift": "9.0.9",
-    "react": "19.0.0",
     "react-aria": "3.38.1",
     "react-aria-components": "1.7.1",
-    "react-dom": "19.0.0",
     "react-modal": "3.16.3",
     "react-stately": "3.36.1"
   },
