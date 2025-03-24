@@ -1,0 +1,379 @@
+@use 'src/utils' as *;
+
+.c__select {
+  position: relative;
+
+  &__wrapper {
+    border-radius: var(--c--components--forms-select--border-radius);
+    border-width: var(--c--components--forms-select--border-width);
+    border-color: var(--c--components--forms-select--border-color);
+    border-style: var(--c--components--forms-select--border-style);
+    display: flex;
+    transition: border var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out), border-radius var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
+    padding: 0 0.75rem;
+    gap: 1rem;
+    box-sizing: border-box;
+    height: var(--c--components--forms-select--height);
+    cursor: pointer;
+    background-color: var(--c--components--forms-select--background-color);
+    position: relative;
+    overflow: hidden;
+
+    label {
+      cursor: pointer;
+      // In case of text-overflow we do not want the text to render above the toggle button arrow.
+      max-width: calc(100% - 1.5rem);
+    }
+
+    &:hover {
+      border-radius: var(--c--components--forms-select--border-radius--hover);
+      border-color: var(--c--components--forms-select--border-color--hover);
+    }
+
+    &:focus-within, &--focus {
+      border-radius: var(--c--components--forms-select--border-radius--focus);
+      border-color: var(--c--components--forms-select--border-color--focus);
+
+      label {
+        color: var(--c--components--forms-select--label-color--focus);
+      }
+    }
+  }
+
+  &__inner {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    user-select: none;
+    min-width: 0;
+
+    &__value {
+      text-overflow: ellipsis;
+      flex-grow: 1;
+      font-size: var(--c--components--forms-select--font-size);
+      color: var(--c--components--forms-select--value-color);
+
+      input {
+        outline: 0;
+        border: 0;
+        padding: 0;
+        margin: 0;
+        color: var(--c--components--forms-select--color);
+        font-size: var(--c--components--forms-select--font-size);
+        background-color: var(--c--components--forms-select--background-color);
+      }
+
+      &__input {
+        &--hidden {
+          // Using display: none makes impossible to focus the input.
+          position: absolute;
+          height: 0;
+        }
+      }
+    }
+
+    &__actions {
+      position: relative;
+      top: 3px;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      // This is made to avoid this relative element to force its container height.
+      height: 0;
+
+      span {
+        font-size: 1.25rem;
+        transition: all var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
+        &.opened {
+          transform: rotate(180deg);
+        }
+      }
+
+      &__clear {
+        color: var(--c--theme--colors--greyscale-500);
+      }
+      &__separator {
+        background-color: var(--c--theme--colors--greyscale-400);
+        height: 24px;
+        width: 1px;
+      }
+      &__open {
+        color: var(--c--theme--colors--greyscale-900);
+      }
+    }
+  }
+
+  .labelled-box--no-label {
+    .c__select__inner {
+      align-items: center;
+      &__actions {
+        top: 0;
+      }
+    }
+  }
+
+  &__menu {
+    @extend %shadow;
+    position: absolute;
+    overflow: auto;
+    width: calc(100% - 4px);
+    max-height: 10rem;
+    background-color: var(--c--components--forms-select--menu-background-color);
+    transform: translate(2px, 0);
+    display: none;
+    z-index: 1;
+
+    &--opened {
+      display: block;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: px-to-rem(3px) 0 0;
+      margin: 0;
+    }
+
+    &__item {
+      padding: 0.75rem;
+      font-size: var(--c--components--forms-select--item-font-size);
+      color: var(--c--components--forms-select--item-color);
+      cursor: pointer;
+
+      &--highlight {
+        background-color: var(--c--components--forms-select--item-background-color--hover);
+      }
+
+      &--selected {
+        background-color: var(--c--components--forms-select--item-background-color--selected);
+      }
+
+      &--disabled {
+        color: var(--c--components--forms-select--item-color--disabled);
+        cursor: default;
+      }
+    }
+
+    &__empty-placeholder {
+      color: var(--c--theme--colors--greyscale-600);
+      font-style: italic;
+    }
+
+    &.c__select__menu--checkbox {
+      .c__select__menu__item {
+        padding: 0;
+
+        .c__checkbox {
+          padding: 0.75rem;
+          margin-left: 0;
+
+          &__label {
+            font-size: var(--c--components--forms-select--item-font-size);
+            color: var(--c--components--forms-select--item-color);
+            font-weight: normal;
+          }
+        }
+      }
+    }
+  }
+
+  /** Modifiers */
+
+  &--disabled {
+
+    .c__select__wrapper {
+      border-color: var(--c--theme--colors--greyscale-200);
+      cursor: default;
+
+      label, input {
+        cursor: default;
+      }
+
+      .c__select__inner__value {
+        color: var(--c--components--forms-select--value-color--disabled)
+      }
+    }
+
+    &:hover {
+      border-color: var(--c--theme--colors--greyscale-200);
+    }
+  }
+
+  &--error {
+
+    .c__select__wrapper {
+      border-color: var(--c--theme--colors--danger-600);
+
+      label {
+        color: var(--c--theme--colors--danger-600);
+      }
+    }
+
+    &:not(.c__select__wrapper--disabled) {
+      .c__select__wrapper:hover {
+        border-color: var(--c--theme--colors--danger-800);
+
+        label {
+          color: var(--c--theme--colors--danger-800);
+        }
+      }
+    }
+  }
+
+  &--success {
+
+    .c__select__wrapper {
+      border-color: var(--c--theme--colors--success-600);
+
+      label {
+        color: var(--c--theme--colors-success-600);
+      }
+    }
+
+    &:not(.c__select__wrapper--disabled) {
+      .c__select__wrapper:hover {
+        border-color: var(--c--theme--colors--success-800);
+
+        label {
+          color: var(--c--theme--colors--success-800);
+        }
+      }
+    }
+  }
+
+  &--mono {
+    .c__select__inner {
+      &__value {
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+  }
+
+  &--multi {
+    &.c__select--monoline {
+      .c__select__inner {
+        .c__select__inner__value {
+          overflow: hidden;
+        }
+
+        .c__select__inner__actions {
+          order: 2;
+        }
+      }
+    }
+
+    &.c__select--multiline {
+      .c__select__wrapper {
+        height: auto;
+        min-height: var(--c--components--forms-select--height);
+      }
+
+      .c__select__inner {
+        display: block;
+
+        &__actions {
+          float: right;
+          position: relative;
+          height: 0;
+          top: px-to-rem(3px);
+        }
+      }
+    }
+
+    &.c__select--text {
+      .c__select__inner__value {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .c__select__inner {
+
+      &__value {
+        gap: 0.25rem;
+
+        &__pill {
+          background-color: var(--c--components--forms-select--multi-pill-background-color);
+          padding: 0.125rem 0.5rem;
+          border-radius: var(--c--components--forms-select--multi-pill-border-radius);
+          display: inline-flex;
+          align-items: center;
+          gap: 0.25rem;
+          margin-right: 0.25rem;
+          margin-bottom: 0.25rem;
+          max-width: var(--c--components--forms-select--multi-pill-max-width);
+          font-size: var(--c--components--forms-select--multi-pill-font-size);
+          vertical-align: middle;
+
+          > span {
+            min-width: 0;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+          }
+
+          &__clear {
+            width: auto;
+            height: auto;
+
+            .material-icons {
+              font-size: 1.1250rem;
+            }
+          }
+        }
+
+        &__input {
+          display: inline-grid;
+
+          &::after,
+          input {
+            width: auto;
+            min-width: 1em;
+            grid-area: 1 / 2;
+            font: inherit;
+            padding: 0;
+            margin: 0;
+            resize: none;
+            background: none;
+            appearance: none;
+            border: none;
+          }
+
+          &::after {
+            content: attr(data-value) ' ';
+            visibility: hidden;
+            white-space: pre-wrap;
+          }
+        }
+      }
+    }
+
+
+    /** Modifiers */
+
+    &.c__select--populated {
+      .c__select__inner__value {
+        .c__select__inner__value__input {
+          // To match the height of the pills.
+          height: 1.375rem;
+        }
+      }
+
+      .c__select__inner__actions {
+        // Now we need it to occupy space in order to make float: right work.
+        height: auto;
+        top: -8px;
+      }
+
+      .labelled-box--no-label {
+        .c__select__inner__actions {
+          top: 4px;
+        }
+
+        .c__select__inner__value {
+          padding-top: 0.25rem;
+        }
+      }
+    }
+  }
+}

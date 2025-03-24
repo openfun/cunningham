@@ -1,0 +1,164 @@
+.c__file-uploader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-width: var(--c--components--forms-fileuploader--border-width);
+  border-style: var(--c--components--forms-fileuploader--border-style);
+  border-color: var(--c--components--forms-fileuploader--border-color);
+  border-radius: var(--c--components--forms-fileuploader--border-radius);
+  color: var(--c--components--forms-fileuploader--color);
+  font-weight: var(--c--theme--font--weights--light);
+  padding: var(--c--components--forms-fileuploader--padding);
+  position: relative;
+  cursor: pointer;
+  transition: border var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
+  background-color: var(--c--components--forms-fileuploader--background-color);
+
+  &--success {
+    border-color: var(--c--theme--colors--success-600);
+
+    .c__file-uploader__inner {
+      &__icon {
+        color: var(--c--theme--colors--success-600);
+      }
+    }
+  }
+
+  &--error {
+    border-color: var(--c--theme--colors--danger-600);
+
+    .c__file-uploader__inner {
+      &__icon {
+        color: var(--c--theme--colors--danger-600);
+      }
+
+      &__text {
+        color: var(--c--theme--colors--danger-600);
+      }
+    }
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+
+    input {
+      display: none;
+    }
+
+    &__caption {
+      span {
+        color: var(--c--components--forms-fileuploader--accent-color);
+      }
+    }
+
+    &__text {
+      font-size: var(--c--components--forms-fileuploader--text-size);
+      color: var(--c--components--forms-fileuploader--text-color);
+    }
+
+    &__filename {
+      color: var(--c--components--forms-fileuploader--accent-color);
+      text-align: center;
+      word-break: break-word;
+    }
+
+    &__actions {
+      text-align: center;
+      font-size: var(--c--components--forms-fileuploader--text-size);
+      color: var(--c--components--forms-fileuploader--text-color);
+
+      &:hover {
+        color: var(--c--theme--colors--danger-600);
+      }
+    }
+  }
+
+  &__files {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__file {
+    background-color: var(--c--components--forms-fileuploader--file-background-color);
+    border-radius: var(--c--components--forms-fileuploader--file-border-radius);
+    border-style: solid;
+    border-color: var(--c--components--forms-fileuploader--file-border-color);
+    border-width: var(--c--components--forms-fileuploader--file-border-width);
+    font-size: var(--c--components--forms-fileuploader--file-text-size);
+    font-weight: var(--c--components--forms-fileuploader--file-text-weight);
+    color: var(--c--components--forms-fileuploader--file-text-color);
+    height: 2.5rem;
+    padding: 0 .75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+
+    &__name {
+      min-width: 0;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    &__specs {
+      display: flex;
+      align-items: center;
+      font-size: var(--c--components--forms-fileuploader--file-specs-size);
+      color: var(--c--components--forms-fileuploader--file-specs-color);
+      flex-shrink: 0;
+      gap: 0.5rem;
+
+      .material-icons {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  &--active,
+  &:hover {
+    border-color: var(--c--components--forms-fileuploader--accent-color);
+    background-color: var(--c--components--forms-fileuploader--background-color--active);
+
+    &.c__file-uploader--animate-icon {
+      .c__file-uploader__inner {
+        &__icon {
+          animation-name: bounce-5;
+          animation-timing-function: var(--c--theme--transitions--ease-out);
+          animation-duration: 2s;
+          animation-iteration-count: infinite;
+
+          @keyframes bounce-5 {
+            0% {
+              transform: scale(1, 1) translateY(0);
+            }
+            10% {
+              transform: scale(1.1, 0.9) translateY(0);
+            }
+            30% {
+              transform: scale(0.9, 1.1) translateY(-10px);
+            }
+            50% {
+              transform: scale(1, 1) translateY(0);
+            }
+            57% {
+              transform: scale(1, 1) translateY(-2px);
+            }
+            64% {
+              transform: scale(1, 1) translateY(0);
+            }
+            100% {
+              transform: scale(1, 1) translateY(0);
+            }
+          }
+        }
+      }
+    }
+  }
+}

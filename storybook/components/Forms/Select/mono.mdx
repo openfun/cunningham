@@ -1,0 +1,159 @@
+import { Canvas, Meta, Story, Source, ArgTypes } from '@storybook/blocks';
+import { Select } from "./index";
+import * as Stories from './mono.stories';
+
+<Meta of={Stories} name="Docs"/>
+
+# Select
+
+Cunningham provides a versatile Select component that you can use in your forms. This component follows the [ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-autocomplete-list/)
+using [Downshift](https://www.downshift-js.com/), so that mean there is no `select` wrapped inside it.
+
+> You can also use the [multi version](?path=/docs/components-forms-select-multi--docs) if you need
+
+<Canvas of={Stories.Uncontrolled}/>
+
+## Options
+
+The available options must be given via the `options` props. It is an array of objects with the following shape:
+
+<Source
+  language='ts'
+  dark
+  format={false}
+  code={`{
+  label: string
+  value?: string
+  disabled?: boolean;
+}`}
+/>
+
+As you can see the `value` is optional, if not provided, the `label` will be used as the value.
+
+## Searchable
+
+You can enable the text live filtering simply by using the `searchable` props.
+
+<Canvas of={Stories.SearchableUncontrolled} />
+
+> You can use `onSearchInputChange` to get the value of the input when the user is typing.
+
+## States
+
+You can use the following props to change the state of the Select component by using the `state` props.
+
+<Canvas of={Stories.Success}/>
+<Canvas of={Stories.Error}/>
+
+## Disabled
+
+As a regular select, you can disable it by using the `disabled` props.
+
+<Canvas of={Stories.Disabled}/>
+
+## Texts
+
+As the component uses [Field](?path=/docs/components-forms-field--docs), you can use the `text` props to provide a description of the checkbox.
+
+<Canvas of={Stories.WithText}/>
+
+## Width
+
+By default, the select has a default width, like all inputs. But you can force it to take the full width of its container by using the `fullWidth` props.
+
+<Canvas of={Stories.FullWidth}/>
+
+## Clearable
+
+By default, the select is clearable ( the cross icon on the right is shown ). You can disable it by using the `clearable` props.
+
+<Canvas of={Stories.NotClearable}/>
+
+## Disabled options
+
+You can disable some options by using the `disabled` props on the `Option` object.
+
+<Canvas of={Stories.DisabledOptions}/>
+
+## Hide label
+
+For some reasons you might want to hide the label of the select. You can do that by using the `hideLabel` props.
+
+> It is important for accessibility to always have a label for your inputs. Keep in mind that setting `hideLabel` to `true`, will only hide the label visually, but it will still be available for screen readers in the DOM.
+
+<Canvas of={Stories.HiddenLabel}/>
+
+## Custom render option
+
+You can give customize the look of the options by providing `render` callback.
+
+> When you provide `render` the fields `label` and `value` are mandatory.
+
+Feel free to use the attribute `showLabelWhenSelected` to choose whether you want to display selected option with the custom
+HTML or with its `label`. It is set to `true` by default.
+
+<Canvas of={Stories.CustomRender}/>
+
+## Controlled / Non Controlled
+
+Like a native select, you can use the Select component in a controlled or non controlled way. You can see the example below
+using the component in a controlled way.
+
+<Canvas of={Stories.Controlled}/>
+
+## Usage with react-hook-form
+
+You can use this input with [react-hook-form](https://react-hook-form.com/docs)
+
+<Canvas of={Stories.ReactHookForm}/>
+
+## Props
+
+The props of this component are as close as possible to the native select component. You can see the list of props below.
+
+<ArgTypes of={Select} />
+
+## Design tokens
+
+Here are the custom design tokens defined by the select.
+
+| Token        	| Description                 	|
+|---------------	|-----------------------------	|
+| background-color   	| Background color of the select    	|
+| border-color   	| Border color of the select    	|
+| border-color--hover   	| Border color of the select on mouse hover   	|
+| border-color--focus   	| Border color of the select when focus   	|
+| border-radius     	| Border radius of the select      	|
+| border-radius--hover   	| Border radius of the select on mouse hover    	|
+| border-radius--focus   	| Border radius of the select when focused    	|
+| border-style              | Border style of the select      	|
+| border-width              | Border width of the select      	|
+| value-color   	| Value color  	|
+| value-color--disabled   	| Value color when disabled	|
+| font-size        	| Value font size        	|
+| height | Height of the combo box |
+| item-background-color--hover | Background color of the item on mouse hover    	|
+| item-background-color--selected | Background color of the selected item    	|
+| item-color | Color of the item    	|
+| item-color--disabled | Color of the disabled item    	|
+| item-font-size | Font size of the item    	|
+| menu-background-color | Background color of the menu    	|
+| label-color--focus | Label color when focused    	|
+
+See also [Field](?path=/story/components-forms-field-doc--page)
+
+## Form Example
+
+<Canvas of={Stories.FormExample}/>
+
+##
+
+<img src="components/Forms/Select/resources/dd_1.svg"/>
+
+##
+
+<img src="components/Forms/Select/resources/dd_2.svg"/>
+
+##
+
+<img src="components/Forms/Select/resources/dd_3.svg"/>
