@@ -70,6 +70,10 @@ below the table.
 
 <Canvas sourceState="shown" of={Stories.ClientSideWithPagination}/>
 
+You can also make a row non selectable by setting using `enableRowSelection` as a callback function that returns a boolean based on a condition.
+
+<Canvas sourceState="shown" of={Stories.RowSelectionOptional}/>
+
 As you can see, with `SimpleDataGrid` you can easily add pagination, sorting without have to worry about controlling
 their states.
 
