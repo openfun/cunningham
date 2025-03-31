@@ -52,15 +52,20 @@ export const useHeadlessColumns = <T extends Row>({
         id: HEADER_ID_SELECT,
         size: 34,
         header: () => null,
-        cell: ({ row }) => (
-          <Checkbox
-            checked={row.getIsSelected()}
-            disabled={!row.getCanSelect}
-            indeterminate={row.getIsSomeSelected()}
-            onChange={row.getToggleSelectedHandler()}
-            aria-label={t("components.datagrid.row_selection_aria")}
-          />
-        ),
+        cell: ({ row }) => {
+          if (!row.getCanSelect()) {
+            return null;
+          }
+          return (
+            <Checkbox
+              checked={row.getIsSelected()}
+              disabled={!row.getCanSelect}
+              indeterminate={row.getIsSomeSelected()}
+              onChange={row.getToggleSelectedHandler()}
+              aria-label={t("components.datagrid.row_selection_aria")}
+            />
+          );
+        },
       }),
       ...headlessColumns,
     ];
