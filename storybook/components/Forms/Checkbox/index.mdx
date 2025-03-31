@@ -1,0 +1,101 @@
+import { Canvas, Meta, Story, ArgTypes } from '@storybook/blocks';
+import * as Stories from './index.stories';
+import { Checkbox } from './index';
+
+<Meta of={Stories}/>
+
+# Checkbox
+
+Cunningham provides a versatile Checkbox component that you can use in your forms.
+
+<Canvas of={Stories.Group} />
+
+## Label
+
+The `label` props is optional, but you can use it to provide a description of the checkbox.
+
+**Without label**
+
+<Canvas of={Stories.Default} />
+
+**With label**
+
+<Canvas of={Stories.WithLabel} />
+
+## Value
+
+You can set the value of the checkbox in 3 different ways.
+
+<Canvas of={Stories.Default} />
+<Canvas of={Stories.Indeterminate} />
+<Canvas of={Stories.Checked} />
+
+## Texts
+
+As the component uses [Field](?path=/story/components-forms-field-doc--page), you can use the `text` props to provide a description of the checkbox.
+
+<Canvas of={Stories.WithTexts} />
+
+## Disabled
+
+As a regular checkbox, you can disable it by using the `disabled` props.
+
+<Canvas of={Stories.Disabled} />
+
+## States
+
+You can use the following props to change the state of the Input component by using the `state` props.
+
+<Canvas of={Stories.WithTexts} />
+
+<Canvas of={Stories.Success} />
+
+<Canvas of={Stories.Error} />
+
+## Group
+
+It will happen often that you will need to use multiple grouped checkboxes. You can use the `CheckboxGroup` component to do so.
+
+<Canvas of={Stories.Group} />
+
+You can also define `state`, `text` props on the group component
+
+<Canvas of={Stories.GroupError} />
+<Canvas of={Stories.GroupSuccess} />
+
+## Usage with react-hook-form
+
+You can use this input with [react-hook-form](https://react-hook-form.com/docs)
+
+<Canvas of={Stories.ReactHookForm} />
+
+
+### Props
+
+<ArgTypes of={Checkbox} />
+
+## Design tokens
+
+Here are available custom design tokens.
+
+| Token        	| Description                 	|
+|---------------	|-----------------------------	|
+| background-color--hover | Background color of the component on mouse hover or focus |
+| font-size        	| Label font size ( shared with radio )       	|
+| font-weight 	| Label font weight ( shared with radio )	|
+| color   	| Label color ( shared with radio ) 	|
+| border-color   	| Border color of the checkbox    	|
+| border-radius     	| Border radius of the checkbox      	|
+| accent-color     	| Color of the checkmark and the indeterminate mark      	|
+| width     	| Width of the checkbox      	|
+| height     	| Height of the checkbox      	|
+
+See also [Field](?path=/story/components-forms-field-doc--page)
+
+##
+
+<img src="components/Forms/Checkbox/resources/dd_1.svg"/>
+
+##
+
+<img src="components/Forms/Checkbox/resources/dd_2.svg"/>
