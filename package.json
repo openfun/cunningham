@@ -21,7 +21,7 @@
     "cross-env": "7.0.3",
     "make-dir-cli": "4.0.0",
     "prettier": "3.5.3",
-    "turbo": "2.4.4"
+    "turbo": "2.5.0"
   },
   "engines": {
     "node": ">=18.0.0"
