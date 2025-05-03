@@ -37,20 +37,20 @@
     "chalk": "4.1.2",
     "commander": "13.1.0",
     "deepmerge": "4.3.1",
-    "figlet": "1.8.0",
+    "figlet": "1.8.1",
     "ts-node": "10.9.2"
   },
   "devDependencies": {
     "@types/figlet": "1.7.0",
     "@types/jest": "29.5.14",
-    "@types/node": "22.13.14",
+    "@types/node": "22.15.3",
     "eslint-config-custom": "*",
     "jest": "29.7.0",
-    "nodemon": "3.1.9",
+    "nodemon": "3.1.10",
     "prettier": "3.5.3",
-    "ts-jest": "29.3.0",
-    "tsc-alias": "1.8.13",
-    "typescript": "5.8.2"
+    "ts-jest": "29.3.2",
+    "tsc-alias": "1.8.15",
+    "typescript": "5.8.3"
   },
   "engines": {
     "node": ">=18.0.0"
