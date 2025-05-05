@@ -1,6 +1,7 @@
 import React, { RefAttributes, useMemo, useRef, useState } from "react";
 import {
   CalendarDate,
+  CalendarIdentifier,
   createCalendar,
   DateValue,
   GregorianCalendar,
@@ -132,7 +133,8 @@ const CalendarAux = ({
 
   const yearItems: Array<Option> = useMemo(() => {
     const calendarCurrentUser = createCalendar(
-      new Intl.DateTimeFormat().resolvedOptions().calendar,
+      new Intl.DateTimeFormat().resolvedOptions()
+        .calendar as CalendarIdentifier,
     );
     const minDate = toCalendar(
       new CalendarDate(new GregorianCalendar(), minYear, 1, 1),

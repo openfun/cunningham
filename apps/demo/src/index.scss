@@ -1,11 +1,12 @@
+@use "sass:map";
 @use "@openfun/cunningham-react/sass/fonts";
 @use "@openfun/cunningham-react/sass/icons";
 @use "@openfun/cunningham-react/style";
 @use "cunningham-tokens";
 @use "cunningham-tokens-sass" as *;
 
-$lg: map-get($themes, "default", "theme", "breakpoints", "lg");
-$sm: map-get($themes, "default", "theme", "breakpoints", "sm");
+$lg: map.get($themes, "default", "theme", "breakpoints", "lg");
+$sm: map.get($themes, "default", "theme", "breakpoints", "sm");
 
 // Reset
 h1 {
