@@ -88,7 +88,7 @@ export const SelectMultiSimple = ({ ref, ...props }: SubProps) => {
           break;
       }
     },
-    isItemDisabled: (item) => !!item.disabled,
+    isItemDisabled: (item) => !!item?.disabled,
   });
 
   const toggleRef = useRef<HTMLElement>(null);

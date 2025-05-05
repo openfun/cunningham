@@ -76,7 +76,7 @@ export const SelectMultiSearchable = ({ ref, ...props }: SubProps) => {
           break;
       }
     },
-    isItemDisabled: (item) => !!item.disabled,
+    isItemDisabled: (item) => !!item?.disabled,
   });
 
   const inputProps = downshiftReturn.getInputProps({
