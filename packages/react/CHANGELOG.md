@@ -1,5 +1,16 @@
 # @openfun/cunningham-react
 
+## 3.1.0
+
+### Minor Changes
+
+- a343db2: ✨(react) export locale in package
+
+### Patch Changes
+
+- 79c59ac: Fix a bug DateRangePicker that could close popover abruptly
+- e1954ea: prevent error on searchable select
+
 ## 3.0.0
 
 ### Major Changes
@@ -435,7 +446,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@3.0.0...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@3.1.0...main
+[3.1.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@3.0.0...@openfun/cunningham-react@3.1.0
 [3.0.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.9.3...@openfun/cunningham-react@3.0.0
 [2.9.3]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.9.2...@openfun/cunningham-react@2.9.3
 [2.9.2]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.9.1...@openfun/cunningham-react@2.9.2
