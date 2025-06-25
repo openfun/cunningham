@@ -163,7 +163,7 @@ export const ModalProvider = ({
         if (modalParentSelector) {
           return modalParentSelector();
         }
-        return document.getElementById("c__modals-portal")!;
+        return document.querySelector(".c__modals-portal")!;
       },
     }),
     [],
@@ -172,7 +172,7 @@ export const ModalProvider = ({
   return (
     <ModalContext.Provider value={context}>
       {children}
-      <div id="c__modals-portal" />
+      <div className="c__modals-portal" />
       {Object.entries(modals).map(([key, modal]) => (
         <Fragment key={key}>{modal}</Fragment>
       ))}
