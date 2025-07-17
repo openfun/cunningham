@@ -74,7 +74,7 @@ html {
   min-height: 100%;
   display: flex;
   flex-direction: column;
-  
+
   @media (max-width: 1200px) {
     width: calc(100% - 2rem);
   }
@@ -105,6 +105,7 @@ html {
   }
 }
 
+html[data-theme="uikit"][data-variant="light"] body,
 html[data-theme="cunningham"] body {
   background-repeat: no-repeat;
   background-position: -300px -300px;
@@ -115,8 +116,14 @@ html[data-theme="cunningham"][data-variant="dark"] body {
   background-image: url(/pattern_dark.png);
 }
 
+html[data-theme="uikit"][data-variant="light"] body,
 html[data-theme="cunningham"][data-variant="light"] body {
   background-image: url(/pattern_default.png);
+}
+
+html[data-theme="uikit"] {
+  background: linear-gradient(153deg, var(--c--theme--colors--greyscale-025) 0%, var(--c--theme--colors--greyscale-000) 100%);
+  background-blend-mode: darken;
 }
 
 html[data-theme="redflux"] {
