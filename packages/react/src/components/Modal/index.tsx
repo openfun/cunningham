@@ -58,7 +58,7 @@ export type ModalProps = PropsWithChildren & {
 export const Modal = (props: ModalProps) => {
   /**
    * This is a workaround to prevent the modal from rendering on the first render because if the modal is open on the
-   * first render, it will not be able to resolve document.getElementById("c__modals-portal") which is not rendered yet.
+   * first render, it will not be able to resolve document.getElementById(<MODAL_PARENT_ID>) which is not rendered yet.
    */
   const [firstRender, setFirstRender] = React.useState(true);
   useEffect(() => {
