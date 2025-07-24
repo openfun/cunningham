@@ -7,6 +7,7 @@ import React, {
   ReactNode,
   useContext,
   useEffect,
+  useId,
   useMemo,
   useState,
 } from "react";
@@ -112,6 +113,8 @@ export const ModalProvider = ({
   modalParentSelector,
 }: ModalProviderProps) => {
   const [modals, setModals] = useState<ModalMap>({} as ModalMap);
+  const modalId = useId();
+  const modalParentId = `c__modals-portal-${modalId}`;
 
   useEffect(() => {
     ReactModal.setAppElement(".c__app");
@@ -160,10 +163,8 @@ export const ModalProvider = ({
       confirmationModal: ModalHelper(ConfirmationModal),
       messageModal: ModalHelper(MessageModal),
       modalParentSelector: () => {
-        if (modalParentSelector) {
-          return modalParentSelector();
-        }
-        return document.getElementById("c__modals-portal")!;
+        if (modalParentSelector) return modalParentSelector();
+        return document.getElementById(modalParentId)!;
       },
     }),
     [],
@@ -172,7 +173,7 @@ export const ModalProvider = ({
   return (
     <ModalContext.Provider value={context}>
       {children}
-      <div id="c__modals-portal" />
+      <div id={modalParentId} />
       {Object.entries(modals).map(([key, modal]) => (
         <Fragment key={key}>{modal}</Fragment>
       ))}
