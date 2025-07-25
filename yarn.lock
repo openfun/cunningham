@@ -994,16 +994,6 @@
   resolved "https://registry.yarnpkg.com/@faker-js/faker/-/faker-9.7.0.tgz#1cf1fecfcad5e2da2332140bf3b5f23cc1c2a7f4"
   integrity sha512-aozo5vqjCmDoXLNUJarFZx2IN/GgGaogY4TMJ6so/WLZOWpSV7fvj2dmrV6sEAnUm1O7aCrhTibjpzeDFgNqbg==
 
-"@fontsource-variable/roboto-flex@5.2.5":
-  version "5.2.5"
-  resolved "https://registry.yarnpkg.com/@fontsource-variable/roboto-flex/-/roboto-flex-5.2.5.tgz#38368ea754697c2fdf08df11b06e8b6d391ff4c1"
-  integrity sha512-yrZ9rWNvfM4IBqJSpoFV4wC1GaKNwpzhihyBke+N3WiA0Y7LYxwj6kvvHgecabVIHFL3ZZJTwj3KcKOCyASFPg==
-
-"@fontsource/material-icons-outlined@5.2.5":
-  version "5.2.5"
-  resolved "https://registry.yarnpkg.com/@fontsource/material-icons-outlined/-/material-icons-outlined-5.2.5.tgz#16b4b2a8dcd1fbd69d4182792a65f7b41b8cb230"
-  integrity sha512-soAUWorSKrLN0a7wk74pedV0ZxhLaMD40DuUTMIqTpDcdJ/pxaG+/OcXtMEzx2+5K5FwL7yS525ZInAzPG051Q==
-
 "@formatjs/ecma402-abstract@2.3.2":
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/@formatjs/ecma402-abstract/-/ecma402-abstract-2.3.2.tgz#0ee291effe7ee2c340742a6c95d92eacb5e6c00a"

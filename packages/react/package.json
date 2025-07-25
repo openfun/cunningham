@@ -46,8 +46,6 @@
     "react-dom": "19.1.0"
   },
   "dependencies": {
-    "@fontsource-variable/roboto-flex": "5.2.5",
-    "@fontsource/material-icons-outlined": "5.2.5",
     "@internationalized/date": "3.8.0",
     "@openfun/cunningham-tokens": "*",
     "@react-aria/calendar": "3.8.0",
