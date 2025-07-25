@@ -81,6 +81,20 @@ export const SelectMultiSearchable = ({ ref, ...props }: SubProps) => {
 
   const inputProps = downshiftReturn.getInputProps({
     ...useMultipleSelectionReturn.getDropdownProps({
+      onFocus: () => {
+        setHasInputFocused(true);
+        downshiftReturn.openMenu();
+      },
+      onBlur: () => {
+        setHasInputFocused(false);
+      },
+      onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+        // Synchronously update the input value
+        // This is important to avoid cursor jumping to the end of the input
+        // https://dev.to/kwirke/solving-caret-jumping-in-react-inputs-36ic
+        setInputValue(e.target.value);
+      },
+      size: 4,
       preventKeyAction: downshiftReturn.isOpen,
       ref: inputRef,
       disabled: props.disabled,
@@ -143,17 +157,7 @@ export const SelectMultiSearchable = ({ ref, ...props }: SubProps) => {
       useMultipleSelectionReturn={useMultipleSelectionReturn}
     >
       <span className="c__select__inner__value__input" data-value={inputValue}>
-        <input
-          {...inputProps}
-          onFocus={() => {
-            setHasInputFocused(true);
-            downshiftReturn.openMenu();
-          }}
-          onBlur={() => {
-            setHasInputFocused(false);
-          }}
-          size={4}
-        />
+        <input {...inputProps} />
       </span>
     </SelectMultiAux>
   );
