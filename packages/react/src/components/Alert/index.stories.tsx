@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 import { Alert, AlertProps } from ":/components/Alert";
-import { Button } from ":/components/Button";
+import { Button } from ":/components/Button/Button2";
 import { VariantType } from ":/utils/VariantUtils";
 
 const meta: Meta<typeof Alert> = {
@@ -58,8 +58,12 @@ export const CustomButtons: Story = {
     canClose: true,
     buttons: (
       <div style={{ display: "flex", gap: "0.5rem" }}>
-        <Button color="primary">Primary</Button>
-        <Button color="secondary">Secondary</Button>
+        <Button variant="brand" color="primary">
+          Primary
+        </Button>
+        <Button variant="brand" color="secondary">
+          Secondary
+        </Button>
       </div>
     ),
   },

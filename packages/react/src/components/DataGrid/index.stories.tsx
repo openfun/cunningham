@@ -114,7 +114,7 @@ export const ClientSideWithoutPagination = () => {
           id: "actions",
           renderCell: () => (
             <Button
-              color="tertiary-text"
+              color="tertiary"
               size="small"
               icon={<span className="material-icons">delete</span>}
             />
@@ -198,14 +198,14 @@ export const FullServerSide = () => {
     setTimeout(() => {
       // Set the pagination length.
       pagination.setPagesCount(
-        Math.ceil(sortedDatabase.length / pagination.pageSize),
+        Math.ceil(sortedDatabase.length / pagination.pageSize)
       );
       // Select the rows to display on the current page.
       setRows(
         sortedDatabase.slice(
           (pagination.page - 1) * pagination.pageSize,
-          pagination.page * pagination.pageSize,
-        ),
+          pagination.page * pagination.pageSize
+        )
       );
       setIsLoading(false);
     }, 1000);
@@ -254,7 +254,8 @@ export const FullServerSide = () => {
           id: "actions",
           renderCell: () => (
             <Button
-              color="tertiary-text"
+              variant="neutral"
+              color="tertiary"
               size="small"
               icon={<span className="material-icons">delete</span>}
             />

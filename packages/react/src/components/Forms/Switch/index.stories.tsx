@@ -188,9 +188,19 @@ export const FormExampleRight = {
           <Switch label="Bluetooth" fullWidth={true} labelSide="right" />
           <Switch
             label="VPN"
+            defaultChecked={true}
             fullWidth={true}
             labelSide="right"
             text="You must pay for this feature"
+            state="error"
+            disabled={true}
+          />
+          <Switch
+            label="VPN"
+            defaultChecked={true}
+            fullWidth={true}
+            labelSide="right"
+            text="You must paDDy for this feature"
             state="error"
             disabled={true}
           />

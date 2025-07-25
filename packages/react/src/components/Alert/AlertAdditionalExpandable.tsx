@@ -11,11 +11,12 @@ export const AlertAdditionalExpandable = (props: AlertProps) => {
   const [expanded, onExpand] = useControllableState(
     false,
     props.expanded,
-    props.onExpand,
+    props.onExpand
   );
 
   const iconButton = (
     <Button
+      variant={props.type}
       color="tertiary"
       size="nano"
       aria-label={

@@ -279,6 +279,11 @@ const defaultConfig: Configuration = {
       },
     },
     uikit_light: {
+      globals: {
+        colors: {
+          "toto-text": "red",
+        },
+      },
       theme: {
         colors: {
           "toto-text": "red",

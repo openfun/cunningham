@@ -1,5 +1,4 @@
 .c__switch {
-
   input {
     opacity: 0;
     width: 0;
@@ -32,7 +31,8 @@
     width: 2.8125rem;
     height: 1.5rem;
     background-color: var(--c--components--forms-switch--rail-background-color);
-    transition: var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
+    transition: var(--c--globals--transitions--duration)
+      var(--c--globals--transitions--ease-out);
     border-radius: var(--c--components--forms-switch--rail-border-radius);
 
     &:before {
@@ -42,8 +42,11 @@
       width: 1.125rem;
       left: 4px;
       top: 3px;
-      background-color: var(--c--components--forms-switch--handle-background-color);
-      transition: var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
+      background-color: var(
+        --c--components--forms-switch--handle-background-color
+      );
+      transition: var(--c--globals--transitions--duration)
+        var(--c--globals--transitions--ease-out);
       border-radius: var(--c--components--forms-switch--handle-border-radius);
     }
   }
@@ -53,21 +56,30 @@
   }
 
   &.c__checkbox--disabled {
-
     input:not(:checked) + .c__switch__rail {
-      background-color: var(--c--components--forms-switch--rail-background-color--disabled);
+      background-color: var(
+        --c--components--forms-switch--rail-background-color--disabled
+      );
+    }
+
+    input:checked + .c__switch__rail {
+      background-color: var(
+        --c--components--forms-switch--rail-background-color--disabled
+      );
     }
 
     .c__switch__rail {
       cursor: default;
 
       &:before {
-        background-color: var(--c--components--forms-switch--handle-background-color--disabled);
+        background-color: var(
+          --c--components--forms-switch--handle-background-color--disabled
+        );
       }
     }
   }
 
-  &--right  {
+  &--right {
     .c__checkbox__container {
       flex-direction: row-reverse;
     }
