@@ -1,5 +1,12 @@
 # @openfun/cunningham-react
 
+## 3.2.1
+
+### Patch Changes
+
+- 7ef8930: prevent input cursor to jump on searchable multi select
+- 4cb4ede: Fix translations method and added missing translations
+
 ## 3.2.0
 
 ### Minor Changes
@@ -456,7 +463,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@3.2.0...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@3.2.1...main
+[3.2.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@3.2.0...@openfun/cunningham-react@3.2.1
 [3.2.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@3.1.0...@openfun/cunningham-react@3.2.0
 [3.1.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@3.0.0...@openfun/cunningham-react@3.1.0
 [3.0.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@2.9.3...@openfun/cunningham-react@3.0.0
