@@ -47,7 +47,10 @@ const findTranslation = (
   locale: TranslationSet,
 ): string | undefined => {
   const [namespace, ...keys] = key.split(".");
-  return keys.reduce((acc, subKey) => acc[subKey], (locale as any)[namespace]);
+  return keys.reduce(
+    (acc, subKey) => acc?.[subKey],
+    (locale as any)[namespace],
+  );
 };
 
 export const CunninghamProvider = ({

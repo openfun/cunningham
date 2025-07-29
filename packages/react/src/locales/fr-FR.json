@@ -46,6 +46,27 @@
         "year_select_button_aria_label": "Sélectionner une année",
         "month_select_button_aria_label": "Sélectionner un mois"
       }
+    },
+    "modals": {
+      "helpers": {
+        "delete_confirmation": {
+          "title": "Êtes-vous sûr ?",
+          "children": "Êtes-vous sûr de vouloir supprimer cet élément ?",
+          "cancel": "Annuler",
+          "delete": "Supprimer"
+        },
+        "confirmation": {
+          "title": "Êtes-vous sûr ?",
+          "children": "Êtes-vous sûr de vouloir faire cela ?",
+          "cancel": "Annuler",
+          "yes": "Oui"
+        },
+        "disclaimer": {
+          "title": "Avertissement",
+          "children": "Ceci est un avertissement",
+          "ok": "Ok"
+        }
+      }
     }
   }
 }
