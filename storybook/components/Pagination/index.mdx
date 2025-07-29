@@ -1,0 +1,67 @@
+import { Canvas, Meta, Story, Source, ArgTypes } from '@storybook/blocks';
+import { Pagination, usePagination } from './index';
+import * as Stories from './index.stories';
+
+<Meta of={Stories}/>
+
+# Pagination
+
+The Pagination component can be used anywhere you have some data you want to split between pages, you can use it
+for synchronous loading as well as asynchronous loading. You can paginate your already loaded data, but you can also
+fetch it from a server, the component is really versatile.
+
+
+<Canvas sourceState="none" of={Stories.Basic}/>
+
+<Source
+  language='ts'
+  dark
+  format={false}
+  code={`import { Pagination, usePagination } from "@openfun/cunningham-react";`}
+/>
+
+## Usage
+
+The Pagination component comes with a hook called `usePagination` that handles the logic behind it. Pagination is a
+controlled component, so, to make it more handy we provide you this hook.
+
+The most basic usage you can make of it is this one, defining a pagination with 10 pages.
+
+### Basic
+
+<Canvas sourceState="none" of={Stories.Basic}/>
+
+
+### List of items
+
+But this won't make you really happy if you want to paginate your list of items, so you can wire things a bit better.
+Let's make a component that paginate a list of random number.
+
+<Canvas sourceState="none" of={Stories.List}/>
+
+### Set page programmatically
+
+You can also set the page programmatically, for example, if you want to use a query parameter to set the page.
+
+<Canvas sourceState="none" of={Stories.ForcePage}/>
+
+
+### Hide go to input
+
+You can also hide the go to input if you don't want to allow the user to go to a specific page or to have a simpler pagination.
+
+<Canvas of={Stories.WithoutGoto}/>
+
+### Things to know
+
+- The pagination will never render if the number of pages is less than 2.
+
+## Props
+
+### `<Pagination/>` component
+
+<ArgTypes of={Pagination} />
+
+### `usePagination` hook
+
+<ArgTypes of={usePagination} />
