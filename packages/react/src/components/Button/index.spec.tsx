@@ -60,9 +60,20 @@ describe("<Button/>", () => {
       </Button>,
     );
     const button = screen.getByRole("button", { name: "Test button" });
+    expect(button).toHaveAttribute("disabled");
     expect(handleClick).not.toBeCalled();
     await act(async () => user.click(button));
     expect(handleClick).not.toHaveBeenCalled();
+  });
+
+  it("renders disabled link", async () => {
+    render(
+      <Button href="https://perdu.com" disabled={true}>
+        Test button link
+      </Button>,
+    );
+    const button = screen.getByRole("link", { name: "Test button link" });
+    expect(button.classList).toContain("c__button--disabled");
   });
 
   it("renders as link when href is used", () => {
