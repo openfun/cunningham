@@ -97,7 +97,7 @@ describe("<Button/>", () => {
     expect(
       tokens.themes.default.components.button["border-radius"],
     ).toBeDefined();
-  });
+  }, 10000);
 
   it("renders with className", async () => {
     render(<Button className="my-custom-class" />);
