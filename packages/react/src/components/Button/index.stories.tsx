@@ -20,6 +20,7 @@ export const All: Story = {
         <Button {...Tertiary.args} />
         <Button {...TertiaryText.args} />
         <Button {...Disabled.args} />
+        <Button {...LinkDisabled.args} />
         <Button {...Danger.args} />
       </div>
     );
@@ -67,6 +68,15 @@ export const Disabled: Story = {
     children: "Disabled",
     color: "primary",
     disabled: true,
+  },
+};
+
+export const LinkDisabled: Story = {
+  args: {
+    children: "Disabled",
+    color: "primary",
+    disabled: true,
+    href: "https://perdu.com",
   },
 };
 

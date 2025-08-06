@@ -32,7 +32,7 @@
     border-color: currentColor;
   }
 
-  &:disabled {
+  &:disabled, &.c__button--disabled {
     background-color: var(--c--theme--colors--greyscale-200);
     color: var(--c--theme--colors--greyscale-600);
     cursor: not-allowed;

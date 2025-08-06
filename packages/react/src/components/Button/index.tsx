@@ -59,6 +59,9 @@ export const Button = ({
   if (["primary-text", "tertiary-text"].includes(color)) {
     classes.push("c__button--text");
   }
+  if (props.href && props.disabled) {
+    classes.push("c__button--disabled");
+  }
   const iconElement = <span className="c__button__icon">{icon}</span>;
   const tagName = props.href ? "a" : "button";
   return createElement(
