@@ -1,0 +1,89 @@
+.c__switch {
+
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    margin: 0;
+    // This is made to prevent a bug on Chromium were was the labelSide is set to right then it
+    // creates an artificial margin between successive switches.
+    position: absolute;
+  }
+
+  .c__checkbox__container {
+    justify-content: space-between;
+  }
+
+  input:checked + &__rail {
+    background-color: var(--c--components--forms-switch--accent-color);
+  }
+
+  input:checked + &__rail:before {
+    transform: translateX(20px);
+  }
+
+  &__rail__wrapper {
+    display: inline-flex;
+  }
+
+  &__rail {
+    position: relative;
+    cursor: pointer;
+    width: 2.8125rem;
+    height: 1.5rem;
+    background-color: var(--c--components--forms-switch--rail-background-color);
+    transition: var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
+    border-radius: var(--c--components--forms-switch--rail-border-radius);
+
+    &:before {
+      position: absolute;
+      content: "";
+      height: 1.125rem;
+      width: 1.125rem;
+      left: 4px;
+      top: 3px;
+      background-color: var(--c--components--forms-switch--handle-background-color);
+      transition: var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
+      border-radius: var(--c--components--forms-switch--handle-border-radius);
+    }
+  }
+
+  .c__field__footer {
+    padding: 0.25rem 0 0 0;
+  }
+
+  &.c__checkbox--disabled {
+
+    input:not(:checked) + .c__switch__rail {
+      background-color: var(--c--components--forms-switch--rail-background-color--disabled);
+    }
+
+    .c__switch__rail {
+      cursor: default;
+
+      &:before {
+        background-color: var(--c--components--forms-switch--handle-background-color--disabled);
+      }
+    }
+  }
+
+  &--right  {
+    .c__checkbox__container {
+      flex-direction: row-reverse;
+    }
+
+    .c__field__footer {
+      padding: 0.25rem 0 0 3.3rem;
+    }
+
+    &.c__switch--full-width {
+      .c__field__footer {
+        flex-direction: row-reverse;
+      }
+    }
+  }
+
+  &--full-width {
+    width: 100%;
+  }
+}
