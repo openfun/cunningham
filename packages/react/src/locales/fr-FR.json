@@ -16,12 +16,20 @@
     "datagrid": {
       "empty": "Ce tableau est vide",
       "empty_alt": "Illustration d'un tableau vide",
-      "loader_aria": "Loading data"
+      "loader_aria": "Chargement des données",
+      "rows_selection_aria": "Toutes les lignes sélectionnées",
+      "row_selection_aria": "Ligne sélectionnée"
     },
     "provider": {
       "test": "Ceci est un test : {name}"
     },
     "forms": {
+      "input": {
+        "password": {
+            "show_password": "Afficher le mot de passe",
+            "hide_password": "Masquer le mot de passe"
+        }
+      },
       "select": {
         "toggle_button_aria_label": "Ouvrir le menu",
         "clear_button_aria_label": "Effacer la sélection",
