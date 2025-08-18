@@ -1,0 +1,71 @@
+import { Meta, Source } from '@storybook/addon-docs';
+
+<Meta title="Getting Started/Installation"/>
+
+# Installation
+
+First, install the library
+
+<Source
+  language='bash'
+  dark
+  format={false}
+  code={`
+  yarn add @openfun/cunningham-react
+  `}
+/>
+
+Then, add this script to your `package.json` file
+
+<Source
+  language='json'
+  dark
+  format={false}
+  code={`
+{
+  "scripts": {
+    "build-theme": "cunningham -g css -o src"
+  },
+}
+`}
+/>
+
+> Please take a look at [tokens documentation](https://github.com/openfun/cunningham/tree/main/packages/tokens#configuration-file) for more informations about the `cunningham` command line tool and to customize your local theme.
+
+Then, in order to generate the css file, run
+
+<Source
+  language='bash'
+  dark
+  format={false}
+  code={`
+  yarn build-theme
+  `}
+/>
+
+It will generate a file named `cunningham-tokens.css`.
+
+Then, add these lines at the top of your main stylesheet file:
+
+
+<Source
+  language='css'
+  dark
+  format={false}
+  code={`
+@use "@openfun/cunningham-react/fonts"; // Imports default fonts ( Roboto ). You can also import fonts by yourself.
+@use "@openfun/cunningham-react/icons"; // Imports icons ( Material Icons ).
+@use "@openfun/cunningham-react/style"; // Imports the default theme.
+@use "cunningham-tokens"; // Imports the file you just generated.
+  `}
+/>
+
+> If you are not using dart sass, you can use `@import`, please visit the [documentation](https://sass-lang.com/documentation/at-rules/import/).
+
+> Please see [here](https://github.com/openfun/cunningham/tree/main/packages/tokens#use-the-design-tokens) to see how to use the design tokens in your source code.
+
+We're done! 🎉
+
+Now to verify that everything works well by trying to render a component, like the [Button](?path=/story/components-button-doc--page) for example.
+
+

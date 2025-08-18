@@ -1,0 +1,116 @@
+import { Canvas, Story, Meta, Source } from '@storybook/addon-docs';
+import { Switch } from './index';
+import * as Stories from './index.stories';
+import { ArgTypes } from '@storybook/blocks';
+
+<Meta of={Stories}/>
+
+# Switch
+
+Cunningham provides a Switch component that can be used in a variety of ways.
+
+> To better understand the Switch component, keep in mind that it is kind of a wrapper around the native HTML checkbox element.
+
+<Canvas of={Stories.FormExample}/>
+
+## Label
+
+The `label` props is optional, but you can use it to provide a description of the switch.
+
+**Without label**
+
+<Canvas of={Stories.Default}/>
+
+**With label**
+
+<Canvas of={Stories.WithLabel}/>
+
+## Label Side
+
+You can decide where to place the label by using the `labelSide` prop.
+
+> By default the label is placed on the left.
+
+**Label on the left (default)**
+
+<Canvas of={Stories.WithLabel}/>
+
+**Label on the right**
+
+<Canvas of={Stories.WithLabelRight}/>
+
+## Disabled
+
+You can disable the switch by using the `disabled` prop.
+
+<Canvas of={Stories.Disabled}/>
+<Canvas of={Stories.DisabledChecked}/>
+
+## States
+
+You can use the following props to change the state of the component by using the `state` props.
+
+<Canvas of={Stories.WithText}/>
+<Canvas of={Stories.Success}/>
+<Canvas of={Stories.Error}/>
+
+## Width
+
+By default, the Switch will automatically take the minimum needed width. But you can force it to take the full width of
+its container by using the `fullWidth` prop.
+
+<Canvas of={Stories.FullWidth}/>
+<Canvas of={Stories.WithLabelRightAndFullWidth}/>
+
+## Controlled / Non Controlled
+
+In order to control the value of the switch, you can use the `checked` or `defaultChecked` props, as the native HTML checkbox element. You can't use both at the same time.
+
+> If you use the `checked` prop, you will need to handle the `onChange` event to update the value of the switch.
+
+> If you use the `defaultChecked` prop, the switch will be uncontrolled.
+
+<Canvas of={Stories.Controlled}/>
+
+## Usage with react-hook-form
+
+You can use this input with [react-hook-form](https://react-hook-form.com/docs)
+
+<Canvas of={Stories.ReactHookForm}/>
+
+## Props
+
+The props of this component are as close as possible to the native checkbox component. You can see the list of props below.
+
+<ArgTypes of={Switch} />
+
+## Design tokens
+
+Here are available custom design tokens.
+
+| Token        	| Description                 	|
+|---------------	|-----------------------------	|
+| accent-color     	| Color of the background  	|
+| rail-background-color     	| Color of the switch rail background  	|
+| rail-background-color--disabled     	| Color of the switch rail background when disabled 	|
+| rail-border-radius     	| Border radius of the switch rail 	|
+| handle-background-color     	| Background color of the switch handle	|
+| handle-background-color--disabled     	| Background color of the switch handle when disabled	|
+| handle-border-radius     	| Border radius of the switch handle when disabled	|
+
+The design tokens `font-size`, `font-weight`, `color`, `width`, `height` are shared with [Checkbox](?path=/story/components-forms-checkbox-doc--page)
+
+See also [Field](?path=/story/components-forms-field-doc--page)
+
+
+##
+
+<img src="components/Forms/Switch/resources/dd_1.svg"/>
+
+##
+
+<img src="components/Forms/Switch/resources/dd_2.svg"/>
+
+##
+
+<img src="components/Forms/Switch/resources/dd_3.svg"/>

@@ -1,0 +1,101 @@
+import { Canvas, Meta, Story, Source, ArgTypes } from '@storybook/blocks';
+import { Button } from "./index";
+import * as Stories from './index.stories';
+
+<Meta of={Stories}/>
+
+# Button
+
+The Cunningham Button behaves the same as the native html `<button>` element, but with a few extra features.
+
+<Canvas of={Stories.All}/>
+
+<Source
+  language='ts'
+  dark
+  format={false}
+  code={`import { Button } from "@openfun/cunningham-react";`}
+/>
+
+## Icons
+
+You can use icons within the button by passing the icon name as a prop.
+
+> Use the attribute `iconPosition` to position the icon on the left or right side of the button. The default is `left`.
+
+<Canvas sourceState="shown" of={Stories.IconLeft}/>
+
+<Canvas sourceState="shown" of={Stories.IconRight}/>
+
+You can also use button with only an icon.
+
+<Canvas sourceState="shown" of={Stories.IconOnly}/>
+
+## Disabled
+
+The button can be disabled. The disabled button will render the same no matter what color is used.
+
+> Keep in the mind that a disabled button will never call `onClick` if it is provided.
+
+<Canvas sourceState="shown" of={Stories.Disabled}/>
+
+## Full width
+
+The button can be set to full width. You can use the `fullWidth` prop to do so.
+
+<Canvas sourceState="shown" of={Stories.FullWidth}/>
+<Canvas sourceState="shown" of={Stories.FullWidthWithIcon}/>
+
+## Size
+
+You can adjust the size of the button by using the `size` prop. Default value is `medium`.
+
+<Canvas sourceState="shown" of={Stories.Primary}/>
+<Canvas sourceState="shown" of={Stories.Small}/>
+<Canvas sourceState="shown" of={Stories.Nano}/>
+
+## Props
+
+You can use all the props of the native html `<button>` element props plus the following.
+
+<ArgTypes of={Button} />
+
+## Design tokens
+
+Here a the custom design tokens defined by the button.
+
+| Token        	| Description                 	|
+|---------------	|-----------------------------	|
+| border-radius 	| Border radius of the button 	|
+| height        	| Height of the button        	|
+| font-size     	| Font size of the label      	|
+| font-weight   	| Font weight of the label    	|
+
+## Do's and don'ts
+
+### Never use two "filled buttons" or "primary buttons" on the same page for two main actions.
+
+The primary button designates the user's primary action, it is highlighted here with a primary color.
+The primary button should not be used for a secondary action.
+
+<img src="components/Button/resources/dd_1.svg"/>
+
+### Size of icons in a primary MD button
+
+When you go to change the icon in the properties by browsing the icon library, you must choose only icons a size of 24x24px
+to respect the size of the container
+
+<img src="components/Button/resources/dd_2.svg"/>
+
+### Good practice for primary, secondary and tertiary button
+
+For a good practice we use only one primary button per page to define the main action with 1/3 of secondary buttons and as
+many tertiary buttons as needed.
+
+<img src="components/Button/resources/dd_3.svg"/>
+
+### Exceptional red button for delete
+
+Secondary button to be used when important non-reversible action surrounded by red.
+
+<img src="components/Button/resources/dd_4.svg"/>

@@ -1,0 +1,80 @@
+{
+  "components": {
+    "alert": {
+      "close_aria_label": "Delete alert",
+      "expand_aria_label": "Expand alert",
+      "shrink_aria_label": "Shrink alert"
+    },
+    "pagination": {
+      "goto_label": "Go to page",
+      "goto_label_aria": "Go to any page",
+      "next_aria": "Go to next page",
+      "previous_aria": "Go to previous page",
+      "goto_page_aria": "Go to page {page}",
+      "current_page_aria": "You are currently on page {page}"
+    },
+    "datagrid": {
+      "empty": "This table is empty",
+      "empty_alt": "Illustration of an empty table",
+      "loader_aria": "Loading data",
+      "rows_selection_aria": "All rows selection",
+      "row_selection_aria": "Row selection"
+    },
+    "provider": {
+      "test": "This is a test: {name}"
+    },
+    "forms": {
+      "input": {
+        "password": {
+            "show_password": "Show password",
+            "hide_password": "Hide password"
+        }
+      },
+      "select": {
+        "toggle_button_aria_label": "Toggle dropdown",
+        "clear_button_aria_label": "Clear selection",
+        "clear_all_button_aria_label": "Clear all selections",
+        "menu_empty_placeholder": "No options available"
+      },
+      "file_uploader": {
+        "delete_file_name": "Delete file {name}",
+        "delete_file": "Delete file",
+        "uploading": "Uploading...",
+        "caption": "Drag and drop or ",
+        "browse_files": "Browse files"
+      },
+      "date_picker": {
+        "toggle_button_aria_label_open": "Open calendar",
+        "toggle_button_aria_label_close": "Close calendar",
+        "clear_button_aria_label": "Clear date",
+        "next_month_button_aria_label": "Next month",
+        "next_year_button_aria_label": "Next year",
+        "previous_month_button_aria_label": "Previous month",
+        "previous_year_button_aria_label": "Previous year",
+        "year_select_button_aria_label": "Select a year",
+        "month_select_button_aria_label": "Select a month"
+      }
+    },
+    "modals": {
+      "helpers": {
+        "delete_confirmation": {
+          "title": "Are you sure?",
+          "children": "Are you sure to delete this item?",
+          "cancel": "Cancel",
+          "delete": "Delete"
+        },
+        "confirmation": {
+          "title": "Are you sure?",
+          "children": "Are you sure you want to do that?",
+          "cancel": "Cancel",
+          "yes": "Yes"
+        },
+        "disclaimer": {
+          "title": "Disclaimer",
+          "children": "This is a disclaimer",
+          "ok": "Ok"
+        }
+      }
+    }
+  }
+}

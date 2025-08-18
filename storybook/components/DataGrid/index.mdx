@@ -1,0 +1,228 @@
+import { Canvas, Meta, Source, ArgTypes } from '@storybook/blocks';
+import { DataGrid } from './index';
+import { SimpleDataGrid } from './SimpleDataGrid';
+import { DataList } from './DataList';
+
+import * as Stories from './index.stories';
+
+<Meta of={Stories}/>
+
+# DataGrid
+
+Cunningham provides a DataGrid component that can be used to display data in a tabular format. The DataGrid component
+is built on top of [Tan Stack Table](https://tanstack.com/table/v8). It can be used for client only data or server side data.
+
+<Canvas of={Stories.FullServerSide}/>
+
+## Get Started
+
+As you will see there are two different implementations of the DataGrid (a simple one and a more versatile one). But
+in both cases you will need to provide columns definition and rows, those are required props.
+
+The `columns` props is an array of objects that describe the columns of the table.
+
+The `rows` props is an array of objects that describe the rows of the table. Each object must have a `id` property.
+
+We will explore the possibilities that those props provide through the following examples.
+
+## DataList
+
+<Source
+  language='ts'
+  dark
+  format={false}
+  code={`import { DataList } from "@openfun/cunningham-react";`}
+/>
+
+This component is a wrapper around the more complicated DataGrid component. It is made to be used for simple lists of elements that don't need pagination nor sorting. Also, it doesn't display any header.
+
+Here a quick usage example
+
+<Canvas sourceState="shown" of={Stories.DataListOnly}/>
+
+### Props
+
+<ArgTypes of={DataList} />
+
+## SimpleDataGrid
+
+<Source
+  language='ts'
+  dark
+  format={false}
+  code={`import { SimpleDataGrid } from "@openfun/cunningham-react";`}
+/>
+
+This component is a wrapper around the more complicated `DataGrid` component. It is mostly intended to be used for client
+side data that is already loaded. It provides a simple approach so you don't have to think about controlled Pagination,
+Sorting etc ...
+
+Take a look at the following example that renders a table of users.
+
+<Canvas sourceState="shown" of={Stories.ClientSideWithoutPagination}/>
+
+As you can see in this example there is no pagination, but we can simply add it by adding a `defaultPaginationParams` props.
+We will also enable a default sorting on the `price` column with the `defaultSortModel` props, along with the row selection
+with `enableRowSelection`, `rowSelection` and `onRowSelectionChange` props.
+
+> Please click on checkboxes to select rows to see hows the `onRowSelectionChange` prop works, selected ids are displayed
+below the table.
+
+<Canvas sourceState="shown" of={Stories.ClientSideWithPagination}/>
+
+As you can see, with `SimpleDataGrid` you can easily add pagination, sorting without have to worry about controlling
+their states.
+
+### Props
+
+<ArgTypes of={SimpleDataGrid} />
+
+## DataGrid
+
+Now let's dive into the usage of the `DataGrid` component. This component is more versatile and can be used for both
+client side and server side data. It is also more complicated to use as you will need to control the state of the
+pagination, sorting etc ...
+
+Please take a look at the following example that simulates a server side data that's re-fetched on each page and sorting
+change.
+
+<Canvas sourceState="shown" of={Stories.FullServerSide}/>
+
+As you can see, in this example the pagination and sorting are now controlled, this is more verbose but gives you more
+control over the state of the table, like being able to use `useEffect` to fetch data when the state changes.
+
+### Props
+
+<ArgTypes of={DataGrid} />
+
+## Columns
+
+As you can see there are two types of columns, one for displaying bare data and one for displaying
+custom content like the last one that displays a button.
+
+### Data Columns
+
+Columns that display only data must define a `field` property that will be used to retrieve the data from the row object,
+a `headerName` property that will be used as the column header.
+
+### Custom Columns
+
+Columns that display custom content must define a `renderCell` property that will be used to render the content of the
+cell. This property is a function that takes a row as argument and must return a ReactNode.
+
+### Highlight
+
+You can highlight any column by setting the `highlight` property to `true`. This will render the column with a bold
+font.
+
+## Sorting
+
+By default sorting is enabled on columns but you can disable it by setting the `enableSorting` property of columns to `false`.
+Bare in mind that with `SimpleDataGrid` this is all you have to do, but with the `DataGrid` component more work is
+needed as you will need to provide `sortModel` and `onSortModelChange` props.
+
+> ⚠️ Even though `sortModel` is an array, only the first element will be used for now.
+
+## Pagination
+
+The pagination for `DataGrid` is exactly the same as [Pagination](?path=/story/components-pagination-doc--page),
+that's why you can see that `usePagination` hook is used to control the state of the pagination. You can see it in action
+in the server side example.
+
+## Row Selection
+
+In order to enable row selection you need to define the following props: `enableRowSelection`, `rowSelection` and
+`onRowSelectionChange` props.
+
+> This feature is controlled even with `SimpleDataGrid` because this is a type of data that you want to keep track of
+outside the grid component ( for example to delete selected rows ).
+
+## Loading
+
+The component provides out of the box a loading state that can be enabled by setting the `isLoading` props to `true`.
+So feel free to use it between page or sorting changes when you are fetching data from a server.
+
+<Canvas sourceState="shown" of={Stories.Loading}/>
+
+## Empty State
+
+The component automatically displays an empty state when there is no data to display and it is not loading.
+
+<Canvas sourceState="shown" of={Stories.Empty}/>
+
+## Actions alignment
+
+As you can see from examples above there's often a dedicated column for actions ( the right-most one ). Our recommendation
+is to align on the right the actions buttons, in order to make this easy and convenient we automatically align the right
+the cell contents of this column when you give it the `id` `actions`.
+
+## Do's and don'ts
+
+### Button
+
+- ❌ Don’t place button(s) in other column than the last column
+- ✅ Do place buttons all on the right because it designates the action to be done on the whole row, and end of read parsing by eyes.
+- ✅ Be consistent, if you add a button on a row, you must do the same on the other rows.
+
+<img src="components/DataGrid/resources/dd_1_dn.svg"/>
+<img src="components/DataGrid/resources/dd_1_d.svg"/>
+
+### Primary Button
+
+- ❌ Don’t show on each row the primary button
+- ✅ Do show The primary button only at the hover.
+- ✅ Do use secondary or tertiary buttons for always displayed button.
+
+<img src="components/DataGrid/resources/dd_2_dn.svg"/>
+<img src="components/DataGrid/resources/dd_2_d.svg"/>
+
+### Actions
+
+- ❌ Don’t have more than one main action in a line. If you have other secondary actions, you have to put them in a menu.
+- ✅ You should only have one icon per line
+
+<img src="components/DataGrid/resources/dd_3_dn.svg"/>
+<img src="components/DataGrid/resources/dd_3_d.svg"/>
+
+### Titles
+
+- ❌ Don’t use a title before a data table to explain what is the table
+- ✅ Do for each table, add a title to explain what we look at in less than 7 words
+If you have many subtable add another title in a H+2 sizes.
+
+<img src="components/DataGrid/resources/dd_4_dn.svg"/>
+<img src="components/DataGrid/resources/dd_4_d.svg"/>
+
+
+### Maximum Width text Width in a cell
+
+- ✅ If the size of a text in a cell reaches the maximum size of a cell it becomes 3 small points. If your text exceeds the size of the cell, it will be hidden and will only be displayed on screen hover.
+- ❌ Don't exceed 2 lines of entries
+
+<img src="components/DataGrid/resources/dd_5_dn.svg"/>
+<img src="components/DataGrid/resources/dd_5_d.svg"/>
+
+### Text weight & color
+
+- ❌ Don’t use visual difference on different row in a col (ex: Col2)
+- ✅ Do use only one column to catch the eye and very often it is the first one.
+
+<img src="components/DataGrid/resources/dd_6_dn.svg"/>
+<img src="components/DataGrid/resources/dd_6_d.svg"/>
+
+### Units
+
+- ❌ Don’t put the unit in the cell but in the title of the column to avoid repetition.
+
+<img src="components/DataGrid/resources/dd_7_dn.svg"/>
+<img src="components/DataGrid/resources/dd_7_d.svg"/>
+
+### Empty state
+
+- ❌ Don’t use the primary button more than once in a page
+- ✅ You can have many empty table on one page, it can be a primary if it's really the main goal of the screen
+- ✅ Do use secondary button if you have many object inn one page.
+
+<img src="components/DataGrid/resources/dd_8_dn.svg"/>
+<img src="components/DataGrid/resources/dd_8_d_1.svg"/>
+<img src="components/DataGrid/resources/dd_8_d_2.svg"/>

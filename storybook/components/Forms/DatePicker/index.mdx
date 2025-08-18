@@ -1,0 +1,170 @@
+import { Canvas, Meta, Story, Source } from '@storybook/addon-docs';
+import { DatePicker } from "./index";
+import { DateRangePicker } from "./index";
+import * as Stories from "./index.stories"
+import { ArgTypes } from '@storybook/blocks';
+
+<Meta of={Stories}/>
+
+
+# DatePicker
+
+
+Cunningham provides a versatile DatePicker component to select or input a date in your form. It uses the headless
+UI components provided by [React-Spectrum](https://react-spectrum.adobe.com/react-aria/useDatePicker.html) from Adobe.
+
+> Time features will be available soon.
+
+
+## Basic
+
+<Source
+  language='ts'
+  dark
+  format={false}
+  code={`
+  <DatePicker label="Pick a date" />
+  `}
+/>
+
+<Canvas of={Stories.Default}/>
+
+
+## Default value
+You can use the following props to change the default value of the DatePicker component by using the `state` props.
+
+<Canvas of={Stories.DefaultValue} sourceState="shown"/>
+
+## Range
+
+<Source
+  language='ts'
+  dark
+  format={false}
+  code={`
+  <DateRangePicker startLabel="Start date" endLabel="Due date" name="datepicker" />
+  `}
+/>
+
+When using it within a form, you'll access its values using separate inputs for the start and end values. The start input's
+name will be the `DateRangePicker`'s name suffixed by `_start` and the end input's name will be the `DateRangePicker`'s name suffixed by `_end`.
+Ex: If a `DateRangePicker` is named `"subscription"`, you would access its values as follow:
+
+<Source
+  language='ts'
+  dark
+  format={false}
+  code={`
+
+  formData = {
+    datepickerStart: data.get("subscription_start"),
+    datepickerEnd: data.get("subscription_end"),
+  };
+  `}
+/>
+
+<Canvas of={Stories.RangeDefault}/>
+
+## States
+
+You can use the following props to change the state of the DatePicker component by using the `state` props.
+
+<Canvas of={Stories.Error}/>
+<Canvas of={Stories.Success}/>
+
+## Disabled
+
+As a regular input, you can disable it by using the `disabled` props.
+
+<Canvas of={Stories.Disabled} sourceState="shown"/>
+<Canvas of={Stories.DisabledValue} sourceState="shown"/>
+
+## Texts
+
+As the component uses [Field](?path=/story/components-forms-field-doc--page), you can use the `text` props to provide a description of the checkbox.
+
+<Canvas of={Stories.WithText} sourceState="shown"/>
+
+## Controlled / Non Controlled
+
+Like a native input, you can use the DatePicker component in a controlled or non controlled way. You can see the example below
+using the component in a controlled way.
+
+<Canvas of={Stories.Controlled} sourceState="shown"/>
+<Canvas of={Stories.RangeControlled} sourceState="shown"/>
+
+## MinValue / MaxValue
+
+You can pass a date range that are valid using the `minValue` and `maxValue` props.
+
+<Canvas of={Stories.MinMaxValue} sourceState="shown"/>
+
+## Invalid date
+
+When passing an invalid date, for example outside of the valid range, the DatePicker component would render invalid.
+
+<Canvas of={Stories.InvalidValue} sourceState="shown"/>
+
+## International calendars
+
+When passing a locale value to the DatePicker components, dates would be automatically displayed in the appropriate calendar system.
+By default, the DatePicker component uses the CunninghamProvider locale.
+
+<Canvas sourceState="shown">
+  <Story id="components-forms-datepicker--custom-locale"/>
+  <Story id="components-forms-datepicker--cunningham-locale"/>
+</Canvas>
+<Canvas of={Stories.CustomLocale}/>
+<Canvas of={Stories.CunninghamLocale}/>
+
+## Timezone management
+
+By default, the component uses the user's local timezone. When a timezone is passed, dates are selected at midnight in that specific timezone.
+If a value or default value is provided, the component preserves the time unless the user clears the input.
+When the input is cleared, the dates are reset to midnight in the current timezone.
+The component accepts both UTC date-time strings and date-time strings with offsets from UTC.
+However, it consistently returns the output in UTC time, ensuring uniformity across different timezone.
+
+
+## Props
+
+You can see the list of props below.
+
+### DatePicker
+
+<ArgTypes of={DatePicker} />
+
+### DateRangePicker
+
+<ArgTypes of={DateRangePicker} />
+
+
+## Design tokens
+
+Here are the custom design tokens defined by the datepicker.
+
+| Token        	| Description                 	|
+|---------------	|-----------------------------	|
+| background-color   	| Background color of the datepicker    	|
+| border-color   	| Border color of the datepicker    	|
+| border-color--hover   	| Border color of the datepicker on mouse hover   	|
+| border-color--focus   	| Border color of the datepicker when focus   	|
+| border-radius     	| Border radius of the datepicker      	|
+| border-width     	| Border width of the datepicker      	|
+| border-radius--hover   	| Border radius of the datepicker on mouse hover    	|
+| border-radius--focus   	| Border radius of the datepicker when focused    	|
+| value-color   	| Value color  	|
+| value-color--disabled   	| Value color when disabled 	|
+| font-size        	| Value font size        	|
+| height | Height of the combo box |
+| item-background-color--hover | Background color of the item on mouse hover (months/years menus)   	|
+| item-background-color--selected | Background color of the selected item (months/years menus)   	|
+| item-color | Color of the item (months/years menus)    	|
+| item-font-size | Font size of the item (months/years menus)    	|
+| menu-background-color | Background color of the menu (months/years menus)    	|
+| grid-cell--border-color--today | Border color of the today grid-cell    	|
+| grid-cell--color--today | Value color of the today grid-cell    	|
+| range-selection-background-color | Value color of the selected grid-cells    	|
+| label-color--focus | Label color when focused    	|
+
+See also [Field](?path=/story/components-forms-field-doc--page)

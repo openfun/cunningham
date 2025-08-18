@@ -1,0 +1,58 @@
+import { Canvas, Meta, Story, Source, ArgTypes } from '@storybook/blocks';
+import * as Stories from './index.stories';
+import { Tooltip } from './index';
+
+<Meta of={Stories}/>
+
+# Tooltip
+
+Cunningham provides a tooltip component for displaying any kind of additional information.
+
+<Canvas sourceState="shown" of={Stories.Default}/>
+
+
+## Content
+
+The content of the tooltip can either be a string or any React Element.
+
+### Plain text
+
+<Canvas sourceState="shown" of={Stories.OverflowingText}/>
+
+### HTML
+
+<Canvas sourceState="shown" of={Stories.WithHtml}/>
+
+## Trigger element
+
+As you can see in the examples above, the tooltip can be triggered by any kind of element which
+must be passed as children to the `Tooltip` component.
+
+Here is a more complex example with a more advanced component
+
+<Canvas sourceState="hidden" of={Stories.WithElements}/>
+
+## Placement
+
+The tooltip can be placed in different positions relative to the trigger element using `placement` props. The available positions are: `top`, `right`, `bottom`, `left`.
+
+<Canvas sourceState="hidden" of={Stories.Placements}/>
+
+## Props
+
+These are the props of `Tooltip`.
+
+<ArgTypes of={Tooltip} />
+
+## Design tokens
+
+Here a the custom design tokens defined by the Tooltip.
+
+| Token        	| Description                 	|
+|---------------	|-----------------------------	|
+| border-radius 	| Border radius of the tooltip 	|
+| background-color 	| Background color of the tooltip 	|
+| color 	| Text color of the tooltip 	|
+| font-size 	| Font size of the tooltip content	|
+| padding 	| Padding of the tooltip content	|
+| max-width | Max width of the tooltip	|

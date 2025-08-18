@@ -1,0 +1,109 @@
+import { Canvas, Meta, Story, Source, ArgTypes } from '@storybook/blocks';
+import { Alert } from "./index";
+import * as Stories from './index.stories';
+
+<Meta of={Stories}/>
+
+# Alert
+
+Cunningham provides a versatile Alert component for displaying any kind of information.
+
+<Canvas of={Stories.All}/>
+
+<Source
+  language='ts'
+  dark
+  format={false}
+  code={`import { Alert } from "@openfun/cunningham-react";`}
+/>
+
+## Types
+
+You can use the `type` prop to change the style of the alert.
+
+<Canvas of={Stories.Info}/>
+<Canvas of={Stories.Success}/>
+<Canvas of={Stories.Warning}/>
+<Canvas of={Stories.Error}/>
+<Canvas of={Stories.Neutral}/>
+
+## Format
+
+There are 3 possible formats for the alert, the one line, the multi line one and the expandable one.
+
+
+#### The one line format
+
+<Canvas of={Stories.Info}/>
+
+#### The multi line format
+
+> This one is automatically applied when you provide `additionalInformation` prop.
+
+<Canvas of={Stories.InfoAdditionalInformation}/>
+
+#### The expandable format
+
+> This one is automatically applied when you provide `additionalInformation` and `expandable` prop.
+
+<Canvas of={Stories.InfoExpandable}/>
+
+## Actions
+
+As you can see in the examples above, you can display buttons on the alerts. You can use the following prop to do so:
+
+- `primaryLabel`
+- `primaryOnClick`
+- `primaryProps`
+
+Those props are shortcuts props provided to the `Button` component.
+
+<Canvas of={Stories.Info}/>
+
+The same goes for the tertiary button:
+
+- `tertiaryLabel`
+- `tertiaryOnClick`
+- `tertiaryProps`
+
+<Canvas of={Stories.InfoWithTertiary}/>
+
+> Those buttons automatically adapt according to the alert format.
+
+### Customize actions
+
+If the default provided buttons are not enough for you, you can provide your own buttons and any `ReactNode` you want.
+To achieve that, you can use the `buttons` prop.
+
+> We strongly recommend you to stick to the default `primaryLabel` and `tertiaryLabel` props to match the design system.
+
+<Canvas of={Stories.CustomButtons}/>
+
+## Controlled / Non Controlled
+
+There are two different props that can be used to control the alert: `expanded`, `closed`.
+
+When using those props, you must provide `onExpand` and `onClose` callbacks to handle the state of the alert.
+
+<Canvas of={Stories.Controlled}/>
+<Canvas of={Stories.ExpandableControlled}/>
+
+## Props
+
+<ArgTypes of={Alert} />
+
+
+
+## Design tokens
+
+Here are the custom design tokens defined by the Alert.
+
+| Token        	| Description                 	|
+|---------------	|-----------------------------	|
+| background-color 	| Default background color 	|
+| border-radius 	| Border radius of the Alert 	|
+| font-weight 	| Font weight of the main content 	|
+| color 	| Color of the main content	|
+| additional-font-weight 	| Font weight of the additional information	|
+| additional-color 	| Color of the additional content	|
+| icon-size 	| Size of the left icon	|

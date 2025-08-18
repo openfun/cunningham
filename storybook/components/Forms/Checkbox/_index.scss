@@ -1,0 +1,136 @@
+.c__checkbox__group {
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .c__field__footer {
+    padding: 0.25rem 0 0 calc(2rem);
+  }
+}
+
+.c__checkbox {
+  display: inline-flex;
+  $padding: 0.25rem;
+  padding: $padding;
+  border-radius: 2px;
+  box-sizing: border-box;
+  border-style: solid;
+  border-color: transparent;
+  border-width: 1px;
+  // To automatically align the checkbox to the left side.
+  margin-left: -1 * $padding;
+  cursor: pointer;
+
+  &:hover, &:focus-within {
+    background-color: var(--c--components--forms-checkbox--background-color--hover);
+  }
+
+  &:focus-within {
+    outline: 0;
+    border-color: var(--c--theme--colors--primary-600);
+  }
+
+  &__container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--c--components--forms-checkbox--color);
+  }
+
+  .c__field__footer {
+    padding: 0.25rem 0 0 calc(2rem);
+  }
+
+  &__wrapper {
+    position: relative;
+    $clipPathShow: inset(0 0 0 0);
+    $clipPathHide: inset(0 100% 0 0);
+
+    input {
+      appearance: none;
+      margin: 0;
+      background-color: var(--c--components--forms-checkbox--background-color);
+      width: var(--c--components--forms-checkbox--size);
+      height: var(--c--components--forms-checkbox--size);
+      border: 1.5px solid var(--c--components--forms-checkbox--border-color);
+      border-radius: var(--c--components--forms-checkbox--border-radius);
+      display: block;
+      cursor: pointer;
+
+      &:focus {
+        outline: none;
+      }
+
+      &:not(:checked) {
+        ~ .checkmark {
+          clip-path: $clipPathHide;
+        }
+        ~ .indeterminate {
+          clip-path: $clipPathHide;
+        }
+      }
+
+      &:checked {
+        ~ .checkmark {
+          clip-path: $clipPathShow;
+        }
+        ~ .indeterminate {
+          clip-path: $clipPathHide;
+        }
+      }
+
+      &:indeterminate {
+        ~ .indeterminate {
+          clip-path: $clipPathShow;
+        }
+        ~ .checkmark {
+          clip-path: $clipPathHide;
+        }
+      }
+    }
+
+    svg {
+      clip-path: $clipPathHide;
+      transition: var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: var(--c--components--forms-checkbox--accent-color);
+    }
+  }
+
+  &__label {
+    font-size: var(--c--components--forms-checkbox--font-size);
+    font-weight: var(--c--components--forms-checkbox--font-weight);
+  }
+
+  &--disabled {
+    border-color: transparent;
+    color: var(--c--theme--colors--greyscale-600);
+    cursor: not-allowed;
+
+    svg {
+      color: var(--c--theme--colors--greyscale-400);
+    }
+
+    &:hover {
+      background-color: transparent;
+    }
+
+    .c__checkbox__label {
+      color: var(--c--theme--colors--greyscale-600);
+    }
+  }
+
+  &--full-width {
+    width: 100%;
+
+    .c__field {
+      align-items: flex-start;
+    }
+  }
+}

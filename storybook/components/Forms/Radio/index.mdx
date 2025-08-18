@@ -1,0 +1,96 @@
+import { Canvas, Meta, Story, ArgTypes } from '@storybook/blocks';
+import { Radio } from "./index";
+import * as Stories from './index.stories';
+
+<Meta of={Stories}/>
+
+# Radio
+
+Cunningham provides a versatile Radio component that can be used in a variety of ways. The radio component is a form element that allows the user to select one option from a set of options.
+
+<Canvas of={Stories.Group} sourceState="shown"/>
+
+## Label
+
+The `label` props is optional, but you can use it to provide a description of the radio.
+
+**Without label**
+
+<Canvas of={Stories.Default} sourceState="shown"/>
+
+**With label**
+
+<Canvas of={Stories.WithLabel} sourceState="shown"/>
+
+## Value
+
+You can set the value of the radio with the `checked` attribute.
+
+<Canvas of={Stories.Default}/>
+<Canvas of={Stories.Checked}/>
+
+## Texts
+
+As the component uses [Field](?path=/story/components-forms-field-doc--page), you can use the `text` props to provide a description of the radio.
+
+<Canvas of={Stories.WithText} sourceState="shown"/>
+
+## Disabled
+
+As a regular radio, you can disable it by using the `disabled` props.
+
+<Canvas of={Stories.Disabled} sourceState="shown"/>
+
+## States
+
+You can use the following props to change the state of the Input component by using the `state` props.
+
+<Canvas of={Stories.WithText} sourceState="shown"/>
+<Canvas of={Stories.Success} sourceState="shown"/>
+<Canvas of={Stories.Error} sourceState="shown"/>
+
+## Group
+
+Here is how you can leverage the `RadioGroup` component to create a group of radio buttons.
+
+<Canvas of={Stories.Group} sourceState="shown"/>
+
+You can also define `state`, `text` props on the group component
+
+<Canvas of={Stories.GroupError} sourceState="shown"/>
+<Canvas of={Stories.GroupSuccess} sourceState="shown"/>
+
+## Usage with react-hook-form
+
+You can use this radio with [react-hook-form](https://react-hook-form.com/docs)
+
+<Canvas of={Stories.ReactHookForm} sourceState="shown"/>
+
+### Props
+
+<ArgTypes of={Radio} />
+
+## Design tokens
+
+Here are available custom design tokens.
+
+| Token        	| Description                 	|
+|---------------	|-----------------------------	|
+| border-color   	| Border color of the radio    	|
+| accent-color     	| Color of the checkmark  	|
+
+The design tokens `font-size`, `font-weight`, `color`, `width`, `height` are shared with [Checkbox](?path=/story/components-forms-checkbox-doc--page)
+
+See also [Field](?path=/story/components-forms-field-doc--page)
+
+##
+
+<img src="components/Forms/Radio/resources/dd_1.svg"/>
+
+##
+
+<img src="components/Forms/Radio/resources/dd_2.svg"/>
+
+##
+
+<img src="components/Forms/Radio/resources/dd_3.svg"/>

@@ -1,0 +1,222 @@
+@use "../../utils/responsive" as *;
+
+.c__modal {
+  background-color: var(--c--components--modal--background-color);
+  border-radius: var(--c--components--modal--border-radius);
+  border-color: var(--c--components--modal--border-color);
+  box-shadow: var(--c--components--modal--box-shadow);
+  color: var(--c--components--modal--color);
+  box-sizing: border-box;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: calc(100% - 2em - 6px);
+  max-height: calc(100% - 2em - 6px);
+  display: flex;
+  flex-direction: column;
+
+  &__scroller {
+    padding: 1.5rem;
+    overflow: auto;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &::backdrop {
+    // ::backdrop does not inherit from its element so CSS vars does not work.
+    // ( https://stackoverflow.com/a/77393321 )
+    // So for now, we hide the backdrop element and use a dom element to create the backdrop.
+    // We cannot use visibility: hidden because the component will not be able to receive click events for the
+    // closeOnClickOutside prop. The backdrop is the only element able to capture click as the dialog is displayed in
+    // the Top-Layer.
+    background: transparent;
+  }
+
+  &__backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: var(--c--components--modal--backdrop-color);
+    opacity: 0;
+    animation: backdrop-fade-in 0.2s ease-out forwards;
+  }
+
+  @keyframes backdrop-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  &__title {
+    --font-size: var(--c--theme--font--sizes--h2);
+    margin-bottom: 1.5rem;
+    font-size: var(--font-size);
+    font-weight: var(--c--components--modal--title-font-weight);
+    text-align: center;
+    // To avoid any collision with the close button.
+    padding: 0 0.75rem;
+  }
+
+  &__title-icon {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    --icon-size: 2rem;
+
+    * {
+      font-size: var(--icon-size);
+    }
+  }
+
+  &__content {
+    font-size: var(--c--components--modal--content-font-size);
+    font-weight: var(--c--components--modal--content-font-weight);
+    color: var(--c--components--modal--content-color);
+
+    &:focus-visible {
+      outline: none;
+    }
+
+    &__text {
+      text-align: center;
+    }
+  }
+
+  &__close {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: flex-end;
+    z-index: 1;
+    height: 0;
+
+    .c__button {
+      right: -0.75rem;
+      top: -0.75rem;
+      position: relative;
+      background: var(--c--components--modal--background-color);
+    }
+  }
+
+  &__footer {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    background-color: var(--c--components--modal--background-color);
+
+    &--sided {
+      justify-content: space-between;
+      gap: 0;
+
+      @include media(sm) {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+
+        > div {
+          width: 100%;
+        }
+      }
+    }
+
+    &__left, &__right {
+      display: flex;
+      gap: 1rem;
+    }
+  }
+
+  &--small {
+    width: var(--c--components--modal--width-small);
+
+    @include media(sm) {
+      width: calc(100vw - 1rem);
+    }
+
+    .c__modal__title-icon {
+      --icon-size: 3rem;
+    }
+  }
+
+  &--medium {
+    width: var(--c--components--modal--width-medium);
+
+    @include media(sm) {
+      width: calc(100vw - 1rem);
+    }
+
+    .c__modal__title-icon {
+        --icon-size: 4rem;
+    }
+  }
+
+  &--large {
+    width: var(--c--components--modal--width-large);
+
+    @include media(lg) {
+      width: calc(100vw - 4rem);
+    }
+
+    @include media(md) {
+      width: calc(100vw - 2rem);
+    }
+
+    .c__modal__title-icon {
+        --icon-size: 4rem;
+    }
+  }
+
+  &--extra-large {
+    width: var(--c--components--modal--width-extra-large);
+
+    @include media(md) {
+      width: calc(100vw - 1rem);
+    }
+
+    .c__modal__title {
+      --font-size: var(--c--theme--font--sizes--h1);
+    }
+
+    .c__modal__title-icon {
+      --icon-size: 6rem;
+    }
+  }
+
+  &--full {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    width: auto;
+    height: 100vh;
+    max-width: none;
+    max-height: 100vh;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    transform: none;
+
+    .c__modal__content {
+      flex-grow: 1;
+      overflow-y:scroll;
+    }
+
+    .c__modal__title {
+      --font-size: var(--c--theme--font--sizes--h1);
+    }
+
+    .c__modal__title-icon {
+      --icon-size: 6rem;
+    }
+  }
+}
+
+.c__noscroll {
+  overflow: hidden;
+}

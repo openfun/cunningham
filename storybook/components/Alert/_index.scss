@@ -1,0 +1,102 @@
+.c__alert {
+  padding: 0.75rem 1rem;
+  background-color: var(--c--components--alert--background-color);
+  border-radius: var(--c--components--alert--border-radius);
+  border-style: solid;
+  border-width: 1px;
+  border-left-width: 3px;
+  font-weight: var(--c--components--alert--font-weight);
+  color: var(--c--components--alert--color);
+  box-sizing: border-box;
+  border-color: var(--c--theme--colors--greyscale-300);
+  border-left-color: var(--c--theme--colors--greyscale-600);
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    justify-content: center;
+
+    span {
+      font-size: var(--c--components--alert--icon-size);
+    }
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    // We want to maintain the same height as when a button is present.
+    min-height: 2.25rem;
+
+    &__left {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      // For accessibility reasons, we want to make sure that the text is the first thing that is read.
+      flex-direction: row-reverse;
+    }
+  }
+
+  &-additional {
+
+    &__buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.5rem;
+    }
+  }
+
+  .c__alert__additional {
+    font-weight: var(--c--components--alert--additional-font-weight);
+    color: var(--c--components--alert--additional-color);
+  }
+
+  &:not(.c__alert--neutral), &.c__alert--expandable {
+    .c__alert__additional {
+      padding-left: 2rem;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+  }
+
+  &--info {
+    border-color: var(--c--theme--colors--info-300);
+    border-left-color: var(--c--theme--colors--info-600);
+
+    .c__alert__icon {
+      color: var(--c--theme--colors--info-600);
+    }
+  }
+
+  &--success {
+    border-color: var(--c--theme--colors--success-300);
+    border-left-color: var(--c--theme--colors--success-600);
+
+    .c__alert__icon {
+      color: var(--c--theme--colors--success-600);
+    }
+  }
+
+  &--warning {
+    border-color: var(--c--theme--colors--warning-300);
+    border-left-color: var(--c--theme--colors--warning-600);
+
+    .c__alert__icon {
+      color: var(--c--theme--colors--warning-600);
+    }
+  }
+
+  &--error {
+    border-color: var(--c--theme--colors--danger-300);
+    border-left-color: var(--c--theme--colors--danger-600);
+
+    .c__alert__icon {
+      color: var(--c--theme--colors--danger-600);
+    }
+  }
+}

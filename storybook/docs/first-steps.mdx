@@ -1,0 +1,34 @@
+import { Meta, Source } from '@storybook/addon-docs';
+
+<Meta title="Getting Started/First steps"/>
+
+# Rendering your first component
+
+Now that you have completed the [Installation](?path=/docs/getting-started-installation--docs) it's time to render our first component!
+
+> You can find a fully working example [here](https://github.com/openfun/cunningham/blob/main/apps/demo/src/App.tsx) in the demo app.
+
+Let's create an `App` component that will render a `Button`.
+
+<Source dark={true} code={`
+
+import {
+  Button,
+  CunninghamProvider
+} from "@openfun/cunningham-react";
+
+export const MyApp = () => {
+  return (
+    <CunninghamProvider>
+      <Button onClick={() => alert('hello world!')}>Click me!</Button>
+    </CunninghamProvider>
+  );
+};
+
+`}></Source>
+
+
+As you can see we nest our component inside `CunninghamProvider`, as a rule of thumb you always need to put Cunningham's components
+inside `CunninghamProvider` or they will not work. You only need to use one `CunninghamProvider`, for example at the root of your app.
+
+And voilà! You're done 🥳

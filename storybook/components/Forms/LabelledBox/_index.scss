@@ -1,0 +1,76 @@
+.labelled-box {
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+
+  %text-style {
+    font-size: var(--c--components--forms-input--font-size);
+    font-weight: var(--c--components--forms-input--font-weight);
+  }
+
+  label {
+    position: absolute;
+    font-size: var(--c--theme--font--sizes--s);
+    left: 0;
+    top: 0.5rem;
+    transition: all var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
+    color: var(--c--components--forms-labelledbox--label-color--small);
+    // Enable text overflow ellipsis.
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+
+    &.placeholder {
+      @extend %text-style;
+      top: 16px;
+      color: var(--c--components--forms-labelledbox--label-color--big);
+    }
+
+    span {
+      white-space: nowrap;
+    }
+  }
+
+  &__children {
+    padding: 1.5rem 0 0 0;
+    display: flex;
+  }
+
+  &--no-label {
+    display: flex;
+    align-items: center;
+
+    .labelled-box__children {
+      padding-top: 0;
+      flex-grow: 1;
+    }
+  }
+
+  &--horizontal {
+    display: flex;
+    align-items: center;
+    height: auto;
+
+    label {
+      padding-top: 0;
+      position: static;
+      flex-shrink: 0;
+    }
+
+    .labelled-box__children {
+      flex-grow: 1;
+      padding: 0;
+    }
+  }
+
+  &--disabled {
+    label {
+      color: var(--c--components--forms-labelledbox--label-color--small--disabled);
+
+      &.placeholder {
+        color: var(--c--components--forms-labelledbox--label-color--big--disabled);
+      }
+    }
+  }
+}
