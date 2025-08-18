@@ -1,5 +1,11 @@
 # @openfun/cunningham-react
 
+## 3.2.3
+
+### Patch Changes
+
+- c42f40b: Add missing french translations
+
 ## 3.2.2
 
 ### Patch Changes
@@ -469,7 +475,8 @@
 - 4ebbf16: Add package
 - 4ebbf16: Add component's tokens handling
 
-[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@3.2.2...main
+[unreleased]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@3.2.3...main
+[3.2.3]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@3.2.2...@openfun/cunningham-react@3.2.3
 [3.2.2]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@3.2.1...@openfun/cunningham-react@3.2.2
 [3.2.1]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@3.2.0...@openfun/cunningham-react@3.2.1
 [3.2.0]: https://github.com/openfun/cunningham/compare/@openfun/cunningham-react@3.1.0...@openfun/cunningham-react@3.2.0
