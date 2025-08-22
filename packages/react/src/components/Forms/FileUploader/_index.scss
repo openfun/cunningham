@@ -1,3 +1,20 @@
+@mixin file-uploader-variant($context) {
+  border-color: var(--c--components--forms-fileuploader--color--#{$context});
+
+  .c__file-uploader__inner {
+    &__icon {
+      color: var(--c--components--forms-fileuploader--color--#{$context});
+    }
+
+    // Only apply the color override if the context is "error"
+    @if $context == "error" {
+      &__text {
+        color: var(--c--components--forms-fileuploader--color--#{$context});
+      }
+    }
+  }
+}
+
 .c__file-uploader {
   display: flex;
   align-items: center;
@@ -7,35 +24,20 @@
   border-color: var(--c--components--forms-fileuploader--border-color);
   border-radius: var(--c--components--forms-fileuploader--border-radius);
   color: var(--c--components--forms-fileuploader--color);
-  font-weight: var(--c--theme--font--weights--light);
+  font-weight: var(--c--globals--font--weights--light);
   padding: var(--c--components--forms-fileuploader--padding);
   position: relative;
   cursor: pointer;
-  transition: border var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
+  transition: border var(--c--globals--transitions--duration)
+    var(--c--globals--transitions--ease-out);
   background-color: var(--c--components--forms-fileuploader--background-color);
 
   &--success {
-    border-color: var(--c--theme--colors--success-600);
-
-    .c__file-uploader__inner {
-      &__icon {
-        color: var(--c--theme--colors--success-600);
-      }
-    }
+    @include file-uploader-variant("success");
   }
 
   &--error {
-    border-color: var(--c--theme--colors--danger-600);
-
-    .c__file-uploader__inner {
-      &__icon {
-        color: var(--c--theme--colors--danger-600);
-      }
-
-      &__text {
-        color: var(--c--theme--colors--danger-600);
-      }
-    }
+    @include file-uploader-variant("error");
   }
 
   &__inner {
@@ -72,7 +74,7 @@
       color: var(--c--components--forms-fileuploader--text-color);
 
       &:hover {
-        color: var(--c--theme--colors--danger-600);
+        color: var(--c--globals--colors--error-600);
       }
     }
   }
@@ -85,7 +87,9 @@
   }
 
   &__file {
-    background-color: var(--c--components--forms-fileuploader--file-background-color);
+    background-color: var(
+      --c--components--forms-fileuploader--file-background-color
+    );
     border-radius: var(--c--components--forms-fileuploader--file-border-radius);
     border-style: solid;
     border-color: var(--c--components--forms-fileuploader--file-border-color);
@@ -94,7 +98,7 @@
     font-weight: var(--c--components--forms-fileuploader--file-text-weight);
     color: var(--c--components--forms-fileuploader--file-text-color);
     height: 2.5rem;
-    padding: 0 .75rem;
+    padding: 0 0.75rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -124,13 +128,15 @@
   &--active,
   &:hover {
     border-color: var(--c--components--forms-fileuploader--accent-color);
-    background-color: var(--c--components--forms-fileuploader--background-color--active);
+    background-color: var(
+      --c--components--forms-fileuploader--background-color--active
+    );
 
     &.c__file-uploader--animate-icon {
       .c__file-uploader__inner {
         &__icon {
           animation-name: bounce-5;
-          animation-timing-function: var(--c--theme--transitions--ease-out);
+          animation-timing-function: var(--c--globals--transitions--ease-out);
           animation-duration: 2s;
           animation-iteration-count: infinite;
 
