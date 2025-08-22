@@ -10,6 +10,19 @@ export const tints = [900, 800, 700, 600, 500, 400, 300, 200, 100];
 
 Cunningham comes with an existing toolkit to deal with colors, and it's easy. 🎨
 
+### Contextual Backgrounds
+
+<Source
+  language='tsx'
+  dark
+  format={false}
+  code={`
+  <div className="bg-brand-primary"/>
+  `}
+/>
+
+<Canvas sourceState="none" of={Stories.ContextualBackgrounds}/>
+
 ## Background color
 
 You can use custom utility classes to set the background color of an element. These classes are named using the format `.bg-{color}`.
@@ -19,13 +32,15 @@ You can use custom utility classes to set the background color of an element. Th
   dark
   format={false}
   code={`
-  <div className="bg-primary-500"></div>
+<div className="bg-brand-500"></div>
   `}
 />
 
 You can find all existing classes below.
 
 <Canvas sourceState="none" of={Stories.BackgroundColors}/>
+
+
 
 ## Text color
 

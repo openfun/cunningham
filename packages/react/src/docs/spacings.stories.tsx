@@ -33,12 +33,12 @@ export const Default: Story = {
                   {value}
                 </div>
                 <div
-                  className={"bg-danger-100 pl-" + key}
+                  className={"bg-error-tertiary pl-" + key}
                   style={{ height: "48px", width: 0 }}
                 />
               </div>
             );
-          },
+          }
         )}
       </div>
     );
@@ -48,11 +48,11 @@ export const Default: Story = {
 export const Example: Story = {
   render: () => {
     return (
-      <div className="clr-greyscale-800 bg-danger-100">
-        <div className="clr-greyscale-800 bg-primary-500 clr-primary-text fw-medium p-t mb-l">
+      <div className="clr-gray-800 bg-error-tertiary">
+        <div className="clr-gray-800 bg-brand-tertiary  fw-medium p-t mb-l">
           Tiny padding + Large margin bottom
         </div>
-        <div className="clr-secondary-900 bg-secondary-500 clr-secondary-text fw-medium p-l ml-b">
+        <div className="content-neutral-primary bg-neutral-tertiary  fw-medium p-l ml-b">
           Large padding + Base margin left
         </div>
       </div>
