@@ -8,29 +8,27 @@ export const InputPassword = (props: Omit<InputProps, "rightIcon">) => {
   const { className, ...otherProps } = props;
   const customClassName = "c__input--password";
   const { t } = useCunningham();
+
   return (
     <Input
       {...otherProps}
-      className={className + " " + customClassName}
+      className={`${className} ${customClassName}`}
       type={showPassword ? "text" : "password"}
       rightIcon={
-        showPassword ? (
-          <Button
-            onClick={() => setShowPassword(false)}
-            icon={<span className="material-icons">visibility_off</span>}
-            color="tertiary-text"
-            size="small"
-            aria-label={t("components.forms.input.password.hide_password")}
-          />
-        ) : (
-          <Button
-            onClick={() => setShowPassword(true)}
-            icon={<span className="material-icons">visibility</span>}
-            color="tertiary-text"
-            size="small"
-            aria-label={t("components.forms.input.password.show_password")}
-          />
-        )
+        <Button
+          onClick={() => setShowPassword(!showPassword)}
+          icon={
+            <span className="material-icons">
+              {showPassword ? "visibility_off" : "visibility"}
+            </span>
+          }
+          color="tertiary"
+          variant="neutral"
+          size="small"
+          aria-label={t(
+            `components.forms.input.password.${showPassword ? "hide" : "show"}_password`
+          )}
+        />
       }
     />
   );
