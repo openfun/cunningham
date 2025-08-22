@@ -53,7 +53,7 @@ export const Create = (props: PageProps) => {
       title="Add character"
       closeOnClickOutside
     >
-      <form className="page__create clr-greyscale-900" onSubmit={submit}>
+      <form className="page__create clr-gray-900" onSubmit={submit}>
         <div className="page__create__group">
           <h3 className="fw-bold fs-h3">General Information</h3>
           <Alert type={VariantType.INFO}>
