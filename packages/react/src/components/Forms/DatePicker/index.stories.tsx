@@ -117,7 +117,7 @@ export const Controlled = () => {
   const [value, setValue] = useState<string | null>("2023-04-25T12:00:00.000Z");
   return (
     <div>
-      <div className="clr-greyscale-900">
+      <div className="clr-gray-900">
         Value: <span>{value?.toString()}</span>
       </div>
       <DatePicker
@@ -140,7 +140,7 @@ export const ReactHookForm = () => {
     resolver: yupResolver(
       Yup.object().shape({
         date: Yup.string().required(),
-      }),
+      })
     ),
   });
 
@@ -195,7 +195,7 @@ export const RangeControlled = () => {
   ]);
   return (
     <>
-      <div className="clr-greyscale-900">Value: {value?.join("  ")}</div>
+      <div className="clr-gray-900">Value: {value?.join("  ")}</div>
       <div
         style={{
           display: "flex",
@@ -226,7 +226,7 @@ export const RangeControlledFull = () => {
   ]);
   return (
     <>
-      <div className="clr-greyscale-900">Value: {value?.join("  ")}</div>
+      <div className="clr-gray-900">Value: {value?.join("  ")}</div>
       <div
         style={{
           display: "flex",

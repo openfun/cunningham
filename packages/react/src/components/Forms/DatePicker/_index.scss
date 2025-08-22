@@ -1,9 +1,8 @@
-@use 'src/utils' as *;
+@use "src/utils" as *;
 @use "../../../utils/responsive" as *;
 
 .c__date-picker {
   position: relative;
-
 
   &__wrapper {
     border-radius: var(--c--components--forms-datepicker--border-radius);
@@ -11,7 +10,11 @@
     border-color: var(--c--components--forms-datepicker--border-color);
     border-style: var(--c--components--forms-datepicker--border-style);
     display: flex;
-    transition: border var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out), border-radius var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
+    transition:
+      border var(--c--globals--transitions--duration)
+        var(--c--globals--transitions--ease-out),
+      border-radius var(--c--globals--transitions--duration)
+        var(--c--globals--transitions--ease-out);
     padding: 0 0.75rem;
     gap: 1rem;
     box-sizing: border-box;
@@ -51,7 +54,7 @@
       margin: -1px;
       overflow: hidden;
       padding: 0;
-      position: absolute
+      position: absolute;
     }
 
     &--clickable {
@@ -71,7 +74,7 @@
         }
 
         &:focus-visible {
-          background-color: var(--c--theme--colors--primary-100);
+          background-color: var(--c--contextuals--background--brand--tertiary);
           outline: none;
         }
       }
@@ -92,24 +95,24 @@
     }
   }
 
-
   /** Modifiers */
 
   &--disabled {
     .c__date-picker__wrapper {
-      color: var(--c--theme--colors--greyscale-600);
-      border-color: var(--c--components--forms-datepicker--border-color--disabled);
+      color: var(--c--contextuals--content--disabled--primary);
+      border-color: var(
+        --c--components--forms-datepicker--border-color--disabled
+      );
       cursor: default;
       pointer-events: none;
 
       &__toggle {
-        color: var(--c--theme--colors--greyscale-400);
+        color: var(--c--contextuals--content--disabled--tertiary);
       }
 
       .c__date-picker__inner {
-
         &__action {
-          color: var(--c--theme--colors--greyscale-400);
+          color: var(--c--contextuals--content--disabled--primary);
         }
 
         &__value {
@@ -125,28 +128,28 @@
 
   &--invalid {
     .c__date-picker__wrapper {
-      border-color: var(--c--theme--colors--danger-600);
+      border-color: var(--c--contextuals--border--error--primary);
       border-radius: var(--c--components--forms-datepicker--border-radius);
 
       &__toggle {
-        color: var(--c--theme--colors--danger-600);
+        color: var(--c--contextuals--content--error--primary);
       }
 
       label {
-        color: var(--c--theme--colors--danger-600);
+        color: var(--c--contextuals--content--error--primary);
       }
     }
 
     &:not(.c__date-picker--disabled) {
       &:hover {
         .c__date-picker__wrapper {
-          border-color: var(--c--theme--colors--danger-800);
+          border-color: var(--c--contextuals--border--error--secondary);
           &__toggle {
-            color: var(--c--theme--colors--danger-800);
+            color: var(--c--contextuals--content--error--secondary);
           }
 
           label {
-            color: var(--c--theme--colors--danger-800);
+            color: var(--c--contextuals--content--error--secondary);
           }
         }
       }
@@ -155,28 +158,28 @@
 
   &--success {
     .c__date-picker__wrapper {
-      border-color: var(--c--theme--colors--success-600);
+      border-color: var(--c--contextuals--border--success--secondary);
       border-radius: var(--c--components--forms-datepicker--border-radius);
 
       &__toggle {
-        color: var(--c--theme--colors--success-600);
+        color: var(--c--contextuals--content--success--secondary);
       }
 
       label {
-        color: var(--c--theme--colors--success-600);
+        color: var(--c--contextuals--content--success--secondary);
       }
     }
 
     &:not(.c__date-picker--disabled) {
       &:hover {
         .c__date-picker__wrapper {
-          border-color: var(--c--theme--colors--success-800);
+          border-color: var(--c--contextuals--border--success--primary);
           &__toggle {
-            color: var(--c--theme--colors--success-800);
+            color: var(--c--contextuals--content--success--primary);
           }
 
           label {
-            color: var(--c--theme--colors--success-800);
+            color: var(--c--contextuals--content--success--primary);
           }
         }
       }
@@ -186,8 +189,12 @@
   &:not(&--focused):not(&--invalid):not(&--disabled):not(&--success) {
     &:hover {
       .c__date-picker__wrapper {
-        border-radius: var(--c--components--forms-datepicker--border-radius--hover);
-        border-color: var(--c--components--forms-datepicker--border-color--hover);
+        border-radius: var(
+          --c--components--forms-datepicker--border-radius--hover
+        );
+        border-color: var(
+          --c--components--forms-datepicker--border-color--hover
+        );
       }
     }
   }
@@ -197,11 +204,17 @@
    * than :hover. But here hover has more css specificity, so we need !important.
    */
   @mixin focused-wrapper {
-    border-radius: var(--c--components--forms-datepicker--border-radius--focus) !important;
-    border-color: var(--c--components--forms-datepicker--border-color--focus) !important;
+    border-radius: var(
+      --c--components--forms-datepicker--border-radius--focus
+    ) !important;
+    border-color: var(
+      --c--components--forms-datepicker--border-color--focus
+    ) !important;
 
     .c__date-picker__wrapper__toggle {
-      color: var(--c--components--forms-datepicker--border-color--focus) !important;
+      color: var(
+        --c--components--forms-datepicker--border-color--focus
+      ) !important;
     }
 
     label {
@@ -230,7 +243,6 @@
     // So in order to make this work we use @media for the non-full-width fields and @container for the full-width.
 
     &__container {
-
       &:not(.c__field--full-width) {
         min-width: $component-min-width;
 
@@ -244,7 +256,6 @@
       }
 
       &.c__field--full-width {
-
         .c__date-picker__wrapper {
           // The container-type must absolutely not be parent of the calendar popover or otherwise the popover will
           // not be able to float above other DOM elements as a container-type: inline-size defines a new stacking
@@ -253,7 +264,6 @@
         }
 
         @container (max-width: #{$component-min-width}) {
-
           .c__date-picker__wrapper__icon {
             display: none;
           }
@@ -261,18 +271,14 @@
       }
     }
 
-
-
-
     &__separator {
-      background-color: var(--c--theme--colors--greyscale-400);
+      background-color: var(--c--contextuals--background--neutral--tertiary);
       height: px-to-rem(24px);
       width: px-to-rem(1px);
       margin: auto;
     }
   }
 }
-
 
 .c__calendar {
   display: block;
@@ -285,7 +291,9 @@
 
     &--opened {
       @extend %shadow;
-      background-color: var(--c--components--forms-datepicker--menu-background-color);
+      background-color: var(
+        --c--components--forms-datepicker--menu-background-color
+      );
     }
 
     &__header {
@@ -318,22 +326,25 @@
 
         th {
           font-weight: var(--c--components--button--font-weight);
-          color: var(--c--theme--colors--greyscale-700);
+          color: var(--c--contextuals--content--neutral--secondary);
         }
       }
 
       &__week-row {
-
         td {
           padding: 0;
         }
 
         &__background {
           &--range {
-            background: var(--c--components--forms-datepicker--range-selection-background-color);
+            background: var(
+              --c--components--forms-datepicker--range-selection-background-color
+            );
 
             &:not(&--end):not(&--start):not(&--disabled) button {
-              color: var(--c--components--forms-datepicker--grid-cell--color--today);
+              color: var(
+                --c--components--forms-datepicker--grid-cell--color--today
+              );
             }
 
             &--end {
@@ -345,16 +356,23 @@
               border-bottom-left-radius: 100%;
             }
             &--disabled {
-              background: var(--c--components--forms-datepicker--range-selection-background-color--disabled);
+              background: var(
+                --c--components--forms-datepicker--range-selection-background-color--disabled
+              );
             }
           }
         }
         &__button {
           &--today {
-            border: 1px solid var(--c--components--forms-datepicker--grid-cell--border-color--today);
+            border: 1px solid
+              var(
+                --c--components--forms-datepicker--grid-cell--border-color--today
+              );
           }
           &--today:not(&--selected) {
-            color: var(--c--components--forms-datepicker--grid-cell--color--today);
+            color: var(
+              --c--components--forms-datepicker--grid-cell--color--today
+            );
           }
         }
         .c__button--small {
@@ -378,7 +396,9 @@
     overflow: auto;
     width: 100%;
     max-height: 25rem;
-    background-color: var(--c--components--forms-datepicker--menu-background-color);
+    background-color: var(
+      --c--components--forms-datepicker--menu-background-color
+    );
     transform: translate(2px, 0);
     display: none;
     z-index: 2;
@@ -401,15 +421,19 @@
       cursor: pointer;
 
       &--highlight {
-        background-color: var(--c--components--forms-datepicker--item-background-color--hover);
+        background-color: var(
+          --c--components--forms-datepicker--item-background-color--hover
+        );
       }
 
       &--selected {
-        background-color: var(--c--components--forms-datepicker--item-background-color--selected);
+        background-color: var(
+          --c--components--forms-datepicker--item-background-color--selected
+        );
       }
 
       &--disabled {
-        color: var(--c--theme--colors--greyscale-400);
+        color: var(--c--contextuals--content--disabled--primary);
         pointer-events: none;
       }
     }

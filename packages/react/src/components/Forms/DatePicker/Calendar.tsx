@@ -117,7 +117,7 @@ const CalendarAux = ({
   const monthItems: Array<Option> = useMemo(() => {
     // Note that in some calendar systems, such as the Hebrew, the number of months may differ between years.
     const numberOfMonths = state.focusedDate.calendar.getMonthsInYear(
-      state.focusedDate,
+      state.focusedDate
     );
     return range(1, numberOfMonths).map((monthNumber) => {
       const date = state.focusedDate.set({ month: monthNumber });
@@ -133,16 +133,15 @@ const CalendarAux = ({
 
   const yearItems: Array<Option> = useMemo(() => {
     const calendarCurrentUser = createCalendar(
-      new Intl.DateTimeFormat().resolvedOptions()
-        .calendar as CalendarIdentifier,
+      new Intl.DateTimeFormat().resolvedOptions().calendar as CalendarIdentifier
     );
     const minDate = toCalendar(
       new CalendarDate(new GregorianCalendar(), minYear, 1, 1),
-      calendarCurrentUser,
+      calendarCurrentUser
     );
     const maxDate = toCalendar(
       new CalendarDate(new GregorianCalendar(), maxYear, 12, 31),
-      calendarCurrentUser,
+      calendarCurrentUser
     );
     return range(minDate.year, maxDate.year).map((yearNumber) => {
       const date = state.focusedDate.set({ year: yearNumber });
@@ -158,7 +157,7 @@ const CalendarAux = ({
 
   const useDownshiftSelect = (
     key: string,
-    items: Array<Option>,
+    items: Array<Option>
   ): UseSelectReturnValue<Option> => {
     return useSelect({
       items,
@@ -215,12 +214,12 @@ const CalendarAux = ({
   const getToggleButtonProps = (
     key: string,
     items: Array<Option>,
-    downshift: UseSelectReturnValue<Option>,
+    downshift: UseSelectReturnValue<Option>
   ) => ({
     ...downshift.getToggleButtonProps(),
     onClick: () => {
       const selectedItem = items.find(
-        (item) => item.value === state.focusedDate[key as keyof CalendarDate],
+        (item) => item.value === state.focusedDate[key as keyof CalendarDate]
       );
       if (selectedItem) {
         downshift.selectItem(selectedItem);
@@ -228,7 +227,7 @@ const CalendarAux = ({
       downshift.toggleMenu();
     },
     "aria-label": t(
-      `components.forms.date_picker.${key}_select_button_aria_label`,
+      `components.forms.date_picker.${key}_select_button_aria_label`
     ),
   });
 
@@ -257,13 +256,14 @@ const CalendarAux = ({
         <div className="c__calendar__wrapper__header">
           <div className="c__calendar__wrapper__header__actions">
             <Button
-              color="tertiary-text"
+              variant="neutral"
+              color="tertiary"
               size="small"
               icon={<span className="material-icons">navigate_before</span>}
               {...{
                 ...prevButtonOtherProps,
                 "aria-label": t(
-                  "components.forms.date_picker.previous_month_button_aria_label",
+                  "components.forms.date_picker.previous_month_button_aria_label"
                 ),
               }}
               disabled={isPrevButtonDisabled}
@@ -272,7 +272,8 @@ const CalendarAux = ({
             />
             <Button
               className="c__calendar__wrapper__header__actions__dropdown"
-              color="tertiary-text"
+              variant="neutral"
+              color="tertiary"
               size="small"
               iconPosition="right"
               icon={<span className="material-icons">arrow_drop_down</span>}
@@ -280,18 +281,19 @@ const CalendarAux = ({
               {...getToggleButtonProps("month", monthItems, downshiftMonth)}
             >
               {selectedMonthItemFormatter.format(
-                state.focusedDate.toDate(state.timeZone),
+                state.focusedDate.toDate(state.timeZone)
               )}
             </Button>
             <Button
-              color="tertiary-text"
+              variant="neutral"
+              color="tertiary"
               size="small"
               icon={<span className="material-icons">navigate_next</span>}
               type="button"
               {...{
                 ...nextButtonOtherProps,
                 "aria-label": t(
-                  "components.forms.date_picker.next_month_button_aria_label",
+                  "components.forms.date_picker.next_month_button_aria_label"
                 ),
               }}
               disabled={isNextButtonDisabled}
@@ -300,7 +302,8 @@ const CalendarAux = ({
           </div>
           <div className="c__calendar__wrapper__header__actions">
             <Button
-              color="tertiary-text"
+              variant="neutral"
+              color="tertiary"
               size="small"
               icon={<span className="material-icons">navigate_before</span>}
               onClick={() => state.focusPreviousSection(true)}
@@ -309,13 +312,14 @@ const CalendarAux = ({
                 state.minValue.year > state.focusedDate.add({ years: -1 }).year
               }
               aria-label={t(
-                "components.forms.date_picker.previous_year_button_aria_label",
+                "components.forms.date_picker.previous_year_button_aria_label"
               )}
               type="button"
             />
             <Button
               className="c__calendar__wrapper__header__actions__dropdown"
-              color="tertiary-text"
+              variant="neutral"
+              color="tertiary"
               size="small"
               iconPosition="right"
               icon={<span className="material-icons">arrow_drop_down</span>}
@@ -323,11 +327,12 @@ const CalendarAux = ({
               {...getToggleButtonProps("year", yearItems, downshiftYear)}
             >
               {yearItemsFormatter.format(
-                state.focusedDate.toDate(state.timeZone),
+                state.focusedDate.toDate(state.timeZone)
               )}
             </Button>
             <Button
-              color="tertiary-text"
+              variant="neutral"
+              color="tertiary"
               size="small"
               icon={<span className="material-icons">navigate_next</span>}
               onClick={() => state.focusNextSection(true)}
@@ -336,7 +341,7 @@ const CalendarAux = ({
                 state.maxValue.year < state.focusedDate.add({ years: 1 }).year
               }
               aria-label={t(
-                "components.forms.date_picker.next_year_button_aria_label",
+                "components.forms.date_picker.next_year_button_aria_label"
               )}
               type="button"
             />
