@@ -1,4 +1,3 @@
-
 @forward "./utils";
 
 @use "cunningham-tokens.css";
@@ -12,7 +11,7 @@
 @use "./components/Forms/Field";
 @use "./components/Forms/FileUploader";
 @use "./components/Forms/Radio";
-@use './components/Forms/TextArea';
+@use "./components/Forms/TextArea";
 @use "./components/Forms/Input";
 @use "./components/Forms/LabelledBox";
 @use "./components/Forms/Select";
@@ -26,5 +25,5 @@
 @use "./components/Tooltip";
 
 body {
-  font-family: var(--c--theme--font--families--base);
+  font-family: var(--c--globals--font--families--base);
 }

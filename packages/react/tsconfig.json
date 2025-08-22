@@ -1,6 +1,7 @@
 {
   "extends": "@openfun/typescript-configs/react.json",
   "compilerOptions": {
+    "jsx": "react",
     "noEmit": true,
     "paths": {
       ":/*": ["./src/*"]
