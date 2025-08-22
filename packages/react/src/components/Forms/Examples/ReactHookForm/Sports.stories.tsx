@@ -65,14 +65,14 @@ const SportsBase = ({ values }: SportProps) => {
         onSubmit={methods.handleSubmit(onSubmit)}
       >
         <h1
-          className="fs-h3 fw-bold clr-greyscale-900"
+          className="fs-h3 fw-bold clr-gray-900"
           style={{ textAlign: "center" }}
         >
           Register
         </h1>
 
         <div>
-          <div className="fs-l clr-greyscale-800 mb-t">Gender</div>
+          <div className="fs-l clr-gray-800 mb-t">Gender</div>
           <RadioGroup
             state={getFieldState("gender", methods.formState)}
             text={getFieldErrorMessage("gender", methods.formState)}
@@ -158,7 +158,7 @@ const SportsBase = ({ values }: SportProps) => {
         <Button fullWidth={true}>Apply</Button>
         <a
           href="/#"
-          className="clr-greyscale-800 fs-m"
+          className="clr-gray-800 fs-m"
           style={{ textAlign: "center" }}
         >
           Need help ?
