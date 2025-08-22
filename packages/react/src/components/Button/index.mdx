@@ -8,7 +8,7 @@ import * as Stories from './index.stories';
 
 The Cunningham Button behaves the same as the native html `<button>` element, but with a few extra features.
 
-<Canvas of={Stories.All}/>
+<Canvas of={Stories.AllBrands}/>
 
 <Source
   language='ts'
@@ -31,13 +31,7 @@ You can also use button with only an icon.
 
 <Canvas sourceState="shown" of={Stories.IconOnly}/>
 
-## Disabled
 
-The button can be disabled. The disabled button will render the same no matter what color is used.
-
-> Keep in the mind that a disabled button will never call `onClick` if it is provided.
-
-<Canvas sourceState="shown" of={Stories.Disabled}/>
 
 ## Full width
 
@@ -50,7 +44,7 @@ The button can be set to full width. You can use the `fullWidth` prop to do so.
 
 You can adjust the size of the button by using the `size` prop. Default value is `medium`.
 
-<Canvas sourceState="shown" of={Stories.Primary}/>
+<Canvas sourceState="shown" of={Stories.Medium}/>
 <Canvas sourceState="shown" of={Stories.Small}/>
 <Canvas sourceState="shown" of={Stories.Nano}/>
 

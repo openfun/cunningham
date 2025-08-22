@@ -13,13 +13,15 @@ export type ButtonElement = HTMLButtonElement & HTMLAnchorElement;
 export type ButtonProps = Omit<DomProps, "color"> &
   RefAttributes<ButtonElement> & {
     size?: "medium" | "small" | "nano";
-    color?:
-      | "primary"
-      | "primary-text"
-      | "secondary"
-      | "tertiary"
-      | "tertiary-text"
-      | "danger";
+    variant?:
+      | "brand"
+      | "neutral"
+      | "info"
+      | "success"
+      | "warning"
+      | "error"
+      | "success";
+    color?: "primary" | "secondary" | "tertiary" | "bordered";
     icon?: ReactNode;
     iconPosition?: "left" | "right";
     active?: boolean;
@@ -31,6 +33,7 @@ export const Button = ({
   color = "primary",
   size = "medium",
   iconPosition = "left",
+  variant = "brand",
   icon,
   active,
   className,
@@ -40,7 +43,8 @@ export const Button = ({
 }: ButtonProps) => {
   const classes = [
     "c__button",
-    "c__button--" + color,
+    "c__button--" + variant,
+    "c__button--" + variant + "--" + color,
     "c__button--" + size,
     className,
   ];
@@ -75,6 +79,6 @@ export const Button = ({
       {!!icon && iconPosition === "left" && iconElement}
       {children}
       {!!icon && iconPosition === "right" && iconElement}
-    </>,
+    </>
   );
 };
