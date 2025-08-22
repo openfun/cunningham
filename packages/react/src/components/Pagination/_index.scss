@@ -8,10 +8,10 @@
   &__list {
     display: flex;
     align-items: center;
-    border: 1px var(--c--theme--colors--greyscale-300) solid;
+    border: 1px var(--c--contextuals--border--neutral--tertiary) solid;
     border-radius: 2px;
-    padding: var(--c--theme--spacings--st);
-    background: var(--c--theme--colors--greyscale-000);
+    padding: var(--c--globals--spacings--st);
+    background: var(--c--contextuals--background--surface--primary);
   }
 
   &__goto {
