@@ -16,7 +16,7 @@
     }
 
     ul {
-      margin: 0.20rem 0 0 0;
+      margin: 0.2rem 0 0 0;
       padding: 0 0 0 1rem;
       line-height: 1rem;
     }
@@ -31,18 +31,19 @@
   }
 
   &--error {
-    color: var(--c--theme--colors--danger-500);
+    color: var(--c--components--forms-field--color--error);
 
-    label, .labelled-box label {
-      color: var(--c--theme--colors--danger-500);
+    label,
+    .labelled-box label {
+      color: var(--c--components--forms-field--color--error);
     }
   }
 
   &--success {
-    color: var(--c--theme--colors--success-600);
+    color: var(--c--components--forms-field--color--success);
 
     .c__field__text {
-      color: var(--c--theme--colors--success-600);
+      color: var(--c--components--forms-field--color--success);
     }
   }
 
