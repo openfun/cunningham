@@ -102,7 +102,7 @@ export const DataGrid = <T extends Row>({
   headlessColumns.forEach((column) => {
     if (column.enableSorting && !onSortModelChange) {
       console.warn(
-        "You are using a column with sorting enabled, but you are not providing an `onSortModelChange` handler. The sorting will not work as expected.",
+        "You are using a column with sorting enabled, but you are not providing an `onSortModelChange` handler. The sorting will not work as expected."
       );
     }
   });
@@ -112,11 +112,11 @@ export const DataGrid = <T extends Row>({
    */
   const paginationState = useMemo(
     () => paginationToPaginationState(pagination),
-    [pagination],
+    [pagination]
   );
   const headlessSorting = useMemo(
     () => sortModelToSortingState(sortModel),
-    [sortModel],
+    [sortModel]
   );
 
   /**
@@ -139,7 +139,7 @@ export const DataGrid = <T extends Row>({
       // a TS error.
       if (typeof newHeadlessSorting === "function") {
         onSortModelChange?.(
-          sortingStateToSortModel(newHeadlessSorting(headlessSorting)),
+          sortingStateToSortModel(newHeadlessSorting(headlessSorting))
         );
       }
     },
@@ -171,7 +171,7 @@ export const DataGrid = <T extends Row>({
   const getContent = () => {
     if (showEmptyPlaceholder) {
       return (
-        <div className="c__datagrid__empty-placeholder fs-h3 clr-greyscale-900 fw-bold">
+        <div className="c__datagrid__empty-placeholder fs-h3 fw-bold">
           {!hideEmptyPlaceholderImage && (
             <img src={emptyImageUrl} alt={t("components.datagrid.empty_alt")} />
           )}
@@ -221,7 +221,7 @@ export const DataGrid = <T extends Row>({
                                     {
                                       "c__datagrid__header--sortable":
                                         header.column.getCanSort(),
-                                    },
+                                    }
                                   )}
                                   {...(header.column.getCanSort()
                                     ? {
@@ -240,13 +240,13 @@ export const DataGrid = <T extends Row>({
                                       indeterminate={table.getIsSomeRowsSelected()}
                                       onChange={table.getToggleAllRowsSelectedHandler()}
                                       aria-label={t(
-                                        "components.datagrid.rows_selection_aria",
+                                        "components.datagrid.rows_selection_aria"
                                       )}
                                     />
                                   ) : (
                                     flexRender(
                                       header.column.columnDef.header,
-                                      header.getContext(),
+                                      header.getContext()
                                     )
                                   )}
                                   {header.column.getIsSorted() === "asc" && (
@@ -303,7 +303,7 @@ export const DataGrid = <T extends Row>({
                           >
                             {flexRender(
                               cell.column.columnDef.cell,
-                              cell.getContext(),
+                              cell.getContext()
                             )}
                           </td>
                         );
