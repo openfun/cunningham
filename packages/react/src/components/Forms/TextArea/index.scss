@@ -13,7 +13,11 @@
   border-color: var(--c--components--forms-textarea--border-color);
   border-style: var(--c--components--forms-textarea--border-style);
   background-color: var(--c--components--forms-textarea--background-color);
-  transition: border var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out), border-radius var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
+  transition:
+    border var(--c--globals--transitions--duration)
+      var(--c--globals--transitions--ease-out),
+    border-radius var(--c--globals--transitions--duration)
+      var(--c--globals--transitions--ease-out);
   overflow: hidden;
 
   .labelled-box__label {
@@ -28,7 +32,7 @@
     min-width: 100%;
     padding: 0 1rem;
     box-sizing: border-box;
-    font-family: var(--c--theme--font--families--base);
+    font-family: var(--c--globals--font--families--base);
     color: var(--c--components--forms-textarea--value-color);
 
     &:focus-visible {
@@ -43,7 +47,9 @@
 
   &:focus-within {
     border-radius: var(--c--components--forms-textarea--border-radius--focus);
-    border-color: var(--c--components--forms-textarea--border-color--focus) !important;
+    border-color: var(
+      --c--components--forms-textarea--border-color--focus
+    ) !important;
 
     label {
       color: var(--c--components--forms-textarea--label-color--focus);
@@ -52,7 +58,7 @@
 
   &--disabled {
     cursor: default;
-    border-color: var(--c--theme--colors--greyscale-200);
+    border-color: var(--c--components--forms-textarea--border-color--disabled);
 
     .c__textarea {
       background-color: var(--c--components--forms-textarea--background-color);
@@ -63,7 +69,7 @@
     }
 
     &:hover {
-      border-color: var(--c--theme--colors--greyscale-200);
+      border-color: var(--c--contextuals--border--neutral--tertiary);
     }
   }
 }
@@ -71,19 +77,19 @@
 .c__field {
   &--success {
     .c__textarea__wrapper {
-      border-color: var(--c--theme--colors--success-600);
+      border-color: var(--c--contextuals--content--success--tertiary);
 
       .labelled-box label {
-        color: var(--c--theme--colors--success-600);
+        color: var(--c--contextuals--content--success--tertiary);
       }
 
       &:not(.c__input__wrapper--disabled) {
         &:hover {
-          border-color: var(--c--theme--colors--success-800);
-          color: var(--c--theme--colors--success-800);
+          border-color: var(--c--contextuals--content--success--secondary);
+          color: var(--c--contextuals--content--success--secondary);
 
           .labelled-box label {
-            color: var(--c--theme--colors--success-800);
+            color: var(--c--contextuals--content--success--secondary);
           }
         }
       }
@@ -92,15 +98,15 @@
 
   &--error {
     .c__textarea__wrapper {
-      border-color: var(--c--theme--colors--danger-600);
+      border-color: var(--c--contextuals--content--error--tertiary);
 
       &:not(.c__input__wrapper--disabled) {
         &:hover {
-          border-color: var(--c--theme--colors--danger-800);
-          color: var(--c--theme--colors--danger-800);
+          border-color: var(--c--contextuals--content--error--secondary);
+          color: var(--c--contextuals--content--error--secondary);
 
           label {
-            color: var(--c--theme--colors--danger-800);
+            color: var(--c--contextuals--content--error--secondary);
           }
         }
       }
