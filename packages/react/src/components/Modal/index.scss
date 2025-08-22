@@ -53,7 +53,7 @@
   }
 
   &__title {
-    --font-size: var(--c--theme--font--sizes--h2);
+    --font-size: var(--c--globals--font--sizes--h2);
     margin-bottom: 1.5rem;
     font-size: var(--font-size);
     font-weight: var(--c--components--modal--title-font-weight);
@@ -67,6 +67,26 @@
     justify-content: center;
     margin-bottom: 1.5rem;
     --icon-size: 2rem;
+
+    .delete-confirmation-icon {
+      color: var(--c--contextuals--content--error--tertiary);
+    }
+
+    .modal-message-error-icon {
+      color: var(--c--contextuals--content--error--tertiary);
+    }
+
+    .modal-message-warning-icon {
+      color: var(--c--contextuals--content--warning--tertiary);
+    }
+
+    .modal-message-info-icon {
+      color: var(--c--contextuals--content--info--tertiary);
+    }
+
+    .modal-message-success-icon {
+      color: var(--c--contextuals--content--success--tertiary);
+    }
 
     * {
       font-size: var(--icon-size);
@@ -125,7 +145,8 @@
       }
     }
 
-    &__left, &__right {
+    &__left,
+    &__right {
       display: flex;
       gap: 1rem;
     }
@@ -151,7 +172,7 @@
     }
 
     .c__modal__title-icon {
-        --icon-size: 4rem;
+      --icon-size: 4rem;
     }
   }
 
@@ -167,7 +188,7 @@
     }
 
     .c__modal__title-icon {
-        --icon-size: 4rem;
+      --icon-size: 4rem;
     }
   }
 
@@ -179,7 +200,7 @@
     }
 
     .c__modal__title {
-      --font-size: var(--c--theme--font--sizes--h1);
+      --font-size: var(--c--globals--font--sizes--h1);
     }
 
     .c__modal__title-icon {
@@ -204,11 +225,11 @@
 
     .c__modal__content {
       flex-grow: 1;
-      overflow-y:scroll;
+      overflow-y: scroll;
     }
 
     .c__modal__title {
-      --font-size: var(--c--theme--font--sizes--h1);
+      --font-size: var(--c--globals--font--sizes--h1);
     }
 
     .c__modal__title-icon {

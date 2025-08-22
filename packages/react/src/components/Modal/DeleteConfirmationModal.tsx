@@ -16,7 +16,9 @@ export const DeleteConfirmationModal = ({
   return (
     <Modal
       title={title ?? t("components.modals.helpers.delete_confirmation.title")}
-      titleIcon={<span className="material-icons clr-danger-600">delete</span>}
+      titleIcon={
+        <span className="material-icons  delete-confirmation-icon">delete</span>
+      }
       size={ModalSize.SMALL}
       actions={
         <>
@@ -30,7 +32,7 @@ export const DeleteConfirmationModal = ({
           <Button
             fullWidth={true}
             onClick={() => onDecide("delete")}
-            color="danger"
+            variant="error"
           >
             {t("components.modals.helpers.delete_confirmation.delete")}
           </Button>
