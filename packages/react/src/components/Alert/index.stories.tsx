@@ -58,8 +58,12 @@ export const CustomButtons: Story = {
     canClose: true,
     buttons: (
       <div style={{ display: "flex", gap: "0.5rem" }}>
-        <Button color="primary">Primary</Button>
-        <Button color="secondary">Secondary</Button>
+        <Button variant="brand" color="primary">
+          Primary
+        </Button>
+        <Button variant="brand" color="secondary">
+          Secondary
+        </Button>
       </div>
     ),
   },
