@@ -4,7 +4,7 @@ import { Modal, ModalSize } from ":/components/Modal/index";
 import { useCunningham } from ":/components/Provider";
 import { Button } from ":/components/Button";
 import { DecisionModalProps } from ":/components/Modal/ModalProvider";
-import { colorFromType, iconFromType, VariantType } from ":/utils/VariantUtils";
+import { iconFromType, VariantType } from ":/utils/VariantUtils";
 
 export type MessageModalProps = DecisionModalProps & {
   messageType: VariantType;
@@ -26,7 +26,7 @@ export const MessageModal = ({
           <span
             className={classNames(
               "material-icons",
-              `clr-${colorFromType(messageType)}-600`,
+              `modal-message-${messageType}-icon`
             )}
           >
             {iconFromType(messageType)}

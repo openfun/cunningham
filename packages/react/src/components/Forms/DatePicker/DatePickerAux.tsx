@@ -76,7 +76,7 @@ const DatePickerAux = ({
 
   const isDateInvalid = useMemo(
     () => pickerState.validationState === "invalid" || props.state === "error",
-    [pickerState.validationState, props.state],
+    [pickerState.validationState, props.state]
   );
 
   return (
@@ -114,7 +114,7 @@ const DatePickerAux = ({
                   name={name && `${name}_start`}
                   value={convertDateValueToString(
                     pickerState.value?.start ?? null,
-                    props.timezone,
+                    props.timezone
                   )}
                 />
                 <input
@@ -122,7 +122,7 @@ const DatePickerAux = ({
                   name={name && `${name}_end`}
                   value={convertDateValueToString(
                     pickerState.value?.end ?? null,
-                    props.timezone,
+                    props.timezone
                   )}
                 />
               </>
@@ -132,7 +132,7 @@ const DatePickerAux = ({
                 name={name}
                 value={convertDateValueToString(
                   pickerState.value,
-                  props.timezone,
+                  props.timezone
                 )}
               />
             )}
@@ -148,9 +148,10 @@ const DatePickerAux = ({
                 aria-label={t(
                   pickerState.isOpen
                     ? "components.forms.date_picker.toggle_button_aria_label_close"
-                    : "components.forms.date_picker.toggle_button_aria_label_open",
+                    : "components.forms.date_picker.toggle_button_aria_label_open"
                 )}
-                color="tertiary-text"
+                variant="neutral"
+                color="tertiary"
                 size="small"
                 className="c__date-picker__wrapper__toggle"
                 icon={
@@ -166,7 +167,8 @@ const DatePickerAux = ({
                 "c__date-picker__inner__action--hidden":
                   labelAsPlaceholder || disabled,
               })}
-              color="tertiary-text"
+              variant="neutral"
+              color="tertiary"
               size="nano"
               icon={<span className="material-icons">close</span>}
               onClick={onClear}
@@ -176,7 +178,7 @@ const DatePickerAux = ({
                 }
               }}
               aria-label={t(
-                "components.forms.date_picker.clear_button_aria_label",
+                "components.forms.date_picker.clear_button_aria_label"
               )}
               disabled={disabled}
               type="button"

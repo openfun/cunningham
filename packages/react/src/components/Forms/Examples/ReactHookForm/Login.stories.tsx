@@ -52,7 +52,7 @@ export const Login = () => {
         onSubmit={methods.handleSubmit(onSubmit)}
       >
         <h1
-          className="fs-h3 fw-bold clr-greyscale-900"
+          className="fs-h3 fw-bold clr-gray-900"
           style={{ textAlign: "center" }}
         >
           Log in
@@ -84,9 +84,9 @@ export const Login = () => {
           />
         </div>
         <Button fullWidth={true}>Log in</Button>
-        <div className="fs-m clr-greyscale-800" style={{ textAlign: "center" }}>
+        <div className="fs-m clr-gray-800" style={{ textAlign: "center" }}>
           You do not have an account?{" "}
-          <a href="/#" className="clr-greyscale-800">
+          <a href="/#" className="clr-gray-800">
             Register
           </a>
         </div>

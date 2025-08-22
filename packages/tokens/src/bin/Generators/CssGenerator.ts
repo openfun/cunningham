@@ -55,6 +55,8 @@ function generateClasses(tokens: Tokens) {
     ...generateColorClasses(tokens),
     ...generateFontClasses(tokens),
     ...generateSpacingClasses(tokens),
+    ...generateBorderClasses(tokens),
+    ...generateContentClasses(tokens),
   ].join("\n");
 }
 
@@ -69,9 +71,61 @@ function generateColorClasses(tokens: Tokens) {
  * @param tokens
  */
 function generateBgClasses(tokens: Tokens) {
-  return Object.keys(tokens.themes.default.theme.colors).map(
-    (key) =>
-      `.bg-${key} { background-color: var(--${Config.sass.varPrefix}theme--colors--${key}); }`,
+  return [
+    ...Object.keys(tokens.themes.default.globals.colors).map(
+      (key) =>
+        `.bg-${key} { background-color: var(--${Config.sass.varPrefix}globals--colors--${key}); }`,
+    ),
+    ...Object.keys(tokens.themes.default.contextuals.background).flatMap(
+      (type) => {
+        const values =
+          tokens.themes.default.contextuals.background[
+            type as keyof typeof tokens.themes.default.contextuals.background
+          ];
+        // For each subkey (e.g., primary, secondary, etc.), generate a class
+        return Object.keys(values).map(
+          (subkey) =>
+            `.bg-${type}-${subkey} { background-color: var(--${Config.sass.varPrefix}contextuals--background--${type}--${subkey}); }`,
+        );
+      },
+    ),
+  ];
+}
+
+function generateBorderClasses(tokens: Tokens) {
+  return Object.keys(tokens.themes.default.contextuals.border).flatMap(
+    (type) => {
+      const values =
+        tokens.themes.default.contextuals.border[
+          type as keyof typeof tokens.themes.default.contextuals.border
+        ];
+      // For each subkey (e.g., primary, secondary, etc.), generate a class
+      return Object.keys(values).flatMap((subkey) => [
+        `.border-clr-${type}-${subkey} { border-color: var(--${Config.sass.varPrefix}contextuals--background--${type}--${subkey}); }`,
+        `.border-thin-${type}-${subkey} { border: 1px solid var(--${Config.sass.varPrefix}contextuals--background--${type}--${subkey}); }`,
+      ]);
+    },
+  );
+}
+
+function generateContentClasses(tokens: Tokens) {
+  return Object.keys(tokens.themes.default.contextuals.content).flatMap(
+    (type) => {
+      if (type === "logo1" || type === "logo2") {
+        return [
+          `.clr-content-${type} { color: var(--${Config.sass.varPrefix}contextuals--content--${type}); }`,
+        ];
+      }
+
+      const values =
+        tokens.themes.default.contextuals.content[
+          type as keyof typeof tokens.themes.default.contextuals.content
+        ];
+      // For each subkey (e.g., primary, secondary, etc.), generate a class
+      return Object.keys(values).flatMap((subkey) => [
+        `.clr-content-${type}-${subkey} { color: var(--${Config.sass.varPrefix}contextuals--content--${type}--${subkey}); }`,
+      ]);
+    },
   );
 }
 
@@ -82,9 +136,9 @@ function generateBgClasses(tokens: Tokens) {
  * @param tokens
  */
 function generateClrClasses(tokens: Tokens) {
-  return Object.keys(tokens.themes.default.theme.colors).map(
+  return Object.keys(tokens.themes.default.globals.colors).map(
     (key) =>
-      `.clr-${key} { color: var(--${Config.sass.varPrefix}theme--colors--${key}); }`,
+      `.clr-${key} { color: var(--${Config.sass.varPrefix}globals--colors--${key}); }`,
   );
 }
 
@@ -103,9 +157,9 @@ function generateFontClasses(tokens: Tokens) {
  * @param tokens
  */
 function generateFwClasses(tokens: Tokens) {
-  return Object.keys(tokens.themes.default.theme.font.weights).map(
+  return Object.keys(tokens.themes.default.globals.font.weights).map(
     (key) =>
-      `.fw-${key} { font-weight: var(--${Config.sass.varPrefix}theme--font--weights--${key}); }`,
+      `.fw-${key} { font-weight: var(--${Config.sass.varPrefix}globals--font--weights--${key}); }`,
   );
 }
 
@@ -116,11 +170,11 @@ function generateFwClasses(tokens: Tokens) {
  * @param tokens
  */
 function generateFsClasses(tokens: Tokens) {
-  return Object.keys(tokens.themes.default.theme.font.sizes).map(
+  return Object.keys(tokens.themes.default.globals.font.sizes).map(
     (key) =>
       `.fs-${key} { 
-        font-size: var(--${Config.sass.varPrefix}theme--font--sizes--${key}); 
-        letter-spacing: var(--${Config.sass.varPrefix}theme--font--letterspacings--${key}); 
+        font-size: var(--${Config.sass.varPrefix}globals--font--sizes--${key}); 
+        letter-spacing: var(--${Config.sass.varPrefix}globals--font--letterspacings--${key}); 
       }`,
   );
 }
@@ -132,9 +186,9 @@ function generateFsClasses(tokens: Tokens) {
  * @param tokens
  */
 function generateFClasses(tokens: Tokens) {
-  return Object.keys(tokens.themes.default.theme.font.families).map(
+  return Object.keys(tokens.themes.default.globals.font.families).map(
     (key) =>
-      `.f-${key} { font-family: var(--${Config.sass.varPrefix}theme--font--families--${key}); }`,
+      `.f-${key} { font-family: var(--${Config.sass.varPrefix}globals--font--families--${key}); }`,
   );
 }
 
@@ -149,13 +203,13 @@ function generateSpacingClasses(tokens: Tokens) {
  * @param tokens
  */
 function generateMarginClasses(tokens: Tokens) {
-  return Object.keys(tokens.themes.default.theme.spacings).map(
+  return Object.keys(tokens.themes.default.globals.spacings).map(
     (key) =>
-      `.m-${key} { margin: var(--${Config.sass.varPrefix}theme--spacings--${key}); }` +
-      `.mb-${key} { margin-bottom: var(--${Config.sass.varPrefix}theme--spacings--${key}); }` +
-      `.mt-${key} { margin-top: var(--${Config.sass.varPrefix}theme--spacings--${key}); }` +
-      `.ml-${key} { margin-left: var(--${Config.sass.varPrefix}theme--spacings--${key}); }` +
-      `.mr-${key} { margin-right: var(--${Config.sass.varPrefix}theme--spacings--${key}); }`,
+      `.m-${key} { margin: var(--${Config.sass.varPrefix}globals--spacings--${key}); }` +
+      `.mb-${key} { margin-bottom: var(--${Config.sass.varPrefix}globals--spacings--${key}); }` +
+      `.mt-${key} { margin-top: var(--${Config.sass.varPrefix}globals--spacings--${key}); }` +
+      `.ml-${key} { margin-left: var(--${Config.sass.varPrefix}globals--spacings--${key}); }` +
+      `.mr-${key} { margin-right: var(--${Config.sass.varPrefix}globals--spacings--${key}); }`,
   );
 }
 
@@ -166,12 +220,12 @@ function generateMarginClasses(tokens: Tokens) {
  * @param tokens
  */
 function generatePaddingClasses(tokens: Tokens) {
-  return Object.keys(tokens.themes.default.theme.spacings).map(
+  return Object.keys(tokens.themes.default.globals.spacings).map(
     (key) =>
-      `.p-${key} { padding: var(--${Config.sass.varPrefix}theme--spacings--${key}); }` +
-      `.pb-${key} { padding-bottom: var(--${Config.sass.varPrefix}theme--spacings--${key}); }` +
-      `.pt-${key} { padding-top: var(--${Config.sass.varPrefix}theme--spacings--${key}); }` +
-      `.pl-${key} { padding-left: var(--${Config.sass.varPrefix}theme--spacings--${key}); }` +
-      `.pr-${key} { padding-right: var(--${Config.sass.varPrefix}theme--spacings--${key}); }`,
+      `.p-${key} { padding: var(--${Config.sass.varPrefix}globals--spacings--${key}); }` +
+      `.pb-${key} { padding-bottom: var(--${Config.sass.varPrefix}globals--spacings--${key}); }` +
+      `.pt-${key} { padding-top: var(--${Config.sass.varPrefix}globals--spacings--${key}); }` +
+      `.pl-${key} { padding-left: var(--${Config.sass.varPrefix}globals--spacings--${key}); }` +
+      `.pr-${key} { padding-right: var(--${Config.sass.varPrefix}globals--spacings--${key}); }`,
   );
 }

@@ -1,7 +1,7 @@
 import { create } from '@storybook/theming';
 import { tokens } from '../src/cunningham-tokens';
 
-const buildTheme = (colors: typeof tokens.themes.default.theme.colors & any) => {
+const buildTheme = (colors: typeof tokens.themes.default.globals.colors & any) => {
     return {
         brandUrl: 'https://github.com/openfun/cunningham',
         brandImage: 'logo-cunningham.svg',
@@ -9,28 +9,28 @@ const buildTheme = (colors: typeof tokens.themes.default.theme.colors & any) => 
         brandTarget: '_self',
 
         //
-        colorPrimary: colors['primary-400'],
-        colorSecondary: colors['primary-400'],
+        colorPrimary: colors['brand-500'],
+        colorSecondary: colors['brand-500'],
 
         // UI
-        appBg: colors['greyscale-100'],
-        appContentBg: colors['greyscale-000'],
-        appBorderColor: colors['greyscale-300'],
+        // appBg: colors['gray-050'],
+        appContentBg: colors['gray-000'],
+        appBorderColor: colors['gray-050'],
         appBorderRadius: 4,
 
         // Text colors
-        textColor: colors['greyscale-900'],
-        textInverseColor: colors['greyscale-000'],
+        textColor: colors['gray-900'],
+        textInverseColor: colors['gray-000'],
 
         // Toolbar default and active colors
-        barTextColor: colors['greyscale-500'],
-        barSelectedColor: colors['greyscale-900'],
-        barBg: colors['greyscale-000'],
+        barTextColor: colors['gray-500'],
+        barSelectedColor: colors['gray-900'],
+        barBg: colors['gray-000'],
 
         // Form colors
-        inputBg: colors['greyscale-000'],
-        inputBorder: colors['greyscale-300'],
-        inputTextColor: colors['greyscale-800'],
+        inputBg: colors['gray-000'],
+        inputBorder: colors['gray-300'],
+        inputTextColor: colors['gray-800'],
         inputBorderRadius: 2,
     };
 };
@@ -38,11 +38,11 @@ const buildTheme = (colors: typeof tokens.themes.default.theme.colors & any) => 
 export const themes = {
     default: create({
         base: 'light',
-        ...buildTheme(tokens.themes.default.theme.colors),
+        ...buildTheme(tokens.themes.default.globals.colors),
     }),
     dark: create({
         base: 'dark',
-        ...buildTheme(tokens.themes.dark.theme.colors),
+        ...buildTheme(tokens.themes.dark.globals.colors),
     }),
 };
 

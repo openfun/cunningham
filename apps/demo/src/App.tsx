@@ -13,6 +13,7 @@ enum Theme {
   CUNNINGHAM = "cunningham",
   REDFLUX = "redflux",
   BLUENEY = "blueney",
+  UIKIT = "uikit"
 }
 
 enum Variant {
@@ -32,6 +33,10 @@ const THEMES: Record<Theme, Record<Variant, string | undefined>> = {
   [Theme.BLUENEY]: {
     light: undefined,
     dark: "blueney_dark",
+  },
+  [Theme.UIKIT]: {
+    light: "uikit_light",
+    dark: "uikit_dark",
   },
 };
 

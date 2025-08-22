@@ -1,5 +1,17 @@
 @use "../../utils/responsive" as *;
 
+@mixin toast-variant($context) {
+  .c__progress-bar {
+    --c--progress--color: var(
+      --c--contextuals--background--#{$context}--primary
+    );
+  }
+
+  .c__toast__icon {
+    color: var(--c--contextuals--content--#{$context}--primary);
+  }
+}
+
 .c__toast__container {
   position: fixed;
   bottom: 0;
@@ -27,7 +39,7 @@
 
 .c__toast {
   border-radius: 4px;
-  box-shadow: 0 2px 6px 2px #0C1A2B26;
+  box-shadow: 0 2px 6px 2px #0c1a2b26;
   background-color: var(--c--components--toast--background-color);
   min-width: 18rem;
   max-width: 27rem;
@@ -41,7 +53,8 @@
   }
 
   &--disappear:not(.c__toast--no-animate) {
-    animation: slide-out var(--c--components--toast--slide-out-duration) ease forwards;
+    animation: slide-out var(--c--components--toast--slide-out-duration) ease
+      forwards;
   }
 
   &__icon {
@@ -74,54 +87,29 @@
   }
 
   .c__progress-bar {
-    --c--progress--color: var(--c--theme--colors--greyscale-600);
+    --c--progress--color: var(--c--contextuals--background--neutral--primary);
   }
 
   &--info {
-    .c__progress-bar {
-      --c--progress--color: var(--c--theme--colors--info-500);
-    }
-
-    .c__toast__icon {
-      color: var(--c--theme--colors--info-600);
-    }
+    @include toast-variant("info");
   }
 
   &--success {
-    .c__progress-bar {
-      --c--progress--color: var(--c--theme--colors--success-500);
-    }
-
-    .c__toast__icon {
-      color: var(--c--theme--colors--success-600);
-    }
+    @include toast-variant("success");
   }
 
   &--warning {
-    .c__progress-bar {
-      --c--progress--color: var(--c--theme--colors--warning-500);
-    }
-
-    .c__toast__icon {
-      color: var(--c--theme--colors--warning-600);
-    }
+    @include toast-variant("warning");
   }
 
   &--error {
-    .c__progress-bar {
-      --c--progress--color: var(--c--theme--colors--danger-500);
-    }
-
-    .c__toast__icon {
-      color: var(--c--theme--colors--danger-600);
-    }
+    @include toast-variant("error");
   }
-
 }
 
 @keyframes slide-out {
   from {
-    transform: translateX(0)
+    transform: translateX(0);
   }
   to {
     transform: translateX(-100%);
@@ -131,23 +119,22 @@
 
 @keyframes fade-in {
   from {
-    opacity: 0
+    opacity: 0;
   }
 }
 
 @keyframes slide-in {
   from {
-    transform: translateY(200px)
+    transform: translateY(200px);
   }
 }
 
 .c__progress-bar {
   height: var(--c--components--toast--progress-bar-height);
-  --c--progress--color: var(--c--theme--colors--primary-500);
+  --c--progress--color: var(--c--contextuals--background--brand--primary);
 
   &__content {
     height: 100%;
     background-color: var(--c--progress--color);
   }
 }
-

@@ -42,14 +42,14 @@ export const Home = ({ modal }: { modal: PageProps }) => {
 
     // Set the pagination length.
     pagination.setPagesCount(
-      Math.ceil(sortedDatabase.length / pagination.pageSize),
+      Math.ceil(sortedDatabase.length / pagination.pageSize)
     );
     // Select the rows to display on the current page.
     setRows(
       sortedDatabase.slice(
         (pagination.page - 1) * pagination.pageSize,
-        pagination.page * pagination.pageSize,
-      ),
+        pagination.page * pagination.pageSize
+      )
     );
     setIsLoading(false);
   }, [pagination.page, sortModel, modal.isOpen, refresh]);
@@ -57,11 +57,11 @@ export const Home = ({ modal }: { modal: PageProps }) => {
   return (
     <main className="page__home">
       <header className="page__home__title">
-        <h1 className="clr-greyscale-900">
+        <h1 className="clr-gray-900">
           {/* eslint-disable-next-line react/no-unescaped-entities */}
-          🍿Cunningham's <span className="clr-primary-400">Cast</span>
+          🍿Cunningham's <span className="clr-brand-400">Cast</span>
         </h1>
-        <p className="clr-greyscale-600 fs-m fw-regular">
+        <p className="clr-gray-600 fs-m fw-regular">
           Happy Days is an American television sitcom that aired first-run from
           January 15, 1974, to September 24, 1984, on ABC-TV
           <br /> with a total of 255 half-hour episodes spanning over eleven
@@ -134,13 +134,13 @@ export const Home = ({ modal }: { modal: PageProps }) => {
                         return;
                       }
                       const index = database.findIndex(
-                        (character) => character.id === params.row.id,
+                        (character) => character.id === params.row.id
                       );
                       database.splice(index, 1);
                       setRefresh(refresh + 1);
                       toast(
                         "Character deleted successfully",
-                        VariantType.WARNING,
+                        VariantType.WARNING
                       );
                     }}
                     icon={<span className="material-icons">delete</span>}

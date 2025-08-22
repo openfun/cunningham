@@ -569,7 +569,7 @@ export const ReactHookForm = () => {
         }}
         onSubmit={methods.handleSubmit(onSubmit)}
       >
-        <div className="clr-greyscale-900">
+        <div className="clr-gray-900">
           Where will the 2024 Olympics take place?
         </div>
         <RhfSelect

@@ -24,14 +24,14 @@ import { SelectMultiMenu } from ":/components/Forms/Select/multi-menu";
  */
 export function getMultiOptionsFilter(
   selectedOptions: Option[],
-  inputValue?: string,
+  inputValue?: string
 ) {
   const optionsFilter = getOptionsFilter(inputValue);
   return (option: Option) => {
     return (
       !selectedOptions.find(
         (selectedOption) =>
-          optionToValue(selectedOption) === optionToValue(option),
+          optionToValue(selectedOption) === optionToValue(option)
       ) && optionsFilter(option)
     );
   };
@@ -83,7 +83,7 @@ export const SelectMultiAux = ({ children, ...props }: SelectMultiAuxProps) => {
               "c__select--populated": props.selectedItems.length > 0,
               "c__select--monoline": props.monoline,
               "c__select--multiline": !props.monoline,
-            },
+            }
           )}
         >
           <div
@@ -117,10 +117,11 @@ export const SelectMultiAux = ({ children, ...props }: SelectMultiAuxProps) => {
                     props.selectedItems.length > 0 && (
                       <>
                         <Button
-                          color="tertiary-text"
+                          color="tertiary"
+                          variant="neutral"
                           size="nano"
                           aria-label={t(
-                            "components.forms.select.clear_all_button_aria_label",
+                            "components.forms.select.clear_all_button_aria_label"
                           )}
                           className="c__select__inner__actions__clear"
                           onClick={(e) => {
@@ -134,7 +135,8 @@ export const SelectMultiAux = ({ children, ...props }: SelectMultiAuxProps) => {
                       </>
                     )}
                   <Button
-                    color="tertiary-text"
+                    color="tertiary"
+                    variant="neutral"
                     size="nano"
                     className="c__select__inner__actions__open"
                     icon={

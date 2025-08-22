@@ -39,7 +39,8 @@ const SelectedItemsChips = ({
         <SelectedOption option={selectedItemForRender} {...props} />
         <Button
           tabIndex={-1}
-          color="tertiary-text"
+          color="tertiary"
+          variant="neutral"
           disabled={disabled}
           size="small"
           aria-label={t("components.forms.select.clear_button_aria_label")}
@@ -48,7 +49,7 @@ const SelectedItemsChips = ({
           onClick={(e) => {
             e.stopPropagation();
             useMultipleSelectionReturn.removeSelectedItem(
-              selectedItemForRender,
+              selectedItemForRender
             );
           }}
           icon={<span className="material-icons">close</span>}

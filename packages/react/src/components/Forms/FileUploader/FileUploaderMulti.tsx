@@ -38,13 +38,14 @@ export const FileUploaderMulti = ({
               <div className="c__file-uploader__file__specs">
                 <span>{formatBytes(file.size)}</span>
                 <Button
-                  color="tertiary-text"
+                  color="tertiary"
+                  variant="neutral"
                   size="nano"
                   aria-label={t(
                     "components.forms.file_uploader.delete_file_name",
                     {
                       name: file.name,
-                    },
+                    }
                   )}
                   onClick={() => {
                     setFiles(files.filter((f) => f !== file));

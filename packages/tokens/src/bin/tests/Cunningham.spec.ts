@@ -57,6 +57,19 @@ describe("Cunningham Bin", () => {
     expect(fs.existsSync(cssTokensFile)).toEqual(true);
     expect(fs.readFileSync(cssTokensFile).toString()).toMatchInlineSnapshot(`
 ":root {
+	--c--globals--colors--primary: #055FD2;
+	--c--globals--colors--secondary: #DA0000;
+	--c--globals--colors--ternary-900: #022858;
+	--c--globals--colors--ogre-odor-is-orange-indeed: #FD5240;
+	--c--globals--font--sizes--m: 1rem;
+	--c--globals--font--weights--medium: 400;
+	--c--globals--font--families--base: Roboto;
+	--c--globals--spacings--s: 1rem;
+	--c--globals--transitions--ease: linear;
+	--c--globals--input--border-color: var(--c--theme--colors--ternary-900);
+	--c--contextuals--background--primary: #055FD2;
+	--c--contextuals--content--primary: #055FD2;
+	--c--contextuals--border--primary: #055FD2;
 	--c--theme--colors--primary: #055FD2;
 	--c--theme--colors--secondary: #DA0000;
 	--c--theme--colors--ternary-900: #022858;
@@ -96,6 +109,19 @@ describe("Cunningham Bin", () => {
     expect(fs.existsSync(cssTokensFile)).toEqual(true);
     expect(fs.readFileSync(cssTokensFile).toString()).toMatchInlineSnapshot(`
 ":root {
+	--c--globals--colors--primary: #055FD2;
+	--c--globals--colors--secondary: #DA0000;
+	--c--globals--colors--ternary-900: #022858;
+	--c--globals--colors--ogre-odor-is-orange-indeed: #FD5240;
+	--c--globals--font--sizes--m: 1rem;
+	--c--globals--font--weights--medium: 400;
+	--c--globals--font--families--base: Roboto;
+	--c--globals--spacings--s: 1rem;
+	--c--globals--transitions--ease: linear;
+	--c--globals--input--border-color: var(--c--theme--colors--ternary-900);
+	--c--contextuals--background--primary: #055FD2;
+	--c--contextuals--content--primary: #055FD2;
+	--c--contextuals--border--primary: #055FD2;
 	--c--theme--colors--primary: AntiqueWhite;
 	--c--theme--colors--secondary: #DA0000;
 	--c--theme--colors--ternary-900: #022858;
@@ -148,6 +174,19 @@ describe("Cunningham Bin", () => {
     expect(fs.existsSync(cssTokensFile)).toEqual(true);
     expect(fs.readFileSync(cssTokensFile).toString()).toMatchInlineSnapshot(`
 ":root {
+	--c--globals--colors--primary: #055FD2;
+	--c--globals--colors--secondary: #DA0000;
+	--c--globals--colors--ternary-900: #022858;
+	--c--globals--colors--ogre-odor-is-orange-indeed: #FD5240;
+	--c--globals--font--sizes--m: 1rem;
+	--c--globals--font--weights--medium: 400;
+	--c--globals--font--families--base: Roboto;
+	--c--globals--spacings--s: 1rem;
+	--c--globals--transitions--ease: linear;
+	--c--globals--input--border-color: var(--c--theme--colors--ternary-900);
+	--c--contextuals--background--primary: #055FD2;
+	--c--contextuals--content--primary: #055FD2;
+	--c--contextuals--border--primary: #055FD2;
 	--c--theme--colors--primary: #055FD2;
 	--c--theme--colors--secondary: #DA0000;
 	--c--theme--colors--ternary-900: #022858;

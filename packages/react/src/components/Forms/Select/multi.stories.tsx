@@ -97,7 +97,7 @@ export const Controlled = () => {
   const [value, setValue] = useState([OPTIONS[6].value, OPTIONS[8].value]);
   return (
     <div>
-      <div className="clr-greyscale-900">
+      <div className="clr-gray-900">
         Value: <span>{JSON.stringify(value)}</span>
       </div>
       <Select
@@ -160,7 +160,7 @@ export const SearchableControlled = () => {
   const [value, setValue] = useState([OPTIONS[6].value, OPTIONS[8].value]);
   return (
     <div>
-      <div className="clr-greyscale-900">
+      <div className="clr-gray-900">
         Value: <span>{JSON.stringify(value)}</span>
       </div>
       <Select
@@ -509,7 +509,7 @@ export const ReactHookForm = () => {
       .test({
         test: (cityList) =>
           cityList.every((city) =>
-            [CitiesOptionEnum.PARIS, CitiesOptionEnum.TOKYO].includes(city),
+            [CitiesOptionEnum.PARIS, CitiesOptionEnum.TOKYO].includes(city)
           ),
         message: "Wrong answer!",
       }),
@@ -535,7 +535,7 @@ export const ReactHookForm = () => {
         }}
         onSubmit={methods.handleSubmit(onSubmit)}
       >
-        <div className="clr-greyscale-900">
+        <div className="clr-gray-900">
           Which cities are capital of countries ?
         </div>
         <RhfSelect

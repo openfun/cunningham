@@ -119,9 +119,7 @@ export const Controlled = {
     const [checked, setChecked] = React.useState(false);
     return (
       <div>
-        <div className="clr-greyscale-900">
-          Value: {JSON.stringify(checked)}
-        </div>
+        <div className="clr-gray-900">Value: {JSON.stringify(checked)}</div>
         <Switch
           checked={checked}
           onChange={(e) => setChecked(e.target.checked)}
@@ -188,9 +186,19 @@ export const FormExampleRight = {
           <Switch label="Bluetooth" fullWidth={true} labelSide="right" />
           <Switch
             label="VPN"
+            defaultChecked={true}
             fullWidth={true}
             labelSide="right"
             text="You must pay for this feature"
+            state="error"
+            disabled={true}
+          />
+          <Switch
+            label="VPN"
+            defaultChecked={true}
+            fullWidth={true}
+            labelSide="right"
+            text="You must paDDy for this feature"
             state="error"
             disabled={true}
           />

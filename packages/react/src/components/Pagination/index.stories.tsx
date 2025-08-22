@@ -28,14 +28,14 @@ export const List = () => {
     const timeout = setTimeout(() => {
       // Sets the number of pages based on the number of items in the database.
       pagination.setPagesCount(
-        Math.ceil(database.length / pagination.pageSize),
+        Math.ceil(database.length / pagination.pageSize)
       );
       // Sets the items to display on the current page.
       setItems(
         database.slice(
           (pagination.page - 1) * pagination.pageSize,
-          pagination.page * pagination.pageSize,
-        ),
+          pagination.page * pagination.pageSize
+        )
       );
     }, 500);
     return () => {
@@ -47,7 +47,7 @@ export const List = () => {
     <div>
       <div>
         {items.map((item) => (
-          <div className="p-t bg-secondary-300 mb-t" key={item}>
+          <div className="p-t bg-neutral-tertiary mb-t" key={item}>
             {item}
           </div>
         ))}

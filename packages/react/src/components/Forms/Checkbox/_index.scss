@@ -1,5 +1,4 @@
 .c__checkbox__group {
-
   &__list {
     display: flex;
     flex-direction: column;
@@ -24,13 +23,16 @@
   margin-left: -1 * $padding;
   cursor: pointer;
 
-  &:hover, &:focus-within {
-    background-color: var(--c--components--forms-checkbox--background-color--hover);
+  &:hover,
+  &:focus-within {
+    background-color: var(
+      --c--components--forms-checkbox--background-color--hover
+    );
   }
 
   &:focus-within {
     outline: 0;
-    border-color: var(--c--theme--colors--primary-600);
+    border-color: var(--c--contextuals--border--brand--primary);
   }
 
   &__container {
@@ -75,6 +77,12 @@
       }
 
       &:checked {
+        background-color: var(
+          --c--components--forms-checkbox--background-color--checked
+        );
+        border-color: var(
+          --c--components--forms-checkbox--background-color--checked
+        );
         ~ .checkmark {
           clip-path: $clipPathShow;
         }
@@ -84,6 +92,12 @@
       }
 
       &:indeterminate {
+        background-color: var(
+          --c--components--forms-checkbox--background-color--indeterminate
+        );
+        border-color: var(
+          --c--components--forms-checkbox--background-color--indeterminate
+        );
         ~ .indeterminate {
           clip-path: $clipPathShow;
         }
@@ -91,11 +105,35 @@
           clip-path: $clipPathHide;
         }
       }
+
+      &:disabled {
+        cursor: not-allowed !important;
+        svg {
+          color: white;
+        }
+        &:not(:checked):not(:indeterminate) {
+          background-color: white;
+          border-color: var(
+            --c--components--forms-checkbox--border-color--disabled
+          );
+        }
+
+        &:checked,
+        &:indeterminate {
+          background-color: var(
+            --c--components--forms-checkbox--background-color--disabled
+          );
+          border-color: var(
+            --c--components--forms-checkbox--border-color--disabled
+          );
+        }
+      }
     }
 
     svg {
       clip-path: $clipPathHide;
-      transition: var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
+      transition: var(--c--globals--transitions--duration)
+        var(--c--globals--transitions--ease-out);
       position: absolute;
       top: 0;
       left: 0;
@@ -110,11 +148,11 @@
 
   &--disabled {
     border-color: transparent;
-    color: var(--c--theme--colors--greyscale-600);
-    cursor: not-allowed;
+    color: var(--c--contextuals--content--neutral--secondary);
+    cursor: not-allowed !important;
 
     svg {
-      color: var(--c--theme--colors--greyscale-400);
+      color: var(--c--contextuals--background--surface--primary);
     }
 
     &:hover {
@@ -122,7 +160,7 @@
     }
 
     .c__checkbox__label {
-      color: var(--c--theme--colors--greyscale-600);
+      color: var(--c--contextuals--content--neutral--secondary);
     }
   }
 

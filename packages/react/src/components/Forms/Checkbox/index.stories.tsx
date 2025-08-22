@@ -121,20 +121,32 @@ export const Success = {
 
 export const Group = () => (
   <div>
-    <div className="fs-l fw-bold mb-t clr-greyscale-900">Your offices</div>
+    <div className="fs-l fw-bold mb-t clr-gray-900">Your offices</div>
     <CheckboxGroup>
       <Checkbox label="Paris" />
       <Checkbox label="New York" text="United States" checked={true} />
       <Checkbox label="Hong Kong" text="Really long text to write something" />
       <Checkbox label="Singapour" checked={true} />
+      <Checkbox
+        label="Indeterminate"
+        checked={true}
+        disabled={true}
+        indeterminate={true}
+      />
       <Checkbox label="London" text="Offices closed" disabled={true} />
+      <Checkbox
+        label="London"
+        text="Offices closed"
+        checked={true}
+        disabled={true}
+      />
     </CheckboxGroup>
   </div>
 );
 
 export const GroupError = () => (
   <div>
-    <div className="fs-l fw-bold mb-t clr-greyscale-900">Your offices</div>
+    <div className="fs-l fw-bold mb-t clr-gray-900">Your offices</div>
     <CheckboxGroup state="error" text="An important error message">
       <Checkbox label="Paris" />
       <Checkbox label="New York" text="United States" checked={true} />
@@ -147,7 +159,7 @@ export const GroupError = () => (
 
 export const GroupSuccess = () => (
   <div>
-    <div className="fs-l fw-bold mb-t clr-greyscale-900">Your offices</div>
+    <div className="fs-l fw-bold mb-t clr-gray-900">Your offices</div>
     <CheckboxGroup state="success" text="Success message !">
       <Checkbox label="Paris" />
       <Checkbox label="New York" text="United States" checked={true} />

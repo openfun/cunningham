@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-import { Button } from "./index";
+import { Button, ButtonProps } from "./index";
 
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
@@ -10,80 +10,160 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof Button>;
 
-export const All: Story = {
-  render: () => {
-    return (
-      <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-        <Button {...Primary.args} />
-        <Button {...PrimaryText.args} />
-        <Button {...Secondary.args} />
-        <Button {...Tertiary.args} />
-        <Button {...TertiaryText.args} />
-        <Button {...Disabled.args} />
-        <Button {...LinkDisabled.args} />
-        <Button {...Danger.args} />
+type AllButtonsProps = ButtonProps & {
+  variant: ButtonProps["variant"];
+};
+
+const AllButtons = ({ variant = "brand" }: AllButtonsProps) => {
+  return (
+    <div
+      style={{
+        display: "flex",
+
+        alignItems: "center",
+        gap: "1rem",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "1rem",
+          alignItems: "start",
+          justifyContent: "start",
+        }}
+      >
+        <h4>Primary</h4>
+        <Button {...Primary.args} variant={variant} />
+        <Button {...PrimaryDisabled.args} variant={variant} />
       </div>
-    );
+      <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+        <h4>Secondary</h4>
+        <Button {...Secondary.args} variant={variant} />
+        <Button {...SecondaryDisabled.args} variant={variant} />
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+        <h4>Tertiary</h4>
+        <Button {...BrandTertiary.args} variant={variant} />
+        <Button {...TertiaryDisabled.args} variant={variant} />
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+        <h4>Bordered</h4>
+        <Button {...Bordered.args} variant={variant} />
+        <Button {...BrandBorderedDisabled.args} variant={variant} />
+      </div>
+    </div>
+  );
+};
+
+export const AllBrands: Story = {
+  render: () => {
+    return <AllButtons variant="brand" />;
   },
 };
 
-export const Primary: Story = {
+export const AllNeutrals: Story = {
+  render: () => {
+    return <AllButtons variant="neutral" />;
+  },
+};
+
+export const AllWarnings: Story = {
+  render: () => {
+    return <AllButtons variant="warning" />;
+  },
+};
+
+export const AllErrors: Story = {
+  render: () => {
+    return <AllButtons variant="error" />;
+  },
+};
+
+export const AllSuccesses: Story = {
+  render: () => {
+    return <AllButtons variant="success" />;
+  },
+};
+
+export const AllInfos: Story = {
+  render: () => {
+    return <AllButtons variant="info" />;
+  },
+};
+
+const Primary: Story = {
   args: {
     children: "Primary",
     color: "primary",
-  },
-};
-
-export const PrimaryText: Story = {
-  args: {
-    children: "Primary Text",
-    color: "primary-text",
     icon: <span className="material-icons">bolt</span>,
   },
 };
 
-export const Secondary: Story = {
+const PrimaryDisabled: Story = {
+  args: {
+    children: "Disabled",
+    color: "primary",
+    disabled: true,
+    icon: <span className="material-icons">bolt</span>,
+  },
+};
+
+const Secondary: Story = {
   args: {
     children: "Secondary",
     color: "secondary",
+    icon: <span className="material-icons">bolt</span>,
   },
 };
 
-export const Tertiary: Story = {
+const SecondaryDisabled: Story = {
+  args: {
+    children: "Disabled",
+    color: "secondary",
+    disabled: true,
+    icon: <span className="material-icons">bolt</span>,
+  },
+};
+
+const BrandTertiary: Story = {
   args: {
     children: "Tertiary",
     color: "tertiary",
+    icon: <span className="material-icons">bolt</span>,
   },
 };
 
-export const TertiaryText: Story = {
-  args: {
-    children: "Tertiary Text",
-    color: "tertiary-text",
-  },
-};
-
-export const Disabled: Story = {
+const TertiaryDisabled: Story = {
   args: {
     children: "Disabled",
-    color: "primary",
+    color: "tertiary",
     disabled: true,
+    icon: <span className="material-icons">bolt</span>,
   },
 };
 
-export const LinkDisabled: Story = {
+const Bordered: Story = {
   args: {
-    children: "Disabled",
-    color: "primary",
-    disabled: true,
-    href: "https://perdu.com",
+    children: "Bordered",
+    color: "bordered",
+    icon: <span className="material-icons">bolt</span>,
   },
 };
 
-export const Danger: Story = {
+const BrandBorderedDisabled: Story = {
   args: {
-    children: "Danger",
-    color: "danger",
+    children: " Disabled",
+    color: "bordered",
+    disabled: true,
+    icon: <span className="material-icons">bolt</span>,
+  },
+};
+
+export const Medium: Story = {
+  args: {
+    children: "Primary",
+    color: "primary",
   },
 };
 
