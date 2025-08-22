@@ -10,16 +10,16 @@
 
   label {
     position: absolute;
-    font-size: var(--c--theme--font--sizes--s);
+    font-size: var(--c--globals--font--sizes--t);
     left: 0;
     top: 0.5rem;
-    transition: all var(--c--theme--transitions--duration) var(--c--theme--transitions--ease-out);
+    transition: all var(--c--globals--transitions--duration)
+      var(--c--globals--transitions--ease-out);
     color: var(--c--components--forms-labelledbox--label-color--small);
     // Enable text overflow ellipsis.
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
-
 
     &.placeholder {
       @extend %text-style;
@@ -66,10 +66,14 @@
 
   &--disabled {
     label {
-      color: var(--c--components--forms-labelledbox--label-color--small--disabled);
+      color: var(
+        --c--components--forms-labelledbox--label-color--small--disabled
+      );
 
       &.placeholder {
-        color: var(--c--components--forms-labelledbox--label-color--big--disabled);
+        color: var(
+          --c--components--forms-labelledbox--label-color--big--disabled
+        );
       }
     }
   }
