@@ -18,20 +18,20 @@
     "deploy-ghpages": "storybook-to-ghpages --existing-output-dir ./ghpages-output"
   },
   "devDependencies": {
-    "cross-env": "7.0.3",
+    "cross-env": "10.0.0",
     "make-dir-cli": "4.0.0",
-    "prettier": "3.5.3",
-    "turbo": "2.5.2"
+    "prettier": "3.6.2",
+    "turbo": "2.5.6"
   },
   "engines": {
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "@changesets/cli": "2.29.2"
+    "@changesets/cli": "2.29.6"
   },
   "packageManager": "yarn@1.22.22",
   "resolutions": {
-    "@testing-library/dom": "10.4.0"
+    "@testing-library/dom": "10.4.1"
   },
   "volta": {
     "node": "20.16.0",
