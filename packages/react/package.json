@@ -112,7 +112,7 @@
     "vite": "6.4.1",
     "vite-plugin-dts": "4.5.3",
     "vite-tsconfig-paths": "5.1.4",
-    "vitest": "3.1.2",
+    "vitest": "4.1.11",
     "vitest-fetch-mock": "0.4.5",
     "yup": "1.6.1"
   },
