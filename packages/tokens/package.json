@@ -37,7 +37,7 @@
     "chalk": "4.1.2",
     "commander": "13.1.0",
     "deepmerge": "4.3.1",
-    "figlet": "1.8.1",
+    "figlet": "1.11.3",
     "ts-node": "10.9.2"
   },
   "devDependencies": {
