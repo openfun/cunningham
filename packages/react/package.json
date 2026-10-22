@@ -70,7 +70,7 @@
     "node": ">=18.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.27.1",
+    "@babel/core": "7.29.6",
     "@babel/plugin-proposal-decorators": "7.27.1",
     "@babel/plugin-proposal-export-default-from": "7.27.1",
     "@babel/preset-typescript": "7.27.1",
