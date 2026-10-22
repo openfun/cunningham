@@ -75,7 +75,7 @@
     "@babel/plugin-proposal-export-default-from": "7.27.1",
     "@babel/preset-typescript": "7.27.1",
     "@chromatic-com/storybook": "3.2.6",
-    "@faker-js/faker": "9.7.0",
+    "@faker-js/faker": "10.5.0",
     "@hookform/resolvers": "5.0.1",
     "@gouvfr-lasuite/cunningham-tokens": "*",
     "@gouvfr-lasuite/typescript-configs": "*",
